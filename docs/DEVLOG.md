@@ -167,3 +167,7 @@ Các mô tả dưới đây là sự kiện ở Taskbar Hero, không phải hàn
 - 2026-11-17 · Codex · Tiếp tục Prompt 03 sau bàn giao: review parser/epoch/replay C03, đối chiếu 5 hashes; cập nhật note 021, mục lục và catalog với 16 test/live quote đã lưu, bổ sung Ryntra/Pay và giới hạn. Dừng T7 trùng việc trong A-queue; giữ review-C A01/A02/A03 42/40/37, không reset lịch sử. Không cài/toolchain/chain writes, không rerun khi code không đổi.
 
 - 2026-11-17 · Codex · Hoàn thiện ba bài PLAN r1 theo RUBRIC v1.2: C02 79, C03 77, C01 75; từng điểm có nguồn/thiết kế/artifact, F C01 giữ3 và N C03 giữ3. Viết lại SHORTLIST, dùng T6 V2 sau kiểm nguồn, ghi repo private và cổng public trước nộp. Kiểm công thức/sàn/local links/diff; note021 bổ sung constraints/atomicity/alternatives. Đặt chỗ note022 trước viết cho chuẩn bị account/PDA/test/CI/cài trên giấy; chưa cài/ký/deploy.
+
+- 2026-11-17 · Codex · Người dùng chọn ClusterProof chính/NetPay Check dự phòng và cho phép Rust1.100.0/Agave4.1.2/AVM-Anchor1.2.2/platform-tools v1.57; đã ghi DECISION, viết note022 (đặt chỗ 1aa322a). PR#7 mở/chưa merge, kiểm metadata mergeable. Máy có Xcode tools và 213.9GB trống; tải/đọc installer chính thức, bắt đầu cài Rust, chưa coi setup xong. Giao A T5 làm ngay và sửa T4 nhầm fee/mainnet.
+
+- 2026-11-17 · Codex · Viết IDEA và ARCHITECTURE v0.1 cho ClusterProof (chưa duyệt); giao A T8 web hello/devnet lab. Rust1.100.0 cài thành công/đã kiểm rustc; Agave đang cài, logs tại docs/evidence/phase3. Không đồng nhất hello lab với product program và không gọi score PLAN là gate phase hoàn tất.

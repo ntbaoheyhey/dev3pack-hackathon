@@ -65,3 +65,13 @@ Mỗi URL phải mở được và nội dung hỗ trợ claim; không đọc đ
 **T5 đã được giao và được phép crawl/đề xuất ngay từ bảng trên, không cần C chỉ thị thêm hoặc người dùng chọn ý tưởng.** Ưu tiên T5 ngay: 2 template chính thức (link GitHub/commit/license), wireframe read-only không ví cho C02/C03 và wallet reject/recovery cho C01. Trang https://templates.solana.com/ hiện redirect tới https://solana.com/developers/templates, có Next.js/React-Vite và các bản Anchor. Chỉ đọc docs/repo, không chạy template hay cài dependency. Kết quả vào `docs/data/phase2-ux-prep.md`.
 
 T2 bản hiện tại chỉ có Renaissance từ note012, chưa đúng bộ Frontier/Cypherpunk/Breakout/Radar và chưa có repo/video. Không đánh toàn bộ blog bị chặn từ profile bị chặn; note015/019/RUBRIC mục8 đã có link blog Frontier và Cypherpunk đọc được. Bổ sung đúng bộ khi quay lại T2; ưu tiên T5 trước.
+
+## Phase 3 đã được người dùng cho phép — 17/11/2026
+
+Người dùng đã chọn **ClusterProof chính/NetPay Check dự phòng**, đồng ý bộ toolchain Phase3; xem DECISION và ARCHITECTURE v0.1. C đang cài Rust/Agave/Anchor và lo hello program/CI.
+
+| Mã | Trạng thái | Việc | File kết quả | Xong khi |
+| --- | --- | --- | --- | --- |
+| T8 | mới | Sau T5, chuẩn bị web hello Phase3 tại apps/web: UI shell cho ClusterProof và trang lab devnet connect wallet; chốt/pin template/version/lockfile, loại mainnet và remote mainnet test fallback. Thực hiện phần frontend độc lập; không sửa programs/Cargo/Anchor hoặc core C | apps/web, docs/evidence/phase3/web.md, A-done | Build/test/browser evidence thật; link web công khai nếu có quyền/tài khoản hosting sẵn, nếu không ghi cần gì. Lab chưa có program thì thể hiện chưa nối, không giả tx. Không yêu cầu người dùng cung cấp private key, không đổi repo public/merge PR |
+
+T8 dùng package dependencies của web trong phạm vi Phase3 đã giao; không cài toolchain backend trùng C. Không dùng template latest nguyên trạng: Next/Kit8 test có mainnet fallback, note022 đã ghi. Nếu chưa chắc quyền hosting/account, hoàn tất code/build reviewable trước báo C. T5/T8 không chờ thêm chỉ thị vì đã có scope trên.

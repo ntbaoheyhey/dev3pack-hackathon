@@ -12,13 +12,15 @@
 - Note 021/mục lục/catalog đã cập nhật; T7 bỏ vì C đã tìm mint; T6 V2 đã đọc, còn diễn giải cần sửa.
 - Sở hữu C: RUBRIC, ideas/codex, cross-scores, SHORTLIST, IDEA, ARCHITECTURE, A-queue.
 - PR #7 đã mở/chưa merge. Người dùng đã chọn C02 chính/C03 dự phòng và cho phép cài toolchain Phase3; DECISION đã ghi, note022 đã viết.
+- Đang cài: Rust1.100.0 đã exit0; Agave4.1.2 exec session `91211`, theo log phase3; không khởi chạy lại nếu session còn sống.
 - Cấm mainnet/secrets/force push/merge PR/sửa checkout A hoặc Taskbar Hero. Học trước, cập nhật note/DEVLOG/Thẻ nhớ sau bước lớn.
 
 ## Còn lại
 
 - [x] Hoàn thiện C01–C03 đủ RUBRIC mục 4, chấm r1 có evidence; F C01=3, N C03=3; kiểm công thức/sàn/links.
-- [ ] Khi ≥3 đạt PLAN: viết lại SHORTLIST (ghi vì sao thay bản A), mở/cập nhật PR work → main, không merge; hỏi đúng hai câu chọn chính/dự phòng và quyền cài toolchain.
-- [ ] Trong lúc chờ: account/PDA, test harness/CI và kế hoạch cài trên giấy; dùng T4/T5 khi có, chuẩn bị độc lập ngay.
+- [x] SHORTLIST/PR#7 đã có; user chọn C02 chính/C03 dự phòng, đồng ý cài Phase3; DECISION ghi xong.
+- [x] Note022 đã viết contract/account/PDA/test harness/CI/kế hoạch cài.
+- [ ] Cài tiếp Agave/AVM/Anchor/platform-tools, hello build/test/devnet + CI; dùng process handle sống, không restart do timeout. Cập nhật note003 bằng output thật.
 - [ ] Sau quyết định: DECISION → IDEA (người dùng duyệt), ARCHITECTURE/giải thích một trang và cổng review. Phase 3 chỉ khi được phép.
 - [ ] Cuối thật: NEXT/ROADMAP/DEVLOG/HANDOFF/PR; chỉ complete khi cổng Phase 2 và Phase 3 nếu có đã đạt.
 
