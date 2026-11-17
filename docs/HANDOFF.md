@@ -3,7 +3,7 @@
 - Trưởng nhóm; Antigravity là trợ lý qua A-queue/A-done; không sửa A-done, không chờ A.
 - Mục tiêu: ≥3 ý tưởng ĐẠT có evidence → SHORTLIST/PR → người dùng chọn → Phase 1–2; Phase 3 có điều kiện.
 - Repo `/Users/bao/Documents/ChatGPT/dev3pack`, branch `work`, origin `ntbaoheyhey/dev3pack-hackathon`.
-- HEAD đã push **6731c5b**: code/evidence C03 và review-C được commit, pull/rebase remote tới 541ab67; main đã đồng bộ.
+- HEAD đã push **1aa322a**: r1/SHORTLIST/note022 đặt chỗ; đã pull/rebase kết quả A tới 89f62b5; main đã đồng bộ.
 - Automation `dev3pack-nh-c-tr-ng-nh-m-m-i-15-ph-t` ACTIVE mỗi 15 phút đúng chat; đã view, chưa quan sát heartbeat.
 - RUBRIC v1.2: weights 20/15/10/20/15/15/5, floors 3/3/2/3/3/3/2, tổng ≥75, không gate fail/pending trọng yếu.
 - F≤3 khi chưa spike; R/D4 PLAN là thiết kế; không U thành điểm đạt; tối đa r0 rồi r1–r3, không reset ID.
@@ -11,7 +11,7 @@
 - Evidence: 16 test đạt, C02 live 747 ms, C03 fee-only live 283 ms; không settlement/custom program/Phase 3.
 - Note 021/mục lục/catalog đã cập nhật; T7 bỏ vì C đã tìm mint; T6 V2 đã đọc, còn diễn giải cần sửa.
 - Sở hữu C: RUBRIC, ideas/codex, cross-scores, SHORTLIST, IDEA, ARCHITECTURE, A-queue.
-- Tiếp theo: push SHORTLIST/r1, mở PR work→main, hỏi đúng 2 câu chọn chính/dự phòng và quyền cài; làm note 022 độc lập (đã đặt chỗ).
+- PR #7 đã mở/chưa merge. Người dùng đã chọn C02 chính/C03 dự phòng và cho phép cài toolchain Phase3; DECISION đã ghi, note022 đã viết.
 - Cấm mainnet/secrets/force push/merge PR/sửa checkout A hoặc Taskbar Hero. Học trước, cập nhật note/DEVLOG/Thẻ nhớ sau bước lớn.
 
 ## Còn lại
@@ -29,9 +29,9 @@
 - C03: netpay-1794925658391.json; mint HxDYFvcXnLuy4VdxXCooUXrch8DZW34oUteQ6N2EFxEr, slot 523298709, epoch 1211; target 10000→gross 10102 / fee 102 / net 10000. Raw bytes, 5 script hashes khớp; writesToChain0. Chưa account permission/balance/settlement.
 - Discovery không đối số còn bị 403, không retry; khi có lý do mới dùng explicit mint. Snapshot positive đầu có lỗi report ghi đè mint đã sửa; giữ nguyên artifact lịch sử và replay regression.
 - Ryntra đã có fee/net/hook/policy/receipt, Solana Foundation Pay đã có x402/MPP/retry/debugger. Nguồn và SHA ở note 021. Không tuyên bố novelty từ feature chưa tìm thấy.
-- T6 V2 đã nhận: URL đúng, còn nhầm compute fee với transfer fee và suy luận Shopify. Queue đã ghi sửa; dùng nguồn C tự kiểm. T4/T5 chưa có file theo lần kiểm local sau pull; không coi là blocker.
+- T6 V2 đã nhận: URL đúng, còn nhầm compute fee với transfer fee và suy luận Shopify. Queue đã ghi sửa; dùng nguồn C tự kiểm. T4 đã đọc (89f62b5) nhưng không dùng chấm: thiếu URL, nhầm transfer fee/CU, khuyên mainnet ngoài scope; queue đã trả lại. T5 đã nhắc làm ngay, không chờ chọn ý tưởng.
 - A01 giữ vấn đề để nghiên cứu sau, không shortlist; A02/A03 bỏ vòng chọn. Phép tính lịch sử đã sửa ở cross-scores.
 
 ## Bị chặn
 
-Đã tới E; hai câu chọn chính/dự phòng và quyền cài chưa hỏi, chuẩn bị độc lập còn làm được. Không cài hoặc tạo ví trước quyền; chưa tuyên bố phase xong. Lịch sử checkpoint ở [archive](archive/HANDOFF-history-codex.md).
+Người dùng đã trả lời: C02 chính/C03 dự phòng, đồng ý cài toolchain Phase3. Tiếp tục IDEA/ARCHITECTURE + setup; chỉ hỏi thêm nếu có blocker thật hoặc tới cổng duyệt tài liệu hoàn chỉnh. Không cài hoặc tạo ví trước quyền; chưa tuyên bố phase xong. Lịch sử checkpoint ở [archive](archive/HANDOFF-history-codex.md).

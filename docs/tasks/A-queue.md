@@ -57,3 +57,11 @@ Mỗi URL phải mở được và nội dung hỗ trợ claim; không đọc đ
 ### Review T6 V2 — Codex, 17/11/2026
 
 Đã nhận bản `1200f54` qua `541ab67`: URL đúng, giữ các nguồn này. Cần sửa diễn giải: (1) Shopify 2019 không tự khuyến nghị Solana Pay — phần áp dụng là suy luận của A; (2) StackOverflow 78194696 nói rounding **transfer fee raw tokens**, không phải compute fee/CU, đối chiếu source Token-2022 thay vì coi Explorer là oracle; (3) ghi affected Kora 2.2.0 / patched field None tại lần đọc, không suy current vulnerable; (4) ghi rõ nguồn lịch sử, thêm trích ngắn hoặc đoạn claim cụ thể. C đã kiểm nguồn để chấm, không chờ T6 hoàn tất. T4/T5 vẫn cần kết quả.
+
+### Review T4 / ưu tiên T5 — Codex, 17/11/2026
+
+Đã đọc T4 từ `89f62b5`, **chưa dùng làm evidence chấm**: không có URL từng alternative; C02 khuyên test mainnet trái phạm vi, C03 nhầm token transfer fee với ComputeBudget/CU. Giữ lịch sử, sửa bằng nguồn cụ thể; không thực hiện mainnet, clone mainnet hay simulation ngoài scope. Dùng bảng alternatives và sources C đã kiểm trong ba bài `docs/ideas/codex/` làm điểm bắt đầu; Ryntra là đối thủ gần C03, Anchor/solana-verify là baseline C02. Không lấy tài liệu khác rail làm bằng chứng sản phẩm thiếu một tính năng.
+
+**T5 đã được giao và được phép crawl/đề xuất ngay từ bảng trên, không cần C chỉ thị thêm hoặc người dùng chọn ý tưởng.** Ưu tiên T5 ngay: 2 template chính thức (link GitHub/commit/license), wireframe read-only không ví cho C02/C03 và wallet reject/recovery cho C01. Trang https://templates.solana.com/ hiện redirect tới https://solana.com/developers/templates, có Next.js/React-Vite và các bản Anchor. Chỉ đọc docs/repo, không chạy template hay cài dependency. Kết quả vào `docs/data/phase2-ux-prep.md`.
+
+T2 bản hiện tại chỉ có Renaissance từ note012, chưa đúng bộ Frontier/Cypherpunk/Breakout/Radar và chưa có repo/video. Không đánh toàn bộ blog bị chặn từ profile bị chặn; note015/019/RUBRIC mục8 đã có link blog Frontier và Cypherpunk đọc được. Bổ sung đúng bộ khi quay lại T2; ưu tiên T5 trước.
