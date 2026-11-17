@@ -24,3 +24,5 @@
 - Việc T13: Đang làm. Đã khởi tạo file review thiết kế `docs/reviews/receiptrail-antigravity.md` và chờ thiết kế từ Codex.
 
 - Việc T16: Xong. Đã cập nhật thiết kế UX cho ReceiptRail (Wireframes, State Machine, Error Mapping, Storyboard, Checklist) vào `docs/design/receiptrail-ux-antigravity.md`.
+
+- Việc T13: Xong. Đã review kiến trúc ReceiptRail dựa trên bản `8f84cfe` và các artifact liên quan.
