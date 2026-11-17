@@ -1,7 +1,7 @@
 # Bàn giao hiện hành — Prompt 02, Codex
 
 - **Trạng thái:** đang làm. Cập nhật 17/11/2026 (Asia/Ho_Chi_Minh).
-- **Phase:** 1, C: RUBRIC v1.1 đã chốt sau hiệu chỉnh; đang viết 019, sau đó D độc lập. Codex là người gộp RUBRIC; Antigravity làm song song qua nhánh `work`.
+- **Phase:** 1, D độc lập: RUBRIC v1.1 đã chốt; 019 xong, review 020 C01–C04 đã viết. Codex là người gộp RUBRIC; Antigravity làm song song qua nhánh `work`.
 - **Checkout Codex:** `/Users/bao/Documents/ChatGPT/dev3pack`; remote `https://github.com/ntbaoheyhey/dev3pack-hackathon.git`. Checkout `/Users/bao/Documents/dev3pack-hackathon` đang có việc của Antigravity: không sửa/stage file ở đó.
 - Đã đọc AGENTS, ROADMAP đầy đủ, mục lục/template, note 001/002/004/007/012/014. Note 015/016/019 đã đặt chỗ trong main trước phiên này.
 - Quy tắc phiên Codex không cho tạo Automation để bám một task tới mốc hoàn thành; **chưa tạo Automation**. Tiếp tục trong chat hiện tại, lưu checkpoint ở đây; không hứa có tự đánh thức sau khi chat kết thúc.
@@ -17,8 +17,8 @@
 - [x] B2: chốt `docs/ideas/RUBRIC.md` v1.0 từ draft Codex và ứng viên 017/018; Codex quyết định theo Prompt 02 mới.
 - [x] B3: đã thử 3 winners + 2 honorable mentions Frontier; khoảng điểm chồng lấp vì thiếu artifact. V1.1 sửa protocol evidence/mốc snapshot; không tuyên bố đã kiểm định khả năng dự đoán giải.
 - [x] B4: áp dụng review bất đồng bộ; không cần A duyệt. Góp ý mới xử lý ở version sau; bất đồng lớn ghi Để người dùng quyết và chọn phương án chặt hơn.
-- [ ] C1: note 019 (RFP/RFS, dự án cũ, hạ tầng mới và cách lọc bằng chứng).
-- [ ] C2: review 020 → `docs/reviews/C-codex.md`.
+- [x] C1: note 019 đã viết; RFP Airtable/Light docs thiếu được ghi rõ, Samui có tuyên bố ngừng duy trì; chưa chạy SDK.
+- [x] C2: review 020 tại snapshot 57b0af3 → `docs/reviews/C-codex.md`, C01–C04 không chặn D.
 - [ ] D1: độc lập đề xuất/chấm/sửa >=3 ý tưởng C qua ngưỡng, đủ nguồn/user/Solana/accounts/instructions/SDK/track/demo 165 giây/rủi ro/MVP/lịch sử điểm.
 - [ ] D2: sau D1 mới đọc ý tưởng A, chấm tất cả bài chờ chấm chéo → `docs/ideas/cross-scores-codex.md`; sửa bài C nếu cross-score trượt. Mỗi bên >=3 ĐẠT hoặc chứng minh hết nguồn hợp lý.
 - [ ] E1: kiểm kỹ thuật SHORTLIST của A → `docs/reviews/E-codex.md`.

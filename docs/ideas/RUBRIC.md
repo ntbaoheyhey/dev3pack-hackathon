@@ -135,3 +135,11 @@ V1.1 bổ sung bốn quy tắc bắt buộc:
 Đã tính lại các khoảng bằng Python offline: chuyển 5 điểm trọng số P→F, F→D và D→P (tổng luôn 100) vẫn có giao giữa tất cả khoảng; không thể kết luận người thắng chỉ nhờ đổi weights. Đây là phép tính tài liệu, không phải spike Solana.
 
 Hai đối chứng tự soạn: (a) todo app một admin với NFT trang trí, `S=1/G1 fail`, bị loại dù UI đẹp; (b) demo bắt buộc CPI vào dependency chưa có deployment/IDL phù hợp và không có fallback, `F=1/G4 fail`, bị loại dù thị trường hấp dẫn. Các đối chứng kiểm gates có hoạt động, **không được thay thế hai bài thật không top**.
+
+## 9. Tiếp nhận draft Antigravity — snapshot 57b0af3
+
+Đã đọc `rubric-draft-antigravity.md` ngày 17/11/2026. Trọng số, ngưỡng 75 và tối đa ba lần sửa khớp v1; tiếp nhận đây là phần đồng quy, không giả đã có review toàn bộ rubric.
+
+Không nhận ba cách diễn đạt: (1) private repo nghiên cứu bị loại ngay — G2 yêu cầu kế hoạch public trước nộp; (2) 48h là thời lượng chính thức — chỉ được dùng như ngân sách giả định, ngày thi là 27–29/11; (3) PLAN mức 3 phải demo chạy và Solana=checklist primitive — giữ bảng PLAN/evidence và trust boundary của v1.1. Draft A chưa mô tả mức 0/2/4 theo từng tiêu chí; dùng thang đầy đủ hiện hành.
+
+Không thay weights, floors hoặc định nghĩa sau khi có ý tưởng; việc đối chiếu này diễn ra trước chặng D. Chưa có bất đồng lớn cần người dùng xử lý.

@@ -141,3 +141,10 @@ Các mô tả dưới đây là sự kiện ở Taskbar Hero, không phải hàn
 - Đối chiếu ba winners/hai honorable mentions Frontier, profile/website/repo thật; Flovia README pin commit trong ngày cuối thi. Bốn README khác trả 404, không suy đã bỏ dự án.
 - Khoảng U chồng lấp: công khai không đủ phân biệt winners; sửa protocol evidence ở v1.1, không bẻ weights/ngưỡng hoặc gán điểm giả. Kiểm Python khoảng tổng/độ nhạy và hai gate controls; không spike.
 - Sang C/D ngay theo luật chủ file quyết định, review A xử lý bất đồng bộ.
+
+## 2026-11-17 — Codex: hoàn thành C, mở D độc lập
+
+- Viết 019 đúng số đã đặt chỗ; nguồn RFS/funding/accelerator, kết quả thi, Samui unmaintained và Facto archived, P-Token/Light/x402 và evidence filtering. Phân biệt source docs với thực thi.
+- Sửa nhận định P-Token tentative trong phân tích 019: replacement implementation Tokenkeg; không bắt client chuyển program ID. Không tự sửa ROADMAP giáo viên.
+- Review 020 C01–C04; tiếp nhận draft A vào RUBRIC mục 9, weights/ngưỡng đồng quy nhưng giữ các phân biệt PLAN/private nghiên cứu/primitive.
+- Bắt đầu D; chưa mở docs/ideas/antigravity. Chưa code/install/tx/deploy.

@@ -47,8 +47,8 @@ Tiến độ và bước tiếp tục sau compact nằm trong [docs/HANDOFF.md](
 | [016 — Đánh giá độ khả thi kỹ thuật và rủi ro của ý tưởng](016-technical-feasibility-risk.md) | Critical path, dependency D0–D3, issue thực tế, ngưỡng feasibility | Codex — đã nghiên cứu; chưa chạy spike |
 | [017 — Khung thẩm định ý tưởng sản phẩm và nghiên cứu về chấm ý tưởng](017-khung-tham-dinh-y-tuong.md) | Đặt chỗ cho Phase 1 chặng A | Antigravity — xong theo báo cáo A; Codex đang review |
 | [018 — Có thật sự cần blockchain/Solana không; thông tin chấm Dev3pack](018-blockchain-solana-check.md) | Đặt chỗ cho Phase 1 chặng A | Antigravity — xong theo báo cáo A; Codex đang review |
-| 019 — Nguồn ý tưởng trong hệ sinh thái Solana | Đặt chỗ cho Phase 1 chặng C | Codex — chưa viết |
-| 020 — Nguồn vấn đề thật của người dùng | Đặt chỗ cho Phase 1 chặng C | Antigravity — chưa viết |
+| [019 — Nguồn ý tưởng trong hệ sinh thái Solana](019-solana-idea-sources.md) | RFS/RFP/funding, dự án thật/archived, P-Token/Light/x402, evidence filtering | Codex — đã nghiên cứu; chưa spike |
+| [020 — Nguồn vấn đề thật của người dùng](020-nguon-van-de-that.md) | Bản đầu của A; review C01–C04 tại reviews/C-codex | Antigravity — cần bổ sung nguồn cụ thể; review không chặn |
 
 ## Bài học / lỗi đã gặp
 
