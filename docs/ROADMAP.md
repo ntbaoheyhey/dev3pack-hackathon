@@ -60,7 +60,7 @@ Phase nào cũng đi đúng 5 bước, không nhảy cóc:
 
 | # | Phase | Chủ trì | Mốc mềm | Cổng ra |
 | --- | --- | --- | --- | --- |
-| 1 | Ý tưởng & spec sản phẩm | C + A | 17–18/11 | Người dùng duyệt `docs/IDEA.md` |
+| 1 | Ý tưởng & spec sản phẩm (học chấm → bộ chấm → vòng lặp tới ngưỡng) | C + A | 17–19/11 | Người dùng duyệt `docs/IDEA.md` |
 | 2 | Kiến trúc & thiết kế | C (on-chain), A (UX) | 18–19/11 | `docs/ARCHITECTURE.md` được duyệt |
 | 3 | Môi trường & khung repo (song song phase 1–2) | C (toolchain, CI), A (web) | 17–19/11 | Hello program trên devnet + web live + CI xanh |
 | 4 | Program on-chain | C | 19–22/11 | Test xanh, deploy devnet, client sinh từ IDL |
@@ -78,22 +78,36 @@ Ngày là mốc **mềm**. Trễ thì cắt phạm vi, không dời ngày thi. H
 
 ### Phase 1 — Ý tưởng & spec sản phẩm
 
-**Mục tiêu:** chọn một ý tưởng có căn cứ, đủ nhỏ để làm xong, đủ hay để thắng.
+**Mục tiêu:** có ý tưởng **đạt ngưỡng điểm** của bộ chấm chung, rồi người dùng chọn.
 
-**Cần học:**
-- Dự án thắng 2025–2026 (Colosseum Frontier, Cypherpunk, Agent, x402, Breakout, Superteam): vấn đề, người dùng, dùng tính năng Solana nào, demo và pitch ra sao — C phân tích độ sâu kỹ thuật, A phân tích sản phẩm/demo
-- Vấn đề thật ở Việt Nam/Đông Nam Á có thể giải bằng Solana (thanh toán, kiều hối, sinh viên, cộng đồng…) — A
-- Thông tin cuộc thi còn thiếu: giờ hạn nộp, partner tracks, local track Việt Nam, giải mobile, nội dung bootcamp Dev3pack — A (có browser)
-- Cách viết spec sản phẩm gọn: user story, phạm vi MVP, cái không làm — A
-- Ước lượng độ khó kỹ thuật cho từng ý tưởng trên Solana — C
+**Nguyên tắc:** không đi tìm ý tưởng khi chưa biết chấm ý tưởng thế nào; một ý tưởng chỉ được coi là hợp lý khi **vượt ngưỡng điểm** sau vòng lặp chấm–sửa. Toàn bộ chặng A–E, tiếp theo là Phase 2 (và Phase 3 nếu người dùng đồng ý cài), nằm trong **một prompt lớn cho mỗi agent** (`prompts/02-*-phase1.md`); hai agent phối hợp qua file trên nhánh chung `work`. Người dùng chỉ quay lại một lần để chọn ý tưởng.
 
-**Làm:**
-1. Mỗi học sinh **độc lập** đề xuất 5 ý tưởng (không xem bài nhau trước). Mỗi ý tưởng: vấn đề, người dùng cụ thể, vì sao cần Solana, tính năng Solana dùng tới, hợp sponsor/track nào, "khoảnh khắc wow" trong video, rủi ro lớn nhất.
-2. Chấm chéo bằng bảng tự chấm ở note 012, gộp còn 3.
-3. **Người dùng chọn** 1 ý tưởng chính + 1 dự phòng.
-4. Viết `docs/IDEA.md`: one-liner, người dùng, vấn đề, user stories, phạm vi MVP, ngoài phạm vi, luồng demo 165 giây phác thảo.
+| Chặng | Việc | Chủ trì | Xong khi |
+| --- | --- | --- | --- |
+| **A** | Học cách chấm ý tưởng | C (015, 016), A (017, 018 + cập nhật 001) | Note có mục "Tiêu chí ứng viên", đã review chéo |
+| **B** | Bộ chấm chung + ngưỡng đạt | Mỗi bên soạn nháp; C gộp; A duyệt | `docs/ideas/RUBRIC.md` cả hai đồng ý, đã thử chấm dự án có thật |
+| **C** | Học nơi tìm ý tưởng | C (019), A (020) | Note xong, review chéo |
+| **D** | Vòng lặp ý tưởng | Mỗi bên độc lập, rồi chấm chéo | Mỗi bên có ít nhất 3 ý tưởng vượt ngưỡng ở cả điểm tự chấm và điểm chấm chéo |
+| **E** | Danh sách cuối | A viết, C kiểm tra | `docs/ideas/SHORTLIST.md`, mở PR |
 
-**Cổng ra:** người dùng duyệt `docs/IDEA.md`.
+**Cần học ở chặng A:** tiêu chí chấm chính thức và cách giám khảo chấm thật (Solana, Colosseum, Superteam, Dev3pack và hackathon lớn khác); cách đánh giá độ khả thi và rủi ro kỹ thuật trong thời gian ngắn; khung thẩm định ý tưởng sản phẩm/startup và nghiên cứu học thuật về chấm ý tưởng; phép thử "có cần blockchain/Solana không"; thông tin chấm của Dev3pack.
+
+**Cần học ở chặng C:** kho ý tưởng và danh sách "mong muốn" của hệ sinh thái (RFP, request for startups, danh sách ý tưởng), dự án thắng và dự án bị bỏ dở, nơi người dùng than phiền (Việt Nam, Trung Quốc, global), xu hướng cuối 2026, cách tìm vấn đề thật thay vì nghĩ ra từ đầu.
+
+**Vòng lặp ở chặng D:**
+
+```
+lấy ý tưởng từ nguồn (có bằng chứng) → chấm bằng RUBRIC
+   ├─ vượt ngưỡng → gửi bên kia chấm chéo → vượt ngưỡng → ĐẠT
+   │                                       └─ không vượt → quay lại sửa
+   └─ không vượt → tìm tiêu chí yếu nhất → nghiên cứu thêm / sửa ý tưởng / thay ý tưởng → chấm lại
+```
+
+Mỗi vòng ghi lại điểm và thay đổi. Ý tưởng sửa quá số vòng tối đa (đặt trong RUBRIC) mà vẫn không vượt thì bỏ, ghi lý do.
+
+**Sau Phase 1 prompt:** người dùng chọn 1 ý tưởng chính + 1 dự phòng từ SHORTLIST; sau đó viết `docs/IDEA.md` (one-liner, người dùng, vấn đề, user stories, phạm vi MVP, ngoài phạm vi, luồng demo 165 giây).
+
+**Cổng ra Phase 1:** người dùng duyệt `docs/IDEA.md`.
 
 ### Phase 2 — Kiến trúc & thiết kế
 
@@ -210,7 +224,7 @@ Ngày là mốc **mềm**. Trễ thì cắt phạm vi, không dời ngày thi. H
 
 ## 5. Cách giao việc
 
-- **Mỗi phase một prompt** trong `prompts/`, giáo viên viết khi mở phase: mục tiêu, danh sách cần học, việc làm, sản phẩm nộp, cổng ra. Không viết sẵn nội dung.
+- **Ít prompt, chạy dài**: mỗi agent nhận một prompt lớn chạy qua nhiều phase, chỉ dừng ở chỗ thật sự cần người dùng. Cuối mỗi đợt, agent tự viết `docs/NEXT.md` cho đợt sau, để người dùng chỉ cần nhắn "Đọc docs/NEXT.md và làm tiếp". Prompt chỉ nêu mục tiêu, cần học gì, việc làm, sản phẩm nộp, cổng ra; không viết sẵn nội dung.
 - **Tự đánh thức khi chạy lâu** (không cần watchdog): đầu mỗi task dài, học sinh tự tạo tác vụ lặp **mỗi 15 phút** nhắn vào chính chat của mình, kiểu: *"Mấy giờ rồi? Đọc docs/HANDOFF.md và làm tiếp mục đầu tiên trong Còn lại."* Codex dùng Automations; Antigravity dùng tác vụ lên lịch trong chat. Xong hết việc thì tự hủy.
 - **Phase song song** (3 với 1–2; 4 với 5): mỗi agent làm trên nhánh riêng, merge qua PR, ghi DEVLOG khi chạm vùng của agent kia.
 - **Việc cần người dùng** (cài đặt, tài khoản, ví, chọn ý tưởng, nộp form) ghi vào mục "Bị chặn" của `docs/HANDOFF.md`, không tự làm.
@@ -222,7 +236,7 @@ Ngày là mốc **mềm**. Trễ thì cắt phạm vi, không dời ngày thi. H
 | Phase | Trạng thái | Ghi chú |
 | --- | --- | --- |
 | Nền (002–014) | xong | PR #1, REVIEW R01–R09 đã sửa |
-| 1 Ý tưởng & spec | đang làm | Prompt 02 (`prompts/02-*-phase1-idea.md`), note 015–019 đã đặt chỗ |
+| 1 Ý tưởng & spec | đang làm | Prompt `prompts/02-codex-phase1.md`, `prompts/02-antigravity-phase1.md`; note 015–020 đã đặt chỗ |
 | 2 Kiến trúc | chưa mở | |
 | 3 Môi trường | chờ mở | Cần người dùng đồng ý cài toolchain |
 | 4 Program | chưa mở | |

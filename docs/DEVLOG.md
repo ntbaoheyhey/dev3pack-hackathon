@@ -2,6 +2,11 @@
 
 Mỗi dòng: ngày · ai làm (Mai / Codex / Antigravity) · việc · note đã cập nhật.
 
+## 2026-11-17 — Claude (điều phối): Phase 1 học cách chấm trước, vòng lặp tới ngưỡng
+
+- Theo góp ý người dùng: Phase 1 phải học cách chấm ý tưởng và lập bộ chấm chung trước khi tìm ý tưởng; ý tưởng chỉ hợp lý khi vượt ngưỡng sau vòng lặp chấm–sửa.
+- Thay prompt Phase 1 bằng một prompt lớn cho mỗi agent (`prompts/02-*-phase1.md`), chạy từ học cách chấm tới hết Phase 2, chỉ dừng một lần để người dùng chọn ý tưởng. Đặt chỗ note 015–020.
+
 ## 2026-11-17 — Claude (điều phối): lập ROADMAP 9 phase build app
 
 - Chấm phần học 002–014: tốt về nguồn và ghi giới hạn; thiếu thực hành (chưa cài/compile/deploy), chưa có ý tưởng sản phẩm, thiếu một số chủ đề kỹ thuật, chưa có quy trình phối hợp khi build.
