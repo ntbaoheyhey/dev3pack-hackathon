@@ -1,3 +1,48 @@
+# Bàn giao hiện hành — Prompt 02, Codex
+
+- **Trạng thái:** đang làm. Cập nhật 17/11/2026 (Asia/Ho_Chi_Minh).
+- **Phase:** 1, chặng A. Codex là người gộp RUBRIC; Antigravity làm song song qua nhánh `work`.
+- **Checkout Codex:** `/Users/bao/Documents/ChatGPT/dev3pack`; remote `https://github.com/ntbaoheyhey/dev3pack-hackathon.git`. Checkout `/Users/bao/Documents/dev3pack-hackathon` đang có việc của Antigravity: không sửa/stage file ở đó.
+- Đã đọc AGENTS, ROADMAP đầy đủ, mục lục/template, note 001/002/004/007/012/014. Note 015/016/019 đã đặt chỗ trong main trước phiên này.
+- Quy tắc phiên Codex không cho tạo Automation để bám một task tới mốc hoàn thành; **chưa tạo Automation**. Tiếp tục trong chat hiện tại, lưu checkpoint ở đây; không hứa có tự đánh thức sau khi chat kết thúc.
+- Sở hữu: Codex sửa 015/016/019, reviews A/C/E-codex, draft Codex, RUBRIC, ideas/codex, cross-scores-codex, phần kỹ thuật ARCHITECTURE; A giữ 017/018/020, draft/review A, ideas/antigravity, SHORTLIST, IDEA. README học tập/DEVLOG thêm dòng, giữ cả hai khi xung đột. Không đọc `docs/ideas/antigravity/` trước 3 ý tưởng tự chấm đạt.
+- Trước mỗi push có remote work: `git pull --rebase origin work`; không force-push, không merge PR. Khởi tạo work lần đầu từ origin/main nếu remote chưa có.
+
+## Còn lại
+
+- [ ] A1: nghiên cứu và viết note 015 (rubric chính thức Colosseum 2024–2026, Superteam, Foundation, Dev3pack, >=3 sự kiện ngoài Solana; giám khảo, vòng lọc/final, kỹ thuật); kết thúc bằng Tiêu chí ứng viên.
+- [ ] A2: nghiên cứu và viết 016 (ước lượng, post-mortem/issues, dependencies devnet/wallet/SDK/CU, tiêu chí khả thi); kết thúc bằng Tiêu chí ứng viên.
+- [ ] A3: review 017/018 → `docs/reviews/A-codex.md`, không sửa note A.
+- [ ] B1: `docs/ideas/rubric-draft-codex.md` từ 015–018, thang mô tả, trọng số, loại thẳng, ngưỡng/sàn, số vòng sửa.
+- [ ] B2: gộp draft A và C → `docs/ideas/RUBRIC.md`, truy nguyên từng tiêu chí.
+- [ ] B3: hiệu chỉnh bằng 3 dự án thắng thật + 2 bài không lọt top có kết quả công khai; không coi thiếu bằng chứng là thất bại thực tế.
+- [ ] B4: A review; sửa tới đồng ý, tối đa 2 vòng bất đồng rồi ghi Để người dùng quyết và chọn phương án chặt hơn.
+- [ ] C1: note 019 (RFP/RFS, dự án cũ, hạ tầng mới và cách lọc bằng chứng).
+- [ ] C2: review 020 → `docs/reviews/C-codex.md`.
+- [ ] D1: độc lập đề xuất/chấm/sửa >=3 ý tưởng C qua ngưỡng, đủ nguồn/user/Solana/accounts/instructions/SDK/track/demo 165 giây/rủi ro/MVP/lịch sử điểm.
+- [ ] D2: sau D1 mới đọc ý tưởng A, chấm tất cả bài chờ chấm chéo → `docs/ideas/cross-scores-codex.md`; sửa bài C nếu cross-score trượt. Mỗi bên >=3 ĐẠT hoặc chứng minh hết nguồn hợp lý.
+- [ ] E1: kiểm kỹ thuật SHORTLIST của A → `docs/reviews/E-codex.md`.
+- [ ] E2: mở/cập nhật PR work → main, không merge; báo top + điểm, hỏi đúng 2 câu: chính/dự phòng và đồng ý cài Solana toolchain cho Phase 3.
+- [ ] E3: ghi `bị chặn (cần người dùng): chọn ý tưởng`, chờ câu trả lời ở chat này.
+- [ ] Sau lựa chọn: ghi DECISION nếu A chưa ghi, review kỹ thuật IDEA do A viết; không coi chọn ý tưởng tự động là duyệt IDEA.
+- [ ] Phase 2: đặt chỗ note mới trước khi viết; học account/PDA, G3 liên quan, off-chain/indexer, threat model và phối hợp/IDL.
+- [ ] Phase 2: phần C của ARCHITECTURE (sơ đồ, accounts/seeds/instructions/errors/events, IDL nháp, off-chain, threat model, phối hợp, công việc phase 4–6); review phần UX A.
+- [ ] Phase 2 gate: review chéo, giáo viên chấm, bản giải thích 1 trang và người dùng đồng ý; ghi rõ bằng chứng, không tự duyệt thay.
+- [ ] Phase 3 chỉ nếu được đồng ý: đọc 003/cài đúng phiên bản, ghi version thực, framework program/CI, hello devnet; phối hợp A web live/CI. Không dùng ví có tiền thật, không commit keypair.
+- [ ] Điểm dừng cuối: NEXT cho cả hai agent, cập nhật ROADMAP/DEVLOG/HANDOFF/PR; chỉ xong khi gate thật đạt; báo kết quả và việc cần người dùng. Không có Automation để hủy trong phiên Codex này.
+
+## Bị chặn
+
+Chưa có blocker cần người dùng ở chặng A. Chờ file A khi tới phụ thuộc, tiếp tục việc độc lập trước. Toolchain chưa được đồng ý, không cài trong Phase 1.
+
+## Kiểm tra / bằng chứng
+
+Chưa viết hoặc chạy code sản phẩm. Kiểm tra tài liệu sau mỗi chặng: nguồn cụ thể + ngày đọc, link cục bộ, cấu trúc, phép tính điểm, whitespace. Repo private hiện tại phải đáp ứng open source trước khi nộp; không tự đổi visibility khi chưa tới bước được giao.
+
+---
+
+## Lịch sử bàn giao trước Prompt 02 (không phải công việc hiện hành)
+
 > **Luật đọc bàn giao:** Sau compact, nếu còn việc thì đọc phần hiện hành và làm tiếp ngay. Trạng thái chỉ dùng `đang làm` | `bị chặn (cần người dùng)` | `xong`; không ghi "tạm dừng" trừ khi người dùng yêu cầu. Mẫu trống: [HANDOFF-TEMPLATE.md](HANDOFF-TEMPLATE.md).
 
 # Bàn giao hiện hành — sửa PR #1 và R01–R09
