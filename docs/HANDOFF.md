@@ -1,12 +1,12 @@
 # Bàn giao chuyển tài liệu Solana về đúng repo
 
-**Trạng thái: đã copy/gộp, kiểm tra, commit và push tài liệu lên main. Chỉ còn chờ người dùng duyệt danh sách trước khi revert repo nguồn.** Cập nhật 17/11/2026, Asia/Saigon.
+**Trạng thái: đủ nội dung Codex và Antigravity trên main repo đích. Người dùng hủy hoàn toàn kế hoạch revert. Chuyển Taskbar Hero về main chưa xong vì Git từ chối ghi đè thay đổi cục bộ.** Cập nhật 17/11/2026, Asia/Saigon.
 
 ## Nơi làm việc và ranh giới
 
 - Repo đích: `/Users/bao/Documents/dev3pack-hackathon`, branch `main`, remote `https://github.com/ntbaoheyhey/dev3pack-hackathon.git`.
 - Repo nguồn: `/Users/bao/Documents/ChatGPT/taskbar hero`, branch `codex/solana-learning-notes`, HEAD được kiểm kê `1c7e50250bcad01c7563dd36ddf54a9bb53b5755`; mốc trước học tập `6744e9b`.
-- Người dùng cho phép copy/gộp và commit/push main của repo đích. Người dùng **chưa duyệt revert**: yêu cầu phải xem danh sách trước. Không chạy revert, reset, clean, xóa file hay sửa code sản phẩm ở nguồn trong lúc chờ.
+- Chỉ thị mới nhất: **không revert gì cả**, giữ nguyên nhánh `codex/solana-learning-notes` làm bản lưu; chỉ chuyển workspace nguồn về nhánh chính. Không xóa, reset hoặc sửa sản phẩm. Repo đích được phép cập nhật và push main.
 - Không thay AGENTS.md, note 000–001, README.md ở root hoặc các rule/config của repo đích. Chỉ ba file đã tồn tại được gộp: README học tập, template, DEVLOG.
 - Note 002–014 và REVIEW là bản sao nguyên byte; tham chiếu bối cảnh repo nguồn được giữ làm lịch sử. Bàn giao hiện hành chỉ đặt ở `docs/HANDOFF.md`.
 
@@ -60,28 +60,38 @@ Phân nhóm theo lịch sử phiên; các commit dùng chung danh tính Git nên
 | `16e6970` | Codex | M `docs/DEVLOG.md`; M `docs/learning/009-tips-codex-antigravity.md`; M `docs/learning/HANDOFF.md`; M `docs/learning/README.md`; A `docs/learning/REVIEW-2026-11-17.md` |
 | `1c7e502` | Codex | M `docs/learning/HANDOFF.md` |
 
-## Danh sách chờ duyệt revert
+## Xác nhận đủ phần Antigravity và giữ nhánh lưu
 
-Chỉ đề xuất **10 commit Codex**, theo thứ tự mới nhất trước:
+Đã đối chiếu đủ tám commit Antigravity trên nhánh lưu: `0dd238b` (005), `ef8d9fd` (006), `9cf7483` (008), `e4d3618` (012), `21481b2` (013), `a656f0b` (014), `47ea673` (009), `af0c0db` (README/DEVLOG). Nội dung của chúng đã nằm trong commit chuyển `f9052dc` trên main repo đích; không chép trùng hoặc replay patch lên bản đã có.
 
-```text
-1c7e502
-16e6970
-baba05d
-fd66c05
-6565fd6
-df362a2
-2f170c4
-e286552
-02a087c
-302206f
-```
+- Bảy file 005, 006, 008, 009, 012, 013, 014 khớp từng byte với snapshot hiện tại của `codex/solana-learning-notes`.
+- Cả 23 dòng thêm không rỗng của commit `af0c0db` trong README/DEVLOG đều hiện diện trong bản gộp.
+- Nhánh nguồn `codex/solana-learning-notes` vẫn ở `1c7e50250bcad01c7563dd36ddf54a9bb53b5755`; không thêm commit, revert, reset hoặc push nguồn.
+- Người dùng đã hủy đề xuất revert trước đây. Không xin duyệt hoặc thực hiện lại danh sách revert cũ.
 
-Tám commit Antigravity là `af0c0db`, `47ea673`, `a656f0b`, `21481b2`, `e4d3618`, `9cf7483`, `ef8d9fd`, `0dd238b`; **không nằm trong đề xuất revert 10 commit Codex**. Sáu note 005, 006, 008, 012, 013, 014 vẫn được copy về đích để không thiếu tài liệu, nhưng không tự xóa khỏi nguồn vì người dùng giới hạn chỉ file Codex tạo.
+## Bước chuyển nhánh đang bị Git chặn
 
-Các file 009, README học tập và DEVLOG có cập nhật từ cả hai agent. Khi được duyệt, đảo riêng thay đổi Codex bằng `git revert` có thể cần giải quyết conflict; giữ phần Antigravity và không dùng reset/clean/rm để dọn thay. Muốn gỡ thêm tám commit Antigravity hoặc sáu file của agent đó cần người dùng duyệt rõ phạm vi bổ sung.
+Đã thử đúng `git switch main`, không dùng force/merge/discard. Git báo sẽ ghi đè các file sau và hủy thao tác:
 
-Trước hành động tại nguồn, kiểm tra lại HEAD, status và hash; không stage thay đổi sản phẩm hoặc file untracked sẵn có. Chỉ dùng `git revert` cho việc gỡ commit, không đổi lịch sử và không push repo nguồn trừ khi được giao thêm.
+| Loại | File nguồn gây chặn |
+| --- | --- |
+| Đã tracked, đang sửa | `packages/game-rules/src/v2/index.ts` |
+| Đã tracked, đang sửa | `supabase/functions/boss-fight/deno.json` |
+| Đã tracked, đang sửa | `supabase/functions/equip/deno.json` |
+| Đã tracked, đang sửa | `supabase/functions/game-state/deno.json` |
+| Đã tracked, đang sửa | `supabase/functions/idle-claim/deno.json` |
+| Đã tracked, đang sửa | `supabase/functions/relic-forge/deno.json` |
+| Đã tracked, đang sửa | `supabase/functions/relic-mint-report/deno.json` |
+| Đã tracked, đang sửa | `supabase/functions/upgrade/deno.json` |
+| Untracked, trùng đường dẫn trên main | `packages/game-rules/src/v2/forge/craft.ts` |
+| Untracked, trùng đường dẫn trên main | `packages/game-rules/src/v2/forge/forge.test.ts` |
+| Untracked, trùng đường dẫn trên main | `packages/game-rules/src/v2/forge/index.ts` |
+| Untracked, trùng đường dẫn trên main | `packages/game-rules/src/v2/forge/relic.ts` |
+| Untracked, trùng đường dẫn trên main | `packages/game-rules/src/v2/forge/salvage.ts` |
+
+Sau lần thử, HEAD/status không đổi; hash cả 4.590 file đang sửa/untracked đã kiểm kê đều khớp. Local main là `683ad5322859f08128efda1e536d2c8acf4f2ba1`; chưa pull hoặc di chuyển ref đó.
+
+Vì người dùng giới hạn thao tác nguồn ở chuyển nhánh và cấm xóa/reset, không tự stash/commit/di chuyển các file sản phẩm. Cần người dùng chọn cách giữ thay đổi chưa commit trước khi thử lại. Phương án có thể xin phép: stash riêng 13 file gây chặn (gồm năm file untracked), giữ stash nguyên, rồi chạy `git switch main`; không tự apply/drop stash và không đổi nhánh lưu. Phương án này **chưa được cho phép hoặc thực hiện**.
 
 ## Kiểm tra lần chuyển và bước tiếp tục
 
@@ -95,11 +105,11 @@ Bản kiểm kê/hash trước chuyển lưu tạm tại `/tmp/solana-docs-migra
 - 20 file Markdown được kiểm tra: 52 fenced blocks cân bằng, 68 link cục bộ có đích; whitespace check đạt. Một link sandbox `/tmp` chỉ tồn tại trên máy hiện tại, không phải artifact Git.
 - Toàn bộ 5.059 file tracked/untracked đã kiểm kê ở nguồn giữ nguyên hash; HEAD và status nguồn không đổi. Chưa thực hiện bất kỳ revert nào.
 
-Sau compact: đọc phần hiện hành này trước, kiểm tra repo đích và trạng thái duyệt; không làm lại nghiên cứu 009–011 hoặc copy lại tài liệu. Copy/commit/push đã xác nhận; chỉ còn gửi danh sách cho người dùng nếu chưa gửi và chờ duyệt revert. Thời gian chờ không phải quyền thực hiện revert.
+Sau compact: đọc phần hiện hành này trước. Nội dung cả hai agent đã ở repo đích; chỉ còn giải quyết cách giữ 13 file gây chặn rồi chuyển workspace nguồn về main khi được cho phép. Không revert, không copy trùng tài liệu, không force checkout hoặc tự stash. Trạng thái chờ quyết định chỉ áp dụng bước chuyển nhánh.
 
 ## Bài học / lỗi đã gặp
 
-Chọn nhầm workspace khiến ghi chú nằm trong repo sản phẩm. Bản sửa là gộp vào repo học tập thật, giữ lịch sử và nội dung có sẵn, rồi xin duyệt danh sách đảo commit nguồn. Không dùng lần chuyển để sửa findings hoặc nâng kết quả “đã đọc” thành “đã chạy”.
+Chọn nhầm workspace khiến ghi chú nằm trong repo sản phẩm. Đã gộp vào repo học tập thật, giữ lịch sử và nội dung có sẵn; người dùng chọn giữ nguyên nhánh nguồn làm bản lưu. Chuyển nhánh có thể bị chặn bởi thay đổi chưa commit, kể cả khi chỉ chuyển tài liệu. Không dùng force để vượt chặn và không nâng kết quả “đã đọc” thành “đã chạy”.
 
 ---
 

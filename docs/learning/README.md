@@ -44,7 +44,7 @@ Tiến độ và bước tiếp tục sau compact nằm trong [docs/HANDOFF.md](
 
 ## Bài học / lỗi đã gặp
 
-Đã chọn nhầm workspace khi bắt đầu nghiên cứu. Trước task tiếp theo, đối chiếu đường dẫn, remote, AGENTS.md và mục lục. Dọn repo nguồn chỉ bằng git revert sau khi người dùng duyệt danh sách. Lần chuyển này không cài công cụ hoặc chạy lại lab. REVIEW là snapshot ở nguồn; số lượng file/link trong đó không mô tả bộ đích sau khi gộp.
+Đã chọn nhầm workspace khi bắt đầu nghiên cứu. Trước task tiếp theo, đối chiếu đường dẫn, remote, AGENTS.md và mục lục. Chỉ thị mới nhất của người dùng là **không revert**, giữ nhánh `codex/solana-learning-notes` làm bản lưu và chuyển workspace nguồn về main. Git hiện chặn chuyển nhánh do thay đổi cục bộ; chi tiết ở bàn giao. Đã đối chiếu đủ phần Antigravity: 005, 006, 008, 009, 012, 013, 014 và các cập nhật README/DEVLOG đều có trong bản chuyển `f9052dc`. Lần chuyển không cài công cụ hoặc chạy lại lab. REVIEW là snapshot ở nguồn; số lượng file/link trong đó không mô tả bộ đích sau khi gộp.
 
 ## Đề xuất cho AGENTS.md — chưa áp dụng
 

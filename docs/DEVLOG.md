@@ -23,6 +23,13 @@ _(Antigravity ghi yêu cầu thay đổi program ở đây)_
 - Kiểm tra chuyển: 14 bản sao giống nguồn từng byte; ba file gộp còn đầy đủ nội dung cũ; bảy file tracked khác ở đích giữ nguyên hash. Kiểm tra 20 Markdown, 52 fenced blocks, 68 link cục bộ đạt; HEAD/status và hash 5.059 file đã kiểm kê ở nguồn không đổi.
 - Commit chuyển `f9052dc` đã push main; xác nhận remote bằng `git ls-remote`. Cập nhật bàn giao: việc chuyển hoàn tất, chỉ còn chờ người dùng duyệt danh sách trước khi revert nguồn.
 
+## 2026-11-17 — Codex: xác nhận phần Antigravity, hủy kế hoạch revert
+
+- Chỉ thị mới của người dùng thay thế kế hoạch trước: không revert; giữ nguyên nhánh `codex/solana-learning-notes` làm bản lưu, chỉ chuyển workspace Taskbar Hero về main.
+- Đã đối chiếu đủ tám commit Antigravity: `0dd238b`, `ef8d9fd`, `9cf7483`, `e4d3618`, `21481b2`, `a656f0b`, `47ea673`, `af0c0db`. Bảy note khớp nguyên byte với nhánh lưu; 23 dòng thêm trong README/DEVLOG còn đủ. Toàn bộ nội dung đã có trong commit chuyển `f9052dc` trên main đích.
+- Đã thử `git switch main` tại nguồn; Git từ chối vì tám file tracked đang sửa và năm file untracked trùng đường dẫn trên main. HEAD/status, nhánh lưu tại `1c7e502`, hash 4.590 file đang sửa/untracked giữ nguyên. Không stash, reset, force checkout hoặc xóa. Bước chuyển nhánh còn cần người dùng chọn cách giữ thay đổi cục bộ.
+- Cập nhật HANDOFF và README để bỏ kế hoạch duyệt revert cũ. Giữ nội dung chuyên môn của Antigravity và các findings hiện hữu; không tuyên bố đã sửa findings hoặc đã chuyển nhánh thành công.
+
 ## Nhật ký từ workspace nguồn — giữ lịch sử
 
 Các mô tả dưới đây là sự kiện ở Taskbar Hero, không phải hành động đã chạy lại tại repo đích; trạng thái hiện hành xem `docs/HANDOFF.md`.
