@@ -16,7 +16,7 @@
 | Giáo viên | Chấm SHORTLIST/kiến trúc | Chưa có verdict; không tự đánh đạt |
 | Người dùng | Duyệt IDEA và giải thích ARCHITECTURE một trang | Đang trình, chưa có câu đồng ý; không mở Phase3 |
 | Phase3/vận hành | Hello/client/web logs cũ giữ nguyên; CI/devnet còn mở | Không cài thêm/tạo ví-keypair triển khai/deploy/public mới trước câu đồng ý riêng |
-| PR7 | `work→main`, cập nhật bản ReceiptRail | Không merge; kiểm metadata sau cập nhật |
+| PR7 | Title/body ReceiptRail đã cập nhật và fetch đọc lại, head b5cb544 tại mốc kiểm | Open, merged=false; không merge; commit bàn giao cuối nối tiếp |
 
 **Đề nghị duyệt cụ thể:** native SOL, một payer/merchant trên mỗi invoice; create/pay/cancel/read; Open→Paid/Cancelled và Expired hiển thị; không close/reset/refund/stablecoin/x402. Cùng invoice chỉ chuyển principal1lần, vẫn có phí fail và rent lâu dài. Spike local là evidence phần lõi, UI/RPC recovery/devnet/CI/video chưa có.
 
