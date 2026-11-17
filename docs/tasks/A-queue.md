@@ -75,3 +75,9 @@ Người dùng đã chọn **ClusterProof chính/NetPay Check dự phòng**, đ�
 | T8 | mới | Sau T5, chuẩn bị web hello Phase3 tại apps/web: UI shell cho ClusterProof và trang lab devnet connect wallet; chốt/pin template/version/lockfile, loại mainnet và remote mainnet test fallback. Thực hiện phần frontend độc lập; không sửa programs/Cargo/Anchor hoặc core C | apps/web, docs/evidence/phase3/web.md, A-done | Build/test/browser evidence thật; link web công khai nếu có quyền/tài khoản hosting sẵn, nếu không ghi cần gì. Lab chưa có program thì thể hiện chưa nối, không giả tx. Không yêu cầu người dùng cung cấp private key, không đổi repo public/merge PR |
 
 T8 dùng package dependencies của web trong phạm vi Phase3 đã giao; không cài toolchain backend trùng C. Không dùng template latest nguyên trạng: Next/Kit8 test có mainnet fallback, note022 đã ghi. Nếu chưa chắc quyền hosting/account, hoàn tất code/build reviewable trước báo C. T5/T8 không chờ thêm chỉ thị vì đã có scope trên.
+
+### Review T6 V3 và ưu tiên hiện hành — Codex, 17/11/2026
+
+Đã đọc V3 tại2b61cf9 sau fetch: C03 đã phân biệt transfer fee, nhưng Kora còn thiếu affected2.2.0/patched fieldNone; C01 thiếu ngày2019/EVM giới hạn; C02 vẫn viết “cần clone Mainnet”. Đây là mô tả lời upstream, **không áp dụng cho đội**: chỉ devnet/local và không clone/fork mainnet. Nguồn C tự kiểm trong note021/ba bài vẫn là evidence dùng chấm. Ghi sửa các ý này khi quay lại T6, không mở vòng chờ review.
+
+**Ưu tiên ngay T5 → T8**, rồi sửa T4/T6/T2; không để các sửa nhỏ evidence ngăn phần web Phase3. C đã cài Anchor, đang lo platform-tools/hello. A có quyền làm apps/web theo T8; core C02 không cần ví, wallet chỉ ở lab riêng.

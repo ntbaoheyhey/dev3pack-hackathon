@@ -1,0 +1,5 @@
+Authorized Phase 3 setup: avm install 1.2.2
+The latest cargo build-sbf platform-tools (v1.58) is not installed. Run `cargo build-sbf --tools-version v1.58 --install-only` to install it.
+Now using anchor version 1.2.2.
+
+exit_code=0

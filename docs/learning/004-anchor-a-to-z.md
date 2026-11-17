@@ -1,7 +1,7 @@
 # 004 — Anchor từ A đến Z: lý thuyết và ví dụ tối thiểu
 
 > Ngày kiểm tra: 2026-11-17 (Asia/Ho_Chi_Minh). Phạm vi: học, không tạo project sản phẩm.
-> Trạng thái: đã đối chiếu docs/source; mọi đoạn code và lệnh build/test/deploy **chưa chạy**.
+> Trạng thái: ví dụ counter bên dưới chưa chạy. Phase3 đã được phép; đang dựng hello từ template chính thức Anchor1.2.2, xem phần bổ sung cuối note.
 
 ## 1. Mục tiêu và điều cần nhớ
 
@@ -253,4 +253,10 @@ Truy cập 17/11/2026; docs sống có thể cập nhật sau tag. Ví dụ và 
 
 Chưa compile Rust snippet, generate client, chạy unit/integration, deploy hoặc verify. Các bước đó cần toolchain/signers và có thể tạo keypair; chưa nằm trong hành động đã thực hiện.
 
-Đọc [007](007-solana-program-security.md), dùng checklist để review ví dụ trên giấy. Sau khi người dùng cho phép cài và chốt cách quản lý ví/sandbox, mới chuyển test plan thành test chạy được.
+Đọc [007](007-solana-program-security.md), dùng checklist để review ví dụ trên giấy. Quyền Phase3 đã có ở DECISION; counter không tự trở thành tính năng ClusterProof.
+
+### Chuẩn bị hello Phase3 trước scaffold — 17/11/2026
+
+Đã đọc help `anchor init/build` từ binary1.2.2 và source `cli/src/template.rs` tại tagv1.2.2/rev8d9d1488. Chọn single-file hello, `--test-template litesvm`, `--no-install`, `--no-git`, `--no-security-metadata`: lab ít code, không phải template production. LiteSVM template0.15.0 kèm Cargo.lock upstream; chạy VM trong process, không cần validator hay mainnet fork.
+
+Scaffold tại thư mục tạm, đọc kết quả trước đưa manifests/program/tests vào repo. Pin Anchor1.2.2/Agave4.1.2; build platform-tools v1.57/SBPFv3. Fee payer devnet và program keypair để ngoài repo; target keypair chỉ symlink bị ignore. Test phải nạp .so thật, gọi initialize và assert thành công/log; thêm instruction discriminator sai bị reject để chứng minh dispatch, không gọi đó là audit quyền của sản phẩm. Build sinh IDL thật; địa chỉ IDL/declare_id/config phải khớp program keypair public address. Chưa scaffold/build/test ở lúc viết đoạn này.

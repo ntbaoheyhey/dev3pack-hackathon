@@ -1,13 +1,13 @@
 # 003 — Toolchain Solana, phiên bản và cài đặt có kiểm soát
 
-> Ngày kiểm tra: 2026-11-17 (Asia/Ho_Chi_Minh). Phạm vi: kiểm kê và hướng dẫn.
-> Trạng thái: chỉ các lệnh xem phiên bản đã chạy; toàn bộ cài đặt/build/airdrop bên dưới chưa chạy.
+> Ngày kiểm tra: 2026-11-17 (Asia/Ho_Chi_Minh). Phạm vi hiện hành: Phase3 đã được người dùng cho phép tại DECISION.
+> Rust1.100.0, Agave4.1.2, AVM/Anchor1.2.2 đã cài, version command đạt; platform-tools v1.57 đang cài. Chưa có build/test/deploy ở checkpoint này.
 
 ## 1. Mục tiêu và điều cần nhớ
 
 Biết vai trò từng công cụ, chọn một bộ phiên bản có căn cứ và chẩn đoán lỗi đúng lớp. **Rust trên máy, Rust đi kèm platform-tools, Agave CLI và Solana SDK crates không có cùng số phiên bản.** Cập nhật `rustup` không tự sửa compiler SBF cũ.
 
-Đọc khoảng 20 phút sau [002](002-solana-basics.md). Mọi lệnh cài, nâng cấp, tải toolchain tự động hoặc đổi cấu hình đều **chỉ tham khảo — chờ người dùng đồng ý trước khi chạy**. Đây là yêu cầu từ goal objective, không phải một bước đã được cho phép.
+Đọc khoảng 20 phút sau [002](002-solana-basics.md). Người dùng đã cho phép bộ phiên bản này và dependencies cần build; xem [DECISION](../ideas/DECISION.md). Không hỏi lại quyền đã có. Các ví dụ WSL/Docker/máy khác vẫn chỉ tham khảo; không tự nâng version hoặc thay cấu hình dự án khác.
 
 ## 2. Phiên bản và bằng chứng kiểm tra
 
@@ -22,8 +22,8 @@ Biết vai trò từng công cụ, chọn một bộ phiên bản có căn cứ 
 | pnpm | **10.28.0** | Đã chạy với `COREPACK_ENABLE_NETWORK=0` |
 | Docker CLI | **29.9.2**, build `a82e528` | Chỉ `docker --version`; chưa kiểm tra daemon/image |
 | Codex CLI | **0.169.0-alpha.11.1** | Đã chạy `codex --version` |
-| rustc / cargo / rustup | Không thấy trong PATH | Chưa cài/chưa build |
-| solana / anchor / avm | Không thấy trong PATH | Chưa cài/chưa test |
+| rustc / cargo / rustup | 1.100.0 / 1.100.0 / 1.29.3 | Install exit0, đã chạy version bằng binary tuyệt đối dưới ~/.cargo/bin; chưa build |
+| solana / anchor / avm | 4.1.2 / 1.2.2 / 1.2.2 | Install exit0; đã chạy version; chưa test runtime |
 | surfpool / solana-verify | Không thấy trong PATH | Chưa cài/chưa verify |
 
 ### Bảng tương thích có căn cứ
@@ -36,7 +36,7 @@ Biết vai trò từng công cụ, chọn một bộ phiên bản có căn cứ 
 
 MSRV là mức Rust tối thiểu của một crate, **không bảo đảm toàn bộ dependency graph/CLI build được bằng đúng mức đó**. Bằng chứng chính: [release 1.2.2](https://www.anchor-lang.com/docs/updates/release-notes/1-2-2), [`lang/Cargo.toml` tại tag v1.2.2](https://github.com/otter-sec/anchor/blob/v1.2.2/lang/Cargo.toml), [matrix của Solana Foundation](https://github.com/solana-foundation/solana-dev-skill/blob/c9da2624cc6baca5c8c2123ea50d92ef19f1c917/skills/solana-dev/references/compatibility-matrix.md).
 
-Rust **1.100.0** được xác minh bằng [stable manifest chính thức](https://static.rust-lang.org/dist/channel-rust-stable.toml): ngày manifest **12/11/2026**, chuỗi `1.100.0 (0ef1bc386 2026-11-09)`. Đó là kiểm tra metadata, không phải `rustc` đã cài. Không gọi 1.99 từ bài tháng 10 là “latest” ngày 17/11.
+Rust **1.100.0** được xác minh bằng [stable manifest chính thức](https://static.rust-lang.org/dist/channel-rust-stable.toml): ngày manifest **12/11/2026**, chuỗi `1.100.0 (0ef1bc386 2026-11-09)`; nay `rustc --version` đã khớp. Output OS/arch/cargo/rustup/solana/AVM/Node tại [versions-initial.json](../evidence/phase3/versions-initial.json); logs cài cùng thư mục. Version pass chưa chứng minh cả bộ build tương thích.
 
 **Xử lý nguồn không đồng bộ:** matrix Foundation còn ghi latest Anchor 1.2.1 và platform-tools v1.52+; release notes **1.2.2** mới hơn chốt **v1.57**. Trang cài Anchor cũng có ví dụ output Rust 1.85.0 cũ. Ưu tiên tag/release tương ứng, không ghép các ví dụ output thành một bộ “đã test”.
 
@@ -83,9 +83,9 @@ Nguồn hướng dẫn: [Anchor installation](https://www.anchor-lang.com/docs/i
 
 ## 4. Ví dụ hoặc quy trình tối thiểu
 
-### A. Kế hoạch cài Rust → Agave → AVM, chưa thực hiện
+### A. Kế hoạch gốc Rust → Agave → AVM và trạng thái thực
 
-**Chỉ tham khảo — chờ đồng ý trước khi chạy.** Mẫu cho macOS/Ubuntu WSL. Tải script, đọc nội dung rồi mới thực thi; không gộp cả bộ thành một installer khó kiểm tra.
+Các lệnh mẫu dưới được viết trước khi có quyền; lệnh thật/log Phase3 được lưu riêng. Đã tải/đọc installer, cài dưới user directories với `--no-modify-path`; chưa sửa shell profile. AVM install1.2.2 không dùng `--skip-attestation`. Dùng task PATH thay vì đổi PATH của dự án khác.
 
 ```sh
 # Chưa chạy. Sau khi đồng ý, tải và kiểm tra installer Rust.
@@ -130,7 +130,7 @@ Trên macOS, dùng Command Line Tools nếu thiếu. Với Node/pnpm, **máy hi�
 
 ### B. Ví devnet và airdrop
 
-Phiên này **không tạo keypair**, kể cả keypair nháp. Trong phiên thực hành riêng, người dùng chọn ví thử có sẵn hoặc tự tạo ví devnet riêng, giữ seed phrase ngoài repo/chat. Không dùng ví tài sản thật cho bài học. Chỉ cần cung cấp **public address**, không gửi file JSON/private key.
+Phase3 hello/devnet đã nằm trong scope được giao. Chọn signer lab mới, dành riêng devnet, đặt ngoài Git tại thư mục user riêng; không dùng ví tài sản thật hoặc xuất secret của ví browser. Program keypair scaffold sinh trong thư mục tạm sẽ chuyển ra ngoài repo trước build; target chỉ tham chiếu qua symlink bị ignore. Không in secret/seed vào log; chỉ lưu public address. Chưa tạo keypair ở checkpoint này.
 
 CLI muốn ký cần một signer đã có được cấu hình đúng; ví browser không tự trở thành signer của CLI. Không hướng dẫn xuất private key của ví browser vào project. Program ID keypair và fee-payer keypair cũng không phải một khái niệm.
 
@@ -170,4 +170,11 @@ Các trang sống truy cập 17/11/2026; thời điểm truy cập không phải
 
 Chưa kiểm chứng Rust host 1.100.0 + Agave 4.1.2 + Anchor 1.2.2 bằng build/test, chưa chạy Docker daemon, chưa biết Antigravity version hay ví devnet của người dùng. Không tự đổi config của Taskbar Hero để pin Solana.
 
-Nếu người dùng muốn thực hành, trình lại danh sách cài ở mục 4A và xin đồng ý cho các tải phụ thuộc phát sinh. Tạo sandbox và ví là phạm vi riêng cần chốt; đọc [004](004-anchor-a-to-z.md) trước để biết những file build có thể sinh.
+Tiếp tục theo quyền Phase3 đã có, không trình lại phiếu cài. Đọc [004](004-anchor-a-to-z.md), dùng scaffold chính thức Anchor1.2.2, template single + LiteSVM0.15.0 cho hello tối thiểu, không clone RPC mainnet. Giữ signer lab ngoài Git; nếu hosting/faucet cần tài khoản thì ghi nhu cầu thực sau khi hoàn tất phần độc lập.
+
+### Bài học / lỗi đã gặp — Phase3
+
+- Python máy không có `tomllib`; script metadata lỗi ngay import, không có output. Đã ghi metadata bằng standard library có sẵn, không thêm dependency cho việc này.
+- AVM1.2.2 nhắc latest platform-tools v1.58 dù cohort được chọn là v1.57. Đây là reminder (source `avm/src/lib.rs` tại tagv1.2.2), không là yêu cầu nâng. Đã đọc help và gọi `cargo-build-sbf --tools-version v1.57 --install-only`.
+- Agave solana-cli4.1.2 đi cùng cargo-build-sbf4.1.0/default v1.54; pin `--tools-version v1.57 --arch v3` cho build. Không suy số version của CLI chính là compiler SBF.
+- Log AVM có warning dependency yoke-derive0.8.3 yanked nhưng install exit0. Giữ lockfile upstream và log, không tắt kiểm tra nguồn gốc.

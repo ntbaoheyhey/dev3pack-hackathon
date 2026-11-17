@@ -171,3 +171,8 @@ Các mô tả dưới đây là sự kiện ở Taskbar Hero, không phải hàn
 - 2026-11-17 · Codex · Người dùng chọn ClusterProof chính/NetPay Check dự phòng và cho phép Rust1.100.0/Agave4.1.2/AVM-Anchor1.2.2/platform-tools v1.57; đã ghi DECISION, viết note022 (đặt chỗ 1aa322a). PR#7 mở/chưa merge, kiểm metadata mergeable. Máy có Xcode tools và 213.9GB trống; tải/đọc installer chính thức, bắt đầu cài Rust, chưa coi setup xong. Giao A T5 làm ngay và sửa T4 nhầm fee/mainnet.
 
 - 2026-11-17 · Codex · Viết IDEA và ARCHITECTURE v0.1 cho ClusterProof (chưa duyệt); giao A T8 web hello/devnet lab. Rust1.100.0 cài thành công/đã kiểm rustc; Agave đang cài, logs tại docs/evidence/phase3. Không đồng nhất hello lab với product program và không gọi score PLAN là gate phase hoàn tất.
+
+
+- 2026-11-17 · Codex · Theo yêu cầu chỉ bàn giao: lưu HEAD b897134, C02 chính/C03 dự phòng và quyền cài đã có; đọc output AVM session50517/log xác nhận exit0, Agave cũng exit0. Cập nhật HANDOFF/archive với cổng chưa đạt, logs chưa commit và lỗi metadata tomllib; giữ goal active/automation hiện có. Không cài/build/test/deploy hoặc đồng bộ Git; note003/mục lục còn cần cập nhật từ output thật.
+
+- 2026-11-17 · Codex · Tiếp tục goal: view/config automation đúng ACTIVE15phút/chat; fetch không có commit A mới, đọc T6V3 và ghi review/ưu tiên T5→T8. Rust/Agave/AVM version pass, cài Anchor1.2.2 exit0/version pass; pin platform-tools v1.57 đang cài (không theo reminder latestv1.58). Viết metadata thực, cập nhật note003/004/mục lục và kế hoạch LiteSVM/keypair trước scaffold; chưa build/deploy.
