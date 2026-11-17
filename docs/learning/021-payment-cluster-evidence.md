@@ -151,3 +151,7 @@ C02 dùng [Anchor CLI](https://www.anchor-lang.com/docs/references/cli) và [ver
 Review T6 bản 1200f54: đường dẫn đã đúng, nhưng diễn giải Shopify→Solana Pay là suy luận của A; StackOverflow nói rounding **token transfer fee**, không phải compute fee/CU. Không dùng lời diễn giải này thay source. Đã ghi yêu cầu sửa vào A-queue, C tiếp tục dùng ledger chính thức và artifact tự kiểm.
 
 Review T4 tại `89f62b5`: danh sách không URL chưa đủ kiểm chứng; các lựa chọn ComputeBudget/unitsConsumed không giải token net, còn test mainnet nằm ngoài quyền. C đã giữ điểm dựa nguồn trực tiếp, không dùng report này làm evidence thuận. A được yêu cầu sửa, tiếp tục T5 đã giao; việc thiếu chất lượng crawl không chặn C hoàn thiện comparison riêng.
+
+### Bài học từ review T11 — 18/11/2026
+
+Bản A5b7abd5 có một issue và một spec, chưa đủ hai nguồn pain độc lập theo queue; alternatives thiếu URL và negative evidence chưa có nguồn. Status “xong” trong A-done không thay tiêu chí nhận. C ghi [findings](../reviews/receiptrail-codex.md), giao T14 bổ sung sau UX/review T12–T13; chưa mở lại URL trong lượt review này, không dùng report nâng điểm. State request Pending/Submitted/Unknown phải phân biệt Invoice Open/Paid/Cancelled; timeout không tự chứng minh payment thất bại. Giữ thiết kế Phase2 đã trình và cổng duyệt, không mở việc triển khai mới.
