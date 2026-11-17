@@ -11,7 +11,7 @@
 | IDEA/ARCHITECTURE ReceiptRail | Account/PDA/instructions/states/errors/events,IDL,wireframe/threat model/test plan/demo165s | Đã viết để trình; chưa duyệt |
 | Spike local | [19tests r2](../evidence/phase2/receiptrail-spike-r2.txt),[metadata/IDL](../evidence/phase2/receiptrail-build-metadata.json) | Anchor bytecode thật chạy LiteSVM; F4 D2, không browser/RPC/devnet |
 | Tự review C | [Phạm vi và giới hạn](receiptrail-codex.md) | Đã đọc source/test/IDL, không thấy blocker trong phạm vi; không phải independent audit |
-| Giao A | [Queue](../tasks/A-queue.md); đã pull tới33d2217 và review T14 tại b5092a4, [review C](receiptrail-codex.md) | T14 chưa đạt: state/PDA và evidence; giao T15 sửa sau T12/T13. Chưa có review kiến trúc độc lập |
+| Giao A | [Queue](../tasks/A-queue.md); đã pull tới60f3efc, review T12/42c5523 và T14/b5092a4 tại [review C](receiptrail-codex.md) | T12/T14 chưa đạt; ưu tiên T13→T16 sửa UX→T15 sửa evidence. Chưa có review kiến trúc độc lập |
 | Review chéo | T13 | Chưa có verdict thật; không tự đánh đạt |
 | Giáo viên | Chấm SHORTLIST/kiến trúc | Chưa có verdict; không tự đánh đạt |
 | Người dùng | Duyệt IDEA và giải thích ARCHITECTURE một trang | Đang trình, chưa có câu đồng ý; không mở Phase3 |

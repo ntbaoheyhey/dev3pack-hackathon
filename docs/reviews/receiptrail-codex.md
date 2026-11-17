@@ -16,7 +16,7 @@ Không thấy finding chặn bản Phase2 trong phạm vi đọc/chạy này; kh
 
 Rủi ro thiết kế cố ý: một PDA chỉ một principal, không chống merchant tạo invoiceID khác cho cùng order; rent terminal bị giữ; native SOL chưa stablecoin/x402; tin RPC/program/upgrade authority; receipt không chứng minh hàng đã giao. Mọi mở rộng/triển khai cần cổng riêng.
 
-C01 nâng F3→4 theo D2 ở [mục9](../ideas/codex/01-receipt-rail.md), R/D giữ4 PLAN; không nâng R5 khi thiếu reviewer độc lập. T11 đã có bản tại5b7abd5 và được review bên dưới; T12/T13 chưa có kết quả xác nhận. Không lấy kết quả ClusterProof cũ thay review.
+C01 nâng F3→4 theo D2 ở [mục9](../ideas/codex/01-receipt-rail.md), R/D giữ4 PLAN; không nâng R5 khi thiếu reviewer độc lập. T11/T14 đã có bản và được review bên dưới; T12 tại42c5523 chưa đạt, T13 chưa có verdict. Không lấy kết quả ClusterProof cũ thay review.
 
 ## Review đầu ra T11 — 18/11/2026, heartbeat01:25 UTC+7
 
@@ -49,3 +49,17 @@ Nguồn C đã mở trong lượt này:
 | T14-R4 — vừa: alternatives chưa kiểm được | Dòng15–17 | Mục alternatives chỉ có hai tên, thiếu URL đích cho cả Stripe và Solana Foundation Pay; chưa có bảng ít nhất ba alternatives với ngày đọc, claim, giới hạn và tác động thiết kế. Note021 có ledger để A đối chiếu; không coi ledger cũ là đã mở nguồn mới. |
 
 Điểm đã cải thiện: bỏ claim latency/payment channels và “replay trap” không có nguồn; timeout không còn tự gọi Failed. Các điểm này chưa đủ đóng R1–R4. Giữ C01r2=79/F4, IDEA/ARCHITECTURE và source/tests hiện hành; không chạy lại tests vì không sửa code. Giao sửa hẹp **T15**, sau **T12→T13**; không mở Phase3 hoặc hỏi duyệt lặp lại. C không sửa report/A-done/HANDOFF của A.
+
+## Review đầu ra T12 — 18/11/2026, lượt heartbeat 02:55 UTC+7
+
+Đã fetch/pull tới **60f3efc**, đọc [bản UX25dòng](../design/receiptrail-ux-antigravity.md) tại **42c5523**. Đối chiếu T12 với [IDEA](../IDEA.md), [ARCHITECTURE mục4–6](../ARCHITECTURE.md), IDL đã mô tả trong kiến trúc và phần liên quan notes005/013/014/023. **T12 chưa đạt tiêu chí nhận**; các số dòng dưới đây là bản42c5523. Chỉ review tài liệu, chưa có UI/browser hoặc review program độc lập.
+
+| Finding | Vị trí bản42c5523 | Phần phải sửa trước khi nhận UX |
+| --- | --- | --- |
+| T12-R1 — cao: form vượt phạm vi và thiếu terms | Dòng7–12 | “Chọn token” không khớp MVP native SOL. Form cần payer được chỉ định, mã invoice ổn định, số SOL, hạn theo slot và merchant/recipient; có bước xem lại terms bất biến, rent/phí trước ký. Ghi rõ merchant ký create/cancel, payer đúng chỉ định ký pay; không dùng “owner” mơ hồ. Không thêm SPL/token selector hoặc quyền ví mới. |
+| T12-R2 — vừa: thiếu wireframe và tách state | Mục1–2, dòng13/16/19 | Chưa có bố cục desktop/mobile, màn receipt hoặc bảng CTA theo từng state. Danh sách đang trộn Pending với Invoice; cần tách request/Unknown, Invoice Open/Paid/Cancelled và Expired hiển thị. Thể hiện confirmed/finalized theo ARCHITECTURE, đọc PDA khi reload. No Wallet cần luồng xem không ví và chỉ kết nối ví sẵn có khi ký; không biến cài ví thành điều kiện xem invoice. |
+| T12-R3 — vừa: error mapping mới là tên nhóm | Dòng15–19 | Chưa map9 lỗi6000–6008 của ReceiptRail tới copy tiếng Việt/CTA. Bổ sung namespace program ID, nhóm Anchor/System/fee/wallet reject/RPC unknown riêng; balance precheck chỉ hỗ trợ UX, vẫn cần xử lý lỗi trả về. Phải chỉ rõ khi nào không hiện Pay/không tự retry. |
+| T12-R4 — vừa: demo thiếu bằng chứng giá trị chính | Dòng21–25 | Tổng30+60+60+15 đúng165s, nhưng reject/reload chung chưa chứng minh transaction mới bị chặn trên cùng invoice. Cần pay→mất response có nhãn→đọc cùng PDA→thử pay bằng tx mới→InvoiceNotOpen và principal chỉ một amount; tách phí fail, nhãn local/replay/devnet và giới hạn. Dùng storyboard IDEA đã trình làm cơ sở; không thực thi demo lúc này. |
+| T12-R5 — vừa: thiếu quyết định SDK có nguồn | Toàn file | Chưa có phần chọn/bỏ SDK theo tiêu chí T12. Đối chiếu lựa chọn tái dùng React/Vite/Wallet Standard trong ARCHITECTURE với note014; ghi lý do/nguồn và giới hạn cho sponsor SDK bỏ khỏi core. Chỉ tài liệu, không cài/tạo key/tích hợp. |
+
+Điểm dùng được: có flow merchant/payer, nhận biết reject/thiếu tiền/timeout và ghi không tự trả lại hoặc tạo ID mới. C giữ các điểm này làm tiêu chí sửa, chưa nhận bản25dòng như thiết kế UX hoàn tất. Giao **T16** trả lời từng R1–R5 và checklist nhận; ưu tiên **T13→T16→T15** để review kiến trúc vẫn đi trước. Giữ IDEA/ARCHITECTURE, score và source/tests; không đổi file UX/A-done/HANDOFF của A. Phase2 chưa qua cổng duyệt.

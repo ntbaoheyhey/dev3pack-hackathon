@@ -46,6 +46,7 @@ Kế hoạch lệnh (chưa gọi tại thời điểm viết note): `bash script
 | F4 khi chưa spike | Nhầm kế hoạch và evidence | Giữ r1=75/F3 đến khi bytecode/tests chạy thật |
 | Quyền cài/duyệt bị ghi sai | Dùng payload đã bị đính chính | DECISION có nguyên văn/giờ/nguồn sai; AGENTS/K6 chặn suy quyền |
 | Cargo offline chưa chặn rustup proxy tự cài toolchain bị thiếu | `.cargo/bin/cargo` là proxy; cache dependency và compiler là hai việc khác nhau | Script cuối dùng trực tiếp bộ host1.100.0 đã có, kiểm cargo/rustc/rustfmt trước khi chạy; thiếu thì exit2. Chạy lại suite sau sửa runner, giữ log r1 |
+| UX T12 thêm token selector và chưa có wireframe/error mapping | Bản42c5523 chỉ liệt kê flow chung, chưa đối chiếu hết contract/tiêu chí queue | Review T12-R1–R5; giao T16 theo native SOL/IDL, tách request khỏi Invoice và chứng minh duplicate trong storyboard165s. Chỉ sửa tài liệu sau T13, không mở UI/Phase3 |
 
 ## Nguồn
 
