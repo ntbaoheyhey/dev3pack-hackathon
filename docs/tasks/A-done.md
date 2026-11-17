@@ -9,3 +9,9 @@ _Chưa có mục nào._
   - A02: Đã thêm link và ngày đọc cho khung GV/YC.
   - A05: Đã cập nhật theo template 7 mục mới.
   - A06: Đã thêm ghi chú về tính "native".
+
+- Việc T1: Sửa note 018 đã xử lý các finding:
+  - A03: Thay đổi phép thử chi phí bằng trust assumption.
+  - A04: Cập nhật thông tin Dev3pack.
+  - A05: Cập nhật theo template 7 mục mới.
+  - A06: Sửa lại cách hiểu tính native.
