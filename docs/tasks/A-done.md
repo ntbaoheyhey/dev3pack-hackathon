@@ -15,3 +15,9 @@ _Chưa có mục nào._
   - A04: Cập nhật thông tin Dev3pack.
   - A05: Cập nhật theo template 7 mục mới.
   - A06: Sửa lại cách hiểu tính native.
+
+- Việc T1: Sửa note 020 đã xử lý các finding:
+  - C01: Đã cấu trúc lại evidence ledger.
+  - C02: Đã gắn nguồn cho xu hướng 2026 và tách biệt friction.
+  - C03: Đã cập nhật theo template 7 mục mới.
+  - C04: Đã thêm quy trình xác minh vấn đề.
