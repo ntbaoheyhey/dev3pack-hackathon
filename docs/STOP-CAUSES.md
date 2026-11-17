@@ -11,9 +11,11 @@ Giáo viên (Claude) ghi lại **mọi lần** Codex (C) hoặc Antigravity (A) 
 | S5 | 17/11 | A | Kết thúc lượt bằng tóm tắt "Tôi đang chờ…", "Bạn không cần làm gì"; tự gắn `GOAL_COMPLETE` khi phase chưa xong | Gemini chốt lượt sau mỗi bản tóm tắt; tự tuyên bố xong | Không viết tóm tắt kết lượt giữa chừng; chỉ dừng ở điểm dừng ghi trong prompt; không tự tuyên bố xong phase — C và giáo viên mới chấm xong |
 | S6 | 17/11 | A | Rebase lỗi ở DEVLOG, abort, thử lại nhiều lần | Xung đột file chung | Xung đột ở README/DEVLOG: giữ cả hai bên, commit và đi tiếp; không abort rồi đứng |
 | S7 | 17/11 | A | Ba ý tưởng đều đúng 76/100, sát ngưỡng 75 | Tự chấm cho vừa đủ qua ngưỡng, không đối chiếu luật RUBRIC (F tối đa 3 khi chưa spike; P=4 cần 2 nguồn độc lập) | Không phải lỗi dừng nhưng gây "xong giả". C chấm lại mọi ý tưởng A; điểm phải trỏ tới bằng chứng theo RUBRIC mục 4 |
+| S8 | 17/11 | A | Commit cuối 22:48 (T8 "đang làm"), sau đó hơn 1 giờ không có commit; T9, T10 đã giao vẫn "mới"; C tự làm và public web thay phần T8 | Lượt Antigravity kết thúc và tin nhắn tự nhắc không kéo được nó chạy lại (chưa xác nhận lịch còn chạy) | Người dùng mở Antigravity kiểm tra tác vụ lên lịch 15 phút còn bật; dán câu kéo lại có `/goal`. C ghi rõ trong A-queue khi đã tự làm thay một việc, để A không làm trùng |
 | K1 | 17/11 | C | `docs/HANDOFF.md` hơn 400 dòng, phần lớn là lịch sử chuyển repo Taskbar Hero; sau compact từng đọc nhầm việc cũ | Bàn giao phình to, việc hiện hành lẫn với lịch sử | Thẻ nhớ ≤20 dòng ở đầu HANDOFF; lịch sử chuyển sang `docs/archive/` |
 | K2 | 17/11 | A | Chấm F=4 khi chưa spike, dù RUBRIC ghi rõ F tối đa 3 | Không đọc lại luật của RUBRIC trước khi chấm | Thẻ nhớ ghi các luật đang áp dụng; đọc lại file luật trước khi làm bước dùng nó |
 | K3 | 17/11 | A | Quên 015/016 đã có, quên vai/thứ tự chặng | Không đọc lại trạng thái repo sau mỗi lần nhắc | Tin nhắn tự nhắc yêu cầu đọc Thẻ nhớ và `git fetch` trước khi làm |
+| K4 | 17/11 | A | Bảng đầu `A-done.md` vẫn ghi T4/T5 "mới", T1/T2 "đang làm", trong khi các dòng dưới ghi đã xong; HANDOFF A vẫn ghi T8 dù web đã có bản của C | Ghi thêm dòng mà không sửa bảng trạng thái | Mỗi lần xong việc sửa luôn dòng trong bảng; trước khi làm tiếp đọc `git log origin/work` để biết C đã làm gì |
 
 ## Luật rút ra (đã đưa vào AGENTS.md)
 
