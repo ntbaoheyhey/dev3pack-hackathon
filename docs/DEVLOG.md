@@ -17,6 +17,8 @@ Mỗi dòng: ngày · ai làm (Mai / Codex / Antigravity) · việc · note đã
 
 - R06 · sửa 008: URL spec đúng, pin source protocol 3.0.2 (`2695142`), `accounts[0].address`, phân biệt raw base64 với Wallet Standard bytes; bỏ ví dụ ký/gửi trộn wrapper. Chưa cài/compile/kết nối ví; nhãn mobile là gợi ý chứ chưa phải điều kiện track.
 
+- R07 · viết lại 013: bảng và script 15+20+80+30+20 = 165 giây, biên 15 giây; thay thành tích latency/rent/PDA/48h bằng placeholder cần bằng chứng. Chỉ kiểm thời lượng kế hoạch, chưa có video xuất.
+
 ## Trước sự kiện
 
 - 2026-11-17 · Claude · Dựng khung repo, quy tắc "học trước, ghi lại", research Codex vs Antigravity · 000, 001
