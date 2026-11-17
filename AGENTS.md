@@ -32,6 +32,16 @@ Khi làm task dài (Goal mode, nhiều bước), context có thể bị auto-com
 4. **Không bao giờ** ghi trạng thái "tạm dừng / paused" trong file bàn giao, trừ khi người dùng tự nói tạm dừng. Trạng thái hợp lệ: `đang làm`, `bị chặn (cần người dùng)`, `xong`.
 5. Trước khi context đầy (hoặc sau mỗi mục lớn): cập nhật `docs/HANDOFF.md` để lần compact sau đọc lại là làm tiếp được. Mẫu trống nằm tại [docs/HANDOFF-TEMPLATE.md](docs/HANDOFF-TEMPLATE.md); không ghi đè bàn giao hiện hành bằng mẫu.
 
+## Luật làm cặp: không bao giờ ngồi chờ agent kia
+
+Codex và Antigravity chạy song song ở hai app khác nhau. **"Chờ Codex" hay "chờ Antigravity" không phải lý do để dừng.**
+
+1. **Tự đánh thức là bắt buộc.** Đầu mỗi phiên dài: tạo tác vụ lặp mỗi 15 phút nhắn vào chính chat của mình (Codex: Automations; Antigravity: tác vụ lên lịch). Kiểm tra tác vụ đã thật sự xuất hiện. Không tạo được thì báo người dùng ngay trong câu trả lời đầu tiên. Chỉ hủy ở điểm dừng cuối của prompt.
+2. **Kiểm tra trước khi nói "thiếu".** Trước khi kết luận file của agent kia chưa có: `git fetch origin` rồi xem `origin/work` (`git log origin/work`, `git ls-tree -r --name-only origin/work`). Nhiều lần "chờ" thật ra file đã có từ trước.
+3. **Thiếu thật thì làm việc khác.** Làm việc tiếp theo không phụ thuộc, hoặc việc "đi trước": nghiên cứu cho chặng sau, mở rộng dữ liệu hiệu chỉnh, tự review và nâng chất lượng note của mình. Lần tự đánh thức sau kiểm tra lại.
+4. **Review không chặn.** Chủ một file tự quyết và đi tiếp. Góp ý của agent kia được đưa vào ở lần sửa kế tiếp; không có bước "chờ đồng ý" giữa hai agent. Chỗ bất đồng lớn: ghi vào mục "Để người dùng quyết" trong file đó và đi tiếp.
+5. **Chỉ người dùng mới chặn được việc.** Trạng thái hợp lệ trong HANDOFF: `đang làm`, `bị chặn (cần người dùng)`, `xong`. Không ghi "chờ agent kia".
+
 ## Luật an toàn (bắt buộc)
 
 - **Không bao giờ commit private key / keypair / seed phrase.** File `*.json` keypair, `.env` đều nằm trong `.gitignore`.
