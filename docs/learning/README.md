@@ -43,6 +43,11 @@ Tiến độ và bước tiếp tục sau compact nằm trong [docs/HANDOFF.md](
 | [012 — Chuẩn bị bài thi Dev3pack](012-winning-solana-hackathons.md) | Thể lệ chính thức, trọng số tự đề xuất, lịch sử Colosseum/Superteam có cảnh báo, checklist/form/README | Antigravity; Codex sửa R04/R09 — đã đối chiếu Dev3pack; checklist chưa thử bằng bài thi thật |
 | [013 — Video demo tối đa 165 giây](013-hackathon-demo-video.md) | 15 + 20 + 80 + 30 + 20 = 165 giây; placeholder yêu cầu số đo/log thật | Antigravity; Codex sửa R04/R07/R09 — bảng và script khớp; chưa có video xuất, latency/rent/test/deployment chưa đo |
 | [014 — SDK nhà tài trợ](014-sponsor-sdks.md) | Chọn SDK theo sản phẩm, pricing có nguồn, ElevenLabs/Firecrawl giữ key phía server | Antigravity; Codex sửa R01/R04/R09 — đã đọc docs/pricing; chưa tích hợp, không suy bounty từ số SDK |
+| 015 — Phân tích kỹ thuật dự án thắng Solana 2025–2026 | Đặt chỗ cho Phase 1 | Codex — chưa viết |
+| 016 — Ước lượng độ khó kỹ thuật trên Solana | Đặt chỗ cho Phase 1 | Codex — chưa viết |
+| 017 — Sản phẩm, demo và pitch của dự án thắng | Đặt chỗ cho Phase 1 | Antigravity — chưa viết |
+| 018 — Vấn đề thật ở Việt Nam/Đông Nam Á giải bằng Solana | Đặt chỗ cho Phase 1 | Antigravity — chưa viết |
+| 019 — Viết spec sản phẩm gọn cho hackathon | Đặt chỗ cho Phase 1 | Antigravity — chưa viết |
 
 ## Bài học / lỗi đã gặp
 
