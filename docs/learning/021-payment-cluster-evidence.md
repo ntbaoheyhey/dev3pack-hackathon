@@ -69,6 +69,26 @@ Theo source N3, TransferFeeConfig type=1, dữ liệu 108 bytes: hai authority 3
 
 Spike hỗ trợ mint chỉ có TransferFeeConfig; metadata/hook/extension khác hiện trả unsupported. Đây là policy phạm vi chặt, không tuyên bố các extension đều nguy hiểm. Quote chỉ tính fee schedule, không kiểm balance, trạng thái token account, memo/CPI policy, freeze/transfer permission hay xác nhận thanh toán.
 
+Discovery qua transaction gặp HTTP 429 sau lỗi version. Đã đọc [getProgramAccounts](https://solana.com/docs/rpc/http/getprogramaccounts) và [getEpochInfo](https://solana.com/docs/rpc/http/getepochinfo) ngày 17/11/2026: đổi discovery sang một query filtered size=278 (166+4+108), Mint type và TransferFeeConfig; `dataSlice` rỗng chỉ lấy địa chỉ, đọc lại tối đa 32 mint. Allowlist tăng lên bảy method **read-only**. Response vẫn giới hạn 6 MB; provider có thể không cho index query, khi đó ghi lỗi thay vì query toàn bộ hay tự tạo token. Sau discovery, explicit mint chỉ cần bốn RPC đọc để chạy lại quote.
+
+### Kết quả mở rộng C03 — 17/11/2026
+
+`node --test research/phase1/spikes.test.mjs research/phase1/fee-mint.test.mjs research/phase1/replay-evidence.test.mjs` đã đạt **16 test, 0 fail**; log [spikes-tests-r1-final.txt](../evidence/phase1/spikes-tests-r1-final.txt). Gồm 5.940 inverse cases, 744 brute-force cases, parser âm, epoch/slot và replay raw bytes devnet. Lượt tiếp tục đã review code và đối chiếu 5 script hashes với artifact; không chạy lại khi code không đổi. Không compile Rust, không kiểm payment settlement.
+
+Lệnh `node research/phase1/netpay-live.mjs HxDYFvcXnLuy4VdxXCooUXrch8DZW34oUteQ6N2EFxEr` đã exit 0: [artifact cuối](../evidence/phase1/netpay-1794925658391.json), 283 ms, slot 523298709, epoch 1211. Target 10000 raw units cần gross 10102, fee 102, net 10000; decimals 6, 100 bps, cap 1000000000000. Đây là **fee-only quote**, không phải việc tiền đã đến. Mint hook vẫn bị từ chối `unsupported_extensions:14`; không coi authority có thể đổi config hoặc mint supply là đã được loại bỏ.
+
+Địa chỉ lấy từ repo tác giả [Day 50](https://github.com/gopichandchalla16/100-days-of-solana/blob/main/day-50/README.md) (blob `22ee400f239112cd17631fdef936c7d4260efc80`) và [Day 53](https://github.com/gopichandchalla16/100-days-of-solana/blob/main/day-53/README.md) (`c8c67020ecb5cf85fbc6a7a8c7dda7919daf6535`), rồi kiểm raw RPC độc lập. Không chạy lệnh tạo token trong nguồn. Hash mint cuối `d115098b26d4231b8f61a66d80b39b31508b7c0dbdf6bcade810f0f0d4411086`; `writesToChain:0`.
+
+Discovery mặc định còn bị provider từ chối (403); dùng explicit mint khi có lý do chạy lại. Snapshot `netpay-1794925526177.json` ghi mint pmAMM unsupported; `netpay-1794925600812.json` giữ lỗi field report ghi đè address, raw bytes vẫn đúng. Đã sửa `mintConfig` và có regression test; giữ cả lịch sử và artifact cuối. Giới hạn response 6 MB được kiểm sau khi đọc body, chưa phải streaming memory cap của sản phẩm.
+
+### Alternatives mới và giới hạn claim
+
+[Ryntra SDK README](https://github.com/ryntra-io/ryntra-solana-evidence/blob/main/packages/solana-evidence-sdk/README.md), blob `eeab3768aabd819e42d75feaadeb4de5e5a66586`, đã có inspect mint, fee/net preview, hook/policy và xác minh receipt; đây là đối thủ trực tiếp C03. Interface minh họa nhận `amountRaw`; chưa kiểm toàn repo có target-net inverse hay không. Không quảng bá tính fee hoặc phân biệt unknown như tính năng chưa ai làm. C03 chỉ có thể kiểm lợi ích của workflow nhập số muốn nhận, chứng minh gross tối thiểu, snapshot replay và reject policy cụ thể so các baseline.
+
+[Solana Foundation Pay README](https://github.com/solana-foundation/pay), blob `28c35e34cb5f053343937efe9b5862769fae96a0`, đã có x402/MPP, wallet authorization, retry và debugger. Không gọi retry/debugger là đóng góp C01. C01 chỉ khác ở điều khoản invoice và trạng thái Paid dùng chung on-chain; chưa chứng minh tương thích x402 hoặc nhu cầu chấp nhận rent/custom program. Cả hai README được đọc lại ngày 17/11/2026; đọc docs không phải chạy đối thủ.
+
+Đã đọc được [Solana Pay spec v1.1](https://solana.com/docs/tools/solana-pay/specification/version1-1) và [verified builds](https://solana.com/docs/programs/verified-builds) ở lượt nghiên cứu trước; timeout/502 là lịch sử công cụ. Reference không bắt buộc unique và chỉ giúp tìm giao dịch, không tự enforce one-time invoice. Kora advisory nêu affected 2.2.0, patched field None; không suy mọi bản hiện hành còn lỗi.
+
 ## 5. Tự kiểm tra
 
 - x402 chưa có idempotency? Sai, [R3] đã có; phải so state/trust boundary cụ thể.
@@ -87,14 +107,14 @@ Mọi nguồn đọc 17/11/2026. Nguồn trước 2025 được ghi rõ tuổi; 
 | R1 | [Shopify Engineering, 27/08/2019](https://shopify.engineering/building-resilient-graphql-apis-using-idempotency) | Nhóm Payment Service giải quyết charge retry/unknown state; lịch sử, khác rail Solana |
 | R2 | [x402 issue 452](https://github.com/x402-foundation/x402/issues/452) | Reporter và maintainer bàn retry/app context; issue ban đầu EVM, không coi là lỗi Solana hiện hành |
 | R3 | [payment_identifier spec](https://github.com/x402-foundation/x402/blob/main/specs/extensions/payment_identifier.md) | Fingerprint bind terms và cache, kiểm tình huống duplicate/conflict |
-| R4 | [Solana Pay spec](https://docs.solanapay.com/spec) | Reference là account key để tìm payment; đọc/spec làm baseline, không ngụ ý chưa ai có invoice app |
+| R4 | [Solana Pay spec v1.1](https://solana.com/docs/tools/solana-pay/specification/version1-1) | Đã đọc chính thức; reference để tìm payment, không bắt buộc unique, không tự enforce one-time invoice |
 | R5 | [Exact SVM spec](https://github.com/x402-foundation/x402/blob/main/specs/schemes/exact/scheme_exact_svm.md) | Scheme/policy và outcome riêng; chưa chạy interoperability |
 | C1 | [Jupiter Lend README](https://github.com/jup-ag/jupiter-lend) | Dòng devnet programs May 2025 không khớp IDL của repo |
 | C2 | [Builder report, 2024](https://solana.stackexchange.com/questions/16906/different-program-id-on-devnet-than-in-lib-declare-id) | User báo DeclareProgramIdMismatch; một case, không thống kê tỷ lệ lỗi |
-| C3 | [Verified builds](https://solana.com/docs/programs/verified-builds) | Trang lần mở trực tiếp timeout; phần indexed và repo source sẽ đối chiếu trước dùng chi tiết lệnh |
+| C3 | [Verified builds](https://solana.com/docs/programs/verified-builds) | Đã đọc chính thức sau lần timeout; kiểm reproducible binary/source, khác readiness manifest và quan sát RPC |
 | C4 | [Loader state](https://github.com/anza-xyz/solana-sdk/blob/master/loader-v3-interface/src/state.rs) | Program/ProgramData và serialized header sizes; không chứng minh loader nào cũng tương tự |
 | C5 | [getGenesisHash](https://solana.com/docs/rpc/http/getgenesishash), [getAccountInfo](https://solana.com/docs/rpc/http/getaccountinfo), [getTransaction](https://solana.com/docs/rpc/http/gettransaction), [clusters](https://solana.com/docs/references/clusters) | Methods, null/commitment, devnet và rate limits; public RPC là trust dependency |
-| N1 | [Kora advisory GHSA-725g-w329-g7qr](https://github.com/solana-foundation/kora/security/advisories/GHSA-725g-w329-g7qr) | Case overcredit gross; kiểm patch hiện hành riêng nếu tích hợp Kora |
+| N1 | [Kora advisory GHSA-725g-w329-g7qr](https://github.com/solana-foundation/kora/security/advisories/GHSA-725g-w329-g7qr) | Case overcredit gross; affected 2.2.0, patched field None trong bản đọc; không suy mọi bản hiện hành còn lỗi |
 | N2 | [Builder rounding report, 20/03/2024](https://stackoverflow.com/questions/78194696/compute-fee-for-solana-transfercheckedwithfee-instruction) | User báo lệch một raw unit; câu trả lời dẫn source, không thay source hiện hành |
 | N3 | [Token-2022 fee source](https://github.com/solana-program/token-2022/blob/main/interface/src/extension/transfer_fee/mod.rs) | ceil/cap/inverse/epoch là oracle để đối chiếu thuật toán đề xuất |
 | N4 | [Raydium guide](https://github.com/raydium-io/raydium-docs-v1/blob/main/algorithms/token-2022-transfer-fees.mdx) | Integrator phải phân biệt gross/net; snippet floor/older epoch sai với N3, không dùng để xác nhận API |
@@ -115,3 +135,7 @@ Chưa có compile/deploy program, wallet flow, demo video, phép đo lợi ích 
 | Chưa có spike nhưng cần >=3 ý tưởng đạt | Giữ F3; làm thử đúng phạm vi bằng công cụ có sẵn hoặc sửa/bỏ ý tưởng, không nâng điểm bằng lời hứa |
 | jsonParsed có thể chứa u64 dưới dạng JSON Number | Parser quote đọc mint base64; kiểm safe integer với slot/epoch. Snapshot jsonParsed cũ chỉ phục vụ tìm địa chỉ, không làm oracle số tiền |
 | T6 trợ lý báo xong nhưng URL sai repo và thiếu nguồn độc lập | Trả lại T6 với URL chuẩn và tiêu chí kiểm nội dung; không lấy status xong thay xác minh evidence |
+| Live discovery trả RPC -32015: transaction version 1 không được chấp nhận khi maxSupportedTransactionVersion=0 | RPC nêu rõ tham số cần là 1. Chỉ yêu cầu server trả jsonParsed để lấy địa chỉ mint, không tự deserialize/ký v1; quote vẫn đọc raw mint riêng. Ghi lỗi rồi chạy lại sau thay đổi, không gọi lần lỗi là live pass |
+| Discovery getTransaction tiếp tục gặp HTTP 429 | Lưu log lỗi; đổi sang query filtered getProgramAccounts ít request. Không retry dồn dập và không coi failure là lỗi thuật toán fee |
+| Query getProgramAccounts bị HTTP 403 | Không lặp query hay né quota; dùng địa chỉ đã công bố trong repo tác giả rồi đọc trực tiếp mint/epoch, vẫn cùng RPC devnet |
+| Báo cáo quote dùng `{mint, ...quote}` làm config ghi đè địa chỉ mint | Đổi field config thành mintConfig; thêm regression test replay raw snapshot live giữ đúng địa chỉ. Snapshot đầu vẫn giữ nguyên, ghi rõ lỗi báo cáo; không sửa lịch sử artifact |

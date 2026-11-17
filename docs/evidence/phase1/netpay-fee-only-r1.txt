@@ -1,0 +1,51 @@
+{
+  "path": "docs/evidence/phase1/netpay-1794925600812.json",
+  "durationMs": 378,
+  "slot": 523298469,
+  "epoch": 1211,
+  "supportedQuoteCount": 1,
+  "reports": [
+    {
+      "mint": "GE6q1pL6TjYkrc9jwpdCJAKqZDmAscVR7D9dV7MmXPpd",
+      "status": "NOT_QUOTED",
+      "reason": "unsupported_extensions:14"
+    },
+    {
+      "mint": {
+        "decimals": 6,
+        "supply": "1001000000000",
+        "mintAuthority": "AWKYsCGBcfGLSz6QpmXzRn7EJ9fRhiJsjYSLDV3c9L9y",
+        "freezeAuthority": null,
+        "configAuthority": "AWKYsCGBcfGLSz6QpmXzRn7EJ9fRhiJsjYSLDV3c9L9y",
+        "withdrawAuthority": "AWKYsCGBcfGLSz6QpmXzRn7EJ9fRhiJsjYSLDV3c9L9y",
+        "withheldAmount": "0",
+        "older": {
+          "epoch": "1083",
+          "maxFee": "1000000000000",
+          "bps": "100"
+        },
+        "newer": {
+          "epoch": "1083",
+          "maxFee": "1000000000000",
+          "bps": "100"
+        },
+        "extensionTypes": [
+          1
+        ],
+        "mintDataSha256": "d115098b26d4231b8f61a66d80b39b31508b7c0dbdf6bcade810f0f0d4411086"
+      },
+      "status": "FEE_QUOTE_ONLY",
+      "epoch": "1211",
+      "targetNet": "10000",
+      "gross": "10102",
+      "fee": "102",
+      "net": "10000",
+      "selectedFee": {
+        "epoch": "1083",
+        "maxFee": "1000000000000",
+        "bps": "100"
+      },
+      "limitation": "Mint fee schedule only; accounts, balance, freeze, memo/CPI requirements and settlement NOT_CHECKED. Snapshot can become stale."
+    }
+  ]
+}

@@ -12,7 +12,7 @@ export function base58(bytes) {
   for (const byte of bytes) { if (byte !== 0) break; zeros++; }
   return '1'.repeat(zeros) + encoded;
 }
-function bytesOf(account) {
+export function bytesOf(account) {
   if (!account || !Array.isArray(account.data) || account.data[1] !== 'base64') throw new Error('missing_account_or_encoding');
   const encoded = account.data[0];
   if (typeof encoded !== 'string' || !/^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/.test(encoded)) throw new Error('invalid_base64');

@@ -32,6 +32,7 @@ Mỗi nguồn: URL cụ thể, ngày đọc, tác giả/đơn vị, claim hỗ t
 - T1: C đã đọc kết quả sửa; note 017 còn mục 4 chưa có quy trình, 018 còn nguồn Solana homepage thay vì trang primitive và câu FAQ/top 100 chưa khớp note 001/015. Bổ sung ở lượt kế tiếp; không coi template đủ heading là đủ evidence.
 - T3 bản Việt Nam/Đông Nam Á hiện chưa dùng để chấm C01–C03: nguồn chung và URL Reddit chưa được C xác minh. Không dùng trích dẫn Việt ngữ như nguyên văn nguồn tiếng Anh. Cần nội dung nguồn thật, không suy từ URL/title.
 - T4 ưu tiên kiểm cả đối thủ mới: x402 `payment-identifier` và `x402-idempotency` đã có retry/recovery; tránh claim đây là khoảng trống chưa ai giải.
+- T4 bổ sung bắt buộc: [Ryntra](https://github.com/ryntra-io/ryntra-solana-evidence/tree/main/packages/solana-evidence-sdk) đã có fee/net/hook/policy/receipt, [Solana Foundation Pay](https://github.com/solana-foundation/pay) đã có x402/MPP/retry/debugger. C đã đọc README; A kiểm flow/source gần nhất, không suy target-net inverse hoặc invoice on-chain vắng mặt chỉ vì README không nói. T5 tiếp tục chuẩn bị độc lập trên giấy.
 
 | Mã | Trạng thái | Việc | File kết quả | Xong khi |
 | --- | --- | --- | --- | --- |
@@ -48,3 +49,7 @@ Bản `candidate-pain-evidence.md` ở `641939d` chưa đạt: x402 trỏ nhầm
 - C03: https://github.com/solana-foundation/kora/security/advisories/GHSA-725g-w329-g7qr và https://stackoverflow.com/questions/78194696/compute-fee-for-solana-transfercheckedwithfee-instruction ; ghi affected/patched version nếu đọc được, không suy Kora hiện tại vẫn lỗi. Không thay link cụ thể bằng trang https://github.com/advisories.
 
 Mỗi URL phải mở được và nội dung hỗ trợ claim; không đọc được thì ghi U cùng lỗi. Quote ngắn hoặc ghi rõ diễn giải; 2 nguồn độc lập mỗi workflow, nguồn cùng upstream không tính hai. Không tự sửa A-queue; trả kết quả qua file và A-done như cũ. C tiếp tục code/nghiên cứu, không chờ A.
+
+| Mã | Trạng thái | Việc | File kết quả | Xong khi |
+| --- | --- | --- | --- | --- |
+| T7 | bỏ | C đã tự tìm và kiểm raw devnet fee-only mint `HxDYFvcXnLuy4VdxXCooUXrch8DZW34oUteQ6N2EFxEr`; ngừng tìm trùng, ưu tiên T4/T5/T6 | `docs/evidence/phase1/netpay-1794925658391.json`, note 021 | Live quote đã lưu; giữ kết quả A nếu đã có, không xóa lịch sử. Không cần tạo mint/ví/giao dịch |

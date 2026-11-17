@@ -50,7 +50,7 @@ Tiến độ và bước tiếp tục sau compact nằm trong [docs/HANDOFF.md](
 | [019 — Nguồn ý tưởng trong hệ sinh thái Solana](019-solana-idea-sources.md) | RFS/RFP/funding, dự án thật/archived, P-Token/Light/x402, evidence filtering | Codex — đã nghiên cứu; chưa spike |
 | [020 — Nguồn vấn đề thật của người dùng](020-nguon-van-de-that.md) | Bản đầu của A; review C01–C04 tại reviews/C-codex | Antigravity — cần bổ sung nguồn cụ thể; review không chặn |
 
-| [021 — Kiểm chứng payment, cluster và token net](021-payment-cluster-evidence.md) | Evidence C01–C03, RPC read-only và parser mint/u64; phân biệt fixture, live read, settlement | Codex — 9 nhóm test đạt, C02 live read; C03 chưa có live quote mint được hỗ trợ |
+| [021 — Kiểm chứng payment, cluster và token net](021-payment-cluster-evidence.md) | Evidence C01–C03, RPC read-only và parser mint/u64; Ryntra/Pay alternatives | Codex — 16 test đạt, C02 live read và C03 fee-only live quote; chưa settlement/custom program |
 
 ## Bài học / lỗi đã gặp
 

@@ -1,0 +1,4 @@
+2026-11-17 — node research/phase1/netpay-live.mjs — exit 1
+Error: RPC -32015: Transaction version (1) is not supported by the requesting client. Please try the request again with the following configuration parameter: "maxSupportedTransactionVersion": 1
+Node.js v24.22.2
+Lỗi xảy ra khi discovery getTransaction, trước quote; không có live quote được tạo ở lần này.
