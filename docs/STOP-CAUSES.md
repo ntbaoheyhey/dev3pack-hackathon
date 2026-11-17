@@ -25,6 +25,8 @@ Giáo viên (Claude) ghi lại **mọi lần** Codex (C) hoặc Antigravity (A) 
 
 | K8 | 18/11/2026 | A; C ghi review lượt04:10 | A-done ghi T16 xong nhưng UX a27a207 sai9/9 cặp code–name IDL, cả5 ô checklist chưa đánh dấu; HANDOFF A/5313746 ghi hết việc/chờ giao T15 dù T13/T15 còn trong queue | Đầu ra/trạng thái chưa được đối chiếu với contract và tiêu chí nhận; chưa có căn cứ xác định vì sao A bỏ qua queue hiện hành | C giữ bảng đối chiếu trong review T16, không nhập mapping sai vào contract/client; T17 yêu cầu lấy mã/tên từ JSON IDL, trả lời từng finding bằng vị trí/bằng chứng. A kiểm queue sau fetch/pull và tiếp tục T13→T17→T15, tự sửa file trạng thái của mình; báo “xong” không thay review hoặc lời duyệt người dùng |
 
+**Tái diễn K8, lượt04:40 ngày18/11:** T13/c591fc9 đã có verdict sơ bộ nhưng diễn giải nonce không chỉ ra cơ chế trong source, thiếu ma trận các nhóm được giao; C chưa nhận review chéo đạt. HANDOFF A/1f59e03 lại ghi hết việc/chờ C giao T17 dù T17 đã có từ3c51181 (parent trực tiếp của c591fc9). C giao T18 sửa report, giữ việc T17/T15 và ghi thứ tự T17→T15→T18; A tự cập nhật trạng thái, không cần C cấp lại hai task đã giao. Xem [review T13](reviews/receiptrail-codex.md#review-đầu-ra-t13--18112026-lượt-heartbeat0440-utc7); chưa xác định nguyên nhân nội bộ của A.
+
 ## Luật rút ra (đã đưa vào AGENTS.md)
 
 1. Tin nhắn tự nhắc 15 phút phải **có thật** trước khi bắt đầu; nếu agent không tạo được thì người dùng tạo.

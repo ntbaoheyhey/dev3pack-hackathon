@@ -16,7 +16,7 @@ Không thấy finding chặn bản Phase2 trong phạm vi đọc/chạy này; kh
 
 Rủi ro thiết kế cố ý: một PDA chỉ một principal, không chống merchant tạo invoiceID khác cho cùng order; rent terminal bị giữ; native SOL chưa stablecoin/x402; tin RPC/program/upgrade authority; receipt không chứng minh hàng đã giao. Mọi mở rộng/triển khai cần cổng riêng.
 
-C01 nâng F3→4 theo D2 ở [mục9](../ideas/codex/01-receipt-rail.md), R/D giữ4 PLAN; không nâng R5 khi thiếu reviewer độc lập. T11/T14 đã có bản và được review bên dưới; T12 tại42c5523 chưa đạt, T13 chưa có verdict. Không lấy kết quả ClusterProof cũ thay review.
+C01 nâng F3→4 theo D2 ở [mục9](../ideas/codex/01-receipt-rail.md), R/D giữ4 PLAN; không nâng R5 khi thiếu reviewer độc lập. T11/T14, T12/T16 và T13/c591fc9 đã có bản, C chưa nhận đạt; T13 có verdict sơ bộ, findings và hướng sửa ở cuối file. Không lấy kết quả ClusterProof cũ thay review.
 
 ## Review đầu ra T11 — 18/11/2026, heartbeat01:25 UTC+7
 
@@ -103,3 +103,30 @@ Python standard library đọc `errors` từ [IDL](../idl/receiptrail.json), l�
 Điểm cải thiện có thể giữ: thêm payer/ID, bước review rent/fee, xem không ví và nút Check Status. Các điểm này chưa đóng T12-R1–R5 hoặc T16-R1–R5. T13 vẫn là khung8d4d30a chưa có verdict; T15 đã có trong queue, nên dòng “hết việc/chờ C giao T15” ở HANDOFF A/5313746 không khớp danh sách đang mở. Parent của a27a207 là ed9a070, đã chứa bảng đầu vào T13; không suy đoán lý do A bỏ qua.
 
 C giao **T17** sửa UX theo IDL và checklist cụ thể, ưu tiên **T13→T17→T15**; ghi sự cố **K8** và bài học note023. Không sửa file UX/review/A-done/HANDOFF của A, source/tests/IDL, IDEA/ARCHITECTURE hoặc điểm79/F4. Review tài liệu đã giao được tiếp tục; cổng người dùng/giáo viên chưa mở, không thực hiện Phase3.
+
+## Review đầu ra T13 — 18/11/2026, lượt heartbeat04:40 UTC+7
+
+Đã fetch/pull **1f59e03**, đọc [report18dòng tại c591fc9](https://github.com/ntbaoheyhey/dev3pack-hackathon/blob/c591fc90c2da6457d0ea4b6e7cec3b4633f20647/docs/reviews/receiptrail-antigravity.md). A đã bỏ câu chờ thiết kế, xác nhận đúng bộ8f84cfe và có verdict sơ bộ; **C chưa nhận T13 đạt review chéo**. Các số dòng report dưới đây thuộc c591fc9. C đọc lại source/tests, ARCHITECTURE mục3–8, notes007/023 và log r2; không chạy lại tests hoặc sửa contract.
+
+Kiểm dữ liệu: source/tests/IDL khớp cả3 SHA256 trong metadata;4 hàm retry/rollback/pay-cancel được dẫn có trong source và log r2 đã đạt. Không có token `nonce` trong3 file đã kiểm; kết luận về cơ chế còn dựa việc đọc handler/harness bên dưới, không chỉ tìm kiếm từ khóa.
+
+| Finding | Vị trí report c591fc9 | Kết luận và phần cần bổ sung |
+| --- | --- | --- |
+| T13-R1 — cao: cơ chế nonce/race chưa có căn cứ | Dòng12 | Report không chỉ rõ nonce nào. Invoice/source không có field hoặc instruction nonce; `Harness::send` đổi recent blockhash mỗi submission, không dùng durable nonce. Chống trả lặp cùng PDA ở đây dựa Open check, Invoice writable và CPI+Paid atomic; test retry assert signature mới. Test race chỉ chạy hai thứ tự pay→cancel/cancel→pay trong VM, chưa chứng minh network contention. Sửa diễn giải và trỏ hàm/assertion, không thêm nonce vào thiết kế để khớp report. |
+| T13-R2 — vừa: thiếu kết luận theo từng nhóm đã giao | Dòng8,11,17 và toàn file | Có câu PDA đúng seeds nhưng chưa chỉ seeds/canonical bump/layout; thiếu signer/recipient/alias, owner/discriminator/version, expiry boundary/cancel sau expiry và terminal init. Dùng đường dẫn đầy đủ `programs/receiptrail/src/lib.rs`, `programs/receiptrail/tests/runtime.rs`, `docs/idl/receiptrail.json`; mỗi nhóm cần vị trí kiểm được, finding có mức độ hoặc không thấy finding trong phạm vi cụ thể. Không đánh đạt toàn logic từ câu chung. |
+| T13-R3 — vừa: đề nghị rollback chưa chỉ rõ thiếu gì | Dòng14,18 | ARCHITECTURE mục4/7/8 và runtime tests đã mô tả/kiểm CPI thiếu tiền, hai pay cùng transaction và retry transaction mới. Đây hiện là yêu cầu giải thích, chưa là bằng chứng lỗi program hoặc thiếu test. C bổ sung bảng đối chiếu bên dưới; A nêu assertion/điều kiện cụ thể còn thiếu nếu vẫn có concern. |
+| T13-R4 — vừa: receipt cần giới hạn kiểm chứng rõ | Dòng13 | Thu hẹp kết luận tới state/transfer cùng invoice dưới logic hiện hành; phân biệt local VM với client/RPC/commitment chưa kiểm. Receipt không chứng minh delivery, không chống merchant dùng invoiceID khác, không loại bỏ trust upgrade authority/RPC. Trỏ ranh giới ở IDEA và ARCHITECTURE mục1/6–8. |
+
+### Giải thích rollback cho T13
+
+Các hàm dưới đây ở [runtime.rs](../../programs/receiptrail/tests/runtime.rs), source không đổi từ8f84cfe. [Log r2](../evidence/phase2/receiptrail-spike-r2.txt) đã lưu kết quả đạt của chúng; đây là đọc lại bằng chứng cũ, không phải run mới.
+
+| Tình huống | Hàm/assertion đã có | Kết quả được chứng minh local |
+| --- | --- | --- |
+| CPI thiếu principal | `insufficient_principal_cpi_leaves_invoice_open_and_balances_unchanged`, dòng263; helper `reject` dòng165 so Snapshot trước/sau | Payer còn AMOUNT−1; transfer lỗi, invoice vẫn Open/paid_slot0, data/owner/rent và principal balances giữ nguyên |
+| `[pay,pay]` trong một transaction | `two_pay_instructions_in_one_transaction_roll_back_the_first_transfer`, dòng238 | Có inner instruction, lần pay thứ hai lỗi InvoiceNotOpen; Snapshot khôi phục về trước cả transaction, Open/paid_slot0. Lần pay riêng sau đó thành công, merchant chỉ nhận AMOUNT |
+| Pay thành công rồi retry transaction mới | `create_pay_and_fresh_transaction_retry_transfers_principal_only_once`, dòng181; `send` dòng129 | Signature lần retry khác, lỗi InvoiceNotOpen; Snapshot giữ trạng thái Paid sau lần thành công. Chỉ transaction retry thất bại, không hoàn tác transaction trước đã thành công |
+
+Snapshot gồm Invoice(data/owner/lamports) và số dư merchant/payer/attacker, **không gồm fee payer riêng**; không suy mọi lamport đều hoàn lại khi lỗi. `pay_invoice` dòng61–88 kiểm Open trước CPI, ghi Paid sau CPI thành công. Runtime rollback của cả transaction khác với việc handler gặp lỗi trước khi ghi Paid. `pay_cancel_race_is_safe_in_both_serial_orders` dòng352 chỉ kiểm hai thứ tự tuần tự; RPC/reorg/contended execution và browser vẫn chưa kiểm.
+
+Đã giao **T18** hoàn thiện T13 bằng ma trận bằng chứng; ưu tiên **T17→T15→T18** để A tiếp tục phần UX/evidence đã được giao, không phải chờ C cấp lại T17. HANDOFF A/1f59e03 vẫn ghi hết việc/chờ giao T17 dù queue có từ3c51181; ghi tái diễn K8. Giữ nguyên file A, IDEA/ARCHITECTURE/source/tests/IDL và điểm79/F4. Verdict sơ bộ không đóng cổng review chéo, giáo viên hoặc người dùng; không mở Phase3.

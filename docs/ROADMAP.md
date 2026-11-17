@@ -239,7 +239,7 @@ Mỗi vòng ghi lại điểm và thay đổi. Ý tưởng sửa quá số vòng
 | --- | --- | --- |
 | Nền (002–014) | xong | PR #1, REVIEW R01–R09 đã sửa |
 | 1 Ý tưởng & spec | đã chọn hướng · chưa duyệt IDEA ReceiptRail | Nguyên văn “ReceiptRail chính, ClusterProof phụ” lúc00:07 ngày18/11 UTC+7; ghi nhận duyệt cũ sai/hết hiệu lực, xem DECISION |
-| 2 Kiến trúc | bản ReceiptRail để duyệt đã có · cổng chưa đạt | IDEA/ARCHITECTURE/IDL/demo165giây,19 runtime tests local; C01 r2=79/F4. T11–T13 đã giao; review chéo/giáo viên/người dùng chưa có verdict, xem hồ sơ review. Không qua Phase3 trước duyệt |
+| 2 Kiến trúc | bản ReceiptRail để duyệt đã có · cổng chưa đạt | IDEA/ARCHITECTURE/IDL/demo165giây,19 runtime tests local; C01 r2=79/F4. T13 có verdict sơ bộ nhưng C chưa nhận review chéo đạt; queue T17→T15→T18 sửa UX/evidence/review. Giáo viên/người dùng chưa duyệt, xem hồ sơ review. Không qua Phase3 trước duyệt |
 | 3 Môi trường | giữ phần cũ · không làm thêm | Giữ toolchain/web ClusterProof đã có; mọi cài thêm/deploy/public mới hỏi trước; CI/devnet còn chưa đạt, không tiếp tục lúc này |
 | 4 Program | chưa mở | |
 | 5 Frontend | chưa mở | |
