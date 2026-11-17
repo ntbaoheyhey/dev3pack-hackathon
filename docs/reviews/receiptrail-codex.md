@@ -16,7 +16,7 @@ Không thấy finding chặn bản Phase2 trong phạm vi đọc/chạy này; kh
 
 Rủi ro thiết kế cố ý: một PDA chỉ một principal, không chống merchant tạo invoiceID khác cho cùng order; rent terminal bị giữ; native SOL chưa stablecoin/x402; tin RPC/program/upgrade authority; receipt không chứng minh hàng đã giao. Mọi mở rộng/triển khai cần cổng riêng.
 
-C01 nâng F3→4 theo D2 ở [mục9](../ideas/codex/01-receipt-rail.md), R/D giữ4 PLAN; không nâng R5 khi thiếu reviewer độc lập. T11/T14/T15, T12/T16/T17 và T13/c591fc9 đã có bản, C chưa nhận đạt; findings và hướng sửa ở cuối file. Queue hiện hành: **T18 → T19 → T20**. Không lấy kết quả ClusterProof cũ thay review.
+C01 nâng F3→4 theo D2 ở [mục9](../ideas/codex/01-receipt-rail.md), R/D giữ4 PLAN; không nâng R5 khi thiếu reviewer độc lập. T18/T19/T20 đã có bản mới nhưng chưa nhận đạt toàn bộ; T19 đạt riêng9/9 mã–tên IDL. Findings và hướng sửa ở cuối file; queue hiện hành: **T21 → T22 → T23**. Không lấy kết quả ClusterProof cũ thay review.
 
 ## Review đầu ra T11 — 18/11/2026, heartbeat01:25 UTC+7
 
@@ -159,3 +159,51 @@ Giao **T19** sửa UX, bắt đầu từ dữ liệu IDL và checklist kiểm đ
 Giữ phần cải thiện: tách hai nhóm state và thu hẹp issue452 về EVM. Report chưa đủ evidence để đổi điểm79/F4 hoặc thiết kế. `git diff 8f84cfe HEAD` xác nhận source/tests/IDL ReceiptRail không đổi; không rerun runtime tests. Không sửa report/A-done/HANDOFF A, IDEA/ARCHITECTURE hoặc score.
 
 HANDOFF A/7ae2643 ghi “T15 xong. Hết việc” trong khi T18/T19 đã có tại f0c5527, ancestor của 0ec4e94; ghi tái diễn K8. A tiếp tục **T18 → T19 → T20**: giữ hai việc đã giao, sửa evidence sau đó bằng bảng nguồn cụ thể. Không cần C cấp lại quyền tài liệu; thiếu nguồn không là quyền cài/deploy/public hoặc tự đóng cổng Phase2. Cổng người dùng/giáo viên giữ nguyên.
+
+## Review T18–T20 — 18/11/2026, heartbeat05:42 UTC+7
+
+Pull **f49716a** gồm [T18/073d781](https://github.com/ntbaoheyhey/dev3pack-hackathon/blob/073d78190a394df2bb7f8112033537470e99cb1d/docs/reviews/receiptrail-antigravity.md), [T19/03c0bac](https://github.com/ntbaoheyhey/dev3pack-hackathon/blob/03c0bac0edb9a59f0ba8ea75c7820978b4eba742/docs/design/receiptrail-ux-antigravity.md), [T20/337322b](https://github.com/ntbaoheyhey/dev3pack-hackathon/blob/337322bdd75998ba435a9bb82c91313304b34c19/docs/data/receiptrail-evidence.md). **Chưa nhận ba task đạt toàn bộ.** Số dòng bên dưới thuộc từng snapshot này. [Audit T18–T20](../evidence/phase2/receiptrail-reviews-t18-t20-audit.json) lưu commits/hashes, tên test,9 cặp lỗi và5 URL. Source/tests/IDL vẫn khớp3 hashes metadata; C đọc các assertions và log r2 cũ, **không rerun runtime suite**. Audit T17 giữ nguyên như snapshot lịch sử.
+
+### T18: có ma trận nhưng chưa truy được bằng chứng
+
+| Finding | Quan sát tại073d781 | Phần cần sửa T21 |
+| --- | --- | --- |
+| T18-R1 — cao: dẫn test không tồn tại | Dòng12 dẫn `test_duplicate`; không có hàm này trong runtime.rs hoặc log r2. Dòng27 gọi runtime.rs là nơi chứa log | Dẫn tên hàm thật, assertion cụ thể và đường dẫn log thật. Bảng3 ca đã có ở mục giải thích rollback của C; không đổi source/test để khớp report. |
+| T18-R2 — cao: đối chiếu sai ba ca rollback | Dòng21–24 nói đối chiếu review C nhưng thay hai pay cùng tx/retry mới bằng signer sai/expiry; “không có thay đổi on-chain” không tách phí | Ba ca đúng: CPI thiếu principal; `[pay,pay]` rollback cả tx; retry tx mới giữ Paid của tx trước. Signer/expiry là ca âm khác. Snapshot không chứa fee payer riêng, không nói mọi lamport đều hoàn lại. |
+| T18-R3 — vừa: ma trận/giới hạn chưa đủ | Dòng9–13 chỉ kết luận Đạt; thiếu seeds/authority/owner/type/version/expiry boundary/terminal/receipt trust và assertion/log cụ thể. Dòng10 gộp has_one với signer; dòng28 kết luận đủ triển khai và xử lý race | Phân biệt `Signer` với `has_one`; ghi phần thực sự kiểm và phần chưa kiểm ở từng nhóm. `send` gọi expire_blockhash trước mỗi submission; test race chỉ hai thứ tự serial. Không suy thành review chéo đã đạt, quyền triển khai hoặc coverage mạng. Trả lời T13-R1–R4 đúng mã. |
+
+Điểm tiến bộ: bỏ claim nonce, mô tả Open check và CPI+Paid cùng transaction. Giữ cải thiện này; không xem năm ô Đạt là bằng chứng cho toàn bộ phạm vi. Review C vẫn là tự review, không thay review độc lập.
+
+### T19: nhận9/9 cặp mã–tên; phần UX còn mở
+
+Python đọc JSON IDL và bảng UX: **9 hàng,9 khớp**,5checkbox đã tick. Đây là tiến bộ đã kiểm độc lập; C không xác nhận A thực sự chạy script chỉ từ câu báo trong A-done (chưa có output kèm report). Không yêu cầu sửa lại các tên lỗi đã đúng.
+
+| Tiêu chí | Kết luận tại03c0bac | Phần còn thiếu T22 |
+| --- | --- | --- |
+| T16-R1 | Đạt phần code/name; chưa đạt copy/CTA và namespace | Dòng23/27 đề nghị tạo invoice mới thiếu điều kiện;6001 phải xác định create cũ chưa thành công,6005 liên hệ merchant.6004 cần đọc lại Paid/Cancelled;6008 phải không ký. Tách program ID+code và Anchor/System/fee/wallet/RPC theo ARCHITECTURE mục5. |
+| T16-R2 | Bỏ token/mint là tiến bộ; form vẫn chưa đủ | Dòng8 không có đơn vị SOL/lamports, mapping OrderID string→invoice_id32 ổn định hoặc merchant. Thiếu terms bất biến và phân biệt rent create/principal+fee pay. |
+| T16-R3 | Chưa đạt | Dòng16 vẫn ghép Open→Pending→Paid/Cancelled/Expired; chưa có bố cục desktop/mobile4màn, bảng CTA/commitment/PDA. Checkbox dòng36 không thay wireframe. |
+| T16-R4 | Chưa đạt | Dòng37 chỉ chuỗi flow gắn nhãn165s; thiếu chia thời gian, duplicate tx/signature mới cùng PDA và principal một amount/phí fail. |
+| T16-R5 | Chưa đạt | Dòng38 vẫn tick SDK hoàn thiện nhưng không có mục chọn/bỏ hoặc nguồn. Sửa checklist theo từng phần thực có, không đóng toàn UX từ9/9 mã. |
+
+### T20: nguồn đã có, diễn giải/phản hồi chưa đạt
+
+C đã mở lại **5 đích thật** trong lượt này: Shopify/Stripe/Solana Pay bằng web, issue452 và payment_identifier qua GitHub connector. Việc C truy cập được không chứng minh A đã đọc chúng; ngày truy cập A trong report là lời A báo. Không chạy các implementation hoặc khẳng định lỗi còn tồn tại ở phiên bản hiện hành.
+
+| Nguồn đã đọc | Kết luận được nguồn hỗ trợ / giới hạn |
+| --- | --- |
+| [Shopify, Todd Jefferson,27/08/2019](https://shopify.engineering/building-resilient-graphql-apis-using-idempotency) | Payment Service giải quyết outcome chưa rõ sau timeout và nguy cơ charge lại; bài của Money Infrastructure, không báo cáo lỗi “trùng đơn” cụ thể hay nhu cầu Solana/custom program. |
+| [x402 issue452,winor30,11/10/2025](https://github.com/x402-foundation/x402/issues/452) | Body nói EIP/ERC-3009: nonce đã dùng khiến retry trả AuthorizationUsed, app khó phân biệt đã settle với thất bại. Không chứng minh cùng payload bị trừ tiền hai lần hoặc lỗi Solana hiện hành; lượt này đọc body, không comments. |
+| [Stripe idempotent requests](https://docs.stripe.com/api/idempotent_requests) | API v1 lưu status/body sau khi execution bắt đầu; cùng key trả kết quả đã lưu, so parameters, key có thể bị prune sau ít nhất24h. Không khái quát các chi tiết v1 sang v2 hoặc thành cam kết invoice on-chain. |
+| [Solana Pay spec v1.1,Reference](https://solana.com/docs/tools/solana-pay/specification/version1-1#reference) | Reference phục vụ tra cứu transaction và không bắt buộc unique; không tự enforce trạng thái Invoice Paid. Giới hạn cần so sánh là cơ chế này, không chỉ việc khác tên Solana Foundation Pay. |
+| [x402 payment_identifier](https://github.com/x402-foundation/x402/blob/main/specs/extensions/payment_identifier.md),blob e85f0d53101aa7a4246b01d9f31f0e2b1ba24f12 | Spec có idempotency key, cached response, fingerprint bind terms và409 khi khác payload. Chưa chạy implementation; không được quảng bá retry/dedup như phần chưa có ở x402. |
+
+Shopify và issue452 là hai nguồn độc lập về bài toán retry/outcome, **không là hai bằng chứng Solana double-payment hoặc adoption ReceiptRail**. Report T20 chưa diễn giải đúng giới hạn này, nên không nhận checkbox/báo “xong” thay phần còn thiếu.
+
+| Finding | Quan sát tại337322b | Phần cần sửa T23 |
+| --- | --- | --- |
+| T20-R1 — vừa: thiếu claim/giới hạn/tác động thiết kế | Dòng8–10 có URL/ngày, nhưng chỉ nhãn cơ chế và giới hạn chung | Bổ sung cơ chế nguồn thật hỗ trợ, giới hạn đúng và tác động so sánh ReceiptRail; không suy có URL là claim đã được chứng minh. |
+| T20-R2 — cao: pain bị diễn giải thiếu/sai phạm vi | Dòng15 gọi “trùng đơn”, dòng16 chỉ “Replay trap”/Blockchain-x402, bỏ nhãn EVM củaT15 | Ghi tác giả/ngày bài/ngày đọc, nội dung outcome/nonce đúng ở trên; phân biệt lịch sử/EVM, không gọi lỗi Solana hiện hành. |
+| T20-R3 — vừa: đổi mã finding và chưa có bảng state | Dòng19–22 gán R1=Alternatives/R2=Pain/R3=Replay/R4=State, sai mã T14 gốc; dòng22 khẳng định tách state nhưng mục state/PDA/authority/commitment không còn | Trả lời đúng T14-R1=state/PDA,R2=idempotency claims,R3=pain,R4=alternatives và trỏ vị trí thực. Viết bảng Invoice/request/Expired/CTA; câu xác nhận chưa thay nội dung. |
+
+Đã giao **T21 → T22 → T23**, chỉ sửa tài liệu A; queue hiện hành rút gọn, bản cũ giữ archive. K8 ghi claim test/checklist/findings không khớp evidence; lần này A đã nộp cả ba việc đang mở, nên **không coi câu hết việc ở f49716a là bỏ sót task chưa nộp**. Các báo “xong” vẫn chưa tương đương C nhận đạt. Giữ IDEA/ARCHITECTURE/source/IDL/điểm, không mở Phase3 hoặc cổng người dùng/giáo viên.

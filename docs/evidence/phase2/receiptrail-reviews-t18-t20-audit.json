@@ -1,0 +1,93 @@
+{
+  "scope": "Read-only document/source/log checks; no runtime suite rerun; not approval or independent audit",
+  "checked_at_utc": "2026-11-17T22:51:53.013304+00:00",
+  "review_head": "f49716a35ee6af951ce1e8a7d0d40b33d2692a9f",
+  "input_commits": {
+    "architecture_review": "073d78190a394df2bb7f8112033537470e99cb1d",
+    "ux": "03c0bac0edb9a59f0ba8ea75c7820978b4eba742",
+    "evidence": "337322bdd75998ba435a9bb82c91313304b34c19"
+  },
+  "sha256": {
+    "docs/reviews/receiptrail-antigravity.md": "034efa43d40fc5ba288ff7eb6c03ff50bab774ca645022c49503d648a5628319",
+    "docs/design/receiptrail-ux-antigravity.md": "1de092e98d37606fc351783acd262f8ea9d3d85f32d54d89e9318b7a94112138",
+    "docs/data/receiptrail-evidence.md": "7f017685506bcb3203013f5a087a8050001791cb33c84feaa38b9a38cd5df6fb",
+    "programs/receiptrail/src/lib.rs": "2d7c0dce845da382ef237113bc7c691b656d4e61be171514b8b53fdade32b285",
+    "programs/receiptrail/tests/runtime.rs": "e60ce9d4e4328406a547de47eb9023af2c0df1cd0f822340c7f9df2e3cda960b",
+    "docs/idl/receiptrail.json": "13efb821841ebd6c9a8b9da21160aad8fbc11e9a6072e4b92a408e6f103f5409"
+  },
+  "T18": {
+    "referenced_test": "test_duplicate",
+    "exists_as_runtime_function": false,
+    "present_in_runtime_log": false,
+    "real_tests_read_and_present_in_r2_log": [
+      "create_pay_and_fresh_transaction_retry_transfers_principal_only_once",
+      "two_pay_instructions_in_one_transaction_roll_back_the_first_transfer",
+      "insufficient_principal_cpi_leaves_invoice_open_and_balances_unchanged",
+      "pay_cancel_race_is_safe_in_both_serial_orders"
+    ],
+    "note": "Actual C rollback cases are CPI insufficient principal, two pay instructions in one transaction, fresh retry after a successful transaction; not signer/expiry cases."
+  },
+  "T19": {
+    "error_rows_checked": 9,
+    "code_name_matches": 9,
+    "all_match": true,
+    "checked_checkboxes": 5,
+    "rows": [
+      {
+        "code": 6000,
+        "name": "InvalidAmount"
+      },
+      {
+        "code": 6001,
+        "name": "InvalidExpiry"
+      },
+      {
+        "code": 6002,
+        "name": "InvalidWallet"
+      },
+      {
+        "code": 6003,
+        "name": "AliasedRoles"
+      },
+      {
+        "code": 6004,
+        "name": "InvoiceNotOpen"
+      },
+      {
+        "code": 6005,
+        "name": "InvoiceExpired"
+      },
+      {
+        "code": 6006,
+        "name": "WrongPayer"
+      },
+      {
+        "code": 6007,
+        "name": "WrongMerchant"
+      },
+      {
+        "code": 6008,
+        "name": "WrongVersion"
+      }
+    ],
+    "limitations": "Only code/name mapping accepted; CTA/namespace, terms, state, wireframes, storyboard and SDK review remain open."
+  },
+  "T20": {
+    "http_urls": [
+      "https://docs.stripe.com/api/idempotent_requests",
+      "https://solana.com/docs/tools/solana-pay/specification/version1-1#reference",
+      "https://github.com/x402-foundation/x402/blob/main/specs/extensions/payment_identifier.md",
+      "https://shopify.engineering/building-resilient-graphql-apis-using-idempotency",
+      "https://github.com/x402-foundation/x402/issues/452"
+    ],
+    "lines": 22,
+    "finding_reply_labels": [
+      "T14-R1 (Alternatives)",
+      "T14-R2 (Pain Sources)",
+      "T14-R3 (Replay Trap)",
+      "T14-R4 (State Machine)"
+    ],
+    "limitations": "URL presence and access claims in A report do not establish semantic accuracy or that A opened them. C separately read the primary sources during this review."
+  },
+  "source_test_idl_match_build_metadata": true
+}

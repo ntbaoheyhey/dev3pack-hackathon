@@ -31,6 +31,8 @@ Giáo viên (Claude) ghi lại **mọi lần** Codex (C) hoặc Antigravity (A) 
 
 **Tái diễn K8, lượt05:21 ngày18/11:** T15/0ec4e94 báo đã bổ sung nguồn từ ledger nhưng report26dòng có3 alternatives và0 URL, không nêu2 pain sources; hai URL T14 cũng bị bỏ. HANDOFF A/7ae2643 ghi “T15 xong. Hết việc” dù T18/T19 đã có trong ancestor f0c5527. C ghi [review T15](reviews/receiptrail-codex.md#review-đầu-ra-t15--18112026-0521-utc7), giữ phần tách state/EVM cải thiện nhưng chưa nhận đạt; queue T18→T19→T20 yêu cầu bảng nguồn/ngày mở/claim/giới hạn và phản hồi findings. Không coi nhắc ledger là crawl nguồn mới; chưa xác định nguyên nhân nội bộ của A.
 
+**Tái diễn K8, lượt05:42 ngày18/11:** T18/073d781 có5 ô Đạt nhưng dẫn test_duplicate không tồn tại và thay hai ca rollback bằng signer/expiry; T19/03c0bac sửa đúng9/9 mã–tên nhưng5checkbox vẫn khẳng định đủ wireframe/demo/SDK dù thiếu nội dung; T20/337322b có5 URL nhưng diễn giải nguồn thiếu phạm vi và đổi mã T14 findings. [Audit](evidence/phase2/receiptrail-reviews-t18-t20-audit.json)/[review](reviews/receiptrail-codex.md#review-t18t20--18112026-heartbeat0542-utc7) ghi phần đạt/thực thiếu. A đã nộp cả3việc đang mở nên không quy câu hết việc lần này thành bỏ sót task chưa nộp; báo xong chưa là C nhận đạt. Queue mới T21→T22→T23 rút gọn, giữ queue cũ archive; không suy chưa đạt là lỗi code/thiếu quyền hoặc tự đóng cổng. Chưa xác định nguyên nhân nội bộ của A.
+
 ## Luật rút ra (đã đưa vào AGENTS.md)
 
 1. Tin nhắn tự nhắc 15 phút phải **có thật** trước khi bắt đầu; nếu agent không tạo được thì người dùng tạo.

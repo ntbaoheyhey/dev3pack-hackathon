@@ -165,3 +165,9 @@ T14 tại b5092a4 vẫn trộn state request với Invoice và dùng reference t
 T15/0ec4e94 đã tách nhóm Invoice/request và ghi issue452 thuộc EVM, nhưng report26dòng có3 alternatives và **0 URL HTTP(S)**; hai URL của T14 đã bị bỏ. Câu “đã bổ sung dữ liệu từ ledger” không chứng minh đã mở nguồn hoặc có2 pain reports độc lập. [Review T15](../reviews/receiptrail-codex.md#review-đầu-ra-t15--18112026-0521-utc7) ghi hash/phạm vi kiểm; C chỉ đọc report/ledger/thiết kế và đếm URL, không mở lại nguồn ngoài hoặc chạy runtime tests trong lượt này.
 
 Tiêu chí sửa qua T20: mỗi claim trỏ URL đích, ngày thực sự mở, nội dung hỗ trợ và giới hạn; nguồn chưa truy cập phải ghi chưa xác minh. Giữ ngày của lượt đọc cũ riêng với ngày báo cáo, không coi note C là nguồn pain mới của A. Ba tên alternatives không thay ba nguồn có bằng chứng, và nhiều URL cũng không tự chứng minh nội dung. State hiển thị Expired cần điều kiện Open+slot; cancel thuộc merchant, đường đọc ReceiptRail là Invoice PDA cùng program/cluster/commitment. Giữ thiết kế và điểm hiện hành, không suy báo “xong” thành đạt.
+
+### Bài học review T20 — 18/11/2026,05:42 UTC+7
+
+T20/337322b đã có5 URL. C mở cả5đích thật; tác giả/ngày/phạm vi và kết luận hẹp nằm trong [review T20](../reviews/receiptrail-codex.md#t20-nguồn-đã-có-diễn-giảiphản-hồi-chưa-đạt). Shopify/issue452 độc lập về retry/outcome, không là evidence Solana double-payment hoặc adoption. Stripe hiện phân biệt API v1/v2; không áp dụng chi tiết retention/response v1 cho mọi API. payment_identifier đọc blob e85f0d53101aa7a4246b01d9f31f0e2b1ba24f12 có fingerprint/cache; chưa chạy implementation. Không suy A đã mở nguồn từ việc C truy cập được.
+
+Report đổi mã R1–R4 và chỉ nói đã tách state nhưng không còn bảng/PDA/authority/commitment. Phản hồi review phải giữ ID gốc và trỏ nội dung thực; URL đúng chỉ là điều kiện ban đầu, không thay đọc/diễn giải. Giao T23, không tăng điểm hoặc đổi thiết kế; các phần thiếu được ghi rõ thay vì tick nhận toàn report.

@@ -94,3 +94,9 @@ Runner cuối dùng trực tiếp host toolchain đã cài, không qua rustup pr
 C01 r2 chấm **79/100 PLAN, F3→4**, giữ r0/r1 và R/D4; không thay weights. Cập nhật IDEA/ARCHITECTURE, README/SHORTLIST/ROADMAP/DECISION/review/Thẻ nhớ, giao bản8f84cfe cho A qua queue. Lựa chọn người dùng không là duyệt Phase2; chưa mở Phase3. CI cũ chạy lab rồi `cargo test --workspace`, chưa wire runner ReceiptRail/đường dẫn `.so`; cần xử lý khi mở Phase3 và có quyền cài tương ứng, không gọi CI xanh từ local pass.
 
 Kiểm nhánh thiếu compiler bằng `RECEIPTRAIL_HOST_TOOLS=/nonexistent/receiptrail-host bash scripts/check-receiptrail.sh`: exit2 đúng trước build, thông báo thiếu cached executable; không cài thêm. Checks cuối: links local của16 file, hashes current metadata, phép tính điểm/sàn và git diff --check đạt.
+
+## Bài học review T18/T19 — 18/11/2026,05:42 UTC+7
+
+T19/03c0bac đã sửa9/9 code–name đúng IDL; chỉ nhận phần này, không tiếp tục ghi bảng lỗi hiện hành sai như T17. Copy/CTA, terms, state/wireframe/demo/SDK còn thiếu. [Audit T18–T20](../evidence/phase2/receiptrail-reviews-t18-t20-audit.json) giữ snapshot mới; audit T17 không sửa đè.
+
+T18/073d781 dẫn test_duplicate không tồn tại và nhầm signer/expiry với hai ca rollback đã giao. Đã đọc source/assertions/log r2 và đối chiếu3hash metadata; không rerun suite. Cần phân biệt rollback cả tx chứa hai pay với retry tx mới giữ Paid của tx đã thành công; Snapshot không gồm fee payer riêng. Bảng Đạt phải trỏ tên hàm/assertion/log thật, Signer khác has_one, hai thứ tự serial không là contention mạng. [Review mới](../reviews/receiptrail-codex.md#review-t18t20--18112026-heartbeat0542-utc7) giao T21/T22; không coi lỗi report là lỗi program hoặc quyền triển khai.

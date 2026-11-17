@@ -15,3 +15,5 @@ Review tài liệu: [audit UX T17](receiptrail-ux-t17-audit.json) lưu bản3475
 Tái chạy: `bash scripts/check-receiptrail.sh` với bộ toolchain/cache đã có. Xem [note023](../../learning/023-receiptrail-phase2-spike.md) cho đường dẫn override, lệnh IDL và nguyên nhân không dùng build wrapper sinh keypair. Thiếu cache phải hỏi trước cài, không tự download.
 
 Số đo VM: account131bytes, rent1,802,640lamports, principal1,000,000 trả1lần, CU create8,775/pay6,608/retry6,017/cancel4,346, fee10,000 do2signatures. Không suy thành phí/latency devnet hoặc benchmark mạng. Chưa UI/wallet/RPC recovery/load, CI/devnet hoặc audit độc lập.
+
+[Audit review T18–T20](receiptrail-reviews-t18-t20-audit.json), snapshot f49716a: T19 có9/9 mã–tên khớp IDL; T18 dẫn test_duplicate không có trong source/log; T20 có5URL. Source/tests/IDL khớp3hash metadata. C đọc source/log cũ và5nguồn bên ngoài để review nội dung, không chạy runtime suite mới; counts không tự đóng tiêu chí UX/review/evidence. Audit T17 giữ kết quả lịch sử tại3475c36, không phải bảng lỗi UX hiện tại.
