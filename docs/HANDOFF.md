@@ -1,7 +1,7 @@
 # Bàn giao hiện hành — Prompt 02, Codex
 
 - **Trạng thái:** đang làm. Cập nhật 17/11/2026 (Asia/Ho_Chi_Minh).
-- **Phase:** 1, B: chốt RUBRIC v1 và đang hiệu chỉnh; tiếp theo C/D. Codex là người gộp RUBRIC; Antigravity làm song song qua nhánh `work`.
+- **Phase:** 1, C: RUBRIC v1.1 đã chốt sau hiệu chỉnh; đang viết 019, sau đó D độc lập. Codex là người gộp RUBRIC; Antigravity làm song song qua nhánh `work`.
 - **Checkout Codex:** `/Users/bao/Documents/ChatGPT/dev3pack`; remote `https://github.com/ntbaoheyhey/dev3pack-hackathon.git`. Checkout `/Users/bao/Documents/dev3pack-hackathon` đang có việc của Antigravity: không sửa/stage file ở đó.
 - Đã đọc AGENTS, ROADMAP đầy đủ, mục lục/template, note 001/002/004/007/012/014. Note 015/016/019 đã đặt chỗ trong main trước phiên này.
 - Quy tắc phiên Codex không cho tạo Automation để bám một task tới mốc hoàn thành; **chưa tạo Automation**. Tiếp tục trong chat hiện tại, lưu checkpoint ở đây; không hứa có tự đánh thức sau khi chat kết thúc.
@@ -15,7 +15,7 @@
 - [x] A3: review 017/018 → `docs/reviews/A-codex.md`, không sửa note A.
 - [x] B1: `docs/ideas/rubric-draft-codex.md` từ 015–018, thang mô tả, trọng số, loại thẳng, ngưỡng/sàn, số vòng sửa.
 - [x] B2: chốt `docs/ideas/RUBRIC.md` v1.0 từ draft Codex và ứng viên 017/018; Codex quyết định theo Prompt 02 mới.
-- [ ] B3: hiệu chỉnh bằng 3 dự án thắng thật + 2 bài không lọt top có kết quả công khai; không coi thiếu bằng chứng là thất bại thực tế.
+- [x] B3: đã thử 3 winners + 2 honorable mentions Frontier; khoảng điểm chồng lấp vì thiếu artifact. V1.1 sửa protocol evidence/mốc snapshot; không tuyên bố đã kiểm định khả năng dự đoán giải.
 - [x] B4: áp dụng review bất đồng bộ; không cần A duyệt. Góp ý mới xử lý ở version sau; bất đồng lớn ghi Để người dùng quyết và chọn phương án chặt hơn.
 - [ ] C1: note 019 (RFP/RFS, dự án cũ, hạ tầng mới và cách lọc bằng chứng).
 - [ ] C2: review 020 → `docs/reviews/C-codex.md`.

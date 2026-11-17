@@ -1,10 +1,10 @@
-# Bộ chấm ý tưởng — RUBRIC v1.0
+# Bộ chấm ý tưởng — RUBRIC v1.1
 
-**Chốt quy tắc v1.0 ngày 17/11/2026 — chủ file: Codex.** Áp dụng chỉ thị người dùng và Prompt 02 đã cập nhật: Codex quyết định, review của Antigravity được xử lý bất đồng bộ. Không cần Antigravity duyệt để sang chặng C/D. Đây là rubric nội bộ, không phải trọng số chính thức của BTC.
+**Chốt quy tắc v1.1 ngày 17/11/2026 — chủ file: Codex.** Áp dụng chỉ thị người dùng và Prompt 02 đã cập nhật: Codex quyết định, review của Antigravity được xử lý bất đồng bộ. Không cần Antigravity duyệt để sang chặng C/D. Đây là rubric nội bộ, không phải trọng số chính thức của BTC.
 
 Nguồn: [015](../learning/015-hackathon-judging.md), [016](../learning/016-technical-feasibility-risk.md), các tiêu chí hữu ích trong [017](../learning/017-khung-tham-dinh-y-tuong.md), [018](../learning/018-blockchain-solana-check.md). Giữ problem/feasibility/novelty/demo và phép thử trust; không dùng claim thiên kiến giám khảo thiếu nguồn hoặc thưởng tên Token-2022/PDA/Blinks. Findings còn mở tại [review A](../reviews/A-codex.md) là góp ý chất lượng, không chặn chủ file quyết định.
 
-Hiệu chỉnh cuối file đang được bổ sung bằng dữ liệu dự án thật trước lần chấm ý tưởng đầu tiên.
+Đã chạy hiệu chỉnh 3 bài thắng + 2 honorable mentions ở mục 8. Dữ liệu công khai chưa đủ phân biệt hai nhóm; v1.1 bổ sung quy tắc bằng chứng bên dưới. Đây không phải mô hình dự đoán giải đã được xác thực.
 
 Mục đích là **chọn việc phù hợp với đội và thời gian**, không dự đoán chắc giải. Trọng số, sàn, số vòng sửa dưới đây là đề xuất nội bộ. Phase 1 đánh giá **PLAN**; bài đã build đánh giá **DELIVERY**. Cùng tên tiêu chí nhưng không so trực tiếp điểm của hai chế độ.
 
@@ -69,7 +69,7 @@ Mỗi ô điểm dẫn tới đoạn/bằng chứng, ví dụ `F=3: có D1 cho t
 - Xếp shortlist theo `min(tự chấm, chấm chéo)`, rồi F/R/P khi hòa; khác biệt >=2 ở tiêu chí hoặc >=10 tổng phải giải thích trước khi chốt.
 - Review bất đồng bộ, không chặn tiến độ. Chủ file xử lý ở v2/v3; bất đồng lớn ghi hai lập luận vào “Để người dùng quyết”, tạm dùng phương án chặt hơn. Không tự ghi A đã đồng ý.
 
-## 6. Kế hoạch hiệu chỉnh
+## 6. Phương pháp hiệu chỉnh
 
 Chọn trước ba bài thắng và hai bài được xác nhận ngoài nhóm giải/top của **cùng một sự kiện Solana** nếu có dữ liệu. Định nghĩa top rõ (ví dụ nhóm nhận giải chính; honorable mention không tự đồng nghĩa dự án tệ). Dùng tài liệu ở lúc thi, đánh U khi thiếu code/demo; không lấy thành tích startup sau thi làm điểm.
 
@@ -82,6 +82,56 @@ Hiệu chỉnh phải ghi cả dữ liệu thiếu và giới hạn; không dùn
 | Phiên bản | Thay đổi | Chủ quyết định |
 | --- | --- | --- |
 | v1.0 — 17/11/2026 | Chốt thang 0–5, weights, gates, floors, threshold 75, r0–r3 từ draft v0.1; review bất đồng bộ | Codex theo chỉ thị người dùng |
+| v1.1 — 17/11/2026 | Sau hiệu chỉnh: tách trần điểm chứng minh được khỏi khoảng U; khóa mốc artifact; không lấy website hậu cuộc thi hoặc claim traction làm evidence đã kiểm | Codex; không đổi weights/ngưỡng để khớp người thắng |
 
 Chưa có bất đồng rubric lớn được gửi; không tạo quyết định giả cần người dùng. ROADMAP dòng B còn ghi hai bên đồng ý là mô tả cũ; dùng Prompt 02 và AGENTS mới cho quyền quyết định. Các cổng người dùng/giáo viên ở Phase 1–2 vẫn giữ nguyên.
 
+
+## 8. Hiệu chỉnh thực tế — Frontier 2026, đọc 17/11/2026
+
+### 8.1. Nhãn và nguồn sản phẩm
+
+“Top” ở đây = Grand Champion hoặc danh sách 25 winners; không gồm honorable mentions. [Kết quả chính thức](https://blog.colosseum.com/announcing-the-winners-of-the-solana-frontier-hackathon/) xác nhận ba bài CrowdBrain, Flovia, Sudont thuộc nhóm giải và Portara, Surgepay thuộc honorable mentions. Honorable mention **không có nghĩa sản phẩm tệ**. Chọn mẫu theo độ đa dạng workflow và khả năng truy xuất nguồn, không chọn theo điểm mong muốn; năm mẫu quá ít để suy xác suất thắng.
+
+| ID / nhãn | Artifact đọc và claim có thể dùng | Giới hạn |
+| --- | --- | --- |
+| W1 CrowdBrain — Grand Champion | [Profile](https://colosseum.com/arena/projects/crowdbrain) mô tả huấn luyện operator, QA và điều phối robot; [website tác giả](https://crowdbrain.ai/) cho workflow cụ thể | Website hiện tại có thể đã phát triển sau thi; không đưa số đo/site hiện tại vào điểm lúc thi. Link repo `CrowdBrain/application` lấy trực tiếp từ HTML profile, đọc README trả 404; chưa xem hết video |
+| W2 Flovia — Winner | [Profile](https://colosseum.com/arena/projects/flovia); [README tại 910afcc](https://github.com/flovia/poc/blob/910afccbd1a85e7a055b08af39f44046d6cb2ede/README.md), commit 11/05/2026: discovery/source/intelligence/BFF/frontend, mặc định fixtures và offline verification | Đây là commit trong ngày cuối hackathon, chưa chứng minh đúng commit đã nộp. Đọc lệnh test không phải đã chạy. Fixture-backed không bị gọi là gian lận vì tác giả khai rõ |
+| W3 Sudont — Winner | [Profile](https://colosseum.com/arena/projects/sudont) và mô tả BTC: execution firewall/local RPC cho Solana; HTML profile trỏ `sudont-labs/sudont-core` | README trả 404; website lỗi TLS với client đang dùng. Không kết luận repo bị xóa hay program có bug |
+| H1 Portara — Honorable Mention | [Profile](https://colosseum.com/arena/projects/portara): agent thực thi chiến lược dài hạn với risk layer; HTML trỏ `Boole-Digital/PortaraTrade` | README trả 404. Website hiện tại [portara.xyz](https://portara.xyz/) chuyển nội dung sang Boole; không dùng tính năng mới để chấm lại bài tháng 5 |
+| H2 Surgepay — Honorable Mention | [Profile](https://colosseum.com/arena/projects/surgepay:-whatsapp-first-remittance.-us-india.-in-seconds.-no-fees.-google-rates): remittance US–India qua WhatsApp/USDC/LP; [website](https://www.surgepay.money/) | Traction là tác giả tự báo, chưa kiểm. Repo profile trỏ `Surge-pay/surgepay-backend`, README 404; không nhầm với dự án SurgePay trên Base/Stellar |
+
+Các link website/repo được lấy từ HTML công khai của profile bằng HTTP read-only khi web extractor chỉ hiện nhãn “Repository”. Không đăng nhập, không gửi form, không chạy source của dự án. Lỗi 404 có thể là access/path, không chứng minh abandoned. Tool web có lỗi redirect/409; đó là giới hạn công cụ, không phải bằng chứng mọi site bị chặn.
+
+### 8.2. Chấm DELIVERY với evidence còn thiếu
+
+Bảng dùng **khoảng khả dĩ U[a,b]**, không dùng midpoint làm điểm thật. Các cận hẹp phản ánh phần đã đọc (user/flow rõ), không xác nhận tác giả đã đạt mức cao. `U[0,5]` là thiếu artifact, **không phải 0 điểm**. Không có bài nào được gắn fail chất lượng chỉ vì hồ sơ công khai thiếu dữ liệu. Phép thử này kiểm khả năng ra quyết định từ evidence, không tái hiện bí mật đánh giá của BTC.
+
+| Bài | P | S | N | F | R | D | V | Tổng khả dĩ /100 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| W1 CrowdBrain | U[2,4] | U[0,5] | U[0,5] | U[0,5] | U[0,5] | U[0,5] | U[1,4] | 9–95 |
+| W2 Flovia | U[2,4] | U[2,4] | U[0,5] | U[2,4] | U[0,5] | U[2,4] | U[1,4] | 29–85 |
+| W3 Sudont | U[1,4] | U[2,5] | U[0,5] | U[0,5] | U[0,5] | U[0,5] | U[0,5] | 10–96 |
+| H1 Portara | U[2,4] | U[0,5] | U[0,5] | U[0,5] | U[0,5] | U[0,5] | U[1,4] | 9–95 |
+| H2 Surgepay | U[2,4] | U[2,4] | U[0,5] | U[0,5] | U[0,5] | U[0,5] | U[2,4] | 16–92 |
+
+Lý do từng chiều: P bị giới hạn bởi chủ yếu mô tả của đội, chưa có dữ liệu khách hàng độc lập; N chưa có comparison cùng thời điểm; F/R thiếu log kiểm thử và artifact security; D chưa kiểm video end-to-end. S của Flovia có kiến trúc onchain signals nhưng README khai fixtures, Sudont có job Solana đặc thù, Surgepay mô tả settlement; chưa được suy thành tx thực. V của Surgepay có workflow referral/receiver tự báo, không tự nâng 5 vì con số traction.
+
+**Kết quả vòng đầu: không phân biệt đáng tin hai nhóm.** Khoảng chồng lấp quá rộng; đổi trọng số sẽ không tạo ra bằng chứng còn thiếu. Không tuyên bố đã đạt “predictive validation”.
+
+### 8.3. Sửa sau hiệu chỉnh và áp dụng lại
+
+V1.1 bổ sung bốn quy tắc bắt buộc:
+
+1. **Khóa artifact/mốc:** ghi idea version, rubric version, commit/ngày nguồn. Nguồn sau thời điểm thi chỉ là context, không chấm retro thành tích mới.
+2. **Tách evidence khỏi lời kể:** traction, test pass, latency và audit chỉ được dùng mức cao khi có artifact tương ứng; lời quảng cáo không phải independent evidence. Đối với PLAN, R/D=4 vẫn chỉ là chất lượng thiết kế.
+3. **Khoảng chưa quyết định được:** khi thiếu evidence ảnh hưởng floor hoặc ngưỡng 75, ghi `CHƯA ĐỦ BẰNG CHỨNG`, không xếp giữa khoảng, không gọi fail thật. Khi chấm ý tưởng của đội phải bổ sung evidence hoặc thu nhỏ; không dùng unknown để tự đạt.
+4. **DELIVERY khác PLAN:** F=3 trong PLAN chỉ là D1; DELIVERY muốn xác nhận đường chính phải có source/commit và kết quả chạy tương ứng. D=4 trong DELIVERY đòi video/flow thật và recovery; R=4 đòi kiểm source/transitions cùng snapshot. Không chuyển điểm thiết kế thành điểm giao hàng.
+
+Áp dụng lại năm bài: **5/5 chưa đủ evidence để quyết định theo rubric nội bộ**, không có thứ hạng giả và không gán nguyên nhân họ thắng/thua. B vẫn chốt quy tắc và sang C/D theo chỉ thị người dùng; phần kiểm định dự đoán giải còn giới hạn được công khai. Không tiếp tục săn source vô hạn chỉ để ép khớp nhãn.
+
+### 8.4. Độ nhạy và đối chứng
+
+Đã tính lại các khoảng bằng Python offline: chuyển 5 điểm trọng số P→F, F→D và D→P (tổng luôn 100) vẫn có giao giữa tất cả khoảng; không thể kết luận người thắng chỉ nhờ đổi weights. Đây là phép tính tài liệu, không phải spike Solana.
+
+Hai đối chứng tự soạn: (a) todo app một admin với NFT trang trí, `S=1/G1 fail`, bị loại dù UI đẹp; (b) demo bắt buộc CPI vào dependency chưa có deployment/IDL phù hợp và không có fallback, `F=1/G4 fail`, bị loại dù thị trường hấp dẫn. Các đối chứng kiểm gates có hoạt động, **không được thay thế hai bài thật không top**.
