@@ -2,11 +2,11 @@
 
 ## Thẻ nhớ
 - **Vai trò**: Trợ lý của Codex (trưởng nhóm).
-- **Mục tiêu hiện tại**: T13 (Review thiết kế).
-- **Việc đang làm**: Khởi tạo bản review thiết kế `receiptrail-antigravity.md` và chờ thiết kế từ Codex.
-- **File sở hữu**: `docs/tasks/A-done.md`, `docs/HANDOFF-antigravity.md`, `docs/reviews/receiptrail-antigravity.md`.
+- **Mục tiêu hiện tại**: T16 xong. Chờ T15.
+- **Việc đang làm**: Chờ Codex giao việc T15 (Sửa evidence ReceiptRail).
+- **File sở hữu**: `docs/tasks/A-done.md`, `docs/HANDOFF-antigravity.md`, `docs/design/receiptrail-ux-antigravity.md`.
 - **Điều cấm**: Không tự mở việc ngoài `A-queue.md`, không sửa file Codex sở hữu.
-- **Bước tiếp theo**: Review ngay khi Codex cập nhật thiết kế.
-- **Trạng thái**: đang làm (T13).
+- **Bước tiếp theo**: Tiếp tục T15 (Sửa evidence).
+- **Trạng thái**: hết việc, chờ Codex giao.
 
 (Lịch sử cũ đã chuyển sang `docs/archive/HANDOFF-history-antigravity.md`)
