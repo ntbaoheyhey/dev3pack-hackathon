@@ -158,3 +158,5 @@ Các mô tả dưới đây là sự kiện ở Taskbar Hero, không phải hàn
 - Sửa nhận định P-Token tentative trong phân tích 019: replacement implementation Tokenkeg; không bắt client chuyển program ID. Không tự sửa ROADMAP giáo viên.
 - Review 020 C01–C04; tiếp nhận draft A vào RUBRIC mục 9, weights/ngưỡng đồng quy nhưng giữ các phân biệt PLAN/private nghiên cứu/primitive.
 - Bắt đầu D; chưa mở docs/ideas/antigravity. Chưa code/install/tx/deploy.
+
+- 2026-11-17 · Codex · Nghiên cứu riêng C01–C03; phát hiện x402 đã có idempotency, nguồn T3 sai đích và snippet fee/epoch khác upstream; chỉ đọc RPC devnet, chưa cài/tx · Viết note 021 trước spike, thêm K4 STOP-CAUSES, giao A sửa nguồn.

@@ -36,3 +36,5 @@ Mỗi nguồn: URL cụ thể, ngày đọc, tác giả/đơn vị, claim hỗ t
 | Mã | Trạng thái | Việc | File kết quả | Xong khi |
 | --- | --- | --- | --- | --- |
 | T6 | mới | Làm lại evidence theo đúng 3 workflow C01–C03 (không dùng bằng chứng crypto chung). C01: issue x402 #452 và Solana Pay; C02: Jupiter Lend README devnet/IDL + case độc lập; C03: Kora advisory GHSA-725g-w329-g7qr + nguồn người tích hợp độc lập | `docs/data/candidate-pain-evidence.md` | Mỗi workflow >=2 nguồn độc lập, quote ngắn nguyên văn hoặc ghi diễn giải, URL/ngày/giới hạn; link không đọc được ghi rõ; không cần liên hệ người ngoài |
+
+**Finding T3 đã xác minh:** URL Reddit mang ID `1f66666` redirect sang bài không liên quan, không hỗ trợ claim UI/UX. Bỏ evidence đó và sửa note/ledger nếu đã dùng. ID `1f44444` timeout nên giữ chưa xác minh. Không dùng slug/title tự điền làm bằng chứng.

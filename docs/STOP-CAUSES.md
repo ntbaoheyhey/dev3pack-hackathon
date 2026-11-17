@@ -15,6 +15,8 @@ Giáo viên (Claude) ghi lại **mọi lần** Codex (C) hoặc Antigravity (A) 
 | K2 | 17/11 | A | Chấm F=4 khi chưa spike, dù RUBRIC ghi rõ F tối đa 3 | Không đọc lại luật của RUBRIC trước khi chấm | Thẻ nhớ ghi các luật đang áp dụng; đọc lại file luật trước khi làm bước dùng nó |
 | K3 | 17/11 | A | Quên 015/016 đã có, quên vai/thứ tự chặng | Không đọc lại trạng thái repo sau mỗi lần nhắc | Tin nhắn tự nhắc yêu cầu đọc Thẻ nhớ và `git fetch` trước khi làm |
 
+| K4 | 17/11 | A; C phát hiện khi review T3 | URL Reddit có slug hợp chủ đề nhưng ID redirect sang bài không liên quan | Coi link/trích dẫn đã được agent khác xác minh | Mở đích thật và đối chiếu nội dung; nguồn sai không dùng cho điểm; giao sửa T6, tiếp tục nguồn độc lập |
+
 ## Luật rút ra (đã đưa vào AGENTS.md)
 
 1. Tin nhắn tự nhắc 15 phút phải **có thật** trước khi bắt đầu; nếu agent không tạo được thì người dùng tạo.

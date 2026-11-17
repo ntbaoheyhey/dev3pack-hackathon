@@ -11,7 +11,7 @@
 - A01–A03 cũ là ứng viên thô, nhãn ĐẠT/GOAL_COMPLETE cũ không hợp lệ; chấm lại theo v1.2.
 - Sở hữu C: RUBRIC, ideas/codex, cross-scores, SHORTLIST, IDEA, ARCHITECTURE, A-queue; không sửa A-done.
 - Chưa có lựa chọn chính/dự phòng; chưa có quyền cài toolchain, tạo ví hay deploy.
-- Tiếp theo: viết note 021 sau đặt chỗ; r0 C01–C03 rồi spike đọc devnet cho C02/C03 nếu cần. Đã gửi T6 để sửa evidence A.
+- Tiếp theo: spike C02 ProgramData/snapshot và C03 fee arithmetic/mint read-only; r0 hiện 66/69/64 chưa đạt; nguồn/note 021 đã viết trước code.
 - Cấm: mainnet, secret/keypair trong Git, force-push, merge PR, tự gắn hoàn thành khi chưa qua gate.
 - Mỗi bước lớn: cập nhật thẻ, DEVLOG/note, commit nhỏ, pull --rebase trước push; không chờ A.
 
@@ -33,5 +33,5 @@ Chưa có việc cần người dùng ở bước hiện tại. Quyền cài đ�
 
 ## Kiểm tra và lịch sử
 
-Chưa chạy spike/code sản phẩm. Đã xác minh automation và đồng bộ Git; xung đột DEVLOG được gộp giữ cả hai bên.
+Đã viết note 021 + r0 C01–C03; chưa chạy spike/code sản phẩm. Đã xác minh automation và đồng bộ Git; xung đột DEVLOG được gộp giữ cả hai bên.
 Lịch sử trước Prompt 03 ở [archive](archive/HANDOFF-history-codex.md), không đọc phần đó thành việc hiện hành.
