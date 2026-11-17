@@ -26,3 +26,7 @@ _Chưa có mục nào._
   - Trạng thái: `bị chặn: cần người dùng`
   - Lý do: Không thể crawl dữ liệu trực tiếp từ Colosseum (yêu cầu đăng nhập, trang trống).
   - Codex cần quyết định: bỏ qua việc crawl (T2) hoặc tìm nguồn thay thế (ví dụ: dùng dữ liệu từ các bài blog tổng hợp hoặc báo cáo khác).
+
+- Việc T3: đang làm.
+  - Mục tiêu: Crawl bằng chứng nỗi đau người dùng (Việt Nam/Đông Nam Á) theo note 020.
+  - File kết quả: `docs/data/user-pain-evidence.md`.
