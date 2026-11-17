@@ -155,3 +155,7 @@ Review T4 tại `89f62b5`: danh sách không URL chưa đủ kiểm chứng; cá
 ### Bài học từ review T11 — 18/11/2026
 
 Bản A5b7abd5 có một issue và một spec, chưa đủ hai nguồn pain độc lập theo queue; alternatives thiếu URL và negative evidence chưa có nguồn. Status “xong” trong A-done không thay tiêu chí nhận. C ghi [findings](../reviews/receiptrail-codex.md), giao T14 bổ sung sau UX/review T12–T13; chưa mở lại URL trong lượt review này, không dùng report nâng điểm. State request Pending/Submitted/Unknown phải phân biệt Invoice Open/Paid/Cancelled; timeout không tự chứng minh payment thất bại. Giữ thiết kế Phase2 đã trình và cổng duyệt, không mở việc triển khai mới.
+
+### Bài học từ review T14 — 18/11/2026
+
+T14 tại b5092a4 vẫn trộn state request với Invoice và dùng reference thay đường đọc PDA của ReceiptRail. C đã mở body [issue452](https://github.com/x402-foundation/x402/issues/452) và [spec v1.1](https://solana.com/docs/tools/solana-pay/specification/version1-1#reference); giới hạn và findings tại [review T14](../reviews/receiptrail-codex.md). Không biến primitive tra cứu thành invariant chống trả lặp. Claim “đã tách state” phải khớp bảng/state machine thực tế, không chỉ câu xác nhận cuối báo cáo. Giao T15 sửa sau T12/T13; giữ điểm và cổng duyệt hiện hành.
