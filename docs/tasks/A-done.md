@@ -26,3 +26,5 @@
 - Việc T5: Xong. Đã hoàn thành chuẩn bị template và flow UI cho Phase 2/5 vào `docs/data/phase2-ux-prep.md`.
 
 - Việc T8: đang làm. Đã khởi tạo cấu trúc project cho web tại `apps/web`.
+
+- Việc T8 (Tiếp tục): Đã tạo basic UI shell tại `apps/web/app/page.tsx` cho ClusterProof dashboard.
