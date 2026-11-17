@@ -222,7 +222,7 @@ Ngày là mốc **mềm**. Trễ thì cắt phạm vi, không dời ngày thi. H
 | Phase | Trạng thái | Ghi chú |
 | --- | --- | --- |
 | Nền (002–014) | xong | PR #1, REVIEW R01–R09 đã sửa |
-| 1 Ý tưởng & spec | chờ mở | Giáo viên viết prompt |
+| 1 Ý tưởng & spec | đang làm | Prompt 02 (`prompts/02-*-phase1-idea.md`), note 015–019 đã đặt chỗ |
 | 2 Kiến trúc | chưa mở | |
 | 3 Môi trường | chờ mở | Cần người dùng đồng ý cài toolchain |
 | 4 Program | chưa mở | |
