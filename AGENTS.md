@@ -12,7 +12,7 @@ Luật riêng cho từng agent: Codex xem mục "Nếu bạn là Codex" bên dư
 
 ## Luật số 1: Học trước, làm sau, và ghi lại
 
-0. **Biết mình đang ở phase nào**: đọc `docs/ROADMAP.md` (lộ trình P1–P6, ai làm gì, cổng ra của từng phase).
+0. **Biết mình đang ở phase nào**: đọc `docs/ROADMAP.md` (9 phase build app, mỗi phase học gì, làm gì, ai chủ trì, cổng ra).
 1. **Trước khi làm bất kỳ task nào**: đọc `docs/learning/README.md` (mục lục) và mọi note liên quan tới task.
 2. **Nếu chủ đề chưa có note**: tìm hiểu (docs chính thức trước, blog sau), rồi **viết note mới** theo `docs/learning/_TEMPLATE.md` *trước khi* viết code.
 3. **Sau khi làm xong** (hoặc khi gặp lỗi lạ, phát hiện bẫy, đổi quyết định): cập nhật note tương ứng, mục "Bài học / lỗi đã gặp".

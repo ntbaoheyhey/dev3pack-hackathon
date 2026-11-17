@@ -1,194 +1,233 @@
-# ROADMAP — từ học tới nộp bài Dev3pack
+# ROADMAP — các phase để build một app hoàn chỉnh
 
-Người điều phối: Claude (vai **giáo viên**). Học sinh: **Codex** (GPT-6 Astra Max) và **Antigravity** (Gemini 3.8 Flash High).
+Người điều phối: Claude (vai **giáo viên**). Học sinh: **Codex** (GPT-6 Astra Max, viết tắt **C**) và **Antigravity** (Gemini 3.8 Flash High, viết tắt **A**).
 Ngày lập: **17/11/2026**, múi giờ Asia/Ho_Chi_Minh. Hackathon: **27–29/11/2026**, chỉ Solana, video demo dưới 3 phút.
 
-File này là **lịch trình và đề bài**, không phải giáo trình. Giáo viên chỉ ghi *cần học gì, cần làm ra gì, thế nào là xong*. Nội dung học do học sinh tự tìm (docs chính thức, source trên GitHub, paper, tạp chí, Reddit, X, Hacker News, diễn đàn và mạng xã hội Trung Quốc như Zhihu, Juejin, CSDN, V2EX, Linux.do, Bilibili…) rồi tự viết vào `docs/learning/`.
+**Build bắt đầu ngay từ bây giờ**, không chờ tới 27/11. Thể lệ cho phép code làm trước nếu README ghi rõ phần nào làm trước, phần nào làm trong sự kiện (mốc là tag `hackathon-start`, xem README).
 
-> Mọi agent: đọc file này trước khi nhận việc để biết **đang ở phase nào** và phần việc của mình. Trạng thái phase cập nhật ở bảng "Trạng thái hiện tại" cuối file.
+File này là **lịch trình và đề bài**, không phải giáo trình. Giáo viên chỉ ghi: phase làm gì, *cần học gì* (chỉ liệt kê), phải nộp gì, thế nào là xong, ai chủ trì. Nội dung học do học sinh tự tìm và tự viết vào `docs/learning/`.
+
+> Mọi agent: đọc file này trước khi nhận việc để biết **đang ở phase nào** và phần việc của mình. Trạng thái nằm ở mục 5 cuối file.
 
 ---
 
-## 1. Nhận xét bài làm đến 17/11 (giáo viên chấm)
+## 1. Vòng lặp của mọi phase
 
-### Điểm tốt
+Phase nào cũng đi đúng 5 bước, không nhảy cóc:
 
-- Đủ 13 note (002–014), đúng template, có nguồn, phiên bản, bài tự kiểm tra và ghi rõ cái gì **chưa** kiểm chứng. Thói quen này phải giữ.
-- Codex review chéo phần của Antigravity, bắt được 9 lỗi thật (R01–R09: lộ API key ElevenLabs ở browser, parse nhầm mã lỗi `0x1770`, nguồn gán sai, kịch bản video 180 giây…) và đã sửa hết.
-- Đã có bộ phiên bản đề xuất (Anchor 1.2.2 / Agave 4.1.2 / platform-tools v1.57), checklist bảo mật S01–S12, kịch bản video 165 giây, checklist nộp bài.
+1. **Học**: học sinh tự nghiên cứu đúng các chủ đề phase cần (danh sách ở từng phase). Nguồn: docs và source chính thức trước; rồi paper, tạp chí, blog kỹ thuật, GitHub issues/discussions, Reddit, X, Hacker News, Stack Exchange, Discord công khai; Trung Quốc: Zhihu, Juejin, CSDN, V2EX, Linux.do, Bilibili, Xiaohongshu. Mỗi nhận định ghi nguồn và ngày đọc; nguồn bị chặn thì ghi là bị chặn, không bịa.
+2. **Ghi note**: viết note mới theo `docs/learning/_TEMPLATE.md` (hoặc bổ sung note cũ 002–014). Để không trùng số: thêm dòng vào mục lục `docs/learning/README.md` và commit **trước** khi viết note.
+3. **Làm**: thực hiện phần việc của phase, commit nhỏ, test thật.
+4. **Review chéo**: học sinh kia review; người chủ trì sửa.
+5. **Chấm**: giáo viên chấm theo "Cổng ra"; phase sau chỉ mở khi đạt. Cuối phase, học sinh viết vài dòng bằng lời thường cho người dùng hiểu (người dùng phải tự giải thích được dự án khi chấm).
 
-### Chỗ còn mỏng (lý do có các phase dưới đây)
+---
 
-| # | Lỗ hổng | Mức rủi ro |
+## 2. Nhận xét phần đã học (002–014)
+
+**Tốt:** 13 note đúng template, có nguồn và phiên bản, ghi rõ cái gì chưa kiểm chứng. Codex review chéo bắt được và đã sửa 9 lỗi thật (R01–R09). Đã có bộ phiên bản đề xuất (Anchor 1.2.2 / Agave 4.1.2 / platform-tools v1.57), checklist bảo mật S01–S12, kịch bản video 165 giây, checklist nộp bài.
+
+**Còn mỏng — đã đưa vào các phase bên dưới:**
+
+| # | Lỗ hổng | Xử lý ở |
 | --- | --- | --- |
-| G1 | **Chưa làm tay gì cả.** Chưa cài Rust/Solana/Anchor, chưa compile dòng Rust nào, chưa deploy devnet, chưa build frontend thật. Mọi snippet đều "chưa chạy". Lỗi tương thích phiên bản sẽ lộ ra đúng lúc thi nếu không thử trước. | Rất cao |
-| G2 | **Chưa nghĩ về sản phẩm.** Chưa có nghiên cứu vấn đề/người dùng, chưa phân tích dự án thắng gần đây (2025–2026), chưa có ý tưởng nào. | Cao |
-| G3 | **Thiếu chủ đề kỹ thuật hay dùng khi thi**: đưa giao dịch lên chain ổn định (priority fee, blockhash hết hạn, retry), oracle, gọi DeFi có sẵn, đọc dữ liệu/indexing, thanh toán stablecoin, Solana Pay, Actions/Blinks, x402 và AI agent, ví nhúng/đăng nhập bằng ví cho người mới, upgrade authority. | Trung bình |
-| G4 | **Chưa có quy trình phối hợp hai agent khi build**: nhánh nào, ai merge, IDL là "hợp đồng" giữa program và frontend ra sao. Sự cố ghi nhầm repo Taskbar Hero cho thấy cần luật rõ. | Cao |
-| G5 | **Thông tin cuộc thi còn thiếu**: giờ UTC hạn nộp trên dashboard, partner tracks (công bố trước kickoff), local track $500 có Việt Nam không, nội dung bootcamp Rust của Dev3pack (2–27/11). | Trung bình |
-| G6 | Note dài và rào đón nhiều, khó tra nhanh lúc đang thi. Cần sổ tay 1 trang. Note 000 chưa rà lại. | Thấp |
-| G7 | Người dùng phải **tự giải thích được dự án** khi chấm, nhưng chưa có kế hoạch dạy lại cho người dùng. | Trung bình |
+| G1 | Chưa làm tay gì: chưa cài toolchain, chưa compile, chưa deploy, chưa build frontend | Phase 2 trở đi |
+| G2 | Chưa có ý tưởng, chưa phân tích người dùng hay dự án thắng gần đây | Phase 1 |
+| G3 | Thiếu chủ đề: đưa giao dịch lên chain ổn định, oracle, gọi DeFi có sẵn, đọc dữ liệu/indexing, thanh toán stablecoin, Solana Pay, Actions/Blinks, x402 và AI agent, ví nhúng, upgrade authority | Rải vào phase 3–7 theo nhu cầu của ý tưởng |
+| G4 | Chưa có quy trình phối hợp hai agent khi code chung repo | Phase 2 |
+| G5 | Chưa rõ giờ UTC hạn nộp, partner tracks, local track Việt Nam | Phase 1, kiểm lại ở phase 8 |
+| G6 | Note dài, khó tra nhanh; note 000 chưa rà lại | Sổ tay 1 trang ở phase 7 |
 
-### Giáo viên tự nghiên cứu thêm (17/11) — gợi ý hướng, học sinh phải tự kiểm chứng sâu
+**Giáo viên nghiên cứu thêm (17/11) — gợi ý hướng, học sinh tự kiểm chứng:**
 
-- **Solana Frontier Hackathon** (Colosseum, công bố 26/06/2026): quán quân CrowdBrain (robotics DePIN). Top 25 gom quanh: prediction market, stablecoin/thanh toán xuyên biên giới cho thị trường mới nổi (KinnectFi cho kiều bào Philippines, Stablecorp cho founder Ấn Độ, DashX), RWA, agent/analytics, game thẻ bài (TCG). Có giải riêng **University Award** và **Public Good Award**. BTC khen "tốc độ thực thi, insight, founder-market fit, biết ưu tiên". [Nguồn](https://blog.colosseum.com/announcing-the-winners-of-the-solana-frontier-hackathon/)
-- **Cypherpunk Hackathon** (19/12/2025): quán quân là ví cứng Solana kèm app; các nhánh Consumer, DeFi, Infrastructure, RWA, Stablecoin, Undefined. [Nguồn](https://blog.colosseum.com/cypherpunk-winners-stamp-light-token-firedancer/)
-- **Agent Hackathon** (03/2026) và Solana x402 Hackathon: AI agent + thanh toán máy-với-máy đang là hướng nóng. [Nguồn](https://blog.colosseum.com/agent-hackathoin-ptoken-seeker-grants/), [x402](https://solana.com/x402/hackathon)
-- **Thay đổi hạ tầng cần biết**: P-Token (SIMD-266) thay SPL Token, giảm CU mạnh, đổi địa chỉ CPI; Light Token tài trợ rent cho token account. Học sinh phải kiểm tra trạng thái hiện tại trên devnet/mainnet. Cùng nguồn trên.
-- **Solana Mobile Builder Grants**: yêu cầu mobile-first, dùng MWA và Seed Vault — gợi ý tiêu chí của giải Best Mobile App (chưa phải thể lệ Dev3pack).
-- **Template chính thức**: [templates.solana.com](https://templates.solana.com/) có Next.js + Anchor, React Vite + Anchor, gill… Nên dùng làm khung thay vì dựng từ số 0.
-- **Dev3pack**: trang chủ có Solana Rust Bootcamp 2–27/11 (tiếng Anh/Tây Ban Nha) và local track $500 "ở một số quốc gia". [hack.dev3pack.xyz](https://hack.dev3pack.xyz/)
-
-Những điểm trên là **gợi ý hướng** cho P1 và P3, không phải kết luận.
+- Solana Frontier Hackathon (Colosseum, 26/06/2026): top 25 gom quanh prediction market, stablecoin/thanh toán xuyên biên giới cho thị trường mới nổi (KinnectFi cho kiều bào Philippines, Stablecorp cho Ấn Độ, DashX), RWA, AI agent/analytics, game thẻ bài. Có University Award và Public Good Award. [Nguồn](https://blog.colosseum.com/announcing-the-winners-of-the-solana-frontier-hackathon/)
+- Cypherpunk (12/2025): quán quân là ví cứng Solana kèm app. [Nguồn](https://blog.colosseum.com/cypherpunk-winners-stamp-light-token-firedancer/)
+- Agent Hackathon (03/2026), x402 Hackathon: AI agent và thanh toán máy-với-máy đang nóng. [Nguồn](https://blog.colosseum.com/agent-hackathoin-ptoken-seeker-grants/), [x402](https://solana.com/x402/hackathon)
+- Hạ tầng mới: P-Token (SIMD-266) thay SPL Token ở địa chỉ mới, Light Token tài trợ rent token account — cần kiểm trạng thái hiện tại.
+- Solana Mobile Builder Grants yêu cầu mobile-first, MWA, Seed Vault (gợi ý cho giải Best Mobile App, chưa phải thể lệ Dev3pack).
+- Template chính thức: [templates.solana.com](https://templates.solana.com/) (Next.js + Anchor, React Vite + Anchor, gill…).
+- Dev3pack có Solana Rust Bootcamp 2–27/11 và local track $500 "ở một số quốc gia". [hack.dev3pack.xyz](https://hack.dev3pack.xyz/)
 
 ---
 
-## 2. Bản đồ phase
+## 3. Bản đồ phase
 
 ```
-P1 Học bổ sung ──► P2 Lab thực hành ──► P4 Chuẩn bị & tổng duyệt ──► P5 Build (27–29/11) ──► P6 Demo & nộp
-        └──────────► P3 Ý tưởng (chạy song song cuối P2) ──┘
+1 Ý tưởng & spec ─► 2 Kiến trúc ─┬─► 4 Program on-chain ─┐
+   (song song) 3 Môi trường ─────┤                       ├─► 6 Tích hợp ─► 7 Hoàn thiện ─► 8 Trong sự kiện ─► 9 Demo & nộp
+                                 └─► 5 Frontend & ví ────┘
 ```
 
-| Phase | Mục tiêu một câu | Mốc mềm | Cổng ra (xong khi) |
-| --- | --- | --- | --- |
-| **P1** Học bổ sung | Lấp G3, G5 và bắt đầu G2 bằng nghiên cứu | 17–19/11 | Note 015–025 có trong repo, được chéo review |
-| **P2** Lab thực hành | Biến lý thuyết thành một dApp devnet chạy thật | 19–23/11 | Program devnet + frontend live + test xanh + bảng phiên bản đã chạy |
-| **P3** Ý tưởng | Chọn 1 ý tưởng + 1 dự phòng có căn cứ | 21–24/11 | `docs/IDEA.md` được người dùng duyệt |
-| **P4** Chuẩn bị & tổng duyệt | Thiết kế xong trên giấy, khung repo sẵn, đã tập dượt | 24–26/11 | Checklist "Sẵn sàng" đủ, buổi tập dượt đã ghi bài học |
-| **P5** Build | Làm sản phẩm trong sự kiện | 27–29/11 | Đóng băng tính năng, chạy được luồng demo trên devnet |
-| **P6** Demo & nộp | Video ≤165 giây, README, nộp form sớm | 29/11 | Đã nộp, có ảnh chụp xác nhận |
+| # | Phase | Chủ trì | Mốc mềm | Cổng ra |
+| --- | --- | --- | --- | --- |
+| 1 | Ý tưởng & spec sản phẩm | C + A | 17–18/11 | Người dùng duyệt `docs/IDEA.md` |
+| 2 | Kiến trúc & thiết kế | C (on-chain), A (UX) | 18–19/11 | `docs/ARCHITECTURE.md` được duyệt |
+| 3 | Môi trường & khung repo (song song phase 1–2) | C (toolchain, CI), A (web) | 17–19/11 | Hello program trên devnet + web live + CI xanh |
+| 4 | Program on-chain | C | 19–22/11 | Test xanh, deploy devnet, client sinh từ IDL |
+| 5 | Frontend & ví (song song phase 4) | A | 19–22/11 | Mọi màn hình chạy với dữ liệu giả |
+| 6 | Tích hợp end-to-end + off-chain | C + A | 22–24/11 | Luồng chính chạy thật trên devnet qua link công khai |
+| 7 | Hoàn thiện: bảo mật, lỗi, README | C + A | 24–26/11 | Không còn lỗi nghiêm trọng, sẵn sàng demo |
+| 8 | Trong sự kiện | C + A | 27–29/11 | Tính năng điểm nhấn + đóng băng sáng 29/11 |
+| 9 | Demo & nộp | A (video), C (kiểm tra), người dùng (nộp) | 29/11 | Đã nộp, có ảnh xác nhận |
 
-Mốc ngày là **mềm**: phase sau chỉ mở khi cổng ra của phase trước đạt (trừ P3 được chạy song song). Nếu trễ, cắt phạm vi, không dời ngày thi.
-
-Hai mốc cứng: **26/11 tối** đóng băng mọi việc chuẩn bị; **hạn nộp 29/11** (giờ UTC phải đọc trên dashboard).
+Ngày là mốc **mềm**. Trễ thì cắt phạm vi, không dời ngày thi. Hai mốc cứng: **hết 26/11** có bản chạy được hoàn chỉnh; **hạn nộp 29/11** (giờ UTC đọc trên dashboard).
 
 ---
 
-## 3. Chi tiết từng phase
+## 4. Chi tiết từng phase
 
-### P1 — Học bổ sung (17–19/11)
+### Phase 1 — Ý tưởng & spec sản phẩm
 
-**Mục tiêu:** lấp các chủ đề còn thiếu và gom dữ liệu cho việc chọn ý tưởng. Chỉ đọc và viết note, chưa cài đặt.
+**Mục tiêu:** chọn một ý tưởng có căn cứ, đủ nhỏ để làm xong, đủ hay để thắng.
 
-Mỗi chủ đề là một note theo `_TEMPLATE.md`. Số note đã chia sẵn để hai agent không ghi đè nhau.
+**Cần học:**
+- Dự án thắng 2025–2026 (Colosseum Frontier, Cypherpunk, Agent, x402, Breakout, Superteam): vấn đề, người dùng, dùng tính năng Solana nào, demo và pitch ra sao — C phân tích độ sâu kỹ thuật, A phân tích sản phẩm/demo
+- Vấn đề thật ở Việt Nam/Đông Nam Á có thể giải bằng Solana (thanh toán, kiều hối, sinh viên, cộng đồng…) — A
+- Thông tin cuộc thi còn thiếu: giờ hạn nộp, partner tracks, local track Việt Nam, giải mobile, nội dung bootcamp Dev3pack — A (có browser)
+- Cách viết spec sản phẩm gọn: user story, phạm vi MVP, cái không làm — A
+- Ước lượng độ khó kỹ thuật cho từng ý tưởng trên Solana — C
 
-| Note | Chủ đề cần tự học | Chủ trì | Review chéo |
-| --- | --- | --- | --- |
-| 015 | Đưa giao dịch lên chain chắc chắn: compute budget, priority fee, blockhash hết hạn, retry, mức xác nhận, lỗi hay gặp lúc mạng nghẽn | Codex | Antigravity |
-| 016 | Gọi program có sẵn: oracle (Pyth, Switchboard), swap/aggregator (Jupiter), CPI vào Token/Token-2022, tình trạng P-Token và Light Token | Codex | Antigravity |
-| 017 | Đọc dữ liệu: RPC methods, filter `getProgramAccounts`, event/log, indexer, DAS API, webhook | Codex | Antigravity |
-| 018 | Thanh toán và agent: stablecoin (USDC, PYUSD…), Solana Pay, x402, bộ công cụ AI agent trên Solana | Codex | Antigravity |
-| 019 | Vòng đời program: upgrade authority, multisig, verified build, đóng program/thu hồi rent | Codex | Antigravity |
-| 020 | Người mới vào app: ví nhúng, đăng nhập bằng ví (Sign-In With Solana), fee payer/gasless, thông điệp lỗi dễ hiểu | Antigravity | Codex |
-| 021 | Actions và Blinks: cách hoạt động, ví nào hỗ trợ, có hợp để demo không | Antigravity | Codex |
-| 022 | Hạ tầng web: deploy frontend (Vercel…), backend nhẹ giữ secret, Supabase auth + ví, biến môi trường | Antigravity | Codex |
-| 023 | Giao diện nhanh mà đẹp: bộ UI kit, mẫu dashboard/landing của dự án thắng, chuẩn mobile-first | Antigravity | Codex |
-| 024 | Phân tích dự án thắng 2025–2026 (Frontier, Cypherpunk, Agent, x402, Breakout, Superteam) — Codex: dùng tính năng Solana nào, độ sâu kỹ thuật; Antigravity: vấn đề, người dùng, demo, pitch | Cả hai | Nhau |
-| 025 | Thông tin cuộc thi còn thiếu (G5) + nội dung bootcamp Dev3pack + local track Việt Nam + vấn đề thật ở Việt Nam/Đông Nam Á có thể giải bằng Solana | Antigravity (có browser) | Codex |
-
-Thêm: Antigravity rà lại note **000** (G6). Ai có quyền mở browser của người dùng thì thử lại các nguồn Trung Quốc từng bị chặn ở 009.
-
-**Cổng ra P1:** 11 note có mặt, mục lục `docs/learning/README.md` cập nhật, mỗi note có ít nhất một nhận xét chéo được xử lý, DEVLOG ghi đủ. Giáo viên chấm trước khi mở P2.
-
-### P2 — Lab thực hành (19–23/11)
-
-**Mục tiêu:** chạy thật một dApp nhỏ end-to-end trên devnet để lộ hết lỗi môi trường **trước** ngày thi, và đo tốc độ làm việc thật của hai agent.
-
-**Cần người dùng trước khi bắt đầu:** đồng ý cài toolchain trên máy theo bộ phiên bản ở 003; tạo ví devnet (không dùng ví có tiền thật); tài khoản Vercel/Supabase nếu dùng.
-
-Code lab để ở `labs/` trong repo (công khai, README ghi rõ là làm **trước** sự kiện).
-
-| Lab | Việc | Chủ trì |
-| --- | --- | --- |
-| L0 | Cài toolchain đúng phiên bản đã chọn, ghi lại phiên bản **đã chạy** vào 003 | Codex |
-| L1 | Program nhỏ (có PDA, authority, một lỗi tự định nghĩa), test thành công + test âm theo 007, deploy devnet | Codex |
-| L2 | Sinh client từ IDL, ghi lại lệnh thật đã chạy | Codex |
-| L3 | Khung frontend từ template chính thức: kết nối ví devnet, gọi L1, hiển thị trạng thái giao dịch và lỗi thân thiện (005) | Antigravity |
-| L4 | Deploy frontend lên link công khai; thử trên điện thoại (MWA hoặc PWA) | Antigravity |
-| L5 | Một spike SDK nhà tài trợ qua backend (khả năng cao là Supabase), không lộ key | Antigravity, Codex review |
-| L6 | CI chạy build + test program; Antigravity tự test luồng chính trên browser | Codex + Antigravity |
-| L7 | Ghi thời gian thật của từng lab → ước lượng làm được bao nhiêu trong 48 giờ | Cả hai |
-
-**Cổng ra P2:** có program ID devnet và chữ ký giao dịch thật, link frontend chạy, log test xanh, bảng phiên bản đã chạy, mục "Bài học / lỗi đã gặp" trong các note liên quan được cập nhật.
-
-### P3 — Ý tưởng (21–24/11, song song cuối P2)
-
-**Mục tiêu:** chọn ý tưởng có căn cứ, không chọn theo cảm hứng.
-
-1. Mỗi học sinh **độc lập** đề xuất 5 ý tưởng (không xem bài nhau trước), dựa trên 024 và 025. Mỗi ý tưởng một trang: vấn đề, người dùng cụ thể, vì sao cần Solana, dùng tính năng Solana nào, có hợp sponsor/track nào, "khoảnh khắc wow" trong video, làm được trong 48 giờ không (dựa trên số đo L7), rủi ro lớn nhất.
-2. Chấm chéo bằng bảng tự chấm ở 012, rồi gộp thành 3 ý tưởng tốt nhất.
+**Làm:**
+1. Mỗi học sinh **độc lập** đề xuất 5 ý tưởng (không xem bài nhau trước). Mỗi ý tưởng: vấn đề, người dùng cụ thể, vì sao cần Solana, tính năng Solana dùng tới, hợp sponsor/track nào, "khoảnh khắc wow" trong video, rủi ro lớn nhất.
+2. Chấm chéo bằng bảng tự chấm ở note 012, gộp còn 3.
 3. **Người dùng chọn** 1 ý tưởng chính + 1 dự phòng.
-4. Nếu partner track được công bố trước kickoff và hợp hơn, xét lại ở P4.
+4. Viết `docs/IDEA.md`: one-liner, người dùng, vấn đề, user stories, phạm vi MVP, ngoài phạm vi, luồng demo 165 giây phác thảo.
 
-**Cổng ra P3:** `docs/IDEA.md` một trang được người dùng duyệt.
+**Cổng ra:** người dùng duyệt `docs/IDEA.md`.
 
-### P4 — Chuẩn bị & tổng duyệt (24–26/11)
+### Phase 2 — Kiến trúc & thiết kế
 
-**Mục tiêu:** vào ngày thi chỉ còn việc code, không còn việc nghĩ.
+**Mục tiêu:** bản vẽ đủ chi tiết để hai học sinh code song song mà không giẫm chân nhau.
 
-| Việc | Chủ trì |
-| --- | --- |
-| Thiết kế program trên giấy: account, PDA, instruction, mô hình đe dọa theo 007 | Codex |
-| "Hợp đồng" IDL nháp giữa program và frontend | Codex, Antigravity duyệt |
-| Luồng người dùng + wireframe + storyboard video 165 giây (013) | Antigravity |
-| Chia việc build thành mốc nhỏ có chủ, ước lượng theo L7 | Cả hai |
-| Quy trình phối hợp khi build (G4): nhánh, PR, ai merge, xử lý xung đột, HANDOFF | Codex viết, Antigravity duyệt |
-| Khung repo dự án + README tách "trước sự kiện / trong sự kiện" | Antigravity |
-| Sổ tay 1 trang cho mỗi agent (lệnh hay dùng, phiên bản, lỗi đã gặp) | Mỗi agent tự viết |
-| **Tập dượt**: một buổi 4–6 giờ làm một tính năng nhỏ đúng quy trình thi (tự đánh thức, HANDOFF, review chéo, deploy) rồi ghi bài học | Cả hai |
-| Kiểm tra lại dashboard: giờ hạn nộp, partner tracks, form | Antigravity |
-| Bản giải thích dự án cho người dùng (G7) | Cả hai |
+**Cần học** (chọn đúng phần ý tưởng cần):
+- Mẫu thiết kế account/PDA cho bài toán tương tự trong các repo open source — C
+- Chủ đề G3 mà ý tưởng dùng tới: token/stablecoin, Solana Pay, oracle, gọi DeFi có sẵn, Actions/Blinks, x402/agent, nén state — C (on-chain), A (phía người dùng)
+- Chia việc on-chain và off-chain; khi nào cần backend, indexer — C
+- Mô hình đe dọa cho program (bổ sung 007) — C
+- Luồng người dùng, wireframe, người mới chưa có ví (ví nhúng, đăng nhập bằng ví, fee payer) — A
+- SDK nhà tài trợ hợp với ý tưởng (014): chọn hoặc bỏ có lý do — A
+- Quy trình hai agent cùng code một repo: nhánh, PR, ai merge, IDL là "hợp đồng" giữa program và frontend — C viết, A duyệt
 
-Nguyên tắc: trước sự kiện chỉ chuẩn bị **khung và thiết kế**; logic sản phẩm viết trong sự kiện. Thể lệ cho phép code có trước nếu README ghi rõ, nhưng làm vậy giữ phần "làm trong sự kiện" rõ ràng khi chấm.
+**Làm:** `docs/ARCHITECTURE.md` gồm sơ đồ hệ thống; account, PDA seeds, instruction, error, event; IDL nháp; phần off-chain; mô hình đe dọa; luồng màn hình + wireframe; quy trình phối hợp; danh sách việc phase 4–6 chia theo người.
 
-**Cổng ra P4:** checklist "Sẵn sàng" (thiết kế, IDL nháp, storyboard, khung repo, quy trình, sổ tay, tập dượt xong, hạn nộp đã xác nhận) đủ trước 26/11 tối.
+**Cổng ra:** review chéo xong, giáo viên chấm, người dùng đọc bản giải thích 1 trang và đồng ý.
 
-### P5 — Build (27–29/11)
+### Phase 3 — Môi trường & khung repo (song song phase 1–2)
 
-**Mục tiêu:** có luồng demo chạy thật trên devnet càng sớm càng tốt, rồi mới thêm thắt.
+**Mục tiêu:** đường ống chạy từ đầu đến cuối dù chưa có tính năng: build → test → deploy devnet → web công khai.
 
-| Mốc | Nội dung | Chủ trì |
-| --- | --- | --- |
-| M1 | Program lõi + test + deploy devnet | Codex |
-| M2 | "Bộ xương chạy được": frontend gọi được program, luồng chính đi hết trên link công khai | Antigravity |
-| M3 | Tính năng tạo điểm nhấn + tích hợp sponsor (nếu có) | Cả hai |
-| M4 | Codex review bảo mật theo 007; Antigravity bắt lỗi trên browser và điện thoại | Cả hai |
-| Đóng băng | Sáng 29/11: ngừng thêm tính năng, chỉ sửa lỗi chặn demo | — |
+**Cần người dùng:** đồng ý cài toolchain trên máy; tạo ví devnet riêng (không dùng ví có tiền thật); tài khoản Vercel (hoặc tương đương), Supabase nếu dùng.
 
-Luật trong lúc build: không làm hỏng `main`; deploy lại sau mỗi mốc; cập nhật HANDOFF sau mỗi mốc; luôn bật tự đánh thức.
+**Cần học:**
+- Cài bộ phiên bản đã chọn ở 003 và lỗi cài hay gặp trên macOS — C
+- Template chính thức và cấu trúc thư mục program + web trong một repo — C + A
+- CI cho Anchor (build, test) trên GitHub Actions — C
+- Deploy web, biến môi trường, giữ secret ngoài repo — A
+- Ví devnet, airdrop/faucet, quản lý keypair an toàn — C
 
-### P6 — Demo & nộp (29/11)
+**Làm:** cài toolchain và ghi phiên bản **đã chạy** vào 003; khung repo từ template; program "hello" deploy devnet; web "hello" kết nối ví, deploy link công khai; CI xanh; README ghi phần làm trước sự kiện.
 
-| Việc | Chủ trì |
-| --- | --- |
-| Quay video ≤165 giây theo storyboard, số liệu trong lời thoại phải đo thật | Antigravity |
-| README cuối, ảnh chụp, địa chỉ contract, link live, phần "trước/trong sự kiện" | Antigravity, Codex kiểm tra phần kỹ thuật |
-| Kiểm tra cuối: repo public, không có secret/keypair, link chạy, contract đúng cluster | Codex |
-| Nộp form 5 bước, **chừa ít nhất 3 giờ** trước hạn | Người dùng |
-| Ôn giải thích dự án cho vòng chấm | Người dùng, có tài liệu từ P4 |
+**Cổng ra:** program ID devnet + chữ ký giao dịch thật, link web chạy, CI xanh.
+
+### Phase 4 — Program on-chain (C)
+
+**Mục tiêu:** toàn bộ logic on-chain của MVP, có test, trên devnet.
+
+**Cần học:**
+- Phần Anchor mà thiết kế dùng tới (constraints, CPI, token, close account…) — tự đào sâu từ 004
+- Test thật: LiteSVM / Mollusk / Surfpool hoặc tương đương, test âm theo 007
+- Đưa giao dịch lên chain ổn định: compute budget, priority fee, blockhash, retry, mức xác nhận
+- Program gọi tới (nếu có): oracle, Token-2022/P-Token, DeFi
+- Sinh client từ IDL (Codama) và cách bàn giao cho A
+- Upgrade authority, verified build
+
+**Làm:** viết từng instruction kèm test thành công và test âm; deploy devnet; sinh client; ghi "hợp đồng" IDL cho A; đo CU.
+
+**Cổng ra:** test xanh trong CI, program trên devnet, client đã sinh, A xác nhận dùng được.
+
+### Phase 5 — Frontend & ví (A, song song phase 4)
+
+**Mục tiêu:** mọi màn hình của luồng demo chạy được với dữ liệu giả, sẵn sàng cắm client thật.
+
+**Cần học:**
+- @solana/kit, Wallet Standard, kết nối ví (đào sâu 005)
+- Trải nghiệm người mới: ví nhúng, đăng nhập bằng ví, thông báo trạng thái và lỗi dễ hiểu
+- Bộ UI kit giúp làm nhanh mà đẹp; tham khảo giao diện dự án thắng
+- Mobile: PWA hoặc MWA nếu nhắm giải mobile (008)
+- Actions/Blinks nếu ý tưởng dùng
+- Tự test bằng browser agent
+
+**Làm:** các màn hình theo wireframe, chạy với client giả theo IDL nháp; responsive; quay thử luồng demo.
+
+**Cổng ra:** đi hết luồng demo bằng dữ liệu giả trên link công khai; C review phần chạm ví/giao dịch.
+
+### Phase 6 — Tích hợp end-to-end + off-chain (C + A)
+
+**Mục tiêu:** luồng chính chạy thật trên devnet, người lạ mở link là dùng được.
+
+**Cần học:**
+- Đọc dữ liệu on-chain: RPC methods, filter, event/log, indexer/webhook nếu cần — C
+- Backend nhẹ giữ secret, Supabase (auth + ví, realtime) hoặc SDK sponsor đã chọn — A, C review bảo mật
+- Xử lý lỗi thật từ chain và từ ví — A
+- Test end-to-end tự động qua browser — A
+
+**Làm:** thay client giả bằng client thật; nối backend/sponsor SDK; test end-to-end; deploy lại.
+
+**Cổng ra:** luồng demo chạy thật trên devnet qua link công khai, có log/chữ ký làm bằng chứng.
+
+### Phase 7 — Hoàn thiện (C + A)
+
+**Mục tiêu:** bản đủ chắc để demo và nộp, trước 27/11.
+
+**Cần học:**
+- Cách review bảo mật Solana program (vượt 007, xem audit report công khai) — C
+- Bug bash trên nhiều ví, trình duyệt, điện thoại — A
+- README tốt cho giám khảo (012) — A
+
+**Làm:** C review bảo mật toàn bộ, sửa lỗi; A bắt lỗi trên browser và điện thoại; README đầy đủ (kiến trúc, chạy local, phần làm trước sự kiện); mỗi agent viết sổ tay 1 trang (lệnh hay dùng, phiên bản, lỗi đã gặp); A rà lại note 000; viết bản nháp kịch bản video theo 013; người dùng tập giải thích dự án.
+
+**Cổng ra:** không còn lỗi nghiêm trọng, README xong, tạo tag `hackathon-start` lúc mở màn 27/11.
+
+### Phase 8 — Trong sự kiện (27–29/11)
+
+**Mục tiêu:** phần làm trong sự kiện có giá trị thật, rồi đóng băng.
+
+**Cần học:** partner tracks vừa công bố và yêu cầu của chúng; phản hồi từ mentor (nếu có).
+
+**Làm:** tính năng điểm nhấn đã để dành; điều chỉnh theo partner track nếu hợp; mọi thay đổi ghi vào phần "trong hackathon" của README; deploy lại sau mỗi mốc; đóng băng sáng 29/11, chỉ sửa lỗi chặn demo.
+
+**Cổng ra:** bản cuối trên devnet (hoặc mainnet nếu người dùng đồng ý), link live ổn định.
+
+### Phase 9 — Demo & nộp (29/11)
+
+**Cần học:** quay/dựng video ngắn có số liệu thật (013); form nộp 5 bước.
+
+**Làm:** A quay video ≤165 giây; C kiểm tra cuối (repo public, không có secret/keypair, contract đúng cluster, link chạy); A hoàn thiện README, ảnh chụp; **người dùng nộp form, chừa ít nhất 3 giờ trước hạn**.
+
+**Cổng ra:** đã nộp, có ảnh chụp xác nhận.
 
 ---
 
-## 4. Cách giao việc và chấm bài
+## 5. Cách giao việc
 
-- **Mỗi phase một prompt** (đặt trong `prompts/`), giáo viên viết khi mở phase. Prompt chỉ nêu: mục tiêu, danh sách cần học/làm, sản phẩm phải nộp, cổng ra. Không viết sẵn nội dung.
-- **Nguồn học sinh phải tự khai thác**: docs và source chính thức trước; sau đó paper, tạp chí, blog kỹ thuật, GitHub issues/discussions, Reddit, X, Hacker News, Stack Exchange, Discord công khai; Trung Quốc: Zhihu, Juejin, CSDN, V2EX, Linux.do, Bilibili, Xiaohongshu. Mỗi nhận định ghi nguồn và ngày đọc; nguồn bị chặn thì ghi là bị chặn, không bịa.
-- **Tự đánh thức khi chạy lâu** (không cần watchdog): đầu mỗi task dài, học sinh tự tạo tác vụ lặp **mỗi 15 phút** nhắn vào chính chat của mình, kiểu: *"Mấy giờ rồi? Đọc docs/HANDOFF.md và làm tiếp mục đầu tiên trong Còn lại."* Codex dùng Automations; Antigravity dùng tác vụ lên lịch trong chat. Xong hết việc thì tự hủy tác vụ.
-- **Chấm bài**: hết mỗi phase, học sinh mở PR; học sinh kia review chéo; giáo viên chấm theo cổng ra rồi mới mở phase sau.
-- **Việc cần người dùng** (cài đặt, tạo tài khoản/ví, chọn ý tưởng, nộp form) ghi vào mục "Bị chặn" của HANDOFF, không tự làm.
-- **Người dùng học song song**: theo nhịp ở [011](learning/011-solana-learning-roadmap.md); cuối mỗi phase, học sinh viết một trang giải thích bằng lời thường cho người dùng.
+- **Mỗi phase một prompt** trong `prompts/`, giáo viên viết khi mở phase: mục tiêu, danh sách cần học, việc làm, sản phẩm nộp, cổng ra. Không viết sẵn nội dung.
+- **Tự đánh thức khi chạy lâu** (không cần watchdog): đầu mỗi task dài, học sinh tự tạo tác vụ lặp **mỗi 15 phút** nhắn vào chính chat của mình, kiểu: *"Mấy giờ rồi? Đọc docs/HANDOFF.md và làm tiếp mục đầu tiên trong Còn lại."* Codex dùng Automations; Antigravity dùng tác vụ lên lịch trong chat. Xong hết việc thì tự hủy.
+- **Phase song song** (3 với 1–2; 4 với 5): mỗi agent làm trên nhánh riêng, merge qua PR, ghi DEVLOG khi chạm vùng của agent kia.
+- **Việc cần người dùng** (cài đặt, tài khoản, ví, chọn ý tưởng, nộp form) ghi vào mục "Bị chặn" của `docs/HANDOFF.md`, không tự làm.
 
 ---
 
-## 5. Trạng thái hiện tại
+## 6. Trạng thái hiện tại
 
 | Phase | Trạng thái | Ghi chú |
 | --- | --- | --- |
-| P0 Học nền (002–014) | xong | PR #1, REVIEW R01–R09 đã sửa |
-| P1 | chờ mở | Giáo viên viết prompt P1 |
-| P2 | chưa mở | Cần người dùng đồng ý cài toolchain |
-| P3 | chưa mở | |
-| P4 | chưa mở | |
-| P5 | chưa mở | 27–29/11 |
-| P6 | chưa mở | 29/11 |
+| Nền (002–014) | xong | PR #1, REVIEW R01–R09 đã sửa |
+| 1 Ý tưởng & spec | chờ mở | Giáo viên viết prompt |
+| 2 Kiến trúc | chưa mở | |
+| 3 Môi trường | chờ mở | Cần người dùng đồng ý cài toolchain |
+| 4 Program | chưa mở | |
+| 5 Frontend | chưa mở | |
+| 6 Tích hợp | chưa mở | |
+| 7 Hoàn thiện | chưa mở | |
+| 8 Trong sự kiện | chưa mở | 27–29/11 |
+| 9 Demo & nộp | chưa mở | 29/11 |
