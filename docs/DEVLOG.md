@@ -19,6 +19,8 @@ Mỗi dòng: ngày · ai làm (Mai / Codex / Antigravity) · việc · note đã
 
 - R07 · viết lại 013: bảng và script 15+20+80+30+20 = 165 giây, biên 15 giây; thay thành tích latency/rent/PDA/48h bằng placeholder cần bằng chứng. Chỉ kiểm thời lượng kế hoạch, chưa có video xuất.
 
+- R08 · sửa 005 theo CLI README/manifest cùng commit Codama `141998e`, version source 2.0.0-rc.0: init → config renderer → run js; bỏ lệnh và tên generated suy đoán. JSON config parse được, chưa chạy CLI/codegen/cài package; bộ tương thích còn chưa kiểm chứng.
+
 ## Trước sự kiện
 
 - 2026-11-17 · Claude · Dựng khung repo, quy tắc "học trước, ghi lại", research Codex vs Antigravity · 000, 001

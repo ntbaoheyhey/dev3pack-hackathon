@@ -27,7 +27,7 @@ Thời lượng đọc: khoảng 15–20 phút.
 | `@solana/react` | **8.6.0** | Đã kiểm tra API exports (`ClientProvider`, `useClient`, `useSelectedWalletAccount`) |
 | `@solana/web3.js` | **3.2.1** (kế thừa kiến trúc modular v2) | Đã kiểm tra npm registry; v1.95.x là bản legacy cũ |
 | `@solana/wallet-adapter-react` | **0.15.40** | Đã đối chiếu docs hệ sinh thái |
-| `codama` / `@codama/nodes` | **1.11.0** | Đã đối chiếu tài liệu sinh client Anchor |
+| `@codama/cli` (mốc source) | **2.0.0-rc.0**, commit `141998e` | Đã đọc manifest + CLI README của cùng commit; chưa cài/chạy codegen, không xác nhận version thực trong repo |
 | `vite` & `react` | Vite **8.3.8**, React **19.3.1** | Đã build và chạy dev server thành công (build: 74ms, gzip: 77.6 kB) |
 | Kiểm tra Browser | Chrome-headless (Browser Subagent) | Đã click mô phỏng trạng thái và bắt lỗi thành công tại `http://127.0.0.1:5173` |
 
@@ -87,11 +87,39 @@ Khi tương tác với Anchor Program, frontend cần biết định dạng tham
    - Khởi tạo `new Program(idl, provider)`.
    - **Nhược điểm**: `@coral-xyz/anchor` kéo theo thư viện web3.js v1 và hệ thống type dynamically parsed, làm bundle nặng và autocomplete TypeScript đôi khi không trọn vẹn.
 
-2. **Phương pháp thế hệ mới 2026: Codama (Client Generator)**:
-   - **Codama** (trước đây là Solita/Kinobi) là công cụ chuẩn hóa để sinh code client TypeScript từ IDL.
-   - Lệnh sinh: `codama idl target/idl/my_program.json --output src/client`.
-   - Kết quả: Sinh ra một thư viện TypeScript thuần túy, sử dụng `@solana/kit`, định nghĩa kiểu tĩnh nghiêm ngặt (strict types), có sẵn các hàm `getInitializeInstruction(...)`, `fetchCounterAccount(...)`.
-   - **Ưu điểm**: Zero runtime overhead, không cần nạp JSON IDL vào bundle production, autocomplete cực chuẩn từng trường tài khoản và tham số.
+2. **Codama (client generator)**:
+   - CLI đọc cấu hình, nạp Anchor/Codama IDL, áp visitors rồi chạy renderer để sinh client. API đầu ra phụ thuộc IDL, renderer và version; phải xem exports thực tế trước khi viết frontend.
+   - Mốc đối chiếu ngày 17/11/2026: **`@codama/cli` 2.0.0-rc.0**, [package.json tại commit `141998e`](https://github.com/codama-idl/codama/blob/141998ef817294a79629c4592cdfdce93bd6939d/packages/cli/package.json), [CLI README cùng commit](https://github.com/codama-idl/codama/blob/141998ef817294a79629c4592cdfdce93bd6939d/packages/cli/README.md). Đây là **source prerelease**, không khẳng định là bản stable/nên cài hoặc đã cài. Không dùng version 1.11.0 ở bản note cũ như bằng chứng đã kiểm tra.
+
+#### Quy trình `codama init` → cấu hình renderer → `codama run`
+
+**Chưa chạy.** Các lệnh dưới chỉ minh họa cho phiên thực hành sau khi đã được phép chuẩn bị môi trường và khóa bộ version tương thích. Phiên sửa tài liệu không cài package, không chạy `npx` hoặc codegen. `init` có thể yêu cầu thêm dependency; không tự chấp nhận cài trong phạm vi tài liệu.
+
+```sh
+# Khi binary đã có trong môi trường được phép dùng:
+codama init
+# Chọn IDL target/idl/my_program.json và preset phù hợp trong prompt.
+# Review codama.json; đường dẫn output thuộc args của renderer, không phải flag --output.
+codama run js
+```
+
+Ví dụ `codama.json` theo schema và recipe JavaScript renderer của CLI README; `js` là **tên script tự đặt trong cấu hình này**, không phải tên hàm generated:
+
+```json
+{
+  "idl": "target/idl/my_program.json",
+  "scripts": {
+    "js": {
+      "from": "@codama/renderers-js",
+      "args": ["src/client"]
+    }
+  }
+}
+```
+
+`codama run` không có tên script chỉ chạy `before` visitors, không tự chạy renderer; cần `codama run js` hoặc `codama run --all` nếu muốn chạy tất cả script đã cấu hình. CLI README xác nhận trường `idl` có thể nhận Anchor IDL và chuyển sang Codama IDL.
+
+Trước khi chạy thật, khóa version CLI/Codama, Anchor adapter, renderer và Kit theo compatibility của từng package; **bộ tương thích và kết quả codegen chưa kiểm chứng** trong repo này. Sau đó xem diff và exports sinh ra, dùng đúng tên/type đó và chạy build/client test. Không tự suy tên hàm fetch/instruction từ tên account; mẫu trên chưa tạo bất kỳ file client nào.
 
 ---
 
@@ -268,7 +296,7 @@ Bảng ca kiểm tra dùng IDL **giả lập** của program A: `6000 → BetToo
 
 - [Solana Web3.js / Kit Official Docs](https://solana.com/docs/clients/javascript) — Tài liệu chính thức từ Solana Foundation về JavaScript & TypeScript SDKs (Đã đọc và đối chiếu).
 - [Wallet Standard Specification](https://github.com/wallet-standard/wallet-standard) — Đặc tả chuẩn kết nối ví đa nền tảng (Đã đọc).
-- [Codama Documentation](https://github.com/codama-idl/codama) — Bộ công cụ sinh TypeScript client tự động từ Anchor IDL (Đã đọc).
+- [Codama CLI README tại `141998e`](https://github.com/codama-idl/codama/blob/141998ef817294a79629c4592cdfdce93bd6939d/packages/cli/README.md) — `init`, `run`, schema config và renderer recipe; source version 2.0.0-rc.0, đã đọc, chưa chạy.
 - [Solana Transaction Confirmation Guide](https://solana.com/developers/guides/advanced/confirmation) — Hướng dẫn xử lý vòng đời giao dịch, commitment levels và blockhash expiry (Đã đọc).
 - [Sandbox cục bộ](/tmp/sandbox-frontend-solana) — Thử nghiệm thực tế với Vite 8.3 + React 19 + @solana/kit 8.6.0 đã chạy thành công và được xác minh qua browser subagent.
 
@@ -278,3 +306,5 @@ Bảng ca kiểm tra dùng IDL **giả lập** của program A: `6000 → BetToo
 
 - **Điểm chưa kiểm chứng**: Thử nghiệm sandbox trên được chạy trên localhost với mock outcome và devnet slot call, chưa thực hiện ký giao dịch thật qua tiện ích ví trình duyệt (extension Phantom/Solflare) vì môi trường chạy agent không có GUI extension.
 - **Bước tiếp theo**: Khi bắt đầu xây dựng dự án hackathon, khởi tạo project mẫu bằng Vite, cài đặt `@solana/wallet-adapter-react` để có sẵn giao diện chọn ví, kết hợp `@solana/kit` cho các lệnh đọc dữ liệu RPC và Codama cho client program.
+
+**Bài học / lỗi đã gặp (R02/R08):** parse custom error bằng cặp program ID/mã đầy đủ; pin tài liệu CLI và kiểm output codegen trước dùng tên hàm. 11 fixture parser là test offline, không chứng minh SDK/codegen hay transaction thật hoạt động.
