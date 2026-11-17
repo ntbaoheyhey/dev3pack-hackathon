@@ -45,8 +45,8 @@ Tiến độ và bước tiếp tục sau compact nằm trong [docs/HANDOFF.md](
 | [014 — SDK nhà tài trợ](014-sponsor-sdks.md) | Chọn SDK theo sản phẩm, pricing có nguồn, ElevenLabs/Firecrawl giữ key phía server | Antigravity; Codex sửa R01/R04/R09 — đã đọc docs/pricing; chưa tích hợp, không suy bounty từ số SDK |
 | 015 — Tiêu chí chấm hackathon và cách giám khảo chấm thật | Đặt chỗ cho Phase 1 chặng A | Codex — chưa viết |
 | 016 — Đánh giá độ khả thi kỹ thuật và rủi ro của ý tưởng | Đặt chỗ cho Phase 1 chặng A | Codex — chưa viết |
-| 017 — Khung thẩm định ý tưởng sản phẩm và nghiên cứu về chấm ý tưởng | Đặt chỗ cho Phase 1 chặng A | Antigravity — chưa viết |
-| 018 — Có thật sự cần blockchain/Solana không; thông tin chấm Dev3pack | Đặt chỗ cho Phase 1 chặng A | Antigravity — chưa viết |
+| 017 — Khung thẩm định ý tưởng sản phẩm và nghiên cứu về chấm ý tưởng | Đặt chỗ cho Phase 1 chặng A | Antigravity — xong |
+| 018 — Có thật sự cần blockchain/Solana không; thông tin chấm Dev3pack | Đặt chỗ cho Phase 1 chặng A | Antigravity — xong |
 | 019 — Nguồn ý tưởng trong hệ sinh thái Solana | Đặt chỗ cho Phase 1 chặng C | Codex — chưa viết |
 | 020 — Nguồn vấn đề thật của người dùng | Đặt chỗ cho Phase 1 chặng C | Antigravity — chưa viết |
 
