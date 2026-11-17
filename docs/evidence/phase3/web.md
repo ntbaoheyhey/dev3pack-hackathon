@@ -20,7 +20,7 @@ Wallet lab dùng Wallet Standard qua client1.7.0/react-hooks1.4.1. No-wallet và
 | [Build](web-build-r4.txt) | typecheck/Vite174 modules/static route exit0; giữ lỗi fixture typing r3 |
 | [Hosting](web-hosting.json) | public, deployment succeeded; source f5223afb86ec0a8208715eec312e636b19da30ff, version1; project/deployment IDs và archive SHA256 trong JSON |
 | [Source match](web-source-match.json) | Code/config/tests trùng commit Sites; README local bổ sung phạm vi SDK warmup sau xuất bản, được ghi riêng trong artifact; không dùng repo HEAD thay source SHA deployment |
-| CI | Web job đã viết npm ci/test/build; CI head7d27640 bị Billing & plans chặn trước job, không có run Linux xanh |
+| [CI](ci-blocked-f7a1a43.json) | Run44127842904 ở commit web f7a1a43: web/research/anchor-lab đều bị Billing & plans chặn trước job, không có run Linux xanh |
 
 ## Browser đã quan sát
 

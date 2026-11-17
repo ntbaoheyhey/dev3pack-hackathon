@@ -15,7 +15,7 @@
 | Toolchain theo quyền đã cho | [note003](../learning/003-solana-toolchain.md), [build metadata](../evidence/phase3/build-metadata.json), [hello-check-r2](../evidence/phase3/hello-check-r2.txt) | Đã cài/build/IDL/6 runtime tests local; không cài lại |
 | Hello program + transaction devnet thật | [inspect](../evidence/phase3/devnet-inspect-1794932899367.json):đúng genesis/slot523329001,payer0SOL,program chưa deploy,transactions=[] | Chưa đạt; funding cần người dùng |
 | Web công khai + wallet lab | [Web](https://clusterproof-devnet-17nov26.anthony-robinson-125.chatgpt.site), [evidence](../evidence/phase3/web.md), [hosting](../evidence/phase3/web-hosting.json) | Public/build/browser đạt; no-wallet và fixture connector đã kiểm, extension thật chưa kiểm |
-| CI xanh đúng source | [workflow](../../.github/workflows/ci.yml), [diagnostics7d27640](../evidence/phase3/ci-blocked-7d27640.json) | Chưa đạt: GitHub billing chặn trước job; local pass không thay Linux CI |
+| CI xanh đúng source | [workflow](../../.github/workflows/ci.yml), [diagnostics commit web f7a1a43](../evidence/phase3/ci-blocked-f7a1a43.json) | Chưa đạt: cả3 jobs bị GitHub billing chặn trước khi chạy; local pass không thay Linux CI |
 | PR work→main, không merge | [PR#7](https://github.com/ntbaoheyhey/dev3pack-hackathon/pull/7), HEAD/refs trong HANDOFF | PR đang mở; cập nhật code/docs/evidence theo checkpoint, không merge |
 | An toàn và provenance | Keys ngoài Git, devnet/local only; templates/lock/license/evidence; [README](../../README.md) tách trước/trong sự kiện | Scope đã giữ; repo vẫn private/MIT, public-source gate trước nộp chưa đạt |
 | NEXT và kết thúc goal | Prompt03 mục5 | Chưa viết NEXT final hoặc gọi xong khi Phase2/3 còn cổng chưa đạt |

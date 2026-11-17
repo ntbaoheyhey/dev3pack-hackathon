@@ -17,7 +17,7 @@ ClusterProof giúp builder kiểm deployment Solana devnet trước khi tích h�
 
 Program ID dành cho lab: **2yzxUQEpaeLmgCMhDipwnVL3DHsxez18KcePonqZRiXL** — **chưa deploy** tại checkpoint này. Đây là counter hello từ template Anchor, không là program sản phẩm ClusterProof.
 
-Logs và hashes tại [docs/evidence/phase3](docs/evidence/phase3/); [hello-check-r2.txt](docs/evidence/phase3/hello-check-r2.txt) và [web-build-r4.txt](docs/evidence/phase3/web-build-r4.txt) exit0. [Bằng chứng web](docs/evidence/phase3/web.md) phân biệt RPC live với fixture ví. CI ở head7d27640 bị GitHub Billing & plans chặn trước job; local pass chưa là CI xanh.
+Logs và hashes tại [docs/evidence/phase3](docs/evidence/phase3/); [hello-check-r2.txt](docs/evidence/phase3/hello-check-r2.txt) và [web-build-r4.txt](docs/evidence/phase3/web-build-r4.txt) exit0. [Bằng chứng web](docs/evidence/phase3/web.md) phân biệt RPC live với fixture ví. [CI ở commit web f7a1a43](https://github.com/ntbaoheyhey/dev3pack-hackathon/actions/runs/44127842904) có cả ba jobs bị GitHub Billing & plans chặn trước khi chạy; local pass chưa là CI xanh.
 
 ## Chạy local
 

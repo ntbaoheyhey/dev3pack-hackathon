@@ -57,7 +57,7 @@ Research suite 16 tests đã có nhưng chưa thay các test product/UI/runtime 
 5. Action dependencies khóa bằng lockfile khi được hỗ trợ, hoặc full commit SHA đã kiểm; không tự điền SHA chưa biết. Cache key gồm OS/arch/toolchain/lockfile, không cache ví/keypair.
 6. Artifact chỉ .so/IDL/test report public; không target/deploy keypair. Deploy devnet/web là bước riêng được kiểm quyền, không tự chạy từ PR người lạ.
 
-[GitHub secure use](https://docs.github.com/en/actions/reference/security/secure-use) hỗ trợ least-privilege, cách tránh PR privileged checkout và khóa actions. Workflow đã viết tại .github/workflows/ci.yml với research, anchor-lab/client và web; actions pin full SHA. Run44120999655 ở head7d27640 bị Billing & plans chặn trước job; local pass chưa chứng minh Linux CI xanh. Job web sẽ được chạy khi push phần web và GitHub cho phép khởi chạy.
+[GitHub secure use](https://docs.github.com/en/actions/reference/security/secure-use) hỗ trợ least-privilege, cách tránh PR privileged checkout và khóa actions. Workflow đã viết tại .github/workflows/ci.yml với research, anchor-lab/client và web; actions pin full SHA. Sau push commit web f7a1a43, run44127842904 có cả3 jobs bị Billing & plans chặn trước khi chạy; đã lưu từng annotation trong ci-blocked-f7a1a43.json. Local pass chưa chứng minh Linux CI xanh.
 
 ### Phiếu cài đã được người dùng chấp thuận
 

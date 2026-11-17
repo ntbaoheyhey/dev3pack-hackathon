@@ -190,3 +190,6 @@ Các mô tả dưới đây là sự kiện ở Taskbar Hero, không phải hàn
 
 
 - 2026-11-17 · Codex · Hoàn thiện và publish baseline React/Vite trong vùng frontend của A: Dashboard đọc devnet metadata theo yêu cầu, /lab Wallet Standard connect/disconnect, static deep link. Web8 tests/build r4/clean npm ci/audit0 đạt; browser local/public/mobile và fixture ví đã lưu, chưa extension thật. Dùng template9ec8eba và source Sites f5223af, kiểm16 file trùng byte; không deploy/send Solana. Cập nhật note022/mục lục/README/IDEA/ARCHITECTURE v0.3/ROADMAP/evidence, giao T9 browser và T10 architecture; CI head7d27640 vẫn billing-blocked, payer0SOL tại slot523329001.
+
+
+- 2026-11-17 · Codex · Đã push web f7a1a43 và cập nhật PR#7 với live URL/tests/gates; cả3 jobs run44127842904 bị billing chặn trước khi chạy, lưu annotations riêng. Gửi câu hỏi duyệt IDEA/giải thích ARCHITECTURE v0.3 theo ROADMAP; funding/billing vẫn pending. Hoàn thiện hồ sơ review/gates, source-match xác nhận code không đổi (README làm rõ warmup); kiểm links/diff/secret patterns đạt. Revalidate dev server65878 rồi stop exit130. Cập nhật HANDOFF/note022/evidence; goal active, không merge hoặc tự đóng phase.
