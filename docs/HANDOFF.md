@@ -1,3 +1,23 @@
+> **Luật đọc bàn giao:** Sau compact, nếu còn việc thì đọc phần hiện hành và làm tiếp ngay. Trạng thái chỉ dùng `đang làm` | `bị chặn (cần người dùng)` | `xong`; không ghi "tạm dừng" trừ khi người dùng yêu cầu. Mẫu trống: [HANDOFF-TEMPLATE.md](HANDOFF-TEMPLATE.md).
+
+# Bàn giao hiện hành — sửa PR #1 và R01–R09
+
+- **Trạng thái:** xong. Cập nhật 17/11/2026, Asia/Ho_Chi_Minh.
+- Repo duy nhất: `/Users/bao/Documents/dev3pack-hackathon`; remote `https://github.com/ntbaoheyhey/dev3pack-hackathon.git`; nhánh `prompts/01-learning`.
+- Chỉ tài liệu; không cài đặt, tạo keypair, deploy, mainnet, sửa Taskbar Hero, merge PR hoặc push main/force-push.
+- Đã xong: merge `origin/main` và push `58ffb5a`; giữ nội dung main/mục lục, tách mẫu trống. Đã sửa R01–R09, bảng commit và giới hạn nằm trong [REVIEW](learning/REVIEW-2026-11-17.md); R04 có ba commit `2e6889c`, `4bc4cd6`, `057085d`, R09 có `dd78420`, `c583fb6`.
+- README/REVIEW đã đồng bộ; mục bài học đúng template; báo cáo sandbox cũ được gắn nhãn lịch sử. Kiểm tra 27 Markdown, 52 fences, 103 link cục bộ, 3 JSON, sáu heading mục 4, video 165 giây và phạm vi tài liệu đạt; parser cuối khớp mã đã đạt 11 fixture offline.
+- Đã push toàn bộ nội dung sửa tại `d14a435fa70dee7f519291e8c0fd6606471f673a`; local/remote khớp, working tree sạch. PR #1: open, draft, merged=false, mergeable=true sau khi GitHub tính lại. Main vẫn ở `ab3561207384aad7b62d282628a23446b54c02cb`, là ancestor của nhánh; không push main. Commit chứa bản ghi xong này chỉ đóng trạng thái HANDOFF/DEVLOG.
+- Còn lại: không có trong phạm vi sửa tài liệu PR #1. Các bước thực hành và thông tin chưa công bố bên dưới không phải việc cần tự thực hiện để đóng task.
+- Đã đọc trang chủ/FAQ Dev3pack bằng browser. Chưa kiểm giờ UTC trên dashboard, partner tracks/bounty cuối cùng; chưa có video, số đo sản phẩm hoặc kiểm thử SDK/MWA/backend/codegen tích hợp.
+- Bị chặn: không có. Task sửa tài liệu đã xong; không mở lại lịch sử chuyển repo hoặc tự bắt đầu lab.
+
+---
+
+## Lịch sử chuyển tài liệu — giữ nguyên nội dung main
+
+Phần dưới chỉ là lịch sử; quyền push main và các lời nhắc kết thúc phiên cũ không áp dụng cho task hiện hành.
+
 # Bàn giao chuyển tài liệu Solana về đúng repo
 
 **Trạng thái: hoàn tất chuyển tài liệu Codex và Antigravity lên main repo đích. Người dùng quyết định giữ nguyên Taskbar Hero như hiện tại; không còn bước chuyển nhánh hoặc quyết định nào đang chờ.** Cập nhật 17/11/2026, Asia/Saigon.

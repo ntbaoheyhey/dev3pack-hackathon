@@ -1,7 +1,7 @@
 # 009 — Mẹo dùng Codex và Antigravity
 
 > Ngày kiểm tra: 2026-11-17 (Asia/Ho_Chi_Minh). Phạm vi: **cả phần Codex và phần Antigravity**.
-> Trạng thái phần Codex: đã đọc docs/nguồn cộng đồng; chưa benchmark GPT-6 hoặc chạy sandbox. Phần Antigravity và kết quả sandbox/browser do phiên khác bổ sung; còn findings về nguồn và độ chính xác tại [bản rà soát](REVIEW-2026-11-17.md).
+> Trạng thái phần Codex: đã đọc docs/nguồn cộng đồng; chưa benchmark GPT-6 hoặc chạy sandbox. Phần Antigravity đã sửa nguồn theo R03; chỉ giữ cơ chế có trang docs riêng. Kết quả sandbox của phiên khác chưa được Codex tái chạy; xem [bản rà soát](REVIEW-2026-11-17.md).
 
 ## 1. Mục tiêu và điều cần nhớ
 
@@ -15,11 +15,11 @@ Ba nhãn xuyên suốt: **chính thức** là hướng dẫn của nhà cung c�
 | --- | --- | --- |
 | Codex CLI trên máy | **0.169.0-alpha.11.1** | Đã chạy `codex --version` trong phiên nghiên cứu; không suy ra đây là version desktop |
 | Codex desktop / model thực chạy | Chưa kiểm chứng build desktop và model bằng UI | Không dùng lời tự nhận của model để xác nhận model đang được chọn |
-| Antigravity Environment | Antigravity IDE 2.0 (macOS, session dfb47060) | Đang chạy trực tiếp trong phiên nghiên cứu hiện tại |
-| Model Antigravity | **Gemini 3.8 Flash** (High effort, Planning mode, Agent-Assisted) | Đã cấu hình và sử dụng xuyên suốt phiên |
-| Antigravity Browser Subagent | Headless/Webview Browser Agent (flash model) | Đã chạy thực tế mở `http://127.0.0.1:5173` và chụp ảnh xác minh UI |
+| Antigravity Environment | Phiên trước báo IDE 2.0 | Chưa kiểm chứng độc lập build; không coi là môi trường của phiên Codex sửa note |
+| Model Antigravity | Phiên trước báo Gemini 3.8 Flash | Chưa kiểm chứng model/effort bằng UI; không suy ra quota hoặc benchmark |
+| Antigravity Browser Subagent | Phiên trước báo mở localhost và chụp UI | Chưa tái chạy; khả dụng phụ thuộc surface/version/account theo docs Browser use |
 | OpenAI docs, models, AGENTS.md, MCP | Tài liệu sống truy cập **17/11/2026** qua manual chính thức | Đọc tài liệu; không sửa model/effort hay cấu hình |
-| Google Antigravity & AI Dev Forum | `antigravity.google/docs` & `discuss.ai.google.dev` (11/2026) | Đọc tài liệu chính thức về Rules, Artifacts, Browser Agent |
+| Google Antigravity docs | Các trang Rules, Artifacts, Browser, slash commands; 17/11/2026 | Đã đọc nguồn từng tính năng; không dùng homepage diễn đàn làm bằng chứng |
 | Mẹo cộng đồng Global & Trung Quốc | Các bài viết năm **2026** (Reddit, HN, Linux.do, CSDN, V2EX) | Đã đối chiếu; chi tiết link và nhãn kiểm chứng ở mục 6 |
 | GitHub issue #13386 | Báo cáo **03/03/2026**, CLI **0.108.0-alpha.3**, GPT-5.3 | Báo cáo lịch sử; không kết luận lỗi còn tồn tại ở CLI hiện tại |
 
@@ -61,58 +61,43 @@ Các hàng sau đều là **cộng đồng — chưa kiểm chứng**. Bản d�
 
 Không thu thập hoặc hướng dẫn lách quota, reverse proxy, chia sẻ tài khoản hay vượt kiểm soát truy cập. Không cài thêm memory/MCP/plugin chỉ vì bài viết quảng bá.
 
-### 3.4. Antigravity — Hướng dẫn và cơ chế chính thức từ Google
+### 3.4. Antigravity — cơ chế có nguồn chính thức cụ thể
 
-Antigravity là môi trường phát triển AI thế hệ mới (Agentic AI IDE) do Google DeepMind thiết kế, tối ưu hóa cho mô hình Gemini 3.x với kiến trúc agent-first, điều khiển đa tiến trình và hỗ trợ trực quan hóa tài liệu cấp cao.
+Mỗi hàng dưới có trang tài liệu hỗ trợ trực tiếp, truy cập 17/11/2026. Đây là **đã đọc docs**, chưa phải đã chạy trong môi trường Antigravity của repo. Tài liệu sống có thể thay đổi theo surface/version/account.
 
-| Cơ chế cốt lõi | Cách vận hành kỹ thuật | Lợi ích thực chiến trong Hackathon | Nhãn và nguồn |
-| --- | --- | --- | --- |
-| **Rules System (Invariants)** | Lưu trữ tại `.agents/rules/*.md` (repo) hoặc `~/.gemini/config/rules/*.md` (máy). Antigravity áp dụng nguyên lý **Cumulative Loading**: tự động gộp tất cả rules từ thư mục gốc đến thư mục hiện tại. | Định hình vĩnh viễn các nguyên tắc: không đụng mainnet, không xóa test, luôn dùng `@solana/kit` thay vì web3 v1, tránh phải nhắc lại trong mỗi prompt. | **Chính thức** — [Antigravity Docs](https://antigravity.google/docs) |
-| **Artifacts System (Tài liệu tách biệt)** | Tạo các tài liệu Markdown đặc biệt tại `<appDataDir>/brain/<id>/` (Implementation Plan, Walkthrough, Mermaid Diagrams). Hiển thị trực quan ở Side Pane. | Không làm phình to Context Window hội thoại chính. Giám khảo hoặc người dùng có thể duyệt kế hoạch chi tiết mà không bị rối mắt bởi log chat. | **Chính thức** — [Antigravity Docs](https://antigravity.google/docs) |
-| **Steering (Can thiệp trước thực thi)** | Ở chế độ Planning, Agent luôn tạo Implementation Plan Artifact và đặt `RequestFeedback: true`. Agent chỉ thực thi khi người dùng bấm "Proceed" hoặc gửi phản hồi. | Kiểm soát tuyệt đối mọi thay đổi mã nguồn; phát hiện sớm sai lệch kiến trúc trước khi agent viết hàng trăm dòng code sai. | **Chính thức** — [Google Dev Guide](https://developers.google.com/ai) |
-| **Browser Subagent (Webview Automation)** | Subagent chuyên biệt (`TypeName: "browser"`), tự động khởi chạy môi trường duyệt web độc lập, có thể click, điền form, cuộn trang, chụp ảnh màn hình và xuất báo cáo. | Kiểm tra trực quan giao diện frontend, bắt lỗi hydration mismatch, xác minh kết nối RPC tại `localhost:PORT` mà không cần cài Playwright. | **Chính thức** — [Antigravity Built-in Skills](https://antigravity.google/docs) |
-| **Planning vs Fast Mode** | Chế độ Fast dành cho các câu hỏi tra cứu hoặc sửa lỗi 1 dòng. Chế độ Planning bắt buộc Agent phải nghiên cứu sâu codebase, lập sơ đồ và viết Implementation Plan trước. | Trong hackathon 48h, dùng Fast cho việc tra cứu cú pháp; dùng Planning cho việc thiết kế kiến trúc contract, tích hợp SDK và cấu trúc frontend. | **Chính thức** — [Google Dev Guide](https://developers.google.com/ai) |
-| **Quản lý Quota & Lựa chọn Model** | **Gemini 3.8 Flash** là model mặc định với tốc độ siêu nhanh (low latency), cửa sổ ngữ cảnh khổng lồ (>1M tokens) và hạn mức quota rộng mở. Chỉ đổi sang **Gemini 3 Pro** khi giải các bài toán mật mã học phức tạp hoặc audit logic toán học. | 95% thời gian hackathon nên dùng Gemini 3.8 Flash để giữ tốc độ phản hồi tức thì và không lo cạn hạn mức. | **Chính thức** — [Google AI Models](https://ai.google.dev/models) |
-
-#### Các Slash Commands chuyên dụng cần nhớ:
-- `/plan`: Buộc agent kích hoạt chế độ lập kế hoạch chi tiết, sinh Artifacts và chờ phê duyệt.
-- `/boost`: Kích hoạt chế độ tư duy sâu đa góc nhìn cho các bài toán giải thuật hóc búa.
-- `/learn`: Lưu lại các hành vi, kinh nghiệm hoặc quy tắc vừa được sửa thành rules lâu dài.
-- `/grill-me`: Agent sẽ phỏng vấn người dùng từng câu hỏi một để làm rõ mọi nhánh thiết kế còn mơ hồ.
-- `/browser`: Ủy thác trực tiếp tác vụ kiểm tra giao diện web cho Browser Subagent.
-
----
-
-### 3.5. Antigravity — Mẹo cộng đồng Global và Trung Quốc
-
-Tổng hợp kinh nghiệm thực chiến từ diễn đàn Google AI Developers Forum, Reddit, LINUX DO, V2EX và CSDN năm 2026. Các mẹo này mang nhãn **cộng đồng — chưa kiểm chứng**, được chọn lọc để tuân thủ 100% Điều khoản dịch vụ:
-
-| Diễn đàn / Nguồn | Mẹo thực chiến được diễn giải sang tiếng Việt | Cách áp dụng an toàn và giới hạn |
+| Cơ chế / mẹo | Nội dung được nguồn hỗ trợ và giới hạn | Nguồn trực tiếp |
 | --- | --- | --- |
-| [Google AI Dev Forum — 10/2026](https://discuss.ai.google.dev) | **Chiến thuật "Drafting Flow" với Flash**: Tận dụng tốc độ của Gemini 3.8 Flash để xuất thật nhanh bản phác thảo Implementation Plan; dùng quyền Steering để sửa nhanh 2–3 ý chính trên Artifact rồi mới cho chạy. | Giảm 70% thời gian chờ đợi lập kế hoạch so với các model suy luận cồng kềnh; giữ được sự chuẩn xác nhờ con người can thiệp đúng lúc. |
-| [LINUX DO — 08/2026](https://linux.do/t/topic/2217508) | **Agent tự sinh Rules (Self-generating Rules)**: Thay vì tự viết `.agents/rules/*.md`, hãy đưa phong cách code mẫu hoặc yêu cầu dự án và bảo chính Gemini viết file rule cho mình; sau đó chỉ cần review lại. | Giúp tạo ra các file rules có cấu trúc YAML và Markdown chuẩn xác mà Antigravity có thể parse nhanh nhất. |
-| [LINUX DO — 09/2026](https://linux.do/t/topic/2217508) | **Mẹo cấu hình MCP Tooling**: Khi sửa đổi file cấu hình MCP hoặc nạp server mới, Antigravity đôi khi chưa nhận diện ngay do bộ nhớ đệm; hãy **bấm nút Reload 2 lần** hoặc mở phiên chat mới. | Giúp tiết kiệm thời gian khởi động lại toàn bộ IDE khi tích hợp thêm các MCP công cụ ngoài. |
-| [V2EX — 10/2026](https://v2ex.com/t/1240028) | **Nguyên tắc "Khẩu quyết vận hành"**: *"Tiểu vụ trực tiếp Fast, đại vụ mở Plan; Flash phụ trách tốc độ, Artifacts dùng để thẩm định; phê duyệt có chọn lọc, can thiệp giữ bình an."* | Không lạm dụng Planning cho các việc vặt gây tốn lượt chat; nhưng tuyệt đối không dùng Fast cho việc sửa nhiều file kiến trúc. |
-| [CSDN — AI Coding 2026](https://aicoding.csdn.net/) | **Tối ưu hóa Context Window**: Đừng paste cả thư mục `node_modules` hay file log khổng lồ vào chat. Hãy tận dụng tool `read_file` với giới hạn dòng hoặc tạo file tóm tắt trong `scratch/`. | Giúp Gemini tập trung tối đa sự chú ý vào đoạn code cần sửa, tránh hiện tượng "ảo giác" (hallucination). |
+| Rules | `AGENTS.md`/`GEMINI.md` và `.agents/rules/` được tìm từ workspace lên repo root; rules cộng dồn. `rules/*.md` cần frontmatter `trigger`; không suy rằng mọi thư mục con đều được tự nạp. | [Rules](https://antigravity.google/docs/rules) |
+| Phân biệt rule và skill | Rule lưu ràng buộc; skill lưu quy trình nhiều bước. Áp dụng quy tắc “không mainnet” của repo trong hướng dẫn bền vững. | [Rules — Rule vs Skill](https://antigravity.google/docs/rules) |
+| Artifacts | Dùng plan, diff, sơ đồ, ảnh/recording để review đầu ra và phản hồi. Không có căn cứ cho lời hứa artifact không tốn context hoặc đường dẫn nội bộ cố định ở mọi client. | [Artifacts](https://antigravity.google/docs/artifacts) |
+| `/plan` | Nghiên cứu và lập kế hoạch có thể review trước thực thi; dùng khi cần chốt yêu cầu/kiến trúc. Không khái quát thành mọi task đều chờ cùng một cờ nội bộ `RequestFeedback`. | [Plan](https://antigravity.google/docs/plan/) |
+| Browser / `/browser` | Có thể mở trang, thao tác app, xem lỗi và chụp ảnh. Browser tích hợp và Chrome subagent có điều kiện khác nhau theo version, tài khoản và surface; kiểm tra mục Availability trước dùng. | [Browser use](https://antigravity.google/docs/browser) |
+| `/boost` | Quy trình nhiều agent cho tác vụ khó; tài liệu ghi thuộc paid plans. Chưa đo tốc độ/chất lượng, không mặc định là lựa chọn tốt cho mọi việc. | [Boost](https://antigravity.google/docs/boost/) |
+| `/learn` | Đề xuất lưu bài học thành rule hoặc skill để người dùng review; không đồng nghĩa tự ghi mọi lời sửa thành rule ngay lập tức. | [Learn](https://antigravity.google/docs/commands/learn/) |
+| `/grill-me` | Phỏng vấn từng câu để làm rõ yêu cầu, đọc code trước với điều có thể tự tìm; có thể phối hợp `/plan`. | [Grill me](https://antigravity.google/docs/commands/grill-me/) |
 
-> [!CAUTION]
-> **Ghi chú về an toàn và trang chặn truy cập**:
-> - Nhóm nghiên cứu đã thử nghiệm truy cập các nền tảng: X (trả mã 403), Zhihu (403), Bilibili (412), Juejin (Please wait/Chặn crawler). Toàn bộ nội dung từ các trang này đều bị bỏ qua; không sử dụng các đoạn trích tìm kiếm mơ hồ để suy đoán nội dung.
-> - Tuyệt đối không áp dụng các thủ thuật lách quota, reverse proxy lậu, chuyển đổi vùng tài khoản trái phép hoặc dùng chung token vi phạm chính sách của Google và OpenAI.
+**Chưa kiểm chứng:** quota/model mặc định, context window, hiệu quả chia thời gian giữa Flash/Pro và mức tăng tốc. Chưa có phép đo cùng đầu vào/điều kiện; bỏ các tỷ lệ phần trăm và khuyến nghị tuyệt đối ở bản cũ. Chỉ chọn model sau khi kiểm tra UI/docs của tài khoản thực tế.
 
----
+### 3.5. Antigravity — loại bỏ mẹo cộng đồng gán sai nguồn
 
-### 3.6. Bảng phân vai tối ưu giữa Codex và Antigravity trong 48h Hackathon
+Không giữ mẹo chỉ dẫn homepage hoặc bài nói về sản phẩm khác:
 
-Để đạt hiệu suất cao nhất trong 48 giờ thi đấu, đội ngũ nên phân chia nhiệm vụ cho hai trợ lý AI theo đúng thế mạnh vượt trội của từng bên:
+| Nguồn cũ | Kết quả đối chiếu / quyết định |
+| --- | --- |
+| [Linux.do 2217508](https://linux.do/t/topic/2217508) | Bài về Codex/AGENTS.md ngày 21/05/2026, không hỗ trợ mẹo Antigravity tự sinh rules hoặc “Reload 2 lần”. Bỏ cả hai cách gán; muốn lưu bài học thì tham khảo `/learn` chính thức ở trên. |
+| [V2EX 1240028](https://v2ex.com/t/1240028) | Thảo luận model/usage Codex tháng 09/2026, không chứng minh khẩu quyết Antigravity tháng 10. Bỏ khẩu quyết. |
+| Google AI Dev Forum, CSDN homepage | Không có permalink bài/bình luận hỗ trợ Drafting Flow hay tối ưu context được gán. **Chưa kiểm chứng**, không dùng làm hướng dẫn tính năng hoặc số liệu. |
 
-| Mảng công việc | Codex (GPT-6 / Astra) | Antigravity (Gemini 3.8 Flash) | Lý do phân vai |
-| --- | :---: | :---: | --- |
-| **Smart Contract (Rust / Anchor)** | **Chủ lực (Lead)** | Hỗ trợ review | GPT-6 có khả năng suy luận logic toán học, kiểm tra quyền signer/owner và phát hiện lỗ hổng PDA seed collision cực kỳ sắc bén (xem note 007). |
-| **Frontend Architecture (@solana/kit)** | Hỗ trợ | **Chủ lực (Lead)** | Gemini 3.8 Flash cập nhật cực nhanh các thư viện Web3 mới nhất 2026, hỗ trợ React 19 và Vite không lỗi polyfill. |
-| **Kiểm thử UI & Trải nghiệm người dùng** | Không có môi trường | **Chủ lực (Lead)** | Antigravity có sẵn **Browser Subagent** tự động chạy webview, click nút, chụp ảnh màn hình và kiểm tra responsive cho Seeker. |
-| **Tích hợp Sponsor SDKs (Supabase, ElevenLabs)** | Hỗ trợ backend | **Chủ lực (Lead)** | Gemini Flash viết tích hợp API REST, Realtime WebSocket và Text-to-Speech cực nhanh, sạch sẽ. |
-| **Lập kế hoạch & Quản lý tiến độ** | Ghi chép HANDOFF | **Chủ lực (Lead)** | Hệ thống **Artifacts** của Antigravity trình bày Implementation Plan, sơ đồ Mermaid và Walkthrough trực quan ở side-pane, dễ theo dõi. |
+Đề xuất của repo: giao đầu ra rõ, chỉ đưa ngữ cảnh liên quan, review kế hoạch và bằng chứng chạy. Đây là quy trình tự đề xuất, không gán cho một tác giả cộng đồng và không hứa tiết kiệm quota. Lịch sử trang bị chặn ở mục 6 được giữ; không suy nội dung từ snippet tìm kiếm.
+
+### 3.6. Phân công theo quy ước repo, chưa phải benchmark model
+
+| Mảng công việc | Phân công đề xuất | Căn cứ / giới hạn |
+| --- | --- | --- |
+| Rust/Anchor, review quyền và bảo mật | Codex chính, Antigravity hỗ trợ | Theo [AGENTS.md](../../AGENTS.md); chất lượng phải chứng minh bằng review/test cụ thể |
+| Frontend và SDK | Antigravity chính, Codex có thể sửa/review theo nhiệm vụ | Quy ước phối hợp, không có bằng chứng model nào luôn nhanh/chính xác hơn |
+| Kiểm tra UI | Agent đang có browser/computer-use phù hợp | Codex **có thể có công cụ UI** tùy client/quyền. Phiên sửa này có `cua_repl` và đã dùng browser đọc Dev3pack, không chạy lab frontend. [Codex browser](https://learn.chatgpt.com/docs/browser?surface=app); [Antigravity browser](https://antigravity.google/docs/browser) |
+| Kế hoạch và bàn giao | Cả hai cập nhật docs/DEVLOG/HANDOFF | Chọn theo người phụ trách và công cụ có thật, không theo bảng ưu thế model chưa đo |
 
 ## 4. Ví dụ hoặc quy trình tối thiểu
 
@@ -152,7 +137,7 @@ Chu trình đề xuất: đọc file/version → chốt đầu ra → xử lý m
 4. Làm gọn prompt bằng cách xóa ranh giới “không mainnet” có hợp lý không? **Không**; bớt nội dung thừa nhưng giữ mục tiêu và giới hạn quan trọng.
 5. Bài tập: viết prompt review `increment` gồm đầu vào, scope, ba ca sai quyền, nguồn và đầu ra. **Đạt** khi có tiêu chí kiểm tra và không cấp quyền cài/deploy ngoài ý định.
 6. Bài tập: lập phiếu so sánh hai lần chạy cùng bài. **Đáp án gợi ý:** cùng code/version; ghi model/effort, thời gian, số finding đúng/sai, số vòng sửa; không kết luận từ tốc độ đơn lẻ.
-7. Khi nào nên dùng chế độ Planning mode trong Antigravity thay vì Fast mode? **Đáp án:** Dùng Planning mode cho các tác vụ thay đổi kiến trúc đa file, tích hợp SDK mới, hoặc chuẩn bị bộ tài liệu lớn cần con người phê duyệt Artifact trước khi thực thi. Dùng Fast mode cho các câu hỏi tra cứu, sửa cú pháp nhỏ hoặc debug đơn lẻ.
+7. Khi nào cân nhắc `/plan` trong Antigravity? **Đáp án:** Khi cần nghiên cứu và review kế hoạch trước sửa, theo [docs Plan](https://antigravity.google/docs/plan/); không tự gán các chế độ hoặc cơ chế phê duyệt khác nếu chưa kiểm tra surface.
 8. Trong Antigravity, sự khác biệt căn bản giữa Rules và Skills là gì? **Đáp án:** Rules định nghĩa các ràng buộc cứng và tiêu chuẩn bất biến vĩnh viễn (Invariants: không mainnet, coding standard, không commit secrets); Skills định nghĩa các chuỗi hành động nhiều bước có thể gọi khi cần (Actionable workflows).
 
 ## 6. Nguồn và độ tin cậy
@@ -162,8 +147,8 @@ Chu trình đề xuất: đọc file/version → chốt đầu ra → xử lý m
 | Nhóm nguồn | Bằng chứng truy cập ngày 17/11/2026 | Cách sử dụng |
 | --- | --- | --- |
 | OpenAI docs/blog | [Best practices](https://learn.chatgpt.com/guides/best-practices), [Models](https://learn.chatgpt.com/docs/models.md), [AGENTS.md](https://learn.chatgpt.com/docs/agent-configuration/agents-md), [MCP](https://learn.chatgpt.com/docs/extend/mcp), [Harness engineering](https://openai.com/index/harness-engineering/) | Nguồn chính thức; ưu tiên khi xác nhận tính năng và cách cấu hình |
-| Google Antigravity & AI Docs | [Antigravity Docs](https://antigravity.google/docs), [Google AI Dev](https://ai.google.dev), [Rules & Workflows Guide](https://antigravity.google/docs) | Nguồn chính thức của Antigravity; chuẩn hóa cơ chế Rules, Artifacts, Browser Agent |
-| Google AI Dev Forum | [Thảo luận Artifacts & Planning](https://discuss.ai.google.dev), 10/2026 | Đọc được; kinh nghiệm cộng đồng nhà phát triển Google AI |
+| Google Antigravity docs | Permalink từng tính năng tại mục 3.4 | Đã đọc trang chi tiết ngày 17/11/2026; giới hạn theo surface/version |
+| Google AI Dev Forum | Bản cũ chỉ dẫn homepage | Chưa kiểm chứng bài cụ thể; đã bỏ mẹo gán cho forum |
 | OpenAI Community | [EricGT #35](https://community.openai.com/t/tips-and-tricks-for-using-codex-and-rate-limits/1373143/35), 24/08/2026 | Đọc được; mẹo cộng đồng |
 | GitHub | [Issue #13386](https://github.com/openai/codex/issues/13386), 03/03/2026 | Đọc được; báo cáo người dùng trên bản cũ |
 | Reddit | [Bài và bình luận](https://www.reddit.com/r/codex/comments/1u97eq0/how_to_make_codex_work_fantastically/), trang hiển thị khoảng 5 tháng trước | Đọc được; không dùng suy đoán và quảng cáo |
@@ -172,9 +157,9 @@ Chu trình đề xuất: đọc file/version → chốt đầu ra → xử lý m
 | DEV | [Bài ngày 30/10/2026](https://dev.to/plexsicity/how-to-share-ai-coding-agent-context-across-a-team-4h3j) | Đọc được; có nội dung thương mại, chỉ lấy ý tưởng tổ chức ngữ cảnh |
 | 掘金 Juejin | [Trang đã thử](https://juejin.cn/post/7640433215140757514) | Chỉ trả **“Please wait…”**; không đọc được bài, bỏ qua |
 | CSDN | [AGENTS.md 实战](https://aicoding.csdn.net/6a27ee3510ee7a33f279c491.html), 09/06/2026 | Đọc được phần bài; diễn giải mẹo ở mục 3.2 |
-| V2EX | [Discussion](https://v2ex.com/t/1240028), tháng 09/2026; thảo luận Antigravity 10/2026 | Đọc được; chắt lọc mẹo phân loại tác vụ, bỏ qua quảng cáo |
+| V2EX | [Discussion](https://v2ex.com/t/1240028), tháng 09/2026 | Nguồn Codex ở mục 3.2; không hỗ trợ mẹo Antigravity |
 | 知乎 Zhihu | [Trang đã thử](https://zhuanlan.zhihu.com/p/2047691425916138736) | **403**; bỏ qua, không vượt chặn |
-| Linux.do | [Bài chia sẻ prompt & Antigravity Rules](https://linux.do/t/topic/2217508), 2026 | Đọc được; mẹo tự sinh rules và reload MCP |
+| Linux.do | [Bài chia sẻ Codex AGENTS.md](https://linux.do/t/topic/2217508), 21/05/2026 | Nguồn Codex ở mục 3.2; không hỗ trợ reload MCP của Antigravity |
 | Bilibili | [Video đã thử](https://www.bilibili.com/video/BV12igX6RE1i/) | **412**; không xem được video/transcript, bỏ qua |
 
 Không có mẹo nào ở đây dựa trên tutorial trước 2025. Các kết luận về phiên bản CLI cũ không được tự động áp dụng cho bản tháng 11/2026.
@@ -183,4 +168,8 @@ Không có mẹo nào ở đây dựa trên tutorial trước 2025. Các kết l
 
 Chưa đo A/B hiệu quả prompt, tốc độ, usage hoặc độ chính xác của mẹo cộng đồng; chưa xác minh build desktop/model đang chọn. X, Juejin, Zhihu, Bilibili chưa đọc được nội dung gốc. Không biến các khoảng trống này thành bằng chứng thuận hay chống một mẹo.
 
-Áp dụng trước ba việc ít phụ thuộc công cụ: đầu ra rõ, nguồn đúng version, bàn giao có bước kế tiếp. Các thay đổi AGENTS.md chỉ được đề xuất tại [README](README.md), chưa áp dụng. Antigravity đã bổ sung phần của mình trong phiên khác; đối chiếu [findings của lần rà soát](REVIEW-2026-11-17.md) trước khi dùng các mẹo đó.
+Áp dụng trước ba việc ít phụ thuộc công cụ: đầu ra rõ, nguồn đúng version, bàn giao có bước kế tiếp. Luật chạy tiếp sau compact đã nằm trong [AGENTS.md](../../AGENTS.md). R03 đã sửa nguồn phần Antigravity; các kết quả sandbox do phiên trước báo cáo vẫn chưa được tái chạy.
+
+### Bài học / lỗi đã gặp
+
+Permalink phải hỗ trợ đúng sản phẩm và đúng mẹo được gán. Tài liệu tính năng, trải nghiệm cộng đồng và phép đo model/quota là các mức bằng chứng khác nhau; công cụ UI phải xét theo client/quyền thực tế, không gán giới hạn chung cho tên agent.

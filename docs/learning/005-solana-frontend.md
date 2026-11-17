@@ -1,7 +1,7 @@
 # 005 — Frontend Solana trong kỷ nguyên @solana/kit
 
 > Ngày kiểm tra: 2026-11-17 (Asia/Ho_Chi_Minh). Phạm vi: kiến trúc frontend Web3, kết nối ví và tích hợp program.
-> Trạng thái: đã đối chiếu docs chính thức; đã chạy thực tế sandbox Vite 8.3 + React 19 + @solana/kit 8.6.0 trên trình duyệt nội bộ.
+> Trạng thái hiện hành: Codex đã sửa R02/R08/R09; parser có 11 fixture offline đạt, Codama mới đối chiếu source. Sandbox Vite/React/Kit là **báo cáo lịch sử của Antigravity ở workspace nguồn**, chưa được Codex tái chạy hoặc kiểm chứng độc lập.
 
 ---
 
@@ -21,13 +21,15 @@ Thời lượng đọc: khoảng 15–20 phút.
 
 ## 2. Phiên bản và bằng chứng kiểm tra
 
+Ngoài dòng Codama được sửa theo R08, các version, API exports và số đo sandbox trong bảng là báo cáo của phiên Antigravity trước. Chưa kiểm chứng lại package, build hoặc browser ở repo đích; không coi bảng này là bộ tương thích đã thử trong lần sửa tài liệu.
+
 | Thành phần | Phiên bản (2026-11) | Mức kiểm chứng |
 | --- | --- | --- |
 | `@solana/kit` | **8.6.0** | Đã cài đặt và chạy thử nghiệm trong sandbox cục bộ |
 | `@solana/react` | **8.6.0** | Đã kiểm tra API exports (`ClientProvider`, `useClient`, `useSelectedWalletAccount`) |
 | `@solana/web3.js` | **3.2.1** (kế thừa kiến trúc modular v2) | Đã kiểm tra npm registry; v1.95.x là bản legacy cũ |
 | `@solana/wallet-adapter-react` | **0.15.40** | Đã đối chiếu docs hệ sinh thái |
-| `codama` / `@codama/nodes` | **1.11.0** | Đã đối chiếu tài liệu sinh client Anchor |
+| `@codama/cli` (mốc source) | **2.0.0-rc.0**, commit `141998e` | Đã đọc manifest + CLI README của cùng commit; chưa cài/chạy codegen, không xác nhận version thực trong repo |
 | `vite` & `react` | Vite **8.3.8**, React **19.3.1** | Đã build và chạy dev server thành công (build: 74ms, gzip: 77.6 kB) |
 | Kiểm tra Browser | Chrome-headless (Browser Subagent) | Đã click mô phỏng trạng thái và bắt lỗi thành công tại `http://127.0.0.1:5173` |
 
@@ -87,11 +89,39 @@ Khi tương tác với Anchor Program, frontend cần biết định dạng tham
    - Khởi tạo `new Program(idl, provider)`.
    - **Nhược điểm**: `@coral-xyz/anchor` kéo theo thư viện web3.js v1 và hệ thống type dynamically parsed, làm bundle nặng và autocomplete TypeScript đôi khi không trọn vẹn.
 
-2. **Phương pháp thế hệ mới 2026: Codama (Client Generator)**:
-   - **Codama** (trước đây là Solita/Kinobi) là công cụ chuẩn hóa để sinh code client TypeScript từ IDL.
-   - Lệnh sinh: `codama idl target/idl/my_program.json --output src/client`.
-   - Kết quả: Sinh ra một thư viện TypeScript thuần túy, sử dụng `@solana/kit`, định nghĩa kiểu tĩnh nghiêm ngặt (strict types), có sẵn các hàm `getInitializeInstruction(...)`, `fetchCounterAccount(...)`.
-   - **Ưu điểm**: Zero runtime overhead, không cần nạp JSON IDL vào bundle production, autocomplete cực chuẩn từng trường tài khoản và tham số.
+2. **Codama (client generator)**:
+   - CLI đọc cấu hình, nạp Anchor/Codama IDL, áp visitors rồi chạy renderer để sinh client. API đầu ra phụ thuộc IDL, renderer và version; phải xem exports thực tế trước khi viết frontend.
+   - Mốc đối chiếu ngày 17/11/2026: **`@codama/cli` 2.0.0-rc.0**, [package.json tại commit `141998e`](https://github.com/codama-idl/codama/blob/141998ef817294a79629c4592cdfdce93bd6939d/packages/cli/package.json), [CLI README cùng commit](https://github.com/codama-idl/codama/blob/141998ef817294a79629c4592cdfdce93bd6939d/packages/cli/README.md). Đây là **source prerelease**, không khẳng định là bản stable/nên cài hoặc đã cài. Không dùng version 1.11.0 ở bản note cũ như bằng chứng đã kiểm tra.
+
+#### Quy trình `codama init` → cấu hình renderer → `codama run`
+
+**Chưa chạy.** Các lệnh dưới chỉ minh họa cho phiên thực hành sau khi đã được phép chuẩn bị môi trường và khóa bộ version tương thích. Phiên sửa tài liệu không cài package, không chạy `npx` hoặc codegen. `init` có thể yêu cầu thêm dependency; không tự chấp nhận cài trong phạm vi tài liệu.
+
+```sh
+# Khi binary đã có trong môi trường được phép dùng:
+codama init
+# Chọn IDL target/idl/my_program.json và preset phù hợp trong prompt.
+# Review codama.json; đường dẫn output thuộc args của renderer, không phải flag --output.
+codama run js
+```
+
+Ví dụ `codama.json` theo schema và recipe JavaScript renderer của CLI README; `js` là **tên script tự đặt trong cấu hình này**, không phải tên hàm generated:
+
+```json
+{
+  "idl": "target/idl/my_program.json",
+  "scripts": {
+    "js": {
+      "from": "@codama/renderers-js",
+      "args": ["src/client"]
+    }
+  }
+}
+```
+
+`codama run` không có tên script chỉ chạy `before` visitors, không tự chạy renderer; cần `codama run js` hoặc `codama run --all` nếu muốn chạy tất cả script đã cấu hình. CLI README xác nhận trường `idl` có thể nhận Anchor IDL và chuyển sang Codama IDL.
+
+Trước khi chạy thật, khóa version CLI/Codama, Anchor adapter, renderer và Kit theo compatibility của từng package; **bộ tương thích và kết quả codegen chưa kiểm chứng** trong repo này. Sau đó xem diff và exports sinh ra, dùng đúng tên/type đó và chạy build/client test. Không tự suy tên hàm fetch/instruction từ tên account; mẫu trên chưa tạo bất kỳ file client nào.
 
 ---
 
@@ -121,21 +151,23 @@ Transaction Solana không tồn tại vĩnh viễn trên mempool. Mỗi transact
 
 ### 3.5. Hiển thị lỗi thân thiện (User-Friendly Error Handling)
 
-Khi gọi program thất bại, Solana RPC trả về chuỗi log kỹ thuật hoặc mã hex gây hoang mang cho người dùng. Dưới đây là bảng chuyển ngữ lỗi cần có trên frontend:
+Mã custom chỉ có nghĩa trong namespace của **program phát lỗi**. `6000` thường là điểm bắt đầu custom error Anchor, nhưng tên/ý nghĩa phải tra `errors` trong IDL khớp program ID và bản triển khai. Không phân loại một đoạn hex thành lỗi thiếu SOL trên toàn mạng.
 
-| Mã lỗi kỹ thuật | Ý nghĩa hệ thống | Thông báo hiển thị thân thiện |
-| --- | --- | --- |
-| `0x1770` (6000) | Anchor custom error đầu tiên định nghĩa trong program | Tên lỗi nghiệp vụ (ví dụ: "Số dư đặt cược không đủ") |
-| `0x1` | System Program: Insufficient funds for transaction | "Ví của bạn không đủ SOL để thanh toán phí gas và rent." |
-| `4001` / `User rejected` | Người dùng bấm "Từ chối" trên cửa sổ popup ví | "Bạn đã hủy yêu cầu ký giao dịch." |
-| `TransactionExpiredBlockheightExceededError` | Mạng nghẽn, blockhash hết hạn trước khi lên chain | "Giao dịch quá thời gian xác nhận do mạng bận. Vui lòng thử lại." |
-| `0x0` (InstructionError) | Generic instruction failure | "Thực thi thất bại. Vui lòng kiểm tra lại điều kiện tài khoản." |
+| Bằng chứng kỹ thuật | Cách xử lý |
+| --- | --- |
+| System Program `11111111111111111111111111111111`, custom `0x1` | `ResultWithNegativeLamports`: tài khoản nguồn thiếu lamports cho thao tác; không đồng nhất với thiếu phí transaction |
+| Program của ứng dụng, `0x1770` / `0x1771` | Tra mã nguyên vẹn `6000` / `6001` trong IDL của đúng program |
+| Program khác có cùng mã | Dùng error map của program đó; chưa có map thì hiển thị program ID + mã, không dùng IDL ứng dụng |
+| Wallet rejection, `InsufficientFundsForFee`, blockhash expiry | Là nhóm lỗi riêng; xử lý theo kiểu lỗi của wallet/SDK và dữ liệu RPC, không dò chuỗi hex |
+| Không có logs hoặc chuỗi CPI phức tạp | Giữ thông báo trung tính và bằng chứng; chưa đủ căn cứ thì không đoán nguyên nhân |
+
+Nguồn: [Anchor Custom Errors](https://www.anchor-lang.com/docs/features/errors), [SystemError source](https://docs.rs/solana-system-interface/latest/src/solana_system_interface/error.rs.html), [Agave stable runtime logs](https://github.com/anza-xyz/agave/blob/master/program-runtime/src/stable_log.rs), đối chiếu 17/11/2026.
 
 ---
 
 ### 3.6. Stack gợi ý cho Hackathon: Vite (SPA) vs Next.js (App Router)
 
-Trong thời gian hạn hẹp 48 giờ, việc chọn framework frontend quyết định 50% tốc độ hoàn thành sản phẩm.
+Trong ngân sách làm việc 48 giờ tự đặt của đội, lựa chọn framework nên dựa trên kinh nghiệm và flow cần demo. Chưa có phép đo để quy đổi lựa chọn này thành tỷ lệ tăng tốc.
 
 | Khía cạnh | Next.js (App Router / SSR) | Vite + React (SPA) | Lựa chọn cho Hackathon |
 | --- | --- | --- | --- |
@@ -145,13 +177,15 @@ Trong thời gian hạn hẹp 48 giờ, việc chọn framework frontend quyết
 | **SEO & Social Share** | Tốt nhờ SSR/Metadata sinh động. | Kém hơn, nhưng hackathon ưu tiên app tương tác (dApp) chứ không phải blog tin tức. | Không quá quan trọng |
 
 > [!IMPORTANT]
-> **Khuyến nghị chính thức cho Dev3pack 48h**: Sử dụng **Vite + React + TailwindCSS (hoặc shadcn/ui)**. Giúp đội ngũ tránh mất hàng giờ gỡ lỗi `Text content does not match server-rendered HTML` của Next.js khi kết nối ví.
+> **Đề xuất của người viết, không phải yêu cầu BTC**: Cân nhắc **Vite + React + TailwindCSS (hoặc shadcn/ui)** nếu phù hợp kỹ năng đội và app chủ yếu chạy phía client. Chưa đo thời gian tiết kiệm so với Next.js; “48h” là ngân sách nội bộ, sự kiện Dev3pack diễn ra ba ngày theo [001](001-hackathon-rules.md).
 
 ---
 
-## 4. Ví dụ tối thiểu
+## 4. Ví dụ hoặc quy trình tối thiểu
 
-### Ví dụ 4.1. Khởi tạo RPC và đọc dữ liệu với `@solana/kit` (Đã chạy kiểm tra)
+### Ví dụ 4.1. Khởi tạo RPC và đọc dữ liệu với `@solana/kit`
+
+Theo báo cáo sandbox lịch sử của Antigravity; Codex chưa chạy lại đoạn này. Không dùng kết quả fixture parser ở mục 4.2 làm bằng chứng cho RPC/Kit.
 
 ```typescript
 import { createSolanaRpc, address } from '@solana/kit';
@@ -180,42 +214,72 @@ async function getAccountInfo(accountAddressString: string) {
 }
 ```
 
-### Ví dụ 4.2. Bộ phân giải mã lỗi Anchor Program sang thông báo thân thiện
+### Ví dụ 4.2. Parse cặp program ID + mã lỗi, rồi tra IDL
+
+Hàm nhận **runtime logs đầy đủ của transaction đã thất bại**, lấy từ simulation/preflight logs hoặc `meta.logMessages` qua adapter của SDK đang dùng. Không suy program ID từ tên instruction, message hay transaction gửi đi vì lỗi có thể nằm trong CPI. Chỉ khớp dòng runtime `Program ... failed: ...`, không khớp dòng tự ghi `Program log: ...`.
 
 ```typescript
-export function parseSolanaError(error: any): string {
-  const errStr = error?.message || String(error);
+type IdlError = { code: number; name: string; msg?: string };
+type ErrorMaps = ReadonlyMap<string, ReadonlyMap<number, string>>;
+type ProgramFailure = { programId: string; code?: number; detail: string };
 
-  // 1. Người dùng bấm Cancel trên ví
-  if (errStr.includes('User rejected') || error?.code === 4001) {
-    return 'Giao dịch đã bị bạn hủy bỏ.';
+export function idlErrorMap(errors: readonly IdlError[]): Map<number, string> {
+  return new Map(errors.map(e => [e.code, e.msg ?? e.name]));
+}
+
+export function parseSolanaError(
+  logs: readonly string[],
+  maps: ErrorMaps,
+): { message: string; failures: ProgramFailure[] } {
+  const failures: ProgramFailure[] = [];
+  for (const line of logs) {
+    const failed = /^Program ([1-9A-HJ-NP-Za-km-z]{32,44}) failed: (.+)$/.exec(line);
+    if (!failed) continue;
+    const [, programId, detail] = failed;
+    const custom = /^custom program error: (0x[0-9a-f]+|[0-9]+)$/i.exec(detail);
+    const numeric = custom ? Number(custom[1]) : undefined;
+    const code = numeric !== undefined && Number.isSafeInteger(numeric)
+      && numeric >= 0 && numeric <= 0xffffffff ? numeric : undefined;
+    failures.push({ programId, code, detail });
   }
-
-  // 2. Không đủ SOL trả phí gas / rent
-  if (errStr.includes('0x1') || errStr.includes('insufficient lamports')) {
-    return 'Số dư SOL không đủ để thanh toán phí giao dịch và phí lưu trữ (rent).';
+  if (failures.length !== 1) {
+    // CPI có thể bắt, đổi hoặc truyền tiếp lỗi. Không gán IDL của caller cho callee.
+    return {
+      message: failures.length
+        ? 'Nhiều lần program báo lỗi; cần đối chiếu call stack CPI và IDL trước khi kết luận.'
+        : 'Chưa đủ runtime logs để xác định program và mã lỗi.',
+      failures,
+    };
   }
-
-  // 3. Blockhash hết hạn do nghẽn mạng
-  if (errStr.includes('block height exceeded') || errStr.includes('TransactionExpired')) {
-    return 'Mạng lưới phản hồi chậm khiến giao dịch hết hạn. Hãy thử gửi lại với phí ưu tiên.';
-  }
-
-  // 4. Trích xuất mã lỗi Anchor custom (Custom Program Error: 0x1770 ...)
-  const customMatch = errStr.match(/Custom program error: (0x[0-9a-fA-F]+|\d+)/);
-  if (customMatch) {
-    const rawCode = customMatch[1];
-    const codeNum = rawCode.startsWith('0x') ? parseInt(rawCode, 16) : parseInt(rawCode, 10);
-
-    // Anchor custom error bắt đầu từ 6000 (0x1770)
-    if (codeNum >= 6000) {
-      return `Lỗi nghiệp vụ từ Program (Mã ${codeNum}). Vui lòng kiểm tra lại điều kiện thực thi.`;
-    }
-  }
-
-  return 'Giao dịch thất bại. Chi tiết: ' + (error?.message || 'Lỗi không xác định.');
+  const failure = failures[0];
+  const label = failure.code === undefined
+    ? undefined : maps.get(failure.programId)?.get(failure.code);
+  return {
+    message: label ?? `Program ${failure.programId}: ${failure.code === undefined
+      ? failure.detail : `custom error ${failure.code} (0x${failure.code.toString(16)}) chưa có trong error map`}`,
+    failures,
+  };
 }
 ```
+
+Khởi tạo `maps` với System Program → `{1: "Tài khoản nguồn thiếu lamports cho thao tác."}` và `programId` thực → `idlErrorMap(idl.errors ?? [])`. Mỗi program phải có map riêng, khớp deployment/version của nó. Không tự gán mã `6000` cho một tên lỗi chung. Với nhiều dòng failure, hàm trả **tất cả cặp ID/mã đúng theo log**, cố ý không chọn nguyên nhân gốc từ lần lỗi đầu/cuối; cần phân tích `invoke [depth]`, `success` và failure để loại CPI đã được bắt. Khi logs bị cắt, phải giữ nhãn thiếu bằng chứng, không dùng mẫu này như parser toàn diện.
+
+Bảng ca kiểm tra dùng IDL **giả lập** của program A: `6000 → BetTooSmall`, `6001 → MarketClosed`; B chưa có map. A/B chỉ là nhãn mô tả, fixture thực dùng chuỗi base58 giả hợp lệ về hình thức, không phải địa chỉ triển khai.
+
+| Input runtime failure | Cặp trích xuất | Kết quả mong đợi |
+| --- | --- | --- |
+| System Program, `0x1` | System / 1 | Thiếu lamports cho thao tác |
+| A, `0x1770` | A / 6000 | `BetTooSmall`, không phải thiếu SOL |
+| A, `0x1771` | A / 6001 | `MarketClosed`, không phải thiếu SOL |
+| B, `0x1` | B / 1 | Chưa có map, không gán lỗi System Program |
+| B, `0x1770` | B / 6000 | Chưa có map, không gán lỗi A |
+| A, `6001` (decimal) | A / 6001 | `MarketClosed` |
+| `Program log: Program A failed: ...` | Không có | Bỏ qua log do program tự ghi |
+| Chỉ message `custom program error: 0x1770`, không có logs | Không có | Thiếu program ID, không đoán |
+| B failure rồi A failure (CPI) | B và A, giữ riêng từng mã | Chưa tự chọn nguyên nhân gốc |
+| Mã ngoài `u32` hoặc `0x1770junk` | Program ID có, mã không hợp lệ | Không tra nhầm IDL |
+
+Đã chạy 11 fixture offline bằng Node có sẵn ngày 17/11/2026 từ chính snippet này; không gọi RPC, không cài dependency, chưa thử với giao dịch/ví thật.
 
 ---
 
@@ -236,13 +300,17 @@ export function parseSolanaError(error: any): string {
 
 - [Solana Web3.js / Kit Official Docs](https://solana.com/docs/clients/javascript) — Tài liệu chính thức từ Solana Foundation về JavaScript & TypeScript SDKs (Đã đọc và đối chiếu).
 - [Wallet Standard Specification](https://github.com/wallet-standard/wallet-standard) — Đặc tả chuẩn kết nối ví đa nền tảng (Đã đọc).
-- [Codama Documentation](https://github.com/codama-idl/codama) — Bộ công cụ sinh TypeScript client tự động từ Anchor IDL (Đã đọc).
+- [Codama CLI README tại `141998e`](https://github.com/codama-idl/codama/blob/141998ef817294a79629c4592cdfdce93bd6939d/packages/cli/README.md) — `init`, `run`, schema config và renderer recipe; source version 2.0.0-rc.0, đã đọc, chưa chạy.
 - [Solana Transaction Confirmation Guide](https://solana.com/developers/guides/advanced/confirmation) — Hướng dẫn xử lý vòng đời giao dịch, commitment levels và blockhash expiry (Đã đọc).
-- [Sandbox cục bộ](/tmp/sandbox-frontend-solana) — Thử nghiệm thực tế với Vite 8.3 + React 19 + @solana/kit 8.6.0 đã chạy thành công và được xác minh qua browser subagent.
+- Sandbox lịch sử tại `/tmp/sandbox-frontend-solana` — Antigravity báo cáo đã thử Vite/React/Kit qua browser subagent. Đường dẫn tạm không được lưu trong Git, không phải link dùng được trên máy khác hoặc bằng chứng Codex đã chạy lại.
 
 ---
 
 ## 7. Điểm chưa kiểm chứng và bước tiếp theo
 
-- **Điểm chưa kiểm chứng**: Thử nghiệm sandbox trên được chạy trên localhost với mock outcome và devnet slot call, chưa thực hiện ký giao dịch thật qua tiện ích ví trình duyệt (extension Phantom/Solflare) vì môi trường chạy agent không có GUI extension.
+- **Điểm chưa kiểm chứng**: Theo báo cáo Antigravity, sandbox cũ dùng localhost, mock outcome và devnet slot call, chưa ký transaction thật qua ví extension. Codex chưa tái chạy; các nhận định kế thừa về version, bundle size, API exports và so sánh framework chưa được rà soát toàn diện trong R02/R08/R09.
 - **Bước tiếp theo**: Khi bắt đầu xây dựng dự án hackathon, khởi tạo project mẫu bằng Vite, cài đặt `@solana/wallet-adapter-react` để có sẵn giao diện chọn ví, kết hợp `@solana/kit` cho các lệnh đọc dữ liệu RPC và Codama cho client program.
+
+### Bài học / lỗi đã gặp
+
+Parse custom error bằng cặp program ID/mã đầy đủ; pin tài liệu CLI và kiểm output codegen trước dùng tên hàm. 11 fixture parser là test offline, không chứng minh SDK/codegen hay transaction thật hoạt động.

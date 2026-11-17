@@ -2,6 +2,38 @@
 
 Mỗi dòng: ngày · ai làm (Mai / Codex / Antigravity) · việc · note đã cập nhật.
 
+## 2026-11-17 — Codex: sửa PR #1 và findings của phần Antigravity
+
+**Trạng thái: xong.** R01–R09 đã sửa và push; các giới hạn kiểm chứng được giữ rõ trong REVIEW.
+
+- Đã xác nhận đúng đường dẫn/remote; merge `origin/main` vào `prompts/01-learning`, không rebase; push merge `58ffb5a`. Giữ nội dung main, thêm luật đọc bàn giao và `docs/HANDOFF-TEMPLATE.md`.
+- R01 · sửa 014 do Antigravity viết: giữ key ElevenLabs ở backend, thêm guard do app cung cấp, browser chỉ nhận audio; dẫn Authentication/Create speech. Chưa gọi API, chưa build/deploy mẫu.
+
+- R02 · sửa 005: parse nguyên mã và program ID từ runtime log, tra map riêng theo IDL; CPI mơ hồ trả bằng chứng thay vì đoán. Kiểm tra 11 fixture Node offline, không gọi chain.
+
+- R03 · sửa 009 do Antigravity bổ sung: nguồn trực tiếp cho từng cơ chế/lệnh, bỏ số liệu và mẹo gán nhầm forum; phân vai là quy ước repo, Codex có UI khi client cấp công cụ. Dùng skill openai-docs, đối chiếu nguồn Google/OpenAI và công cụ của phiên.
+
+- R04 / Phần 3 · sửa 001, 012, 013, 014 theo Dev3pack trang chủ/FAQ đã đọc bằng browser: sponsors, giải, track, hai vòng chấm, video, form, deadline và code. Ghi rõ trọng số tự đề xuất; tách lịch sử Colosseum/Superteam, cập nhật nguồn pricing và bỏ thời gian tích hợp không đo. Kịch bản thời lượng/lời thoại tiếp tục xử lý riêng R07.
+
+- R05 · sửa 006: destination withholding, hai đường harvest/withdraw và authority; bỏ con số rent thiếu cấu hình, bài 500.000 cNFT dưới 1 SOL ghi chưa đủ căn cứ. Ví dụ 10.000 raw units/1% tính trên giấy; không RPC.
+
+- R06 · sửa 008: URL spec đúng, pin source protocol 3.0.2 (`2695142`), `accounts[0].address`, phân biệt raw base64 với Wallet Standard bytes; bỏ ví dụ ký/gửi trộn wrapper. Chưa cài/compile/kết nối ví; nhãn mobile là gợi ý chứ chưa phải điều kiện track.
+
+- R07 · viết lại 013: bảng và script 15+20+80+30+20 = 165 giây, biên 15 giây; thay thành tích latency/rent/PDA/48h bằng placeholder cần bằng chứng. Chỉ kiểm thời lượng kế hoạch, chưa có video xuất.
+
+- R08 · sửa 005 theo CLI README/manifest cùng commit Codama `141998e`, version source 2.0.0-rc.0: init → config renderer → run js; bỏ lệnh và tên generated suy đoán. JSON config parse được, chưa chạy CLI/codegen/cài package; bộ tương thích còn chưa kiểm chứng.
+
+- R04 bổ sung · kiểm tra cấu trúc phát hiện phần 014 cũ bị giữ sót do tiêu đề SDK trùng chuỗi mục 4; đã xóa ma trận/bounty cũ để chỉ còn hướng dẫn đã kiểm chứng. Kiểm tra lại mọi nhận định bounty/Free Tier trong bản hiện hành.
+
+- R09 · chuẩn hóa heading cấp hai mục 4 của 005/006/008/012/013/014 thành “Ví dụ hoặc quy trình tối thiểu”, giữ tiêu đề chuyên biệt cấp ba. Lượt đầu sửa năm file; lượt hoàn tất sửa 014 sau khi loại nội dung cũ, kiểm tra đủ sáu file.
+
+- R04 bổ sung khi rà soát cuối · sửa cách gán “khuyến nghị chính thức Dev3pack 48h” trong 005 và lời hứa PWA đạt điểm tối đa/tiêu chí mobile bắt buộc trong 008. Đây là đề xuất nội bộ chưa đo; không suy thời gian tích hợp hoặc điểm giải từ lựa chọn framework.
+
+- Hoàn tất nội dung · đồng bộ README và [REVIEW](learning/REVIEW-2026-11-17.md) với trạng thái/commit R01–R09; giữ snapshot cũ dưới nhãn lịch sử, chuẩn hóa “Bài học / lỗi đã gặp” và phân biệt sandbox Antigravity với kiểm tra Codex. Không đụng repo Taskbar Hero.
+- Kiểm tra trước push · 27 Markdown tracked, 52 fenced blocks cân bằng, 103 link cục bộ có đích, 3 JSON parse được; sáu heading mục 4 và bảng/script 165 giây khớp. Mã parser cuối khớp mã đã đạt 11 fixture offline. Lịch sử HANDOFF/main, mục lục cũ và mẫu trống được bảo toàn; whitespace/scope đạt. Không chạy integration, cài đặt, RPC, keypair hoặc deploy; giới hạn còn lại ghi trong REVIEW.
+
+- Push và xác minh · `d14a435fa70dee7f519291e8c0fd6606471f673a` đã lên `origin/prompts/01-learning`, local/remote khớp và working tree sạch. GitHub xác nhận PR #1 open/draft, merged=false, mergeable=true sau khi tính lại; main vẫn `ab3561207384aad7b62d282628a23446b54c02cb`. Bản ghi đóng task này chỉ cập nhật DEVLOG/HANDOFF, tiếp tục cùng nhánh; không merge PR.
+
 ## Trước sự kiện
 
 - 2026-11-17 · Claude · Dựng khung repo, quy tắc "học trước, ghi lại", research Codex vs Antigravity · 000, 001

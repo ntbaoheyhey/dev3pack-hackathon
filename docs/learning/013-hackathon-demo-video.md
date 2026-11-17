@@ -1,173 +1,134 @@
-# 013 — Kịch Bản Video Demo Dưới 3 Phút: Công Thức Thuyết Phục Giám Khảo
+# 013 — Video demo Dev3pack: kịch bản tối đa 165 giây
 
-> Ngày kiểm tra: 2026-11-17 (Asia/Ho_Chi_Minh). Phạm vi: nghệ thuật làm video pitch, cấu trúc thời gian và template kịch bản mẫu.
-> Trạng thái: đã đối chiếu các video demo đoạt giải quán quân tại Colosseum và Solana Hackathons; đúc kết thành bộ khung chuẩn mực.
-
----
+> Ngày kiểm tra: **17/11/2026** (Asia/Ho_Chi_Minh). Đã mở [trang chủ Dev3pack](https://hack.dev3pack.xyz) và [FAQ](https://hack.dev3pack.xyz/faq) bằng browser. Thể lệ đã đối chiếu; kịch bản dưới là đề xuất nội bộ, chưa quay/xuất video hoặc đo sản phẩm.
 
 ## 1. Mục tiêu và điều cần nhớ
 
-Sau bài học này, bạn có thể:
-1. Hiểu vì sao video demo dưới 3 phút là yếu tố quyết định 60% ấn tượng ban đầu của Ban giám khảo.
-2. Nắm vững cấu trúc thời gian "bất di bất dịch": **Hook (20s) &rarr; Vấn đề/Giải pháp (30s) &rarr; Demo thật (75s) &rarr; Điểm Solana sâu (30s) &rarr; Kết luận (25s)**.
-3. Chọn lựa và sử dụng đúng các công cụ quay dựng nhanh (Screen Studio, Loom, CapCut).
-4. Nhận biết và triệt tiêu 5 lỗi "tử huyệt" khiến video bị loại sớm.
-5. Sử dụng ngay **Template kịch bản mẫu điền sẵn chỗ trống** (kèm lời thoại tiếng Anh chuyên nghiệp) để sản xuất video trong vòng 1–2 giờ.
+FAQ yêu cầu video **dưới 3 phút**, quá 3 phút bị loại khỏi giải. Phải cho thấy sản phẩm hoạt động thật, không thay bằng pitch deck. Chấp nhận YouTube, Loom hoặc link công khai khác; ngôn ngữ nào cũng được.
 
-Thời lượng đọc: khoảng 15 phút.
-
----
+Kịch bản của repo đặt trần **165 giây = 2:45**, chừa **15 giây** so với 3:00. Không dùng 15 giây này để thêm intro/outro: **tổng file xuất**, kể cả chuyển cảnh, phải ≤165 giây theo kế hoạch. Đây là biên tự đề xuất, không phải giới hạn mới của BTC.
 
 ## 2. Phiên bản và bằng chứng kiểm tra
 
-| Thành phần | Tiêu chuẩn / Phiên bản | Mức kiểm chứng |
-| --- | --- | --- |
-| **Thời lượng tối đa** | **< 3:00 phút (nghiêm ngặt)** | Quy định chuẩn của Colosseum và các giải Solana toàn cầu |
-| **Độ phân giải & Tỷ lệ** | **1080p (1920x1080), 60fps, 16:9** | Đảm bảo hiển thị sắc nét chữ và số dư trên ví |
-| **Định dạng & Nền tảng** | **YouTube (Unlisted/Public) hoặc Loom** | Nền tảng hỗ trợ phát mượt mà không bắt tải file |
-| **Công cụ quay dựng** | Screen Studio 2.x, OBS Studio 30.x, CapCut 4.x | Bộ ba công cụ tối ưu cho sản xuất video nhanh |
-
----
+| Nội dung | Bằng chứng / trạng thái |
+| --- | --- |
+| Luật video, nền tảng, ngôn ngữ | [FAQ Dev3pack](https://hack.dev3pack.xyz/faq), đọc bằng browser 17/11/2026 |
+| Chấm bài | Product/Technical, hai vòng; top 100 vào vòng xem code, founder-market fit và live demo; không công bố trọng số |
+| Kịch bản 165 giây | Đã kiểm tổng thời lượng trên giấy; chưa có file video để đo |
+| Latency, rent, test, deployment | **Chưa kiểm chứng**, phải điền số đo và bằng chứng của sản phẩm |
+| Công cụ quay, độ phân giải | Dùng công cụ đội đã có; 1080p/16:9 là gợi ý, không phải điều kiện BTC; version/license và thời gian dựng chưa kiểm chứng |
 
 ## 3. Kiến thức chính
 
-### 3.1. Tâm lý giám khảo: Họ xem video của bạn như thế nào?
+### 3.1. Chứng minh một luồng sử dụng thật
 
-Một giám khảo hackathon thường phải chấm từ 30 đến 50 dự án trong vòng vài ngày. Họ mệt mỏi, thiếu ngủ và bị "bão hòa thông tin".
-- Nếu video mở đầu bằng slide chữ lê thê, họ sẽ tua nhanh hoặc tắt sau 20 giây.
-- Nếu video dài quá 3 phút, nhiều giám khảo sẽ tự động dừng xem ở mốc 3:00 và trừ điểm kỷ luật thời gian.
-- **Quy tắc vàng**: Video của bạn phải khiến giám khảo tỉnh ngủ ngay từ 10 giây đầu tiên, chứng minh sản phẩm hoạt động thật và nêu bật lý do dự án này bắt buộc phải xây dựng trên Solana.
+Cho thấy nhu cầu, thao tác, phản hồi và kết quả kiểm chứng được. Mọi dự án mặc định vào track Solana. **Chưa có track DePIN/AI Agent hoặc bounty riêng của sponsor được công bố**; partner tracks còn chờ trước kickoff. Chỉ trình diễn SDK có vai trò thật, không suy điểm/giải từ số SDK. [FAQ](https://hack.dev3pack.xyz/faq), kiểm tra 17/11/2026.
 
----
+Nhà tài trợ/giải và form năm bước xem [001](001-hackathon-rules.md), [012](012-winning-solana-hackathons.md). Hạn nộp **29/11/2026**, giờ UTC xem dashboard. Chấp nhận devnet/mainnet; repo open source, README tách trước/trong sự kiện, đội phải hiểu và giải thích code kể cả khi dùng AI.
 
-### 3.2. Cấu trúc kịch bản chuẩn 3 phút (The 3-Minute Formula)
+### 3.2. Bảng thời lượng tự đề xuất — tổng 165 giây
+
+| Đoạn | Bắt đầu | Kết thúc | Giây | Nội dung hình ảnh |
+| --- | --- | --- | ---: | --- |
+| Hook | 0:00 | 0:15 | 15 | Một tình huống người dùng cụ thể, không bịa số liệu thị trường |
+| Vấn đề / giải pháp | 0:15 | 0:35 | 20 | Tên app, người dùng, giá trị chính |
+| Demo thật | 0:35 | 1:55 | 80 | Connect → thao tác → ký nếu cần → trạng thái và kết quả thật |
+| Solana / SDK và bằng chứng | 1:55 | 2:25 | 30 | Explorer/log đúng cluster; code/check/test có thật; vai trò SDK |
+| Giới hạn / đội / link | 2:25 | 2:45 | 20 | Phần đã làm, phần còn thiếu, repo và live link |
+| **Tổng** | **0:00** | **2:45** | **165** | **15 giây biên so với 3:00** |
 
 ```mermaid
 flowchart LR
-    A["0:00 - 0:20 (20s)<br>THE HOOK<br>Nêu nỗi đau giật mình"] --> B["0:20 - 0:50 (30s)<br>PROBLEM & SOLUTION<br>Giới thiệu tên & giá trị"]
-    B --> C["0:50 - 2:05 (75s)<br>LIVE DEMO (CORE LOOP)<br>Thao tác thật mượt mà"]
-    C --> D["2:05 - 2:35 (30s)<br>SOLANA DEPTH<br>Explorer & Sponsor SDKs"]
-    D --> E["2:35 - 3:00 (25s)<br>VISION & OUTRO<br>Đội ngũ & Call to action"]
+    A["Hook 15s"] --> B["Vấn đề/giải pháp 20s"]
+    B --> C["Demo thật 80s"]
+    C --> D["Solana/SDK 30s"]
+    D --> E["Giới hạn/link 20s — kết thúc 2:45"]
 ```
 
-#### Phân đoạn 1: The Hook (0:00 – 0:20) — 20 giây
-- **Mục tiêu**: Bắt lấy sự chú ý ngay lập tức.
-- **Hành động hình ảnh**: Mở đầu bằng một hình ảnh số liệu biết nói hoặc câu hỏi trực diện.
-- **Lời thoại mẫu**: *"Mỗi ngày, có hàng trăm triệu USD bị thất thoát trên các giao thức DeFi chỉ vì giao dịch chậm và trượt giá cao. Người dùng nhỏ lẻ luôn là người chịu thiệt hại cuối cùng."*
-- **Tuyệt đối tránh**: *"Xin chào ban giám khảo, tôi tên là Nguyễn Văn A, hôm nay tôi xin đại diện nhóm..."* (Lãng phí thời gian quý giá!).
+### 3.3. Bằng chứng cần điền trước khi thu lời thoại
 
-#### Phân đoạn 2: Problem & Solution (0:20 – 0:50) — 30 giây
-- **Mục tiêu**: Định vị sản phẩm là giải pháp duy nhất giải quyết triệt để nỗi đau trên.
-- **Hành động hình ảnh**: Hiển thị Logo, khẩu hiệu và giao diện trang chủ ấn tượng của ứng dụng.
-- **Lời thoại mẫu**: *"Đó là lý do chúng tôi xây dựng [Tên dự án]. [Tên dự án] là giao thức định tuyến thanh khoản tức thời đầu tiên trên Solana, tận dụng tốc độ sub-second để triệt tiêu trượt giá và bảo vệ người dùng."*
+| Điều muốn nói | Chỗ trống cần hoàn thành | Điều kiện sử dụng |
+| --- | --- | --- |
+| Tốc độ transaction | **[điền số liệu đo được]**: thời gian gửi → `processed`/`confirmed`/`finalized`, cluster, RPC, số mẫu | Ghi đúng commitment đã đo; không gọi processed/confirmed là finality |
+| Tiết kiệm rent | **[điền số liệu đo được]**: lamports trước/sau, account size, plugins, baseline cùng điều kiện | Chưa đo thì bỏ câu so sánh; không tự dùng “80%” |
+| Bảo mật PDA | **[điền số liệu đo được]** và **[điền invariant, signer/owner/authority checks, negative tests + log]** | PDA tự nó không bảo đảm an toàn; số test cũng không chứng minh an toàn tuyệt đối |
+| Build/test/deploy trong sự kiện | **[điền số liệu đo được]**, **[điền commit, thời điểm, test log, deployment link]** | Tách phần trước/trong sự kiện; không tuyên bố toàn bộ được làm trong 48h khi chưa có căn cứ |
 
-#### Phân đoạn 3: The Live Demo (0:50 – 2:05) — 75 giây (Trọng tâm)
-- **Mục tiêu**: Chứng minh sản phẩm thật 100%, không phải đồ họa dựng sẵn.
-- **Hành động hình ảnh**:
-  1. Người dùng bấm "Connect Wallet" &rarr; ví kết nối ngay lập tức.
-  2. Người dùng nhập số liệu và bấm nút thực hiện hành động chính.
-  3. Cửa sổ ví mở ra, người dùng bấm "Approve".
-  4. Trạng thái chuyển mượt mà: `pending` &rarr; `confirmed` &rarr; số dư hoặc bảng xếp hạng cập nhật ngay tức thì.
-- **Lưu ý**: Hãy chuẩn bị sẵn một kịch bản quay thành công (Happy Path). Nếu mạng Devnet chập chờn, hãy dùng bản ghi hình dự phòng mượt mà đã quay trước đó.
+Phân biệt commitment theo [Solana Transaction Confirmation](https://solana.com/developers/guides/advanced/confirmation). Kiểm tra account/quyền xem [007](007-solana-program-security.md). Chưa có bằng chứng thì nói rõ chưa đo/chưa làm hoặc bỏ câu; không đọc nguyên placeholder như một kết quả.
 
-#### Phân đoạn 4: Solana & Sponsor Depth (2:05 – 2:35) — 30 giây
-- **Mục tiêu**: Giành trọn điểm ở tiêu chí "Độ sâu công nghệ" và "Bounty nhà tài trợ".
-- **Hành động hình ảnh**: Chuyển tab sang màn hình Solana Explorer và backend dashboard.
-- **Lời thoại mẫu**: *"Để đạt được điều này, chúng tôi đã xây dựng smart contract bằng Anchor trên Solana Devnet. Đây là transaction vừa hoàn thành: sử dụng PDA để quản lý trạng thái phi tập trung và Token-2022 Transfer Fee để chia sẻ doanh thu tự động. Đồng thời, chúng tôi tích hợp Supabase để đồng bộ hóa bảng xếp hạng theo thời gian thực và ElevenLabs để tạo giọng nói AI tương tác."*
+### 3.4. Quay, xuất và kiểm tra
 
-#### Phân đoạn 5: Vision & Outro (2:35 – 3:00) — 25 giây
-- **Mục tiêu**: Kết thúc chuyên nghiệp, để lại ấn tượng tốt đẹp.
-- **Hành động hình ảnh**: Màn hình tổng kết hiển thị tên đội thi, link live app và mã QR để giám khảo trải nghiệm.
-- **Lời thoại mẫu**: *"Toàn bộ hệ sinh thái này được đội ngũ chúng tôi hoàn thành trong 48 giờ. Chúng tôi đã mở mã nguồn hoàn toàn trên GitHub và triển khai bản live trên Vercel. Cảm ơn Ban giám khảo Dev3pack, hãy truy cập [đường dẫn app] để trực tiếp trải nghiệm ngay bây giờ!"*
+- Thu thao tác thật; chữ và âm thanh phải rõ. Phụ đề tiếng Anh là hỗ trợ tùy chọn, không phải điều kiện dự thi.
+- Có thể chuẩn bị bản ghi thật dự phòng, ghi rõ bản build/cluster và nếu tua/cắt thời gian chờ. Không dùng video đã cắt để suy tốc độ hoặc giả dữ liệu thành live result.
+- Kiểm tổng duration của **file xuất** và bản phát qua link công khai, kể cả đoạn cuối; nếu quá 165 giây thì rút lời thoại, không chỉ đổi bảng.
+- Tránh video quá 3 phút, pitch deck thay demo, link cần đăng nhập, chữ quá nhỏ hoặc flow lỗi không được giải thích. Chỉ lỗi thời lượng >3 phút có mức loại khỏi giải được FAQ nêu cụ thể; không tự gán các mức điểm phạt khác.
 
----
+### 3.5. Tham khảo, có thể lỗi thời — Colosseum/Superteam 2024–2025
 
-### 3.3. Bộ công cụ quay và dựng đề xuất
+Bản cũ dẫn homepage của các giải này để gọi cấu trúc video là “chuẩn”. Chưa có permalink video/hướng dẫn hỗ trợ nên bỏ cách gán đó. Trường hợp lịch sử có nguồn nằm ở [012](012-winning-solana-hackathons.md), không dùng để suy thể lệ Dev3pack. Hiệu quả công cụ dựng, tỷ lệ tiết kiệm thời gian và thời gian sản xuất **chưa kiểm chứng** vì chưa quay thử.
 
-1. **Screen Studio (Khuyến nghị số 1 trên macOS)**:
-   - Tự động zoom mềm mại vào các nút bấm và con trỏ chuột.
-   - Bo tròn góc cửa sổ, tự thêm hình nền gradient sang trọng chuẩn Apple style.
-   - Tiết kiệm 80% thời gian cắt dựng thủ công.
-2. **OBS Studio (Hoàn toàn miễn phí / Đa nền tảng)**:
-   - Thu âm chất lượng studio nếu biết bật các bộ lọc Noise Suppression và Compressor.
-   - Quay trực tiếp màn hình không giới hạn watermark.
-3. **CapCut Desktop (Chỉnh sửa & Cắt gọt)**:
-   - Sử dụng tính năng **Auto Captions** để tạo phụ đề tiếng Anh tự động trong 30 giây.
-   - Cắt bỏ những đoạn "ờ, à" hoặc khoảng lặng dài giữa các thao tác để nhịp video nhanh và cuốn hút.
+## 4. Ví dụ hoặc quy trình tối thiểu
 
----
+### Lời thoại mẫu và thao tác — tối đa 2:45
 
-### 3.4. Năm lỗi "tử huyệt" khiến video demo bị đánh trượt
-
-1. **Video lố thời gian (Ví dụ 3 phút 08 giây)**: Bị đánh giá là thiếu tính kỷ luật và không tôn trọng thời gian của giám khảo.
-2. **Chỉ trình chiếu Slide PowerPoint**: Giám khảo muốn xem **sản phẩm thật đang chạy**, không ai muốn xem slide lý thuyết trong 3 phút.
-3. **Âm thanh tồi tệ**: Tiếng nói lí nhí, tiếng quạt gió laptop rè rè, hoặc bật nhạc nền EDM đinh tai át mất tiếng thuyết minh.
-4. **Demo bị đơ / văng lỗi (Crash)**: Bấm nút giao dịch mà vòng xoay cứ quay mãi hoặc hiện popup đỏ rực mà không có lời giải thích hay phương án dự phòng.
-5. **Không có phụ đề tiếng Anh**: Rất nhiều giám khảo quốc tế không thể nghe rõ giọng phát âm của các đội không nói tiếng Anh bản xứ nếu không có subtitle to rõ hỗ trợ.
-
----
-
-## 4. Template Kịch Bản Mẫu Điền Sẵn Chỗ Trống (Ready-to-fill Script)
-
-> Hãy sao chép kịch bản dưới đây, điền các thông tin trong ngoặc vuông `[...]` và dùng phần mềm quay video đọc theo:
+Lời thoại tiếng Anh chỉ là lựa chọn; có thể nói tiếng Việt. Các câu có chỗ trống chỉ được giữ sau khi điền bằng chứng, rồi đọc thử theo bảng thời lượng. Tổng thời gian thực chưa được kiểm chứng bằng video.
 
 ```text
-[0:00 - 0:20] THE HOOK
-Visual: Quay màn hình giao diện Web3 thông thường bị chậm, nghẽn mạng hoặc biểu đồ trượt giá.
-Voiceover (English):
-"Have you ever tried trading on decentralized platforms, only to lose money to high slippage, failed transactions, and terrible user experience? In Web3 today, user adoption is broken because speed and simplicity are missing."
+[0:00 - 0:15] HOOK — 15 giây
+Visual: [Tình huống thật của người dùng].
+Voice: "[Nhóm người dùng] need a simpler way to [tác vụ].
+Here is the problem we are addressing: [vấn đề đã quan sát]."
 
-[0:20 - 0:50] PROBLEM & SOLUTION
-Visual: Chuyển mượt sang trang chủ sản phẩm của bạn, hiển thị logo [Tên Dự Án] và khẩu hiệu.
-Voiceover (English):
-"Welcome to [Tên Dự Án] — the first [mô tả giải pháp trong 3 từ] built specifically for the high-speed Solana ecosystem. We combine Solana's sub-second finality with smart routing to deliver zero-friction experiences for everyday users."
+[0:15 - 0:35] PROBLEM & SOLUTION — 20 giây
+Visual: Trang chính của [Tên app], thao tác sẽ demo.
+Voice: "[Tên app] helps [người dùng] do [giá trị chính].
+We use Solana for [lý do cụ thể của sản phẩm]."
+Nếu nói về latency: [điền số liệu đo được], [commitment, cluster, RPC, số mẫu].
+Nếu chưa đo, bỏ câu latency; không khẳng định sub-second finality.
 
-[0:50 - 2:05] LIVE PRODUCT DEMO
-Visual: Quay thao tác chuột: Bấm Connect Wallet -> Chọn tính năng chính -> Bấm Execute -> Popup ví hiện lên -> Bấm Approve -> Giao diện cập nhật thành công.
-Voiceover (English):
-"Let’s see it in action. Right here on our live deployment, I connect my wallet with just one click.
-Now, I want to [thực hiện hành động chính: ví dụ: mint an in-game asset / swap token / create an autonomous agent].
-I input the parameters and click [Tên nút bấm].
-Watch how seamlessly the transaction is dispatched. In less than 400 milliseconds, our transaction hits the 'processed' state, and right now, it is fully 'confirmed' on Solana Devnet. The UI updates instantly without any page refresh."
+[0:35 - 1:55] LIVE DEMO — 80 giây
+Visual: Kết nối ví, chọn [tính năng], điền [đầu vào], xác nhận nếu cần.
+Voice: "I connect my wallet and choose [tính năng].
+I enter [đầu vào] and select [nút]. The wallet shows [nội dung xác nhận].
+The app now reports [trạng thái thật]. Here is [kết quả thật] and its transaction link."
+Giữ thời gian cho thao tác; giải thích nếu demo đang ở trạng thái chờ/lỗi.
+Số đo nếu có: [điền số liệu đo được], không coi dữ liệu UI mock là kết quả on-chain.
 
-[2:05 - 2:35] SOLANA & SPONSOR DEPTH
-Visual: Mở tab Solana Explorer hiển thị Transaction Hash và tab Supabase/Dashboard.
-Voiceover (English):
-"Under the hood, this isn't just a Web2 wrapper. Our custom Anchor program manages states through Program Derived Addresses (PDAs), ensuring complete non-custodial security.
-We also leverage [nêu công nghệ: Token-2022 Transfer Fees / Metaplex Core] to optimize storage rent by 80%.
-On the backend, we integrated Supabase for instant real-time data sync, and ElevenLabs to provide dynamic voice interactions."
+[1:55 - 2:25] SOLANA / SDK EVIDENCE — 30 giây
+Visual: Explorer đúng cluster; đoạn code/check hoặc test log liên quan.
+Voice: "The program stores [trạng thái] and checks [quyền/invariant].
+[SDK thực dùng] handles [vai trò có thể nhìn thấy]."
+Rent nếu có: [điền số liệu đo được], [baseline/account size cùng điều kiện].
+PDA/quyền: [điền invariant và negative test thực chạy], [điền số liệu đo được].
+Bỏ nội dung chưa xây/chưa đo; không hứa PDA bảo đảm an toàn tuyệt đối.
 
-[2:35 - 3:00] VISION & OUTRO
-Visual: Quay lại màn hình chính của App, hiện Slide kết thúc với GitHub repo URL, Live Demo link và tên team.
-Voiceover (English):
-"Our team built, tested, and deployed this complete system during the 48 hours of Dev3pack Hackathon. The entire codebase is open-sourced on GitHub, and the live demo is available at [domain của app].
-Thank you for watching, and we can’t wait for you to try [Tên Dự Án] today!"
+[2:25 - 2:45] LIMITS / TEAM / LINKS — 20 giây
+Visual: Repo open source, live link, danh sách phần trước/trong sự kiện.
+Voice: "We built [phần làm trong sự kiện]; [phần có sẵn] predates it.
+Our current limitation is [giới hạn thật].
+The code and demo are available at [link công khai]."
+Build/test/deploy: [điền số liệu đo được], [commit/thời điểm/log/link thật].
+Kết thúc cả hình và tiếng không muộn hơn 2:45.
 ```
-
----
 
 ## 5. Tự kiểm tra
 
-1. **Tại sao bạn không nên dành 30 giây đầu tiên để giới thiệu lý lịch các thành viên trong đội?**
-   - *Đáp án*: Vì giám khảo quan tâm nhất đến **vấn đề và sản phẩm**. 20 giây đầu tiên là cơ hội duy nhất để thu hút sự chú ý (The Hook). Giới thiệu thành viên nên để ngắn gọn ở 15 giây cuối cùng hoặc ghi trong mô tả bài nộp.
-
-2. **Nếu mạng Solana Devnet bị lag đúng lúc bạn đang quay màn hình demo, bạn nên làm gì?**
-   - *Đáp án*: Luôn chuẩn bị sẵn một cảnh quay "Happy Path" thành công từ trước. Khi dựng video, bạn có thể ghép đoạn quay thành công đó vào để đảm bảo nhịp điệu video mượt mà, không để video bị đơ nhiều phút chờ đợi.
-
-3. **Yếu tố nào giúp video demo của bạn ghi điểm tối đa ở các hạng mục giải thưởng của Nhà tài trợ (Sponsors)?**
-   - *Đáp án*: Dành riêng phân đoạn từ 2:05 – 2:35 để trình chiếu trực tiếp Explorer, dashboard và nhắc tên chính xác cách bạn sử dụng SDK của nhà tài trợ (Supabase, ElevenLabs, Firecrawl, MWA) vào giải pháp.
-
----
+1. Tổng 15 + 20 + 80 + 30 + 20 là bao nhiêu? **165 giây**, dư 15 giây so với 180; file xuất vẫn cần đo thực tế.
+2. UI hiện confirmed có đủ để nói finalized dưới một giây? **Không**, khác commitment và chưa có số đo.
+3. Có PDA có được nói an toàn tuyệt đối? **Không**, phải kiểm invariant/quyền và nêu giới hạn.
+4. Quá 3 phút chỉ bị trừ điểm? **Không**, FAQ nói bị loại khỏi điều kiện xét giải.
+5. Bắt buộc phụ đề tiếng Anh hoặc YouTube? **Không**, mọi ngôn ngữ được chấp nhận; Loom/link công khai cũng được.
 
 ## 6. Nguồn và độ tin cậy
 
-- [Colosseum Demo Video Guidelines](https://www.colosseum.org/) — Hướng dẫn chính thức về video thuyết trình của các kỳ Solana Global Hackathon (Đã đối chiếu).
-- [Screen Studio Production Guide](https://screen.studio/) — Hướng dẫn thực hành làm video demo phần mềm chuẩn quốc tế (Đã đối chiếu).
-- [Superteam Pitch Video Best Practices](https://superteam.fun/) — Tổng hợp kinh nghiệm từ các dự án thắng giải của cộng đồng Superteam (Đã đọc).
-
----
+- [Dev3pack trang chủ](https://hack.dev3pack.xyz), [FAQ](https://hack.dev3pack.xyz/faq) — nguồn chính thức, kiểm tra bằng browser **17/11/2026**.
+- [Solana Transaction Confirmation](https://solana.com/developers/guides/advanced/confirmation) — nguồn phân biệt commitment; không chứng minh latency sản phẩm.
+- Mốc 165 giây, checklist và lời thoại là đề xuất nội bộ, không phải công thức thắng giải đã đo.
 
 ## 7. Điểm chưa kiểm chứng và bước tiếp theo
 
-- **Điểm chưa kiểm chứng**: Quy định cụ thể của ban tổ chức Dev3pack về việc có cho phép nộp link video Loom hay bắt buộc phải là link YouTube (để an toàn, hãy luôn upload lên YouTube ở chế độ Unlisted).
-- **Bước tiếp theo**: Khi code sản phẩm hoàn thành mốc tính năng cơ bản, lập tức mở file template ở mục 4, điền lời thoại và quay thử một bản nháp trước thời hạn nộp 6 tiếng.
+Chưa có video xuất thật, số đo latency/rent, test log, deployment hay bằng chứng xây trong sự kiện. Giờ UTC trên dashboard và partner track/bounty cuối cùng còn chờ xác nhận. Khi có sản phẩm, điền bằng chứng và đo file xuất; không coi việc sửa tài liệu là đã build/test/deploy app.
+
+### Bài học / lỗi đã gặp
+
+Lịch 180 giây không đáp ứng “dưới 3 phút”; placeholder phải yêu cầu bằng chứng, không cài sẵn thành tích để đọc như sự thật.
