@@ -50,46 +50,6 @@ Giải đã công bố: **$10.000+ Best App Overall on Solana**, **$500 local tr
 
 Bài nộp vẫn phải theo [001](001-hackathon-rules.md): open source, Solana, demo thật dưới 3 phút, link công khai; hai vòng Product/Technical không có trọng số công bố. Form năm bước và deadline 29/11/2026 (giờ UTC xem dashboard) ở [012](012-winning-solana-hackathons.md). Không thay điều kiện này bằng một ma trận “tiềm năng ẵm bounty”.
 
-## 4. Solana Mobile (MWA & Seeker Ecosystem)
-- **Làm được gì trong app Solana?**
-  - Kết nối ứng dụng di động với ví phần cứng trên dòng điện thoại Solana Seeker / Saga.
-  - Mở cánh cửa tranh tài tại các hạng mục giải thưởng Mobile Track / Seeker Bounty.
-- **Hạn mức Free Tier**:
-  - Hoàn toàn miễn phí, mã nguồn mở 100%.
-- **Thời gian & Độ khó tích hợp trong 48h**:
-  - Native React Native: **Khó (8–12 giờ)**.
-  - Responsive Web App hỗ trợ MWA trên trình duyệt di động: **Dễ đến Trung bình (2–3 giờ)**.
-
----
-
-### 3.2. Bảng ma trận đối chiếu 4 SDK Nhà tài trợ
-
-| Tiêu chí | Supabase | ElevenLabs | Firecrawl | Solana Mobile (MWA) |
-| --- | --- | --- | --- | --- |
-| **Vai trò chính** | Backend, DB, Auth, Realtime | Giọng nói AI, Audio feedback | Thu thập dữ liệu web sạch cho AI | Kết nối ví trên điện thoại Seeker |
-| **Free Tier** | 500MB DB, 50k MAU | 10k ký tự/tháng | 500 credits | Miễn phí 100% |
-| **Thời gian tích hợp** | 1 – 2 giờ | 30 – 60 phút | 1 – 2 giờ | 2 – 3 giờ (Web) / 8+ giờ (Native) |
-| **Độ khó kỹ thuật** | Rất thấp (Dễ) | Rất thấp (Dễ) | Thấp (Dễ) | Trung bình (Web) / Cao (Native) |
-| **Tiềm năng ẵm Bounty** | Rất cao | Cao | Rất cao (Track AI) | Rất cao (Track Mobile) |
-| **Rủi ro lớn nhất** | Quên cấu hình RLS bảo mật | Hết ký tự nếu spam audio | Hết 500 credits nếu cào lặp | Kẹt môi trường Android Studio |
-
----
-
-### 3.3. Chiến Lược "Ghép Lego" (Lego Stacking Strategy) ẵm trọn Bounty
-
-Để tối đa hóa cơ hội đạt giải thưởng từ các nhà tài trợ, bạn không nên dùng các SDK một cách rời rạc. Hãy xây dựng một kịch bản sản phẩm có sự phối hợp nhịp nhàng giữa chúng:
-
-> **Ý tưởng minh họa: "Solana AI Guardian — Vệ Binh Giám Sát Thị Trường"**
-> 1. **Firecrawl**: Tự động cào dữ liệu tin tức tài chính và phân tích tâm lý từ các trang báo crypto lớn &rarr; chuyển thành Markdown gửi cho AI Agent.
-> 2. **AI Agent (Gemini / Solana Program)**: Đọc dữ liệu phân tích, đưa ra quyết định cảnh báo rủi ro danh mục đầu tư.
-> 3. **Supabase**: Lưu trữ danh mục ví của người dùng, ghi nhận lịch sử cảnh báo và đồng bộ bảng xếp hạng danh mục an toàn qua Realtime WebSocket.
-> 4. **ElevenLabs**: Tự động phát âm thanh thông báo bằng giọng nói AI: *"Alert! Whale liquidation detected in pool SOL-USDC. Recommended action: reduce leverage."*
-> 5. **Solana Mobile**: Toàn bộ giao diện web được thiết kế chuẩn mobile-first; khi người dùng mở trên điện thoại Seeker, web tự kích hoạt ví Seed Vault qua MWA để người dùng bấm xác nhận ký lệnh rebalance chỉ với 1 chạm vân tay.
-
-*Kết quả*: Chỉ với 1 sản phẩm hoàn chỉnh, bạn đã đủ điều kiện ứng tuyển cùng lúc vào **4 hạng mục Bounty của nhà tài trợ**!
-
----
-
 ## 4. Ví dụ và Quy trình tối thiểu
 
 ### 4.1. Tích hợp Supabase Client & Realtime (TypeScript)

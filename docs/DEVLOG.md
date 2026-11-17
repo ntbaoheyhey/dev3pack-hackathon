@@ -21,6 +21,8 @@ Mỗi dòng: ngày · ai làm (Mai / Codex / Antigravity) · việc · note đã
 
 - R08 · sửa 005 theo CLI README/manifest cùng commit Codama `141998e`, version source 2.0.0-rc.0: init → config renderer → run js; bỏ lệnh và tên generated suy đoán. JSON config parse được, chưa chạy CLI/codegen/cài package; bộ tương thích còn chưa kiểm chứng.
 
+- R04 bổ sung · kiểm tra cấu trúc phát hiện phần 014 cũ bị giữ sót do tiêu đề SDK trùng chuỗi mục 4; đã xóa ma trận/bounty cũ để chỉ còn hướng dẫn đã kiểm chứng. Kiểm tra lại mọi nhận định bounty/Free Tier trong bản hiện hành.
+
 ## Trước sự kiện
 
 - 2026-11-17 · Claude · Dựng khung repo, quy tắc "học trước, ghi lại", research Codex vs Antigravity · 000, 001
