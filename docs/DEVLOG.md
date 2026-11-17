@@ -4,6 +4,8 @@ Mỗi dòng: ngày · ai làm (Mai / Codex / Antigravity) · việc · note đã
 
 ## 2026-11-17 — Codex: sửa PR #1 và findings của phần Antigravity
 
+**Trạng thái: xong.** R01–R09 đã sửa và push; các giới hạn kiểm chứng được giữ rõ trong REVIEW.
+
 - Đã xác nhận đúng đường dẫn/remote; merge `origin/main` vào `prompts/01-learning`, không rebase; push merge `58ffb5a`. Giữ nội dung main, thêm luật đọc bàn giao và `docs/HANDOFF-TEMPLATE.md`.
 - R01 · sửa 014 do Antigravity viết: giữ key ElevenLabs ở backend, thêm guard do app cung cấp, browser chỉ nhận audio; dẫn Authentication/Create speech. Chưa gọi API, chưa build/deploy mẫu.
 
@@ -29,6 +31,8 @@ Mỗi dòng: ngày · ai làm (Mai / Codex / Antigravity) · việc · note đã
 
 - Hoàn tất nội dung · đồng bộ README và [REVIEW](learning/REVIEW-2026-11-17.md) với trạng thái/commit R01–R09; giữ snapshot cũ dưới nhãn lịch sử, chuẩn hóa “Bài học / lỗi đã gặp” và phân biệt sandbox Antigravity với kiểm tra Codex. Không đụng repo Taskbar Hero.
 - Kiểm tra trước push · 27 Markdown tracked, 52 fenced blocks cân bằng, 103 link cục bộ có đích, 3 JSON parse được; sáu heading mục 4 và bảng/script 165 giây khớp. Mã parser cuối khớp mã đã đạt 11 fixture offline. Lịch sử HANDOFF/main, mục lục cũ và mẫu trống được bảo toàn; whitespace/scope đạt. Không chạy integration, cài đặt, RPC, keypair hoặc deploy; giới hạn còn lại ghi trong REVIEW.
+
+- Push và xác minh · `d14a435fa70dee7f519291e8c0fd6606471f673a` đã lên `origin/prompts/01-learning`, local/remote khớp và working tree sạch. GitHub xác nhận PR #1 open/draft, merged=false, mergeable=true sau khi tính lại; main vẫn `ab3561207384aad7b62d282628a23446b54c02cb`. Bản ghi đóng task này chỉ cập nhật DEVLOG/HANDOFF, tiếp tục cùng nhánh; không merge PR.
 
 ## Trước sự kiện
 
