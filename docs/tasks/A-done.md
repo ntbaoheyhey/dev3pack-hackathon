@@ -14,3 +14,7 @@
 - Việc T6 (Làm lại): Xong. Đã làm lại evidence theo đúng workflow C01-C03, tách biệt rõ giữa bug hệ thống và lỗi triển khai.
 
 - Việc T2: Xong. Đã dùng dữ liệu từ Note 012 để thay thế vì trang Colosseum bị chặn.
+
+- Việc T4: đang làm.
+  - Mục tiêu: So sánh đối thủ giải quyết C01/C02/C03, tìm negative evidence.
+  - File kết quả: `docs/data/candidate-alternatives.md`.
