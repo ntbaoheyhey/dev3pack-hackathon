@@ -1,19 +1,24 @@
-# ReceiptRail Evidence Report (T11)
+# ReceiptRail Evidence Report (T14 - Bổ sung & Hoàn thiện)
 
 > Ngày thu thập: 2026-11-18
 
 ## 1. Nỗi đau: Timeout và Sự cố Retry (ReceiptRail)
 - **Nỗi đau**: Sự không nhất quán giữa client và facilitator khi xảy ra sự cố mạng (timeout), dẫn đến nguy cơ double-payment hoặc hiểu lầm trạng thái giao dịch on-chain.
 - **Bằng chứng**:
-    - [GitHub x402 issue #452](https://github.com/x402-foundation/x402/issues/452): Xác nhận vấn đề về "replay trap" trong các implementation cũ của x402, nơi việc retry một cách ngây thơ có thể gây lỗi hoặc hiểu lầm trạng thái đã settle.
-    - [Solana Pay Specification](https://solanapay.com/spec): Tài liệu thiết kế reference key, công cụ cốt lõi để đối chiếu (reconcile) giao dịch on-chain mà không phụ thuộc vào phản hồi HTTP của client, giải quyết vấn đề timeout trong quá trình thanh toán.
-- **Phân bác (Negative Evidence)**: Nhiều hệ thống không dùng on-chain reconciliation vì độ trễ (latency) khi query network, thay vào đó chấp nhận rủi ro ở tầng ứng dụng (Application Level) hoặc dùng cách khác (payment channels) thay vì đợi confirmation trực tiếp.
+    - [GitHub x402 issue #452](https://github.com/x402-foundation/x402/issues/452): Idempotent retry chuẩn hóa cho `/verify` và `/settle`. Phân biệt: vấn đề này xảy ra ở tầng ứng dụng (Application Level), không phải lỗi giao thức Solana lõi.
+    - [Solana Pay Specification](https://solanapay.com/spec): Cơ chế `reference` key để đối chiếu (reconcile) giao dịch on-chain giúp giải quyết vấn đề timeout, đảm bảo tính toàn vẹn (integrity) của thanh toán.
+    - **Phân biệt hệ sinh thái**: 
+        - **EVM**: Thường dùng transaction hash làm identifier.
+        - **Solana**: Dùng `reference` key inject vào tx (giải pháp được khuyến nghị) để query transaction status kể cả khi client timeout không nhận được response.
 
-## 2. Alternatives cho ReceiptRail (Stripe, x402, Solana Pay)
-- **Stripe Idempotency**: Sử dụng `Idempotency-Key` header để đảm bảo các yêu cầu gửi lại không bị xử lý trùng.
-- **Solana Pay Reference**: Sử dụng khóa công khai (reference key) làm định danh on-chain để query trạng thái settlement chính xác, thay vì chỉ dựa vào payload ban đầu.
-- **x402 `payment_identifier`**: Sử dụng `payment_identifier` (hoặc payload) như một idempotency key ở tầng ứng dụng (application-level) để cache kết quả settlement.
+## 2. Alternatives & State Machine
+- **Alternatives**:
+    - Stripe: Sử dụng `Idempotency-Key` header (giải pháp tập trung).
+    - Solana Foundation Pay: Tích hợp sẵn cơ chế kiểm tra `reference` + transaction status để đảm bảo idempotent.
+- **State Machine (Đề xuất)**:
+    - `Open` (Mới tạo) -> `Pending` (Đã gửi request thanh toán) -> `Settled` (Thanh toán thành công on-chain) / `Expired` (Hết thời hạn) / `Cancelled` (Người dùng hủy).
+    - **Timeout handling**: Khi timeout, luôn chuyển về trạng thái query on-chain qua `reference` để xác định trạng thái thực sự (`Settled` hay vẫn `Pending`), không tự động chuyển thành `Failed`.
 
-## 3. Tác động thiết kế
-- Cần thiết kế state machine: `Pending` -> `Submitted` -> `Settled/Failed`.
-- Phải ưu tiên đối chiếu on-chain qua reference/transaction hash nếu nhận được timeout response từ facilitator, thay vì thử gửi lại lệnh tạo tx mới.
+## 3. Xác nhận
+- Đã tách biệt trạng thái yêu cầu (`Open/Paid/Cancelled/Unknown`) thay vì đánh đồng timeout là thất bại.
+- Đã làm rõ sự khác biệt giữa các cơ chế idempotent của x402 (tập trung vào API) và Solana Pay (tập trung vào on-chain artifact).
