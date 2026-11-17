@@ -6,7 +6,7 @@
 - ClusterProof đã lưu IDEA/ARCHITECTURE riêng: **dự phòng, chưa duyệt**; web/lab/toolchain giữ nguyên.
 - README/ROADMAP/review/note003/022 đã vô hiệu duyệt/quyền cũ. ReceiptRail IDEA/ARCHITECTURE đang soạn, chưa duyệt.
 - A-queue **T11 crawl → T12 UX → T13 review**; T8/T9/T10 bỏ. Không sửa A-done/HANDOFF A; không chờ A.
-- Note023 đã đặt chỗ trong learning index, phải commit trước viết. Chưa có program/test ReceiptRail; C01 r1 **75/F3**.
+- Note023 đã viết trước code sau commit đặt chỗ80cac12; source build wrapper có keypair nên dùng compiler cache trực tiếp. Chưa có test ReceiptRail; C01 **75/F3**.
 - Bước tới: viết note023 từ source/API, spike local bằng cache sẵn, hoàn tất thiết kế/demo165s, review rồi cập nhật PR#7.
 - Cài thêm/tạo ví-keypair triển khai/deploy/public mới phải hỏi trước; test không mở rộng quyền. Không phase3 trước duyệt Phase2.
 - Push sau bước lớn với [skip ci] để không kích hoạt workflow tự cài. Không merge/force-push/mainnet/secrets hoặc sửa checkout A.

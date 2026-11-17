@@ -54,7 +54,7 @@ Tiến độ và bước tiếp tục sau compact nằm trong [docs/HANDOFF.md](
 
 | [022 — Chuẩn bị độc lập Phase 2/3](022-phase2-3-independent-prep.md) | Contract/harness, toolchain/client, React/Vite/Wallet Standard và hosting | Codex — hello6/client8/web8 tests đạt local; web public/build/browser đã có evidence; CI billing/devnet funding và review còn mở |
 
-| 023 — ReceiptRail Phase2 và spike Anchor local (đặt chỗ) | Account/PDA, payment atomicity, build offline không signer triển khai và LiteSVM | Codex — đặt chỗ trước khi viết note; chưa có spike |
+| [023 — ReceiptRail Phase2 và spike Anchor local](023-receiptrail-phase2-spike.md) | Account/PDA, payment atomicity, build offline không signer triển khai và LiteSVM | Codex — note đã viết trước code, source/cache đã đối chiếu; chưa có spike |
 
 ## Bài học / lỗi đã gặp
 

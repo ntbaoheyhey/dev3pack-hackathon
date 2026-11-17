@@ -203,3 +203,5 @@ Các mô tả dưới đây là sự kiện ở Taskbar Hero, không phải hàn
 - 2026-11-18 · Codex · Người dùng yêu cầu tiếp tục ReceiptRail Phase2 và push từng bước lớn. Bật lại automation qua action update rồi view/config-read: ACTIVE mỗi15phút đúng chat; chưa quan sát heartbeat mới. Commit/push riêng bàn giao, dùng [skip ci] để không kích hoạt workflow cài toolchain khi quyền cài thêm chưa có. Cập nhật note009.
 
 - 2026-11-18 · Codex · Sửa DECISION với nguyên văn/00:07/nguồn payload gây sai; thêm K6 và luật chống suy lựa chọn/duyệt/quyền trong AGENTS. Giữ bản ClusterProof “dự phòng, chưa duyệt”, sửa các cổng sai ở README/ROADMAP/review/note003/022. Giao A T11 crawl/T12 UX/T13 review ReceiptRail, bỏ T8–T10; lưu queue lịch sử. Đặt chỗ note023 trước viết; F C01 vẫn3, chưa có spike. Không đổi web/lab/cài/deploy.
+
+- 2026-11-18 · Codex · Viết note023 trước code sau đặt chỗ80cac12; đối chiếu Anchor1.2.2 CPI, LiteSVM, Anza source có generate_keypair trong build wrapper. Chọn compiler cache/offline trực tiếp để không tạo signer triển khai. Test plan dùng fee payer riêng và tx/blockhash mới, chưa nâng F.
