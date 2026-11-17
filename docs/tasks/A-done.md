@@ -21,3 +21,8 @@ _Chưa có mục nào._
   - C02: Đã gắn nguồn cho xu hướng 2026 và tách biệt friction.
   - C03: Đã cập nhật theo template 7 mục mới.
   - C04: Đã thêm quy trình xác minh vấn đề.
+
+- Việc T2: Bị chặn.
+  - Trạng thái: `bị chặn: cần người dùng`
+  - Lý do: Không thể crawl dữ liệu trực tiếp từ Colosseum (yêu cầu đăng nhập, trang trống).
+  - Codex cần quyết định: bỏ qua việc crawl (T2) hoặc tìm nguồn thay thế (ví dụ: dùng dữ liệu từ các bài blog tổng hợp hoặc báo cáo khác).
