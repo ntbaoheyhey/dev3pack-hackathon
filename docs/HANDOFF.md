@@ -1,12 +1,12 @@
 # Bàn giao chuyển tài liệu Solana về đúng repo
 
-**Trạng thái: đủ nội dung Codex và Antigravity trên main repo đích. Người dùng hủy hoàn toàn kế hoạch revert. Chuyển Taskbar Hero về main chưa xong vì Git từ chối ghi đè thay đổi cục bộ.** Cập nhật 17/11/2026, Asia/Saigon.
+**Trạng thái: hoàn tất chuyển tài liệu Codex và Antigravity lên main repo đích. Người dùng quyết định giữ nguyên Taskbar Hero như hiện tại; không còn bước chuyển nhánh hoặc quyết định nào đang chờ.** Cập nhật 17/11/2026, Asia/Saigon.
 
 ## Nơi làm việc và ranh giới
 
 - Repo đích: `/Users/bao/Documents/dev3pack-hackathon`, branch `main`, remote `https://github.com/ntbaoheyhey/dev3pack-hackathon.git`.
 - Repo nguồn: `/Users/bao/Documents/ChatGPT/taskbar hero`, branch `codex/solana-learning-notes`, HEAD được kiểm kê `1c7e50250bcad01c7563dd36ddf54a9bb53b5755`; mốc trước học tập `6744e9b`.
-- Chỉ thị mới nhất: **không revert gì cả**, giữ nguyên nhánh `codex/solana-learning-notes` làm bản lưu; chỉ chuyển workspace nguồn về nhánh chính. Không xóa, reset hoặc sửa sản phẩm. Repo đích được phép cập nhật và push main.
+- Chỉ thị cuối cùng: **giữ nguyên Taskbar Hero như hiện tại**, kể cả nhánh `codex/solana-learning-notes` và các thay đổi chưa commit. Không chuyển nhánh, stash, revert, xóa, reset hoặc sửa sản phẩm. Repo đích được phép cập nhật và push main.
 - Không thay AGENTS.md, note 000–001, README.md ở root hoặc các rule/config của repo đích. Chỉ ba file đã tồn tại được gộp: README học tập, template, DEVLOG.
 - Note 002–014 và REVIEW là bản sao nguyên byte; tham chiếu bối cảnh repo nguồn được giữ làm lịch sử. Bàn giao hiện hành chỉ đặt ở `docs/HANDOFF.md`.
 
@@ -69,7 +69,7 @@ Phân nhóm theo lịch sử phiên; các commit dùng chung danh tính Git nên
 - Nhánh nguồn `codex/solana-learning-notes` vẫn ở `1c7e50250bcad01c7563dd36ddf54a9bb53b5755`; không thêm commit, revert, reset hoặc push nguồn.
 - Người dùng đã hủy đề xuất revert trước đây. Không xin duyệt hoặc thực hiện lại danh sách revert cũ.
 
-## Bước chuyển nhánh đang bị Git chặn
+## Lịch sử thử chuyển nhánh — yêu cầu đã hủy
 
 Đã thử đúng `git switch main`, không dùng force/merge/discard. Git báo sẽ ghi đè các file sau và hủy thao tác:
 
@@ -91,7 +91,7 @@ Phân nhóm theo lịch sử phiên; các commit dùng chung danh tính Git nên
 
 Sau lần thử, HEAD/status không đổi; hash cả 4.590 file đang sửa/untracked đã kiểm kê đều khớp. Local main là `683ad5322859f08128efda1e536d2c8acf4f2ba1`; chưa pull hoặc di chuyển ref đó.
 
-Vì người dùng giới hạn thao tác nguồn ở chuyển nhánh và cấm xóa/reset, không tự stash/commit/di chuyển các file sản phẩm. Cần người dùng chọn cách giữ thay đổi chưa commit trước khi thử lại. Phương án có thể xin phép: stash riêng 13 file gây chặn (gồm năm file untracked), giữ stash nguyên, rồi chạy `git switch main`; không tự apply/drop stash và không đổi nhánh lưu. Phương án này **chưa được cho phép hoặc thực hiện**.
+Người dùng đã trả lời dứt khoát: không cần chuyển nhánh, không stash, không xóa; giữ nguyên Taskbar Hero. Vì vậy kết quả Git từ chối ở trên chỉ là lịch sử, không còn là việc bị chặn cần xử lý. Không thử lại hoặc xin duyệt phương án stash đã được bỏ.
 
 ## Kiểm tra lần chuyển và bước tiếp tục
 
@@ -105,7 +105,7 @@ Bản kiểm kê/hash trước chuyển lưu tạm tại `/tmp/solana-docs-migra
 - 20 file Markdown được kiểm tra: 52 fenced blocks cân bằng, 68 link cục bộ có đích; whitespace check đạt. Một link sandbox `/tmp` chỉ tồn tại trên máy hiện tại, không phải artifact Git.
 - Toàn bộ 5.059 file tracked/untracked đã kiểm kê ở nguồn giữ nguyên hash; HEAD và status nguồn không đổi. Chưa thực hiện bất kỳ revert nào.
 
-Sau compact: đọc phần hiện hành này trước. Nội dung cả hai agent đã ở repo đích; chỉ còn giải quyết cách giữ 13 file gây chặn rồi chuyển workspace nguồn về main khi được cho phép. Không revert, không copy trùng tài liệu, không force checkout hoặc tự stash. Trạng thái chờ quyết định chỉ áp dụng bước chuyển nhánh.
+Sau compact: mục chuyển tài liệu đã hoàn tất theo quyết định cuối cùng của người dùng. Nội dung cả hai agent đã ở repo đích; Taskbar Hero được giữ nguyên. Không mở lại việc chuyển nhánh, stash hoặc revert và không hỏi lại về các bước đã hủy. Công việc học tập tiếp theo thực hiện tại dev3pack-hackathon khi được giao.
 
 ## Bài học / lỗi đã gặp
 

@@ -30,6 +30,11 @@ _(Antigravity ghi yêu cầu thay đổi program ở đây)_
 - Đã thử `git switch main` tại nguồn; Git từ chối vì tám file tracked đang sửa và năm file untracked trùng đường dẫn trên main. HEAD/status, nhánh lưu tại `1c7e502`, hash 4.590 file đang sửa/untracked giữ nguyên. Không stash, reset, force checkout hoặc xóa. Bước chuyển nhánh còn cần người dùng chọn cách giữ thay đổi cục bộ.
 - Cập nhật HANDOFF và README để bỏ kế hoạch duyệt revert cũ. Giữ nội dung chuyên môn của Antigravity và các findings hiện hữu; không tuyên bố đã sửa findings hoặc đã chuyển nhánh thành công.
 
+## 2026-11-17 — Codex: chốt giữ nguyên Taskbar Hero
+
+- Người dùng hủy yêu cầu chuyển nhánh và từ chối stash/xóa; giữ nguyên Taskbar Hero như hiện tại. Không còn quyết định cần hỏi hoặc bước xử lý repo nguồn còn chờ.
+- Xác nhận nhánh nguồn vẫn là `codex/solana-learning-notes` tại `1c7e502`; status và hash 4.590 file đang sửa/untracked khớp bản kiểm kê. Chỉ cập nhật HANDOFF và README ở repo đích để đóng việc chuyển tài liệu; các bản ghi chờ chuyển nhánh ở trên là lịch sử đã được thay thế.
+
 ## Nhật ký từ workspace nguồn — giữ lịch sử
 
 Các mô tả dưới đây là sự kiện ở Taskbar Hero, không phải hành động đã chạy lại tại repo đích; trạng thái hiện hành xem `docs/HANDOFF.md`.
