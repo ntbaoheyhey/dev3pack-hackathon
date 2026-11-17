@@ -1,7 +1,7 @@
 # Bàn giao hiện hành — Prompt 02, Codex
 
 - **Trạng thái:** đang làm. Cập nhật 17/11/2026 (Asia/Ho_Chi_Minh).
-- **Phase:** 1, chặng A. Codex là người gộp RUBRIC; Antigravity làm song song qua nhánh `work`.
+- **Phase:** 1, A review vòng 1 / chuẩn bị B. Codex là người gộp RUBRIC; Antigravity làm song song qua nhánh `work`.
 - **Checkout Codex:** `/Users/bao/Documents/ChatGPT/dev3pack`; remote `https://github.com/ntbaoheyhey/dev3pack-hackathon.git`. Checkout `/Users/bao/Documents/dev3pack-hackathon` đang có việc của Antigravity: không sửa/stage file ở đó.
 - Đã đọc AGENTS, ROADMAP đầy đủ, mục lục/template, note 001/002/004/007/012/014. Note 015/016/019 đã đặt chỗ trong main trước phiên này.
 - Quy tắc phiên Codex không cho tạo Automation để bám một task tới mốc hoàn thành; **chưa tạo Automation**. Tiếp tục trong chat hiện tại, lưu checkpoint ở đây; không hứa có tự đánh thức sau khi chat kết thúc.
@@ -12,7 +12,7 @@
 
 - [x] A1: nghiên cứu và viết note 015 (rubric chính thức Colosseum 2024–2026, Superteam, Foundation, Dev3pack, >=3 sự kiện ngoài Solana; giám khảo, vòng lọc/final, kỹ thuật); kết thúc bằng Tiêu chí ứng viên.
 - [x] A2: nghiên cứu và viết 016 (ước lượng, post-mortem/issues, dependencies devnet/wallet/SDK/CU, tiêu chí khả thi); kết thúc bằng Tiêu chí ứng viên.
-- [ ] A3: review 017/018 → `docs/reviews/A-codex.md`, không sửa note A.
+- [x] A3: review 017/018 → `docs/reviews/A-codex.md`, không sửa note A.
 - [ ] B1: `docs/ideas/rubric-draft-codex.md` từ 015–018, thang mô tả, trọng số, loại thẳng, ngưỡng/sàn, số vòng sửa.
 - [ ] B2: gộp draft A và C → `docs/ideas/RUBRIC.md`, truy nguyên từng tiêu chí.
 - [ ] B3: hiệu chỉnh bằng 3 dự án thắng thật + 2 bài không lọt top có kết quả công khai; không coi thiếu bằng chứng là thất bại thực tế.
@@ -33,7 +33,7 @@
 
 ## Bị chặn
 
-Chưa có blocker cần người dùng ở chặng A. Chờ file A khi tới phụ thuộc, tiếp tục việc độc lập trước. Toolchain chưa được đồng ý, không cài trong Phase 1.
+Chưa có blocker cần người dùng. A-codex có A01–A06 cần Antigravity sửa; chờ draft A và review 015/016. Chờ file A khi tới phụ thuộc, tiếp tục việc độc lập trước. Toolchain chưa được đồng ý, không cài trong Phase 1.
 
 ## Kiểm tra / bằng chứng
 

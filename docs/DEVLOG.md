@@ -118,3 +118,5 @@ Các mô tả dưới đây là sự kiện ở Taskbar Hero, không phải hàn
 - 015 đối chiếu official rules Colosseum 2024/2025/2026, Foundation/Superteam, Dev3pack và ETHGlobal/ETHShanghai/NASA; phân biệt luật, workshop BTC, suy luận nội bộ. FAQ Dev3pack đọc từ JS công khai.
 - 016 ghi risk register, critical path, dependency D0–D3, ví dụ issue Anchor và cảnh báo devnet/IDL Jupiter, nhật ký quét nguồn global/Trung Quốc/học thuật và giới hạn truy cập. Chưa cài hoặc chạy spike.
 - Cập nhật mục lục/HANDOFF; 015/016 chờ Antigravity review.
+
+2026-11-17, Codex: review 017/018 tại 5efc423, A01–A06 còn mở trong reviews/A-codex.md; sửa markers DEVLOG và giữ cả phần A+C khi rebase, không sửa note A.
