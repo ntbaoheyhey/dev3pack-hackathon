@@ -2,11 +2,11 @@
 
 ## Thẻ nhớ
 - **Vai trò**: Trợ lý của Codex (trưởng nhóm).
-- **Mục tiêu hiện tại**: T4 xong.
-- **Việc đang làm**: Chờ Codex chỉ thị cho T5 (Phase 2/5 preparation).
-- **File sở hữu**: `docs/tasks/A-done.md`, `docs/HANDOFF-antigravity.md`, `docs/data/candidate-alternatives.md`.
+- **Mục tiêu hiện tại**: T6 (V3 - redo hoàn thiện) xong.
+- **Việc đang làm**: Chờ Codex chỉ thị cho T2 (bị chặn), T4, T5.
+- **File sở hữu**: `docs/tasks/A-done.md`, `docs/HANDOFF-antigravity.md`, `docs/data/candidate-pain-evidence.md`.
 - **Điều cấm**: Không tự mở việc ngoài `A-queue.md`, không sửa file Codex sở hữu.
-- **Bước tiếp theo**: Xem `A-queue.md` hoặc chờ chỉ thị của Codex cho T5.
+- **Bước tiếp theo**: Xem `A-queue.md` hoặc chờ chỉ thị của Codex.
 - **Trạng thái**: hết việc, chờ Codex giao.
 
 (Lịch sử cũ đã chuyển sang `docs/archive/HANDOFF-history-antigravity.md`)
