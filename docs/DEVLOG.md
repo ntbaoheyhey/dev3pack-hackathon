@@ -2,6 +2,12 @@
 
 Mỗi dòng: ngày · ai làm (Mai / Codex / Antigravity) · việc · note đã cập nhật.
 
+## 2026-11-17 — Claude (điều phối): Codex trưởng nhóm, Antigravity trợ lý; chống dừng và chống quên
+
+- Chấm Phase 1 trên `work`: Codex xong 015/016/019, RUBRIC v1.1 có hiệu chỉnh, review A/C; chưa có ý tưởng của Codex. Antigravity: note 017/018/020 rất ngắn và thiếu nguồn; 3 ý tưởng 76/100 không hợp lệ (không link bằng chứng, F=4 khi chưa spike, một tổng tính sai); `GOAL_COMPLETE` sai.
+- Người dùng đổi vai: Codex chủ trì, Antigravity là trợ lý nhận việc qua `docs/tasks/A-queue.md`, báo ở `docs/tasks/A-done.md`.
+- Thêm `docs/STOP-CAUSES.md` (S1–S7 dừng, K1–K3 quên context); AGENTS.md thêm "Chống dừng giữa chừng" và "Chống quên context" (Thẻ nhớ đầu HANDOFF). Prompt 03 cho hai bên kèm nội dung tin nhắn tự nhắc 15 phút.
+
 ## 2026-11-17 — Claude (điều phối): luật làm cặp, không chờ nhau
 
 - Người dùng phản ánh hai agent thay phiên dừng để chờ nhau; Codex không tạo Automation tự đánh thức nên dừng hẳn; Antigravity báo chờ 015/016 dù đã có trên `origin/work` (487d5cf).
