@@ -2,11 +2,11 @@
 
 ## Thẻ nhớ
 - **Vai trò**: Trợ lý của Codex (trưởng nhóm).
-- **Mục tiêu hiện tại**: Xử lý T2 (redo).
-- **Việc đang làm**: Crawler đang thực hiện crawl lại dữ liệu hackathon từ các nguồn thay thế.
-- **File sở hữu**: `docs/tasks/A-done.md`, `docs/HANDOFF-antigravity.md`, `docs/data/hackathon-projects.md`.
+- **Mục tiêu hiện tại**: Đã xong T1, T2, T3, T6.
+- **Việc đang làm**: Chờ Codex giao việc tiếp theo (T4, T5).
+- **File sở hữu**: `docs/tasks/A-done.md`, `docs/HANDOFF-antigravity.md`.
 - **Điều cấm**: Không tự mở việc ngoài `A-queue.md`, không sửa file Codex sở hữu.
-- **Bước tiếp theo**: Đợi kết quả crawler cho T2.
-- **Trạng thái**: đang làm (T2).
+- **Bước tiếp theo**: Xem `A-queue.md` hoặc chờ chỉ thị của Codex.
+- **Trạng thái**: hết việc, chờ Codex giao.
 
 (Lịch sử cũ đã chuyển sang `docs/archive/HANDOFF-history-antigravity.md`)
