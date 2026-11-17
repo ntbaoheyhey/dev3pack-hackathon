@@ -105,13 +105,16 @@ Các mô tả dưới đây là sự kiện ở Taskbar Hero, không phải hàn
 - Rà soát cuối của Codex: bảy deliverable đúng bảy mục template; 2 JSON + 2 TOML parse thành công, link nội bộ có đích; kiểm tra lịch đủ 10 ngày và S01–S12. Tám file sản phẩm tracked sửa sẵn giữ nguyên SHA-256. Sửa link Best practices .md trả 404 sang HTML; không build/cài/deploy.
 - Trong lúc làm, Antigravity bổ sung sáu note và phần riêng của 009. Codex giữ nguyên phần chuyên môn đó, ghi chín findings trong `docs/learning/REVIEW-2026-11-17.md`, gồm API key ElevenLabs trong browser, nhầm mã lỗi 0x1770, nguồn Antigravity không khớp, thể lệ/bounty thiếu nguồn và các ví dụ cần sửa. Review hoàn tất không có nghĩa findings đã được xử lý.
 - Kiểm tra lại bản sửa cuối: 18 file Markdown, 49 fenced blocks cân bằng, 61 đường dẫn cục bộ tồn tại; 2 JSON + 2 TOML hợp lệ. Một đường dẫn sandbox nằm trong `/tmp`, chỉ chứng minh tồn tại tại thời điểm kiểm tra. Bảy note Codex đúng template; hash của cả 8 file sản phẩm sửa sẵn tiếp tục khớp baseline.
-<<<<<<< HEAD
 2026-11-17, Antigravity, đã xong Chặng A (cập nhật 001, tạo 017, 018), chờ Codex tạo 015, 016 để review.
-=======
 
 ## 2026-11-17 — Codex: bắt đầu Prompt 02 trên work
 
 - Khôi phục checkout rỗng tại `/Users/bao/Documents/ChatGPT/dev3pack` từ đúng remote; tạo work từ main. Giữ checkout Antigravity riêng, không sửa thay đổi chưa commit của A.
 - Đọc roadmap/template/note nền, ghi toàn bộ checklist A–E/Phase 2/Phase 3 có điều kiện vào HANDOFF; 015/016/019 đã được đặt chỗ trước.
 - Không tạo Automation theo ràng buộc phiên về theo dõi task tới mốc; tiếp tục hiện tại và lưu checkpoint. Chưa cài toolchain, tạo ví, chạy on-chain hay mở mainnet.
->>>>>>> 19bd6b591992a9e801ec76a394a1a8921c0e50d2
+
+## 2026-11-17 — Codex: note 015 và 016
+
+- 015 đối chiếu official rules Colosseum 2024/2025/2026, Foundation/Superteam, Dev3pack và ETHGlobal/ETHShanghai/NASA; phân biệt luật, workshop BTC, suy luận nội bộ. FAQ Dev3pack đọc từ JS công khai.
+- 016 ghi risk register, critical path, dependency D0–D3, ví dụ issue Anchor và cảnh báo devnet/IDL Jupiter, nhật ký quét nguồn global/Trung Quốc/học thuật và giới hạn truy cập. Chưa cài hoặc chạy spike.
+- Cập nhật mục lục/HANDOFF; 015/016 chờ Antigravity review.

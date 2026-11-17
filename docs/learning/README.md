@@ -43,10 +43,10 @@ Tiến độ và bước tiếp tục sau compact nằm trong [docs/HANDOFF.md](
 | [012 — Chuẩn bị bài thi Dev3pack](012-winning-solana-hackathons.md) | Thể lệ chính thức, trọng số tự đề xuất, lịch sử Colosseum/Superteam có cảnh báo, checklist/form/README | Antigravity; Codex sửa R04/R09 — đã đối chiếu Dev3pack; checklist chưa thử bằng bài thi thật |
 | [013 — Video demo tối đa 165 giây](013-hackathon-demo-video.md) | 15 + 20 + 80 + 30 + 20 = 165 giây; placeholder yêu cầu số đo/log thật | Antigravity; Codex sửa R04/R07/R09 — bảng và script khớp; chưa có video xuất, latency/rent/test/deployment chưa đo |
 | [014 — SDK nhà tài trợ](014-sponsor-sdks.md) | Chọn SDK theo sản phẩm, pricing có nguồn, ElevenLabs/Firecrawl giữ key phía server | Antigravity; Codex sửa R01/R04/R09 — đã đọc docs/pricing; chưa tích hợp, không suy bounty từ số SDK |
-| 015 — Tiêu chí chấm hackathon và cách giám khảo chấm thật | Đặt chỗ cho Phase 1 chặng A | Codex — chưa viết |
-| 016 — Đánh giá độ khả thi kỹ thuật và rủi ro của ý tưởng | Đặt chỗ cho Phase 1 chặng A | Codex — chưa viết |
-| 017 — Khung thẩm định ý tưởng sản phẩm và nghiên cứu về chấm ý tưởng | Đặt chỗ cho Phase 1 chặng A | Antigravity — xong |
-| 018 — Có thật sự cần blockchain/Solana không; thông tin chấm Dev3pack | Đặt chỗ cho Phase 1 chặng A | Antigravity — xong |
+| [015 — Tiêu chí chấm hackathon và cách giám khảo chấm thật](015-hackathon-judging.md) | Đối chiếu nguồn chính thức 2024–2026, quy trình chấm, tiêu chí ứng viên | Codex — đã nghiên cứu; chờ review chéo |
+| [016 — Đánh giá độ khả thi kỹ thuật và rủi ro của ý tưởng](016-technical-feasibility-risk.md) | Critical path, dependency D0–D3, issue thực tế, ngưỡng feasibility | Codex — đã nghiên cứu; chưa chạy spike |
+| [017 — Khung thẩm định ý tưởng sản phẩm và nghiên cứu về chấm ý tưởng](017-khung-tham-dinh-y-tuong.md) | Đặt chỗ cho Phase 1 chặng A | Antigravity — xong theo báo cáo A; Codex đang review |
+| [018 — Có thật sự cần blockchain/Solana không; thông tin chấm Dev3pack](018-blockchain-solana-check.md) | Đặt chỗ cho Phase 1 chặng A | Antigravity — xong theo báo cáo A; Codex đang review |
 | 019 — Nguồn ý tưởng trong hệ sinh thái Solana | Đặt chỗ cho Phase 1 chặng C | Codex — chưa viết |
 | 020 — Nguồn vấn đề thật của người dùng | Đặt chỗ cho Phase 1 chặng C | Antigravity — chưa viết |
 

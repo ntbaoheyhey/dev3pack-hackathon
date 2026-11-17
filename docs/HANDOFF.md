@@ -10,8 +10,8 @@
 
 ## Còn lại
 
-- [ ] A1: nghiên cứu và viết note 015 (rubric chính thức Colosseum 2024–2026, Superteam, Foundation, Dev3pack, >=3 sự kiện ngoài Solana; giám khảo, vòng lọc/final, kỹ thuật); kết thúc bằng Tiêu chí ứng viên.
-- [ ] A2: nghiên cứu và viết 016 (ước lượng, post-mortem/issues, dependencies devnet/wallet/SDK/CU, tiêu chí khả thi); kết thúc bằng Tiêu chí ứng viên.
+- [x] A1: nghiên cứu và viết note 015 (rubric chính thức Colosseum 2024–2026, Superteam, Foundation, Dev3pack, >=3 sự kiện ngoài Solana; giám khảo, vòng lọc/final, kỹ thuật); kết thúc bằng Tiêu chí ứng viên.
+- [x] A2: nghiên cứu và viết 016 (ước lượng, post-mortem/issues, dependencies devnet/wallet/SDK/CU, tiêu chí khả thi); kết thúc bằng Tiêu chí ứng viên.
 - [ ] A3: review 017/018 → `docs/reviews/A-codex.md`, không sửa note A.
 - [ ] B1: `docs/ideas/rubric-draft-codex.md` từ 015–018, thang mô tả, trọng số, loại thẳng, ngưỡng/sàn, số vòng sửa.
 - [ ] B2: gộp draft A và C → `docs/ideas/RUBRIC.md`, truy nguyên từng tiêu chí.
