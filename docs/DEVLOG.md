@@ -25,6 +25,8 @@ Mỗi dòng: ngày · ai làm (Mai / Codex / Antigravity) · việc · note đã
 
 - R09 · chuẩn hóa heading cấp hai mục 4 của 005/006/008/012/013/014 thành “Ví dụ hoặc quy trình tối thiểu”, giữ tiêu đề chuyên biệt cấp ba. Lượt đầu sửa năm file; lượt hoàn tất sửa 014 sau khi loại nội dung cũ, kiểm tra đủ sáu file.
 
+- R04 bổ sung khi rà soát cuối · sửa cách gán “khuyến nghị chính thức Dev3pack 48h” trong 005 và lời hứa PWA đạt điểm tối đa/tiêu chí mobile bắt buộc trong 008. Đây là đề xuất nội bộ chưa đo; không suy thời gian tích hợp hoặc điểm giải từ lựa chọn framework.
+
 ## Trước sự kiện
 
 - 2026-11-17 · Claude · Dựng khung repo, quy tắc "học trước, ghi lại", research Codex vs Antigravity · 000, 001

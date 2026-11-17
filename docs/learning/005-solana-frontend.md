@@ -165,7 +165,7 @@ Nguồn: [Anchor Custom Errors](https://www.anchor-lang.com/docs/features/errors
 
 ### 3.6. Stack gợi ý cho Hackathon: Vite (SPA) vs Next.js (App Router)
 
-Trong thời gian hạn hẹp 48 giờ, việc chọn framework frontend quyết định 50% tốc độ hoàn thành sản phẩm.
+Trong ngân sách làm việc 48 giờ tự đặt của đội, lựa chọn framework nên dựa trên kinh nghiệm và flow cần demo. Chưa có phép đo để quy đổi lựa chọn này thành tỷ lệ tăng tốc.
 
 | Khía cạnh | Next.js (App Router / SSR) | Vite + React (SPA) | Lựa chọn cho Hackathon |
 | --- | --- | --- | --- |
@@ -175,7 +175,7 @@ Trong thời gian hạn hẹp 48 giờ, việc chọn framework frontend quyết
 | **SEO & Social Share** | Tốt nhờ SSR/Metadata sinh động. | Kém hơn, nhưng hackathon ưu tiên app tương tác (dApp) chứ không phải blog tin tức. | Không quá quan trọng |
 
 > [!IMPORTANT]
-> **Khuyến nghị chính thức cho Dev3pack 48h**: Sử dụng **Vite + React + TailwindCSS (hoặc shadcn/ui)**. Giúp đội ngũ tránh mất hàng giờ gỡ lỗi `Text content does not match server-rendered HTML` của Next.js khi kết nối ví.
+> **Đề xuất của người viết, không phải yêu cầu BTC**: Cân nhắc **Vite + React + TailwindCSS (hoặc shadcn/ui)** nếu phù hợp kỹ năng đội và app chủ yếu chạy phía client. Chưa đo thời gian tiết kiệm so với Next.js; “48h” là ngân sách nội bộ, sự kiện Dev3pack diễn ra ba ngày theo [001](001-hackathon-rules.md).
 
 ---
 

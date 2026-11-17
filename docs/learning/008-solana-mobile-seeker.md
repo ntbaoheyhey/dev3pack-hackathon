@@ -10,8 +10,8 @@
 Sau bài học này, bạn có thể:
 1. Hiểu bản chất của **Mobile Wallet Adapter (MWA)**: cách ứng dụng di động giao tiếp với ví thông qua Android Intent mà không cần nắm giữ private key.
 2. Nắm rõ kiến trúc và chính sách của **Solana dApp Store**: triết lý 0% phí hoa hồng và cách đóng gói ứng dụng cho thiết bị **Solana Seeker**.
-3. Liệt kê các tiêu chí bắt buộc nếu muốn cạnh tranh ở hạng mục Mobile / Seeker Track trong hackathon.
-4. Có câu trả lời dứt khoát cho câu hỏi: **"Với 48 giờ hackathon, làm app mobile thuần có khả thi không?"** và biết chiến lược thay thế thông minh nhất.
+3. Phân biệt giải mobile đã công bố với gợi ý trải nghiệm; điều kiện partner track chi tiết còn chờ BTC.
+4. Đánh giá rủi ro làm native/mobile web theo năng lực đội; 48 giờ là ngân sách nội bộ, không phải thời lượng sự kiện do BTC công bố.
 
 Thời lượng đọc: khoảng 15 phút.
 
@@ -101,16 +101,16 @@ sequenceDiagram
 
 | Hạng mục rủi ro | Mức độ rủi ro | Hậu quả thực tế trong 48 giờ |
 | --- | --- | --- |
-| **Cài đặt môi trường Android/RN** | **Cực kỳ cao** | Lỗi phiên bản Java JDK, Android SDK Platform, NDK, Gradle sync thất bại. Có thể "cháy" từ 6 đến 12 giờ quý giá chỉ để chạy được màn hình "Hello World". |
+| **Cài đặt môi trường Android/RN** | **Cao nếu đội chưa có môi trường** | Có thể gặp lỗi Java JDK, Android SDK Platform, NDK hoặc Gradle sync. Thời gian xử lý **chưa kiểm chứng** vì chưa có spike trên môi trường đội. |
 | **Lỗi build APK Release** | **Cao** | Chạy trên máy dev được nhưng khi build file `.apk` độc lập để nộp thì bị crash do cấu hình ProGuard / Hermes / native symbols. |
 | **Rào cản chấm bài của Giám khảo** | **Chí mạng** | Chưa kiểm chứng thiết bị giám khảo dùng. Chỉ có APK có thể tăng bước cài đặt; cần link/video và hướng dẫn dùng thử phù hợp, không suy tỷ lệ hay điểm phạt. |
 
 #### Chiến lược tối ưu cho 48 giờ (Smart Strategy):
 
 > [!IMPORTANT]
-> **Quy tắc vàng**: Trừ khi trong đội của bạn **đã có một lập trình viên Mobile kỳ cựu** sở hữu sẵn project React Native cấu hình hoàn chỉnh từ trước hackathon, **tuyệt đối KHÔNG nên chọn làm Native Mobile từ con số 0**.
+> **Đề xuất nội bộ:** Đánh giá kỹ năng và môi trường native đã có trước khi chọn; nếu chưa có, cần một spike có tiêu chí đạt. Chưa có phép đo để kết luận native hoặc PWA luôn nhanh hơn hay đạt điểm cao hơn.
 
-**Phương án thay thế đạt điểm tối đa (PWA + Mobile Web MWA)**:
+**Phương án PWA + Mobile Web MWA — cần thử, không bảo đảm điểm hoặc điều kiện giải**:
 1. Xây dựng ứng dụng dưới dạng **Mobile-first Web App (PWA)** bằng **Vite + React + TailwindCSS**.
 2. Thiết kế giao diện theo tỉ lệ màn hình điện thoại (mobile viewport ~390px rộng), các nút bấm lớn, bottom navigation bar.
 3. Tích hợp thư viện `@solana/wallet-adapter-react` hỗ trợ MWA trên mobile browser: Khi giám khảo mở link web trên điện thoại Android có ví Phantom, web sẽ tự động gọi Intent mở ví Phantom trên máy!
