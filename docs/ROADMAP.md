@@ -7,7 +7,9 @@ Ngày lập: **17/11/2026**, múi giờ Asia/Ho_Chi_Minh. Hackathon: **27–29/1
 
 File này là **lịch trình và đề bài**, không phải giáo trình. Giáo viên chỉ ghi: phase làm gì, *cần học gì* (chỉ liệt kê), phải nộp gì, thế nào là xong, ai chủ trì. Nội dung học do học sinh tự tìm và tự viết vào `docs/learning/`.
 
-> Mọi agent: đọc file này trước khi nhận việc để biết **đang ở phase nào** và phần việc của mình. Trạng thái nằm ở mục 5 cuối file.
+> Mọi agent: đọc file này trước khi nhận việc để biết **đang ở phase nào** và phần việc của mình. Trạng thái nằm ở mục cuối file.
+
+> **Vai trò từ 17/11/2026:** Codex (C) là **trưởng nhóm, chủ trì mọi phase**. Antigravity (A) là **trợ lý của C** (crawl, gom bằng chứng, kiểm tra trên browser, UI từ Phase 5), nhận việc qua `docs/tasks/A-queue.md`. Ở các bảng dưới, phần ghi "A" nghĩa là việc C nên giao cho A qua hàng đợi; C chịu trách nhiệm kết quả. Nguyên nhân hai agent dừng giữa chừng và cách chặn: [`docs/STOP-CAUSES.md`](STOP-CAUSES.md).
 
 ---
 
@@ -85,10 +87,10 @@ Ngày là mốc **mềm**. Trễ thì cắt phạm vi, không dời ngày thi. H
 | Chặng | Việc | Chủ trì | Xong khi |
 | --- | --- | --- | --- |
 | **A** | Học cách chấm ý tưởng | C (015, 016), A (017, 018 + cập nhật 001) | Note có mục "Tiêu chí ứng viên", đã review chéo |
-| **B** | Bộ chấm chung + ngưỡng đạt | Mỗi bên soạn nháp; C gộp; A duyệt | `docs/ideas/RUBRIC.md` cả hai đồng ý, đã thử chấm dự án có thật |
+| **B** | Bộ chấm chung + ngưỡng đạt | C quyết (A góp nháp) | `docs/ideas/RUBRIC.md` đã thử chấm dự án có thật — **xong, v1.1** |
 | **C** | Học nơi tìm ý tưởng | C (019), A (020) | Note xong, review chéo |
-| **D** | Vòng lặp ý tưởng | Mỗi bên độc lập, rồi chấm chéo | Mỗi bên có ít nhất 3 ý tưởng vượt ngưỡng ở cả điểm tự chấm và điểm chấm chéo |
-| **E** | Danh sách cuối | A viết, C kiểm tra | `docs/ideas/SHORTLIST.md`, mở PR |
+| **D** | Vòng lặp ý tưởng | C (A crawl bằng chứng theo hàng đợi) | Ít nhất 3 ý tưởng vượt ngưỡng RUBRIC, mỗi điểm có bằng chứng; ý tưởng cũ của A được C chấm lại |
+| **E** | Danh sách cuối | C | `docs/ideas/SHORTLIST.md`, mở PR, hỏi người dùng |
 
 **Cần học ở chặng A:** tiêu chí chấm chính thức và cách giám khảo chấm thật (Solana, Colosseum, Superteam, Dev3pack và hackathon lớn khác); cách đánh giá độ khả thi và rủi ro kỹ thuật trong thời gian ngắn; khung thẩm định ý tưởng sản phẩm/startup và nghiên cứu học thuật về chấm ý tưởng; phép thử "có cần blockchain/Solana không"; thông tin chấm của Dev3pack.
 
@@ -236,7 +238,7 @@ Mỗi vòng ghi lại điểm và thay đổi. Ý tưởng sửa quá số vòng
 | Phase | Trạng thái | Ghi chú |
 | --- | --- | --- |
 | Nền (002–014) | xong | PR #1, REVIEW R01–R09 đã sửa |
-| 1 Ý tưởng & spec | đang làm | Prompt `prompts/02-codex-phase1.md`, `prompts/02-antigravity-phase1.md`; note 015–020 đã đặt chỗ |
+| 1 Ý tưởng & spec | đang làm · chặng D (C chủ trì) | Prompt `prompts/03-codex-lead.md`, `prompts/03-antigravity-assistant.md`; RUBRIC v1.1 xong; note 015–020 đã viết |
 | 2 Kiến trúc | chưa mở | |
 | 3 Môi trường | chờ mở | Cần người dùng đồng ý cài toolchain |
 | 4 Program | chưa mở | |

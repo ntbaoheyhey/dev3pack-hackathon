@@ -32,15 +32,34 @@ Khi làm task dài (Goal mode, nhiều bước), context có thể bị auto-com
 4. **Không bao giờ** ghi trạng thái "tạm dừng / paused" trong file bàn giao, trừ khi người dùng tự nói tạm dừng. Trạng thái hợp lệ: `đang làm`, `bị chặn (cần người dùng)`, `xong`.
 5. Trước khi context đầy (hoặc sau mỗi mục lớn): cập nhật `docs/HANDOFF.md` để lần compact sau đọc lại là làm tiếp được. Mẫu trống nằm tại [docs/HANDOFF-TEMPLATE.md](docs/HANDOFF-TEMPLATE.md); không ghi đè bàn giao hiện hành bằng mẫu.
 
-## Luật làm cặp: không bao giờ ngồi chờ agent kia
+## Luật làm cặp: Codex là trưởng, Antigravity là trợ lý (từ 17/11/2026)
 
-Codex và Antigravity chạy song song ở hai app khác nhau. **"Chờ Codex" hay "chờ Antigravity" không phải lý do để dừng.**
+**Codex (C) chủ trì mọi phase** và chịu trách nhiệm kết quả. **Antigravity (A) là trợ lý của C**: mạnh ở crawl web, thu thập dữ liệu, kiểm tra trên browser, và sau này làm UI. A làm việc theo hàng đợi do C giao.
 
-1. **Tự đánh thức là bắt buộc.** Đầu mỗi phiên dài: tạo tác vụ lặp mỗi 15 phút nhắn vào chính chat của mình (Codex: Automations; Antigravity: tác vụ lên lịch). Kiểm tra tác vụ đã thật sự xuất hiện. Không tạo được thì báo người dùng ngay trong câu trả lời đầu tiên. Chỉ hủy ở điểm dừng cuối của prompt.
-2. **Kiểm tra trước khi nói "thiếu".** Trước khi kết luận file của agent kia chưa có: `git fetch origin` rồi xem `origin/work` (`git log origin/work`, `git ls-tree -r --name-only origin/work`). Nhiều lần "chờ" thật ra file đã có từ trước.
-3. **Thiếu thật thì làm việc khác.** Làm việc tiếp theo không phụ thuộc, hoặc việc "đi trước": nghiên cứu cho chặng sau, mở rộng dữ liệu hiệu chỉnh, tự review và nâng chất lượng note của mình. Lần tự đánh thức sau kiểm tra lại.
-4. **Review không chặn.** Chủ một file tự quyết và đi tiếp. Góp ý của agent kia được đưa vào ở lần sửa kế tiếp; không có bước "chờ đồng ý" giữa hai agent. Chỗ bất đồng lớn: ghi vào mục "Để người dùng quyết" trong file đó và đi tiếp.
-5. **Chỉ người dùng mới chặn được việc.** Trạng thái hợp lệ trong HANDOFF: `đang làm`, `bị chặn (cần người dùng)`, `xong`. Không ghi "chờ agent kia".
+- **Hàng đợi việc:** `docs/tasks/A-queue.md` (chủ file: C) — C ghi việc cho A: mục tiêu, cần thu thập gì, file kết quả, thế nào là xong. `docs/tasks/A-done.md` (chủ file: A) — A ghi trạng thái và kết quả.
+- **C phải luôn nhớ có trợ lý.** Việc crawl, gom nguồn, tìm bằng chứng, thử trên browser, dựng UI: giao A qua hàng đợi thay vì tự làm hết. C đọc `A-done.md` mỗi lần tự nhắc và dùng kết quả. **C không bao giờ chờ A**: giao việc xong thì làm tiếp phần của mình.
+- **A chỉ làm việc trong hàng đợi.** Mỗi lần tự nhắc: `git fetch` + pull, đọc `A-queue.md`, làm việc `mới` đầu tiên chưa có trong `A-done.md`, ghi kết quả, push. Hàng đợi trống thì ghi một dòng "hết việc, chờ C giao" vào HANDOFF của A và kết thúc lượt; lần tự nhắc sau kiểm tra lại. A không tự mở việc mới, không tự tuyên bố xong phase.
+
+### Chống dừng giữa chừng
+
+Mọi lần dừng sai được ghi ở [`docs/STOP-CAUSES.md`](docs/STOP-CAUSES.md); gặp nguyên nhân mới thì thêm dòng.
+
+1. **Tin nhắn tự nhắc 15 phút phải có thật** trước khi bắt đầu việc dài (Codex: Automations; Antigravity: tác vụ lên lịch). Agent không tạo được thì báo người dùng ngay để người dùng tạo; không tự kết luận "không cần".
+2. **Chỉ người dùng mới chặn được C.** Trạng thái hợp lệ trong HANDOFF: `đang làm`, `bị chặn (cần người dùng)`, `xong`.
+3. **`git fetch origin` trước khi nói thiếu file**; xem `origin/work`.
+4. **Không kết lượt bằng tóm tắt khi còn việc.** Không viết "tôi đang chờ…", "bạn không cần làm gì" rồi dừng. Không tự gắn nhãn hoàn thành (`GOAL_COMPLETE`…) khi cổng ra của phase chưa được C và giáo viên chấm.
+5. **Xung đột git ở README/DEVLOG**: giữ cả hai bên, commit, đi tiếp. Không abort rồi đứng.
+6. **Điểm phải có bằng chứng**: chấm theo RUBRIC thì mỗi điểm trỏ tới nguồn; không chấm cho vừa đủ qua ngưỡng.
+
+## Chống quên context
+
+Context có thể bị compact bất cứ lúc nào. Thứ gì không nằm trong repo thì coi như sẽ quên.
+
+1. **Đọc trước tiên, mỗi lần bắt đầu, sau compact và mỗi lần tự nhắc** (theo thứ tự): **Thẻ nhớ** ở đầu HANDOFF của mình (`docs/HANDOFF.md` cho Codex, `docs/HANDOFF-antigravity.md` cho Antigravity) → `AGENTS.md` mục "Luật làm cặp", "Chống dừng giữa chừng" → `docs/ROADMAP.md` phần phase hiện tại → hàng đợi `docs/tasks/`.
+2. **Thẻ nhớ** là khối đầu tiên của HANDOFF, tối đa ~20 dòng, luôn đúng hiện tại: vai của mình; mục tiêu đang làm; phase/chặng; quyết định đã chốt (của người dùng và của trưởng nhóm); file mình sở hữu; bước tiếp theo cụ thể; điều cấm làm. Cập nhật **sau mỗi bước lớn**, không chỉ cuối phiên.
+3. **HANDOFF ngắn.** Phần hiện hành để trên cùng; lịch sử cũ chuyển sang `docs/archive/` thay vì để dồn trong HANDOFF. HANDOFF dài làm agent đọc sai phần lịch sử thành việc hiện tại.
+4. **Quyết định ghi vào file, không chỉ trong chat**: lựa chọn của người dùng vào `docs/ideas/DECISION.md` (hoặc file quyết định của phase); quyết định kỹ thuật vào note hoặc ARCHITECTURE.
+5. Sau compact, nếu Thẻ nhớ mâu thuẫn với điều mình "nhớ", **tin Thẻ nhớ và repo**. Phát hiện mình đã quên điều gì thì thêm một dòng vào `docs/STOP-CAUSES.md`.
 
 ## Luật an toàn (bắt buộc)
 
@@ -58,18 +77,18 @@ Codex và Antigravity chạy song song ở hai app khác nhau. **"Chờ Codex" h
 
 Chi tiết và lý do: `docs/learning/000-ai-tools-codex-vs-antigravity.md`.
 
-| Việc | Agent chính |
+| Việc | Agent |
 |---|---|
-| Solana program (Rust/Anchor), account model, PDA, bảo mật | **Codex** |
-| Review code / audit bảo mật, debug lỗi khó, test | **Codex** |
-| Frontend (Next.js/React), UI, wallet connect, trang demo | **Antigravity** |
-| Prototype nhanh, thử nhiều ý tưởng, kiểm tra trên browser | **Antigravity** |
-| Viết note học, README, script demo video | Cả hai (agent nào làm phần nào thì ghi phần đó) |
+| Chủ trì mọi phase, quyết định, chấm, viết tài liệu chính | **Codex** |
+| Solana program (Rust/Anchor), account model, PDA, bảo mật, test | **Codex** |
+| Crawl web, gom nguồn, thu thập bằng chứng, kiểm tra trên browser | **Antigravity**, theo việc Codex giao |
+| Frontend, UI, wallet connect, trang demo (từ Phase 5) | **Antigravity**, theo việc Codex giao; Codex review |
 
 Khi một agent sửa vùng của agent kia: ghi rõ trong DEVLOG để agent kia đọc lại.
 
 ## Nếu bạn là Codex
 
-- Bạn là "kỹ sư backend + reviewer": phụ trách `programs/` (Anchor) và review mọi thay đổi chạm vào tiền/quyền.
+- Bạn là **trưởng nhóm** kiêm kỹ sư backend và reviewer: chủ trì mọi phase, phụ trách `programs/` (Anchor), review mọi thay đổi chạm vào tiền/quyền.
+- Bạn có **trợ lý Antigravity**: giao việc crawl/thu thập/UI qua `docs/tasks/A-queue.md`, đọc kết quả ở `docs/tasks/A-done.md`. Không chờ trợ lý.
 - Dùng reasoning cao (Extra High / Max) cho thiết kế program, bảo mật, debug khó. Việc lặt vặt hạ xuống Medium để tiết kiệm quota.
 - Trước khi sửa frontend do Antigravity viết: đọc DEVLOG mới nhất.
