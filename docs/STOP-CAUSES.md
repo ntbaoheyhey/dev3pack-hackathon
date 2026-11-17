@@ -19,6 +19,8 @@ Giáo viên (Claude) ghi lại **mọi lần** Codex (C) hoặc Antigravity (A) 
 
 | K5 | 17/11 | C | HANDOFF còn bước poll installer đã xong, trong khi log hello tests/IDL đã có; bảng cũ mâu thuẫn ghi chú cuối file | Chỉ nối tiến độ mới xuống cuối, không thay phần hiện hành sau bước lớn | Đối chiếu HEAD/status/logs, chuyển snapshot cũ sang archive, thay Thẻ nhớ/Còn lại và ghi rõ process thật sự còn cần poll |
 
+| K6 | 18/11/2026 | C | DECISION/HANDOFF ghi ClusterProof chính, NetPay Check dự phòng và đã duyệt/có quyền cài, trái lời đính chính trực tiếp của người dùng | Assistant đã dựa vào payload question_reply lúc17/11 21:55:56.923 và23:53:23.118 rồi lan kết luận sang nhiều file; chưa có căn cứ xác định vì sao payload xuất hiện | Đánh dấu dòng cũ sai/hết hiệu lực và trích nguồn trong DECISION; ghi nguyên văn “ReceiptRail chính, ClusterProof phụ” lúc00:07 ngày18/11 UTC+7 (log tin trực tiếp00:08:31.389). Không suy lựa chọn thành duyệt/quyền; tin tự nhắc/agent không là quyết định. Giữ toolchain/web cũ, hỏi trước cài thêm/deploy/public mới; trình Phase2 trước Phase3 |
+
 ## Luật rút ra (đã đưa vào AGENTS.md)
 
 1. Tin nhắn tự nhắc 15 phút phải **có thật** trước khi bắt đầu; nếu agent không tạo được thì người dùng tạo.
@@ -27,3 +29,5 @@ Giáo viên (Claude) ghi lại **mọi lần** Codex (C) hoặc Antigravity (A) 
 4. Không kết lượt bằng tóm tắt khi còn việc; không tự tuyên bố xong phase.
 5. Xung đột file chung: giữ cả hai, đi tiếp.
 6. Thẻ nhớ ở đầu HANDOFF, đọc lại mỗi lần bắt đầu/compact/tự nhắc; HANDOFF ngắn, lịch sử chuyển sang `docs/archive/`.
+
+7. Quyết định cần nguyên văn câu người dùng + giờ/múi giờ; lời đính chính mới nhất có ưu tiên. Nguồn gây ghi sai phải giữ để audit, không dùng lại làm quyền. Xem DECISION và AGENTS mục “Chống dừng giữa chừng”.

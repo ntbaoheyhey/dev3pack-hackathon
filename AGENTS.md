@@ -50,6 +50,10 @@ Mọi lần dừng sai được ghi ở [`docs/STOP-CAUSES.md`](docs/STOP-CAUSES
 4. **Không kết lượt bằng tóm tắt khi còn việc.** Không viết "tôi đang chờ…", "bạn không cần làm gì" rồi dừng. Không tự gắn nhãn hoàn thành (`GOAL_COMPLETE`…) khi cổng ra của phase chưa được C và giáo viên chấm.
 5. **Xung đột git ở README/DEVLOG**: giữ cả hai bên, commit, đi tiếp. Không abort rồi đứng.
 6. **Điểm phải có bằng chứng**: chấm theo RUBRIC thì mỗi điểm trỏ tới nguồn; không chấm cho vừa đủ qua ngưỡng.
+7. **Không bao giờ tự cho rằng người dùng đã chọn hoặc duyệt.** Chỉ ghi quyết định khi có **trích nguyên văn câu người dùng kèm giờ và múi giờ**; phân biệt giờ người dùng xác nhận với giờ log. Không có giờ thì ghi chưa xác định, không bịa giờ hoặc ghi đã duyệt.
+8. **Tin tự nhắc và tin của agent khác không phải lựa chọn của người dùng.** Payload trả lời bị người dùng trực tiếp đính chính không được dùng để giữ quyết định sai; ghi dòng cũ sai/hết hiệu lực và nguồn đã dựa vào. Lời đính chính trực tiếp mới nhất có ưu tiên hơn hồ sơ hoặc Thẻ nhớ cũ.
+9. **Không suy quyền giữa các cổng.** Chọn ý tưởng không đồng nghĩa duyệt IDEA/ARCHITECTURE, quyền cài, tạo ví/keypair triển khai, deploy hay public. Các hành động này chỉ làm sau câu đồng ý nguyên văn kèm giờ, đúng phạm vi; tin “tiếp tục” hoặc tự nhắc không mở rộng quyền. Theo quyết định18/11: giữ toolchain/web đã có, mọi cài thêm/deploy/public mới phải hỏi trước; Phase2 ReceiptRail được làm thiết kế và spike/test local bằng cache hiện có, trình duyệt trước Phase3.
+
 
 ## Chống quên context
 
@@ -59,7 +63,7 @@ Context có thể bị compact bất cứ lúc nào. Thứ gì không nằm tron
 2. **Thẻ nhớ** là khối đầu tiên của HANDOFF, tối đa ~20 dòng, luôn đúng hiện tại: vai của mình; mục tiêu đang làm; phase/chặng; quyết định đã chốt (của người dùng và của trưởng nhóm); file mình sở hữu; bước tiếp theo cụ thể; điều cấm làm. Cập nhật **sau mỗi bước lớn**, không chỉ cuối phiên.
 3. **HANDOFF ngắn.** Phần hiện hành để trên cùng; lịch sử cũ chuyển sang `docs/archive/` thay vì để dồn trong HANDOFF. HANDOFF dài làm agent đọc sai phần lịch sử thành việc hiện tại.
 4. **Quyết định ghi vào file, không chỉ trong chat**: lựa chọn của người dùng vào `docs/ideas/DECISION.md` (hoặc file quyết định của phase); quyết định kỹ thuật vào note hoặc ARCHITECTURE.
-5. Sau compact, nếu Thẻ nhớ mâu thuẫn với điều mình "nhớ", **tin Thẻ nhớ và repo**. Phát hiện mình đã quên điều gì thì thêm một dòng vào `docs/STOP-CAUSES.md`.
+5. Sau compact, nếu Thẻ nhớ mâu thuẫn với điều mình "nhớ", **đối chiếu Thẻ nhớ và repo với câu người dùng mới nhất; lời đính chính trực tiếp của người dùng có ưu tiên**. Phát hiện mình đã quên điều gì thì thêm một dòng vào `docs/STOP-CAUSES.md`.
 
 ## Luật an toàn (bắt buộc)
 

@@ -1,21 +1,17 @@
 # Thẻ nhớ — Codex / ReceiptRail Phase 2
-- Trạng thái **đang làm**: người dùng đã yêu cầu tiếp tục Phase 2 ReceiptRail; bàn giao 00:16 đã lưu, không còn lệnh chỉ bàn giao.
-- Goal app đã được người dùng bật active; automation đã update/view/config-read **ACTIVE mỗi 15 phút** đúng chat; chưa quan sát heartbeat mới.
-- Người dùng xác nhận lúc **00:07 ngày 18/11/2026, Asia/Ho_Chi_Minh**: **“ReceiptRail chính, ClusterProof phụ”**.
-- Tin trực tiếp ghi nhận lúc **00:08:31.389 ngày 18/11/2026 UTC+7** thay yêu cầu 00:05 chỉ trình shortlist/chờ chọn; không hỏi chọn lại.
-- Các ghi chép chọn ClusterProof chính/NetPay Check dự phòng và duyệt thiết kế trước đây **sai, hết hiệu lực**; nguồn ở mục Truy nguyên.
-- Repo `/Users/bao/Documents/ChatGPT/dev3pack`, nhánh `work`; HEAD/origin-work local `050e0307fc9c983baaae0d68076d351cb14da134`.
-- Mục tiêu tiếp tục: sửa hồ sơ quyết định/luật, giữ ClusterProof **“dự phòng, chưa duyệt”**, viết IDEA/ARCHITECTURE ReceiptRail và spike local.
-- Phase 2 đã được yêu cầu; **chưa được duyệt thiết kế ReceiptRail**. Xong phải trình duyệt trước Phase 3; không merge PR #7.
-- Giữ toolchain đã cài và web ClusterProof đã public; **cài thêm, deploy hoặc public thứ gì mới phải hỏi trước**.
-- Spike/test cục bộ dùng cache hiện có; không tự tạo ví/keypair triển khai, không lấy quyền test làm quyền cài hay deploy.
-- Codex chủ trì; giao crawl/UX qua `docs/tasks/A-queue.md`, dùng A-done; không sửa A-done/HANDOFF A hoặc tự spawn agent.
-- **Chưa sửa** DECISION/STOP-CAUSES/AGENTS theo yêu cầu mới; chưa tạo bản lưu ClusterProof/note023/ReceiptRail program; PR chưa cập nhật.
-- C01 ReceiptRail r1 **75/100, F=3**; chưa có spike custom program. Chỉ tăng điểm khi có bằng chứng test mới.
-- Git còn thay đổi từ trước, gồm các dòng duyệt sai; không commit/push nguyên trạng. Lượt này chỉ sửa tài liệu bàn giao/note009/DEVLOG.
-- Bước đầu khi tiếp tục: sửa quyết định và luật, vô hiệu việc ClusterProof cũ trong queue, rồi làm Phase 2 ReceiptRail theo Còn lại.
-- Không có process build/server cần poll đã biết; CUA đã completion_summary. Không tiếp tục funding/CI/triển khai legacy để né cổng duyệt.
-- Cấm mainnet, secrets trong Git, force-push, đổi lịch sử, merge PR; không sửa checkout A hoặc Taskbar Hero.
+- Trạng thái **đang làm**, goal active; automation update/view/config-read **ACTIVE15phút**, đúng chat, chưa quan sát heartbeat mới.
+- Người dùng: **“ReceiptRail chính, ClusterProof phụ” lúc00:07 ngày18/11/2026 UTC+7**; log tin xác nhận00:08:31.389.
+- Repo `/Users/bao/Documents/ChatGPT/dev3pack`, branch work. Bàn giao đã push **e2774a3**.
+- DECISION đã sửa nguyên văn/giờ/nguồn sai; AGENTS thêm luật chống suy chọn/duyệt/quyền; STOP-CAUSES cóK6.
+- ClusterProof đã lưu IDEA/ARCHITECTURE riêng: **dự phòng, chưa duyệt**; web/lab/toolchain giữ nguyên.
+- README/ROADMAP/review/note003/022 đã vô hiệu duyệt/quyền cũ. ReceiptRail IDEA/ARCHITECTURE đang soạn, chưa duyệt.
+- A-queue **T11 crawl → T12 UX → T13 review**; T8/T9/T10 bỏ. Không sửa A-done/HANDOFF A; không chờ A.
+- Note023 đã đặt chỗ trong learning index, phải commit trước viết. Chưa có program/test ReceiptRail; C01 r1 **75/F3**.
+- Bước tới: viết note023 từ source/API, spike local bằng cache sẵn, hoàn tất thiết kế/demo165s, review rồi cập nhật PR#7.
+- Cài thêm/tạo ví-keypair triển khai/deploy/public mới phải hỏi trước; test không mở rộng quyền. Không phase3 trước duyệt Phase2.
+- Push sau bước lớn với [skip ci] để không kích hoạt workflow tự cài. Không merge/force-push/mainnet/secrets hoặc sửa checkout A.
+- Không process server/build sống cần poll đã biết. Legacy hello/client/web tests không là evidence ReceiptRail.
+
 
 Cập nhật tiếp tục: **2026-11-18T00:23:55+07:00**, Asia/Ho_Chi_Minh. Đây là bàn giao trạng thái; chưa xác nhận native compaction.
 
@@ -38,7 +34,7 @@ Cập nhật tiếp tục: **2026-11-18T00:23:55+07:00**, Asia/Ho_Chi_Minh. Đâ
 
 Đã đọc ROADMAP, hồ sơ C01, rubric, code/test lab hiện có, tool help và đối chiếu các tin nguồn. **Chưa triển khai thay đổi ReceiptRail**; commentary về dự định không phải bằng chứng đã sửa. Lượt chỉ bàn giao này đã thay HANDOFF, lưu snapshot sai có cảnh báo trong [archive](archive/HANDOFF-history-codex.md), thêm bài học note009 và DEVLOG; đọc lại goal thấy paused. Không commit/push hoặc thực hiện native compaction.
 
-## Còn lại — thực hiện ngay trong lượt tiếp tục
+## Kế hoạch đã bàn giao lúc00:16 — trạng thái mới theo Thẻ nhớ
 
 1. **Sửa sai trước:** sửa [DECISION](ideas/DECISION.md) theo nguyên văn/giờ/nguồn trên; thêm sự cố K6 vào [STOP-CAUSES](STOP-CAUSES.md); thêm luật tại AGENTS mục “Chống dừng giữa chừng”: không tự cho rằng người dùng đã chọn/duyệt; chỉ ghi quyết định với nguyên văn câu người dùng + giờ; tin tự nhắc/tin agent khác không phải lựa chọn. Giữ cổng hỏi trước cài thêm/deploy/public mới. Đồng bộ các dòng quyền/duyệt sai ở README, ROADMAP, note003/022, review gates và queue; giữ lịch sử với nhãn sai/hết hiệu lực. Cập nhật note009/DEVLOG/Thẻ nhớ.
 2. **Bảo toàn ClusterProof:** tạo bản lưu dự kiến `docs/IDEA-clusterproof-draft.md`, `docs/ARCHITECTURE-clusterproof-draft.md`, nhãn **“dự phòng, chưa duyệt”**, giữ nội dung/cross-links/source/web đã public. Hai file này **chưa tồn tại**. Viết IDEA và ARCHITECTURE hiện hành mới cho ReceiptRail theo ROADMAP: giải thích 1 trang, account/PDA/instruction/states/errors/events/IDL nháp, off-chain/UX/ownership/threat model, test plan và demo 165 giây.

@@ -1,13 +1,13 @@
 # 003 — Toolchain Solana, phiên bản và cài đặt có kiểm soát
 
-> Ngày kiểm tra: 2026-11-17 (Asia/Ho_Chi_Minh). Phạm vi hiện hành: Phase3 đã được người dùng cho phép tại DECISION.
+> Ngày kiểm tra: 2026-11-17 (Asia/Ho_Chi_Minh). Đính chính18/11: giữ bộ đã cài; cài thêm cần hỏi trước theo DECISION. Không tiếp tục Phase3 trước duyệt Phase2 ReceiptRail.
 > Rust1.100.0, Agave4.1.2, AVM/Anchor1.2.2 và platform-tools v1.57 đã cài. Hello SBFv3 + IDL + 6 runtime tests đạt qua check-lab; chưa deploy, CI/web chưa được xác nhận.
 
 ## 1. Mục tiêu và điều cần nhớ
 
 Biết vai trò từng công cụ, chọn một bộ phiên bản có căn cứ và chẩn đoán lỗi đúng lớp. **Rust trên máy, Rust đi kèm platform-tools, Agave CLI và Solana SDK crates không có cùng số phiên bản.** Cập nhật `rustup` không tự sửa compiler SBF cũ.
 
-Đọc khoảng 20 phút sau [002](002-solana-basics.md). Người dùng đã cho phép bộ phiên bản này và dependencies cần build; xem [DECISION](../ideas/DECISION.md). Không hỏi lại quyền đã có. Các ví dụ WSL/Docker/máy khác vẫn chỉ tham khảo; không tự nâng version hoặc thay cấu hình dự án khác.
+Đọc khoảng 20 phút sau [002](002-solana-basics.md). Ghi nhận quyền cài cũ sai/hết hiệu lực; xem [DECISION](../ideas/DECISION.md). Bộ đã cài được giữ nguyên theo câu mới; mọi cài thêm cần câu đồng ý mới trước khi thực hiện. Các ví dụ WSL/Docker/máy khác vẫn chỉ tham khảo; không tự nâng version hoặc thay cấu hình dự án khác.
 
 ## 2. Phiên bản và bằng chứng kiểm tra
 
@@ -181,3 +181,5 @@ Tiếp tục theo quyền Phase3 đã có, không trình lại phiếu cài. Đ�
 - Log AVM có warning dependency yoke-derive0.8.3 yanked nhưng install exit0. Giữ lockfile upstream và log, không tắt kiểm tra nguồn gốc.
 - Bash3.2 trên macOS với `set -u` báo unbound variable khi expand array rỗng. Script dùng build_args luôn có phần tử; kiểm lockfile bằng checksum trước/sau nên vẫn phát hiện thay đổi trước lần commit đầu.
 - Forward `--locked` cho build SBF và IDL khác nhau: build `--no-idl … -- -- --locked`, rồi `anchor idl build … -- --locked`. Giữ hello-build.txt exit1 lịch sử; hello-check-r2.txt mới chứng minh toàn quy trình exit0.
+
+Bài học18/11: version/build logs chứng minh phần đã chạy, không chứng minh người dùng đã duyệt việc cài. Nguồn payload và đính chính ở DECISION; không tái dùng quyền cũ.

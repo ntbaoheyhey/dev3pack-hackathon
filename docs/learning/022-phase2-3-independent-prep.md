@@ -1,6 +1,6 @@
 # 022 — Chuẩn bị Phase 2/3: interface, test và môi trường
 
-> Codex · 17/11/2026 · trước sự kiện. Đặt chỗ tại commit `1aa322a` trước khi viết. Ban đầu chuẩn bị độc lập ở chặng E; người dùng đã chọn ClusterProof chính/NetPay Check dự phòng và đồng ý cài toolchain, xem DECISION. **Cập nhật: hello/client/web đã build/test local, web đã public; devnet deploy và CI xanh còn mở.** Phần kế hoạch product không tự trở thành tính năng đã triển khai.
+> Codex · 17/11/2026 · trước sự kiện. Đặt chỗ tại commit `1aa322a` trước khi viết. Ban đầu chuẩn bị độc lập ở chặng E; kết luận cũ về chọn ClusterProof/quyền cài sai, đã đính chính tại DECISION. ReceiptRail chính, ClusterProof phụ; tài liệu này giữ kiến thức/lịch sử ClusterProof, không mở Phase3. **Cập nhật: hello/client/web đã build/test local, web đã public; devnet deploy và CI xanh còn mở.** Phần kế hoạch product không tự trở thành tính năng đã triển khai.
 
 ## 1. Mục tiêu và điều cần nhớ
 
@@ -63,7 +63,7 @@ Research suite 16 tests đã có nhưng chưa thay các test product/UI/runtime 
 
 Thứ tự: kiểm PATH/OS/Xcode và dung lượng → tải installer chính thức ra file tạm/đọc → Rust host1.100.0 → Agave4.1.2 → AVM/Anchor1.2.2 → build tools v1.57/SBPFv3 → kiểm version + build/test hello. Cài dưới user directories, không sửa checkout Antigravity/Taskbar Hero; không nâng Node/pnpm sẵn có chỉ vì template latest. Lệnh tham khảo và URL ở note003; khi source/version hiện hành khác phải ghi lại và xử lý, không ngầm đổi bộ.
 
-Rust dùng ~/.cargo và ~/.rustup; Agave theo user install active_release; PATH chỉ thêm đúng binary của task. Installer có thể cần network/download dependencies đã được cho phép. Nếu thiếu system privilege/đăng nhập hoặc toolchain yêu cầu thao tác ngoài quyền cài đã có thì ghi blocker cụ thể. Không tự bypass prompt quản trị.
+Rust dùng ~/.cargo và ~/.rustup; Agave theo user install active_release; PATH chỉ thêm đúng binary của task. Mọi cài thêm/download dependency hiện phải hỏi trước theo DECISION18/11; phần installer là lịch sử, không được chạy lại. Nếu thiếu cache cho spike local thì ghi gói/phiên bản cần thiết. Không tự bypass prompt quản trị.
 
 Sau build: lưu OS/arch/version thực, source/lockfile và log. Keypair phát sinh khi scaffold/build không được Git-track; signer dành riêng devnet giữ ngoài source, không in secret, không lấy ví tài sản thật. Scope vận hành devnet/hosting theo Prompt03; chỗ cần tài khoản người dùng phải báo đúng nhu cầu, không giả deploy thành công.
 
@@ -81,7 +81,7 @@ Sau build: lưu OS/arch/version thực, source/lockfile và log. Keypair phát s
 
 ## 7. Giới hạn và bước tiếp theo
 
-Phần kế hoạch bên trên được viết trước setup. Cập nhật 17/11: toolchain/check-lab r2 đạt (SBFv3/IDL/6 runtime tests), client8/web8 tests đạt, web đã public. Workflow đã viết nhưng CI bị billing chặn; payer0SOL nên chưa deploy program hoặc gửi transaction devnet. IDEA/ARCHITECTURE còn cần review/duyệt; chỉ cập nhật cổng ra bằng logs/link/transaction thật và review cần thiết.
+Phần kế hoạch bên trên được viết trước setup. Cập nhật 17/11: toolchain/check-lab r2 đạt (SBFv3/IDL/6 runtime tests), client8/web8 tests đạt, web đã public. Workflow đã viết nhưng CI bị billing chặn; payer0SOL nên chưa deploy program hoặc gửi transaction devnet. Ghi nhận duyệt trước đây sai/hết hiệu lực; ClusterProof là dự phòng, chưa duyệt. Chỉ cập nhật cổng ra bằng logs/link/transaction thật và review cần thiết.
 
 ### Bài học / lỗi đã gặp
 
@@ -114,3 +114,9 @@ Peer graph thực phát hiện TypeScript7.0.2 trái peer `^5.0.0` của Kit5. �
 - Core baseline chỉ đọc account metadata ở confirmed; product design yêu cầu paired ProgramData ở finalized, manifest diff/replay/export còn Phase4–6. Connect ví không đổi network của extension; lab không sign/send. Static host cần dist/lab/index.html cho deep link, không chỉ kiểm nút điều hướng từ trang chủ.
 
 Bài học: chỉ sửa phiên bản bị peer conflict sau đọc dependency graph; giữ bằng chứng fail và pass riêng. Kiểm endpoint công khai thật vì local build không chứng minh static route/CORS. Wallet fixture giúp kiểm recovery nhưng không đóng cổng compatibility của ví thật. Chi tiết và screenshots ở [web.md](../evidence/phase3/web.md).
+
+### Bổ sung từ Chrome native và duyệt người dùng — 17/11/2026
+
+Core được Wallet Standard nhận diện ở public /lab/; request mở cửa sổ Core nhưng yêu cầu mật khẩu. Sau request không thành công, UI trở về chưa kết nối và cho thử lại. Không xác định nguyên nhân kết thúc request nên không gọi explicit reject đã đạt. Người dùng chưa có ví devnet sẵn sàng, giữ connect/disconnect thật chưa kiểm; không dùng fixture hoặc discovery để gọi compatibility end-to-end. [Evidence](../evidence/phase3/web-native-core.md).
+
+Bài học: mỗi cổng cần bằng chứng đúng phạm vi. Kết luận duyệt cũ sai/hết hiệu lực theo DECISION18/11; chỉ ghi quyết định từ nguyên văn/giờ và không suy sang cổng khác. Inspect16:55:40Z/slot523335879 vẫn payer0lamports và chưa deploy, đã lưu artifact; không cần chạy lại build/tests khi source không đổi.

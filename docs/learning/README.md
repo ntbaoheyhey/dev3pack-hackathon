@@ -54,6 +54,8 @@ Tiến độ và bước tiếp tục sau compact nằm trong [docs/HANDOFF.md](
 
 | [022 — Chuẩn bị độc lập Phase 2/3](022-phase2-3-independent-prep.md) | Contract/harness, toolchain/client, React/Vite/Wallet Standard và hosting | Codex — hello6/client8/web8 tests đạt local; web public/build/browser đã có evidence; CI billing/devnet funding và review còn mở |
 
+| 023 — ReceiptRail Phase2 và spike Anchor local (đặt chỗ) | Account/PDA, payment atomicity, build offline không signer triển khai và LiteSVM | Codex — đặt chỗ trước khi viết note; chưa có spike |
+
 ## Bài học / lỗi đã gặp
 
 Đã chọn nhầm workspace khi bắt đầu nghiên cứu. Trước task tiếp theo, đối chiếu đường dẫn, remote, AGENTS.md và mục lục. Quyết định cuối cùng của người dùng là **giữ nguyên Taskbar Hero**, không chuyển nhánh, stash, revert, xóa hoặc reset. Việc chuyển tài liệu đã hoàn tất; nhánh `codex/solana-learning-notes` ở nguồn được giữ làm bản lưu. Đã đối chiếu đủ phần Antigravity: 005, 006, 008, 009, 012, 013, 014 và các cập nhật README/DEVLOG đều có trong bản chuyển `f9052dc`. Lần chuyển không cài công cụ hoặc chạy lại lab. REVIEW giữ snapshot nguồn dưới nhãn lịch sử và bổ sung kết quả sửa hiện hành; không trộn số lượng file/link hoặc bằng chứng giữa các lần kiểm tra.

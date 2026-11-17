@@ -238,9 +238,9 @@ Mỗi vòng ghi lại điểm và thay đổi. Ý tưởng sửa quá số vòng
 | Phase | Trạng thái | Ghi chú |
 | --- | --- | --- |
 | Nền (002–014) | xong | PR #1, REVIEW R01–R09 đã sửa |
-| 1 Ý tưởng & spec | đang làm · chặng E | RUBRIC v1.2; C02/C03/C01 PLAN79/77/75, PR#7; người dùng chọn ClusterProof chính/NetPay Check dự phòng; IDEA chờ duyệt |
-| 2 Kiến trúc | đang làm | ARCHITECTURE v0.3 đã chốt React/Vite static và tách baseline/MVP; còn review/giáo viên chấm/người dùng đồng ý |
-| 3 Môi trường | đang làm · đã được phép | Toolchain/SBF/IDL/6 runtime + 8 client tests đạt; web public, 8 web tests/build/browser đạt; còn CI xanh (billing), devnet tx (funding) và ví extension thật |
+| 1 Ý tưởng & spec | đã chọn hướng · chưa duyệt IDEA ReceiptRail | Nguyên văn “ReceiptRail chính, ClusterProof phụ” lúc00:07 ngày18/11 UTC+7; ghi nhận duyệt cũ sai/hết hiệu lực, xem DECISION |
+| 2 Kiến trúc | đang làm ReceiptRail · chưa duyệt | Thiết kế và spike local được yêu cầu; review chéo/giáo viên/người dùng là cổng riêng, trình trước Phase3 |
+| 3 Môi trường | giữ phần cũ · không làm thêm | Giữ toolchain/web ClusterProof đã có; mọi cài thêm/deploy/public mới hỏi trước; CI/devnet còn chưa đạt, không tiếp tục lúc này |
 | 4 Program | chưa mở | |
 | 5 Frontend | chưa mở | |
 | 6 Tích hợp | chưa mở | |
