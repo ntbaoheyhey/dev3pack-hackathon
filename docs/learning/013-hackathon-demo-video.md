@@ -1,18 +1,18 @@
 # 013 — Kịch Bản Video Demo Dưới 3 Phút: Công Thức Thuyết Phục Giám Khảo
 
 > Ngày kiểm tra: 2026-11-17 (Asia/Ho_Chi_Minh). Phạm vi: nghệ thuật làm video pitch, cấu trúc thời gian và template kịch bản mẫu.
-> Trạng thái: đã đối chiếu các video demo đoạt giải quán quân tại Colosseum và Solana Hackathons; đúc kết thành bộ khung chuẩn mực.
+> Trạng thái: thể lệ đã đối chiếu bằng browser với [Dev3pack trang chủ](https://hack.dev3pack.xyz) và [FAQ](https://hack.dev3pack.xyz/faq) ngày **17/11/2026**; cấu trúc quay là đề xuất của repo, chưa sản xuất video.
 
 ---
 
 ## 1. Mục tiêu và điều cần nhớ
 
 Sau bài học này, bạn có thể:
-1. Hiểu vì sao video demo dưới 3 phút là yếu tố quyết định 60% ấn tượng ban đầu của Ban giám khảo.
+1. Tuân thủ giới hạn dưới 3 phút và trình bày sản phẩm thật theo FAQ Dev3pack; không có nguồn cho tỷ lệ quyết định ấn tượng.
 2. Nắm vững cấu trúc thời gian "bất di bất dịch": **Hook (20s) &rarr; Vấn đề/Giải pháp (30s) &rarr; Demo thật (75s) &rarr; Điểm Solana sâu (30s) &rarr; Kết luận (25s)**.
 3. Chọn lựa và sử dụng đúng các công cụ quay dựng nhanh (Screen Studio, Loom, CapCut).
 4. Nhận biết và triệt tiêu 5 lỗi "tử huyệt" khiến video bị loại sớm.
-5. Sử dụng ngay **Template kịch bản mẫu điền sẵn chỗ trống** (kèm lời thoại tiếng Anh chuyên nghiệp) để sản xuất video trong vòng 1–2 giờ.
+5. Sử dụng ngay **Template kịch bản mẫu điền sẵn chỗ trống** (kèm lời thoại tiếng Anh chuyên nghiệp) ; thời gian sản xuất chưa kiểm chứng vì chưa quay thử.
 
 Thời lượng đọc: khoảng 15 phút.
 
@@ -22,23 +22,20 @@ Thời lượng đọc: khoảng 15 phút.
 
 | Thành phần | Tiêu chuẩn / Phiên bản | Mức kiểm chứng |
 | --- | --- | --- |
-| **Thời lượng tối đa** | **< 3:00 phút (nghiêm ngặt)** | Quy định chuẩn của Colosseum và các giải Solana toàn cầu |
-| **Độ phân giải & Tỷ lệ** | **1080p (1920x1080), 60fps, 16:9** | Đảm bảo hiển thị sắc nét chữ và số dư trên ví |
-| **Định dạng & Nền tảng** | **YouTube (Unlisted/Public) hoặc Loom** | Nền tảng hỗ trợ phát mượt mà không bắt tải file |
-| **Công cụ quay dựng** | Screen Studio 2.x, OBS Studio 30.x, CapCut 4.x | Bộ ba công cụ tối ưu cho sản xuất video nhanh |
+| **Thời lượng tối đa** | **< 3:00 phút (nghiêm ngặt)** | [FAQ Dev3pack](https://hack.dev3pack.xyz/faq): quá 3 phút bị loại khỏi giải |
+| **Độ phân giải & Tỷ lệ** | 1080p, 16:9 là đề xuất quay | BTC không công bố bắt buộc 60fps; ưu tiên chữ đọc được |
+| **Nền tảng và ngôn ngữ** | YouTube, Loom hoặc link công khai; ngôn ngữ nào cũng được | Theo FAQ; phụ đề tiếng Anh là tùy chọn hỗ trợ |
+| **Công cụ quay dựng** | Dùng công cụ đội đã có | Chưa kiểm chứng version/license/hiệu quả; không bắt buộc mua hay cài thêm |
 
 ---
 
 ## 3. Kiến thức chính
 
-### 3.1. Tâm lý giám khảo: Họ xem video của bạn như thế nào?
+### 3.1. Demo thật và điều kiện xét giải
 
-Một giám khảo hackathon thường phải chấm từ 30 đến 50 dự án trong vòng vài ngày. Họ mệt mỏi, thiếu ngủ và bị "bão hòa thông tin".
-- Nếu video mở đầu bằng slide chữ lê thê, họ sẽ tua nhanh hoặc tắt sau 20 giây.
-- Nếu video dài quá 3 phút, nhiều giám khảo sẽ tự động dừng xem ở mốc 3:00 và trừ điểm kỷ luật thời gian.
-- **Quy tắc vàng**: Video của bạn phải khiến giám khảo tỉnh ngủ ngay từ 10 giây đầu tiên, chứng minh sản phẩm hoạt động thật và nêu bật lý do dự án này bắt buộc phải xây dựng trên Solana.
+Theo [FAQ](https://hack.dev3pack.xyz/faq), video phải cho thấy sản phẩm hoạt động, không dùng pitch deck thay demo. **Quá 3 phút bị loại khỏi giải**, không chỉ bị trừ điểm. Giám khảo dùng Product/Technical rubric hai vòng: lọc top 100 rồi xem code, founder-market fit và live demo. Không công bố trọng số.
 
----
+Mọi dự án mặc định vào track Solana; partner tracks còn chờ công bố trước kickoff. Chưa có track DePIN/AI Agent hoặc bounty riêng của sponsor. Chỉ minh họa SDK có vai trò thật trong sản phẩm, không hứa điểm/giải từ số SDK. Điều kiện nộp và năm bước form xem [001](001-hackathon-rules.md), [012](012-winning-solana-hackathons.md).
 
 ### 3.2. Cấu trúc kịch bản chuẩn 3 phút (The 3-Minute Formula)
 
@@ -71,7 +68,7 @@ flowchart LR
 - **Lưu ý**: Hãy chuẩn bị sẵn một kịch bản quay thành công (Happy Path). Nếu mạng Devnet chập chờn, hãy dùng bản ghi hình dự phòng mượt mà đã quay trước đó.
 
 #### Phân đoạn 4: Solana & Sponsor Depth (2:05 – 2:35) — 30 giây
-- **Mục tiêu**: Giành trọn điểm ở tiêu chí "Độ sâu công nghệ" và "Bounty nhà tài trợ".
+- **Mục tiêu**: Cho thấy vai trò thật của Solana/SDK; không cam kết điểm hay bounty chưa công bố.
 - **Hành động hình ảnh**: Chuyển tab sang màn hình Solana Explorer và backend dashboard.
 - **Lời thoại mẫu**: *"Để đạt được điều này, chúng tôi đã xây dựng smart contract bằng Anchor trên Solana Devnet. Đây là transaction vừa hoàn thành: sử dụng PDA để quản lý trạng thái phi tập trung và Token-2022 Transfer Fee để chia sẻ doanh thu tự động. Đồng thời, chúng tôi tích hợp Supabase để đồng bộ hóa bảng xếp hạng theo thời gian thực và ElevenLabs để tạo giọng nói AI tương tác."*
 
@@ -82,28 +79,21 @@ flowchart LR
 
 ---
 
-### 3.3. Bộ công cụ quay và dựng đề xuất
+### 3.3. Công cụ quay dựng — lựa chọn nội bộ
 
-1. **Screen Studio (Khuyến nghị số 1 trên macOS)**:
-   - Tự động zoom mềm mại vào các nút bấm và con trỏ chuột.
-   - Bo tròn góc cửa sổ, tự thêm hình nền gradient sang trọng chuẩn Apple style.
-   - Tiết kiệm 80% thời gian cắt dựng thủ công.
-2. **OBS Studio (Hoàn toàn miễn phí / Đa nền tảng)**:
-   - Thu âm chất lượng studio nếu biết bật các bộ lọc Noise Suppression và Compressor.
-   - Quay trực tiếp màn hình không giới hạn watermark.
-3. **CapCut Desktop (Chỉnh sửa & Cắt gọt)**:
-   - Sử dụng tính năng **Auto Captions** để tạo phụ đề tiếng Anh tự động trong 30 giây.
-   - Cắt bỏ những đoạn "ờ, à" hoặc khoảng lặng dài giữa các thao tác để nhịp video nhanh và cuốn hút.
+Dùng công cụ đội đã có để quay màn hình và lời thoại; xuất thử một clip rồi kiểm tra chữ, âm lượng và tổng thời lượng. Các version, giá/license, auto-caption và thời gian tiết kiệm của Screen Studio/OBS/CapCut **chưa kiểm chứng trong phiên này**; không dùng tỷ lệ hay số giây ở bản cũ để dự toán.
 
----
+#### Tham khảo, có thể lỗi thời — Colosseum/Superteam 2024–2025
+
+Bản cũ chỉ dẫn homepage Colosseum/Superteam, chưa có permalink video/hướng dẫn hỗ trợ một “công thức chuẩn”. Bỏ cách gán đó; không suy luật Dev3pack từ các giải khác. Trường hợp lịch sử có nguồn cụ thể được tách tại mục 3.3 của [012](012-winning-solana-hackathons.md).
 
 ### 3.4. Năm lỗi "tử huyệt" khiến video demo bị đánh trượt
 
-1. **Video lố thời gian (Ví dụ 3 phút 08 giây)**: Bị đánh giá là thiếu tính kỷ luật và không tôn trọng thời gian của giám khảo.
+1. **Video lố thời gian (Ví dụ 3 phút 08 giây)**: Bị loại khỏi điều kiện xét giải theo FAQ Dev3pack.
 2. **Chỉ trình chiếu Slide PowerPoint**: Giám khảo muốn xem **sản phẩm thật đang chạy**, không ai muốn xem slide lý thuyết trong 3 phút.
 3. **Âm thanh tồi tệ**: Tiếng nói lí nhí, tiếng quạt gió laptop rè rè, hoặc bật nhạc nền EDM đinh tai át mất tiếng thuyết minh.
 4. **Demo bị đơ / văng lỗi (Crash)**: Bấm nút giao dịch mà vòng xoay cứ quay mãi hoặc hiện popup đỏ rực mà không có lời giải thích hay phương án dự phòng.
-5. **Không có phụ đề tiếng Anh**: Rất nhiều giám khảo quốc tế không thể nghe rõ giọng phát âm của các đội không nói tiếng Anh bản xứ nếu không có subtitle to rõ hỗ trợ.
+5. **Chữ/âm thanh không rõ**: Khó kiểm chứng demo. Phụ đề tiếng Anh có thể giúp người xem, nhưng không bắt buộc; FAQ chấp nhận mọi ngôn ngữ.
 
 ---
 
@@ -161,13 +151,12 @@ Thank you for watching, and we can’t wait for you to try [Tên Dự Án] today
 
 ## 6. Nguồn và độ tin cậy
 
-- [Colosseum Demo Video Guidelines](https://www.colosseum.org/) — Hướng dẫn chính thức về video thuyết trình của các kỳ Solana Global Hackathon (Đã đối chiếu).
-- [Screen Studio Production Guide](https://screen.studio/) — Hướng dẫn thực hành làm video demo phần mềm chuẩn quốc tế (Đã đối chiếu).
-- [Superteam Pitch Video Best Practices](https://superteam.fun/) — Tổng hợp kinh nghiệm từ các dự án thắng giải của cộng đồng Superteam (Đã đọc).
-
----
+- [Dev3pack trang chủ](https://hack.dev3pack.xyz), [FAQ](https://hack.dev3pack.xyz/faq) — đã mở bằng browser **17/11/2026**, nguồn cho thể lệ video/chấm/track.
+- [Solana Transaction Confirmation](https://solana.com/developers/guides/advanced/confirmation) — phân biệt commitment; số đo của sản phẩm phải có bằng chứng riêng.
+- Mọi mốc quay và lời thoại là đề xuất nội bộ; dữ liệu Colosseum/Superteam cũ không phải căn cứ thể lệ Dev3pack.
 
 ## 7. Điểm chưa kiểm chứng và bước tiếp theo
 
-- **Điểm chưa kiểm chứng**: Quy định cụ thể của ban tổ chức Dev3pack về việc có cho phép nộp link video Loom hay bắt buộc phải là link YouTube (để an toàn, hãy luôn upload lên YouTube ở chế độ Unlisted).
-- **Bước tiếp theo**: Khi code sản phẩm hoàn thành mốc tính năng cơ bản, lập tức mở file template ở mục 4, điền lời thoại và quay thử một bản nháp trước thời hạn nộp 6 tiếng.
+Chưa có video xuất thực tế, số đo latency/rent, test, deployment hoặc giới hạn thời gian chính xác từ dashboard. YouTube/Loom/link công khai và mọi ngôn ngữ **đã được FAQ xác nhận**, không còn là điều chưa rõ. Chưa biết partner tracks/bounty cuối cùng.
+
+Khi có sản phẩm: điền bằng chứng, quay thử, kiểm duration của file đã xuất và link công khai; không tự cài tool hoặc deploy trong task tài liệu.

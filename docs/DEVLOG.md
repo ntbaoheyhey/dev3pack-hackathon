@@ -11,6 +11,8 @@ Mỗi dòng: ngày · ai làm (Mai / Codex / Antigravity) · việc · note đã
 
 - R03 · sửa 009 do Antigravity bổ sung: nguồn trực tiếp cho từng cơ chế/lệnh, bỏ số liệu và mẹo gán nhầm forum; phân vai là quy ước repo, Codex có UI khi client cấp công cụ. Dùng skill openai-docs, đối chiếu nguồn Google/OpenAI và công cụ của phiên.
 
+- R04 / Phần 3 · sửa 001, 012, 013, 014 theo Dev3pack trang chủ/FAQ đã đọc bằng browser: sponsors, giải, track, hai vòng chấm, video, form, deadline và code. Ghi rõ trọng số tự đề xuất; tách lịch sử Colosseum/Superteam, cập nhật nguồn pricing và bỏ thời gian tích hợp không đo. Kịch bản thời lượng/lời thoại tiếp tục xử lý riêng R07.
+
 ## Trước sự kiện
 
 - 2026-11-17 · Claude · Dựng khung repo, quy tắc "học trước, ghi lại", research Codex vs Antigravity · 000, 001

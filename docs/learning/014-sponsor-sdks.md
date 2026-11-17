@@ -1,104 +1,56 @@
-# 014 — SDK Nhà Tài Trợ: Supabase, ElevenLabs, Firecrawl và Solana Mobile
+# 014 — Chọn SDK nhà tài trợ theo nhu cầu sản phẩm
 
-> Ngày kiểm tra: 2026-11-17 (Asia/Ho_Chi_Minh). Phạm vi: phân tích tính năng, hạn mức miễn phí (Free Tier), độ khó và chiến lược tích hợp 48 giờ.
-> Trạng thái: đã đối chiếu tài liệu chính thức của Supabase, ElevenLabs, Firecrawl và Solana Mobile; tổng hợp ma trận so sánh khả thi.
-
----
+> Ngày kiểm tra: **17/11/2026** (Asia/Ho_Chi_Minh). Thể lệ được đọc trực tiếp bằng browser tại [Dev3pack](https://hack.dev3pack.xyz) và [FAQ](https://hack.dev3pack.xyz/faq). Docs/pricing đã đối chiếu ở link cụ thể bên dưới; mẫu tích hợp chưa chạy, chưa cài package hoặc tạo API key.
 
 ## 1. Mục tiêu và điều cần nhớ
 
-Sau bài học này, bạn có thể:
-1. Hiểu rõ vai trò và bài toán thực tế của **4 SDK nhà tài trợ** (Supabase, ElevenLabs, Firecrawl, Solana Mobile) trong một dApp Solana.
-2. Nắm vững hạn mức Free Tier và các "bẫy" giới hạn tốc độ (rate limits) để không bị cạn quota trong lúc demo.
-3. Đánh giá chính xác thời gian và độ khó tích hợp của từng SDK trong khung giờ 48 giờ hackathon.
-4. Áp dụng chiến lược **"Ghép Lego" (Lego Stacking)**: kết hợp hài hòa các SDK để săn nhiều giải thưởng phụ (Bounties) mà không làm phức tạp hóa hệ thống.
+**Chỉ tích hợp SDK khi phục vụ sản phẩm thật; chờ BTC công bố partner track trước kickoff rồi mới chọn.** Mọi dự án mặc định vào track Solana. Hiện chưa công bố track DePIN/AI Agent hay bounty riêng cho từng sponsor; dùng bốn SDK không xác nhận đủ điều kiện bốn bounty. Nếu có partner track, giám khảo kiểm dự án thực sự dùng công nghệ và đáp ứng điều kiện.
 
-Thời lượng đọc: khoảng 15 phút.
-
----
+Sponsors: **Firecrawl, ElevenLabs, Supabase, Solana Mobile, Solana**. Supporters: **Blockchain Developer Report, Bonfires**. Bốn SDK trong note là bốn lựa chọn tích hợp ngoài phần Solana cốt lõi, không phải toàn bộ danh sách sponsor. [Trang chủ](https://hack.dev3pack.xyz), kiểm tra 17/11/2026.
 
 ## 2. Phiên bản và bằng chứng kiểm tra
 
-| SDK / Nhà tài trợ | Thư viện & Phiên bản (2026-11) | Mức kiểm chứng |
+| Thành phần | Mốc dùng trong note | Bằng chứng / giới hạn |
 | --- | --- | --- |
-| **Supabase** | `@supabase/supabase-js` **2.48.x** | Đã đối chiếu docs; Postgres 15+, Auth, Realtime, Storage |
-| **ElevenLabs** | `elevenlabs` **1.50.x** (Node/Web SDK) | Đã đối chiếu docs REST API v1 Text-to-Speech |
-| **Firecrawl** | `@mendable/firecrawl-js` **1.18.x** | Đã đối chiếu docs web scraping & LLM markdown extraction |
-| **Solana Mobile** | `@solana-mobile/mobile-wallet-adapter-protocol` **2.1.x** | Đã đối chiếu đặc tả giao thức MWA |
-
----
+| Supabase | JavaScript docs hiện hành | [Client reference](https://supabase.com/docs/reference/javascript/introduction); chưa khóa/chạy package trong repo |
+| ElevenLabs | REST v1 TTS | [Create speech](https://elevenlabs.io/docs/api-reference/text-to-speech/convert); không cần giả định version Node SDK |
+| Firecrawl | REST **v2** scrape | [Scrape](https://docs.firecrawl.dev/features/scrape); thay mẫu SDK cũ chưa kiểm chứng |
+| Solana Mobile | MWA; xem version/type tại [008](008-solana-mobile-seeker.md) | [Protocol spec](https://solana-mobile.github.io/mobile-wallet-adapter/spec/spec.html); chưa thử thiết bị |
+| Thể lệ | Trang chủ/FAQ ngày 17/11/2026 | Đã đọc nội dung JS bằng browser; không suy bounty từ pricing SDK |
 
 ## 3. Kiến thức chính
 
-### 3.1. Phân tích chi tiết 4 SDK Nhà tài trợ
+### 3.1. SDK phục vụ phần nào của sản phẩm?
 
-```mermaid
-flowchart TD
-    subgraph Core[DApp Solana Cốt Lõi]
-        Solana[Smart Contract Anchor trên Solana Devnet]
-    end
+| Lựa chọn | Tình huống có ích | Điều cần kiểm tra |
+| --- | --- | --- |
+| Supabase | Hồ sơ, dữ liệu off-chain, Realtime, storage | Auth/session thật, RLS, quyền bảng và quota; không coi dữ liệu DB là trạng thái on-chain đã xác nhận |
+| ElevenLabs | Đọc hướng dẫn hoặc cảnh báo âm thanh | Backend giữ key, kiểm quyền/quota; cache âm thanh phù hợp và xử lý autoplay |
+| Firecrawl | Chuyển trang công khai được phép đọc thành Markdown | Nguồn, freshness, trang bị chặn và chi phí theo endpoint; chưa đo mức giảm context |
+| Solana Mobile | Kết nối ví qua MWA trên thiết bị hỗ trợ | Kiểm wallet/OS/browser, chọn account đúng, thử flow thực; không tự bảo đảm đạt giải mobile |
 
-    subgraph Sponsors[Hệ Sinh Thái SDK Nhà Tài Trợ]
-        Supa[Supabase: Off-chain DB & Realtime Leaderboard]
-        Eleven[ElevenLabs: Voice AI & Audio Alert]
-        Fire[Firecrawl: Web Scraping & Markdown cho AI Agent]
-        Mobile[Solana Mobile: Trải nghiệm di động Seeker]
-    end
+### 3.2. Free Tier và thời gian tích hợp
 
-    Fire -->|Cào tin tức/tài liệu| Solana
-    Solana -->|Ghi nhận tx/sự kiện| Supa
-    Solana -->|Kích hoạt cảnh báo| Eleven
-    Mobile -->|Ký giao dịch qua ví di động| Solana
-    Supa -->|Đẩy realtime số dư| Mobile
-```
+Các số là snapshot trang pricing ngày **17/11/2026**, có thể đổi; không phải ưu đãi hackathon mặc định.
 
----
+| Dịch vụ | Hạn mức có nguồn / điều chưa kiểm chứng | Thời gian tích hợp |
+| --- | --- | --- |
+| Supabase | Free: 500 MB DB, 50.000 MAU, 1 GB file storage, 500.000 Edge Function invocations; còn egress/Realtime và giới hạn khác. [Pricing](https://supabase.com/pricing) | **Chưa kiểm chứng**: chưa có spike đo cả Auth/RLS và xử lý lỗi |
+| ElevenLabs | [API pricing theo model/plan](https://elevenlabs.io/pricing/api); **chưa kiểm chứng** quota tài khoản/model sẽ dùng. Không coi “10.000 ký tự/tháng” là mức chung cho mọi endpoint/model | **Chưa kiểm chứng**: chưa đo backend bảo vệ key, quota và playback |
+| Firecrawl | Free hiển thị **1.000 credits/tháng**, 2 concurrent requests. [Pricing](https://www.firecrawl.dev/pricing); scrape cơ bản 1 credit, tùy chọn khác có thể tốn thêm theo [docs](https://docs.firecrawl.dev/features/scrape) | **Chưa kiểm chứng**: chưa thử tập nguồn thật hoặc retry/cache |
+| MWA | Giao thức/SDK mã nguồn mở; không đồng nghĩa mọi chi phí thiết bị, RPC, đóng gói/phát hành app đều miễn phí. [Repository](https://github.com/solana-mobile/mobile-wallet-adapter) | **Chưa kiểm chứng**: chưa thử trên máy/wallet mục tiêu |
 
-#### 1. Supabase (The Open Source Firebase Alternative)
-- **Làm được gì trong app Solana?**
-  - **Lưu trữ dữ liệu Off-chain tiết kiệm chi phí**: Lưu trữ thông tin người dùng (nickname, avatar, bio), lịch sử nhiệm vụ, bảng xếp hạng (Leaderboards), và catalog vật phẩm off-chain. Lưu những dữ liệu này trên blockchain Solana sẽ ngốn hàng trăm USD tiền rent không cần thiết.
-  - **Xác thực ví Web3 (Sign-in with Solana - SIWS)**: Người dùng ký thông điệp mã hóa qua ví (hàm `signMessage`), Supabase Edge Function xác minh chữ ký Ed25519 bằng public key và cấp phiên đăng nhập JWT bảo mật.
-  - **Cập nhật thời gian thực (Realtime Subscriptions)**: Lắng nghe sự thay đổi của cơ sở dữ liệu qua WebSocket, tự động cập nhật số dư, bảng xếp hạng hoặc hành động của người chơi khác lên giao diện web mà không cần người dùng tải lại trang.
-- **Hạn mức Free Tier**:
-  - 500 MB Postgres Database.
-  - 50,000 Người dùng hoạt động hàng tháng (MAU).
-  - 1 GB lưu trữ file (Storage).
-  - 500,000 lượt gọi Edge Functions / tháng.
-  - *Đánh giá*: Hoàn toàn dư dả cho quy mô thi đấu hackathon.
-- **Thời gian & Độ khó tích hợp trong 48h**:
-  - **Rất dễ (1–2 giờ)**. Tạo dự án trên Dashboard trong 2 phút, cài `@supabase/supabase-js`, khởi tạo client với `SUPABASE_URL` và `SUPABASE_ANON_KEY` là dùng được ngay.
+Bỏ ước lượng “30–60 phút”, “1–2 giờ”, “8–12 giờ” không có phép đo. Ngân sách 48h là giả định nội bộ; trang Dev3pack mô tả sự kiện ba ngày 27–29/11/2026. Đánh giá độ khó sau một spike có log và tiêu chí đạt, không dựa vào số dòng code.
 
----
+### 3.3. Chọn ít tích hợp nhưng có vai trò rõ
 
-#### 2. ElevenLabs (Voice AI & Text-to-Speech hàng đầu thế giới)
-- **Làm được gì trong app Solana?**
-  - **Nhân vật ảo & NPC Web3 biết nói**: Tạo ra các nhân vật game, quản gia AI (AI Butler) hoặc trợ lý đầu tư tài chính có giọng nói tự nhiên, truyền cảm như người thật.
-  - **Cảnh báo âm thanh sự kiện On-chain (Dramatic Audio Alerts)**: Khi phát hiện giao dịch cá mập di chuyển số lượng lớn token, hoặc khi người chơi hoàn thành nhiệm vụ đúc được NFT hiếm, ElevenLabs phát ra thông báo giọng nói kịch tính ngay trong app.
-  - **Hỗ trợ tiếp cận (Accessibility)**: Đọc to các điều khoản giao dịch phức tạp, hướng dẫn người mới chơi từng bước làm quen với ví Solana.
-- **Hạn mức Free Tier**:
-  - 10,000 ký tự văn bản / tháng (~10 đến 15 phút audio chất lượng cao).
-  - Hỗ trợ hàng chục ngôn ngữ (bao gồm tiếng Anh, tiếng Việt).
-  - Thư viện giọng mẫu phong phú.
-- **Thời gian & Độ khó tích hợp trong 48h**:
-  - **Cực kỳ dễ (30–60 phút)**. Chỉ cần gọi 1 hàm API gửi đoạn text, nhận về stream audio và phát trực tiếp trên thẻ `<audio>` của trình duyệt.
-- **Lưu ý hackathon**: Vì free tier giới hạn 10,000 ký tự, hãy cache các file audio thông báo cố định sẵn trong thư mục `public/` hoặc Supabase Storage; chỉ dùng API ElevenLabs để sinh giọng nói cho các đoạn text động mang tính cá nhân hóa của người dùng.
+Ví dụ **đề xuất, chưa xây**: app theo dõi thông tin công khai về một dự án Solana. Chỉ thêm Firecrawl nếu cần đọc web; Supabase nếu cần lưu lịch sử; ElevenLabs nếu người dùng cần nghe; MWA nếu có flow ví trên mobile. AI chạy off-chain, không gọi Solana program là LLM. Không đưa ra lệnh giao dịch tự động chỉ để trình diễn SDK.
 
----
+Giải đã công bố: **$10.000+ Best App Overall on Solana**, **$500 local tracks** ở một số quốc gia, **Seeker Phones** cho **Best Mobile App Built on Solana Mobile**, **$2.500+ perks/sinh viên**, suất **Bridge Accelerator từ 7/12/2026**. Đây là giải/perks trên [trang chủ](https://hack.dev3pack.xyz), không phải bốn bounty SDK.
 
-#### 3. Firecrawl (Cào dữ liệu web tối ưu cho AI & LLM)
-- **Làm được gì trong app Solana?**
-  - **Cào dữ liệu sạch cho AI Trading & Analytics Agents**: Các trang web tài chính, sàn DEX hay bài báo phân tích thị trường thường chứa đầy mã quảng cáo, HTML rác và menu phức tạp. Firecrawl tự động render JavaScript và chuyển đổi toàn bộ trang web thành định dạng **Markdown thuần túy**, giúp tiết kiệm 80% dung lượng Context Window của AI model.
-  - **Quét tin tức & Tâm lý thị trường (Social Sentiment Analysis)**: Tự động cào các bài đăng mới nhất trên các blog crypto, tin tức coin để AI Agent tổng hợp và đưa ra đề xuất đầu tư on-chain.
-  - **Xác thực thông tin dự án**: Tự động cào roadmap hoặc whitepaper từ website của một token để AI tự động chấm điểm độ uy tín (Scam/Rugpull score).
-- **Hạn mức Free Tier**:
-  - 500 credits miễn phí khi tạo tài khoản (mỗi lần cào 1 URL tốn 1 credit).
-  - Hỗ trợ endpoint Scrape (1 trang) và Crawl (toàn bộ domain).
-- **Thời gian & Độ khó tích hợp trong 48h**:
-  - **Dễ (1–2 giờ)**. Sử dụng SDK `@mendable/firecrawl-js`. Thao tác lấy dữ liệu chỉ gồm 3 dòng code.
+Bài nộp vẫn phải theo [001](001-hackathon-rules.md): open source, Solana, demo thật dưới 3 phút, link công khai; hai vòng Product/Technical không có trọng số công bố. Form năm bước và deadline 29/11/2026 (giờ UTC xem dashboard) ở [012](012-winning-solana-hackathons.md). Không thay điều kiện này bằng một ma trận “tiềm năng ẵm bounty”.
 
----
-
-#### 4. Solana Mobile (MWA & Seeker Ecosystem)
+## 4. Solana Mobile (MWA & Seeker Ecosystem)
 - **Làm được gì trong app Solana?**
   - Kết nối ứng dụng di động với ví phần cứng trên dòng điện thoại Solana Seeker / Saga.
   - Mở cánh cửa tranh tài tại các hạng mục giải thưởng Mobile Track / Seeker Bounty.
@@ -142,6 +94,8 @@ flowchart TD
 
 ### 4.1. Tích hợp Supabase Client & Realtime (TypeScript)
 
+Mẫu chưa chạy trong phiên sửa. Chỉ dùng publishable/anon key ở client; bật RLS và policy đúng quyền, cấu hình Realtime cho bảng trước khi dùng. Service-role/secret key chỉ ở server; kết nối ví không tự trở thành session Auth hợp lệ. [Supabase RLS](https://supabase.com/docs/guides/database/postgres/row-level-security).
+
 ```typescript
 import { createClient } from '@supabase/supabase-js';
 
@@ -159,26 +113,33 @@ export function subscribeToLeaderboard(callback: (payload: any) => void) {
 }
 ```
 
-### 4.2. Tích hợp Firecrawl Scrape sang Markdown cho AI (TypeScript)
+### 4.2. Firecrawl REST v2 — chỉ gọi từ backend
+
+Ví dụ **chưa chạy**, đối chiếu [Scrape docs](https://docs.firecrawl.dev/features/scrape) ngày 17/11/2026. Mẫu dùng URL nguồn cố định; khi mở cho người dùng, backend phải kiểm tra nguồn được phép và hạn mức. Không đưa secret vào browser.
 
 ```typescript
-import FirecrawlApp from '@mendable/firecrawl-js';
-
-const app = new FirecrawlApp({ apiKey: 'fc-your-api-key' });
-
-export async function fetchCleanCryptoNews(url: string): Promise<string> {
-  const scrapeResult = await app.scrapeUrl(url, {
-    formats: ['markdown'],
+// CHỈ SERVER, Web Fetch API; không phụ thuộc API của SDK cũ chưa khóa version.
+export async function fetchCleanNews(): Promise<string> {
+  const apiKey = process.env.FIRECRAWL_API_KEY;
+  if (!apiKey) throw new Error('Chưa cấu hình Firecrawl.');
+  const response = await fetch('https://api.firecrawl.dev/v2/scrape', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${apiKey}` },
+    body: JSON.stringify({ url: 'https://solana.com/news', formats: ['markdown'] }),
+    signal: AbortSignal.timeout(30_000),
   });
-
-  if (!scrapeResult.success) {
-    throw new Error(`Firecrawl thất bại: ${scrapeResult.error}`);
+  if (!response.ok) throw new Error('Firecrawl chưa trả kết quả.');
+  const result = await response.json();
+  const status = result.data?.metadata?.statusCode;
+  if (!result.success || !(status >= 200 && status < 300 || status === 304)
+      || typeof result.data?.markdown !== 'string') {
+    throw new Error('Chưa lấy được nội dung nguồn hợp lệ.');
   }
-
-  // Trả về văn bản Markdown đã được lọc sạch quảng cáo, sẵn sàng nạp cho LLM
-  return scrapeResult.markdown || '';
+  return result.data.markdown;
 }
 ```
+
+API thành công không tự chứng minh website nguồn trả nội dung đúng/mới; còn phải kiểm tra status của trang nguồn và nội dung thực tế. Không coi đầu ra scraping là bằng chứng xác minh danh tính hay độ uy tín dự án.
 
 ### 4.3. ElevenLabs qua backend; browser chỉ nhận audio
 
@@ -262,27 +223,21 @@ Trước khi dùng thật: kiểm tra guard từ chối request chưa đăng nh�
 
 ## 5. Tự kiểm tra
 
-1. **Tại sao không nên lưu trữ toàn bộ dữ liệu hồ sơ người dùng (avatar, nickname, lịch sử) trực tiếp lên blockchain Solana?**
-   - *Đáp án*: Vì chi phí lưu trữ (rent) trên blockchain rất đắt đỏ và không cần thiết cho các dữ liệu thứ cấp. Dùng Supabase giúp lưu trữ miễn phí, truy vấn siêu nhanh bằng SQL và dễ dàng đồng bộ realtime lên frontend.
-
-2. **Lợi thế lớn nhất của Firecrawl so với các thư viện cào web thông thường (như axios + cheerio) là gì?**
-   - *Đáp án*: Firecrawl có khả năng tự động thực thi JavaScript (headless browser), vượt qua các rào cản cơ bản và trích xuất trực tiếp trang web thành định dạng **Markdown sạch sẽ**, loại bỏ menu/quảng cáo, tối ưu cho AI Context Window.
-
-3. **Làm thế nào để không bị cạn hạn mức 10,000 ký tự miễn phí của ElevenLabs trong 48 giờ hackathon?**
-   - *Đáp án*: Chỉ gọi API ElevenLabs cho các nội dung văn bản động mang tính cá nhân hóa; các âm thanh cố định (chào mừng, thông báo chung) nên tải file mp3 về lưu sẵn trong thư mục `public/` hoặc Supabase Storage để tái sử dụng.
-
----
+1. Key ElevenLabs/Firecrawl đặt ở đâu? **Server environment**; browser chỉ gọi backend của ứng dụng, không chứa secret.
+2. Cài bốn SDK có đủ bốn bounty? **Không**; partner track chưa công bố, cần vai trò sản phẩm thật và điều kiện cụ thể.
+3. Free Tier có bảo đảm demo không hết quota? **Không**; tính request/credits, concurrency, egress và cache theo plan/model thực tế.
+4. Có thể tin mẫu “tích hợp trong 30 phút” không? **Chưa kiểm chứng** nếu chưa đo môi trường và flow hoàn chỉnh.
 
 ## 6. Nguồn và độ tin cậy
 
-- [Supabase JavaScript Documentation](https://supabase.com/docs/reference/javascript/introduction) — Tài liệu chính thức SDK Supabase (Đã đối chiếu).
-- [ElevenLabs API Reference](https://elevenlabs.io/docs/api-reference) — Hướng dẫn tích hợp Text-to-Speech và WebSocket API (Đã đối chiếu).
-- [Firecrawl Official Documentation](https://docs.firecrawl.dev/) — Đặc tả API scrape & crawl sang Markdown cho LLMs (Đã đối chiếu).
-- [Solana Mobile SDK Hub](https://docs.solanamobile.com/) — Hướng dẫn Mobile Wallet Adapter (Đã đối chiếu).
-
----
+- [Dev3pack trang chủ](https://hack.dev3pack.xyz), [FAQ](https://hack.dev3pack.xyz/faq) — nguồn thể lệ, kiểm tra bằng browser **17/11/2026**.
+- [Supabase pricing](https://supabase.com/pricing), [JavaScript reference](https://supabase.com/docs/reference/javascript/introduction), [RLS](https://supabase.com/docs/guides/database/postgres/row-level-security) — nguồn tính năng/giới hạn, không phải thể lệ giải.
+- [ElevenLabs Authentication](https://elevenlabs.io/docs/api-reference/authentication), [Create speech](https://elevenlabs.io/docs/api-reference/text-to-speech/convert), [API pricing](https://elevenlabs.io/pricing/api).
+- [Firecrawl Scrape](https://docs.firecrawl.dev/features/scrape), [Pricing](https://www.firecrawl.dev/pricing).
+- [MWA spec](https://solana-mobile.github.io/mobile-wallet-adapter/spec/spec.html); đối chiếu type/version ở 008.
 
 ## 7. Điểm chưa kiểm chứng và bước tiếp theo
 
-- **Điểm chưa kiểm chứng**: Khả năng Firecrawl bị chặn bởi một số trang web tài chính áp dụng Cloudflare Turnstile nghiêm ngặt ở tầng cao (trong hackathon, nên chuẩn bị sẵn danh sách 3–5 nguồn tin tức mở cho phép cào mượt mà).
-- **Bước tiếp theo**: Đăng ký sẵn tài khoản miễn phí trên Supabase, ElevenLabs và Firecrawl từ trước sự kiện để có sẵn API Key, sẵn sàng tích hợp khi bước vào 48h thi đấu.
+Chưa đo thời gian tích hợp, chưa chạy các snippet với dịch vụ thật, chưa kiểm quota tài khoản/model ElevenLabs và thiết bị MWA. Chưa biết partner tracks/bounty cuối cùng; kiểm tra thông báo BTC trước kickoff. Không đăng ký tài khoản, lấy key hay deploy trong phiên sửa tài liệu này.
+
+**Bài học / lỗi đã gặp:** key của nhà cung cấp phải ở backend; tài trợ, pricing và điều kiện track là ba loại thông tin khác nhau. Ví dụ ngắn chưa chứng minh tích hợp đã an toàn hoặc đã hoạt động.
