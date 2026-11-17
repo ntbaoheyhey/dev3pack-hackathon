@@ -1,6 +1,6 @@
 # ARCHITECTURE — ClusterProof
 
-Codex · 17/11/2026 · bản thiết kế v0.2 để review Phase2. Lựa chọn tại [DECISION](ideas/DECISION.md), scope [IDEA](IDEA.md). **Chưa được giáo viên/người dùng duyệt; chưa phải mô tả sản phẩm đã build.** Tài liệu học trước thiết kế: [021](learning/021-payment-cluster-evidence.md), [022](learning/022-phase2-3-independent-prep.md), 004/005/007/016.
+Codex · 17/11/2026 · bản thiết kế v0.3 để review Phase2. Lựa chọn tại [DECISION](ideas/DECISION.md), scope [IDEA](IDEA.md). **Chưa được giáo viên/người dùng duyệt; phần MVP bên dưới là thiết kế.** Baseline Phase3 đã public, giới hạn và bằng chứng ở [web.md](evidence/phase3/web.md). Tài liệu học trước thiết kế: [021](learning/021-payment-cluster-evidence.md), [022](learning/022-phase2-3-independent-prep.md), 004/005/007/016.
 
 ## 1. Giải thích một trang
 
@@ -41,6 +41,8 @@ Input và RPC không đáng tin tự động. Không backend bắt buộc, datab
 
 Chốt Node24.22.2 và React/Vite static từ template solana-foundation/templates commit9ec8eba94a98e22434356b6858defbb0e5ada8dc, đường kit/react-vite; giữ MIT attribution. Không SSR/backend trong baseline. Wallet Standard chỉ ở /lab qua client/react-hooks theo API official; pin stable/lock/build trước delivery, không dùng ranges RC nguyên trạng. Core không phụ thuộc Anchor client. Client CLI lab riêng tools/devnet-lab dùng core1.2.2/web3.js1.99.0; không cast giữa web3 và Kit types.
 
+Baseline đã pin React19.3.1, client1.7.0/react-hooks1.4.1 (Kit5), Vite8.3.8, plugin-react6.3.0, TypeScript5.9.3; lock/peer graph/npm ci/typecheck/build đều đã kiểm. Chỉ đọc genesis + account metadata với commitment **confirmed** và dataSlice0; không triển khai paired ProgramData capture hoặc report contract bên dưới. Product adapter sẽ dùng **finalized** và kiểm cùng pair theo mục4/5. Hai mức kiểm chứng này phải giữ tách biệt trong UI và tests.
+
 ## 4. Account, PDA, instruction, event và IDL
 
 **Product core: không custom program/PDA/instruction/event/IDL mới.** Program account loader-v3 có pointer ProgramData; parser kiểm owner/type/executable/size. ProgramData có upgrade slot/authority và bytes executable+padding. Đọc program và ProgramData cùng getMultipleAccounts, giữ context slot và xác nhận pointer không đổi. Loader khác→unsupported; không suy PDA tự tính từ program name.
@@ -63,6 +65,17 @@ Lab Phase3 là counter từ template Anchor1.2.2: initialize/increment, PDA seed
 Số u64 raw dùng string, không JSON Number đã làm tròn. Slot API bắt buộc safe integer; export format exact byte/hash rõ canonicalization, không gán integrity proof khi chưa có raw data. Product replay phải chứa raw accounts hoặc tham chiếu byte artifact xác minh được, giới hạn total8MiB và đọc streaming; spike hiện chỉ reject response>6MB sau load, cần harden trước product. Schema hiện là draft contract, chưa validator chạy.
 
 Không all-green safety verdict. Summary chỉ đếm mismatch/missing, luôn hiển thị ABI/source axes. IDL hash missing hoặc expected unknown không thành mismatch giả. Label debug kỹ thuật nằm trong phần mở rộng; câu chính giải thích hành động tiếp theo.
+
+### Quyết định chốt cho triển khai v1
+
+- Một lần user bấm chỉ dùng endpoint devnet cố định, deadline12giây cho toàn capture. Đọc program ban đầu lấy pointer và slotS0; getMultipleAccounts(program, ProgramData) dùng finalized/minContextSlotS0. Pair phải trả cùng context, pointer giữ nguyên, owner/layout/executable hợp lệ; slot đi lùi hoặc pointer đổi thì lỗi rõ, không ghép hai snapshot. Không tự retry nền.
+- Ngân sách v1: manifest64KiB, IDL1MiB, RPC body6MiB và snapshot export/replay8MiB. Chặn byte count khi đọc stream, không đợi tải toàn body. Vượt giới hạn trả lỗi có nguyên nhân; không cắt bytes rồi hash. Đây là giới hạn sản phẩm chủ động, chưa benchmark mọi deployment Solana.
+- Manifest/replay JSON chỉ nhận schemaVersion1 và field đã định nghĩa; reject duplicate object keys, depth>16, field/string quá giới hạn, number không safe integer. u64 biểu diễn decimal string canonical; authority null khác field thiếu. Cài validator/duplicate-key parser và fuzz tests ở Phase4, không dựa JSON.parse một mình để phát hiện key trùng.
+- accountSha256 là SHA-256 toàn raw ProgramData account bytes; payloadSha256WithPadding loại header ProgramData nhưng giữ padding. programAccountSha256 được lưu riêng khi cần đối chiếu pointer account. idlSha256 tính trên exact bytes file trước parse; không hash object JSON đã normalize rồi gọi tương đương source.
+- Export lưu raw program/ProgramData base64, IDL bytes nếu có, manifest, commitment/slot/UTC và hashMeaning. Replay kiểm schema/size, giải mã và tính lại hashes từ bytes rồi chạy cùng parser/comparator; luôn modeREPLAY và giữ thời điểm capture. Hash nội bộ chỉ phát hiện dữ liệu không khớp trong snapshot, không chứng minh nguồn RPC hoặc manifest đáng tin.
+- Thiếu expected field → UNKNOWN; expected hợp lệ nhưng khác observed → MISMATCH. Capture sai cluster, thiếu account, malformed bytes/pointer/slot hoặc timeout → ERROR, không tạo report MATCH từ observation dở. Loader ngoài v3 → UNSUPPORTED. ABI/source vẫn UNKNOWN/NOT_RUN trong cả live và replay.
+
+SDK đã chọn cho baseline: @solana/client + @solana/react-hooks chỉ phục vụ wallet lab; core RPC/parser không cần thêm SDK transaction. Anchor phục vụ hello lab, không thêm program sản phẩm. Không tích hợp Firecrawl/ElevenLabs/Light/Token-2022 chỉ để có tên nhà tài trợ: không có nhu cầu crawl server, giọng nói, compressed state hoặc chuyển token trong C02; nếu scope đổi phải review lại theo note014. Không coi template hoặc SDK sử dụng là bằng chứng đạt partner track.
 
 ## 6. State/UX và phục hồi
 
@@ -98,16 +111,16 @@ Unit/runtime/UI/live layers theo note022. C02 actual spike chỉ bao phủ một
 | Phase / việc | C | A | Done evidence |
 | --- | --- | --- | --- |
 | 2 | Schema/parser/account model/threat/review | T5: templates/flows/onboarding | Architecture review + người dùng đồng ý |
-| 3 | Toolchain, hello program/test/devnet, CI | T8: web hello + devnet wallet lab/public deploy, cần tài khoản báo đúng blocker | Versions/logs, programID+tx, web URL, CI xanh |
+| 3 | Toolchain, hello program/test/devnet, CI; đã tích hợp/publish baseline web | T9: review web công khai/mobile/ví thật, T10: review kiến trúc | Versions/logs, programID+tx, web URL, CI xanh |
 | 4 | Harden product core/RPC/schema, tests | Chuẩn bị UI theo contract | Core test/failure cases; không tạo on-chain product dư |
 | 5 | Review amount/hash/cluster/security | Input/report/replay/export UI + browser tests | Mock và live rõ, responsive |
 | 6 | Integration/adapters/recovery | Wire core và deploy web | E2E đúng scope devnet/unknown |
 | 7 | Security/source/release review | Bug bash/README/video draft | Không critical findings, người dùng giải thích được |
 
-Chủ file tự review/commit nhỏ, không chờ A đồng ý. A trả file/commit/tests qua A-done; C fetch/pull trước kết luận thiếu. Phase3 A sở hữu apps/web, C sở hữu Anchor/Cargo/programs; root package/workspace change cần ghi queue tránh giẫm file. Contract changes version/diff và giữ fixture cũ cho regression. Không force-push, không merge PR7 tự động.
+Chủ file tự review/commit nhỏ, không chờ A đồng ý. A trả file/commit/tests qua A-done; C fetch/pull trước kết luận thiếu. C đã nhận tích hợp baseline apps/web và ghi DEVLOG/queue; A tiếp tục browser/UX theo T9, không dựng framework song song. C sở hữu Anchor/Cargo/programs; root package/workspace change cần ghi queue tránh giẫm file. Contract changes version/diff và giữ fixture cũ cho regression. Không force-push, không merge PR7 tự động.
 
 ## 9. Rủi ro còn mở và cổng ra
 
-Toolchain arm64 đã build/IDL/runtime test đạt. CI bị chặn GitHub Billing & plans trước khi khởi chạy; payer0SOL nên chưa deploy. Web dependency lock/build/browser còn cần thực hiện; provider/CORS cần live web test; repo private chưa delivery open-source; user/giáo viên chưa duyệt IDEA/architecture này. Chưa có hosting account đã xác nhận, không giả deploy tự động được. Nếu phụ thuộc hosting/permission cần người dùng thì vẫn làm hết local/CI/prep trước hỏi.
+Toolchain arm64 đã build/IDL/runtime test đạt. CI bị chặn GitHub Billing & plans trước khi khởi chạy; payer0SOL tại slot523329001 nên chưa deploy. Web lock/build/browser và public hosting đã có bằng chứng; public RPC qua browser trả đúng genesis và program chưa tồn tại. Wallet reject/retry/connect/disconnect mới kiểm bằng fixture Wallet Standard local, chưa extension thật. Public RPC quota và browser/wallet compatibility vẫn cần theo dõi, không suy uptime/SLA từ một lần chạy. Repo private chưa delivery open-source; người dùng/giáo viên chưa duyệt IDEA/architecture này.
 
 Phase2 chỉ đánh đạt khi bản final không còn lựa chọn kỹ thuật trọng yếu mở, review giáo viên/xử lý findings và người dùng đọc bản giải thích đồng ý. Phase3 chỉ đạt khi có version thực + hello build/test, devnet programID/tx thật, web hello công khai và CI xanh. DECISION không thay các bằng chứng này. Kế hoạch tiếp theo ở HANDOFF, chỉ viết NEXT final khi các cổng thật đạt.

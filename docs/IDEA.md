@@ -45,6 +45,6 @@ Demo: 0–20s vấn đề;20–50s đọc live;50–85s expected manifest sai c�
 | Manifest diff | Fixture independent cho từng field, thiếu→UNKNOWN | 5 mutations đã chạy, schema product chưa triển khai |
 | Không gây hiểu nhầm proof | UI tests/5-user task không diễn giải MATCH thành ABI/source proof | Contract/plan; chưa người dùng thử |
 | Recovery/export | UI test invalid/timeout/stale/replay; export giữ provenance | Artifact JSON nghiên cứu; chưa UI |
-| Chạy công khai | Link web, version/source và offline/live checks rõ | Chưa web product |
+| Chạy công khai | Link web, version/source và offline/live checks rõ | [Baseline Phase3 đã public](https://clusterproof-devnet-17nov26.anthony-robinson-125.chatgpt.site); [source/build/browser evidence](evidence/phase3/web.md), chưa web product đầy đủ |
 
 Phase1 chỉ qua cổng khi người dùng duyệt IDEA này; Phase2 cần ARCHITECTURE, review giáo viên và người dùng đồng ý. Lựa chọn ý tưởng không được tự ghi thành đã duyệt mọi chi tiết. Repo hiện private/MIT; phải public trước nộp theo yêu cầu dự án.

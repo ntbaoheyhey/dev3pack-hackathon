@@ -239,8 +239,8 @@ Mỗi vòng ghi lại điểm và thay đổi. Ý tưởng sửa quá số vòng
 | --- | --- | --- |
 | Nền (002–014) | xong | PR #1, REVIEW R01–R09 đã sửa |
 | 1 Ý tưởng & spec | đang làm · chặng E | RUBRIC v1.2; C02/C03/C01 PLAN79/77/75, PR#7; người dùng chọn ClusterProof chính/NetPay Check dự phòng; IDEA chờ duyệt |
-| 2 Kiến trúc | đang làm | ARCHITECTURE v0.1; còn hoàn thiện lựa chọn web, review/giáo viên chấm/người dùng đồng ý |
-| 3 Môi trường | đang làm · đã được phép | Toolchain đúng bộ đã cài; SBF/IDL/6 runtime tests đạt local; còn CI xanh, devnet tx và web live |
+| 2 Kiến trúc | đang làm | ARCHITECTURE v0.3 đã chốt React/Vite static và tách baseline/MVP; còn review/giáo viên chấm/người dùng đồng ý |
+| 3 Môi trường | đang làm · đã được phép | Toolchain/SBF/IDL/6 runtime + 8 client tests đạt; web public, 8 web tests/build/browser đạt; còn CI xanh (billing), devnet tx (funding) và ví extension thật |
 | 4 Program | chưa mở | |
 | 5 Frontend | chưa mở | |
 | 6 Tích hợp | chưa mở | |

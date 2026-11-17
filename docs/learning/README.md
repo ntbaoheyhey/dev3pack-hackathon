@@ -52,7 +52,7 @@ Tiến độ và bước tiếp tục sau compact nằm trong [docs/HANDOFF.md](
 
 | [021 — Kiểm chứng payment, cluster và token net](021-payment-cluster-evidence.md) | Evidence C01–C03, RPC read-only và parser mint/u64; Ryntra/Pay alternatives | Codex — 16 test đạt, C02 live read và C03 fee-only live quote; chưa settlement/custom program |
 
-| [022 — Chuẩn bị độc lập Phase 2/3](022-phase2-3-independent-prep.md) | Account/PDA, test harness/CI, kế hoạch cài và interface trước khi chọn ý tưởng | Codex — đã viết contract/harness/CI/kế hoạch; được phép cài, chưa build/deploy |
+| [022 — Chuẩn bị độc lập Phase 2/3](022-phase2-3-independent-prep.md) | Contract/harness, toolchain/client, React/Vite/Wallet Standard và hosting | Codex — hello6/client8/web8 tests đạt local; web public/build/browser đã có evidence; CI billing/devnet funding và review còn mở |
 
 ## Bài học / lỗi đã gặp
 

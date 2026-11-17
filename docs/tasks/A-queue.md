@@ -4,6 +4,13 @@
 
 Mỗi việc ghi: mã, mục tiêu, cần học/thu thập gì, file kết quả, thế nào là xong. Trạng thái: `mới`, `bỏ`. (Trạng thái "đang làm/xong" A ghi ở A-done.md.)
 
+**Ưu tiên hiện hành sau baseline web public: T9 → T10**, rồi sửa evidence còn mở. T8 phần code/build/hosting đã được C tích hợp; A dùng baseline React/Vite, không tạo Next hoặc Site khác. Đọc kết quả hiện hành ở docs/evidence/phase3/web.md; các nhắc “chưa có web/build” ở lịch sử bên dưới đã hết hiệu lực.
+
+| Mã | Trạng thái | Việc | File kết quả | Xong khi |
+| --- | --- | --- | --- | --- |
+| T9 | mới | Review https://clusterproof-devnet-17nov26.anthony-robinson-125.chatgpt.site và /lab/: input sai, program thiếu, loading/cancel/retry, no-wallet, mobile390px/desktop; nếu có ví Wallet Standard thật, thử từ chối/kết nối/ngắt bằng địa chỉ devnet riêng, không sign/send hoặc nhập seed | docs/reviews/web-phase3-antigravity.md, docs/evidence/phase3/a-web-* và A-done | Mỗi case có browser/version/viewport/bước/kết quả; phân biệt fixture và ví thật. Không có extension thì ghi chưa kiểm, không tạo ví hoặc cài extension chỉ để gọi xong. Ghi findings theo mức độ, không sửa parser/RPC hoặc deploy lại |
+| T10 | mới | Review IDEA và ARCHITECTURE v0.3: scope C02 devnet/read-only, no-wallet core, expected/observed/UNKNOWN, hash không chứng minh ABI/source, capture/replay/errors; đọc một trang giải thích như người mới | docs/reviews/architecture-antigravity.md và A-done | Ghi finding có file/mục/lý do, điểm khó giải thích, hoặc không có finding trong phạm vi đã đọc. Review A không thay giáo viên chấm/người dùng duyệt; không tự đánh phase xong |
+
 | Mã | Trạng thái | Việc | File kết quả | Xong khi |
 | --- | --- | --- | --- | --- |
 | T1 | mới | Sửa note 017, 018, 020 theo findings A01–A06 (`docs/reviews/A-codex.md`) và C01–C04 (`docs/reviews/C-codex.md`): đúng template, mỗi nhận định có link và ngày đọc | 017, 018, 020 | Mỗi finding có dòng "đã xử lý: …" trong A-done.md |
