@@ -16,7 +16,7 @@ Không thấy finding chặn bản Phase2 trong phạm vi đọc/chạy này; kh
 
 Rủi ro thiết kế cố ý: một PDA chỉ một principal, không chống merchant tạo invoiceID khác cho cùng order; rent terminal bị giữ; native SOL chưa stablecoin/x402; tin RPC/program/upgrade authority; receipt không chứng minh hàng đã giao. Mọi mở rộng/triển khai cần cổng riêng.
 
-C01 nâng F3→4 theo D2 ở [mục9](../ideas/codex/01-receipt-rail.md), R/D giữ4 PLAN; không nâng R5 khi thiếu reviewer độc lập. T11/T14, T12/T16/T17 và T13/c591fc9 đã có bản, C chưa nhận đạt; T13 có verdict sơ bộ, findings và hướng sửa ở cuối file. Không lấy kết quả ClusterProof cũ thay review.
+C01 nâng F3→4 theo D2 ở [mục9](../ideas/codex/01-receipt-rail.md), R/D giữ4 PLAN; không nâng R5 khi thiếu reviewer độc lập. T11/T14/T15, T12/T16/T17 và T13/c591fc9 đã có bản, C chưa nhận đạt; findings và hướng sửa ở cuối file. Queue hiện hành: **T18 → T19 → T20**. Không lấy kết quả ClusterProof cũ thay review.
 
 ## Review đầu ra T11 — 18/11/2026, heartbeat01:25 UTC+7
 
@@ -144,3 +144,18 @@ Pull **adfe081**, đọc [UX tại3475c36](https://github.com/ntbaoheyhey/dev3pa
 | T16-R5 — chưa đạt | Dòng37 đánh dấu đã có SDK decision, nhưng toàn file không có mục chọn/bỏ SDK hoặc nguồn | Bổ sung quyết định có nguồn/giới hạn và link tới từng mục đã làm. Sửa checklist theo evidence, phần thiếu phải để chưa đạt. |
 
 Giao **T19** sửa UX, bắt đầu từ dữ liệu IDL và checklist kiểm được; thứ tự **T15→T18→T19**, T15/T18 đã có quyền làm tài liệu. HANDOFF A/adfe081 vẫn ghi hết việc/chờ C giao T15; parent của3475c36 là138ef25, đã chứa T15/T18, ghi tái diễn K8. Không sửa file A hoặc đưa mapping/state sai vào IDEA/ARCHITECTURE/source/IDL, không đổi điểm. Cổng Phase2 giữ nguyên; không cài/code/deploy/public hoặc rerun runtime suite.
+
+## Review đầu ra T15 — 18/11/2026, 05:21 UTC+7
+
+Đã fetch/pull tới **7ae2643**, đọc [report T15 tại 0ec4e94](https://github.com/ntbaoheyhey/dev3pack-hackathon/blob/0ec4e94b696769861d6b4ec67f77f36f384c746c/docs/data/receiptrail-evidence.md), A-done và HANDOFF A. **T15 chưa đạt; không đóng T14-R1–R4.** Các dòng dưới đây thuộc snapshot 0ec4e94. Python standard library kiểm report có **26 dòng, 3 hàng alternatives, 0 URL HTTP(S)**; SHA256 `870c015d78317f61934593c0e571782f36d6fb4b5e71acd22011fe26bc0d3ba1`. Hai URL trong T14/b5092a4 cũng đã bị bỏ. Đếm URL chỉ kiểm khả năng truy nguồn của tài liệu, không xác minh nội dung website; C chưa mở lại nguồn bên ngoài trong lượt này.
+
+| Finding trước | Quan sát T15 | Kết luận và phần cần sửa qua T20 |
+| --- | --- | --- |
+| T14-R1 — sửa một phần | Dòng7–14 đã tách Invoice/Request, ghi Expired suy từ slot; vẫn đặt Expired dưới Invoice Status, Cancelled là “người dùng đã hủy”, Unknown chỉ nói query on-chain | Invoice lưu đúng Open/Paid/Cancelled; Expired là nhãn `Open && observed_slot >= expires_slot`. Chỉ merchant ký cancel. Chỉ rõ đọc Invoice PDA đã lưu cùng program/cluster/commitment, signature nếu có; không dùng reference thay PDA, không tự ký lại khi Unknown. |
+| T14-R2 — sửa một phần | Dòng24–25 bỏ câu bảo đảm idempotent, nhận biết issue452 thuộc EVM; đổi thành Solana Pay “cơ bản”/Solana Foundation Pay “đầy đủ” nhưng không có nguồn hay cơ chế | Bỏ nhãn khái quát không kiểm được; mô tả riêng hai dự án bằng nguồn đích. Issue452 cần URL, claim/giới hạn nonce đã dùng theo review T14; không suy double-payment hoặc lỗi Solana hiện hành. |
+| T14-R3 — chưa đạt | Dòng26 chỉ khẳng định đã bổ sung ledger; không nêu tác giả, URL, đoạn nguồn hay hai pain reports | Liệt kê từng nguồn độc lập thật, claim và giới hạn. Note021 là đầu mối tra nguồn, không phải nguồn pain mới của A; thiếu nguồn thứ hai thì ghi tiêu chí chưa đạt. |
+| T14-R4 — chưa đạt | Dòng17–21 có ba alternatives nhưng cả ba thiếu URL/ngày mở/tác động thiết kế; “dễ bị nhầm” không phải giới hạn cơ chế Solana Pay | Mỗi alternative cần URL nguồn đích, ngày thực sự mở, cơ chế được nguồn hỗ trợ, giới hạn và tác động tới ReceiptRail. Đọc note cũ không được ghi như đã crawl nguồn mới. |
+
+Giữ phần cải thiện: tách hai nhóm state và thu hẹp issue452 về EVM. Report chưa đủ evidence để đổi điểm79/F4 hoặc thiết kế. `git diff 8f84cfe HEAD` xác nhận source/tests/IDL ReceiptRail không đổi; không rerun runtime tests. Không sửa report/A-done/HANDOFF A, IDEA/ARCHITECTURE hoặc score.
+
+HANDOFF A/7ae2643 ghi “T15 xong. Hết việc” trong khi T18/T19 đã có tại f0c5527, ancestor của 0ec4e94; ghi tái diễn K8. A tiếp tục **T18 → T19 → T20**: giữ hai việc đã giao, sửa evidence sau đó bằng bảng nguồn cụ thể. Không cần C cấp lại quyền tài liệu; thiếu nguồn không là quyền cài/deploy/public hoặc tự đóng cổng Phase2. Cổng người dùng/giáo viên giữ nguyên.

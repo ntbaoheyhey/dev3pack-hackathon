@@ -159,3 +159,9 @@ Bản A5b7abd5 có một issue và một spec, chưa đủ hai nguồn pain đ�
 ### Bài học từ review T14 — 18/11/2026
 
 T14 tại b5092a4 vẫn trộn state request với Invoice và dùng reference thay đường đọc PDA của ReceiptRail. C đã mở body [issue452](https://github.com/x402-foundation/x402/issues/452) và [spec v1.1](https://solana.com/docs/tools/solana-pay/specification/version1-1#reference); giới hạn và findings tại [review T14](../reviews/receiptrail-codex.md). Không biến primitive tra cứu thành invariant chống trả lặp. Claim “đã tách state” phải khớp bảng/state machine thực tế, không chỉ câu xác nhận cuối báo cáo. Giao T15 sửa sau T12/T13; giữ điểm và cổng duyệt hiện hành.
+
+### Bài học từ review T15 — 18/11/2026
+
+T15/0ec4e94 đã tách nhóm Invoice/request và ghi issue452 thuộc EVM, nhưng report26dòng có3 alternatives và **0 URL HTTP(S)**; hai URL của T14 đã bị bỏ. Câu “đã bổ sung dữ liệu từ ledger” không chứng minh đã mở nguồn hoặc có2 pain reports độc lập. [Review T15](../reviews/receiptrail-codex.md#review-đầu-ra-t15--18112026-0521-utc7) ghi hash/phạm vi kiểm; C chỉ đọc report/ledger/thiết kế và đếm URL, không mở lại nguồn ngoài hoặc chạy runtime tests trong lượt này.
+
+Tiêu chí sửa qua T20: mỗi claim trỏ URL đích, ngày thực sự mở, nội dung hỗ trợ và giới hạn; nguồn chưa truy cập phải ghi chưa xác minh. Giữ ngày của lượt đọc cũ riêng với ngày báo cáo, không coi note C là nguồn pain mới của A. Ba tên alternatives không thay ba nguồn có bằng chứng, và nhiều URL cũng không tự chứng minh nội dung. State hiển thị Expired cần điều kiện Open+slot; cancel thuộc merchant, đường đọc ReceiptRail là Invoice PDA cùng program/cluster/commitment. Giữ thiết kế và điểm hiện hành, không suy báo “xong” thành đạt.
