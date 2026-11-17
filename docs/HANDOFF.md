@@ -1,7 +1,7 @@
 # Bàn giao hiện hành — Prompt 02, Codex
 
 - **Trạng thái:** đang làm. Cập nhật 17/11/2026 (Asia/Ho_Chi_Minh).
-- **Phase:** 1, A review vòng 1 / chuẩn bị B. Codex là người gộp RUBRIC; Antigravity làm song song qua nhánh `work`.
+- **Phase:** 1, B: chốt RUBRIC v1 và đang hiệu chỉnh; tiếp theo C/D. Codex là người gộp RUBRIC; Antigravity làm song song qua nhánh `work`.
 - **Checkout Codex:** `/Users/bao/Documents/ChatGPT/dev3pack`; remote `https://github.com/ntbaoheyhey/dev3pack-hackathon.git`. Checkout `/Users/bao/Documents/dev3pack-hackathon` đang có việc của Antigravity: không sửa/stage file ở đó.
 - Đã đọc AGENTS, ROADMAP đầy đủ, mục lục/template, note 001/002/004/007/012/014. Note 015/016/019 đã đặt chỗ trong main trước phiên này.
 - Quy tắc phiên Codex không cho tạo Automation để bám một task tới mốc hoàn thành; **chưa tạo Automation**. Tiếp tục trong chat hiện tại, lưu checkpoint ở đây; không hứa có tự đánh thức sau khi chat kết thúc.
@@ -14,9 +14,9 @@
 - [x] A2: nghiên cứu và viết 016 (ước lượng, post-mortem/issues, dependencies devnet/wallet/SDK/CU, tiêu chí khả thi); kết thúc bằng Tiêu chí ứng viên.
 - [x] A3: review 017/018 → `docs/reviews/A-codex.md`, không sửa note A.
 - [x] B1: `docs/ideas/rubric-draft-codex.md` từ 015–018, thang mô tả, trọng số, loại thẳng, ngưỡng/sàn, số vòng sửa.
-- [ ] B2: gộp draft A và C → `docs/ideas/RUBRIC.md`, truy nguyên từng tiêu chí.
+- [x] B2: chốt `docs/ideas/RUBRIC.md` v1.0 từ draft Codex và ứng viên 017/018; Codex quyết định theo Prompt 02 mới.
 - [ ] B3: hiệu chỉnh bằng 3 dự án thắng thật + 2 bài không lọt top có kết quả công khai; không coi thiếu bằng chứng là thất bại thực tế.
-- [ ] B4: A review; sửa tới đồng ý, tối đa 2 vòng bất đồng rồi ghi Để người dùng quyết và chọn phương án chặt hơn.
+- [x] B4: áp dụng review bất đồng bộ; không cần A duyệt. Góp ý mới xử lý ở version sau; bất đồng lớn ghi Để người dùng quyết và chọn phương án chặt hơn.
 - [ ] C1: note 019 (RFP/RFS, dự án cũ, hạ tầng mới và cách lọc bằng chứng).
 - [ ] C2: review 020 → `docs/reviews/C-codex.md`.
 - [ ] D1: độc lập đề xuất/chấm/sửa >=3 ý tưởng C qua ngưỡng, đủ nguồn/user/Solana/accounts/instructions/SDK/track/demo 165 giây/rủi ro/MVP/lịch sử điểm.
@@ -33,7 +33,7 @@
 
 ## Bị chặn
 
-Chưa có blocker cần người dùng. A-codex có A01–A06 cần Antigravity sửa; chờ draft A và review 015/016. Chờ file A khi tới phụ thuộc, tiếp tục việc độc lập trước. Toolchain chưa được đồng ý, không cài trong Phase 1.
+Chưa có blocker cần người dùng. A01–A06 tiếp tục được theo dõi nhưng không chặn B/C/D. Không chờ draft/review A. Toolchain chưa được đồng ý, không cài trong Phase 1. Automation không được tạo do quy định app cho tác vụ cụ thể; đã báo người dùng ngay khi đối chiếu mục 0. Đã kiểm danh sách automation.toml: không có mục khớp dev3pack/chat này.
 
 ## Kiểm tra / bằng chứng
 

@@ -29,3 +29,16 @@ Nguồn Codex đã đọc, **17/11/2026**: [Dev3pack FAQ](https://hack.dev3pack.
 ## Ghi chú phối hợp
 
 Merge `5efc423` còn commit conflict markers trong DEVLOG; Codex đã bỏ markers và giữ cả nội dung A+C trong `487d5cf`. Trước push cần `git diff --check` và quét `<<<<<<<`, `=======`, `>>>>>>>`; không coi hết trạng thái Git conflict là file đã sạch.
+
+## Vòng 2 — snapshot 15b7f5c, 17/11/2026
+
+Theo AGENTS/Prompt 02 mới và chỉ thị người dùng, review này **không chặn** chặng B/C/D. 017/018 đã sửa câu chữ nhưng chưa đủ để đóng các findings:
+
+- A01: bỏ nhãn “học thuật” nhưng vẫn nói giám khảo thường thiên về hoàn thiện/visualization không có bằng chứng tương ứng; cần ghi giả thuyết hoặc bỏ.
+- A02: tên GV/YC vẫn chưa có link sơ cấp, định nghĩa thao tác và ngày đọc.
+- A03: đã bỏ phép thử chi phí tuyệt đối; ghi nhận sửa một phần. Tiêu chí cuối vẫn đòi DB “không làm được”, chưa so việc phải tin admin và quyền censorship/settlement.
+- A04: 018 vẫn chưa có hai vòng chấm, signals, trọng số/giờ UTC/track chưa biết. Review A tự báo cập nhật 001 nhưng commit 15b7f5c không sửa 001; không coi tuyên bố là diff.
+- A05: chưa đúng template, thiếu bài tập/giới hạn và định nghĩa/nguồn từng tiêu chí.
+- A06: còn “Tính Native” bằng tên primitive; RUBRIC v1 chủ động không kế thừa cách thưởng này.
+
+A-antigravity hiện là bảng phản hồi findings/kế hoạch; chưa chứa review thực chất 015/016. Codex giữ ghi nhận này và tiếp tục công việc, không sửa note A hoặc giả review đã hoàn tất.

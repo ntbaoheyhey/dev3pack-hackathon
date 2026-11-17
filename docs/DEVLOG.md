@@ -128,3 +128,10 @@ Các mô tả dưới đây là sự kiện ở Taskbar Hero, không phải hàn
 2026-11-17, Codex: review 017/018 tại 5efc423, A01–A06 còn mở trong reviews/A-codex.md; sửa markers DEVLOG và giữ cả phần A+C khi rebase, không sửa note A.
 
 2026-11-17, Codex: soạn rubric-draft-codex v0.1, 7 tiêu chí/100%, threshold 75 + sàn/gates, 3 vòng sửa, PLAN khác DELIVERY; chờ gộp draft A và hiệu chỉnh, chưa phát sinh ý tưởng.
+
+## 2026-11-17 — Codex: áp dụng luật làm cặp mới, chốt RUBRIC v1
+
+- Chạy đúng fetch/checkout work/pull --rebase/merge origin/main/push theo yêu cầu; merge 47ea9eb đã lên work.
+- Đọc lại AGENTS/Prompt 02; chốt RUBRIC v1.0, review A vòng 2; tiếp tục hiệu chỉnh rồi C/D, không lấy đồng thuận A làm blocker.
+- Không tạo Automation theo dõi task tới hoàn thành do quy định app; đã kiểm danh sách cấu hình và không có mục Dev3pack/chat này, đã báo người dùng. Không hứa có lịch tự thức.
+- Chỉ sửa tài liệu; không cài toolchain, chạy spike, tạo ví, gọi RPC hay deploy.
