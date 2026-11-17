@@ -7,7 +7,7 @@
 - ReceiptRail IDEA/ARCHITECTURE đã viết đủ Phase2/demo165s; **chưa duyệt**.
 - Spike Anchor1.2.2/LiteSVM: bytecode thật, **19/19 runtime tests**,131bytes, principal trả1lần, duplicate tx mới/rollback/expiry/authority.
 - Runner offline dùng compiler cache trực tiếp; r1 build+test64s, r2 cached3s, bytecode hash như nhau; IDLr3 exit0 đã copy/đối chiếu.
-- C01 còn75/F3 trên giấy; bước tới chấm r2 theo evidence, đồng bộ README/SHORTLIST/review và PR7.
+- C01 r2 **79/100/F4 PLAN** dựa19tests/D2; r0/r1 giữ. README/SHORTLIST/review/ROADMAP/DECISION đã đồng bộ.
 - A-queue T11 crawl→T12 UX→T13 review đã giao; fetch gần nhất chưa có kết quả mới. Không chờ A.
 - Push sau mỗi bước lớn bằng `[skip ci]`; workflow cũ tự cài nên không kích hoạt, không gọi CI xanh.
 - Cài thêm/tạo ví-keypair triển khai/deploy/public mới hỏi trước; Phase3 chỉ mở sau duyệt Phase2. Không merge/force-push/mainnet/secrets.
@@ -18,10 +18,9 @@
 
 ## Còn lại
 
-1. Commit/push bước spike+tài liệu/IDL/evidence.
-2. Chấm C01 r2; đồng bộ SHORTLIST/README/review/ROADMAP/DECISION, giữ lịch sử r0/r1.
-3. Fetch A-done, dùng kết quả nếu có; cập nhật mô tả PR7, không merge.
-4. Trình người dùng duyệt bản Phase2 cụ thể. Không làm việc phụ thuộc ý tưởng/Phase3 trong lúc chờ duyệt.
+1. Spike+tài liệu/IDL/evidence đã push **8f84cfe**. Commit/push phần chấm r2/đồng bộ cổng sau kiểm links/diff.
+2. Cập nhật title/body PR7 theo ReceiptRail; đọc lại để xác nhận open/not merged/head đúng.
+3. Trình người dùng duyệt bản Phase2 cụ thể. Không làm việc phụ thuộc ý tưởng/Phase3 trong lúc chờ duyệt.
 
 ## Cần người dùng ở cổng sau
 

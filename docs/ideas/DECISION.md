@@ -52,7 +52,7 @@ Thực hiện thiết kế, spike/test **cục bộ** bằng toolchain/cache có
 
 ## Trạng thái duyệt
 
-- IDEA/ARCHITECTURE ReceiptRail: **đang soạn, chưa duyệt**.
+- [IDEA](../IDEA.md)/[ARCHITECTURE](../ARCHITECTURE.md) ReceiptRail: **bản Phase2 đã soạn xong để trình, chưa duyệt**. Spike19/19 local, generated IDL và test plan/demo165giây đã có; bằng chứng ở [Phase2](../evidence/phase2/README.md). Không coi việc soạn xong là cổng đã được người dùng/giáo viên duyệt.
 - [IDEA ClusterProof](../IDEA-clusterproof-draft.md), [ARCHITECTURE ClusterProof](../ARCHITECTURE-clusterproof-draft.md): **dự phòng, chưa duyệt**; giữ source/web/lab hiện có.
 - Review A và verdict giáo viên: chỉ ghi khi có kết quả thật; không thay duyệt người dùng.
 - Payload ví lúc17/11 23:54:48.498, `call_qOWTCC3sdHrix5DfEq1upmM0`, item0: “Chưa có ví devnet sẵn sàng; giữ bước này chưa kiểm”. Đây là giới hạn kiểm ví, không phải quyền tạo/import ví. Core connect/disconnect thật vẫn chưa kiểm, không thuộc spike ReceiptRail.

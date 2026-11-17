@@ -1,5 +1,7 @@
 # Web Phase3 — bằng chứng Codex đã kiểm
 
+> Bằng chứng lịch sử ClusterProof, giữ nguyên kết quả đã quan sát. Không là duyệt thiết kế hoặc bằng chứng ReceiptRail; T8–T10 đã bỏ, không làm thêm web/lab theo chỉ thị18/11.
+
 Codex · 17/11/2026. Tích hợp Dashboard của A thành React/Vite static, không còn dùng bản nháp Next.js ở cuối file. Đây là baseline môi trường, chưa là ClusterProof MVP.
 
 **[Web công khai](https://clusterproof-devnet-17nov26.anthony-robinson-125.chatgpt.site)** · **[Wallet lab](https://clusterproof-devnet-17nov26.anthony-robinson-125.chatgpt.site/lab/)**.
@@ -27,7 +29,11 @@ Wallet lab dùng Wallet Standard qua client1.7.0/react-hooks1.4.1. No-wallet và
 - Local: input sai không phát RPC; program lab chưa tồn tại tại slot523324017; no-wallet/tìm lại. Fixture đầu từ chối, lần sau chia sẻ địa chỉ, ngắt được.
 - Mobile390×844 có scrollWidth390; desktop1280 không overflow. Screenshots: [home mobile](web-mobile-home.jpg), [lab mobile](web-mobile-lab.jpg), [home desktop](web-desktop-home.jpg), [fixture connected](web-wallet-fixture-connected.jpg). Lab mobile chụp trước sửa khoảng trắng heading.
 - Public /: [inspection](web-public-inspection.txt), [ảnh](web-public-home.jpg), genesis devnet đúng, account lab chưa có tại slot523326604; /lab/: [no-wallet](web-public-lab.txt), deep link phục vụ được nhờ dist/lab/index.html.
-- Console rejection đã thấy là fixture local cố ý từ chối. Log dev server còn ghi SDK cluster warmup Failed to fetch ở local lúc23:13:39; public core read sau đó có kết quả đúng. Không suy mọi RPC/lab warmup đều thành công, cũng không quy lỗi local thành production error. Không có ví extension thật trong browser kiểm thử; T9 giao A kiểm độc lập nếu có ví.
+- Console rejection đã thấy là fixture local cố ý từ chối. Log dev server còn ghi SDK cluster warmup Failed to fetch ở local lúc23:13:39; public core read sau đó có kết quả đúng. Không suy mọi RPC/lab warmup đều thành công, cũng không quy lỗi local thành production error. Ở lượt IAB đó không có ví extension thật; lượt Chrome native bổ sung bên dưới đã nhận Core. T9 từng là việc review độc lập; từ18/11 đã bỏ theo queue ReceiptRail.
+
+## Chrome native / Core bổ sung — 17/11/2026
+
+[Quan sát chi tiết](web-native-core.md): public /lab/ nhận Core, bấm connect mở cửa sổ yêu cầu nhưng Core đang khóa. Sau request không thành công, trang hiển thị chưa kết nối/thử lại. Chưa kiểm approve/account/disconnect thật; không suy request kết thúc là explicit Reject. Người dùng xác nhận chưa có ví devnet sẵn sàng và yêu cầu giữ bước này chưa kiểm.
 
 ## Cổng còn mở
 

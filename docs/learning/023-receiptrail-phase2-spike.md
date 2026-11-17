@@ -54,7 +54,7 @@ Kế hoạch lệnh (chưa gọi tại thời điểm viết note): `bash script
 - [Anza build source pinned](https://github.com/anza-xyz/cargo-build-sbf/tree/138ca775f7c1b60abbfb958975a95aacad10efb2/cargo-build-sbf/src).
 - [LiteSVM0.15.0](https://docs.rs/litesvm/0.15.0/litesvm/), source cached đã đọc; notes004/007/016/021.
 
-## Giới hạn và bước tiếp theo
+## Giới hạn tại mốc note trước code (lịch sử)
 
 Chưa code/build/test ReceiptRail tại mốc note này; chưa IDL generated, client, browser, validator/RPC, devnet, CI hoặc review độc lập. Spike local chứng minh phần khó D2 nếu đạt, không tự đạt cổng Phase2/3 hoặc DELIVERY. Khi có log sẽ bổ sung kết quả và giới hạn, hoàn tất IDEA/ARCHITECTURE/demo165s rồi trình duyệt.
 
@@ -84,3 +84,9 @@ env -u RUSTUP_TOOLCHAIN \
 ```
 
 Runner cuối dùng trực tiếp host toolchain đã cài, không qua rustup proxy. Mặc định máy Apple Silicon; máy khác trỏ `RECEIPTRAIL_HOST_TOOLS` tới thư mục bin có sẵn và `RECEIPTRAIL_PLATFORM_TOOLS` tới cache platform-tools; thiếu compiler/cache thì dừng, không cài. Sau thay runner, log [r2](../evidence/phase2/receiptrail-spike-r2.txt) **19/19**, suite1.00s/build+test3s bằng cache, source/test/lock/binary hashes như r1. Chỉ runner hash đổi; metadata r1 giữ riêng, metadata hiện hành ghi r2 và IDL.
+
+## Đánh giá sau spike
+
+C01 r2 chấm **79/100 PLAN, F3→4**, giữ r0/r1 và R/D4; không thay weights. Cập nhật IDEA/ARCHITECTURE, README/SHORTLIST/ROADMAP/DECISION/review/Thẻ nhớ, giao bản8f84cfe cho A qua queue. Lựa chọn người dùng không là duyệt Phase2; chưa mở Phase3. CI cũ chạy lab rồi `cargo test --workspace`, chưa wire runner ReceiptRail/đường dẫn `.so`; cần xử lý khi mở Phase3 và có quyền cài tương ứng, không gọi CI xanh từ local pass.
+
+Kiểm nhánh thiếu compiler bằng `RECEIPTRAIL_HOST_TOOLS=/nonexistent/receiptrail-host bash scripts/check-receiptrail.sh`: exit2 đúng trước build, thông báo thiếu cached executable; không cài thêm. Checks cuối: links local của16 file, hashes current metadata, phép tính điểm/sàn và git diff --check đạt.

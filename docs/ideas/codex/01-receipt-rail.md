@@ -1,6 +1,8 @@
 # C01 — ReceiptRail: một invoice, một lần chuyển tiền
 
-Codex · 17/11/2026 · RUBRIC v1.2 · **PLAN r1 — ĐẠT theo Codex, 75/100; chưa được giáo viên duyệt**. Chưa có custom program chạy; F=3. Nguồn đọc 17/11/2026, ledger/primitive ở [021](../../learning/021-payment-cluster-evidence.md), phương pháp ở [016](../../learning/016-technical-feasibility-risk.md).
+Codex · cập nhật18/11/2026 · RUBRIC v1.2 · **PLAN r2 — ĐẠT theo Codex, 79/100; F=4 sau spike, chưa được giáo viên duyệt**. Người dùng chọn “ReceiptRail chính, ClusterProof phụ” lúc00:07 ngày18/11 UTC+7; [DECISION](../DECISION.md). Thiết kế Phase2 chưa duyệt.
+
+**Mục1–8 giữ snapshot r1 ngày17/11**: các câu “chưa chạy/chưa cài/chưa IDL” chỉ mô tả mốc r1. Trạng thái hiện hành và delta r2 nằm ở mục9; không sửa điểm lịch sử. Nguồn/primitive tại [021](../../learning/021-payment-cluster-evidence.md), phương pháp [016](../../learning/016-technical-feasibility-risk.md).
 
 ## 1. Người dùng, vấn đề và phép kiểm lợi ích
 
@@ -127,3 +129,34 @@ Storyboard là PLAN, chưa có video hoặc số đo. Nếu RPC lỗi khi quay: 
 | r1 | 4 | 4 | 4 | 3 | 4 | 4 | 3 | **75** | Bổ sung comparison/transition/recovery/distribution; F giữ3. ĐẠT PLAN theo Codex, còn r2–r3 nếu review yêu cầu |
 
 Tổng `(80+60+40+60+60+60+15)/5=75`; mọi sàn đạt. Đây là bài sát ngưỡng: nếu reviewer không chấp nhận N4 hoặc P4, phải rút khỏi danh sách đạt và sửa tiếp; không làm tròn hay tự tăng F. Không suy ĐẠT PLAN thành Phase 1/2 hoàn tất.
+
+## 9. Vòng r2 — spike đã chạy, 18/11/2026
+
+Điểm yếu nhất r1 là F3: custom program chưa chạy. Commit **8f84cfe** bổ sung [source](../../../programs/receiptrail/src/lib.rs), [19 runtime tests](../../../programs/receiptrail/tests/runtime.rs), [runner offline](../../../scripts/check-receiptrail.sh), [IDL generated](../../idl/receiptrail.json), [IDEA](../../IDEA.md), [ARCHITECTURE](../../ARCHITECTURE.md) và [note023](../../learning/023-receiptrail-phase2-spike.md). Đây là cùng job/cơ chế C01, không reset idea ID hoặc vòng chấm.
+
+**Evidence D2:** bytecode SBFv3 Anchor1.2.2 thực chạy trong LiteSVM0.15.0; create→pay→pay bằng transaction/blockhash/signature mới fail→read/balances. [r1](../../evidence/phase2/receiptrail-spike-r1.txt)19/19, suite1.06s/build+test64s; sau siết runner tránh rustup proxy, [r2](../../evidence/phase2/receiptrail-spike-r2.txt)19/19, suite1.00s/build+test3s bằng cache. Source/test/lock/bytecode hashes không đổi; [metadata](../../evidence/phase2/receiptrail-build-metadata.json) có metrics và IDL hash.
+
+Đã đo account131bytes, rent1,802,640lamports trong VM, principal1,000,000 chỉ chuyển một lần. CU mẫu create8,775/pay6,608/retry6,017/cancel4,346. Test `[pay,pay]` rollback cả transfer đầu; CPI thiếu tiền, signer/recipient/owner/type/PDA/bump/version/program sai, expiry và cả2 thứ tự pay/cancel đều pass. Fee payer riêng tách phí/rent khỏi principal. Không dùng same-signature replay hoặc UI làm oracle.
+
+| Dependency / ngân sách hiện hành | Đã chứng minh | Còn phải làm sau duyệt |
+| --- | --- | --- |
+| Anchor/System/PDA/atomicity | D2 local với bytecode thật, IDL và log; dùng bộ cache đã có | Harden/resource tests, review độc lập; ID deployment chỉ sau quyền tương ứng |
+| Wallet/client/UI/RPC recovery | D1 thiết kế, wireframe và error contract trong ARCHITECTURE | Tích hợp và failure/recovery mạng thật; chưa D3 |
+| Thời gian | Spike hoàn tất trong timebox4h;64s là thời gian build/test máy, **không phải tổng công viết/review** | Ước lượng sau spike:8h program/test +6h UI +4h integration/demo +8h buffer =26giờ công; chưa năng suất đo hoặc cam kết lịch |
+| Kill criteria | Giữ invariant principal/rollback và test khi sửa source | Nếu không giữ invariant thì sửa trước tính năng; nếu user chỉ cần DB/cache thì kiểm lại giá trị sản phẩm |
+
+| Tiêu chí | r1→r2 | Bằng chứng / trần |
+| --- | --- | --- |
+| P | 4→4 | Hai nguồn độc lập/workflow ở mục1; chưa interview/pilot |
+| S | 4→4 | So DB và trust boundary mục3; chưa user xác nhận cần chain |
+| N | 4→4 | ≥3 alternatives mục2, experiment có thể kiểm; chưa đo lợi ích |
+| F | **3→4** | D2 của invariant khó nhất, log/số đo/timebox và ngân sách ở trên; chưa browser/RPC recovery D3 nên không5 |
+| R | 4→4 | Threat model/transition mục5 + ARCHITECTURE/test; **chưa reviewer độc lập**, không5 |
+| D | 4→4 | Storyboard165s và recovery trong IDEA; chưa UI/video/người xem, không5 |
+| V | 3→3 | Kế hoạch5 builder/metric mục7; chưa liên hệ/adoption |
+
+`T=(20×4+15×4+10×4+20×4+15×4+15×4+5×3)/5=79`. **Delta +4 chỉ từ F**, không đổi weights/floors/ngưỡng. Lịch sử r0=66, r1=75 giữ nguyên; r2=79, còn tối đa r3 nếu review yêu cầu. Mọi sàn đạt.
+
+G1–G6 vẫn pass **PLAN**: primitive thực thi là core; code tự viết/MIT và kế hoạch open source; demo gắn nhãn; dependency bắt buộc có đường xử lý; kiểm quyền/lifecycle/atomicity đã chạy local; README tách trước/trong sự kiện. Không dùng PLAN pass thay gate DELIVERY/public repo/video/CI/devnet. Toolchain/web cũ giữ nguyên; thêm cài/deploy/public phải hỏi trước.
+
+Rủi ro còn lại: rent terminal tích lũy; program/upgrade/RPC trust; merchant tạo ID khác cho cùng đơn hàng; native SOL chưa stablecoin/x402; nhu cầu market chưa xác nhận. Review A/giáo viên và duyệt IDEA/ARCHITECTURE người dùng còn mở. Không suy ĐẠT79 thành qua Phase2/3.

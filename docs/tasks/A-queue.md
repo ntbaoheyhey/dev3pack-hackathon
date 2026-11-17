@@ -13,4 +13,6 @@
 | T9 | bỏ | Browser/Wallet ClusterProof giữ kết quả đã có; không kiểm ví tiếp | evidence lịch sử giữ nguyên | Không có hành động mới |
 | T10 | bỏ | Review kiến trúc ClusterProof không còn ưu tiên | giữ kết quả nếu đã có | Không có hành động mới |
 
+**Bản giao cho A đã push: `8f84cfe`** — [IDEA](../IDEA.md), [ARCHITECTURE](../ARCHITECTURE.md), [IDL](../idl/receiptrail.json), [tests/evidence](../evidence/phase2/README.md). T12 dùng tên lỗi và account flags trong IDL; T13 review source/tests có hash ở metadata. Thiết kế chưa được người dùng duyệt; T11–T13 chỉ crawl/tài liệu/review theo phạm vi trên, không mở code UI/deploy.
+
 T1–T7 và các điều chỉnh trước đây giữ ở [lịch sử](../archive/A-queue-before-receiptrail.md), không lấy dòng quyền/duyệt cũ làm chỉ thị. Kết quả T6/T5 đã được C đọc và dùng có giới hạn; T11 phải kiểm nguồn thật thay vì lặp lỗi URL/quote. Không nhắn người ngoài hay đăng nhập để crawl. Khi trả kết quả, ghi commit/nguồn/phạm vi đã kiểm; không đợi C duyệt rồi mới làm T12.
