@@ -20,3 +20,5 @@
   - File kết quả: `docs/data/candidate-alternatives.md`.
 
 - Việc T4: Xong. Đã so sánh các alternative cho C01, C02, C03 vào `docs/data/candidate-alternatives.md`.
+
+- Việc T6 (V3): Đã hoàn thiện evidence cho C01, C02, C03 theo các yêu cầu review mới của Codex (diễn giải cẩn thận, nguồn cụ thể).
