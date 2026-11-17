@@ -40,6 +40,9 @@ Viết các note sau trong `docs/learning/` theo đúng `_TEMPLATE.md`, tiếng 
 - Không bịa: không chắc thì ghi "chưa kiểm chứng". Ưu tiên nguồn 2026.
 - Giữ thay đổi nhỏ, đúng phạm vi; mỗi note một commit (vd `docs(learning): add 005 solana frontend`).
 
+## Chạy dài
+- Dùng `docs/HANDOFF.md` để bàn giao giữa các lần compact. Sau compact: đọc HANDOFF rồi **làm tiếp ngay**, không dừng để báo cáo. Chỉ dừng khi xong hết hoặc bị chặn bởi việc cần mình.
+
 ## Xong khi
 - Có đủ note 005, 006, 008, 012, 013, 014 và phần Antigravity của 009, đúng template, có nguồn.
 - Mục lục và DEVLOG đã cập nhật.

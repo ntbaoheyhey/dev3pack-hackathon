@@ -19,6 +19,18 @@ Luật riêng cho từng agent: Codex xem mục "Nếu bạn là Codex" bên dư
 5. Ghi vào `docs/DEVLOG.md` một dòng: ngày, agent nào, làm gì, note nào đã cập nhật.
 6. Không bịa API. Nếu không chắc một hàm/flag của Solana, Anchor, web3.js có tồn tại: kiểm tra docs hoặc source, rồi ghi link vào note.
 
+## Luật chạy dài: không tự dừng sau compact
+
+Khi làm task dài (Goal mode, nhiều bước), context có thể bị auto-compact. Sau compact, hoặc khi đọc lại file bàn giao (`docs/HANDOFF.md` hoặc file bàn giao/goal nào khác):
+
+1. **Nếu còn việc chưa xong trong danh sách "Còn lại" → làm tiếp ngay việc đầu tiên. Không báo cáo rồi dừng, không chờ xác nhận.**
+2. Compact **không phải** là lý do để dừng. Đọc lại bàn giao chỉ để nhớ lại ngữ cảnh, sau đó tiếp tục.
+3. Chỉ được dừng khi:
+   - mọi mục trong "Còn lại" đã xong và đã báo cáo cuối; hoặc
+   - bị chặn bởi việc **cần người dùng** (cần quyết định, cần cài đặt, cần đăng nhập, cần quyền); khi đó ghi rõ cần gì vào mục "Bị chặn".
+4. **Không bao giờ** ghi trạng thái "tạm dừng / paused" trong file bàn giao, trừ khi người dùng tự nói tạm dừng. Trạng thái hợp lệ: `đang làm`, `bị chặn (cần người dùng)`, `xong`.
+5. Trước khi context đầy (hoặc sau mỗi mục lớn): cập nhật `docs/HANDOFF.md` để lần compact sau đọc lại là làm tiếp được.
+
 ## Luật an toàn (bắt buộc)
 
 - **Không bao giờ commit private key / keypair / seed phrase.** File `*.json` keypair, `.env` đều nằm trong `.gitignore`.

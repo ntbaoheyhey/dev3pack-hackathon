@@ -40,6 +40,9 @@ Viết các note sau trong `docs/learning/`, mỗi note theo đúng `_TEMPLATE.m
 - Không bịa API: thứ gì không chắc thì kiểm tra docs/source và ghi link; nếu vẫn không chắc thì ghi "chưa kiểm chứng".
 - Ưu tiên nguồn mới (2026). Thông tin cũ hơn 2025 phải ghi chú có thể đã lỗi thời.
 
+## Chạy dài
+- Dùng `docs/HANDOFF.md` để bàn giao giữa các lần compact. Sau compact: đọc HANDOFF rồi **làm tiếp ngay**, không dừng để báo cáo. Chỉ dừng khi xong hết hoặc bị chặn bởi việc cần mình.
+
 ## Xong khi
 - Có đủ note 002, 003, 004, 007, 010, 011 và phần Codex của 009, đúng template, có nguồn.
 - Mục lục và DEVLOG đã cập nhật, commit với message rõ ràng (vd `docs(learning): add 002 solana basics`), mỗi note một commit.
