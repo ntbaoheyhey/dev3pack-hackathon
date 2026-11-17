@@ -13,7 +13,7 @@ Vai của bạn: người dùng, sản phẩm, demo, thông tin cuộc thi (bạ
 
 1. Tạo một tác vụ lên lịch lặp **mỗi 15 phút** nhắn vào chính chat này:
    > "Mấy giờ rồi? Đọc docs/HANDOFF-antigravity.md, pull nhánh work, làm tiếp mục đầu tiên trong Còn lại. Không dừng nếu còn việc."
-   Chỉ hủy tác vụ khi đã tới điểm dừng cuối (mục 7).
+   Kiểm tra tác vụ **đã thật sự được tạo**. Không tạo được thì báo người dùng ngay. Chỉ hủy tác vụ khi đã tới điểm dừng cuối (mục 7).
 2. Đọc: `AGENTS.md`, `.agents/rules/antigravity-role.md`, `docs/ROADMAP.md` (toàn bộ, nhất là mục 1, Phase 1, Phase 2), `docs/learning/README.md`, note 001, 005, 008, 012, 013, 014.
 3. Làm trên nhánh chung **`work`** (tạo từ `main` nếu chưa có; Codex dùng chung). Luật nhánh chung:
    - Chỉ sửa file của mình (liệt kê ở từng chặng). File chung chỉ người được giao mới sửa.
@@ -21,7 +21,7 @@ Vai của bạn: người dùng, sản phẩm, demo, thông tin cuộc thi (bạ
    - Mục lục `docs/learning/README.md` và `docs/DEVLOG.md` ai cũng thêm dòng được; xung đột thì giữ cả hai.
 4. Bàn giao của bạn nằm ở **`docs/HANDOFF-antigravity.md`** (tạo từ `docs/HANDOFF-TEMPLATE.md`; Codex dùng `docs/HANDOFF.md`). Ghi toàn bộ danh sách việc của prompt này vào "Còn lại", rồi bắt đầu.
 
-**Khi cần file của Codex mà chưa có:** làm việc khác không phụ thuộc trước; nếu không còn gì, ghi "chờ Codex: <file>" vào HANDOFF và để lần tự đánh thức sau kiểm tra lại. Không dừng hẳn.
+**Không bao giờ ngồi chờ Codex** (xem "Luật làm cặp" trong AGENTS.md). Trước khi nói file của Codex chưa có: `git fetch origin` và kiểm tra `origin/work` (`git ls-tree -r --name-only origin/work`). Thiếu thật thì làm việc khác hoặc việc đi trước; không ghi "chờ Codex" trong HANDOFF. Codex là người quyết bộ chấm; góp ý của bạn không chặn ai.
 
 ## 1. Chặng A — Học cách chấm ý tưởng
 
@@ -40,13 +40,14 @@ Chưa nghĩ ý tưởng nào. Chỉ học và ghi.
 
 Mỗi note kết thúc bằng mục **"Tiêu chí ứng viên cho bộ chấm"** (tiêu chí, định nghĩa, vì sao, nguồn).
 
-Sau đó review note 015, 016 của Codex → `docs/reviews/A-antigravity.md`. Không sửa note của Codex.
+Review note 015, 016 của Codex (đã có trên `work`) → ghi vào `docs/reviews/A-antigravity.md`, tách riêng phần "Review 015/016". Không sửa note của Codex. Viết xong là sang chặng B ngay.
 
-## 2. Chặng B — Bộ chấm chung (bạn là người duyệt)
+## 2. Chặng B — Bộ chấm chung (Codex quyết, bạn góp ý)
 
-1. Soạn `docs/ideas/rubric-draft-antigravity.md` từ 015–018: tiêu chí, định nghĩa, thang điểm có mô tả từng mức, trọng số, điều kiện loại thẳng, ngưỡng đạt, số vòng sửa tối đa mỗi ý tưởng.
-2. Codex gộp thành `docs/ideas/RUBRIC.md` (chỉ Codex sửa file đó) và hiệu chỉnh trên dự án có thật.
-3. Bạn duyệt ở `docs/ideas/rubric-review-antigravity.md`: chỗ cần sửa và lý do; khi chấp nhận, ghi rõ **"đồng ý"**. Tối đa 2 vòng; chỗ còn bất đồng để Codex ghi vào mục "Để người dùng quyết".
+1. Soạn `docs/ideas/rubric-draft-antigravity.md` từ 015–018 (có thể đọc `rubric-draft-codex.md` đã có): tiêu chí, định nghĩa, thang điểm có mô tả từng mức, trọng số, điều kiện loại thẳng, ngưỡng đạt, số vòng sửa tối đa mỗi ý tưởng.
+2. Codex là chủ `docs/ideas/RUBRIC.md` (chỉ Codex sửa file đó), tự gộp và hiệu chỉnh.
+3. Khi RUBRIC có trên `work`: ghi góp ý vào `docs/ideas/rubric-review-antigravity.md` (chỗ cần sửa và lý do). **Không chờ phản hồi**; Codex đưa vào lần sửa sau.
+4. Viết draft xong là sang chặng C ngay, không chờ RUBRIC.
 
 ## 3. Chặng C — Học nơi tìm ý tưởng
 
@@ -55,11 +56,13 @@ Sau đó review note 015, 016 của Codex → `docs/reviews/A-antigravity.md`. K
 - Báo cáo thị trường và xu hướng cuối 2026 liên quan Web3/stablecoin/Đông Nam Á; tình hình pháp lý crypto ở Việt Nam ở mức đủ để tránh ý tưởng vướng luật
 - Phương pháp tìm vấn đề thật (phỏng vấn, khảo sát nhanh, đọc review) và cách ghi bằng chứng
 
-Review note 019 của Codex → `docs/reviews/C-antigravity.md`.
+Review note 019 của Codex khi nó có → `docs/reviews/C-antigravity.md`. Chưa có thì đi tiếp, review sau.
 
 ## 4. Chặng D — Vòng lặp ý tưởng tới ngưỡng
 
 Làm **độc lập**: không mở thư mục `docs/ideas/codex/` cho tới khi bạn có ít nhất 3 ý tưởng tự chấm đạt.
+
+Nếu `RUBRIC.md` chưa có trên `work`: vẫn bắt đầu tìm và viết ý tưởng có bằng chứng theo note 017–020, chấm tạm bằng bản nháp mới nhất (của bạn hoặc của Codex), ghi rõ "chấm tạm". Khi RUBRIC có hoặc đổi phiên bản, chấm lại.
 
 Mỗi ý tưởng là một file `docs/ideas/antigravity/NN-ten.md` gồm: nguồn và bằng chứng vấn đề, người dùng, vì sao cần Solana, luồng người dùng chính (3–6 bước), người mới chưa có ví vào app thế nào, off-chain/SDK, track nhắm tới, khoảnh khắc wow và phác thảo video 165 giây, rủi ro sản phẩm, phiên bản thu nhỏ, và **bảng lịch sử điểm**.
 
@@ -71,18 +74,20 @@ Vòng lặp cho mỗi ý tưởng:
 
 Chấm chéo: chấm mọi ý tưởng "chờ chấm chéo" của Codex trong `docs/ideas/codex/`, ghi vào `docs/ideas/cross-scores-antigravity.md` (điểm từng tiêu chí + lý do, nhất là lỗ hổng về người dùng và demo). Ý tưởng **ĐẠT** khi cả điểm tự chấm và điểm chấm chéo đều vượt ngưỡng. Ý tưởng của bạn bị chấm chéo dưới ngưỡng → quay lại vòng lặp.
 
+Codex chưa có ý tưởng để chấm chéo thì đừng chờ: tiếp tục tìm thêm và nâng điểm ý tưởng của mình, rồi kiểm tra lại ở lần tự đánh thức sau.
+
 Dừng chặng D khi mỗi bên có **ít nhất 3 ý tưởng ĐẠT** (hoặc đã hết nguồn hợp lý; ghi rõ).
 
 ## 5. Chặng E — Danh sách cuối và điểm dừng chờ người dùng
 
-Viết **`docs/ideas/SHORTLIST.md`** (chỉ bạn sửa): mọi ý tưởng ĐẠT của cả hai bên, xếp hạng theo điểm, mỗi cái có one-liner, điểm tự chấm, điểm chấm chéo, số vòng sửa, rủi ro chính; đề xuất top 3. Chờ Codex ghi nhận xét kỹ thuật ở `docs/reviews/E-codex.md` và sửa nếu cần. Mở PR `work → main` nếu Codex chưa mở, **không tự merge**.
+Viết **`docs/ideas/SHORTLIST.md`** (chỉ bạn sửa): mọi ý tưởng ĐẠT của cả hai bên, xếp hạng theo điểm, mỗi cái có one-liner, điểm tự chấm, điểm chấm chéo, số vòng sửa, rủi ro chính; đề xuất top 3. Nhận xét kỹ thuật của Codex ở `docs/reviews/E-codex.md` (khi có) được đưa vào lần sửa sau; không chờ nó để báo người dùng. Mở PR `work → main` nếu Codex chưa mở, **không tự merge**.
 
 Báo cáo cho người dùng trong chat (tiếng Việt, ngắn):
 - Top ý tưởng ĐẠT, mỗi cái một câu, kèm điểm
 - Thông tin Dev3pack mới tìm được (hạn nộp, tracks)
 - Hỏi người dùng đúng 2 câu: **chọn ý tưởng nào (chính + dự phòng)**, và **có đồng ý cho cài toolchain Solana trên máy để làm Phase 3 không**
 
-Ghi HANDOFF: "bị chặn (cần người dùng): chọn ý tưởng". Giữ tác vụ tự đánh thức chạy.
+Trong lúc người dùng chưa chọn, **không ngồi chờ**: làm việc đi trước không phụ thuộc ý tưởng, ví dụ nghiên cứu phần Phase 2/Phase 5 dùng chung cho mọi ý tưởng (onboarding người mới, UI kit, template web chính thức, deploy web) và ghi note. Hết việc đi trước mà người dùng vẫn chưa chọn thì ghi HANDOFF "bị chặn (cần người dùng): chọn ý tưởng" và giữ tác vụ tự đánh thức chạy.
 
 ## 6. Sau khi người dùng trả lời — Phase 2 (và Phase 3 nếu được đồng ý)
 

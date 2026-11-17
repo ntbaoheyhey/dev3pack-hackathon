@@ -13,7 +13,7 @@ Vai của bạn: kỹ thuật Solana, độ khả thi, on-chain, bảo mật, v�
 
 1. Tạo một Automation lặp **mỗi 15 phút** nhắn vào chính chat này:
    > "Mấy giờ rồi? Đọc docs/HANDOFF.md, pull nhánh work, làm tiếp mục đầu tiên trong Còn lại. Không dừng nếu còn việc."
-   Chỉ hủy Automation khi đã tới điểm dừng cuối (mục 7).
+   Mở danh sách Automations để **xác nhận nó đã tồn tại**. Không tạo được thì báo người dùng ngay. Chỉ hủy Automation khi đã tới điểm dừng cuối (mục 7).
 2. Đọc: `AGENTS.md`, `docs/ROADMAP.md` (toàn bộ, nhất là mục 1, Phase 1, Phase 2), `docs/learning/README.md`, note 001, 002, 004, 007, 012, 014.
 3. Làm trên nhánh chung **`work`** (tạo từ `main` nếu chưa có; Antigravity dùng chung). Luật nhánh chung:
    - Chỉ sửa file của mình (liệt kê ở từng chặng). File chung chỉ người được giao mới sửa.
@@ -21,7 +21,7 @@ Vai của bạn: kỹ thuật Solana, độ khả thi, on-chain, bảo mật, v�
    - Mục lục `docs/learning/README.md` và `docs/DEVLOG.md` ai cũng thêm dòng được; xung đột thì giữ cả hai.
 4. Ghi toàn bộ danh sách việc của prompt này vào mục "Còn lại" của `docs/HANDOFF.md`, rồi bắt đầu.
 
-**Khi cần file của Antigravity mà chưa có:** làm việc khác không phụ thuộc trước; nếu không còn gì, ghi "chờ Antigravity: <file>" vào HANDOFF và để lần tự đánh thức sau kiểm tra lại. Không dừng hẳn.
+**Không bao giờ ngồi chờ Antigravity** (xem "Luật làm cặp" trong AGENTS.md). Trước khi nói file của Antigravity chưa có: `git fetch origin` và kiểm tra `origin/work`. Thiếu thật thì làm việc khác hoặc việc đi trước; không ghi "chờ Antigravity" trong HANDOFF. Review của Antigravity không chặn bạn.
 
 ## 1. Chặng A — Học cách chấm ý tưởng
 
@@ -41,14 +41,14 @@ Chưa nghĩ ý tưởng nào. Chỉ học và ghi.
 
 Mỗi note kết thúc bằng mục **"Tiêu chí ứng viên cho bộ chấm"** (tiêu chí, định nghĩa, vì sao, nguồn).
 
-Sau đó review note 017, 018 của Antigravity → `docs/reviews/A-codex.md` (thiếu nguồn, sai, mâu thuẫn, đồng ý/không đồng ý tiêu chí nào). Không sửa note của Antigravity.
+Review note 017, 018 của Antigravity → `docs/reviews/A-codex.md` (thiếu nguồn, sai, mâu thuẫn, đồng ý/không đồng ý tiêu chí nào). Không sửa note của Antigravity. Review của bạn là góp ý, không phải cổng: viết xong là sang chặng B ngay.
 
 ## 2. Chặng B — Bộ chấm chung (bạn là người gộp)
 
 1. Soạn `docs/ideas/rubric-draft-codex.md` từ 015–018: tiêu chí, định nghĩa, thang điểm có mô tả từng mức, trọng số, **điều kiện loại thẳng**, **ngưỡng đạt** (tổng điểm tối thiểu và điểm sàn cho tiêu chí quan trọng), **số vòng sửa tối đa** mỗi ý tưởng.
-2. Khi đã có `rubric-draft-antigravity.md`: gộp hai bản thành **`docs/ideas/RUBRIC.md`** (chỉ bạn sửa file này). Ghi nguồn gốc từng tiêu chí.
+2. **Bạn là chủ và người quyết `docs/ideas/RUBRIC.md`** (chỉ bạn sửa file này). Viết ngay RUBRIC v1 từ bản nháp của bạn cộng tiêu chí ứng viên trong note 017, 018 của Antigravity (đã có trên `work`). Khi `rubric-draft-antigravity.md` hoặc góp ý của Antigravity xuất hiện, đưa vào ở lần sửa sau (v2, v3…). Ghi nguồn gốc từng tiêu chí và số phiên bản.
 3. Hiệu chỉnh: chấm thử 3 dự án thắng có thật và 2 dự án không lọt top (tìm được trên Colosseum/Devpost…) bằng RUBRIC. Nếu kết quả không phân biệt được hai nhóm, sửa bộ chấm. Ghi kết quả vào cuối RUBRIC.
-4. Chờ Antigravity duyệt ở `docs/ideas/rubric-review-antigravity.md`. Sửa tới khi Antigravity ghi "đồng ý". Chỗ còn bất đồng sau 2 vòng: ghi vào mục "Để người dùng quyết" trong RUBRIC, chọn tạm phương án chặt hơn và đi tiếp.
+4. **Không chờ Antigravity duyệt.** Hiệu chỉnh xong là chốt RUBRIC và sang chặng C ngay. Góp ý ở `docs/ideas/rubric-review-antigravity.md` (khi có) được xử lý ở lần sửa kế tiếp; chỗ bất đồng lớn ghi vào mục "Để người dùng quyết", tạm chọn phương án chặt hơn. Nếu RUBRIC đổi sau khi đã chấm ý tưởng, chấm lại các ý tưởng bị ảnh hưởng.
 
 ## 3. Chặng C — Học nơi tìm ý tưởng
 
@@ -57,7 +57,7 @@ Sau đó review note 017, 018 của Antigravity → `docs/reviews/A-codex.md` (t
 - Dự án thắng, dự án bị bỏ dở, repo hackathon cũ chưa ai làm tiếp; khoảng trống hạ tầng mới (P-Token, Light Token, x402, agent…)
 - Cách lọc nguồn để ra ý tưởng có bằng chứng
 
-Review note 020 của Antigravity → `docs/reviews/C-codex.md`.
+Review note 020 của Antigravity khi nó có → `docs/reviews/C-codex.md`. Chưa có thì sang chặng D, review sau.
 
 ## 4. Chặng D — Vòng lặp ý tưởng tới ngưỡng
 
@@ -73,17 +73,15 @@ Vòng lặp cho mỗi ý tưởng:
 
 Chấm chéo: chấm mọi ý tưởng "chờ chấm chéo" của Antigravity trong `docs/ideas/antigravity/`, ghi vào `docs/ideas/cross-scores-codex.md` (điểm từng tiêu chí + lý do, nhất là lỗ hổng kỹ thuật). Ý tưởng **ĐẠT** khi cả điểm tự chấm và điểm chấm chéo đều vượt ngưỡng. Ý tưởng của bạn bị chấm chéo dưới ngưỡng → quay lại vòng lặp.
 
+Antigravity chưa có ý tưởng để chấm chéo thì đừng chờ: tiếp tục tìm thêm và nâng điểm ý tưởng của mình, rồi kiểm tra lại ở lần tự đánh thức sau.
+
 Dừng chặng D khi mỗi bên có **ít nhất 3 ý tưởng ĐẠT** (hoặc đã hết nguồn hợp lý; ghi rõ).
 
 ## 5. Chặng E — Danh sách cuối và điểm dừng chờ người dùng
 
-Antigravity viết `docs/ideas/SHORTLIST.md`. Bạn kiểm tra phần kỹ thuật và ghi nhận xét vào `docs/reviews/E-codex.md`. Khi xong: mở PR `work → main` (nếu chưa có), **không tự merge**.
+Antigravity viết `docs/ideas/SHORTLIST.md` và hỏi người dùng. Khi SHORTLIST có trên `work`: kiểm tra phần kỹ thuật, ghi `docs/reviews/E-codex.md`; mở PR `work → main` nếu chưa có, **không tự merge**.
 
-Báo cáo cho người dùng trong chat (tiếng Việt, ngắn):
-- Top ý tưởng ĐẠT, mỗi cái một câu, kèm điểm
-- Hỏi người dùng đúng 2 câu: **chọn ý tưởng nào (chính + dự phòng)**, và **có đồng ý cho cài toolchain Solana trên máy để làm Phase 3 không**
-
-Ghi HANDOFF: "bị chặn (cần người dùng): chọn ý tưởng". Giữ Automation chạy.
+Trong lúc SHORTLIST chưa có hoặc người dùng chưa chọn, **không ngồi chờ**: làm việc đi trước không phụ thuộc ý tưởng, ví dụ nghiên cứu phần Phase 2/Phase 3 dùng chung cho mọi ý tưởng (mẫu account/PDA, test harness, CI cho Anchor, kế hoạch cài toolchain trên giấy) và ghi note. Khi đã hết việc đi trước mà người dùng vẫn chưa chọn, ghi HANDOFF "bị chặn (cần người dùng): chọn ý tưởng" và giữ Automation chạy.
 
 ## 6. Sau khi người dùng trả lời — Phase 2 (và Phase 3 nếu được đồng ý)
 
