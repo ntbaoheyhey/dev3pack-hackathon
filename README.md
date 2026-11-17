@@ -29,6 +29,7 @@ Mốc phân chia là commit/tag `hackathon-start` (tạo lúc mở màn 27/11).
 ### Trong hackathon (27–29/11/2026)
 - _(liệt kê tính năng làm trong 48h)_
 
+Lộ trình các phase (học → lab → ý tưởng → chuẩn bị → build → nộp): [`docs/ROADMAP.md`](docs/ROADMAP.md).
 Nhật ký chi tiết theo ngày: [`docs/DEVLOG.md`](docs/DEVLOG.md).
 
 ## Kiến trúc

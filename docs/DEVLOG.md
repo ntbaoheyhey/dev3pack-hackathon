@@ -2,6 +2,12 @@
 
 Mỗi dòng: ngày · ai làm (Mai / Codex / Antigravity) · việc · note đã cập nhật.
 
+## 2026-11-17 — Claude (điều phối): lập ROADMAP P1–P6
+
+- Chấm phần học 002–014: tốt về nguồn và ghi giới hạn; thiếu thực hành (chưa cài/compile/deploy), chưa có ý tưởng sản phẩm, thiếu một số chủ đề kỹ thuật, chưa có quy trình phối hợp khi build.
+- Tạo `docs/ROADMAP.md`: P1 học bổ sung (note 015–025 đã chia chủ), P2 lab devnet, P3 ý tưởng, P4 chuẩn bị và tập dượt, P5 build, P6 demo/nộp; mỗi phase có cổng ra và người chủ trì. Ghi luật tự đánh thức mỗi 15 phút.
+- AGENTS.md thêm bước 0 đọc ROADMAP; README trỏ tới ROADMAP.
+
 ## 2026-11-17 — Codex: sửa PR #1 và findings của phần Antigravity
 
 **Trạng thái: xong.** R01–R09 đã sửa và push; các giới hạn kiểm chứng được giữ rõ trong REVIEW.
