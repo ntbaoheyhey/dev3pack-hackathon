@@ -1,6 +1,6 @@
 # Bàn giao chuyển tài liệu Solana về đúng repo
 
-**Trạng thái: đang làm — đã gộp và kiểm tra tài liệu; còn commit/push main. Revert repo nguồn đang chờ người dùng duyệt.** Cập nhật 17/11/2026, Asia/Saigon.
+**Trạng thái: đã copy/gộp, kiểm tra, commit và push tài liệu lên main. Chỉ còn chờ người dùng duyệt danh sách trước khi revert repo nguồn.** Cập nhật 17/11/2026, Asia/Saigon.
 
 ## Nơi làm việc và ranh giới
 
@@ -85,6 +85,8 @@ Trước hành động tại nguồn, kiểm tra lại HEAD, status và hash; kh
 
 ## Kiểm tra lần chuyển và bước tiếp tục
 
+Commit chuyển tài liệu `f9052dc` đã push tới `origin/main` của repo đích; `git ls-remote` xác nhận remote main trùng HEAD sau push. Commit này chỉ thay đổi 18 file tài liệu. Không push hoặc thay đổi HEAD repo nguồn.
+
 Bản kiểm kê/hash trước chuyển lưu tạm tại `/tmp/solana-docs-migration-source.json` và `/tmp/solana-docs-migration-target.json`; kết quả kiểm tra tại `/tmp/solana-docs-migration-validation.json`. Không coi file `/tmp` là artifact bền vững. Kết luận đã xác nhận trước commit:
 
 - 14 file (13 note 002–014 và REVIEW) giống nguồn từng byte; đủ 15 note 000–014 sau gộp.
@@ -93,7 +95,7 @@ Bản kiểm kê/hash trước chuyển lưu tạm tại `/tmp/solana-docs-migra
 - 20 file Markdown được kiểm tra: 52 fenced blocks cân bằng, 68 link cục bộ có đích; whitespace check đạt. Một link sandbox `/tmp` chỉ tồn tại trên máy hiện tại, không phải artifact Git.
 - Toàn bộ 5.059 file tracked/untracked đã kiểm kê ở nguồn giữ nguyên hash; HEAD và status nguồn không đổi. Chưa thực hiện bất kỳ revert nào.
 
-Sau compact: đọc phần hiện hành này trước, kiểm tra repo đích và trạng thái duyệt; không làm lại nghiên cứu 009–011. Khi copy/commit/push đã xác nhận, chỉ còn gửi danh sách cho người dùng và chờ duyệt revert. Thời gian chờ không phải quyền thực hiện revert.
+Sau compact: đọc phần hiện hành này trước, kiểm tra repo đích và trạng thái duyệt; không làm lại nghiên cứu 009–011 hoặc copy lại tài liệu. Copy/commit/push đã xác nhận; chỉ còn gửi danh sách cho người dùng nếu chưa gửi và chờ duyệt revert. Thời gian chờ không phải quyền thực hiện revert.
 
 ## Bài học / lỗi đã gặp
 

@@ -21,6 +21,7 @@ _(Antigravity ghi yêu cầu thay đổi program ở đây)_
 - Có sửa mục lục chung và giữ phần Antigravity; không thay nội dung chuyên môn của agent kia. Chín findings vẫn còn mở. Kiểm tra bản sao/hash, link cục bộ và phạm vi diff trước commit/push main.
 - Chưa revert repo nguồn: người dùng yêu cầu duyệt danh sách trước. Mười commit Codex được tách với tám commit Antigravity trong `docs/HANDOFF.md`; không tự mở rộng quyền xóa sang file agent khác tạo.
 - Kiểm tra chuyển: 14 bản sao giống nguồn từng byte; ba file gộp còn đầy đủ nội dung cũ; bảy file tracked khác ở đích giữ nguyên hash. Kiểm tra 20 Markdown, 52 fenced blocks, 68 link cục bộ đạt; HEAD/status và hash 5.059 file đã kiểm kê ở nguồn không đổi.
+- Commit chuyển `f9052dc` đã push main; xác nhận remote bằng `git ls-remote`. Cập nhật bàn giao: việc chuyển hoàn tất, chỉ còn chờ người dùng duyệt danh sách trước khi revert nguồn.
 
 ## Nhật ký từ workspace nguồn — giữ lịch sử
 
