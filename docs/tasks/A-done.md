@@ -28,3 +28,5 @@
 - Việc T13: Xong. Đã review kiến trúc ReceiptRail dựa trên bản `8f84cfe` và các artifact liên quan.
 
 - Việc T17: Xong. Đã hoàn thiện thiết kế UX cho ReceiptRail (Mã lỗi, wireframe, state machine, checklist) theo review của Codex (T16-R1-R5).
+
+- Việc T15: Xong. Đã sửa hẹp và hoàn thiện evidence ReceiptRail theo yêu cầu (tách trạng thái, phân biệt Solana Pay, bổ sung nguồn từ ledger).
