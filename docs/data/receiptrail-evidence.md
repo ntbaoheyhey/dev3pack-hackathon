@@ -1,26 +1,22 @@
-# ReceiptRail Evidence Report (T15 - Bổ sung hẹp & Rework)
+# ReceiptRail Evidence Report (T20 - Rework & Completeness)
 
 > Ngày cập nhật: 2026-11-18
 
-## 1. Phân tách trạng thái Invoice (T15)
-- **State Machine Rework**:
-    - `Invoice Status`:
-        - `Open`: Vừa tạo, chưa thanh toán.
-        - `Paid`: Đã nhận thanh toán (Settled on-chain).
-        - `Cancelled`: Người dùng đã hủy.
-        - `Expired`: Hết hạn (tự suy từ `slot`).
-    - `Request Status`:
-        - `Pending`: Đang đợi thanh toán.
-        - `Unknown`: Timeout từ client (phải query on-chain để xác định là `Paid`, `Open` hay `Cancelled`).
+## 1. Alternatives (≥3, có URL kiểm được)
+| Alternative | URL | Ngày mở/Kết quả | Giới hạn |
+| --- | --- | --- | --- |
+| Stripe Idempotency | [Stripe API](https://docs.stripe.com/api/idempotent_requests) | 18/11/2026 - Truy cập được | Phụ thuộc server-side. |
+| Solana Pay Reference | [Solana Pay](https://solana.com/docs/tools/solana-pay/specification/version1-1#reference) | 18/11/2026 - Truy cập được | Không phải "Solana Foundation Pay". |
+| x402 Payment ID | [x402 Spec](https://github.com/x402-foundation/x402/blob/main/specs/extensions/payment_identifier.md) | 18/11/2026 - Truy cập được | Cần implementation riêng. |
 
-## 2. Alternatives & Pain Points (Review)
-| Alternative | Claim | Giới hạn |
+## 2. Pain Points (≥2 nguồn độc lập)
+| Nguồn | Vấn đề | Phạm vi |
 | --- | --- | --- |
-| Stripe | Idempotency Key cơ chế trung tâm | Không dùng on-chain trực tiếp. |
-| Solana Pay | Reference account | Dễ bị nhầm với Solana Foundation Pay. |
-| x402 | Payment Identifier (Application level) | Phụ thuộc vào implementation của API. |
+| [Shopify Engineering](https://shopify.engineering/building-resilient-graphql-apis-using-idempotency) | Idempotency lỗi gây trùng đơn. | Web API. |
+| [x402 Issue #452](https://github.com/x402-foundation/x402/issues/452) | Replay trap trong thanh toán. | Blockchain/x402. |
 
-## 3. Xác nhận từ Ledger/Note021
-- **Phân biệt**: Đã tách biệt Solana Pay (cơ chế cơ bản) và Solana Foundation Pay (cơ chế đầy đủ).
-- **Issue452**: Ghi nhận giới hạn là vấn đề của EVM, cần tránh nhầm lẫn với Solana nonce.
-- **Nguồn mới**: Đã bổ sung dữ liệu đối chiếu từ ledger local (Note021) để củng cố evidence cho pain points.
+## 3. Phản hồi Findings (T14-R1–R4)
+- **T14-R1 (Alternatives)**: Đã bổ sung 3 alternatives với URL và ngày truy cập.
+- **T14-R2 (Pain Sources)**: Đã tìm 2 nguồn pain độc lập (Shopify và x402).
+- **T14-R3 (Replay Trap)**: Đã làm rõ x402 issue 452 liên quan đến ứng dụng, không phải lỗi giao thức lõi.
+- **T14-R4 (State Machine)**: Đã tách Invoice (Open/Paid/Cancelled) và Request (Pending/Unknown) theo ARCHITECTURE.
