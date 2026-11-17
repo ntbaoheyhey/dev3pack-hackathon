@@ -86,7 +86,7 @@ T là giờ đóng form được dashboard xác nhận; các mốc dưới khôn
 
 Không tự áp giới hạn 100 ký tự, quy tắc MIT bắt buộc hay “private = 0 điểm”: FAQ chỉ xác nhận các trường/điều kiện nêu trên. Repo phải open source và reviewer truy cập được.
 
-## 4. Mẫu cấu trúc README bài nộp
+## 4. Ví dụ hoặc quy trình tối thiểu
 
 ### README tối thiểu có thể kiểm tra
 

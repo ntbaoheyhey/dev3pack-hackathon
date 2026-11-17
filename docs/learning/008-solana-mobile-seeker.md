@@ -121,7 +121,7 @@ sequenceDiagram
 
 ---
 
-## 4. Ví dụ và Quy trình tối thiểu
+## 4. Ví dụ hoặc quy trình tối thiểu
 
 ### 4.1. Authorize và chọn account với protocol package 3.0.2
 

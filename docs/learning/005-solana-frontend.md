@@ -179,7 +179,7 @@ Trong thời gian hạn hẹp 48 giờ, việc chọn framework frontend quyết
 
 ---
 
-## 4. Ví dụ tối thiểu
+## 4. Ví dụ hoặc quy trình tối thiểu
 
 ### Ví dụ 4.1. Khởi tạo RPC và đọc dữ liệu với `@solana/kit` (Đã chạy kiểm tra)
 

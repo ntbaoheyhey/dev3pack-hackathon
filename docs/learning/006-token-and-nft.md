@@ -114,7 +114,7 @@ Solana nổi tiếng với tốc độ cao, nhưng kiến trúc NFT thời kỳ 
 
 ---
 
-## 4. Ví dụ và Quy trình tối thiểu
+## 4. Ví dụ hoặc quy trình tối thiểu
 
 ### 4.1. Lập ngân sách rent theo cấu hình
 

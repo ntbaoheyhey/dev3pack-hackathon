@@ -67,7 +67,7 @@ Phân biệt commitment theo [Solana Transaction Confirmation](https://solana.co
 
 Bản cũ dẫn homepage của các giải này để gọi cấu trúc video là “chuẩn”. Chưa có permalink video/hướng dẫn hỗ trợ nên bỏ cách gán đó. Trường hợp lịch sử có nguồn nằm ở [012](012-winning-solana-hackathons.md), không dùng để suy thể lệ Dev3pack. Hiệu quả công cụ dựng, tỷ lệ tiết kiệm thời gian và thời gian sản xuất **chưa kiểm chứng** vì chưa quay thử.
 
-## 4. Template kịch bản điền bằng chứng
+## 4. Ví dụ hoặc quy trình tối thiểu
 
 ### Lời thoại mẫu và thao tác — tối đa 2:45
 
