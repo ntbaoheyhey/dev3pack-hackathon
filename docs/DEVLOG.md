@@ -2,6 +2,12 @@
 
 Mỗi dòng: ngày · ai làm (Mai / Codex / Antigravity) · việc · note đã cập nhật.
 
+## 2026-11-17 — Claude (điều phối): luật làm cặp, không chờ nhau
+
+- Người dùng phản ánh hai agent thay phiên dừng để chờ nhau; Codex không tạo Automation tự đánh thức nên dừng hẳn; Antigravity báo chờ 015/016 dù đã có trên `origin/work` (487d5cf).
+- AGENTS.md thêm "Luật làm cặp": tự đánh thức bắt buộc và phải xác nhận, fetch trước khi nói thiếu, thiếu thì làm việc khác, review không chặn, chỉ người dùng mới chặn được việc.
+- Prompt 02 hai bên: Codex là chủ và người quyết RUBRIC, chốt v1 không chờ duyệt; Antigravity góp ý bất đồng bộ; khi chờ người dùng thì làm việc đi trước.
+
 ## 2026-11-17 — Claude (điều phối): Phase 1 học cách chấm trước, vòng lặp tới ngưỡng
 
 - Theo góp ý người dùng: Phase 1 phải học cách chấm ý tưởng và lập bộ chấm chung trước khi tìm ý tưởng; ý tưởng chỉ hợp lý khi vượt ngưỡng sau vòng lặp chấm–sửa.
