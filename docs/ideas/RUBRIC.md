@@ -1,6 +1,6 @@
-# Bộ chấm ý tưởng — RUBRIC v1.1
+# Bộ chấm ý tưởng — RUBRIC v1.2
 
-**Chốt quy tắc v1.1 ngày 17/11/2026 — chủ file: Codex.** Áp dụng chỉ thị người dùng và Prompt 02 đã cập nhật: Codex quyết định, review của Antigravity được xử lý bất đồng bộ. Không cần Antigravity duyệt để sang chặng C/D. Đây là rubric nội bộ, không phải trọng số chính thức của BTC.
+**Chốt quy tắc v1.2 ngày 17/11/2026 — chủ file: Codex.** Theo Prompt 03, Codex là trưởng nhóm và người chấm; Antigravity là trợ lý thu thập bằng chứng/UX qua A-queue/A-done. Mỗi điểm của Codex phải dẫn bằng chứng; giáo viên chấm lại SHORTLIST khi PR mở. Đây là rubric nội bộ, không phải trọng số chính thức của BTC. Giữ nguyên weights, floors, gates, ngưỡng và thang điểm v1.1.
 
 Nguồn: [015](../learning/015-hackathon-judging.md), [016](../learning/016-technical-feasibility-risk.md), các tiêu chí hữu ích trong [017](../learning/017-khung-tham-dinh-y-tuong.md), [018](../learning/018-blockchain-solana-check.md). Giữ problem/feasibility/novelty/demo và phép thử trust; không dùng claim thiên kiến giám khảo thiếu nguồn hoặc thưởng tên Token-2022/PDA/Blinks. Findings còn mở tại [review A](../reviews/A-codex.md) là góp ý chất lượng, không chặn chủ file quyết định.
 
@@ -60,14 +60,15 @@ Nguồn + ngày + claim được hỗ trợ; user/job/workflow hiện tại; so 
 
 Mỗi ô điểm dẫn tới đoạn/bằng chứng, ví dụ `F=3: có D1 cho token/system, chưa smoke nên không 4`. Không dùng cùng một blog sao chép thành hai nguồn độc lập. Public RFP chứng minh tổ chức muốn một hướng, không chứng minh khách hàng sẽ dùng sản phẩm cụ thể.
 
-## 5. Vòng sửa và chấm chéo
+## 5. Vòng sửa và trách nhiệm chấm (v1.2)
 
-- Ban đầu `r0`, tối đa **3 vòng sửa r1–r3**; tổng tối đa 4 lần tự chấm. Thay user/job/cơ chế cốt lõi tạo idea ID mới, lưu bài cũ với lý do bỏ; không reset chỉ để lách giới hạn.
+- Ban đầu `r0`, tối đa **3 vòng sửa r1–r3**; tổng tối đa 4 lần chấm mỗi idea ID. Thay user/job/cơ chế cốt lõi tạo ID mới, lưu bài cũ với lý do bỏ; không reset để lách giới hạn.
 - Mỗi vòng chọn tiêu chí yếu nhất, ghi nghiên cứu/thay đổi và delta điểm. Quá r3 chưa đạt thì bỏ.
-- Hai bên chấm độc lập cùng version RUBRIC và idea snapshot. Chỉ ĐẠT khi **cả tự chấm lẫn chấm chéo** qua tổng, sàn, gates; không lấy trung bình cứu điểm trượt.
-- Sau sửa phần vật chất phải chấm chéo version mới. Đổi rubric phải chấm lại mọi bài đang shortlist.
-- Xếp shortlist theo `min(tự chấm, chấm chéo)`, rồi F/R/P khi hòa; khác biệt >=2 ở tiêu chí hoặc >=10 tổng phải giải thích trước khi chốt.
-- Review bất đồng bộ, không chặn tiến độ. Chủ file xử lý ở v2/v3; bất đồng lớn ghi hai lập luận vào “Để người dùng quyết”, tạm dùng phương án chặt hơn. Không tự ghi A đã đồng ý.
+- **Codex chấm** cùng snapshot RUBRIC/ý tưởng; từng ô điểm dẫn đoạn hoặc artifact. Antigravity cung cấp nguồn và phản biện, không còn cổng chấm chéo hai agent.
+- **ĐẠT (PLAN, Codex)** khi tổng >=75, mọi sàn đạt, không gate fail/pending trọng yếu và đủ evidence theo mục 4. Đây là đạt ngưỡng lựa chọn ý tưởng, không phải sản phẩm đã build hay phase đã được giáo viên duyệt.
+- Xếp shortlist theo điểm Codex; hòa thì F/R/P, tiếp đó ghi trade-off cho người dùng. Sau sửa phần vật chất phải chấm lại; đổi rubric phải chấm lại mọi bài trong shortlist.
+- **Giáo viên chấm lại SHORTLIST khi PR mở**; ghi trạng thái review thật, không tự nhận đã được duyệt. Khi thiếu evidence ở sàn/ngưỡng: CHƯA ĐỦ BẰNG CHỨNG, không làm tròn hoặc tăng điểm để đủ ba bài.
+- Bất đồng lớn ghi hai lập luận vào “Để người dùng quyết”, dùng phương án chặt hơn trong lúc tiếp tục việc độc lập. Không chờ trợ lý.
 
 ## 6. Phương pháp hiệu chỉnh
 
@@ -75,7 +76,7 @@ Chọn trước ba bài thắng và hai bài được xác nhận ngoài nhóm g
 
 Ghi từng tiêu chí, nguồn nhãn, nguồn sản phẩm, mode DELIVERY và khoảng điểm thiếu bằng chứng. Nếu thang không phân biệt bằng chứng rõ với pitch rỗng, sửa mô tả tiêu chí rồi chấm lại toàn bộ. Nếu hai nhóm vẫn chồng lấp vì dữ liệu/small sample hoặc rubric chọn khả thi cho đội khác rubric giải thưởng, phải báo giới hạn, **không bẻ điểm để khớp nhãn thắng**. Cần thêm thử độ nhạy tăng/giảm 5 điểm trọng số giữa P/F/D, giữ tổng 100, và hai case đối chứng trên giấy (blockchain trang trí, dependency chặn demo).
 
-Hiệu chỉnh phải ghi cả dữ liệu thiếu và giới hạn; không dùng giải thưởng làm bằng chứng thay cho source/demo. Chỉ “ĐẠT” cuối sau cả self-score và cross-score; thiếu cross-score giữ nhãn “chờ chấm chéo”.
+Hiệu chỉnh phải ghi cả dữ liệu thiếu và giới hạn; không dùng giải thưởng làm bằng chứng thay cho source/demo. Nhãn “ĐẠT (PLAN, Codex)” áp dụng theo mục 5; review của giáo viên được ghi riêng và cổng ra phase vẫn phải được duyệt.
 
 ## 7. Lịch sử và để người dùng quyết
 
@@ -83,8 +84,9 @@ Hiệu chỉnh phải ghi cả dữ liệu thiếu và giới hạn; không dùn
 | --- | --- | --- |
 | v1.0 — 17/11/2026 | Chốt thang 0–5, weights, gates, floors, threshold 75, r0–r3 từ draft v0.1; review bất đồng bộ | Codex theo chỉ thị người dùng |
 | v1.1 — 17/11/2026 | Sau hiệu chỉnh: tách trần điểm chứng minh được khỏi khoảng U; khóa mốc artifact; không lấy website hậu cuộc thi hoặc claim traction làm evidence đã kiểm | Codex; không đổi weights/ngưỡng để khớp người thắng |
+| v1.2 — 17/11/2026 | Codex trưởng nhóm chấm có bằng chứng, A là trợ lý; giáo viên review SHORTLIST khi mở PR; bỏ cổng self/cross-score hai agent. Không đổi trọng số/ngưỡng/thang/số vòng | Prompt 03 của người dùng |
 
-Chưa có bất đồng rubric lớn được gửi; không tạo quyết định giả cần người dùng. ROADMAP dòng B còn ghi hai bên đồng ý là mô tả cũ; dùng Prompt 02 và AGENTS mới cho quyền quyết định. Các cổng người dùng/giáo viên ở Phase 1–2 vẫn giữ nguyên.
+Chưa có bất đồng rubric lớn được gửi; không tạo quyết định giả cần người dùng. Các mô tả cũ về hai agent ngang quyền không áp dụng; dùng Prompt 03 và AGENTS mới cho quyền quyết định. Các cổng người dùng/giáo viên ở Phase 1–2 vẫn giữ nguyên.
 
 
 ## 8. Hiệu chỉnh thực tế — Frontier 2026, đọc 17/11/2026

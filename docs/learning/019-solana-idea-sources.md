@@ -6,7 +6,7 @@
 
 Tìm một **workflow có vấn đề được chứng minh**, rồi mới chọn primitive. RFS cho biết hệ sinh thái muốn gì; GitHub issue cho biết một tích hợp gặp gì; repo archive cho biết một nhánh code không còn được duy trì. Không nguồn nào tự chứng minh toàn bộ thị trường hoặc bảo đảm đội này làm xong.
 
-Đọc cùng 015/016 và [RUBRIC v1](../ideas/RUBRIC.md). Chưa dùng ý tưởng của Antigravity; chỉ mở thư mục đó sau ba bài Codex tự chấm đạt.
+Đọc cùng 015/016 và [RUBRIC v1](../ideas/RUBRIC.md). Prompt 03 thay quy trình độc lập cũ: Codex chấm, Antigravity cung cấp nguồn qua hàng đợi; ba ý tưởng A cũ là ứng viên thô cần chấm lại.
 
 ## 2. Phiên bản và bằng chứng kiểm tra
 
@@ -73,7 +73,7 @@ Bài học **suy luận của Codex**, không phải lý do chính thức BTC ch
 4. Vẽ trust boundary. Nếu một DB/adapter giải quyết cùng thuộc tính mà không mất quyền user cần, không thêm chain để trang trí. Nếu on-chain state quyết định tiền/quyền, ghi invariant.
 5. Lập dependency D0–D3 và kill criteria theo 016. Chưa cài toolchain thì F không quá 3; chọn primitive dễ kiểm và một failure path thật.
 6. Viết acceptance và demo 165 giây trước mở rộng scope. Sau này đo test/latency/CU thật, không mượn số marketing.
-7. Chấm bằng RUBRIC; lưu r0–r3 kể cả bài bị bỏ. Một ý tưởng “chờ chấm chéo” chưa phải “ĐẠT”.
+7. Chấm bằng RUBRIC; lưu r0–r3 kể cả bài bị bỏ. Từ RUBRIC v1.2, Codex chấm có evidence; nhãn ĐẠT (PLAN) không thay cổng duyệt giáo viên/người dùng.
 
 ## 4. Ví dụ hoặc quy trình tối thiểu
 
@@ -108,3 +108,5 @@ Chưa đọc bảng RFP Airtable, chưa có interview/usage của user mục ti�
 | Nhiều dự án cùng tên SurgePay/Portara | Theo link trong profile của đúng sự kiện |
 | Web tool trả 409, HTTP Solana 429 | Ghi lỗi công cụ/truy cập cụ thể; đọc nguồn indexed/maintainer thay thế, không suy site bị chặn toàn bộ |
 | Primitive mới thành dependency không kiểm | D0 giữ D0; MVP có fallback được mô tả và tính lại chi phí |
+
+Ngày 17/11/2026 — Prompt 03: giao trợ lý T3/T4 bằng chứng và đối thủ cho receipt/retry, lệch cluster/IDL và gross/net token fee; yêu cầu cả negative evidence. Đổi vai trò không cho phép nới weights, sàn hoặc tự nâng F khi chưa spike.

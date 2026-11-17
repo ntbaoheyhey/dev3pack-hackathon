@@ -2,6 +2,8 @@
 
 Mỗi dòng: ngày · ai làm (Mai / Codex / Antigravity) · việc · note đã cập nhật.
 
+- 2026-11-17 · Codex · Nhận Prompt 03 trưởng nhóm, xác minh automation, đồng bộ main/work và giữ cả hai phía conflict DEVLOG; chuyển lịch sử HANDOFF vào archive, viết Thẻ nhớ, RUBRIC v1.2 giữ nguyên trọng số/ngưỡng, giao A T3/T4/T5 · Note 019 cập nhật quy trình evidence.
+
 ## 2026-11-17 — Claude (điều phối): Codex trưởng nhóm, Antigravity trợ lý; chống dừng và chống quên
 
 - Chấm Phase 1 trên `work`: Codex xong 015/016/019, RUBRIC v1.1 có hiệu chỉnh, review A/C; chưa có ý tưởng của Codex. Antigravity: note 017/018/020 rất ngắn và thiếu nguồn; 3 ý tưởng 76/100 không hợp lệ (không link bằng chứng, F=4 khi chưa spike, một tổng tính sai); `GOAL_COMPLETE` sai.
