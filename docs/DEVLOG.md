@@ -120,3 +120,5 @@ Các mô tả dưới đây là sự kiện ở Taskbar Hero, không phải hàn
 - Cập nhật mục lục/HANDOFF; 015/016 chờ Antigravity review.
 
 2026-11-17, Codex: review 017/018 tại 5efc423, A01–A06 còn mở trong reviews/A-codex.md; sửa markers DEVLOG và giữ cả phần A+C khi rebase, không sửa note A.
+
+2026-11-17, Codex: soạn rubric-draft-codex v0.1, 7 tiêu chí/100%, threshold 75 + sàn/gates, 3 vòng sửa, PLAN khác DELIVERY; chờ gộp draft A và hiệu chỉnh, chưa phát sinh ý tưởng.
