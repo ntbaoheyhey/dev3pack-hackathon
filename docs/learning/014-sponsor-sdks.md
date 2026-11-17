@@ -180,29 +180,83 @@ export async function fetchCleanCryptoNews(url: string): Promise<string> {
 }
 ```
 
-### 4.3. Tích hợp ElevenLabs Text-to-Speech (Client-side Audio)
+### 4.3. ElevenLabs qua backend; browser chỉ nhận audio
+
+**Cảnh báo:** `ELEVENLABS_API_KEY` là secret, chỉ đặt trong biến môi trường server. Không dùng tiền tố public như `VITE_`/`NEXT_PUBLIC_`, không truyền key qua props, browser bundle hoặc request từ browser. [ElevenLabs Authentication](https://elevenlabs.io/docs/api-reference/authentication) yêu cầu giữ key ngoài client-side code; single-use token chỉ dùng được với những endpoint được hỗ trợ, không mặc định áp dụng cho TTS này.
+
+Mẫu TypeScript cho backend Node có Web Fetch API, **chưa chạy hoặc triển khai**. Route `/api/voice-alert` phải nối tới handler dưới đây. `authorizeAndConsumeQuota` là dependency **do ứng dụng tự triển khai**, không phải API của ElevenLabs: xác minh session, kiểm tra origin/CSRF theo cơ chế đăng nhập và áp hạn mức nguyên tử theo user; chỉ trả `true` khi được phép. Thiếu guard thì không thể khởi tạo handler; không thay guard bằng hàm luôn trả `true`.
 
 ```typescript
-export async function playVoiceAlert(text: string, apiKey: string) {
-  const voiceId = '21m00Tcm4TlvDq8ikWAM'; // Giọng Rachel chuẩn
-  const response = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${voiceId}`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'xi-api-key': apiKey,
-    },
-    body: JSON.stringify({
-      text: text,
-      model_id: 'eleven_turbo_v2_5', // Model độ trễ siêu thấp
-    }),
-  });
+// CHỈ SERVER: ví dụ server/voice-alert.ts, không import vào frontend.
+type VoiceAlertGuard = (request: Request) => Promise<boolean>;
 
-  const blob = await response.blob();
-  const audioUrl = URL.createObjectURL(blob);
-  const audio = new Audio(audioUrl);
-  audio.play();
+export function createVoiceAlertHandler(authorizeAndConsumeQuota: VoiceAlertGuard) {
+  return async function POST(request: Request): Promise<Response> {
+    if (request.method !== 'POST') {
+      return new Response('Method not allowed', { status: 405 });
+    }
+    if (!(await authorizeAndConsumeQuota(request))) {
+      return new Response('Không có quyền hoặc đã hết hạn mức.', { status: 403 });
+    }
+    const input = await request.json().catch(() => null);
+    if (typeof input?.text !== 'string' || !input.text.trim() || input.text.length > 500) {
+      return new Response('Nội dung phải có 1–500 ký tự.', { status: 400 });
+    }
+    const apiKey = process.env.ELEVENLABS_API_KEY;
+    const voiceId = process.env.ELEVENLABS_VOICE_ID;
+    if (!apiKey || !voiceId) {
+      return new Response('Dịch vụ âm thanh chưa được cấu hình.', { status: 503 });
+    }
+    try {
+      const upstream = await fetch(
+        `https://api.elevenlabs.io/v1/text-to-speech/${encodeURIComponent(voiceId)}?output_format=mp3_44100_128`,
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'xi-api-key': apiKey },
+          body: JSON.stringify({ text: input.text, model_id: 'eleven_multilingual_v2' }),
+          signal: AbortSignal.timeout(15_000),
+        },
+      );
+      if (!upstream.ok || !upstream.body) {
+        return new Response('Không tạo được âm thanh.', { status: 502 });
+      }
+      return new Response(upstream.body, {
+        headers: { 'Content-Type': 'audio/mpeg', 'Cache-Control': 'no-store' },
+      });
+    } catch {
+      return new Response('Dịch vụ âm thanh chưa phản hồi.', { status: 502 });
+    }
+  };
 }
 ```
+
+Endpoint, `model_id` và `output_format` được đối chiếu với [Create speech](https://elevenlabs.io/docs/api-reference/text-to-speech/convert), ngày 17/11/2026. Voice ID phải thuộc quyền sử dụng của tài khoản. Không chuyển tiếp header hoặc body lỗi từ upstream ra client.
+
+```typescript
+// CHỈ BROWSER: gọi route cùng origin, không nhận hoặc biết API key ElevenLabs.
+export async function playVoiceAlert(text: string): Promise<void> {
+  const response = await fetch('/api/voice-alert', {
+    method: 'POST',
+    credentials: 'same-origin',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ text }),
+  });
+  if (!response.ok) throw new Error('Không phát được thông báo âm thanh.');
+  const audioUrl = URL.createObjectURL(await response.blob());
+  const audio = new Audio(audioUrl);
+  const release = () => URL.revokeObjectURL(audioUrl);
+  audio.addEventListener('ended', release, { once: true });
+  audio.addEventListener('error', release, { once: true });
+  try {
+    await audio.play(); // Gọi từ thao tác người dùng; browser có thể chặn autoplay.
+  } catch (error) {
+    release();
+    throw error;
+  }
+}
+```
+
+Trước khi dùng thật: kiểm tra guard từ chối request chưa đăng nhập/hết quota, giới hạn kích thước request ở route/gateway, xử lý upstream timeout và xác nhận DevTools chỉ thấy `/api/voice-alert` cùng audio, không thấy key. Đây là checklist cần chạy sau, chưa phải kết quả kiểm thử.
 
 ---
 

@@ -1,5 +1,21 @@
 > **Luật đọc bàn giao:** Sau compact, nếu còn việc thì đọc phần hiện hành và làm tiếp ngay. Trạng thái chỉ dùng `đang làm` | `bị chặn (cần người dùng)` | `xong`; không ghi "tạm dừng" trừ khi người dùng yêu cầu. Mẫu trống: [HANDOFF-TEMPLATE.md](HANDOFF-TEMPLATE.md).
 
+# Bàn giao hiện hành — sửa PR #1 và R01–R09
+
+- **Trạng thái:** đang làm. Cập nhật 17/11/2026, Asia/Ho_Chi_Minh.
+- Repo duy nhất: `/Users/bao/Documents/dev3pack-hackathon`; remote `https://github.com/ntbaoheyhey/dev3pack-hackathon.git`; nhánh `prompts/01-learning`.
+- Chỉ tài liệu; không cài đặt, tạo keypair, deploy, mainnet, sửa Taskbar Hero, merge PR hoặc push main/force-push.
+- Đã xong: merge `origin/main` theo yêu cầu và push `58ffb5a`; giữ README/main, lịch sử HANDOFF, tách mẫu trống; R01 chuyển key ElevenLabs về backend.
+- Còn lại: R02 → R03 → R04–R09, đồng bộ 001/012/013/014, kiểm tra tài liệu, ghi SHA từng finding vào REVIEW, push nhánh và kiểm tra PR không xung đột.
+- Đã đọc trang chủ/FAQ Dev3pack bằng browser; xác nhận dữ liệu người dùng cung cấp, giờ UTC chưa công bố ngoài dashboard.
+- Bị chặn: không có. Sau compact đọc file này rồi làm tiếp.
+
+---
+
+## Lịch sử chuyển tài liệu — giữ nguyên nội dung main
+
+Phần dưới chỉ là lịch sử; quyền push main và các lời nhắc kết thúc phiên cũ không áp dụng cho task hiện hành.
+
 # Bàn giao chuyển tài liệu Solana về đúng repo
 
 **Trạng thái: hoàn tất chuyển tài liệu Codex và Antigravity lên main repo đích. Người dùng quyết định giữ nguyên Taskbar Hero như hiện tại; không còn bước chuyển nhánh hoặc quyết định nào đang chờ.** Cập nhật 17/11/2026, Asia/Saigon.

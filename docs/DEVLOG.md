@@ -2,6 +2,11 @@
 
 Mỗi dòng: ngày · ai làm (Mai / Codex / Antigravity) · việc · note đã cập nhật.
 
+## 2026-11-17 — Codex: sửa PR #1 và findings của phần Antigravity
+
+- Đã xác nhận đúng đường dẫn/remote; merge `origin/main` vào `prompts/01-learning`, không rebase; push merge `58ffb5a`. Giữ nội dung main, thêm luật đọc bàn giao và `docs/HANDOFF-TEMPLATE.md`.
+- R01 · sửa 014 do Antigravity viết: giữ key ElevenLabs ở backend, thêm guard do app cung cấp, browser chỉ nhận audio; dẫn Authentication/Create speech. Chưa gọi API, chưa build/deploy mẫu.
+
 ## Trước sự kiện
 
 - 2026-11-17 · Claude · Dựng khung repo, quy tắc "học trước, ghi lại", research Codex vs Antigravity · 000, 001
