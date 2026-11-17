@@ -30,3 +30,5 @@ _Chưa có mục nào._
 - Việc T3: đang làm.
   - Mục tiêu: Crawl bằng chứng nỗi đau người dùng (Việt Nam/Đông Nam Á) theo note 020.
   - File kết quả: `docs/data/user-pain-evidence.md`.
+
+- Việc T3: Xong. Đã thu thập bằng chứng nỗi đau người dùng vào `docs/data/user-pain-evidence.md`.
