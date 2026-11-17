@@ -17,4 +17,11 @@ Mọi thứ đã học về Solana, công cụ, và cách làm việc với AI �
 | 006 | Token / NFT (SPL Token, Token-2022, Metaplex) — nếu cần | cần học | |
 | 007 | Bảo mật Solana program: lỗi thường gặp | cần học | |
 | 008 | Solana Mobile (Seeker) — nếu nhắm giải mobile | cần học | |
-| 009 | Mẹo dùng Codex / Antigravity từ MXH & diễn đàn (global + Trung Quốc: X, Reddit, HN, Juejin, CSDN, Zhihu, V2EX, Linux.do…) — giao Codex tự tìm | để sau | |
+| 009 | Mẹo dùng Codex / Antigravity từ MXH & diễn đàn (global + Trung Quốc) | cần học (Codex + Antigravity) | |
+| 010 | AI tooling cho Solana (MCP, skills) | cần học (Codex) | |
+| 011 | Lộ trình học 17/11 → 26/11 | cần học (Codex) | |
+| 012 | Cách thắng hackathon Solana | cần học (Antigravity) | |
+| 013 | Video demo < 3 phút | cần học (Antigravity) | |
+| 014 | SDK nhà tài trợ (Supabase, ElevenLabs, Firecrawl, Solana Mobile) | cần học (Antigravity) | |
+
+Prompt giao việc cho từng agent nằm trong [`prompts/`](../../prompts/).
