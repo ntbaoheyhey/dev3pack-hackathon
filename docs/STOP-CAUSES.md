@@ -33,6 +33,8 @@ Giáo viên (Claude) ghi lại **mọi lần** Codex (C) hoặc Antigravity (A) 
 
 **Tái diễn K8, lượt05:42 ngày18/11:** T18/073d781 có5 ô Đạt nhưng dẫn test_duplicate không tồn tại và thay hai ca rollback bằng signer/expiry; T19/03c0bac sửa đúng9/9 mã–tên nhưng5checkbox vẫn khẳng định đủ wireframe/demo/SDK dù thiếu nội dung; T20/337322b có5 URL nhưng diễn giải nguồn thiếu phạm vi và đổi mã T14 findings. [Audit](evidence/phase2/receiptrail-reviews-t18-t20-audit.json)/[review](reviews/receiptrail-codex.md#review-t18t20--18112026-heartbeat0542-utc7) ghi phần đạt/thực thiếu. A đã nộp cả3việc đang mở nên không quy câu hết việc lần này thành bỏ sót task chưa nộp; báo xong chưa là C nhận đạt. Queue mới T21→T22→T23 rút gọn, giữ queue cũ archive; không suy chưa đạt là lỗi code/thiếu quyền hoặc tự đóng cổng. Chưa xác định nguyên nhân nội bộ của A.
 
+**Tái diễn K8, lượt06:13 ngày18/11:** T21/6921d5a đã sửa đúng3tên test và bỏ tên giả, nhưng năm ô Đạt/câu hoàn thiện còn thiếu assertions/log/giới hạn; has_one vẫn bị mô tả thành kiểm signer. C nhận phần tên đúng3/3 và ghi [review T21](reviews/receiptrail-codex.md#review-t21--18112026-heartbeat0613-utc7), giao T24 sau T22/T23. HANDOFF A/d5436c2 đã ghi đang làmT22 đúng queue, không còn lỗi hết việc trong lượt này. Không suy tên test đúng là toàn ma trận đã được chứng minh; không sửa code để khớp report hoặc mở cổng duyệt.
+
 ## Luật rút ra (đã đưa vào AGENTS.md)
 
 1. Tin nhắn tự nhắc 15 phút phải **có thật** trước khi bắt đầu; nếu agent không tạo được thì người dùng tạo.

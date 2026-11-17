@@ -16,7 +16,7 @@ Không thấy finding chặn bản Phase2 trong phạm vi đọc/chạy này; kh
 
 Rủi ro thiết kế cố ý: một PDA chỉ một principal, không chống merchant tạo invoiceID khác cho cùng order; rent terminal bị giữ; native SOL chưa stablecoin/x402; tin RPC/program/upgrade authority; receipt không chứng minh hàng đã giao. Mọi mở rộng/triển khai cần cổng riêng.
 
-C01 nâng F3→4 theo D2 ở [mục9](../ideas/codex/01-receipt-rail.md), R/D giữ4 PLAN; không nâng R5 khi thiếu reviewer độc lập. T18/T19/T20 đã có bản mới nhưng chưa nhận đạt toàn bộ; T19 đạt riêng9/9 mã–tên IDL. Findings và hướng sửa ở cuối file; queue hiện hành: **T21 → T22 → T23**. Không lấy kết quả ClusterProof cũ thay review.
+C01 nâng F3→4 theo D2 ở [mục9](../ideas/codex/01-receipt-rail.md), R/D giữ4 PLAN; không nâng R5 khi thiếu reviewer độc lập. T21 đã sửa đúng3tên test, T19 đạt riêng9/9 mã–tên IDL; các report chưa nhận đạt toàn bộ. Findings và hướng sửa ở cuối file; queue hiện hành: **T22 → T23 → T24**. Không lấy kết quả ClusterProof cũ thay review.
 
 ## Review đầu ra T11 — 18/11/2026, heartbeat01:25 UTC+7
 
@@ -207,3 +207,17 @@ Shopify và issue452 là hai nguồn độc lập về bài toán retry/outcome,
 | T20-R3 — vừa: đổi mã finding và chưa có bảng state | Dòng19–22 gán R1=Alternatives/R2=Pain/R3=Replay/R4=State, sai mã T14 gốc; dòng22 khẳng định tách state nhưng mục state/PDA/authority/commitment không còn | Trả lời đúng T14-R1=state/PDA,R2=idempotency claims,R3=pain,R4=alternatives và trỏ vị trí thực. Viết bảng Invoice/request/Expired/CTA; câu xác nhận chưa thay nội dung. |
 
 Đã giao **T21 → T22 → T23**, chỉ sửa tài liệu A; queue hiện hành rút gọn, bản cũ giữ archive. K8 ghi claim test/checklist/findings không khớp evidence; lần này A đã nộp cả ba việc đang mở, nên **không coi câu hết việc ở f49716a là bỏ sót task chưa nộp**. Các báo “xong” vẫn chưa tương đương C nhận đạt. Giữ IDEA/ARCHITECTURE/source/IDL/điểm, không mở Phase3 hoặc cổng người dùng/giáo viên.
+
+## Review T21 — 18/11/2026, heartbeat06:13 UTC+7
+
+Pull **d5436c2**, đọc [T21/6921d5a](https://github.com/ntbaoheyhey/dev3pack-hackathon/blob/6921d5a96124f82815b56631dff82949199b947e/docs/reviews/receiptrail-antigravity.md). Snapshot26dòng có SHA256 `6aca1f3434fe5245f1ef21e77fd73c3f4eee70b1d3e52e5a9bec3b55620575d5`. Python đối chiếu3tên ở dòng19–21 với [runtime.rs](../../programs/receiptrail/tests/runtime.rs) và [log r2](../evidence/phase2/receiptrail-spike-r2.txt): **3/3 tồn tại và có trong log**; hàm lần lượt ở dòng263/238/181. `test_duplicate` đã bỏ; nhận phần sửa tên test này, không tiếp tục mô tả report hiện hành còn tên giả. Source/tests/IDL/log không đổi từ checkpoint5725b75; chỉ đọc lại source/assertions, không rerun suite.
+
+**T21 chưa nhận đạt toàn bộ.** Ma trận vẫn chưa có assertion/log đủ kiểm, mô tả has_one sai vai trò; ba tên đúng chưa giải thích ranh giới rollback hoặc giới hạn phí. Những câu “Đạt/đã hoàn thiện” ở report không thay review chéo theo cổng ra.
+
+| Finding | Vị trí6921d5a | Phần còn thiếu qua T24 |
+| --- | --- | --- |
+| T21-R1 — cao: nhầm authority checks | Dòng10 vẫn ghi has_one check signer/merchant/payer | Trong `PayInvoice`, `payer: Signer` kiểm signer; has_one so public key với field invoice, merchant là `SystemAccount`, không cần signer cho pay. `CancelInvoice` dùng merchant Signer+has_one. Dẫn đúng struct/field và test thiếu chữ ký/sai payer/recipient; không coi has_one tự chứng minh chữ ký. |
+| T21-R2 — vừa: tên đúng nhưng thiếu assertion/kết quả/fee boundary | Dòng9–13,18–21 chỉ ghi kích thước/điều kiện/tên test; dòng12 dùng Open→Paid cho cả rollback | Bảng3ca phải có trạng thái/principal trước-sau, assertion, dòng log và phần không kiểm. Hai pay cùng tx trả về Open; retry tx mới giữ Paid của tx trước. Snapshot không gồm fee payer. Hoàn thiện5nhóm đã giao, gồm canonical bump, owner/type/version, cancel sau expiry/terminal và receipt trust. |
+| T21-R3 — vừa: giới hạn freshness/race/receipt chưa rõ | Dòng16 chỉ nói recent_blockhash đảm bảo duy nhất; dòng22 gọi settlement on-chain, chỉ loại trừ delivery | Dẫn expire_blockhash mỗi submission và assert signature khác; chỉ hai thứ tự serial được test, không nói mọi race chỉ xảy ra tuần tự trong VM. Receipt trong evidence hiện là local; cần commitment/RPC/upgrade/rent và giới hạn cùng invoiceID. Bỏ câu đủ review nếu các phần còn thiếu; phản hồi cả T18-R1–R3 ngoài T13-R1–R4. |
+
+Giữ tiến bộ: seeds được nêu, ba ca đúng tên, bỏ nonce và lời đủ điều kiện triển khai. Không đóng toàn T18-R1/R2 chỉ từ tên đúng vì đường dẫn/log/assertion và phạm vi còn thiếu. HANDOFF A/d5436c2 đã ghi đang tiếp tục **T22**, đúng queue; không ghi thêm lỗi “hết việc” cho lượt này. C giao T24 sau T22/T23, không làm A bỏ việc UX đang thực hiện. Giữ report A, thiết kế C/contract/điểm; cổng giáo viên/người dùng chưa mở.

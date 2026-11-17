@@ -2,11 +2,11 @@
 
 **Chủ file: Codex. Chỉ nhận việc từ file này.** A sở hữu các report của mình, A-done và HANDOFF A; C không sửa thay các file đó. Chỉ làm tài liệu Phase2 ReceiptRail. Quyết định **“ReceiptRail chính, ClusterProof phụ” lúc00:07 ngày18/11/2026 UTC+7** ở [DECISION](../ideas/DECISION.md); thiết kế chưa duyệt. Không cài/code/tạo ví-keypair triển khai/build web/deploy/public hoặc mở Phase3.
 
-**Làm ngay T21 → T22 → T23.** Ba task T18/T19/T20 đã được C review, chưa nhận đạt toàn bộ. T19 đã đạt riêng9/9 mã–tên lỗi; giữ phần đúng. Nguồn kết luận: [review mới](../reviews/receiptrail-codex.md#review-t18t20--18112026-heartbeat0542-utc7), [audit snapshot](../evidence/phase2/receiptrail-reviews-t18-t20-audit.json). Queue cũ và yêu cầu chi tiết giữ ở [archive](../archive/A-queue-before-T21.md), không lặp việc cũ theo nhãn mới/xong ở đó.
+**Tiếp tục T22 → T23 → T24.** A đã ghi đang làm T22 tại d5436c2; giữ việc UX này trước. T21 đã sửa đúng3tên test nhưng còn authority/assertions/giới hạn; T19 đạt riêng9/9 mã–tên lỗi. Nguồn kết luận: [review T21](../reviews/receiptrail-codex.md#review-t21--18112026-heartbeat0613-utc7), [review T18–T20](../reviews/receiptrail-codex.md#review-t18t20--18112026-heartbeat0542-utc7), [audit snapshot](../evidence/phase2/receiptrail-reviews-t18-t20-audit.json). Queue cũ và yêu cầu chi tiết giữ ở [archive](../archive/A-queue-before-T21.md), không lặp việc cũ theo nhãn mới/xong ở đó.
 
-## T21 — sửa review kiến trúc bằng assertion và log thật
+## T21 — đã nộp; phần tên test đạt, phần còn thiếu chuyển T24
 
-**Trạng thái: mới, làm ngay.** Đầu ra: sửa [review A](../reviews/receiptrail-antigravity.md), phản hồi từng T13-R1–R4 và T18-R1–R3. Không sửa source để làm report đúng.
+**Trạng thái: đã review6921d5a, chưa nhận toàn bộ; tiếp tục qua T24 sau T22/T23.** Đầu ra: sửa [review A](../reviews/receiptrail-antigravity.md), phản hồi từng T13-R1–R4 và T18-R1–R3. Không sửa source để làm report đúng.
 
 Đọc [IDEA](../IDEA.md), [ARCHITECTURE mục3–8](../ARCHITECTURE.md), [source](../../programs/receiptrail/src/lib.rs), [runtime tests](../../programs/receiptrail/tests/runtime.rs), [IDL](../idl/receiptrail.json), [log r2](../evidence/phase2/receiptrail-spike-r2.txt), [note023](../learning/023-receiptrail-phase2-spike.md). Source/tests/IDL từ8f84cfe chưa đổi; test_duplicate không tồn tại. Log nằm trong file evidence, không nằm trong runtime.rs.
 
@@ -19,7 +19,7 @@
 
 ## T22 — hoàn thiện UX ngoài phần mã–tên đã đạt
 
-**Trạng thái: mới, sau T21.** Đầu ra: sửa [UX A](../design/receiptrail-ux-antigravity.md), phản hồi từng T16-R1–R5 ở review T19. Đầu vào [ARCHITECTURE mục4–6](../ARCHITECTURE.md), [IDEA/demo165s](../IDEA.md), notes[005](../learning/005-solana-frontend.md)/[013](../learning/013-hackathon-demo-video.md)/[014](../learning/014-sponsor-sdks.md).
+**Trạng thái: đang làm theo HANDOFF A/d5436c2; tiếp tục ngay.** Đầu ra: sửa [UX A](../design/receiptrail-ux-antigravity.md), phản hồi từng T16-R1–R5 ở review T19. Đầu vào [ARCHITECTURE mục4–6](../ARCHITECTURE.md), [IDEA/demo165s](../IDEA.md), notes[005](../learning/005-solana-frontend.md)/[013](../learning/013-hackathon-demo-video.md)/[014](../learning/014-sponsor-sdks.md).
 
 1. Giữ9/9 code–name đã khớp; sửa copy/CTA theo ARCHITECTURE mục5, nhất là6001/6004/6005/6008. Namespace program ID+code; nhóm Anchor/System/fee/wallet/RPC riêng. Không tự tạo invoice mới sau timeout/expiry hoặc ký khi chưa hỗ trợ version. Có thể chạy lại [lệnh đọc/so IDL](../archive/A-queue-before-T21.md#t19--sửa-ux-và-kiểm-bảng-lỗi-trước-khi-đánh-dấu-đạt) nếu sửa bảng, kèm output thật; không gọi đây là runtime test.
 2. Form có merchant/payer, invoiceID32 ổn định (ghi mapping từ OrderID), amount SOL và lamports/u64, expiry slot; xem lại terms bất biến. Merchant trả rent create; tách principal và phí khi pay. Native SOL, không token/mint selector.
@@ -39,6 +39,16 @@
 - Phản hồi **đúng mã gốc**: T14-R1=state/PDA; R2=claim idempotency; R3=pain; R4=alternatives. Thêm T20-R1–R3; mỗi dòng trỏ mục/hàng/nguồn đã sửa. Thiếu evidence ghi chưa đạt.
 
 **Nhận khi:** claim kiểm được theo nguồn và đúng phạm vi, đủ bảng và phản hồi; không chỉ xác nhận đã sửa. Report C đã mở5nguồn không thay A tự kiểm hoặc lời duyệt người dùng.
+
+## T24 — bổ sung authority, assertion và giới hạn còn thiếu của T21
+
+**Trạng thái: mới, sau T22/T23.** Sửa [review A](../reviews/receiptrail-antigravity.md) theo T21-R1–R3 ở [review C](../reviews/receiptrail-codex.md#review-t21--18112026-heartbeat0613-utc7). Giữ3tên test đúng; không chỉ đổi tiêu đề/tên task.
+
+1. Viết riêng pay/cancel: account nào phải ký, account nào nhận tiền, Signer và has_one kiểm gì. Đọc struct PayInvoice/CancelInvoice, không viết has_one kiểm chữ ký. Trỏ test missing signature/wrong payer/recipient và assertion cụ thể.
+2. Thay danh sách3tên bằng bảng với cột **hàm + dòng; trạng thái/principal trước; sau tx fail; assertion đã đọc; file log + dòng kết quả; điều chưa kiểm**. Dùng đúng3hàm T21 đã dẫn. Đối chiếu Snapshot/reject: không gồm fee payer riêng; `[pay,pay]` và retry tx mới khác ranh giới transaction. Đọc log không khai rerun.
+3. Điền5nhóm của T21 bằng vị trí/assertion/kết quả và giới hạn; chưa kiểm một nhóm thì ghi chưa kiểm, không “Đạt” suông. Dẫn expire_blockhash/khác signature, chỉ2thứ tự serial; receipt local/commitment/RPC/upgrade/rent/merchant dùng ID khác. Trả lời T13-R1–R4,T18-R1–R3,T21-R1–R3 bằng vị trí đã sửa; phần chưa đạt ghi rõ.
+
+**Nhận khi:** người đọc kiểm được từng kết luận trên source/log hiện có; chỉ3tên tồn tại không đủ. Không cài/rerun runtime tests/sửa source/IDL/thiết kế C hoặc mở Phase3. C chưa nhận toàn bộ review và người dùng chưa duyệt.
 
 ## Ghi kết quả và giới hạn
 
