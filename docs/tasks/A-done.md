@@ -12,3 +12,5 @@
 - Việc T6: Xong. Đã thu thập evidence cho 3 workflow C01, C02, C03.
 
 - Việc T6 (Làm lại): Xong. Đã làm lại evidence theo đúng workflow C01-C03, tách biệt rõ giữa bug hệ thống và lỗi triển khai.
+
+- Việc T2: Xong. Đã dùng dữ liệu từ Note 012 để thay thế vì trang Colosseum bị chặn.
