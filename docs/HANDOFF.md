@@ -11,13 +11,13 @@
 - A01–A03 cũ là ứng viên thô, nhãn ĐẠT/GOAL_COMPLETE cũ không hợp lệ; chấm lại theo v1.2.
 - Sở hữu C: RUBRIC, ideas/codex, cross-scores, SHORTLIST, IDEA, ARCHITECTURE, A-queue; không sửa A-done.
 - Chưa có lựa chọn chính/dự phòng; chưa có quyền cài toolchain, tạo ví hay deploy.
-- Tiếp theo: gửi việc thu thập bằng chứng cho A; đọc/kiểm nguồn chính thức, viết evidence cards và r0 cho C01–C03.
+- Tiếp theo: viết note 021 sau đặt chỗ; r0 C01–C03 rồi spike đọc devnet cho C02/C03 nếu cần. Đã gửi T6 để sửa evidence A.
 - Cấm: mainnet, secret/keypair trong Git, force-push, merge PR, tự gắn hoàn thành khi chưa qua gate.
 - Mỗi bước lớn: cập nhật thẻ, DEVLOG/note, commit nhỏ, pull --rebase trước push; không chờ A.
 
 ## Còn lại
 
-- [ ] D0: RUBRIC v1.2 giữ trọng số/sàn/ngưỡng, đổi trách nhiệm chấm; giao A bằng chứng cụ thể.
+- [x] D0: RUBRIC v1.2 giữ trọng số/sàn/ngưỡng, đổi trách nhiệm chấm; giao A bằng chứng cụ thể.
 - [ ] D1: >=3 ý tưởng Codex đủ mục 4, r0–r3 và mỗi điểm dẫn evidence; sửa/bỏ trung thực.
 - [ ] D2: chấm lại cả 3 ứng viên A; ghi giữ/nâng cấp/bỏ tại cross-scores-codex.
 - [ ] E1: viết lại SHORTLIST, ghi lý do thay bản A; kiểm nguồn, phép tính, giả định và điều kiện loại.
