@@ -5,8 +5,8 @@
 - **Trạng thái:** đang làm. Cập nhật 17/11/2026, Asia/Ho_Chi_Minh.
 - Repo duy nhất: `/Users/bao/Documents/dev3pack-hackathon`; remote `https://github.com/ntbaoheyhey/dev3pack-hackathon.git`; nhánh `prompts/01-learning`.
 - Chỉ tài liệu; không cài đặt, tạo keypair, deploy, mainnet, sửa Taskbar Hero, merge PR hoặc push main/force-push.
-- Đã xong: merge `origin/main` theo yêu cầu và push `58ffb5a`; giữ README/main, lịch sử HANDOFF, tách mẫu trống; R01 (`1ad1f28`) chuyển key ElevenLabs về backend; R02 (`37e8a3e`) sửa parser + 11 fixture offline; R03 (`84846a2`) sửa nguồn và nhãn UI; R04/Phần 3 (`2e6889c`) đồng bộ thể lệ 001/012/013/014 và nguồn pricing; R05 (`8b900ff`) sửa Transfer Fee/ngân sách 006; R06 (`e7e2807`) sửa MWA đúng type/encoding; R07 (`3f0e29e`) sửa script video 165 giây, placeholder bằng chứng; R08 sửa workflow Codama có source/version.
-- Còn lại: R09, đồng bộ 001/012/013/014, kiểm tra tài liệu, ghi SHA từng finding vào REVIEW, push nhánh và kiểm tra PR không xung đột.
+- Đã xong: merge `origin/main` theo yêu cầu và push `58ffb5a`; giữ README/main, lịch sử HANDOFF, tách mẫu trống; R01 (`1ad1f28`) chuyển key ElevenLabs về backend; R02 (`37e8a3e`) sửa parser + 11 fixture offline; R03 (`84846a2`) sửa nguồn và nhãn UI; R04/Phần 3 (`2e6889c`) đồng bộ thể lệ 001/012/013/014 và nguồn pricing; R05 (`8b900ff`) sửa Transfer Fee/ngân sách 006; R06 (`e7e2807`) sửa MWA đúng type/encoding; R07 (`3f0e29e`) sửa script video 165 giây, placeholder bằng chứng; R08 (`dd38da7`) sửa workflow Codama có source/version; R09 chuẩn hóa sáu heading mục 4.
+- Còn lại: kiểm tra tài liệu/scope, đồng bộ README và REVIEW với SHA từng finding, cập nhật trạng thái xong, push nhánh và kiểm tra PR không xung đột.
 - Đã đọc trang chủ/FAQ Dev3pack bằng browser; xác nhận dữ liệu người dùng cung cấp, giờ UTC chưa công bố ngoài dashboard.
 - Bị chặn: không có. Sau compact đọc file này rồi làm tiếp.
 

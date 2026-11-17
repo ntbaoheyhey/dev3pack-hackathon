@@ -50,7 +50,7 @@ Giải đã công bố: **$10.000+ Best App Overall on Solana**, **$500 local tr
 
 Bài nộp vẫn phải theo [001](001-hackathon-rules.md): open source, Solana, demo thật dưới 3 phút, link công khai; hai vòng Product/Technical không có trọng số công bố. Form năm bước và deadline 29/11/2026 (giờ UTC xem dashboard) ở [012](012-winning-solana-hackathons.md). Không thay điều kiện này bằng một ma trận “tiềm năng ẵm bounty”.
 
-## 4. Ví dụ và Quy trình tối thiểu
+## 4. Ví dụ hoặc quy trình tối thiểu
 
 ### 4.1. Tích hợp Supabase Client & Realtime (TypeScript)
 

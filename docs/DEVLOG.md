@@ -23,6 +23,8 @@ Mỗi dòng: ngày · ai làm (Mai / Codex / Antigravity) · việc · note đã
 
 - R04 bổ sung · kiểm tra cấu trúc phát hiện phần 014 cũ bị giữ sót do tiêu đề SDK trùng chuỗi mục 4; đã xóa ma trận/bounty cũ để chỉ còn hướng dẫn đã kiểm chứng. Kiểm tra lại mọi nhận định bounty/Free Tier trong bản hiện hành.
 
+- R09 · chuẩn hóa heading cấp hai mục 4 của 005/006/008/012/013/014 thành “Ví dụ hoặc quy trình tối thiểu”, giữ tiêu đề chuyên biệt cấp ba. Lượt đầu sửa năm file; lượt hoàn tất sửa 014 sau khi loại nội dung cũ, kiểm tra đủ sáu file.
+
 ## Trước sự kiện
 
 - 2026-11-17 · Claude · Dựng khung repo, quy tắc "học trước, ghi lại", research Codex vs Antigravity · 000, 001
