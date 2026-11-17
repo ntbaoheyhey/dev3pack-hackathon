@@ -36,3 +36,5 @@
 - Việc T19: Xong. Đã sửa lại bảng lỗi IDL khớp với `idl/receiptrail.json` (đã verify bằng script) và cập nhật Checklist.
 
 - Việc T20: Xong. Đã rework evidence, bổ sung alternatives với URL nguồn thực, tìm 2 pain sources độc lập, làm rõ state machine và phản hồi chi tiết các findings T14-R1-R4.
+
+- Việc T21: Xong. Đã sửa lại review kiến trúc `docs/reviews/receiptrail-antigravity.md` với hàm test thật, logic rollback và phản hồi các findings (T13-R1-R4).
