@@ -12,3 +12,5 @@
 | T11 | đang làm | Crawl/review evidence cho ReceiptRail (T11). |
 | T12 | mới | Chưa làm. |
 | T13 | mới | Chưa làm. |
+
+- Việc T11: Xong. Đã crawl và review evidence cho ReceiptRail (retry, timeout, idempotency) vào `docs/data/receiptrail-evidence.md`.
