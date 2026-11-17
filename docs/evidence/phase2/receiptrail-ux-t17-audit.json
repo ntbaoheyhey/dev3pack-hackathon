@@ -1,0 +1,79 @@
+{
+  "kind": "document-validation; not runtime tests",
+  "heartbeat_utc": "2026-11-17T22:10:02.670Z",
+  "head_at_review": "adfe081098299bd237ac810284ed191f477dea25",
+  "ux_source_commit": "3475c363b75ef1b6a9090a3ab8f6e579b63e9a17",
+  "ux_path": "docs/design/receiptrail-ux-antigravity.md",
+  "idl_path": "docs/idl/receiptrail.json",
+  "idl_program_id": "troKmWNxjNucevGMKo9PnKdF5p6W91VDGJ2PsjYvCPg",
+  "sha256": {
+    "docs/design/receiptrail-ux-antigravity.md": "be89e917e5ed09f23c0778df7494a3d0920e932653320804d5be31df75ece5e5",
+    "docs/idl/receiptrail.json": "13efb821841ebd6c9a8b9da21160aad8fbc11e9a6072e4b92a408e6f103f5409"
+  },
+  "error_rows_checked": 9,
+  "code_name_matches": 0,
+  "same_code_name_rows_as_T16_a27a207": true,
+  "checked_checkboxes": 5,
+  "unchecked_checkboxes": 0,
+  "rows": [
+    {
+      "code": 6000,
+      "name_in_ux": "InvalidOwner",
+      "name_in_idl": "InvalidAmount",
+      "matches": false
+    },
+    {
+      "code": 6001,
+      "name_in_ux": "InvoiceExpired",
+      "name_in_idl": "InvalidExpiry",
+      "matches": false
+    },
+    {
+      "code": 6002,
+      "name_in_ux": "InvoicePaid",
+      "name_in_idl": "InvalidWallet",
+      "matches": false
+    },
+    {
+      "code": 6003,
+      "name_in_ux": "InsufficientBalance",
+      "name_in_idl": "AliasedRoles",
+      "matches": false
+    },
+    {
+      "code": 6004,
+      "name_in_ux": "InvalidAmount",
+      "name_in_idl": "InvoiceNotOpen",
+      "matches": false
+    },
+    {
+      "code": 6005,
+      "name_in_ux": "InvalidToken",
+      "name_in_idl": "InvoiceExpired",
+      "matches": false
+    },
+    {
+      "code": 6006,
+      "name_in_ux": "ReplayTx",
+      "name_in_idl": "WrongPayer",
+      "matches": false
+    },
+    {
+      "code": 6007,
+      "name_in_ux": "InvalidSigner",
+      "name_in_idl": "WrongMerchant",
+      "matches": false
+    },
+    {
+      "code": 6008,
+      "name_in_ux": "ProgramMismatch",
+      "name_in_idl": "WrongVersion",
+      "matches": false
+    }
+  ],
+  "limitations": [
+    "Checks numeric codes/names and checkbox marks only; not semantic copy/CTA, UX layouts or SDK sources.",
+    "No compiler/runtime/browser/RPC tests run.",
+    "The program ID in this IDL is local-only, not a deployment."
+  ]
+}

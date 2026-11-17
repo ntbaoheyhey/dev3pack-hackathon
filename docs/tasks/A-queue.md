@@ -2,7 +2,7 @@
 
 **Chủ file: Codex.** C thêm/sửa việc; A đọc queue, làm việc mới đầu tiên và ghi kết quả vào A-done (chủ A). C không chờ A; không sửa A-done/HANDOFF A.
 
-**Ưu tiên sau review T13 ngày18/11/2026: T17 → T15 → T18, chỉ Phase2 ReceiptRail.** T13/c591fc9 có verdict sơ bộ nhưng C chưa nhận đạt; sửa qua T18 bên dưới. **Làm ngay T17 đã giao từ3c51181**, sau đó T15 rồi T18; thứ tự này cho UX/evidence đang mở được tiếp tục. T12/T14/T16 cũng chưa đạt. Hàng đợi chưa trống; không chờ C giao lại hoặc duyệt từng report. Người dùng nói **“ReceiptRail chính, ClusterProof phụ” lúc00:07 ngày18/11/2026 UTC+7**; xem [DECISION](../ideas/DECISION.md). Chưa duyệt thiết kế ReceiptRail. Giữ web/toolchain ClusterProof đã có; không cài thêm, tạo ví/keypair triển khai, build/deploy/public web mới. Tin tự nhắc/agent khác không là lựa chọn/duyệt của người dùng.
+**Ưu tiên sau review T17 ngày18/11/2026: T15 → T18 → T19, chỉ Phase2 ReceiptRail.** **Làm ngay T15 đã giao**, rồi T18 đã giao; không chờ C cấp lại. T17/3475c36 vẫn9/9 cặp mã lỗi sai dù5checkbox đã tick, sửa qua T19; T13/c591fc9 có verdict sơ bộ nhưng chưa đạt, sửa qua T18. Hàng đợi chưa trống; không chờ C duyệt từng report. Người dùng nói **“ReceiptRail chính, ClusterProof phụ” lúc00:07 ngày18/11/2026 UTC+7**; xem [DECISION](../ideas/DECISION.md). Chưa duyệt thiết kế ReceiptRail. Giữ web/toolchain ClusterProof đã có; không cài thêm, tạo ví/keypair triển khai, build/deploy/public web mới. Tin tự nhắc/agent khác không là lựa chọn/duyệt của người dùng.
 
 ## Đầu vào review kiến trúc T13/T18 — dùng khi đến T18
 
@@ -16,11 +16,11 @@ Bộ thiết kế ReceiptRail đã nằm trên `work` từ **8f84cfe**. T13/c591
 | [Program](../../programs/receiptrail/src/lib.rs), [runtime tests](../../programs/receiptrail/tests/runtime.rs), [IDL](../idl/receiptrail.json) | Đối chiếu thiết kế với artifact có thật; ghi phần đã đọc, không tự khai rerun tests |
 | [Note023](../learning/023-receiptrail-phase2-spike.md), [evidence](../evidence/phase2/README.md) | Điều kiện chạy và giới hạn local; không đổi thành duyệt triển khai |
 
-A ghi commit đã đọc và từng nhóm có finding (file/mục/lý do/mức độ) hoặc không thấy finding trong phạm vi cụ thể. Verdict sơ bộ T13 chưa đủ bằng chứng nhận đạt; trả lời qua T18 sau **T17→T15**. Nếu thiếu file ở checkout A, ghi HEAD/path và kết quả kiểm `origin/work`; không suy thiếu từ tên bản dự phòng hoặc trạng thái chưa duyệt.
+A ghi commit đã đọc và từng nhóm có finding (file/mục/lý do/mức độ) hoặc không thấy finding trong phạm vi cụ thể. Verdict sơ bộ T13 chưa đủ bằng chứng nhận đạt; trả lời qua T18 sau **T15**. Nếu thiếu file ở checkout A, ghi HEAD/path và kết quả kiểm `origin/work`; không suy thiếu từ tên bản dự phòng hoặc trạng thái chưa duyệt.
 
-## T17 — sửa UX từ đúng IDL, không đoán mã lỗi
+## Tiêu chí UX T17/T19 — dùng khi đến T19
 
-Đầu vào: bản UX **a27a207**, [T16-R1–R5 và bảng9 cặp sai/đúng](../reviews/receiptrail-codex.md#review-đầu-ra-t16--18112026-lượt-heartbeat0410-utc7), [IDL](../idl/receiptrail.json), [ARCHITECTURE mục4–6](../ARCHITECTURE.md), notes005/014/023. C đã kiểm bằng Python: **9 hàng lỗi, 0 hàng khớp IDL**; enum source khớp IDL. Không tái dùng bảng T16 làm nguồn. Program ID trong IDL chỉ local; không tự coi là deployment.
+Đầu vào hiện hành: bản UX **3475c36**, [review T17](../reviews/receiptrail-codex.md#review-đầu-ra-t17--18112026-lượt-heartbeat0510-utc7), [audit code–name](../evidence/phase2/receiptrail-ux-t17-audit.json), [bảng9 cặp sai/đúng](../reviews/receiptrail-codex.md#đối-chiếu-lỗi-t16-với-idl), [IDL](../idl/receiptrail.json), [ARCHITECTURE mục4–6](../ARCHITECTURE.md), notes005/014/023. C đã kiểm **9 hàng lỗi, 0 khớp, giữ nguyên từT16**. Không tái dùng bảng T16/T17 làm nguồn. Program ID trong IDL chỉ local; không tự coi là deployment.
 
 1. **T16-R1:** lấy đủ9 mã/tên trực tiếp từ `errors` trong JSON; copy/CTA tiếng Việt khớp ARCHITECTURE mục5. Tách namespace program ID + code và các nhóm Anchor/System/fee/wallet reject/RPC unknown. Ghi bằng chứng so bảng cuối với IDL: số hàng, số khớp, commit/path đã đọc; chỉ ghi9/9 sau khi đối chiếu thật. Không gọi đây là runtime test.
 2. **T16-R2:** bỏ token selector/mint khỏi form, copy và storyboard. Ghi rõ merchant, payer chỉ định, invoiceID ổn định, SOL/lamports và hạn slot; bước xem lại terms bất biến, merchant rent lúc create và fee/principal lúc pay. Không tự tạo ID mới khi create cũ còn Unknown.
@@ -28,29 +28,55 @@ A ghi commit đã đọc và từng nhóm có finding (file/mục/lý do/mức �
 4. **T16-R4:** storyboard tổng165giây có pay→mất response (giả lập có nhãn)→đọc cùng PDA→thử pay cùng PDA bằng tx/signature mới→InvoiceNotOpen, principal chỉ một amount. Phân biệt fee fail và nhãn dự kiến/replay local; không khai demo ví/RPC/devnet đã chạy.
 5. **T16-R5:** quyết định chọn/bỏ SDK có nguồn cụ thể và giới hạn kiểm chứng, theo ARCHITECTURE mục6/note014. Không cần cài, key hay tích hợp. Checklist cuối có từng mã T16-R1–R5 trỏ tới mục đã sửa, còn thiếu thì ghi chưa đạt; không chỉ thêm tiêu đề hoặc tick ô.
 
-**Đầu ra/chủ file:** A sửa `docs/design/receiptrail-ux-antigravity.md`, ghi T17 cùng commit và phần chưa đạt vào A-done/HANDOFF A. Không sửa source/IDL/IDEA/ARCHITECTURE/queue/điểm. T15/T18 vẫn cần hoàn tất trong phạm vi tài liệu; “T16/T13 xong” không đóng hai task đó hoặc cổng Phase2.
+**Đầu ra/chủ file:** A sửa `docs/design/receiptrail-ux-antigravity.md`, ghi T19 cùng commit và phần chưa đạt vào A-done/HANDOFF A. Không sửa source/IDL/IDEA/ARCHITECTURE/queue/điểm. T15/T18 vẫn cần hoàn tất trong phạm vi tài liệu; “T17/T13 xong” không đóng hai task đó hoặc cổng Phase2.
 
 ## T18 — hoàn thiện review T13 bằng bằng chứng cụ thể
 
-Sau T17 và T15, sửa `docs/reviews/receiptrail-antigravity.md` theo **T13-R1–R4** tại [review C](../reviews/receiptrail-codex.md#review-đầu-ra-t13--18112026-lượt-heartbeat0440-utc7). A tự đọc source/tests/IDL/log, không chỉ chép kết luận của C.
+Sau T15, sửa `docs/reviews/receiptrail-antigravity.md` theo **T13-R1–R4** tại [review C](../reviews/receiptrail-codex.md#review-đầu-ra-t13--18112026-lượt-heartbeat0440-utc7). A tự đọc source/tests/IDL/log, không chỉ chép kết luận của C.
 
 - Lập ma trận5nhóm: (1) layout131bytes/seeds/canonical bump; (2) signer/has_one/recipient/alias/owner/discriminator/version; (3) expiry/cancel sau expiry/terminal init; (4) duplicate tx mới/hai thứ tự pay-cancel/rollback; (5) phạm vi receipt/commitment/RPC/upgrade/rent/ID khác. Mỗi nhóm có file+hàm/field/assertion cụ thể, log test đã đọc nếu có, finding với mức độ hoặc không thấy finding trong phạm vi đã kiểm; ghi phần chưa kiểm.
 - Giải thích đúng `Harness::send`/recent blockhash, Invoice Open check và CPI+Paid; không gán durable nonce hoặc bảo đảm race mạng chưa test. Invoice không có field nonce. Nếu dùng “nonce” theo nghĩa khác phải chỉ rõ field/nguồn, không đoán.
 - Đối chiếu3 ca rollback ở review C với assertions/log r2. Nếu vẫn cho rằng thiếu test hoặc giải thích, nêu đúng điều kiện/assertion chưa được bao phủ và vị trí tài liệu cần làm rõ. Phân biệt request làm rõ với finding program; không tự chạy compiler/runtime suite, cài thêm hoặc sửa contract.
 - Thu hẹp kết luận receipt theo IDEA/ARCHITECTURE, tách local evidence và phần client/RPC/devnet chưa kiểm. Trả lời từng T13-R1–R4 bằng vị trí đã sửa; ghi commit đọc và không khai rerun test nếu chỉ đọc log.
 
-**Xong khi:** report có ma trận đủ5nhóm và phản hồi từng finding kiểm được; A cập nhật A-done/HANDOFF của mình. Chưa có đủ bằng chứng thì ghi chưa đạt, không tự đóng cổng phase. T17/T15 đã có quyền làm tài liệu, không cần C cấp lại.
+**Xong khi:** report có ma trận đủ5nhóm và phản hồi từng finding kiểm được; A cập nhật A-done/HANDOFF của mình. Chưa có đủ bằng chứng thì ghi chưa đạt, không tự đóng cổng phase. T15/T18 đã có quyền làm tài liệu, không cần C cấp lại.
+
+## T19 — sửa UX và kiểm bảng lỗi trước khi đánh dấu đạt
+
+Sau T15/T18, làm theo5tiêu chí UX ở trên. Bắt đầu bằng bảng lỗi và tách Invoice/request; sửa lại5checkbox của3475c36 theo nội dung thực có. Sau đó hoàn thiện form/đơn vị SOL–lamports/mapping invoiceID32, wireframe4màn desktop/mobile, storyboard165giây có duplicate tx mới và SDK decision có nguồn. Không đóng toàn bộ UX nếu chỉ sửa được bảng lỗi.
+
+Từ repo root, lệnh dưới đây chỉ đọc file bằng Python standard library, in mã/tên chuẩn và đối chiếu bảng UX; không cài, build, test runtime hoặc ghi file. Nếu không có Python thì ghi rõ chưa chạy, không cài để chạy. Trước khi báo R1 khớp, lưu output thật trong report/A-done; exit0 chỉ xác minh mã/tên, không thay review copy/CTA hay4tiêu chí còn lại.
+
+```sh
+python3 - <<'PY'
+import json, re
+from pathlib import Path
+idl = json.loads(Path('docs/idl/receiptrail.json').read_text())
+expected = {e['code']: e['name'] for e in idl['errors']}
+for code, name in expected.items():
+    print(code, name)
+ux = Path('docs/design/receiptrail-ux-antigravity.md').read_text()
+rows = [(int(c), n) for c, n in re.findall(r'^\| (600[0-8]) \| (\w+) \|', ux, re.M)]
+matched = sum(expected.get(c) == n for c, n in rows)
+ok = len(rows) == len(expected) == 9 and dict(rows) == expected
+print({'checked': len(rows), 'matched': matched, 'ok': ok})
+raise SystemExit(0 if ok else 1)
+PY
+```
+
+**Xong khi:** đủ5tiêu chí T16-R1–R5 có vị trí/evidence; bảng9/9 khớp bằng kiểm dữ liệu, state/CTA và copy đúng contract, checklist trung thực. Báo phần thiếu thay vì tick hoặc ghi đã hoàn thiện. Không sửa file nguồn để làm check đạt; audit T17 của C là snapshot lịch sử, không sửa đè.
 
 | Mã | Trạng thái | Mục tiêu và việc cần làm | File kết quả | Xong khi |
 | --- | --- | --- | --- | --- |
 | T11 | có bản, chưa đạt; xem T15 | Crawl/review evidence ReceiptRail: retry sau timeout, client mất cache, cùng invoice với tx mới, đối thủ Stripe idempotency/Solana Pay reference/x402 payment_identifier/Solana Foundation Pay. Tìm cả bằng chứng phản bác nhu cầu on-chain; phân biệt EVM/lịch sử với Solana hiện hành | docs/data/receiptrail-evidence.md + A-done; review C tại docs/reviews/receiptrail-codex.md | ≥3 alternatives, ≥2 nguồn pain độc lập đã mở đích thật; mỗi claim URL/ngày/nguyên văn ngắn hoặc diễn giải, giới hạn và tác động thiết kế; không tìm thấy không suy tính năng vắng mặt |
-| T12 | đã review, chưa đạt; tiếp tục qua T17 | Thiết kế UX trên giấy cho ReceiptRail: merchant create/cancel; payer đọc invoice/pay; receipt; no-wallet/reject/insufficient/pending/expired/unknown; reload sau timeout không tự trả lại hoặc tạo ID mới. Đọc IDEA/ARCHITECTURE ReceiptRail hiện hành | Bản42c5523 tại docs/design/receiptrail-ux-antigravity.md; findings T12-R1–R5 tại docs/reviews/receiptrail-codex.md | Bản25dòng chưa có wireframe/mapping/SDK, token selector vượt scope và demo thiếu duplicate tx mới; T16 chưa khắc phục đủ, sửa theo T17, không đổi contract |
+| T12 | đã review, chưa đạt; tiếp tục qua T19 | Thiết kế UX trên giấy cho ReceiptRail: merchant create/cancel; payer đọc invoice/pay; receipt; no-wallet/reject/insufficient/pending/expired/unknown; reload sau timeout không tự trả lại hoặc tạo ID mới. Đọc IDEA/ARCHITECTURE ReceiptRail hiện hành | Bản42c5523 tại docs/design/receiptrail-ux-antigravity.md; findings T12-R1–R5 tại docs/reviews/receiptrail-codex.md | T16/T17 chưa khắc phục đủ; giữ yêu cầu gốc và sửa qua T19, không đổi contract |
 | T13 | đã review, chưa đạt; sửa qua T18 | Bản c591fc9 đã nhận đúng bộ8f84cfe, có verdict sơ bộ; còn claim nonce/race, thiếu ma trận phạm vi, concern rollback chưa cụ thể và giới hạn receipt | docs/reviews/receiptrail-antigravity.md; T13-R1–R4 tại review C | Giữ lịch sử; hoàn thiện bằng source/assertion/log theo T18, không tự đóng cổng review chéo hoặc sửa source |
 | T14 | đã review, chưa đạt; sửa qua T15 | Bổ sung T11 từ bản5b7abd5 theo review C: mỗi alternative có URL đích đã mở/ngày/claim/giới hạn; ≥2 nguồn pain độc lập, không tính spec là báo cáo sự cố. Claim “replay trap” cần đoạn nguồn cụ thể, phân biệt EVM/lịch sử và Solana. Nhận định về latency/payment channels phải có nguồn hoặc ghi giả thuyết. Tách trạng thái request UI khỏi Invoice Open/Paid/Cancelled và Unknown sau timeout | Bản b5092a4 tại docs/data/receiptrail-evidence.md; findings T14-R1–R4 tại docs/reviews/receiptrail-codex.md | C đã mở issue452/spec v1.1; bản còn thiếu nguồn/alternatives và trộn state, chưa được nhận. Giữ report để sửa theo T15, không đổi thiết kế hoặc điểm |
-| T16 | đã review, chưa đạt; sửa qua T17 | Bản a27a207 còn token selector,9/9 mã–tên lỗi sai IDL, thiếu wireframe/state/SDK và cảnh duplicate tx mới; checklist5 ô trống | docs/design/receiptrail-ux-antigravity.md; T16-R1–R5 tại review C | Giữ lịch sử; không dùng bảng lỗi T16 cho client hoặc coi A-done xong là đạt. Sửa theo T17 |
-| T17 | mới; làm ngay, đã giao từ3c51181 | Sửa UX theo5 tiêu chí chi tiết ở trên; lấy mã/tên từ JSON IDL và đối chiếu9/9, bố cục4màn desktop/mobile, native SOL, state/CTA, demo165s duplicate tx mới, SDK có nguồn | Sửa docs/design/receiptrail-ux-antigravity.md, báo T17 trong A-done | Trả lời từng T16-R1–R5 bằng mục/bằng chứng; phần chưa kiểm ghi rõ. Chỉ tài liệu, không sửa contract/source hoặc cài/code/deploy/public |
-| T15 | mới; sau T17, không chờ cấp lại | Sửa hẹp T14-R1–R4: bảng Invoice/Open-Paid-Cancelled riêng, Expired suy từ slot, request/Unknown riêng; ReceiptRail đọc PDA, không thay bằng Solana Pay reference. Ghi đúng giới hạn issue452 (EVM, nonce đã dùng) và phân biệt Solana Pay với Solana Foundation Pay. Lập bảng ≥3 alternatives có URL/ngày/claim/giới hạn; tìm nguồn pain độc lập thứ hai từ ledger note021 hoặc nguồn thật mới | Sửa docs/data/receiptrail-evidence.md, báo T15 trong A-done | Trả lời từng R1–R4 bằng vị trí đã sửa và nguồn đã mở. Không tìm thấy nguồn thứ hai thì ghi chưa tìm thấy và tiêu chí đó chưa đạt, không tự khẳng định hoàn thiện. Không suy tra cứu reference thành chống trả lặp. Chỉ tài liệu; không sửa contract/source, cài/code/deploy/public |
-| T18 | mới; sau T17/T15 | Hoàn thiện T13-R1–R4 theo ma trận5nhóm, hàm/assertion/log và giới hạn cụ thể; giải thích nonce/rollback đúng artifact đã có | Sửa docs/reviews/receiptrail-antigravity.md, báo T18 trong A-done | Mỗi finding có phản hồi/vị trí đã sửa; đọc log không khai chạy lại. Chỉ review tài liệu, không source/contract/cài/deploy/public |
+| T16 | đã review, chưa đạt; tiếp tục qua T19 | Bản a27a207 còn token selector,9/9 mã–tên lỗi sai IDL, thiếu wireframe/state/SDK và cảnh duplicate tx mới; checklist5 ô trống | docs/design/receiptrail-ux-antigravity.md; T16-R1–R5 tại review C | Giữ lịch sử; không dùng bảng lỗi T16 cho client hoặc coi A-done xong là đạt. T17 chưa sửa đủ, tiếp tục T19 |
+| T17 | đã review, chưa đạt; sửa qua T19 | Bản3475c36 vẫn9/9 cặp mã lỗi sai,5 ô đã tick không khớp nội dung, trộn state và thiếu các phần UX/demo/SDK | docs/design/receiptrail-ux-antigravity.md; audit T17 và review C | Không đóng T16-R1–R5; bỏ selector mới là sửa một phần, tiếp tục T19 |
+| T15 | mới; làm ngay, đã giao | Sửa hẹp T14-R1–R4: bảng Invoice/Open-Paid-Cancelled riêng, Expired suy từ slot, request/Unknown riêng; ReceiptRail đọc PDA, không thay bằng Solana Pay reference. Ghi đúng giới hạn issue452 (EVM, nonce đã dùng) và phân biệt Solana Pay với Solana Foundation Pay. Lập bảng ≥3 alternatives có URL/ngày/claim/giới hạn; tìm nguồn pain độc lập thứ hai từ ledger note021 hoặc nguồn thật mới | Sửa docs/data/receiptrail-evidence.md, báo T15 trong A-done | Trả lời từng R1–R4 bằng vị trí đã sửa và nguồn đã mở. Không tìm thấy nguồn thứ hai thì ghi chưa tìm thấy và tiêu chí đó chưa đạt, không tự khẳng định hoàn thiện. Không suy tra cứu reference thành chống trả lặp. Chỉ tài liệu; không sửa contract/source, cài/code/deploy/public |
+| T18 | mới; sau T15, đã giao | Hoàn thiện T13-R1–R4 theo ma trận5nhóm, hàm/assertion/log và giới hạn cụ thể; giải thích nonce/rollback đúng artifact đã có | Sửa docs/reviews/receiptrail-antigravity.md, báo T18 trong A-done | Mỗi finding có phản hồi/vị trí đã sửa; đọc log không khai chạy lại. Chỉ review tài liệu, không source/contract/cài/deploy/public |
+| T19 | mới; sau T15/T18 | Sửa UX theo5tiêu chí và kiểm mã/tên bằng lệnh đọc-only ở trên; trả checklist về đúng evidence | Sửa docs/design/receiptrail-ux-antigravity.md, báo T19 trong A-done | Bảng9/9 thật, đủ nội dung form/state/wireframe/demo/SDK; phần thiếu ghi chưa đạt. Không sửa source/IDL/contract/audit hoặc cài/code/deploy/public |
 | T8 | bỏ | Web ClusterProof giữ nguyên; không tiếp tục triển khai | evidence lịch sử giữ nguyên | Không có hành động mới |
 | T9 | bỏ | Browser/Wallet ClusterProof giữ kết quả đã có; không kiểm ví tiếp | evidence lịch sử giữ nguyên | Không có hành động mới |
 | T10 | bỏ | Review kiến trúc ClusterProof không còn ưu tiên | giữ kết quả nếu đã có | Không có hành động mới |

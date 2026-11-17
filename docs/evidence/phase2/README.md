@@ -10,6 +10,8 @@
 | [IDL r1](receiptrail-idl-r1.txt), [r2](receiptrail-idl-r2.txt), [r3](receiptrail-idl-r3.txt) |Hai lần lỗi giữ nguyên; r3 exit0 sau sửa PATH process. Không dùng19 tests filtered-out ở IDL thay runtime suite |
 | [IDL JSON](../../idl/receiptrail.json) |3 instructions/1 account/3 events/9 custom errors; đã đối chiếu source/ARCHITECTURE |
 
+Review tài liệu: [audit UX T17](receiptrail-ux-t17-audit.json) lưu bản3475c36, hash UX/IDL và9 cặp code–name: **0/9 khớp**, giữ nguyên bảng T16 dù5checkbox đã tick. Chỉ kiểm dữ liệu/report; không thêm runtime tests, không chứng minh copy/CTA hoặc wireframe đạt. Kết luận chi tiết ở [review T17](../../reviews/receiptrail-codex.md#review-đầu-ra-t17--18112026-lượt-heartbeat0510-utc7).
+
 Tái chạy: `bash scripts/check-receiptrail.sh` với bộ toolchain/cache đã có. Xem [note023](../../learning/023-receiptrail-phase2-spike.md) cho đường dẫn override, lệnh IDL và nguyên nhân không dùng build wrapper sinh keypair. Thiếu cache phải hỏi trước cài, không tự download.
 
 Số đo VM: account131bytes, rent1,802,640lamports, principal1,000,000 trả1lần, CU create8,775/pay6,608/retry6,017/cancel4,346, fee10,000 do2signatures. Không suy thành phí/latency devnet hoặc benchmark mạng. Chưa UI/wallet/RPC recovery/load, CI/devnet hoặc audit độc lập.

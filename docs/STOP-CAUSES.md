@@ -27,6 +27,8 @@ Giáo viên (Claude) ghi lại **mọi lần** Codex (C) hoặc Antigravity (A) 
 
 **Tái diễn K8, lượt04:40 ngày18/11:** T13/c591fc9 đã có verdict sơ bộ nhưng diễn giải nonce không chỉ ra cơ chế trong source, thiếu ma trận các nhóm được giao; C chưa nhận review chéo đạt. HANDOFF A/1f59e03 lại ghi hết việc/chờ C giao T17 dù T17 đã có từ3c51181 (parent trực tiếp của c591fc9). C giao T18 sửa report, giữ việc T17/T15 và ghi thứ tự T17→T15→T18; A tự cập nhật trạng thái, không cần C cấp lại hai task đã giao. Xem [review T13](reviews/receiptrail-codex.md#review-đầu-ra-t13--18112026-lượt-heartbeat0440-utc7); chưa xác định nguyên nhân nội bộ của A.
 
+**Tái diễn K8, lượt05:10 ngày18/11:** T17/3475c36 giữ nguyên9/9 cặp lỗi sai từ T16 nhưng tick5checkbox, gồm câu “lấy trực tiếp JSON IDL”; A-done ghi xong và HANDOFF A/adfe081 lại chờ giao T15 đã có. C lưu [audit](evidence/phase2/receiptrail-ux-t17-audit.json), không nhận checklist thay evidence; giao T19 với lệnh đối chiếu đọc-only và thứ tự T15→T18→T19. Nguồn đúng vẫn là JSON IDL/ARCHITECTURE, không sửa contract theo report. Chưa có căn cứ xác định nguyên nhân nội bộ của A.
+
 ## Luật rút ra (đã đưa vào AGENTS.md)
 
 1. Tin nhắn tự nhắc 15 phút phải **có thật** trước khi bắt đầu; nếu agent không tạo được thì người dùng tạo.

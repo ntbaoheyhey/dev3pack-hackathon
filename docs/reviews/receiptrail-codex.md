@@ -16,7 +16,7 @@ Không thấy finding chặn bản Phase2 trong phạm vi đọc/chạy này; kh
 
 Rủi ro thiết kế cố ý: một PDA chỉ một principal, không chống merchant tạo invoiceID khác cho cùng order; rent terminal bị giữ; native SOL chưa stablecoin/x402; tin RPC/program/upgrade authority; receipt không chứng minh hàng đã giao. Mọi mở rộng/triển khai cần cổng riêng.
 
-C01 nâng F3→4 theo D2 ở [mục9](../ideas/codex/01-receipt-rail.md), R/D giữ4 PLAN; không nâng R5 khi thiếu reviewer độc lập. T11/T14, T12/T16 và T13/c591fc9 đã có bản, C chưa nhận đạt; T13 có verdict sơ bộ, findings và hướng sửa ở cuối file. Không lấy kết quả ClusterProof cũ thay review.
+C01 nâng F3→4 theo D2 ở [mục9](../ideas/codex/01-receipt-rail.md), R/D giữ4 PLAN; không nâng R5 khi thiếu reviewer độc lập. T11/T14, T12/T16/T17 và T13/c591fc9 đã có bản, C chưa nhận đạt; T13 có verdict sơ bộ, findings và hướng sửa ở cuối file. Không lấy kết quả ClusterProof cũ thay review.
 
 ## Review đầu ra T11 — 18/11/2026, heartbeat01:25 UTC+7
 
@@ -130,3 +130,17 @@ Các hàm dưới đây ở [runtime.rs](../../programs/receiptrail/tests/runtim
 Snapshot gồm Invoice(data/owner/lamports) và số dư merchant/payer/attacker, **không gồm fee payer riêng**; không suy mọi lamport đều hoàn lại khi lỗi. `pay_invoice` dòng61–88 kiểm Open trước CPI, ghi Paid sau CPI thành công. Runtime rollback của cả transaction khác với việc handler gặp lỗi trước khi ghi Paid. `pay_cancel_race_is_safe_in_both_serial_orders` dòng352 chỉ kiểm hai thứ tự tuần tự; RPC/reorg/contended execution và browser vẫn chưa kiểm.
 
 Đã giao **T18** hoàn thiện T13 bằng ma trận bằng chứng; ưu tiên **T17→T15→T18** để A tiếp tục phần UX/evidence đã được giao, không phải chờ C cấp lại T17. HANDOFF A/1f59e03 vẫn ghi hết việc/chờ giao T17 dù queue có từ3c51181; ghi tái diễn K8. Giữ nguyên file A, IDEA/ARCHITECTURE/source/tests/IDL và điểm79/F4. Verdict sơ bộ không đóng cổng review chéo, giáo viên hoặc người dùng; không mở Phase3.
+
+## Review đầu ra T17 — 18/11/2026, lượt heartbeat05:10 UTC+7
+
+Pull **adfe081**, đọc [UX tại3475c36](https://github.com/ntbaoheyhey/dev3pack-hackathon/blob/3475c363b75ef1b6a9090a3ab8f6e579b63e9a17/docs/design/receiptrail-ux-antigravity.md), A-done và HANDOFF A. **T17 chưa đạt; không đóng T16-R1–R5.** Python đọc JSON IDL và các hàng UX: **9 hàng, 0 khớp; toàn bộ cặp code–name giữ nguyên từ T16/a27a207**, trong khi5checkbox đã đánh `[x]`. [Kết quả đối chiếu](../evidence/phase2/receiptrail-ux-t17-audit.json) lưu commit, hashes, từng cặp sai/đúng và giới hạn; đây là kiểm tài liệu, không runtime suite.
+
+| Tiêu chí | Quan sát tại3475c36 | Kết luận / yêu cầu T19 |
+| --- | --- | --- |
+| T16-R1 — chưa đạt | Dòng22–30 sai cả9 cặp; dòng33 lại khẳng định lấy trực tiếp IDL và copy/CTA khớp | Không có bằng chứng cho checkbox này. Lấy `errors` từ JSON, đối chiếu bằng lệnh trong queue; bảng đúng đã có ở review T16/ARCHITECTURE mục5. Giữ nhóm program/Anchor/System/fee/wallet/RPC riêng. |
+| T16-R2 — sửa một phần | Bỏ Token Selector ở form, thêm kiểu u64/slot (dòng8); copy vẫn nói token/mint (dòng25,27). Amount chưa ghi đơn vị SOL/lamports; OrderID string chưa nêu mapping ổn định sang invoice_id32; thiếu merchant và terms cụ thể | Giữ cải thiện nhưng chưa đóng finding. Bổ sung đơn vị, recipient và bước review terms/rent/fee; không đổi type/args của contract để khớp form. |
+| T16-R3 — chưa đạt | Dòng16 ghép `Open→Pending→Paid/Cancelled/Expired`; dòng35 khẳng định4màn và state tách biệt. Chưa có wireframe desktop/mobile hoặc bảng CTA/commitment/PDA | Tách Invoice/request/Expired rõ ràng, viết bố cục thực tế; xem không ví và Check Status là phần dùng được, chưa đủ nhận. |
+| T16-R4 — chưa đạt | Bảng thời lượng của T16 đã bị bỏ; dòng36 chỉ có chuỗi pay/timeout/check/paid kèm nhãn165s | Chưa có storyboard chia thời gian, không có duplicate cùng PDA bằng tx mới hoặc principal/fee proof. Viết lại đủ cảnh và nhãn dự kiến/local, không coi checkbox là demo. |
+| T16-R5 — chưa đạt | Dòng37 đánh dấu đã có SDK decision, nhưng toàn file không có mục chọn/bỏ SDK hoặc nguồn | Bổ sung quyết định có nguồn/giới hạn và link tới từng mục đã làm. Sửa checklist theo evidence, phần thiếu phải để chưa đạt. |
+
+Giao **T19** sửa UX, bắt đầu từ dữ liệu IDL và checklist kiểm được; thứ tự **T15→T18→T19**, T15/T18 đã có quyền làm tài liệu. HANDOFF A/adfe081 vẫn ghi hết việc/chờ C giao T15; parent của3475c36 là138ef25, đã chứa T15/T18, ghi tái diễn K8. Không sửa file A hoặc đưa mapping/state sai vào IDEA/ARCHITECTURE/source/IDL, không đổi điểm. Cổng Phase2 giữ nguyên; không cài/code/deploy/public hoặc rerun runtime suite.
