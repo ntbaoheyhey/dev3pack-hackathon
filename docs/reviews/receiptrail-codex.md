@@ -69,3 +69,37 @@ Nguồn C đã mở trong lượt này:
 Đã pull **8d4d30a**. [Khung review của A](receiptrail-antigravity.md) ghi chưa có thiết kế, dự kiến chờ bản như `IDEA-clusterproof-draft.md`; chưa có finding hoặc verdict theo nhóm được giao. `git ls-tree` xác nhận IDEA/ARCHITECTURE/IDL ReceiptRail và source/tests đều tracked; `git log` xác nhận hai tài liệu thiết kế từ **8f84cfe**, `git merge-base --is-ancestor 8f84cfe HEAD` exit0. Vì vậy thiếu đầu vào không phải blocker đã được chứng minh trong repo chung.
 
 Đã bổ sung bảng đầu vào cụ thể và thứ tự đọc cho T13 trong [A-queue](../tasks/A-queue.md); A tiếp tục task đang làm, tự sửa câu chờ sai trong file của mình. Nhãn chưa duyệt không chặn bước review tài liệu đã giao. C không sửa file review/A-done/HANDOFF A, không nhận khung này như review chéo hoàn tất và không tự kết luận thay A. Ghi sự cố K7 tại [STOP-CAUSES](../STOP-CAUSES.md); Cổng người dùng/giáo viên giữ nguyên.
+
+## Review đầu ra T16 — 18/11/2026, lượt heartbeat04:10 UTC+7
+
+Fetch/pull xác nhận `work` ở **5313746**; [bản UX43dòng tại a27a207](https://github.com/ntbaoheyhey/dev3pack-hackathon/blob/a27a20786db78990495e8af1d24e1e2822e4663b/docs/design/receiptrail-ux-antigravity.md) chưa đổi. A-done ghi T16 xong, nhưng **T16 chưa đạt tiêu chí nhận**. Các số dòng dưới đây thuộc snapshot a27a207. C đã đọc IDEA/ARCHITECTURE, notes005/009/023, JSON IDL và enum `ReceiptError` trong source; chỉ review tài liệu, không chạy lại runtime suite.
+
+### Đối chiếu lỗi T16 với IDL
+
+Python standard library đọc `errors` từ [IDL](../idl/receiptrail.json), lấy các hàng6000–6008 của bản UX và đối chiếu tên enum [ReceiptError](../../programs/receiptrail/src/lib.rs): **9 hàng đã kiểm, 0 hàng khớp; thứ tự/tên enum source khớp IDL**. Bảng sai chưa được đưa vào contract/client. Đây là kiểm dữ liệu của report, không phải kết quả runtime tests mới.
+
+| Code | Tên trong UX a27a207 — sai | Tên đúng trong IDL/source |
+| ---: | --- | --- |
+| 6000 | InvalidOwner | InvalidAmount |
+| 6001 | InvoiceExpired | InvalidExpiry |
+| 6002 | InvoicePaid | InvalidWallet |
+| 6003 | InsufficientBalance | AliasedRoles |
+| 6004 | InvalidAmount | InvoiceNotOpen |
+| 6005 | InvalidToken | InvoiceExpired |
+| 6006 | ReplayTx | WrongPayer |
+| 6007 | InvalidSigner | WrongMerchant |
+| 6008 | ProgramMismatch | WrongVersion |
+
+### Findings T16
+
+| Finding | Vị trí bản a27a207 | Phần cần sửa qua T17 |
+| --- | --- | --- |
+| T16-R1 — cao: bảng lỗi không khớp hợp đồng | Dòng20–30 | Cả9 cặp mã–tên sai; ví dụ6001 là InvalidExpiry khi create, không phải InvoiceExpired, còn6006 là WrongPayer, không phải ReplayTx. Viết lại copy/CTA theo bảng IDL và ARCHITECTURE mục5; namespace program ID + code, tách lỗi Anchor/System/fee/wallet/RPC. Không tự tạo ID mới sau timeout, không tự trả lại hoặc suy Paid từ mã lỗi. |
+| T16-R2 — cao: vẫn vượt scope native SOL | Dòng8,26,28,33 | Token Selector, mint/token và nhập token trong demo không có trong contract. Form/copy/storyboard dùng SOL, payer/merchant/invoiceID/amount/expiry rõ ràng, xem lại terms bất biến. Phân biệt merchant trả rent lúc create với principal/fee lúc pay, không để nhãn Fees/Terms/Rent chung thay thông tin cụ thể. |
+| T16-R3 — vừa: chưa có wireframe và bảng state/CTA | Dòng5–18,39–41 | Flow bullets chưa là bố cục4màn desktop/mobile. Pending/Unknown phải là request observation riêng; Invoice chỉ Open/Paid/Cancelled, Expired suy từ Open+slot. Ghi commitment confirmed/finalized và đọc đúng Invoice PDA/program/cluster khi Check Status/reload; chữ “query on-chain” chưa đủ. Nêu CTA không ký lại khi chưa xác định kết quả. |
+| T16-R4 — vừa: demo chưa chứng minh chặn duplicate tx mới | Dòng32–36 | Tổng165s đúng, nhưng chỉ create/pay/timeout/reload/receipt. Thêm cảnh cùng PDA, transaction/signature mới bị InvoiceNotOpen; principal chỉ chuyển một amount và phí fail tách riêng. Ghi demo dự kiến hoặc replay local, chưa là ví/RPC/devnet thật. |
+| T16-R5 — vừa: thiếu SDK decision và chưa tự kiểm đầu ra | Dòng38–43, toàn file | Không có phần chọn/bỏ SDK kèm nguồn; cả5 checkbox vẫn bỏ trống dù A-done ghi xong. Đối chiếu ARCHITECTURE mục6 và note014, ghi phần đã mở nguồn/chưa kiểm, không cài/tích hợp. Checklist phải trỏ đúng mục đã làm; mục thiếu vẫn ghi chưa đạt. |
+
+Điểm cải thiện có thể giữ: thêm payer/ID, bước review rent/fee, xem không ví và nút Check Status. Các điểm này chưa đóng T12-R1–R5 hoặc T16-R1–R5. T13 vẫn là khung8d4d30a chưa có verdict; T15 đã có trong queue, nên dòng “hết việc/chờ C giao T15” ở HANDOFF A/5313746 không khớp danh sách đang mở. Parent của a27a207 là ed9a070, đã chứa bảng đầu vào T13; không suy đoán lý do A bỏ qua.
+
+C giao **T17** sửa UX theo IDL và checklist cụ thể, ưu tiên **T13→T17→T15**; ghi sự cố **K8** và bài học note023. Không sửa file UX/review/A-done/HANDOFF của A, source/tests/IDL, IDEA/ARCHITECTURE hoặc điểm79/F4. Review tài liệu đã giao được tiếp tục; cổng người dùng/giáo viên chưa mở, không thực hiện Phase3.

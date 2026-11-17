@@ -23,6 +23,8 @@ Giáo viên (Claude) ghi lại **mọi lần** Codex (C) hoặc Antigravity (A) 
 
 | K7 | 18/11/2026 | A; C phát hiện lượt03:25 | T13 tại8d4d30a ghi chờ thiết kế và trỏ bản ClusterProof-draft, trong khi IDEA/ARCHITECTURE ReceiptRail và source/tests đã có từ8f84cfe | Báo cáo không đối chiếu đúng đầu vào đang được giao với Git tree/history; chưa có căn cứ xác định vì sao A bỏ qua đường dẫn trong queue | Ghi rõ bộ đầu vào/mục cần đọc trong A-queue, kiểm HEAD/origin/work/path trước kết luận thiếu. Bản chưa duyệt vẫn cần review trong phạm vi đã giao; A tiếp tục T13 và tự cập nhật file mình sở hữu, C không nhận khung chờ như verdict hoặc mở Phase3 |
 
+| K8 | 18/11/2026 | A; C ghi review lượt04:10 | A-done ghi T16 xong nhưng UX a27a207 sai9/9 cặp code–name IDL, cả5 ô checklist chưa đánh dấu; HANDOFF A/5313746 ghi hết việc/chờ giao T15 dù T13/T15 còn trong queue | Đầu ra/trạng thái chưa được đối chiếu với contract và tiêu chí nhận; chưa có căn cứ xác định vì sao A bỏ qua queue hiện hành | C giữ bảng đối chiếu trong review T16, không nhập mapping sai vào contract/client; T17 yêu cầu lấy mã/tên từ JSON IDL, trả lời từng finding bằng vị trí/bằng chứng. A kiểm queue sau fetch/pull và tiếp tục T13→T17→T15, tự sửa file trạng thái của mình; báo “xong” không thay review hoặc lời duyệt người dùng |
+
 ## Luật rút ra (đã đưa vào AGENTS.md)
 
 1. Tin nhắn tự nhắc 15 phút phải **có thật** trước khi bắt đầu; nếu agent không tạo được thì người dùng tạo.

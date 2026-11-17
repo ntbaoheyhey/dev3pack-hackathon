@@ -8,9 +8,9 @@
 - Spike Anchor1.2.2/LiteSVM: bytecode thật, **19/19 runtime tests**,131bytes, principal trả1lần, duplicate tx mới/rollback/expiry/authority.
 - Runner offline dùng compiler cache trực tiếp; r1 build+test64s, r2 cached3s, bytecode hash như nhau; IDLr3 exit0 đã copy/đối chiếu.
 - C01 r2 **79/100/F4 PLAN** dựa19tests/D2; r0/r1 giữ. README/SHORTLIST/review/ROADMAP/DECISION đã đồng bộ.
-- Đã push spike **8f84cfe**, hồ sơ/điểm **b5cb544**; commit Thẻ nhớ cuối xem HEAD. PR7 title/body đã sửa ReceiptRail, đọc lại open/merged=false/head b5cb544 trước commit cuối.
-- Đã pull8d4d30a: T13 mới có khung chờ sai dù bộ8f84cfe đã có; queue đã chỉ rõ đầu vào, tiếp tục T13→T16 sửa UX→T15 sửa evidence. T12/T14 chưa đạt; K7 ghi sự cố. Không đổi score/contract hoặc file kết quả/A-done/HANDOFF của A.
-- Automation **ACTIVE mỗi15phút**, đúng chat; đã nhận heartbeat scheduler **00:55:00.058 ngày18/11/2026 UTC+7**. Một lần nhận không chứng minh mọi lần gửi; chưa có duyệt mới thì không mở việc phụ thuộc ý tưởng/Phase3.
+- Đã push spike **8f84cfe**, hồ sơ/điểm **b5cb544**; commit Thẻ nhớ cuối xem HEAD. PR7 body đã cập nhật review T16/T17, đọc lại khớp/open/merged=false tại head5313746 trước checkpoint này.
+- Fetch/pull ở **5313746**; T16/a27a207 chưa đạt:9/9 mã–tên lỗi sai IDL, thiếu UX/demo/SDK; review đã ghi, K8/note023 cập nhật. Queue **T13→T17 sửa UX→T15 sửa evidence**; T13 vẫn khung8d4d30a dù đầu vào8f84cfe đã có. Giữ score/contract và file A.
+- Automation **ACTIVE mỗi15phút**, đúng chat; view/config đã kiểm, nhận heartbeat scheduler **04:10:02.107 ngày18/11/2026 UTC+7**. Record chứng minh lượt này đã gửi; reminder không mở cổng duyệt hoặc Phase3.
 - Push sau mỗi bước lớn bằng `[skip ci]`; workflow cũ tự cài nên không kích hoạt, không gọi CI xanh.
 - Cài thêm/tạo ví-keypair triển khai/deploy/public mới hỏi trước; Phase3 chỉ mở sau duyệt Phase2. Không merge/force-push/mainnet/secrets.
 
@@ -18,10 +18,10 @@
 
 [IDEA](IDEA.md), [ARCHITECTURE](ARCHITECTURE.md), [note023](learning/023-receiptrail-phase2-spike.md), [metadata](evidence/phase2/receiptrail-build-metadata.json), [tests r2](evidence/phase2/receiptrail-spike-r2.txt), [IDL](idl/receiptrail.json). Source/tests/lock hash đã khớp log. Chưa có client/browser/RPC/devnet/CI/review độc lập ReceiptRail. Không còn process build cần poll.
 
-## Còn lại — cần câu trả lời trước khi thực hiện
+## Còn lại và cổng chưa mở
 
 1. **Người dùng duyệt** [IDEA](IDEA.md) và [giải thích kiến trúc một trang](ARCHITECTURE.md#1-giải-thích-một-trang-cho-người-dùng). Ghi nguyên văn + giờ/múi giờ khi thật sự có câu đồng ý, không ghi sẵn đã duyệt hoặc hỏi chọn ý tưởng lại.
-2. Review A/giáo viên theo [bảng cổng](reviews/phase1-3-gates.md) còn mở; không tự đóng thay. Chưa có kết quả A không trì hoãn trình bản hiện tại.
+2. Khi A có bản mới, review theo [queue T13→T17→T15](tasks/A-queue.md) và [bảng cổng](reviews/phase1-3-gates.md). Review tài liệu đã giao được phép tiếp tục; không chờ A để trình bản C hoặc tự đóng cổng A/giáo viên. T16 đã review/chưa đạt, không dùng mapping sai cho client.
 3. Sau duyệt và các cổng cần thiết mới lập bước Phase3 cụ thể; hỏi riêng trước mọi cài thêm/tạo ví-keypair triển khai/deploy/public mới. Duyệt tài liệu không là quyền vận hành.
 
 ## Bị chặn (cần người dùng)

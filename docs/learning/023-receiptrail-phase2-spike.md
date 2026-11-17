@@ -47,6 +47,7 @@ Kế hoạch lệnh (chưa gọi tại thời điểm viết note): `bash script
 | Quyền cài/duyệt bị ghi sai | Dùng payload đã bị đính chính | DECISION có nguyên văn/giờ/nguồn sai; AGENTS/K6 chặn suy quyền |
 | Cargo offline chưa chặn rustup proxy tự cài toolchain bị thiếu | `.cargo/bin/cargo` là proxy; cache dependency và compiler là hai việc khác nhau | Script cuối dùng trực tiếp bộ host1.100.0 đã có, kiểm cargo/rustc/rustfmt trước khi chạy; thiếu thì exit2. Chạy lại suite sau sửa runner, giữ log r1 |
 | UX T12 thêm token selector và chưa có wireframe/error mapping | Bản42c5523 chỉ liệt kê flow chung, chưa đối chiếu hết contract/tiêu chí queue | Review T12-R1–R5; giao T16 theo native SOL/IDL, tách request khỏi Invoice và chứng minh duplicate trong storyboard165s. Chỉ sửa tài liệu sau T13, không mở UI/Phase3 |
+| UX T16 gán sai cả9 mã6000–6008 dù đã báo xong | Bảng tại a27a207 không khớp JSON IDL/source, checklist còn5 ô trống; chưa xác định nguyên nhân nội bộ của A | Đọc trực tiếp `errors` trong IDL đúng program/version và enum ReceiptError; Python đối chiếu9 hàng cho0 khớp, enum khớp IDL. [Review T16](../reviews/receiptrail-codex.md#review-đầu-ra-t16--18112026-lượt-heartbeat0410-utc7) giữ bảng sai/đúng và giao T17; không đưa mapping đoán vào client hoặc lấy report “xong” làm evidence. Chỉ kiểm dữ liệu, không rerun runtime suite khi source không đổi |
 
 ## Nguồn
 

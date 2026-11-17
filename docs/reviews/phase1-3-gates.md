@@ -4,19 +4,19 @@
 
 | Yêu cầu | Bằng chứng hiện hành | Trạng thái |
 | --- | --- | --- |
-| Nhắc15phút đúng chat | Automation ACTIVE, đúng thread; record scheduler 2026-11-17T17:55:00.058Z | Đã nhận heartbeat lúc00:55:00.058 ngày18/11 UTC+7; không suy mọi lượt gửi đều thành công |
+| Nhắc15phút đúng chat | Automation action view/config ACTIVE15phút, đúng thread; record scheduler 2026-11-17T21:10:02.107Z | Đã nhận heartbeat lúc04:10:02.107 ngày18/11 UTC+7; không suy mọi lượt gửi đều thành công |
 | RUBRIC/3 ứng viên đạt | C01r2=79/F4, C02r1=79, C03r1=77; giữ lịch sử r0/r1 | PLAN theo Codex, chưa giáo viên chấm/DELIVERY |
 | Quyết định/nguyên văn/giờ/nguồn | DECISION, AGENTS, STOP-CAUSES K6; DEVLOG cũ đã gắn nhãn sai | Đã sửa, không suy quyền |
 | ClusterProof dự phòng | IDEA/ARCHITECTURE-clusterproof-draft | Dự phòng, chưa duyệt; source/web/lab/toolchain giữ nguyên |
 | IDEA/ARCHITECTURE ReceiptRail | Account/PDA/instructions/states/errors/events,IDL,wireframe/threat model/test plan/demo165s | Đã viết để trình; chưa duyệt |
 | Spike local | [19tests r2](../evidence/phase2/receiptrail-spike-r2.txt),[metadata/IDL](../evidence/phase2/receiptrail-build-metadata.json) | Anchor bytecode thật chạy LiteSVM; F4 D2, không browser/RPC/devnet |
 | Tự review C | [Phạm vi và giới hạn](receiptrail-codex.md) | Đã đọc source/test/IDL, không thấy blocker trong phạm vi; không phải independent audit |
-| Giao A | [Queue](../tasks/A-queue.md); đã pull8d4d30a, review T12/42c5523 và T14/b5092a4 tại [review C](receiptrail-codex.md) | T12/T14 chưa đạt; T13 đã được chỉ rõ bộ đầu vào8f84cfe để tiếp tục, rồi T16→T15 |
+| Giao A | [Queue](../tasks/A-queue.md); fetch/pull5313746, review T12/42c5523, T14/b5092a4 và T16/a27a207 tại [review C](receiptrail-codex.md) | T12/T14/T16 chưa đạt; T16 sai9/9 mã–tên IDL, đã ghi K8/giao T17. Tiếp tục T13 với đầu vào8f84cfe → T17 sửa UX → T15 sửa evidence |
 | Review chéo | [Khung T13](receiptrail-antigravity.md) tại8d4d30a | Mới ghi chờ thiết kế; C đã kiểm artifact có sẵn và đính chính qua queue. Chưa có verdict thật; không tự đánh đạt |
 | Giáo viên | Chấm SHORTLIST/kiến trúc | Chưa có verdict; không tự đánh đạt |
 | Người dùng | Duyệt IDEA và giải thích ARCHITECTURE một trang | Đang trình, chưa có câu đồng ý; không mở Phase3 |
 | Phase3/vận hành | Hello/client/web logs cũ giữ nguyên; CI/devnet còn mở | Không cài thêm/tạo ví-keypair triển khai/deploy/public mới trước câu đồng ý riêng |
-| PR7 | Title/body ReceiptRail đã cập nhật và fetch đọc lại, head b5cb544 tại mốc kiểm | Open, merged=false; không merge; commit bàn giao cuối nối tiếp |
+| PR7 | Body ReceiptRail đã cập nhật kết luận T16/T17 và fetch đọc lại khớp, head5313746 tại mốc kiểm trước checkpoint review | Open, merged=false; không merge; commit review/bàn giao nối tiếp |
 
 **Đề nghị duyệt cụ thể:** native SOL, một payer/merchant trên mỗi invoice; create/pay/cancel/read; Open→Paid/Cancelled và Expired hiển thị; không close/reset/refund/stablecoin/x402. Cùng invoice chỉ chuyển principal1lần, vẫn có phí fail và rent lâu dài. Spike local là evidence phần lõi, UI/RPC recovery/devnet/CI/video chưa có.
 
