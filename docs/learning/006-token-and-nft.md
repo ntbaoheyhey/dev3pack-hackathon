@@ -59,7 +59,7 @@ flowchart TD
 ```
 
 #### Các Extensions nổi bật nhất cần biết:
-1. **Transfer Fees**: Tự động trích một tỷ lệ phần trăm (hoặc mức phí cố định) nạp vào tài khoản thu phí mỗi khi token được chuyển nhượng. Rất lý tưởng cho kinh tế game (in-game tax) hoặc mô hình doanh thu giao thức mà không cần phụ thuộc vào logic của sàn DEX.
+1. **Transfer Fees**: Mint cấu hình `transfer_fee_basis_points` và mức trần `maximum_fee`. Khi transfer, phần phí bị **withheld tại destination token account** (`TransferFeeAmount`), không tự chuyển vào kho bạc. Có hai đường thu phí: withdraw trực tiếp từ các token account, hoặc harvest về mint rồi withdraw từ mint; bước withdraw phải có `withdraw_withheld_authority` của mint ký. Harvest không cần quyền đó. [Solana Transfer Fees](https://solana.com/docs/tokens/extensions/transfer-fees), kiểm tra 17/11/2026.
 2. **Transfer Hook**: Ép buộc runtime gọi sang một custom Anchor Program của bạn mỗi khi có lệnh chuyển token. Giúp bạn kiểm tra logic phức tạp: ví người nhận có trong whitelist không, có đang bị phạt không, hoặc ghi nhận điểm thưởng on-chain.
 3. **Confidential Transfers**: Sử dụng mã hóa ElGamal và chứng thực không tiết lộ tri thức (ZK-proofs trên đường cong Twisted Edwards). Người dùng có thể chuyển token cho nhau mà số dư và số lượng chuyển được giấu kín hoàn toàn với công chúng, nhưng validator vẫn xác minh được giao dịch hợp lệ.
 4. **Default Account State**: Khi ai đó tạo Token Account cho token này, trạng thái mặc định sẽ là `Frozen`. Chỉ khi chủ sở hữu token xác minh danh tính (KYC/Whitelisting) thì tài khoản mới được `Thawed` để giao dịch (ứng dụng lớn cho RWA - Real World Assets).
@@ -81,20 +81,20 @@ Solana nổi tiếng với tốc độ cao, nhưng kiến trúc NFT thời kỳ 
      2. Token Account (giữ quyền sở hữu)
      3. Metadata Account (chứa tên, URI, creators, royalties)
      4. Master Edition Account (chứng minh tính độc bản và kiểm soát quyền in bản sao)
-   - **Hệ quả**: Chi phí rent-exempt để tạo 1 NFT lên tới ~0.022 SOL (~4–5 USD tùy giá SOL). Cực kỳ tốn kém nếu muốn tạo bộ sưu tập 10,000 vật phẩm game.
+   - **Chi phí**: tính rent-exempt theo kích thước từng account và thông số cluster tại thời điểm lập ngân sách; không quy đổi USD khi chưa có giá tham chiếu.
 
 2. **Metaplex Core (Next-Generation Standard 2024–2026)**:
    - Được thiết kế lại hoàn toàn từ con số 0 dành riêng cho Digital Assets trên Solana.
    - **Chỉ duy nhất 1 Account**: Mọi thông tin (chủ sở hữu, metadata, collection, plugins) đều nằm gọn trong một account duy nhất.
-   - **Giảm 85% chi phí rent**: Chỉ tốn khoảng ~0.0037 SOL cho mỗi NFT.
+   - **Rent**: phụ thuộc dữ liệu và plugins; chưa đo so sánh cùng cấu hình, không khẳng định tỷ lệ giảm cố định.
    - **Plugin Architecture**: Hỗ trợ gắn các plugin linh hoạt ngay trong asset: Freeze Delegate, Burn Delegate, Royalties, Attributes.
    - **Tối ưu hóa Indexing**: Tương thích hoàn toàn với DAS (Digital Asset Standard) RPC API của Helius và Triton.
 
 3. **Bubblegum & cNFT (Compressed NFTs)**:
    - Thay vì tạo tài khoản on-chain cho từng NFT, cNFT sử dụng **State Compression**.
    - Dữ liệu của hàng triệu NFT được băm (hash) thành các nút lá trong một cây Merkle đồng thời (**Concurrent Merkle Tree**).
-   - Trên chain chỉ lưu trữ một Account duy nhất đại diện cho gốc cây (Root Hash).
-   - **Chi phí không tưởng**: Mint 1 triệu NFT chỉ tốn khoảng 5–10 SOL tiền tạo cây ban đầu! Chi phí cho mỗi NFT xấp xỉ 0.000005 SOL.
+   - Dữ liệu tree on-chain gồm cấu trúc phục vụ cập nhật/proof, không chỉ riêng root hash; kích thước phụ thuộc cấu hình.
+   - **Chi phí**: phải cộng rent của tree/config/canopy và phí các giao dịch; chưa đủ căn cứ cho các con số cố định theo triệu NFT ở bản cũ.
    - Khi giao dịch hoặc chuyển nhượng, người dùng gửi kèm Merkle Proof để runtime xác thực.
 
 ---
@@ -106,23 +106,25 @@ Solana nổi tiếng với tốc độ cao, nhưng kiến trúc NFT thời kỳ 
 | Bài toán sản phẩm | Công nghệ tối ưu | Lý do lựa chọn |
 | --- | --- | --- |
 | **Meme token, Token thanh khoản DeFi** | **SPL Token cổ điển** | Được 100% các sàn DEX (Raydium, Orca), CEX (Binance, Bybit) và công cụ tracking (DexScreener) hỗ trợ hoàn hảo không lỗi. |
-| **Game Web3 có cơ chế thu phí kinh tế** | **Token-2022 (Transfer Fee)** | Tự động thu thuế vào kho bạc game trên mỗi lệnh trade của người chơi mà không cần viết contract sàn giao dịch riêng. |
+| **Game Web3 có cơ chế thu phí kinh tế** | **Token-2022 (Transfer Fee)** | Withhold phí tại token account nhận khi transfer; cần bước withdraw có authority, hoặc harvest về mint rồi withdraw, để chuyển phí vào tài khoản kho bạc. |
 | **Tài sản thực (RWA), Cổ phiếu số, Stablecoin** | **Token-2022 (Default Freeze + Permanent Delegate)** | Bắt buộc phải có khả năng kiểm soát tuân thủ, đóng băng ví vi phạm và thu hồi tài sản theo yêu cầu pháp lý. |
 | **Huy hiệu chứng nhận, Vé không thể bán lại** | **Token-2022 (Non-Transferable)** | Không thể chuyển nhượng, ngăn chặn nạn đầu cơ vé chợ đen. |
 | **Vật phẩm game, Thẻ tướng, PFP Collection** | **Metaplex Core** | Chi phí rent rẻ, chỉ 1 account, quản lý ownership và cập nhật chỉ số thuộc tính cực kỳ trực quan qua Core SDK. |
-| **Airdrop đại trà, Vé tham dự sự kiện (POAP)** | **Metaplex Bubblegum (cNFT)** | Có thể mint 100,000 huy hiệu tặng người dùng mà chi phí tài trợ gas gần như bằng 0. |
+| **Airdrop đại trà, Vé tham dự sự kiện (POAP)** | **Metaplex Bubblegum (cNFT)** | Có thể giảm lưu trữ account riêng; phải dự toán tree/canopy và phí mint/transfer, không coi chi phí bằng 0. |
 
 ---
 
 ## 4. Ví dụ và Quy trình tối thiểu
 
-### 4.1. Bảng so sánh chi phí Rent lưu trữ (Mốc 2026)
+### 4.1. Lập ngân sách rent theo cấu hình
 
-| Loại tài sản | Số lượng Accounts cần tạo | Chi phí Rent ước tính (SOL) | Tỷ lệ tiết kiệm |
-| --- | --- | --- | --- |
-| Legacy Metaplex NFT | 4 accounts | ~0.022 SOL | Baseline (0%) |
-| **Metaplex Core Asset** | **1 account** | **~0.0037 SOL** | **Tiết kiệm ~83%** |
-| **Compressed NFT (cNFT)** | **0 account riêng (dùng chung Tree)** | **< 0.00001 SOL / item** | **Tiết kiệm >99.9%** |
+| Loại tài sản | Dữ liệu cần có trước khi tính | Trạng thái số liệu |
+| --- | --- | --- |
+| Legacy Token Metadata | Kích thước mint, token account, metadata, edition theo trường hợp | Chưa đo trên cấu hình dự án |
+| Metaplex Core | Kích thước asset/plugins, collection dùng chung nếu có | Chưa đo; không giữ tỷ lệ tiết kiệm 83–85% như hằng số |
+| Bubblegum/cNFT | Version, max depth, buffer size, canopy, tree/config accounts và số transaction | Chưa đủ căn cứ cam kết dưới 1 SOL |
+
+Công thức dự toán: **tổng rent-exempt cần cấp + phí tạo/mint/transfer + dự phòng + chi phí dịch vụ off-chain**. Rent là khoản lamports cần để tài khoản rent-exempt, không mặc định là phí bị tiêu thụ. Đọc [getMinimumBalanceForRentExemption](https://solana.com/docs/rpc/http/getminimumbalanceforrentexemption) và [Bubblegum trees](https://developers.metaplex.com/bubblegum/create-trees). Chưa gọi RPC hoặc tạo tree trong task này.
 
 ### 4.2. Cấu hình Mint Token-2022 với Extension Transfer Fee (Minh họa logic)
 
@@ -149,22 +151,35 @@ let fee_basis_points = 250u16;
 let max_fee = 5_000_000u64;
 ```
 
+
+### 4.3. Dòng phí Token-2022 — cần bước rút phí
+
+Theo [Transfer Fees](https://solana.com/docs/tokens/extensions/transfer-fees):
+
+1. `TransferChecked` hoặc `TransferCheckedWithFee`: giảm phần spendable người nhận theo phí và lưu phí ở **destination token account**.
+2. Cách trực tiếp: `WithdrawWithheldTokensFromAccounts` gom phí từ các token account vào token account nhận phí; **withdraw authority của mint** ký.
+3. Cách qua mint: bất kỳ ai có thể gọi `HarvestWithheldTokensToMint`; sau đó **withdraw authority** gọi `WithdrawWithheldTokensFromMint` để chuyển phí tới token account nhận phí.
+
+Ví dụ tính toán trên giấy: transfer **10.000 raw units**, phí **100 bps = 1%**, `maximum_fee = 1.000 raw units`; không có vấn đề làm tròn vì 10.000 × 1% = 100. Người nhận có thêm **9.900 spendable units**, **100 units withheld** tại account nhận; kho bạc chưa tăng. Kho bạc chỉ nhận 100 sau bước withdraw. Không nhầm người sở hữu destination account với withdraw authority của mint. Đây là giả định minh họa, chưa chạy on-chain.
+
 ---
 
 ## 5. Tự kiểm tra
 
 1. **Một dự án game thẻ bài muốn cho người chơi mint 500,000 thẻ sưu tập với ngân sách eo hẹp (dưới 1 SOL). Bạn nên tư vấn dùng chuẩn nào?**
-   - *Đáp án*: Dùng **Compressed NFTs (Bubblegum / cNFT)**. Nếu dùng Metaplex Core sẽ tốn ~1,850 SOL rent, còn Legacy NFT tốn hơn 11,000 SOL. Trong khi đó, một Concurrent Merkle Tree với độ sâu phù hợp có thể chứa 500,000 cNFT chỉ với vài SOL.
+   - *Đáp án*: **Chưa đủ căn cứ chọn phương án đáp ứng dưới 1 SOL.** cNFT là ứng viên cần tính, không phải đáp án đã đạt ngân sách. Cần ít nhất `ceil(log2(500.000)) = 19` về sức chứa của một tree (2^19 = 524.288), nhưng depth không đủ để suy chi phí: còn buffer, canopy, version, rent và phí mint/giao dịch. Nếu dự toán là vài SOL thì đã vượt điều kiện đề bài; phải giảm quy mô hoặc đổi ngân sách, không tuyên bố đạt.
 
 2. **Nếu bạn muốn phát hành một đồng token cộng đồng mà mỗi giao dịch chuyển giữa các ví tự động trích 1% nộp vào quỹ từ thiện, bạn nên dùng cách nào?**
-   - *Đáp án*: Sử dụng **Token-2022 với extension Transfer Fee**. Cấu hình phí 100 basis points (1%). Phí này được runtime tự động trừ mỗi khi instruction `transfer_checked` được gọi.
+   - *Đáp án*: Cân nhắc **Token-2022 Transfer Fee**, 100 bps cùng maximum fee rõ ràng. Phí được withheld ở destination token account; phải withdraw trực tiếp hoặc harvest về mint rồi withdraw bằng withdraw authority để quỹ nhận token. Không tự động nộp vào quỹ ngay mỗi transfer.
 
 3. **Metaplex Core khác biệt lớn nhất so với chuẩn NFT Metaplex truyền thống ở điểm nào?**
-   - *Đáp án*: Metaplex Core chỉ dùng **duy nhất 1 Account** cho mỗi tài sản kỹ thuật số (thay vì 4 accounts như Mint, Token, Metadata, Master Edition), giúp giảm tới hơn 80% chi phí rent, giảm độ phức tạp khi lập trình và tối ưu hóa tốc độ truy vấn.
+   - *Đáp án*: Metaplex Core chỉ dùng **duy nhất 1 Account** cho mỗi tài sản kỹ thuật số (thay vì 4 accounts như Mint, Token, Metadata, Master Edition), có thể giảm số account riêng; mức tiết kiệm rent cần đo cùng dữ liệu/plugins và thông số cluster, không lấy tỷ lệ cố định.
 
 ---
 
 ## 6. Nguồn và độ tin cậy
+
+- [Solana Transfer Fees](https://solana.com/docs/tokens/extensions/transfer-fees) — đã đọc 17/11/2026: destination withholding, harvest và withdraw authority.
 
 - [Solana Token Extensions Guide](https://solana.com/developers/guides/token-extensions) — Hướng dẫn chính thức toàn diện về Token-2022 từ Solana Foundation (Đã đọc và đối chiếu).
 - [Metaplex Core Developer Hub](https://developers.metaplex.com/core) — Đặc tả kỹ thuật và hướng dẫn sử dụng Metaplex Core (Đã đọc và đối chiếu).
@@ -177,3 +192,5 @@ let max_fee = 5_000_000u64;
 
 - **Điểm chưa kiểm chứng**: Khả năng tương thích của các ví di động bên thứ ba đối với việc hiển thị trực tiếp Confidential Transfers và Transfer Hooks của Token-2022; một số ví cũ có thể hiển thị cảnh báo khi tương tác với token có hook.
 - **Bước tiếp theo**: Trong hackathon, nếu làm mảng NFT/Game, hãy dùng ngay SDK `@metaplex-foundation/mpl-core` để mint và fetch tài sản vì cú pháp gọn nhẹ hơn rất nhiều so với thư viện cũ.
+
+**Bài học / lỗi đã gặp:** phí withheld chưa phải tiền kho bạc; bài có trần ngân sách phải tính đủ chi phí hoặc ghi thiếu căn cứ. Mọi ví dụ trong lần sửa là trên giấy, chưa biên dịch/on-chain.

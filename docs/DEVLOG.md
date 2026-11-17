@@ -13,6 +13,8 @@ Mỗi dòng: ngày · ai làm (Mai / Codex / Antigravity) · việc · note đã
 
 - R04 / Phần 3 · sửa 001, 012, 013, 014 theo Dev3pack trang chủ/FAQ đã đọc bằng browser: sponsors, giải, track, hai vòng chấm, video, form, deadline và code. Ghi rõ trọng số tự đề xuất; tách lịch sử Colosseum/Superteam, cập nhật nguồn pricing và bỏ thời gian tích hợp không đo. Kịch bản thời lượng/lời thoại tiếp tục xử lý riêng R07.
 
+- R05 · sửa 006: destination withholding, hai đường harvest/withdraw và authority; bỏ con số rent thiếu cấu hình, bài 500.000 cNFT dưới 1 SOL ghi chưa đủ căn cứ. Ví dụ 10.000 raw units/1% tính trên giấy; không RPC.
+
 ## Trước sự kiện
 
 - 2026-11-17 · Claude · Dựng khung repo, quy tắc "học trước, ghi lại", research Codex vs Antigravity · 000, 001
