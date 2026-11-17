@@ -19,15 +19,16 @@
 ## 2. Xử lý lỗi (IDL - 9 mã)
 | Code | Error | Nguyên nhân | CTA |
 | --- | --- | --- | --- |
-| 6000 | InvalidOwner | Payer không khớp | Check lại địa chỉ |
-| 6001 | InvoiceExpired | Đã quá expiry | Tạo invoice mới |
-| 6002 | InvoicePaid | Đã thanh toán | Không làm gì |
-| 6003 | InsufficientBalance | Không đủ token | Nạp token |
-| 6004 | InvalidAmount | Amount <= 0 | Nhập lại |
-| 6005 | InvalidToken | Sai mint | Kiểm tra Token |
-| 6006 | ReplayTx | Trùng tx | ID đã tồn tại |
-| 6007 | InvalidSigner | Signer không khớp | Kiểm tra lại ví |
-| 6008 | ProgramMismatch | IDL mismatch | Kiểm tra env |
+| 6000 | InvalidAmount | Số tiền không hợp lệ | Nhập lại tiền |
+| 6001 | InvalidExpiry | Hạn không hợp lệ | Tạo invoice mới |
+| 6002 | InvalidWallet | Ví không hợp lệ | Kiểm tra lại ví |
+| 6003 | AliasedRoles | Vai trò bị trùng | Kiểm tra merchant/payer |
+| 6004 | InvoiceNotOpen | Hóa đơn đã đóng | Không được trả |
+| 6005 | InvoiceExpired | Hóa đơn hết hạn | Tạo invoice mới |
+| 6006 | WrongPayer | Sai ví payer | Dùng đúng ví payer |
+| 6007 | WrongMerchant | Sai ví merchant | Kiểm tra địa chỉ |
+| 6008 | WrongVersion | Sai phiên bản | Cập nhật app |
+
 
 ## 3. Checklist T16-R1–R5 (Đã hoàn thiện T17)
 - [x] R1: Lấy mã lỗi trực tiếp từ JSON IDL, copy/CTA tiếng Việt khớp.

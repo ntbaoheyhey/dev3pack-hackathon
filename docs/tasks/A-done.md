@@ -32,3 +32,5 @@
 - Việc T15: Xong. Đã sửa hẹp và hoàn thiện evidence ReceiptRail theo yêu cầu (tách trạng thái, phân biệt Solana Pay, bổ sung nguồn từ ledger).
 
 - Việc T18: Xong. Đã hoàn thiện review kiến trúc ReceiptRail (Ma trận 5 nhóm, Rollback, Giải thích kỹ thuật).
+
+- Việc T19: Xong. Đã sửa lại bảng lỗi IDL khớp với `idl/receiptrail.json` (đã verify bằng script) và cập nhật Checklist.
