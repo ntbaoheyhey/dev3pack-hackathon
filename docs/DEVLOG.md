@@ -160,3 +160,5 @@ Các mô tả dưới đây là sự kiện ở Taskbar Hero, không phải hàn
 - Bắt đầu D; chưa mở docs/ideas/antigravity. Chưa code/install/tx/deploy.
 
 - 2026-11-17 · Codex · Nghiên cứu riêng C01–C03; phát hiện x402 đã có idempotency, nguồn T3 sai đích và snippet fee/epoch khác upstream; chỉ đọc RPC devnet, chưa cài/tx · Viết note 021 trước spike, thêm K4 STOP-CAUSES, giao A sửa nguồn.
+- 2026-11-17 · Codex · Theo yêu cầu chỉ bàn giao: cập nhật HANDOFF với HEAD `3a6359b`, file spike/evidence chưa commit, log 9 test đạt và giới hạn live C02/C03; giữ goal active và automation hiện có. Không triển khai hoặc chạy lại test trong lượt này; note 021/mục lục chưa cập nhật kết quả spike, đã ghi vào Còn lại.
+- 2026-11-17 · Codex · Tiếp tục goal, review snapshot spike read-only và ghi catalog evidence; đọc source layout mint/TLV/u64 trước mở rộng C03, trả lại T6 sai URL/thiếu nguồn. Cập nhật note 021/mục lục/HANDOFF; automation view/config vẫn ACTIVE đúng chat, fetch không có thay đổi work.

@@ -1,0 +1,17 @@
+✔ base58 known vectors, including leading zeros (0.61475ms)
+✔ loader validates type/length/owner/executable, extracts pointer (0.908084ms)
+✔ ProgramData metadata and payload hashes distinguish upgrade from code (0.404166ms)
+✔ missing manifest/IDL never becomes ABI verification (0.113334ms)
+✔ rounding, max cap, zero and integer precision counterexamples (0.197875ms)
+✔ invalid/overflow input rejected, no silent Number coercion (0.185959ms)
+✔ epoch switch uses newer epoch, not older epoch (0.094167ms)
+✔ binary-search quote agrees with upstream inverse formula over 5,940 cases (40.953875ms)
+✔ independent brute-force enumeration proves minimal gross on small domain (6.497292ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 123.160167

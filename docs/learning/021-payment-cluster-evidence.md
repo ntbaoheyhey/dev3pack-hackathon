@@ -48,12 +48,26 @@ C03 chỉ báo giá gross/net với config mint live + epoch + slot; mint không
 
 Các số sau là phép tính minh họa: gross 101, bps 100, cap 100 → fee 2, net 99; dùng floor sẽ báo sai net 100. Target 100 với cùng config cần gross 102. Đổi newer fee từ 100 sang 200 bps ở epoch 10 phải đổi quote ở đúng epoch 10.
 
-Kế hoạch spike (chưa chạy khi viết note):
+Kế hoạch spike ban đầu (viết trước code; kết quả thực hiện bên dưới):
 
 1. C02: đọc program thật devnet; dựng expected manifest cố ý sai từ snapshot, checker phải phát hiện sai genesis/address/owner/hash và giữ ABI = unknown. Timeout/null/unsupported không được coi là pass.
 2. C03: module arithmetic dùng BigInt, oracle inverse độc lập; kiểm zero/100%/cap/rounding/overflow/epoch. Đọc một mint TransferFee trên devnet nếu tìm được qua số request giới hạn; không tạo token thay vì không tìm được.
 3. Lưu lệnh, thời gian, public RPC metadata và kết quả dưới docs/evidence; file data dùng .json chỉ chứa dữ liệu công khai, không keypair. Script ở research/phase1, không scaffold app/product.
 4. Chỉ nâng F lên 4 nếu spike đúng phần khó của phạm vi **read-only** đã chạy và có log. Không suy thành F4 cho custom program C01 hoặc Phase 3 đã hoàn thành.
+
+### Kết quả spike lần đầu — 17/11/2026
+
+Log/artifact tại [evidence/phase1](../evidence/phase1/README.md). `node --test research/phase1/spikes.test.mjs` đạt 9 nhóm, gồm 5.940 case đối chiếu inverse và 744 case brute force; đây là fixture/arithmetic. C02 đã đọc Token-2022 devnet tại slot 523293811 trong 747 ms và phát hiện 5 manifest mutations. Cùng-RPC baseline chỉ là `OBSERVED_ONLY`; ABI `UNKNOWN`, source verification `NOT_RUN`, không gọi hash payload có padding là verified-build hash.
+
+Probe mint tìm được TransferFee 100 bps nhưng đi kèm transferHook: **unsupported cho quote C03**, không biến việc đọc mint thành live quote thành công. Chưa cài package/toolchain, tạo keypair, ký hoặc gửi transaction.
+
+### Thiết kế parser C03 trước khi mở rộng code
+
+Đã đọc [mint layout](https://github.com/solana-program/token-2022/blob/main/interface/src/state.rs) (blob `8c94447787faee9ef05ba752392df6db2d00cb1d`) và [extension layout](https://github.com/solana-program/token-2022/blob/main/interface/src/extension/mod.rs) (blob `12f066a14f0db3ee65543a48919a82a870db44a6`) ngày 17/11/2026. Mint base là 82 bytes; với extension, padding đến 165 phải zero, byte account type ở 165 phải Mint=1; TLV bắt đầu 166 với type/length u16 little-endian. Loại buffer 355 bytes (multisig), base chưa initialized, owner sai, TLV trùng/cắt ngắn hoặc extension chưa hỗ trợ.
+
+Theo source N3, TransferFeeConfig type=1, dữ liệu 108 bytes: hai authority 32 bytes, withheld u64, older/newer fee mỗi 18 bytes (epoch u64, cap u64, bps u16). Đọc raw base64 và `readBigUInt64LE`, giữ raw units/epoch dạng BigInt rồi serialize chuỗi; **không lấy JSON Number đã bị làm tròn rồi ép BigInt**. Epoch/slot từ RPC phải là safe integer không âm, nếu không từ chối. Đọc epoch trước/sau mint, reject khi epoch đổi; giữ slot/hash/time và ghi dữ liệu có thể stale sau snapshot.
+
+Spike hỗ trợ mint chỉ có TransferFeeConfig; metadata/hook/extension khác hiện trả unsupported. Đây là policy phạm vi chặt, không tuyên bố các extension đều nguy hiểm. Quote chỉ tính fee schedule, không kiểm balance, trạng thái token account, memo/CPI policy, freeze/transfer permission hay xác nhận thanh toán.
 
 ## 5. Tự kiểm tra
 
@@ -99,3 +113,5 @@ Chưa có compile/deploy program, wallet flow, demo video, phép đo lợi ích 
 | T3 của A có URL Reddit title sai đích | URL ID 1f66666 redirect sang bài hoàn toàn không liên quan; loại khỏi evidence, giao A sửa. URL 1f44444 timeout: ghi chưa xác minh, không khẳng định nội dung |
 | Docs Raydium snippet dùng floor và condition epoch khác source | Ghi rõ mâu thuẫn, chọn source token; spike phải có counterexample 101/1% |
 | Chưa có spike nhưng cần >=3 ý tưởng đạt | Giữ F3; làm thử đúng phạm vi bằng công cụ có sẵn hoặc sửa/bỏ ý tưởng, không nâng điểm bằng lời hứa |
+| jsonParsed có thể chứa u64 dưới dạng JSON Number | Parser quote đọc mint base64; kiểm safe integer với slot/epoch. Snapshot jsonParsed cũ chỉ phục vụ tìm địa chỉ, không làm oracle số tiền |
+| T6 trợ lý báo xong nhưng URL sai repo và thiếu nguồn độc lập | Trả lại T6 với URL chuẩn và tiêu chí kiểm nội dung; không lấy status xong thay xác minh evidence |

@@ -1,0 +1,104 @@
+{
+  "runAtUtc": "2026-11-17T14:08:07.172Z",
+  "node": "v24.22.2",
+  "durationMs": 747,
+  "scriptSha256": "9e08db63a2ac0925f303d99f2ac1b626c09bea31161aec222776bb3f3ff96263",
+  "observed": {
+    "rpc": "https://api.devnet.solana.com",
+    "genesisHash": "EtWTRABZaYq6iMfeYKouRu166VU2xqa1wcaWoxPkrZBG",
+    "programId": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+    "programDataAddress": "DoU57AYuPFu2QU514RktNPG22QhApEjnKxnBcu4BHDTY",
+    "owner": "BPFLoaderUpgradeab1e11111111111111111111111",
+    "contextSlot": 523293811,
+    "upgradeSlot": "503153936",
+    "upgradeAuthority": "3URRPr96EV2wuNRgQKwQpuZitHHsVyDUen1eRSvEun9G",
+    "dataLength": 711053,
+    "accountSha256": "7a9f2a42dcd77830e1fa4a4e9648b560b2b899d4f9b370f16939c7db17498802",
+    "payloadSha256WithPadding": "b781b71d230a9910de4d3c103e72608f597fc73c83ee207242ac82b708382a6a",
+    "hashMeaning": "snapshot bytes; NOT verified-build/source hash",
+    "baselineTrust": "OBSERVED_ONLY",
+    "abiCompatibility": "UNKNOWN",
+    "sourceVerification": "NOT_RUN"
+  },
+  "baselineCheck": {
+    "checks": [
+      {
+        "field": "genesisHash",
+        "status": "MATCH"
+      },
+      {
+        "field": "programId",
+        "status": "MATCH"
+      },
+      {
+        "field": "programDataAddress",
+        "status": "MATCH"
+      },
+      {
+        "field": "owner",
+        "status": "MATCH"
+      },
+      {
+        "field": "upgradeSlot",
+        "status": "MATCH"
+      },
+      {
+        "field": "upgradeAuthority",
+        "status": "MATCH"
+      },
+      {
+        "field": "accountSha256",
+        "status": "MATCH"
+      },
+      {
+        "field": "payloadSha256WithPadding",
+        "status": "MATCH"
+      },
+      {
+        "field": "idlSha256",
+        "status": "UNKNOWN"
+      }
+    ],
+    "mismatchCount": 0,
+    "abiCompatibility": "UNKNOWN",
+    "sourceVerification": "NOT_RUN",
+    "trust": "matches supplied manifest only; RPC and manifest provenance remain external assumptions"
+  },
+  "fixtureMutations": [
+    {
+      "field": "genesisHash",
+      "detected": true
+    },
+    {
+      "field": "programId",
+      "detected": true
+    },
+    {
+      "field": "owner",
+      "detected": true
+    },
+    {
+      "field": "upgradeSlot",
+      "detected": true
+    },
+    {
+      "field": "payloadSha256WithPadding",
+      "detected": true
+    }
+  ],
+  "rpcCalls": [
+    {
+      "method": "getGenesisHash",
+      "durationMs": 303
+    },
+    {
+      "method": "getAccountInfo",
+      "durationMs": 124
+    },
+    {
+      "method": "getMultipleAccounts",
+      "durationMs": 309
+    }
+  ],
+  "writesToChain": 0
+}

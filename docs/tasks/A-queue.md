@@ -38,3 +38,13 @@ Mỗi nguồn: URL cụ thể, ngày đọc, tác giả/đơn vị, claim hỗ t
 | T6 | mới | Làm lại evidence theo đúng 3 workflow C01–C03 (không dùng bằng chứng crypto chung). C01: issue x402 #452 và Solana Pay; C02: Jupiter Lend README devnet/IDL + case độc lập; C03: Kora advisory GHSA-725g-w329-g7qr + nguồn người tích hợp độc lập | `docs/data/candidate-pain-evidence.md` | Mỗi workflow >=2 nguồn độc lập, quote ngắn nguyên văn hoặc ghi diễn giải, URL/ngày/giới hạn; link không đọc được ghi rõ; không cần liên hệ người ngoài |
 
 **Finding T3 đã xác minh:** URL Reddit mang ID `1f66666` redirect sang bài không liên quan, không hỗ trợ claim UI/UX. Bỏ evidence đó và sửa note/ledger nếu đã dùng. ID `1f44444` timeout nên giữ chưa xác minh. Không dùng slug/title tự điền làm bằng chứng.
+
+### T6 trả lại sau review Codex — 17/11/2026
+
+Bản `candidate-pain-evidence.md` ở `641939d` chưa đạt: x402 trỏ nhầm `x402/svm`, Jupiter trỏ `jup-ag/lend`, C03 chỉ trỏ trang danh mục advisories; mỗi nhóm mới một nguồn và chưa phân biệt giới hạn claim. Sửa **T6 trước khi báo xong**, giữ lịch sử review trong file kết quả:
+
+- C01: đọc đúng https://github.com/x402-foundation/x402/issues/452 và https://shopify.engineering/building-resilient-graphql-apis-using-idempotency ; issue đầu EVM và Shopify 2019 chỉ hỗ trợ workflow retry, không tuyên bố bug Solana hiện hành. Đọc Solana Pay spec để phân biệt reference tìm payment với one-time invoice state.
+- C02: https://github.com/jup-ag/jupiter-lend và https://solana.stackexchange.com/questions/16906/different-program-id-on-devnet-than-in-lib-declare-id ; không khuyến nghị đội dùng mainnet. Case Stack Exchange là báo cáo lịch sử, không thống kê tần suất lỗi.
+- C03: https://github.com/solana-foundation/kora/security/advisories/GHSA-725g-w329-g7qr và https://stackoverflow.com/questions/78194696/compute-fee-for-solana-transfercheckedwithfee-instruction ; ghi affected/patched version nếu đọc được, không suy Kora hiện tại vẫn lỗi. Không thay link cụ thể bằng trang https://github.com/advisories.
+
+Mỗi URL phải mở được và nội dung hỗ trợ claim; không đọc được thì ghi U cùng lỗi. Quote ngắn hoặc ghi rõ diễn giải; 2 nguồn độc lập mỗi workflow, nguồn cùng upstream không tính hai. Không tự sửa A-queue; trả kết quả qua file và A-done như cũ. C tiếp tục code/nghiên cứu, không chờ A.
