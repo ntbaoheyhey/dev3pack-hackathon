@@ -1,48 +1,84 @@
-# Thẻ nhớ — Codex / Prompt 03
-- Trạng thái **đang làm**; goal **active**, không token budget; checkpoint 17/11/2026, Asia/Ho_Chi_Minh.
-- Codex trưởng nhóm; Antigravity trợ lý qua A-queue/A-done; không sửa A-done/HANDOFF A, không chờ A, không tự spawn agent.
-- Mục tiêu: hoàn tất Phase 1–2 và Phase 3 đã được phép; cập nhật PR work → main, không merge.
-- Repo /Users/bao/Documents/ChatGPT/dev3pack, branch work; commit web **f7a1a43234a104e87345fe3f2539c0a5737abc66** đã push; xem git log -1 cho HEAD tài liệu mới hơn.
-- Người dùng chọn **ClusterProof C02 chính, NetPay Check C03 dự phòng**, cho phép toolchain/dependencies; không hỏi lại.
-- IDEA + ARCHITECTURE **v0.3** đã có bản cụ thể trong PR; câu hỏi duyệt IDEA/giải thích kiến trúc đã gửi, pending; giáo viên chưa có verdict được xác nhận.
-- Toolchain đúng bộ đã cài; hello check-lab r2 exit0: SBFv3/IDL/**6 runtime tests**; client **8 tests**/audit0.
-- Web đã public tại URL trong mục Bằng chứng; **8 tests**, clean npm ci/audit0, peer graph sạch, typecheck/build r4 exit0.
-- Core web chỉ metadata confirmed; product design paired ProgramData finalized chưa triển khai. /lab không sign/send, fixture đã kiểm, ví extension thật chưa kiểm.
-- Devnet inspect slot**523329001**: payer0 lamports, PROGRAM_NOT_DEPLOYED,transactions=[]; funding5SOL pending.
-- CI commit web f7a1a43: run**44127842904**, web/research/anchor-lab đều bị Billing & plans chặn trước job; billing pending.
-- README/IDEA/ARCHITECTURE/ROADMAP/note022/mục lục/evidence đã đồng bộ; PR#7 đã thêm web live/tests/giới hạn/cổng mở.
-- Đã giao **T9** browser/mobile/ví thật và **T10** review kiến trúc; dùng baseline đã push, không tạo Next/Site song song.
-- Automation dev3pack-nh-c-tr-ng-nh-m-m-i-15-ph-t vẫn ACTIVE15phút đúng chat/prompt; đã view/config-read, chưa quan sát heartbeat.
-- RUBRIC v1.2: weights20/15/10/20/15/15/5, floors3/3/2/3/3/3/2, tổng≥75; không gate fail/pending trọng yếu; F≤3 chưa spike.
-- C02/C03/C01 r1 PLAN **79/77/75**; review-C A01/A02/A03 **42/40/37**; giữ r0, tối đa r1–r3.
-- Bước tới: kiểm phản hồi người dùng/cổng review và funding/billing; fetch trước dùng A-done; xem Còn lại, không chạy lại việc đã xong.
-- Cấm mainnet/fork-mainnet/secrets/force-push/merge PR/sửa checkout A hoặc Taskbar Hero; không gọi NEXT final hoặc phase xong khi thiếu cổng.
+# Thẻ nhớ — Codex / ReceiptRail Phase 2
+- Trạng thái **đang làm**: người dùng đã yêu cầu tiếp tục Phase 2 ReceiptRail; bàn giao 00:16 đã lưu, không còn lệnh chỉ bàn giao.
+- Goal app đã được người dùng bật active; automation đã update/view/config-read **ACTIVE mỗi 15 phút** đúng chat; chưa quan sát heartbeat mới.
+- Người dùng xác nhận lúc **00:07 ngày 18/11/2026, Asia/Ho_Chi_Minh**: **“ReceiptRail chính, ClusterProof phụ”**.
+- Tin trực tiếp ghi nhận lúc **00:08:31.389 ngày 18/11/2026 UTC+7** thay yêu cầu 00:05 chỉ trình shortlist/chờ chọn; không hỏi chọn lại.
+- Các ghi chép chọn ClusterProof chính/NetPay Check dự phòng và duyệt thiết kế trước đây **sai, hết hiệu lực**; nguồn ở mục Truy nguyên.
+- Repo `/Users/bao/Documents/ChatGPT/dev3pack`, nhánh `work`; HEAD/origin-work local `050e0307fc9c983baaae0d68076d351cb14da134`.
+- Mục tiêu tiếp tục: sửa hồ sơ quyết định/luật, giữ ClusterProof **“dự phòng, chưa duyệt”**, viết IDEA/ARCHITECTURE ReceiptRail và spike local.
+- Phase 2 đã được yêu cầu; **chưa được duyệt thiết kế ReceiptRail**. Xong phải trình duyệt trước Phase 3; không merge PR #7.
+- Giữ toolchain đã cài và web ClusterProof đã public; **cài thêm, deploy hoặc public thứ gì mới phải hỏi trước**.
+- Spike/test cục bộ dùng cache hiện có; không tự tạo ví/keypair triển khai, không lấy quyền test làm quyền cài hay deploy.
+- Codex chủ trì; giao crawl/UX qua `docs/tasks/A-queue.md`, dùng A-done; không sửa A-done/HANDOFF A hoặc tự spawn agent.
+- **Chưa sửa** DECISION/STOP-CAUSES/AGENTS theo yêu cầu mới; chưa tạo bản lưu ClusterProof/note023/ReceiptRail program; PR chưa cập nhật.
+- C01 ReceiptRail r1 **75/100, F=3**; chưa có spike custom program. Chỉ tăng điểm khi có bằng chứng test mới.
+- Git còn thay đổi từ trước, gồm các dòng duyệt sai; không commit/push nguyên trạng. Lượt này chỉ sửa tài liệu bàn giao/note009/DEVLOG.
+- Bước đầu khi tiếp tục: sửa quyết định và luật, vô hiệu việc ClusterProof cũ trong queue, rồi làm Phase 2 ReceiptRail theo Còn lại.
+- Không có process build/server cần poll đã biết; CUA đã completion_summary. Không tiếp tục funding/CI/triển khai legacy để né cổng duyệt.
+- Cấm mainnet, secrets trong Git, force-push, đổi lịch sử, merge PR; không sửa checkout A hoặc Taskbar Hero.
 
-## Còn lại
+Cập nhật tiếp tục: **2026-11-18T00:23:55+07:00**, Asia/Ho_Chi_Minh. Đây là bàn giao trạng thái; chưa xác nhận native compaction.
 
-1. Đọc câu trả lời duyệt IDEA/ARCHITECTURE đã gửi và verdict giáo viên nếu có; ghi vào DECISION/tài liệu đúng phạm vi được duyệt, không coi lựa chọn C02 hoặc quyền cài là duyệt mọi tài liệu. Xem [hồ sơ review/cổng](reviews/phase1-3-gates.md). Funding/billing đã hỏi từ trước, không hỏi lại chỉ vì compact.
-2. Fetch origin, đọc A-done/remote trước kết luận thiếu kết quả T9/T10; dùng findings thật và tự sửa phần C, không chờ A. Nếu không có kết quả mới thì không dựng lại UI/hosting hoặc mở phase sau để né cổng.
-3. Funding có thật: kiểm đúng genesis/balance/rent/authority; tạo buffer signer riêng ngoài Git rồi deploy devnet program đúng ID; chạy inspect/smoke và lưu transaction/log/state xác nhận. Không resend mù hoặc xóa journal. Chỉ nhận lời “đã nạp” chưa đủ, cần inspect thực.
-4. Billing được xử lý: kiểm/rerun CI đúng head mới, theo tới terminal và sửa lỗi thực. Ba jobs chưa từng khởi chạy ở snapshot cuối; không bỏ job để tạo xanh, local pass không thay CI.
-5. Cập nhật review/PR/HANDOFF theo tiến triển. Chỉ khi mọi requirement trong hồ sơ review và Prompt03 đạt mới viết NEXT cuối, ROADMAP/HANDOFF xong, goal complete và hủy automation; không merge PR.
+## Truy nguyên quyết định sai và quyết định hiện hành
 
-## Bằng chứng và Git
+- Câu hiện hành của người dùng: **“ReceiptRail chính, ClusterProof phụ”**, thời điểm lựa chọn người dùng xác nhận **00:07 ngày 18/11/2026 UTC+7**; tin nhắn trực tiếp chứa câu này có timestamp log **00:08:31.389**. Phân biệt giờ lựa chọn với giờ ghi nhận tin.
+- Tin đính chính trước đó **00:05:05.678 ngày 18/11/2026** nói chưa chọn/chưa đồng ý và yêu cầu dừng sau phase ý tưởng. Phần chờ chọn đã được tin ReceiptRail mới thay thế; các giới hạn quyền mới nhất vẫn phải giữ.
+- Phiên trước đã đối chiếu session `/Users/bao/.codex/sessions/2026/11/17/rollout-2026-11-17T20-52-47-01a1e9c8-1b24-7911-91a4-4897fc175566.jsonl`. Assistant đã dùng các payload `send_user_message_question_reply` dưới đây làm căn cứ cho bản cũ; người dùng trực tiếp đính chính rằng bản đó sai. Không coi payload là bằng chứng người dùng thực sự thao tác, không đoán vì sao chúng xuất hiện.
 
-- **[Web công khai](https://clusterproof-devnet-17nov26.anthony-robinson-125.chatgpt.site)** và **[/lab/](https://clusterproof-devnet-17nov26.anthony-robinson-125.chatgpt.site/lab/)**. [web.md](evidence/phase3/web.md) chứa tests/build/browser/limitations và nguồn template; [source match](evidence/phase3/web-source-match.json) xác nhận code/config/tests trùng source Sites, chỉ README local bổ sung nghĩa SDK warmup.
-- Commit web **f7a1a43234a104e87345fe3f2539c0a5737abc66** đã push; trước là7d27640, client8f30b60, labcc8ab9c. Origin/main đã bao gồm b9c91b0d0cb191e6f0aa348d0540ffa83985c908; A nhận đến d4fec17. Không dùng SHA trước rebase ce6e0d5/35613b3. Dùng git status/log để kiểm HEAD tài liệu, không suy trạng thái từ checkpoint cũ.
-- [PR#7](https://github.com/ntbaoheyhey/dev3pack-hackathon/pull/7) đã cập nhật title “feat: ClusterProof spec, hello lab và web devnet công khai”, body có link live/tests/gates. Update trả headf7a1a43, stateopen; chưa merge. Repo vẫn private/MIT; public-source gate trước nộp còn mở.
-- **Hosting đã terminal succeeded**, không poll/tạo lại: project appgprj_6afc7bde680481919ba3e40a9d098155; source **f5223afb86ec0a8208715eec312e636b19da30ff**; version1/deployment appgdep_6afc7e25272081918ac0aeda0eee730b. Exact version ID/hash/paths trong [web-hosting.json](evidence/phase3/web-hosting.json).
-- Checkout Sites **/Users/bao/Documents/ChatGPT/dev3pack/sandbox/sites/clusterproof-phase3**, identity .openai/hosting.json; cần credential mới thì lấy cho cùng project, chỉ memory/stdin. Skill đã đọc/announce: **/Users/bao/.codex/plugins/cache/openai-curated-remote/sites/1.1.6/skills/sites/SKILL.md**. CUA đã markDeliverable/completion_summary; nếu dùng tiếp, đọc lại documentation theo công cụ.
-- Toolchain macOSarm64: Rust1.100.0 ở /Users/bao/.cargo/bin; Agave4.1.2 ở /Users/bao/.local/share/solana/install/active_release/bin; Anchor1.2.2 ở /Users/bao/.avm/bin/anchor-1.2.2; platform-tools v1.57 ở /Users/bao/.cache/solana/v1.57. Không sửa shell profile/không nâng v1.58.
-- [hello-check-r2](evidence/phase3/hello-check-r2.txt) exit0:fmt/SBFv3/IDL/6 runtime tests/lock; [build metadata](evidence/phase3/build-metadata.json) có source/hashes. [Client tests](evidence/phase3/client-tests-r3.txt)8pass, core1.2.2/web3.js1.99.0, overrides toml5.0.1+jayson5.0.0/audit0. Chưa deploy/send.
-- [Web tests](evidence/phase3/web-tests-r3.txt)8pass; [build r4](evidence/phase3/web-build-r4.txt)exit0; TypeScript5.9.3 sau peer conflict TS7; giữ logs fail riêng. Public read slot523326604; mobile390×844/desktop1280 đã kiểm. Không rerun code tests vì chỉ sửa docs khi runtime source không đổi.
-- Research giữ16tests,5.940 inverse/744 brute-force; [note021](learning/021-payment-cluster-evidence.md)/[catalog](evidence/phase1/README.md) có sources/read-only evidence/giới hạn. PLAN không là audit/delivery.
-- Dev server session**65878** đã revalidate live rồi dừng Ctrl-C, **exit130**; không còn handle cần poll đã biết. Sites workflow45815/exec cellg21:194 cũng terminal. Log local có SDK warmup Failed to fetch và fixture rejection; đã ghi rõ trong web.md, không suy thành production error hoặc toàn bộ RPC pass.
+| Giờ log, Asia/Ho_Chi_Minh | Nội dung payload đã bị dùng | ID |
+| --- | --- | --- |
+| 17/11/2026 21:55:56.923 | “ClusterProof chính, NetPay Check dự phòng (đề xuất)” | `call_2vT59FyQAhdLZBpUro6G1ne0`, item 0 |
+| 17/11/2026 21:55:56.923 | “Đồng ý cài bộ phiên bản này cho Phase 3” | cùng call, item 1 |
+| 17/11/2026 23:53:23.118 | “Duyệt IDEA và đồng ý bản giải thích kiến trúc” | `call_UUThW2KPCkU1r3njPLMbhGVE`, item 0 |
+| 17/11/2026 23:54:48.498 | “Chưa có ví devnet sẵn sàng; giữ bước này chưa kiểm” | `call_qOWTCC3sdHrix5DfEq1upmM0`, item 0; chỉ liên quan giới hạn kiểm ví |
 
-## Cần người dùng và trạng thái goal
+**Việc sửa DECISION chưa làm:** phải ghi lựa chọn ReceiptRail, đánh dấu dòng cũ sai/hết hiệu lực và dẫn đúng payload/giờ ở trên. Không ghi hiện hành là “chưa có quyết định”; không suy lựa chọn ý tưởng thành duyệt thiết kế hoặc quyền vận hành.
 
-- **Funding devnet:** [inspect cuối](evidence/phase3/devnet-inspect-1794932899367.json) đúng genesis/slot523329001,payer0SOL,program chưa deploy,transactions=[]; exit2 có chủ ý. Payer **GQRoDMoWFV2nhgwm3bZGvSCC1LSa2wRkLeeJg8NhbFM2**; program **2yzxUQEpaeLmgCMhDipwnVL3DHsxez18KcePonqZRiXL**; counter PDA **WPFLETxvxk2hq48C7YzC1VJVVZcEhzqF2tur6vBDvnB**.
-- Signers ngoài Git tại **/Users/bao/.local/share/dev3pack/devnet/**: payer-keypair.json và phase3-hello-keypair.json, directory0700/files0600. Không đọc/in secret. Buffer signer chưa tạo; dùng file riêng ngoài Git khi deploy để tránh recovery phrase của random buffer xuất log.
-- **GitHub Billing & plans:** [run44127842904](https://github.com/ntbaoheyhey/dev3pack-hackathon/actions/runs/44127842904), commitf7a1a43; [diagnostics](evidence/phase3/ci-blocked-f7a1a43.json) có annotation cả3jobs chưa khởi chạy vì account payments/spending limit. Cần người dùng xử lý; không phải assertion code fail.
-- **Duyệt:** câu hỏi async mới cho IDEA và bản giải thích ARCHITECTURE v0.3 đã accepted, chưa có trả lời lúc checkpoint. Giáo viên cần chấm SHORTLIST/kiến trúc; A review T9/T10 không thay verdict giáo viên/người dùng.
-- Lượt này có tiến bộ thực: commit/push web, cập nhật PR/docs/evidence/queue và kiểm blockers. Goal vẫn active; chưa đủ điều kiện blocked audit3lượt liên tiếp. Không tự complete/paused/hủy automation khi chỉ gặp các cổng trên. Automation giữ đúng chat **01a1e9c8-1b24-7911-91a4-4897fc175566**; snapshot trước ở [archive](archive/HANDOFF-history-codex.md).
+## Bàn giao 00:16 và trạng thái trước khi tiếp tục
+
+Đã đọc ROADMAP, hồ sơ C01, rubric, code/test lab hiện có, tool help và đối chiếu các tin nguồn. **Chưa triển khai thay đổi ReceiptRail**; commentary về dự định không phải bằng chứng đã sửa. Lượt chỉ bàn giao này đã thay HANDOFF, lưu snapshot sai có cảnh báo trong [archive](archive/HANDOFF-history-codex.md), thêm bài học note009 và DEVLOG; đọc lại goal thấy paused. Không commit/push hoặc thực hiện native compaction.
+
+## Còn lại — thực hiện ngay trong lượt tiếp tục
+
+1. **Sửa sai trước:** sửa [DECISION](ideas/DECISION.md) theo nguyên văn/giờ/nguồn trên; thêm sự cố K6 vào [STOP-CAUSES](STOP-CAUSES.md); thêm luật tại AGENTS mục “Chống dừng giữa chừng”: không tự cho rằng người dùng đã chọn/duyệt; chỉ ghi quyết định với nguyên văn câu người dùng + giờ; tin tự nhắc/tin agent khác không phải lựa chọn. Giữ cổng hỏi trước cài thêm/deploy/public mới. Đồng bộ các dòng quyền/duyệt sai ở README, ROADMAP, note003/022, review gates và queue; giữ lịch sử với nhãn sai/hết hiệu lực. Cập nhật note009/DEVLOG/Thẻ nhớ.
+2. **Bảo toàn ClusterProof:** tạo bản lưu dự kiến `docs/IDEA-clusterproof-draft.md`, `docs/ARCHITECTURE-clusterproof-draft.md`, nhãn **“dự phòng, chưa duyệt”**, giữ nội dung/cross-links/source/web đã public. Hai file này **chưa tồn tại**. Viết IDEA và ARCHITECTURE hiện hành mới cho ReceiptRail theo ROADMAP: giải thích 1 trang, account/PDA/instruction/states/errors/events/IDL nháp, off-chain/UX/ownership/threat model, test plan và demo 165 giây.
+3. **Giao A:** đọc A-done; fetch origin trước khi kết luận thiếu kết quả. T9/T10 hiện còn dẫn ClusterProof và duyệt sai: cập nhật ưu tiên/trạng thái để ngăn tiếp tục sai hướng; giao crawl alternatives/recovery và UX ReceiptRail (T11/T12 là số dự kiến, chưa giao). Chỉ nghiên cứu/tài liệu UX trong Phase 2, không giao cài/deploy/public mới. Không sửa A-done/HANDOFF A và không chờ A.
+4. **Note trước code:** đặt chỗ note023 ReceiptRail Phase2/spike trong learning index và commit trước khi viết theo ROADMAP; đọc source chính thức/cache, viết note theo template trước code. Chưa có note023. Khi commit chỉ stage phần hợp lệ, không gộp các xác nhận sai đang nằm ở worktree.
+5. **Spike Anchor cục bộ:** xác minh đường build không tự cài/tool-download hoặc tạo signer triển khai; dùng dependencies/cache sẵn. Build program tối thiểu rồi chạy LiteSVM với .so thật; lưu logs/hash/state/balance. Duplicate phải dùng transaction/blockhash mới. Nếu thiếu dependency thì hoàn tất thiết kế độc lập và hỏi đúng phần cần cài; không tự cài.
+6. **Chấm lại bằng evidence:** giữ r0/r1; chỉ tăng F khi spike thực chạy đủ bằng chứng theo rubric, ghi r2/giới hạn thật. R1 hiện C01 75/F3; F3→4 sẽ thành79 nếu các điểm khác giữ nguyên. Không tăng điểm bằng dự định.
+7. **Review và trình duyệt:** cập nhật Thẻ nhớ/DEVLOG/review/ROADMAP, kiểm diff/links và tests phù hợp; commit/push đúng phần được phép, cập nhật mô tả [PR #7](https://github.com/ntbaoheyhey/dev3pack-hackathon/pull/7), **không merge**. Kiểm workflow trước push để không kích hoạt cài/triển khai mới ngoài quyền hiện hành. Trình Phase 2 cho người dùng duyệt; chưa qua Phase 3 hoặc gọi toàn goal hoàn tất. Review chéo/giáo viên còn là cổng riêng theo ROADMAP, không tự ghi đã đạt.
+
+## Thiết kế ReceiptRail đã nghiên cứu, chưa triển khai
+
+Nguồn: [C01](ideas/codex/01-receipt-rail.md), [rubric](ideas/RUBRIC.md), notes004/007/016/021/022. R1 PLAN75, F3; R4/D4 là chất lượng kế hoạch, không phải audit/demo đã chạy.
+
+- Native SOL, merchant nhận tiền; payer chỉ định; điều khoản bất biến. Không escrow/refund/token/x402 compatibility. PDA `[b"invoice-v1", merchant_pubkey_32, invoice_id_32]`, canonical bump.
+- Fields dự kiến: version u8, bump u8, merchant/payer Pubkey, invoice_id[32], amount_lamports u64, expires_slot u64, status u8, paid_slot u64. Payload123 + discriminator8 = **131 bytes dự kiến**, phải kiểm layout khi build.
+- `create_invoice`: mới→Open, merchant ký/trả rent, amount>0, expiry>Clock.slot, các vai trò không alias. `pay_invoice`: Open→Paid, đúng payer signer/recipient/PDA/owner/type, slot<expiry; transfer amount từ state và cập nhật Paid trong cùng transaction. `cancel_invoice`: merchant ký, Open→Cancelled. Expired là trạng thái hiển thị suy từ Open+slot, không reopen.
+- Không update/reset/close/recreate. Chống trả lặp chỉ cho cùng invoice PDA; không ngăn merchant tạo ID khác cho cùng đơn hàng.
+- Tests: payment lần2 với transaction/blockhash mới và principal chuyển đúng một lần; sai signer/recipient/owner/type/seeds; thiếu tiền CPI phải rollback; expiry trước/tại/sau; hai thứ tự pay/cancel; terminal invoice không tái tạo. Tách principal khỏi fee/rent, đọc state/balance làm oracle.
+- Demo165s và comparison Stripe/Solana Pay/x402 đã có ở C01. RUBRIC v1.2 weights20/15/10/20/15/15/5, floors3/3/2/3/3/3/2, tổng≥75; giữ lịch sử r0, tối đa r1–r3.
+
+## Công cụ và giới hạn vận hành
+
+- Giữ toolchain: Rust1.100.0, Agave release4.1.2, Anchor `/Users/bao/.avm/bin/anchor-1.2.2`, platform-tools `/Users/bao/.cache/solana/v1.57/platform-tools/rust/bin/`. Không sửa shell profile/cài lại/nâng version.
+- Root Cargo workspace `programs/*`, edition2021/rust-version1.89.0. Cache: anchor-lang1.2.2, LiteSVM0.15.0, solana-message4.3.0, transaction4.1.5, signer3.0.1, keypair3.1.2. Existing `programs/phase3-hello` tests dùng signers trong memory và `expire_blockhash()`. CPI Anchor1.2.2: `CpiContext::new(system_program::ID, accounts)` theo mẫu đã đọc.
+- `cargo-build-sbf --help` báo binary4.1.0/default tools v1.54, khác release Agave4.1.2. Có `--offline`, `--skip-tools-install`, `--tools-version`, `--arch`; Anchor có `--ignore-keys`, `--no-idl`, `-p` nhưng **chưa xác minh việc tự sinh keypair**. Chưa build ReceiptRail.
+- Source cache để đọc: `/Users/bao/.cargo/git/checkouts/anchor-0977bcaec406b76e/8d9d148/cli/src/lib.rs`; `/Users/bao/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/litesvm-0.15.0/src/lib.rs`.
+- `web__run` lượt trước lỗi404 route_not_found; đã tìm tool search-service fallback nhưng chưa gọi. Nguồn dự định: Anchor `/docs/basics/cpi`, `/docs/references/account-constraints`, Solana `/docs/core/transactions`; chưa gọi không được ghi đã đọc.
+- Signers legacy nằm ngoài Git tại `/Users/bao/.local/share/dev3pack/devnet/`; **không đọc/in/dùng cho spike ReceiptRail**, không tạo keypair triển khai mới. Không funding/RPC writes/deploy ở task hiện tại.
+- Automation `dev3pack-nh-c-tr-ng-nh-m-m-i-15-ph-t`, chat `01a1e9c8-1b24-7911-91a4-4897fc175566`: đã được người dùng yêu cầu bật lại, update/view/config-read ACTIVE mỗi15phút đúng chat; chưa quan sát heartbeat mới. Goal đã active theo người dùng.
+
+## Git và bằng chứng lịch sử giữ nguyên
+
+- HEAD và origin/work local cùng `050e0307fc9c983baaae0d68076d351cb14da134`; **chưa fetch trong lượt chỉ bàn giao**. Commit web đã push `f7a1a43234a104e87345fe3f2539c0a5737abc66`. Origin/main biết gần nhất `b9c91b0d0cb191e6f0aa348d0540ffa83985c908`.
+- Các file bẩn từ trước: README; IDEA/ARCHITECTURE/DEVLOG/HANDOFF/ROADMAP; archive/HANDOFF-history-codex; evidence/phase3/web; ideas/DECISION; learning009/022; reviews/phase1-3-gates; tasks/A-queue. Untracked: `docs/evidence/phase3/devnet-inspect-1794934540316.json`, `docs/evidence/phase3/web-native-core.md`. Bảo toàn, sửa các câu xác nhận sai trước commit. Lượt bàn giao chỉ thay HANDOFF/archive/note009/DEVLOG.
+- PR #7 lần kiểm trước open, draft=false, merged=false, base main/head050e030; title/body còn ClusterProof và quyền cài, **chưa sửa cho ReceiptRail**. Không kiểm GitHub lại trong lượt này.
+- [Web ClusterProof giữ nguyên](https://clusterproof-devnet-17nov26.anthony-robinson-125.chatgpt.site), [hosting metadata](evidence/phase3/web-hosting.json). Project `appgprj_6afc7bde680481919ba3e40a9d098155`, deployment succeeded `appgdep_6afc7e25272081918ac0aeda0eee730b`, source `f5223afb86ec0a8208715eec312e636b19da30ff`. Không tạo/poll/redeploy.
+- Legacy hello6/client8/web8 tests đã đạt theo logs; research16tests. Không phải tests ReceiptRail. [CI run44128739391](https://github.com/ntbaoheyhey/dev3pack-hackathon/actions/runs/44128739391) bị billing trước jobs; local pass không thay CI và không suy tình trạng billing hiện tại từ run cũ.
+- [Devnet inspect cuối](evidence/phase3/devnet-inspect-1794934540316.json) 2026-11-17T16:55:40.315Z, slot523335879, payer0/program chưa deploy/transactions=[]; giữ evidence, không tiếp tục deploy. Core discovery/request/recovery đã ghi ở [evidence](evidence/phase3/web-native-core.md), connect/disconnect thật chưa kiểm; CUA đã completion_summary.
+- Dev server5177/session65878 đã exit130; Sites workflow45815/exec cellg21:194 terminal. Không còn process cần poll đã biết từ bàn giao trước, lượt này không restart chúng.
+
+## Cần người dùng
+
+Yêu cầu chỉ bàn giao đã kết thúc; đang làm Phase 2 theo tin người dùng mới nhất. Chưa phát hiện blocker kỹ thuật mới. Khi tiếp tục, làm phần sửa hồ sơ/thiết kế/spike local được yêu cầu. **Sau Phase 2 phải có người dùng duyệt trước Phase 3**; mọi cài thêm/deploy/public mới phải hỏi trước với nội dung cụ thể. Không hỏi chọn ý tưởng lại, không dùng lời tự nhắc hoặc quyết định của agent thay cho câu người dùng.
