@@ -20,3 +20,5 @@
 - Việc T14: Xong. Đã bổ sung và hoàn thiện evidence theo yêu cầu review của Codex (URL, nguồn, phân biệt hệ sinh thái, state machine).
 
 - Việc T12: Xong. Đã thiết kế UX trên giấy cho ReceiptRail vào `docs/design/receiptrail-ux-antigravity.md`.
+
+- Việc T13: Đang làm. Đã khởi tạo file review thiết kế `docs/reviews/receiptrail-antigravity.md` và chờ thiết kế từ Codex.
