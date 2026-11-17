@@ -121,15 +121,17 @@ Transaction Solana không tồn tại vĩnh viễn trên mempool. Mỗi transact
 
 ### 3.5. Hiển thị lỗi thân thiện (User-Friendly Error Handling)
 
-Khi gọi program thất bại, Solana RPC trả về chuỗi log kỹ thuật hoặc mã hex gây hoang mang cho người dùng. Dưới đây là bảng chuyển ngữ lỗi cần có trên frontend:
+Mã custom chỉ có nghĩa trong namespace của **program phát lỗi**. `6000` thường là điểm bắt đầu custom error Anchor, nhưng tên/ý nghĩa phải tra `errors` trong IDL khớp program ID và bản triển khai. Không phân loại một đoạn hex thành lỗi thiếu SOL trên toàn mạng.
 
-| Mã lỗi kỹ thuật | Ý nghĩa hệ thống | Thông báo hiển thị thân thiện |
-| --- | --- | --- |
-| `0x1770` (6000) | Anchor custom error đầu tiên định nghĩa trong program | Tên lỗi nghiệp vụ (ví dụ: "Số dư đặt cược không đủ") |
-| `0x1` | System Program: Insufficient funds for transaction | "Ví của bạn không đủ SOL để thanh toán phí gas và rent." |
-| `4001` / `User rejected` | Người dùng bấm "Từ chối" trên cửa sổ popup ví | "Bạn đã hủy yêu cầu ký giao dịch." |
-| `TransactionExpiredBlockheightExceededError` | Mạng nghẽn, blockhash hết hạn trước khi lên chain | "Giao dịch quá thời gian xác nhận do mạng bận. Vui lòng thử lại." |
-| `0x0` (InstructionError) | Generic instruction failure | "Thực thi thất bại. Vui lòng kiểm tra lại điều kiện tài khoản." |
+| Bằng chứng kỹ thuật | Cách xử lý |
+| --- | --- |
+| System Program `11111111111111111111111111111111`, custom `0x1` | `ResultWithNegativeLamports`: tài khoản nguồn thiếu lamports cho thao tác; không đồng nhất với thiếu phí transaction |
+| Program của ứng dụng, `0x1770` / `0x1771` | Tra mã nguyên vẹn `6000` / `6001` trong IDL của đúng program |
+| Program khác có cùng mã | Dùng error map của program đó; chưa có map thì hiển thị program ID + mã, không dùng IDL ứng dụng |
+| Wallet rejection, `InsufficientFundsForFee`, blockhash expiry | Là nhóm lỗi riêng; xử lý theo kiểu lỗi của wallet/SDK và dữ liệu RPC, không dò chuỗi hex |
+| Không có logs hoặc chuỗi CPI phức tạp | Giữ thông báo trung tính và bằng chứng; chưa đủ căn cứ thì không đoán nguyên nhân |
+
+Nguồn: [Anchor Custom Errors](https://www.anchor-lang.com/docs/features/errors), [SystemError source](https://docs.rs/solana-system-interface/latest/src/solana_system_interface/error.rs.html), [Agave stable runtime logs](https://github.com/anza-xyz/agave/blob/master/program-runtime/src/stable_log.rs), đối chiếu 17/11/2026.
 
 ---
 
@@ -180,42 +182,72 @@ async function getAccountInfo(accountAddressString: string) {
 }
 ```
 
-### Ví dụ 4.2. Bộ phân giải mã lỗi Anchor Program sang thông báo thân thiện
+### Ví dụ 4.2. Parse cặp program ID + mã lỗi, rồi tra IDL
+
+Hàm nhận **runtime logs đầy đủ của transaction đã thất bại**, lấy từ simulation/preflight logs hoặc `meta.logMessages` qua adapter của SDK đang dùng. Không suy program ID từ tên instruction, message hay transaction gửi đi vì lỗi có thể nằm trong CPI. Chỉ khớp dòng runtime `Program ... failed: ...`, không khớp dòng tự ghi `Program log: ...`.
 
 ```typescript
-export function parseSolanaError(error: any): string {
-  const errStr = error?.message || String(error);
+type IdlError = { code: number; name: string; msg?: string };
+type ErrorMaps = ReadonlyMap<string, ReadonlyMap<number, string>>;
+type ProgramFailure = { programId: string; code?: number; detail: string };
 
-  // 1. Người dùng bấm Cancel trên ví
-  if (errStr.includes('User rejected') || error?.code === 4001) {
-    return 'Giao dịch đã bị bạn hủy bỏ.';
+export function idlErrorMap(errors: readonly IdlError[]): Map<number, string> {
+  return new Map(errors.map(e => [e.code, e.msg ?? e.name]));
+}
+
+export function parseSolanaError(
+  logs: readonly string[],
+  maps: ErrorMaps,
+): { message: string; failures: ProgramFailure[] } {
+  const failures: ProgramFailure[] = [];
+  for (const line of logs) {
+    const failed = /^Program ([1-9A-HJ-NP-Za-km-z]{32,44}) failed: (.+)$/.exec(line);
+    if (!failed) continue;
+    const [, programId, detail] = failed;
+    const custom = /^custom program error: (0x[0-9a-f]+|[0-9]+)$/i.exec(detail);
+    const numeric = custom ? Number(custom[1]) : undefined;
+    const code = numeric !== undefined && Number.isSafeInteger(numeric)
+      && numeric >= 0 && numeric <= 0xffffffff ? numeric : undefined;
+    failures.push({ programId, code, detail });
   }
-
-  // 2. Không đủ SOL trả phí gas / rent
-  if (errStr.includes('0x1') || errStr.includes('insufficient lamports')) {
-    return 'Số dư SOL không đủ để thanh toán phí giao dịch và phí lưu trữ (rent).';
+  if (failures.length !== 1) {
+    // CPI có thể bắt, đổi hoặc truyền tiếp lỗi. Không gán IDL của caller cho callee.
+    return {
+      message: failures.length
+        ? 'Nhiều lần program báo lỗi; cần đối chiếu call stack CPI và IDL trước khi kết luận.'
+        : 'Chưa đủ runtime logs để xác định program và mã lỗi.',
+      failures,
+    };
   }
-
-  // 3. Blockhash hết hạn do nghẽn mạng
-  if (errStr.includes('block height exceeded') || errStr.includes('TransactionExpired')) {
-    return 'Mạng lưới phản hồi chậm khiến giao dịch hết hạn. Hãy thử gửi lại với phí ưu tiên.';
-  }
-
-  // 4. Trích xuất mã lỗi Anchor custom (Custom Program Error: 0x1770 ...)
-  const customMatch = errStr.match(/Custom program error: (0x[0-9a-fA-F]+|\d+)/);
-  if (customMatch) {
-    const rawCode = customMatch[1];
-    const codeNum = rawCode.startsWith('0x') ? parseInt(rawCode, 16) : parseInt(rawCode, 10);
-
-    // Anchor custom error bắt đầu từ 6000 (0x1770)
-    if (codeNum >= 6000) {
-      return `Lỗi nghiệp vụ từ Program (Mã ${codeNum}). Vui lòng kiểm tra lại điều kiện thực thi.`;
-    }
-  }
-
-  return 'Giao dịch thất bại. Chi tiết: ' + (error?.message || 'Lỗi không xác định.');
+  const failure = failures[0];
+  const label = failure.code === undefined
+    ? undefined : maps.get(failure.programId)?.get(failure.code);
+  return {
+    message: label ?? `Program ${failure.programId}: ${failure.code === undefined
+      ? failure.detail : `custom error ${failure.code} (0x${failure.code.toString(16)}) chưa có trong error map`}`,
+    failures,
+  };
 }
 ```
+
+Khởi tạo `maps` với System Program → `{1: "Tài khoản nguồn thiếu lamports cho thao tác."}` và `programId` thực → `idlErrorMap(idl.errors ?? [])`. Mỗi program phải có map riêng, khớp deployment/version của nó. Không tự gán mã `6000` cho một tên lỗi chung. Với nhiều dòng failure, hàm trả **tất cả cặp ID/mã đúng theo log**, cố ý không chọn nguyên nhân gốc từ lần lỗi đầu/cuối; cần phân tích `invoke [depth]`, `success` và failure để loại CPI đã được bắt. Khi logs bị cắt, phải giữ nhãn thiếu bằng chứng, không dùng mẫu này như parser toàn diện.
+
+Bảng ca kiểm tra dùng IDL **giả lập** của program A: `6000 → BetTooSmall`, `6001 → MarketClosed`; B chưa có map. A/B chỉ là nhãn mô tả, fixture thực dùng chuỗi base58 giả hợp lệ về hình thức, không phải địa chỉ triển khai.
+
+| Input runtime failure | Cặp trích xuất | Kết quả mong đợi |
+| --- | --- | --- |
+| System Program, `0x1` | System / 1 | Thiếu lamports cho thao tác |
+| A, `0x1770` | A / 6000 | `BetTooSmall`, không phải thiếu SOL |
+| A, `0x1771` | A / 6001 | `MarketClosed`, không phải thiếu SOL |
+| B, `0x1` | B / 1 | Chưa có map, không gán lỗi System Program |
+| B, `0x1770` | B / 6000 | Chưa có map, không gán lỗi A |
+| A, `6001` (decimal) | A / 6001 | `MarketClosed` |
+| `Program log: Program A failed: ...` | Không có | Bỏ qua log do program tự ghi |
+| Chỉ message `custom program error: 0x1770`, không có logs | Không có | Thiếu program ID, không đoán |
+| B failure rồi A failure (CPI) | B và A, giữ riêng từng mã | Chưa tự chọn nguyên nhân gốc |
+| Mã ngoài `u32` hoặc `0x1770junk` | Program ID có, mã không hợp lệ | Không tra nhầm IDL |
+
+Đã chạy 11 fixture offline bằng Node có sẵn ngày 17/11/2026 từ chính snippet này; không gọi RPC, không cài dependency, chưa thử với giao dịch/ví thật.
 
 ---
 

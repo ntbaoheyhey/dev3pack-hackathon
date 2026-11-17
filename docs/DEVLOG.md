@@ -7,6 +7,8 @@ Mỗi dòng: ngày · ai làm (Mai / Codex / Antigravity) · việc · note đã
 - Đã xác nhận đúng đường dẫn/remote; merge `origin/main` vào `prompts/01-learning`, không rebase; push merge `58ffb5a`. Giữ nội dung main, thêm luật đọc bàn giao và `docs/HANDOFF-TEMPLATE.md`.
 - R01 · sửa 014 do Antigravity viết: giữ key ElevenLabs ở backend, thêm guard do app cung cấp, browser chỉ nhận audio; dẫn Authentication/Create speech. Chưa gọi API, chưa build/deploy mẫu.
 
+- R02 · sửa 005: parse nguyên mã và program ID từ runtime log, tra map riêng theo IDL; CPI mơ hồ trả bằng chứng thay vì đoán. Kiểm tra 11 fixture Node offline, không gọi chain.
+
 ## Trước sự kiện
 
 - 2026-11-17 · Claude · Dựng khung repo, quy tắc "học trước, ghi lại", research Codex vs Antigravity · 000, 001
