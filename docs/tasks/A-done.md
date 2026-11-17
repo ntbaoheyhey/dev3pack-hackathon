@@ -14,3 +14,5 @@
 | T13 | mới | Chưa làm. |
 
 - Việc T11: Xong. Đã crawl và review evidence cho ReceiptRail (retry, timeout, idempotency) vào `docs/data/receiptrail-evidence.md`.
+
+- Việc T14: Đang làm. Bổ sung evidence cho T11 dựa trên review của Codex (URL, nguồn, phân biệt Solana/EVM, tách state).
