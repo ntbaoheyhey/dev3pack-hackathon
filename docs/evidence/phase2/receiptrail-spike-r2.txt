@@ -1,0 +1,56 @@
+    Finished `release` profile [optimized] target(s) in 0.38s
+warning: unused dependency `anchor-lang`
+  --> programs/receiptrail/Cargo.toml:23:1
+   |
+23 | anchor-lang = "=1.2.2"
+   | ^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: `cargo::unused_dependencies` is set to `warn` by default
+help: consider removing the dependency on `anchor-lang`
+help: to still use for development builds, move to `dev-dependencies`
+warning: `receiptrail` (manifest) generated 1 warning
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.59s
+     Running unittests src/lib.rs (target/debug/build/receiptrail/a9bf5305b2fa9bd9/out/receiptrail-a9bf5305b2fa9bd9)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/runtime.rs (target/debug/build/receiptrail/4bae2726b664c226/out/runtime-4bae2726b664c226)
+
+running 19 tests
+test another_merchant_cannot_cancel ... ok
+test create_pay_and_fresh_transaction_retry_transfers_principal_only_once ... METRIC create_cu=8775 pay_cu=6608 retry_cu=6017 create_fee=10000 pay_fee=10000 retry_fee=10000 rent_lamports=1802640 principal_delta=1000000 invoice_bytes=131 paid_slot=100
+ok
+test expiry_boundary_before_at_and_after ... ok
+test insufficient_principal_cpi_leaves_invoice_open_and_balances_unchanged ... ok
+test invalid_creation_terms_and_aliases_leave_no_invoice_or_rent_debit ... ok
+test merchant_address_without_signature_cannot_create_or_cancel ... ok
+test merchant_can_cancel_expired_open_invoice_without_moving_principal ... METRIC cancel_cu=4346 cancel_fee=10000
+ok
+test owner_and_discriminator_are_checked_before_payment ... ok
+test pay_cancel_race_is_safe_in_both_serial_orders ... ok
+test payer_address_without_signature_is_rejected ... ok
+test payer_with_data_or_wrong_owner_cannot_transfer ... ok
+test recipient_substitution_cannot_redirect_payment ... ok
+test same_layout_at_wrong_pda_is_rejected ... ok
+test substituted_executable_cannot_replace_system_program ... ok
+test terminal_invoice_cannot_be_reinitialized_or_reset ... ok
+test two_pay_instructions_in_one_transaction_roll_back_the_first_transfer ... ok
+test unknown_instruction_cannot_change_terms_or_terminal_state ... ok
+test wrong_bump_and_version_are_rejected ... ok
+test wrong_payer_signer_cannot_pay ... ok
+
+test result: ok. 19 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.00s
+
+   Doc-tests receiptrail
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+Started: 2026-11-17T17:43:11Z; elapsed_seconds=3
+2d7c0dce845da382ef237113bc7c691b656d4e61be171514b8b53fdade32b285  programs/receiptrail/src/lib.rs
+e60ce9d4e4328406a547de47eb9023af2c0df1cd0f822340c7f9df2e3cda960b  programs/receiptrail/tests/runtime.rs
+8ea462bb0d93de7e4f82e24bdb9bd3a1a1ab78ca227fd09880bb52c1dd6583c9  Cargo.lock
+962b721ae089a77123283bfe1dde0233284b2a793d692cc0abc53e2a8b6eab5a  target/receiptrail-spike/receiptrail.so

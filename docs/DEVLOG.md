@@ -168,7 +168,7 @@ Các mô tả dưới đây là sự kiện ở Taskbar Hero, không phải hàn
 
 - 2026-11-17 · Codex · Hoàn thiện ba bài PLAN r1 theo RUBRIC v1.2: C02 79, C03 77, C01 75; từng điểm có nguồn/thiết kế/artifact, F C01 giữ3 và N C03 giữ3. Viết lại SHORTLIST, dùng T6 V2 sau kiểm nguồn, ghi repo private và cổng public trước nộp. Kiểm công thức/sàn/local links/diff; note021 bổ sung constraints/atomicity/alternatives. Đặt chỗ note022 trước viết cho chuẩn bị account/PDA/test/CI/cài trên giấy; chưa cài/ký/deploy.
 
-- 2026-11-17 · Codex · Người dùng chọn ClusterProof chính/NetPay Check dự phòng và cho phép Rust1.100.0/Agave4.1.2/AVM-Anchor1.2.2/platform-tools v1.57; đã ghi DECISION, viết note022 (đặt chỗ 1aa322a). PR#7 mở/chưa merge, kiểm metadata mergeable. Máy có Xcode tools và 213.9GB trống; tải/đọc installer chính thức, bắt đầu cài Rust, chưa coi setup xong. Giao A T5 làm ngay và sửa T4 nhầm fee/mainnet.
+- 2026-11-17 · Codex · **Kết luận lựa chọn/quyền sau đây sai và hết hiệu lực; nguồn payload và lời đính chính nguyên văn tại [DECISION](ideas/DECISION.md), K6.** Người dùng chọn ClusterProof chính/NetPay Check dự phòng và cho phép Rust1.100.0/Agave4.1.2/AVM-Anchor1.2.2/platform-tools v1.57; đã ghi DECISION, viết note022 (đặt chỗ 1aa322a). PR#7 mở/chưa merge, kiểm metadata mergeable. Máy có Xcode tools và 213.9GB trống; tải/đọc installer chính thức, bắt đầu cài Rust, chưa coi setup xong. Giao A T5 làm ngay và sửa T4 nhầm fee/mainnet.
 
 - 2026-11-17 · Codex · Viết IDEA và ARCHITECTURE v0.1 cho ClusterProof (chưa duyệt); giao A T8 web hello/devnet lab. Rust1.100.0 cài thành công/đã kiểm rustc; Agave đang cài, logs tại docs/evidence/phase3. Không đồng nhất hello lab với product program và không gọi score PLAN là gate phase hoàn tất.
 
@@ -205,3 +205,7 @@ Các mô tả dưới đây là sự kiện ở Taskbar Hero, không phải hàn
 - 2026-11-18 · Codex · Sửa DECISION với nguyên văn/00:07/nguồn payload gây sai; thêm K6 và luật chống suy lựa chọn/duyệt/quyền trong AGENTS. Giữ bản ClusterProof “dự phòng, chưa duyệt”, sửa các cổng sai ở README/ROADMAP/review/note003/022. Giao A T11 crawl/T12 UX/T13 review ReceiptRail, bỏ T8–T10; lưu queue lịch sử. Đặt chỗ note023 trước viết; F C01 vẫn3, chưa có spike. Không đổi web/lab/cài/deploy.
 
 - 2026-11-18 · Codex · Viết note023 trước code sau đặt chỗ80cac12; đối chiếu Anchor1.2.2 CPI, LiteSVM, Anza source có generate_keypair trong build wrapper. Chọn compiler cache/offline trực tiếp để không tạo signer triển khai. Test plan dùng fee payer riêng và tx/blockhash mới, chưa nâng F.
+
+- 2026-11-18 · Codex · ReceiptRail spike: compiler/cache offline,19 LiteSVM runtime tests pass,131bytes/rent/CU/principal/rollback có loghash; lock chỉ thêm package. Note023 đã cập nhật kết quả; viết IDEA/ARCHITECTURE đầy đủ Phase2/demo165s, chưa duyệt. IDLr1 lỗi PATH thiếu cargo, sửa riêng process dùng host compiler đã có; giữ log lỗi, không cài/deploy.
+
+- 2026-11-18 · Codex · Đối chiếu IDLr3 với source/layout/args/accounts/errors, lưu JSON và hashes; giữ logs IDLr1/r2 fail. Siết runner tránh rustup proxy, rerun19 tests đạt (r2 cached3s, suite1.00s, bytecode không đổi). Cập nhật note023/ARCHITECTURE và Thẻ nhớ, gắn nhãn sai tại dòng DEVLOG chọn ClusterProof/quyền cũ; giữ legacy web/lab nguyên trạng.

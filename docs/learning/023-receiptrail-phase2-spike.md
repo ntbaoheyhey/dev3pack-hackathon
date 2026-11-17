@@ -45,6 +45,7 @@ Kế hoạch lệnh (chưa gọi tại thời điểm viết note): `bash script
 | Build local cũng sinh keypair | Post-processing của wrapper build | Dùng compiler cached trực tiếp, không gọi nhánh tạo key |
 | F4 khi chưa spike | Nhầm kế hoạch và evidence | Giữ r1=75/F3 đến khi bytecode/tests chạy thật |
 | Quyền cài/duyệt bị ghi sai | Dùng payload đã bị đính chính | DECISION có nguyên văn/giờ/nguồn sai; AGENTS/K6 chặn suy quyền |
+| Cargo offline chưa chặn rustup proxy tự cài toolchain bị thiếu | `.cargo/bin/cargo` là proxy; cache dependency và compiler là hai việc khác nhau | Script cuối dùng trực tiếp bộ host1.100.0 đã có, kiểm cargo/rustc/rustfmt trước khi chạy; thiếu thì exit2. Chạy lại suite sau sửa runner, giữ log r1 |
 
 ## Nguồn
 
@@ -56,3 +57,30 @@ Kế hoạch lệnh (chưa gọi tại thời điểm viết note): `bash script
 ## Giới hạn và bước tiếp theo
 
 Chưa code/build/test ReceiptRail tại mốc note này; chưa IDL generated, client, browser, validator/RPC, devnet, CI hoặc review độc lập. Spike local chứng minh phần khó D2 nếu đạt, không tự đạt cổng Phase2/3 hoặc DELIVERY. Khi có log sẽ bổ sung kết quả và giới hạn, hoàn tất IDEA/ARCHITECTURE/demo165s rồi trình duyệt.
+
+
+## Kết quả spike18/11/2026
+
+`bash scripts/check-receiptrail.sh` đã chạy offline/locked **exit0**, build+test64s; bytecode v3 thật147,864bytes, **19 runtime tests pass/0 fail**, suite1.06s. Log [r1](../evidence/phase2/receiptrail-spike-r1.txt), [metadata/hashes](../evidence/phase2/receiptrail-build-metadata.json). Cargo.lock chỉ thêm package receiptrail, không nâng dependencies. Không tạo deployment keypair, không RPC/validator/deploy.
+
+Đã kiểm state131bytes, canonical PDA/owner/terms; create rent1,802,640lamports theo LiteSVM. SampleCU create8,775/pay6,608/retry6,017/cancel4,346; fee10,000lamports vì2signatures. Principal1,000,000 chỉ chuyển một lần dù retry mới; `[pay,pay]` rollback cả transfer lần đầu; CPI thiếu tiền, sai quyền/account, expiry/race/terminal init đều pass. Các số đo không thay devnet/CI/browser hoặc audit độc lập.
+
+IDL lần1 lỗi `cargo metadata` vì PATH của process không có cargo; giữ log fail, sửa PATH riêng process tới host compiler đã có và bỏ RUSTUP_TOOLCHAIN để helper không vào nhánh cài. Không sửa profile hoặc cài lại.
+
+Feasibility có evidence D2 phần khó nhất; 64s chạy thấp hơn timebox4h. Ngân sách estimate còn26h implementation/UI/integration/buffer từ plan30h sau spike4h; chưa là năng suất đã đo. Đủ đề nghị F4 PLAN, không F5 vì client/recovery mạng chưa chạy. Runtime source/test đạt không tự chứng minh IDEA/ARCHITECTURE đã được duyệt.
+
+## IDL và runner cuối
+
+IDL r1 lỗi cargo metadata vì PATH; r2 lỗi `No such file or directory` (chưa xác định executable nào); r3 **exit0** khi PATH chứa host Rust/Agave/.cargo và bỏ RUSTUP_TOOLCHAIN. Giữ cả ba logs trong evidence, không sửa log fail thành pass. [IDL](../idl/receiptrail.json) có3 instructions/1 account/3 events/9 errors6000–6008, đã đối chiếu args, accounts/signers/writable, seeds/discriminators/layout131bytes với source và ARCHITECTURE; SHA256 ở metadata. IDL build lọc19 runtime tests nên không dùng nó thay log suite.
+
+Lệnh tái tạo đã dùng, chỉ khi những binary/cache này đã có:
+
+```sh
+env -u RUSTUP_TOOLCHAIN \
+  PATH="$HOME/.rustup/toolchains/1.100.0-aarch64-apple-darwin/bin:$HOME/.local/share/solana/install/active_release/bin:$HOME/.cargo/bin:$PATH" \
+  CARGO_NET_OFFLINE=true \
+  "$HOME/.avm/bin/anchor-1.2.2" idl build -p receiptrail \
+  -o "$PWD/target/receiptrail-spike/receiptrail.json" -- --offline --locked
+```
+
+Runner cuối dùng trực tiếp host toolchain đã cài, không qua rustup proxy. Mặc định máy Apple Silicon; máy khác trỏ `RECEIPTRAIL_HOST_TOOLS` tới thư mục bin có sẵn và `RECEIPTRAIL_PLATFORM_TOOLS` tới cache platform-tools; thiếu compiler/cache thì dừng, không cài. Sau thay runner, log [r2](../evidence/phase2/receiptrail-spike-r2.txt) **19/19**, suite1.00s/build+test3s bằng cache, source/test/lock/binary hashes như r1. Chỉ runner hash đổi; metadata r1 giữ riêng, metadata hiện hành ghi r2 và IDL.
