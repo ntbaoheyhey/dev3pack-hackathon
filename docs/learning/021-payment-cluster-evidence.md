@@ -139,3 +139,13 @@ Chưa có compile/deploy program, wallet flow, demo video, phép đo lợi ích 
 | Discovery getTransaction tiếp tục gặp HTTP 429 | Lưu log lỗi; đổi sang query filtered getProgramAccounts ít request. Không retry dồn dập và không coi failure là lỗi thuật toán fee |
 | Query getProgramAccounts bị HTTP 403 | Không lặp query hay né quota; dùng địa chỉ đã công bố trong repo tác giả rồi đọc trực tiếp mint/epoch, vẫn cùng RPC devnet |
 | Báo cáo quote dùng `{mint, ...quote}` làm config ghi đè địa chỉ mint | Đổi field config thành mintConfig; thêm regression test replay raw snapshot live giữ đúng địa chỉ. Snapshot đầu vẫn giữ nguyên, ghi rõ lỗi báo cáo; không sửa lịch sử artifact |
+
+### Bổ sung thiết kế r1 — đọc 17/11/2026
+
+ReceiptRail dùng native SOL cho demo cùng một invoice PDA, không tự nhận x402-compatible. [Solana transaction](https://solana.com/docs/core/transactions) xác nhận state rollback khi instruction fail (network fee vẫn có thể tính); [Anchor CPI](https://www.anchor-lang.com/docs/basics/cpi) có System transfer và [constraints](https://www.anchor-lang.com/docs/references/account-constraints) có init/seeds/signer/has_one/address. Đây là D1, chưa compile. Quyết định: merchant tạo điều khoản bất biến, payer được chỉ định ký pay; pay chuyển tiền rồi ghi Paid trong một transaction; không cung cấp close/update/reset. Chống merchant tạo **invoice ID khác cho cùng đơn** vẫn thuộc tầng ứng dụng, không được gọi invariant một lần toàn hệ thống kinh doanh. Upgrade authority và RPC là trust assumptions còn lại.
+
+[Stripe idempotency API](https://docs.stripe.com/api/idempotent_requests) giải quyết retry trong dịch vụ Stripe; API v1 có retention của key và so parameters. So sánh C01 phải nói rõ chi phí rent/program/confirmation so với DB có unique key; DB là lựa chọn tốt nếu tất cả bên cùng tin operator. Không có bằng chứng user đòi custom program, nên S không lên 5 và V không là adoption.
+
+C02 dùng [Anchor CLI](https://www.anchor-lang.com/docs/references/cli) và [verified builds](https://solana.com/docs/programs/verified-builds) làm baseline thật: IDL/verify đã tồn tại. C02 là manifest diff và snapshot có giới hạn, không phát minh source verification. Khả năng chứng minh ABI chưa có; UI phải giữ UNKNOWN kể cả mọi trường quan sát MATCH. Source verification chỉ mở rộng sau khi được phép toolchain, không là dependency đường demo read-only.
+
+Review T6 bản 1200f54: đường dẫn đã đúng, nhưng diễn giải Shopify→Solana Pay là suy luận của A; StackOverflow nói rounding **token transfer fee**, không phải compute fee/CU. Không dùng lời diễn giải này thay source. Đã ghi yêu cầu sửa vào A-queue, C tiếp tục dùng ledger chính thức và artifact tự kiểm.

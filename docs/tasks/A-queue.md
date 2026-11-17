@@ -53,3 +53,7 @@ Mỗi URL phải mở được và nội dung hỗ trợ claim; không đọc đ
 | Mã | Trạng thái | Việc | File kết quả | Xong khi |
 | --- | --- | --- | --- | --- |
 | T7 | bỏ | C đã tự tìm và kiểm raw devnet fee-only mint `HxDYFvcXnLuy4VdxXCooUXrch8DZW34oUteQ6N2EFxEr`; ngừng tìm trùng, ưu tiên T4/T5/T6 | `docs/evidence/phase1/netpay-1794925658391.json`, note 021 | Live quote đã lưu; giữ kết quả A nếu đã có, không xóa lịch sử. Không cần tạo mint/ví/giao dịch |
+
+### Review T6 V2 — Codex, 17/11/2026
+
+Đã nhận bản `1200f54` qua `541ab67`: URL đúng, giữ các nguồn này. Cần sửa diễn giải: (1) Shopify 2019 không tự khuyến nghị Solana Pay — phần áp dụng là suy luận của A; (2) StackOverflow 78194696 nói rounding **transfer fee raw tokens**, không phải compute fee/CU, đối chiếu source Token-2022 thay vì coi Explorer là oracle; (3) ghi affected Kora 2.2.0 / patched field None tại lần đọc, không suy current vulnerable; (4) ghi rõ nguồn lịch sử, thêm trích ngắn hoặc đoạn claim cụ thể. C đã kiểm nguồn để chấm, không chờ T6 hoàn tất. T4/T5 vẫn cần kết quả.
