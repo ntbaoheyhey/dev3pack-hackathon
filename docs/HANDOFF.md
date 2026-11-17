@@ -10,7 +10,7 @@
 - C01 r2 **79/100/F4 PLAN** dựa19tests/D2; r0/r1 giữ. README/SHORTLIST/review/ROADMAP/DECISION đã đồng bộ.
 - Đã push spike **8f84cfe**, hồ sơ/điểm **b5cb544**; commit Thẻ nhớ cuối xem HEAD. PR7 title/body đã sửa ReceiptRail, đọc lại open/merged=false/head b5cb544 trước commit cuối.
 - A-queue T11 crawl→T12 UX→T13 review đã giao; fetch gần nhất chưa có kết quả mới. Không chờ A.
-- Automation action view/config **ACTIVE mỗi15phút**, đúng chat; chưa quan sát heartbeat mới. Khi tự nhắc, chưa có duyệt mới thì không mở việc phụ thuộc ý tưởng/Phase3.
+- Automation **ACTIVE mỗi15phút**, đúng chat; đã nhận heartbeat scheduler **00:55:00.058 ngày18/11/2026 UTC+7**. Một lần nhận không chứng minh mọi lần gửi; chưa có duyệt mới thì không mở việc phụ thuộc ý tưởng/Phase3.
 - Push sau mỗi bước lớn bằng `[skip ci]`; workflow cũ tự cài nên không kích hoạt, không gọi CI xanh.
 - Cài thêm/tạo ví-keypair triển khai/deploy/public mới hỏi trước; Phase3 chỉ mở sau duyệt Phase2. Không merge/force-push/mainnet/secrets.
 

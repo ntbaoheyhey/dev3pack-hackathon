@@ -4,7 +4,7 @@
 
 | Yêu cầu | Bằng chứng hiện hành | Trạng thái |
 | --- | --- | --- |
-| Nhắc15phút đúng chat | Automation action view và TOML ACTIVE, đúng thread | Đã bật; chưa quan sát heartbeat mới, không khẳng định đã gửi |
+| Nhắc15phút đúng chat | Automation ACTIVE, đúng thread; record scheduler 2026-11-17T17:55:00.058Z | Đã nhận heartbeat lúc00:55:00.058 ngày18/11 UTC+7; không suy mọi lượt gửi đều thành công |
 | RUBRIC/3 ứng viên đạt | C01r2=79/F4, C02r1=79, C03r1=77; giữ lịch sử r0/r1 | PLAN theo Codex, chưa giáo viên chấm/DELIVERY |
 | Quyết định/nguyên văn/giờ/nguồn | DECISION, AGENTS, STOP-CAUSES K6; DEVLOG cũ đã gắn nhãn sai | Đã sửa, không suy quyền |
 | ClusterProof dự phòng | IDEA/ARCHITECTURE-clusterproof-draft | Dự phòng, chưa duyệt; source/web/lab/toolchain giữ nguyên |
