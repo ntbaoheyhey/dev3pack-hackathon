@@ -1,6 +1,6 @@
 # ARCHITECTURE — ClusterProof
 
-Codex · 17/11/2026 · bản thiết kế v0.1 để review Phase2. Lựa chọn tại [DECISION](ideas/DECISION.md), scope [IDEA](IDEA.md). **Chưa được giáo viên/người dùng duyệt; chưa phải mô tả sản phẩm đã build.** Tài liệu học trước thiết kế: [021](learning/021-payment-cluster-evidence.md), [022](learning/022-phase2-3-independent-prep.md), 004/005/007/016.
+Codex · 17/11/2026 · bản thiết kế v0.2 để review Phase2. Lựa chọn tại [DECISION](ideas/DECISION.md), scope [IDEA](IDEA.md). **Chưa được giáo viên/người dùng duyệt; chưa phải mô tả sản phẩm đã build.** Tài liệu học trước thiết kế: [021](learning/021-payment-cluster-evidence.md), [022](learning/022-phase2-3-independent-prep.md), 004/005/007/016.
 
 ## 1. Giải thích một trang
 
@@ -39,7 +39,7 @@ Input và RPC không đáng tin tự động. Không backend bắt buộc, datab
 | programs/phase3-hello + Anchor workspace | Lab hello và tests; không product dependency | C |
 | docs/evidence/phase3 | Version/build/test/CI/devnet/public web evidence | C/A theo phần |
 
-Chốt Node24 hiện có cho web/core. UI dùng React/Next hoặc Vite template được pin sau T5; trước scaffold cần lock dependency và cắt mainnet/default signing. Core không phụ thuộc Anchor client. Lab Anchor giữ bộ 003 đã được user cho phép; không trộn @anchor-lang/core/web3.js1.x với Kit8 types bằng cast. Bản v0.1 để ngỏ lựa chọn UI template giữa hai bản đã đọc; C chốt dựa T5 và build thực trước ghi kiến trúc final.
+Chốt Node24.22.2 và React/Vite static từ template solana-foundation/templates commit9ec8eba94a98e22434356b6858defbb0e5ada8dc, đường kit/react-vite; giữ MIT attribution. Không SSR/backend trong baseline. Wallet Standard chỉ ở /lab qua client/react-hooks theo API official; pin stable/lock/build trước delivery, không dùng ranges RC nguyên trạng. Core không phụ thuộc Anchor client. Client CLI lab riêng tools/devnet-lab dùng core1.2.2/web3.js1.99.0; không cast giữa web3 và Kit types.
 
 ## 4. Account, PDA, instruction, event và IDL
 
@@ -47,7 +47,7 @@ Chốt Node24 hiện có cho web/core. UI dùng React/Next hoặc Vite template 
 
 Input IDL là artifact exact bytes, có address/schema checks và hash; provenance có thể thiếu. Event/IDL không chứng minh state đã commit hoặc ABI đúng; source attestation chưa là tính năng MVP. RPC chỉ getGenesisHash/getAccountInfo/getMultipleAccounts; không getProgramAccounts scan toàn cluster.
 
-Lab Phase3 có instruction hello (tên cuối theo source đã build), program ID thật sau tạo keypair lab, log/response để test invocation; không nhận user funds hoặc lưu dữ liệu sản phẩm. IDL lab sinh từ build, không viết JSON giả làm generated IDL. Fee payer/program keypair dành riêng devnet, ngoài Git; quyền upgrade chưa revoke. Test lab không được dùng nâng F/R của feature product chưa triển khai.
+Lab Phase3 là counter từ template Anchor1.2.2: initialize/increment, PDA seed counter, Counter48 bytes (count:u64, authority:pubkey), MAX_COUNT10; initialize CPI System chuyển1lamport ngoài rent. Program ID 2yzxUQEpaeLmgCMhDipwnVL3DHsxez18KcePonqZRiXL chưa deploy. IDL đã sinh/đối chiếu, 6 runtime tests local và 8 client tests offline đạt. Chỉ payer lab devnet, không nhận tiền người dùng hay lưu dữ liệu sản phẩm. Singleton có thể bị initialize trước; client kiểm authority và không reset. Fee payer/program keypair dành riêng devnet, ngoài Git; quyền upgrade chưa revoke. Test lab không được dùng nâng F/R của feature product chưa triển khai.
 
 ## 5. Contract v1 dự thảo
 
@@ -108,6 +108,6 @@ Chủ file tự review/commit nhỏ, không chờ A đồng ý. A trả file/com
 
 ## 9. Rủi ro còn mở và cổng ra
 
-Cần build xác nhận toolchain trên arm64; UI template version chưa lock; provider/CORS cần live web test; repo private chưa delivery open-source; user/giáo viên chưa duyệt IDEA/architecture này. Chưa có hosting account đã xác nhận, không giả deploy tự động được. Nếu phụ thuộc hosting/permission cần người dùng thì vẫn làm hết local/CI/prep trước hỏi.
+Toolchain arm64 đã build/IDL/runtime test đạt. CI bị chặn GitHub Billing & plans trước khi khởi chạy; payer0SOL nên chưa deploy. Web dependency lock/build/browser còn cần thực hiện; provider/CORS cần live web test; repo private chưa delivery open-source; user/giáo viên chưa duyệt IDEA/architecture này. Chưa có hosting account đã xác nhận, không giả deploy tự động được. Nếu phụ thuộc hosting/permission cần người dùng thì vẫn làm hết local/CI/prep trước hỏi.
 
 Phase2 chỉ đánh đạt khi bản final không còn lựa chọn kỹ thuật trọng yếu mở, review giáo viên/xử lý findings và người dùng đọc bản giải thích đồng ý. Phase3 chỉ đạt khi có version thực + hello build/test, devnet programID/tx thật, web hello công khai và CI xanh. DECISION không thay các bằng chứng này. Kế hoạch tiếp theo ở HANDOFF, chỉ viết NEXT final khi các cổng thật đạt.

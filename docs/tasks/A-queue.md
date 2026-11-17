@@ -89,3 +89,10 @@ T8 dùng package dependencies của web trong phạm vi Phase3 đã giao; không
 C chốt hướng **React + Vite static** cho Phase3 để không thêm SSR/backend vào read-only core. A chốt/pin dependency graph tương thích từ template official sau đọc source; tránh trộn client1.7.0 (Kit^5.0.0 theo metadata) với Kit8. C giữ tools/devnet-lab riêng dùng Anchor client, A không phụ thuộc CLI signer đó. Không tự nâng toàn bộ SDK cho giống latest.
 
 Sửa flow: C03 chỉ quote/export, **không Confirm & Send**. C02 compare manifest/observation; IDL hash không xác nhận ABI. Lab /lab riêng chỉ devnet wallet connect và phải hiện chưa deploy/chưa nối nếu chưa có tx thật. C01 đã dự phòng xa, không chặn T8; idempotency key không tự làm mọi retry an toàn. C đã build hello/IDL và 6 runtime tests; A tiếp tục apps/web rồi gửi lock/build/browser bằng chứng qua A-done.
+
+
+### T8 baseline do C dựng, A kiểm browser/UX — 17/11/2026
+
+C đã fetch/đọc component Dashboard tại d4fec17; tiếp nhận ý tưởng phần header và thông tin program. Component hiện luôn nói đang tải nhưng chưa RPC, chưa có package/lock/build. C sẽ hoàn thiện baseline React-Vite static tại apps/web (theo quyết định đã ghi), chuyển component A sang entry Vite và ghi DEVLOG vùng frontend. **A tiếp tục T8 phần browser/UX**, bổ sung state no-wallet/rejected/retry/connected/disconnected, mobile, nguồn/template/license; dùng baseline C push, không dựng framework Next song song. C không sửa A-done/HANDOFF A.
+
+Nguồn đã xác minh: solana-foundation/templates commit9ec8eba94a98e22434356b6858defbb0e5ada8dc, kit/react-vite; providers/App/main/package/LICENSE. core không Connect Wallet, /lab dùng Wallet Standard qua @solana/client + @solana/react-hooks; không seed/private key, không giả tx. C tự lo build/hosting capability, A ghi findings browser và sửa UX độc lập sau pull.
