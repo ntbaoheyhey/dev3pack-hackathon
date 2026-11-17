@@ -15,6 +15,8 @@ Mỗi dòng: ngày · ai làm (Mai / Codex / Antigravity) · việc · note đã
 
 - R05 · sửa 006: destination withholding, hai đường harvest/withdraw và authority; bỏ con số rent thiếu cấu hình, bài 500.000 cNFT dưới 1 SOL ghi chưa đủ căn cứ. Ví dụ 10.000 raw units/1% tính trên giấy; không RPC.
 
+- R06 · sửa 008: URL spec đúng, pin source protocol 3.0.2 (`2695142`), `accounts[0].address`, phân biệt raw base64 với Wallet Standard bytes; bỏ ví dụ ký/gửi trộn wrapper. Chưa cài/compile/kết nối ví; nhãn mobile là gợi ý chứ chưa phải điều kiện track.
+
 ## Trước sự kiện
 
 - 2026-11-17 · Claude · Dựng khung repo, quy tắc "học trước, ghi lại", research Codex vs Antigravity · 000, 001

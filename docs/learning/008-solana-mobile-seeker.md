@@ -22,7 +22,7 @@ Thời lượng đọc: khoảng 15 phút.
 | Thành phần | Phiên bản / Mốc tài liệu (2026-11) | Mức kiểm chứng |
 | --- | --- | --- |
 | **Mobile Wallet Adapter (MWA)** | **Specification v2.0** | Đã đối chiếu đặc tả giao thức |
-| `@solana-mobile/mobile-wallet-adapter-protocol` | **2.1.x** | Đã kiểm tra API Android WebSocket/Intent |
+| `@solana-mobile/mobile-wallet-adapter-protocol` | **3.0.2**, source commit `2695142` | Đã đọc package.json, types và encoding exports; chưa cài/build/chạy ví |
 | **Solana Seeker Specs** | Thế hệ Seeker (ra mắt 2025–2026) | Phần cứng tích hợp Seed Vault & Android 14+ |
 | **Solana dApp Store CLI** | `@solana-mobile/dapp-store-cli` | Công cụ đóng gói và ký APK metadata |
 | **React Native / Expo** | React Native 0.76+, Expo SDK 52+ | Khuyến nghị môi trường phát triển chính thức |
@@ -55,9 +55,9 @@ sequenceDiagram
     Wallet-->>App: Bắt tay WebSocket mã hóa cục bộ
     App->>Wallet: Yêu cầu authorize(identity)
     Wallet->>Wallet: Người dùng quét vân tay xác thực
-    Wallet-->>App: Trả về auth_token & public_key
-    App->>Wallet: signAndSendTransaction(payload)
-    Wallet-->>App: Trả về Transaction Signature
+    Wallet-->>App: Trả về auth_token và accounts có address
+    App->>Wallet: signAndSendTransactions(payloads base64)
+    Wallet-->>App: Trả về signatures theo kiểu SDK đang dùng
 ```
 
 ---
@@ -76,16 +76,16 @@ sequenceDiagram
 
 ---
 
-### 3.3. Tiêu chí để nhắm giải Seeker Track tại Hackathon
+### 3.3. Gợi ý trải nghiệm mobile — không phải điều kiện track đã công bố
 
-Nếu sự kiện hackathon có giải thưởng riêng cho Seeker / Mobile Track, Ban giám khảo sẽ tìm kiếm các yếu tố sau:
+[Trang chủ Dev3pack](https://hack.dev3pack.xyz) công bố giải Seeker Phones cho Best Mobile App Built on Solana Mobile (kiểm tra 17/11/2026). [FAQ](https://hack.dev3pack.xyz/faq) chưa công bố điều kiện partner track chi tiết. Các ý sau là đề xuất sản phẩm, không phải tiêu chí bắt buộc của BTC hoặc bảo đảm PWA đủ điều kiện:
 1. **Tận dụng đặc tính di động (Mobile-native features)**:
    - Dùng camera quét mã QR tức thì (chuyển tiền, kết bạn, tham gia phòng game).
    - Công nghệ chạm NFC (Tap-to-Pay, Tap-to-Connect với thẻ vật lý hoặc máy Seeker khác).
    - Tối ưu hóa giao diện một tay (One-handed navigation, bottom sheets, haptic feedback).
 2. **Tích hợp MWA chuẩn mực**:
-   - Trải nghiệm kết nối ví mượt mà trong dưới 3 giây.
-   - Sử dụng lại `auth_token` đã lưu để người dùng không phải bấm authorize lại mỗi lần mở app.
+   - Đo thời gian kết nối trên thiết bị thật; chưa có số đo hoặc SLA 3 giây.
+   - Nếu cache authorization, xử lý token hết hiệu lực/revoke và reauthorization theo SDK; không bảo đảm ví không hỏi lại.
 3. **Phù hợp đời sống thực (Real-world Utility)**:
    - Ứng dụng thanh toán tại điểm bán (Point of Sale).
    - Game di động casual có tương tác on-chain vi mô (micro-transactions).
@@ -103,7 +103,7 @@ Nếu sự kiện hackathon có giải thưởng riêng cho Seeker / Mobile Trac
 | --- | --- | --- |
 | **Cài đặt môi trường Android/RN** | **Cực kỳ cao** | Lỗi phiên bản Java JDK, Android SDK Platform, NDK, Gradle sync thất bại. Có thể "cháy" từ 6 đến 12 giờ quý giá chỉ để chạy được màn hình "Hello World". |
 | **Lỗi build APK Release** | **Cao** | Chạy trên máy dev được nhưng khi build file `.apk` độc lập để nộp thì bị crash do cấu hình ProGuard / Hermes / native symbols. |
-| **Rào cản chấm bài của Giám khảo** | **Chí mạng** | **90% giám khảo hackathon chấm bài trên laptop cá nhân**. Nếu bạn chỉ nộp 1 file APK: giám khảo không có điện thoại Android (dùng iPhone), hoặc ngại cài APK lạ từ bên ngoài vì lo ngại bảo mật &rarr; **Dự án bị bỏ qua hoặc chấm điểm rất thấp**. |
+| **Rào cản chấm bài của Giám khảo** | **Chí mạng** | Chưa kiểm chứng thiết bị giám khảo dùng. Chỉ có APK có thể tăng bước cài đặt; cần link/video và hướng dẫn dùng thử phù hợp, không suy tỷ lệ hay điểm phạt. |
 
 #### Chiến lược tối ưu cho 48 giờ (Smart Strategy):
 
@@ -117,47 +117,53 @@ Nếu sự kiện hackathon có giải thưởng riêng cho Seeker / Mobile Trac
 4. **Lợi ích kép**:
    - Giám khảo dùng laptop vẫn bấm link dùng thử trực tiếp được ngay (không rào cản).
    - Giám khảo dùng điện thoại Android / Seeker vẫn trải nghiệm được flow native mượt mà.
-   - Tiết kiệm 100% thời gian debug môi trường Android Studio để tập trung vào tính năng sản phẩm và logic on-chain.
+   - Có thể giảm công việc native, nhưng phải thử MWA trên browser/wallet mục tiêu; chưa đo mức tiết kiệm thời gian.
 
 ---
 
 ## 4. Ví dụ và Quy trình tối thiểu
 
-### 4.1. Quy trình kết nối MWA chuẩn (Minh họa code React Native / TypeScript)
+### 4.1. Authorize và chọn account với protocol package 3.0.2
+
+Đã đối chiếu [package.json](https://github.com/solana-mobile/mobile-wallet-adapter/blob/2695142af5203c6c938da12222e9fc61dbe227dc/js/packages/mobile-wallet-adapter-protocol/package.json), [types.ts](https://github.com/solana-mobile/mobile-wallet-adapter/blob/2695142af5203c6c938da12222e9fc61dbe227dc/js/packages/mobile-wallet-adapter-protocol/src/types.ts) và [encoding exports](https://github.com/solana-mobile/mobile-wallet-adapter/blob/2695142af5203c6c938da12222e9fc61dbe227dc/js/packages/mobile-wallet-adapter-protocol/src/encoding.ts), ngày 17/11/2026. Đây là **source snapshot 3.0.2**, không phải phiên bản đã cài trong repo; mẫu chưa compile hoặc kết nối ví.
+
+`AuthorizationResult` chứa `accounts`, `auth_token`, `wallet_uri_base`; **không có `publicKey` ở cấp kết quả**. Raw MWA `accounts[i].address` là **base64 của bytes public key**, không phải địa chỉ base58 để dán vào Explorer. Đặc biệt, type `Account` của **3.0.2** là union với `WalletAccount` của Wallet Standard: nhánh này có `publicKey` bytes ngay trong account và address dạng base58 đối với Solana. Phải phân biệt trước khi decode, không tự giả định mọi wrapper cùng encoding.
 
 ```typescript
-// Ví dụ cấu trúc gọi MWA bằng @solana-mobile/mobile-wallet-adapter-protocol
-// (Đoạn trích minh họa luồng xử lý - chưa biên dịch trong phiên này)
-
 import { transact } from '@solana-mobile/mobile-wallet-adapter-protocol';
+import {
+  base58FromUint8Array,
+  base64ToUint8Array,
+} from '@solana-mobile/mobile-wallet-adapter-protocol/encoding';
 
-async function connectAndSignTransaction(transactionPayload: Uint8Array) {
-  // Hàm transact tự động kích hoạt Android Intent solana-wallet://
-  const result = await transact(async (wallet) => {
-    // 1. Xin cấp quyền kết nối (Authorize)
+export async function connectMobileWallet() {
+  return transact(async wallet => {
     const authResult = await wallet.authorize({
-      cluster: 'devnet',
+      chain: 'solana:devnet', // chain thay cho cluster đã deprecated ở type này
       identity: {
-        name: 'Dev3pack Hackathon App',
-        uri: 'https://dev3pack-demo.vercel.app',
+        name: 'Dev3pack Demo',
+        uri: 'https://example.com', // Thay bằng origin HTTPS của app thật
         icon: 'favicon.ico',
       },
     });
-
-    // 2. Yêu cầu ký và gửi transaction
-    const [signature] = await wallet.signAndSendTransactions({
-      transactions: [transactionPayload],
-    });
-
+    const account = authResult.accounts[0];
+    if (!account) throw new Error('Ví không trả tài khoản được cấp quyền.');
+    const addressFromWallet = account.address;
+    const publicKeyBytes = 'publicKey' in account
+      ? account.publicKey // Wallet Standard: bytes sẵn có trong account
+      : base64ToUint8Array(addressFromWallet); // Raw MWA: address là base64
+    if (publicKeyBytes.length !== 32) throw new Error('Public key Solana phải có 32 bytes.');
     return {
-      publicKey: authResult.publicKey,
-      signature: signature,
+      addressBase58: base58FromUint8Array(publicKeyBytes),
+      publicKeyBytes,
     };
   });
-
-  return result;
 }
 ```
+
+Mẫu chỉ authorize và chọn account đầu tiên; app nhiều account cần UI chọn account và xử lý người dùng từ chối/revoke. Chạy từ thao tác người dùng trên môi trường MWA được hỗ trợ. Không log `auth_token`. Ví dụ này không ký, gửi hay xác nhận transaction.
+
+Nếu nối bước ký/gửi sau: protocol package 3.0.2 nhận `signAndSendTransactions({ payloads: [...] })` với transaction **base64** và trả `{ signatures: [...] }` **base64**; không trộn với wrapper web3.js dùng transaction object/kiểu khác. Signature được trả về cũng chưa chứng minh transaction finalized; xem [005](005-solana-frontend.md).
 
 ---
 
@@ -177,7 +183,7 @@ async function connectAndSignTransaction(transactionPayload: Uint8Array) {
 ## 6. Nguồn và độ tin cậy
 
 - [Solana Mobile Documentation](https://docs.solanamobile.com/) — Cổng tài liệu chính thức cho nhà phát triển Solana Mobile Stack và Seeker (Đã đọc và đối chiếu).
-- [Mobile Wallet Adapter Protocol Specification](https://solanamobile.github.io/mobile-wallet-adapter/spec/spec.html) — Đặc tả kỹ thuật chi tiết của giao thức MWA (Đã đọc).
+- [Mobile Wallet Adapter Protocol Specification](https://solana-mobile.github.io/mobile-wallet-adapter/spec/spec.html) — Đặc tả kỹ thuật chi tiết của giao thức MWA (Đã đọc).
 - [Solana dApp Store Publishing Guide](https://docs.solanamobile.com/dapp-publishing/overview) — Hướng dẫn quy trình đóng gói và phát hành ứng dụng lên dApp Store (Đã đọc).
 
 ---
@@ -186,3 +192,5 @@ async function connectAndSignTransaction(transactionPayload: Uint8Array) {
 
 - **Điểm chưa kiểm chứng**: Trải nghiệm thực tế của thiết bị phần cứng Solana Seeker vật lý (vì thiết bị thuộc diện bàn giao thị trường mới; các nhà phát triển chủ yếu dùng Seeker Emulator trên Android Studio).
 - **Bước tiếp theo**: Trong trường hợp chọn làm sản phẩm có yếu tố mobile, ưu tiên thiết kế web responsive 100% trước, sau đó nếu còn thừa thời gian (trên 15 tiếng) mới cân nhắc bọc sang khung React Native hoặc Capacitor.
+
+**Bài học / lỗi đã gặp:** spec RPC và wrapper SDK không đồng nhất shape/encoding. R06 đã đối chiếu đúng source 3.0.2; chưa build, thử thiết bị hoặc xác nhận trải nghiệm PWA/native.
