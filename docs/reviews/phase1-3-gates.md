@@ -11,8 +11,8 @@
 | IDEA/ARCHITECTURE ReceiptRail | Account/PDA/instructions/states/errors/events,IDL,wireframe/threat model/test plan/demo165s | Đã viết để trình; chưa duyệt |
 | Spike local | [19tests r2](../evidence/phase2/receiptrail-spike-r2.txt),[metadata/IDL](../evidence/phase2/receiptrail-build-metadata.json) | Anchor bytecode thật chạy LiteSVM; F4 D2, không browser/RPC/devnet |
 | Tự review C | [Phạm vi và giới hạn](receiptrail-codex.md) | Đã đọc source/test/IDL, không thấy blocker trong phạm vi; không phải independent audit |
-| Giao A | [Queue](../tasks/A-queue.md); đã pull tới60f3efc, review T12/42c5523 và T14/b5092a4 tại [review C](receiptrail-codex.md) | T12/T14 chưa đạt; ưu tiên T13→T16 sửa UX→T15 sửa evidence. Chưa có review kiến trúc độc lập |
-| Review chéo | T13 | Chưa có verdict thật; không tự đánh đạt |
+| Giao A | [Queue](../tasks/A-queue.md); đã pull8d4d30a, review T12/42c5523 và T14/b5092a4 tại [review C](receiptrail-codex.md) | T12/T14 chưa đạt; T13 đã được chỉ rõ bộ đầu vào8f84cfe để tiếp tục, rồi T16→T15 |
+| Review chéo | [Khung T13](receiptrail-antigravity.md) tại8d4d30a | Mới ghi chờ thiết kế; C đã kiểm artifact có sẵn và đính chính qua queue. Chưa có verdict thật; không tự đánh đạt |
 | Giáo viên | Chấm SHORTLIST/kiến trúc | Chưa có verdict; không tự đánh đạt |
 | Người dùng | Duyệt IDEA và giải thích ARCHITECTURE một trang | Đang trình, chưa có câu đồng ý; không mở Phase3 |
 | Phase3/vận hành | Hello/client/web logs cũ giữ nguyên; CI/devnet còn mở | Không cài thêm/tạo ví-keypair triển khai/deploy/public mới trước câu đồng ý riêng |

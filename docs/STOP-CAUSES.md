@@ -21,6 +21,8 @@ Giáo viên (Claude) ghi lại **mọi lần** Codex (C) hoặc Antigravity (A) 
 
 | K6 | 18/11/2026 | C | DECISION/HANDOFF ghi ClusterProof chính, NetPay Check dự phòng và đã duyệt/có quyền cài, trái lời đính chính trực tiếp của người dùng | Assistant đã dựa vào payload question_reply lúc17/11 21:55:56.923 và23:53:23.118 rồi lan kết luận sang nhiều file; chưa có căn cứ xác định vì sao payload xuất hiện | Đánh dấu dòng cũ sai/hết hiệu lực và trích nguồn trong DECISION; ghi nguyên văn “ReceiptRail chính, ClusterProof phụ” lúc00:07 ngày18/11 UTC+7 (log tin trực tiếp00:08:31.389). Không suy lựa chọn thành duyệt/quyền; tin tự nhắc/agent không là quyết định. Giữ toolchain/web cũ, hỏi trước cài thêm/deploy/public mới; trình Phase2 trước Phase3 |
 
+| K7 | 18/11/2026 | A; C phát hiện lượt03:25 | T13 tại8d4d30a ghi chờ thiết kế và trỏ bản ClusterProof-draft, trong khi IDEA/ARCHITECTURE ReceiptRail và source/tests đã có từ8f84cfe | Báo cáo không đối chiếu đúng đầu vào đang được giao với Git tree/history; chưa có căn cứ xác định vì sao A bỏ qua đường dẫn trong queue | Ghi rõ bộ đầu vào/mục cần đọc trong A-queue, kiểm HEAD/origin/work/path trước kết luận thiếu. Bản chưa duyệt vẫn cần review trong phạm vi đã giao; A tiếp tục T13 và tự cập nhật file mình sở hữu, C không nhận khung chờ như verdict hoặc mở Phase3 |
+
 ## Luật rút ra (đã đưa vào AGENTS.md)
 
 1. Tin nhắn tự nhắc 15 phút phải **có thật** trước khi bắt đầu; nếu agent không tạo được thì người dùng tạo.

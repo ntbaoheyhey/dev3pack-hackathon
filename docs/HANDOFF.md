@@ -9,7 +9,7 @@
 - Runner offline dùng compiler cache trực tiếp; r1 build+test64s, r2 cached3s, bytecode hash như nhau; IDLr3 exit0 đã copy/đối chiếu.
 - C01 r2 **79/100/F4 PLAN** dựa19tests/D2; r0/r1 giữ. README/SHORTLIST/review/ROADMAP/DECISION đã đồng bộ.
 - Đã push spike **8f84cfe**, hồ sơ/điểm **b5cb544**; commit Thẻ nhớ cuối xem HEAD. PR7 title/body đã sửa ReceiptRail, đọc lại open/merged=false/head b5cb544 trước commit cuối.
-- Đã pull tới60f3efc; T12/42c5523 thiếu wireframe/mapping và vượt scope token; T14/b5092a4 thiếu evidence/state. Review có findings; queue T13→T16 sửa UX→T15 sửa evidence. Không đổi score/contract hoặc file kết quả/A-done/HANDOFF của A.
+- Đã pull8d4d30a: T13 mới có khung chờ sai dù bộ8f84cfe đã có; queue đã chỉ rõ đầu vào, tiếp tục T13→T16 sửa UX→T15 sửa evidence. T12/T14 chưa đạt; K7 ghi sự cố. Không đổi score/contract hoặc file kết quả/A-done/HANDOFF của A.
 - Automation **ACTIVE mỗi15phút**, đúng chat; đã nhận heartbeat scheduler **00:55:00.058 ngày18/11/2026 UTC+7**. Một lần nhận không chứng minh mọi lần gửi; chưa có duyệt mới thì không mở việc phụ thuộc ý tưởng/Phase3.
 - Push sau mỗi bước lớn bằng `[skip ci]`; workflow cũ tự cài nên không kích hoạt, không gọi CI xanh.
 - Cài thêm/tạo ví-keypair triển khai/deploy/public mới hỏi trước; Phase3 chỉ mở sau duyệt Phase2. Không merge/force-push/mainnet/secrets.
