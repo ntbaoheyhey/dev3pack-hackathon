@@ -1,0 +1,24 @@
+skip_local_validator = true
+
+[toolchain]
+anchor_version = "1.2.2"
+solana_version = "4.1.2"
+
+[features]
+resolution = true
+skip-lint = false
+
+[programs.devnet]
+phase3_hello = "2yzxUQEpaeLmgCMhDipwnVL3DHsxez18KcePonqZRiXL"
+
+[programs.localnet]
+phase3_hello = "2yzxUQEpaeLmgCMhDipwnVL3DHsxez18KcePonqZRiXL"
+
+[provider]
+cluster = "localnet"
+wallet = "~/.local/share/dev3pack/devnet/payer-keypair.json"
+
+[scripts]
+test = "cargo test --locked --workspace"
+
+[hooks]

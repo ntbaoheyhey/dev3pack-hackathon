@@ -1,58 +1,52 @@
-# DEV3PACK Hackathon 2026 — (tên dự án: TBD)
+# ClusterProof — Dev3pack Hackathon 2026
 
-> Dự án tham gia **Dev3pack Global Hackathon** (27–29/11/2026), xây dựng trên **Solana**.
-> Open source (MIT). Được phát triển theo hướng *vibecoding* với **Codex** và **Google Antigravity**.
+ClusterProof giúp builder kiểm deployment Solana devnet trước khi tích hợp: so observation với manifest đã chọn, chỉ rõ field khác và field chưa đủ bằng chứng. Không cần ví cho sản phẩm core. MATCH không chứng minh ABI tương thích hoặc source đã verified.
 
-## One-liner
+Ý tưởng chính đã được chọn; NetPay Check là dự phòng. [IDEA](docs/IDEA.md) và [ARCHITECTURE](docs/ARCHITECTURE.md) đang chờ cổng review/duyệt. Repo có [MIT License](LICENSE), hiện chưa đổi visibility thành public.
 
-_TBD — một câu mô tả sản phẩm giải quyết vấn đề gì, cho ai._
+## Trạng thái và bằng chứng
 
-## Links (điền trước hạn nộp 29/11)
+| Phần | Đã có | Còn thiếu |
+| --- | --- | --- |
+| Nghiên cứu | 16 offline tests, C02 devnet observation và C03 fee-only live quote | Chưa phải MVP/UI hoàn chỉnh |
+| Hello lab Phase3 | Anchor1.2.2/SBFv3, generated IDL, 6 runtime tests local | Deploy devnet, transaction xác nhận, CI xanh |
+| Web | Đã giao A React/Vite static shell và wallet lab riêng | Build/browser/public URL |
+| Demo video / pitch | Kịch bản học tập và kế hoạch | Video <3 phút, link demo/pitch thật |
 
-| Mục | Link |
-|---|---|
-| Live demo | TBD |
-| Demo video (< 3 phút) | TBD |
-| Program / contract address (devnet hoặc mainnet) | TBD |
-| Slide / pitch | TBD |
+Program ID dành cho lab: **2yzxUQEpaeLmgCMhDipwnVL3DHsxez18KcePonqZRiXL** — **chưa deploy** tại checkpoint này. Đây là counter hello từ template Anchor, không là program sản phẩm ClusterProof.
 
-## Công việc trước sự kiện vs trong hackathon
-
-Ban tổ chức cho phép dùng code có sẵn **nếu README ghi rõ phần nào làm trước, phần nào làm trong 27–29/11**.
-Mốc phân chia là commit/tag `hackathon-start` (tạo lúc mở màn 27/11).
-
-### Trước sự kiện (trước 27/11/2026)
-- Học Solana / Anchor / tooling, ghi chép trong [`docs/learning/`](docs/learning/).
-- Dựng quy tắc làm việc cho AI agent ([`AGENTS.md`](AGENTS.md), [`.agents/rules/`](.agents/rules/)).
-- _(liệt kê thêm nếu có prototype, thư viện, template làm trước)_
-
-### Trong hackathon (27–29/11/2026)
-- _(liệt kê tính năng làm trong 48h)_
-
-Lộ trình các phase build app (ý tưởng → kiến trúc → program/frontend → tích hợp → hoàn thiện → nộp): [`docs/ROADMAP.md`](docs/ROADMAP.md).
-Nhật ký chi tiết theo ngày: [`docs/DEVLOG.md`](docs/DEVLOG.md).
-
-## Kiến trúc
-
-_TBD — sơ đồ: frontend ↔ wallet ↔ Solana program (Anchor) ↔ (off-chain service nếu có)._
+Logs và hashes tại [docs/evidence/phase3](docs/evidence/phase3/); check local cuối [hello-check-r2.txt](docs/evidence/phase3/hello-check-r2.txt) exit0. CI chưa được xác nhận từ run thật.
 
 ## Chạy local
 
-_TBD — khi bắt đầu viết code._
+Máy cần Rust1.100.0, Agave4.1.2, Anchor1.2.2 và platform-tools v1.57; cách cài và lỗi thực tế ở [note003](docs/learning/003-solana-toolchain.md). Node24.22.2 dùng cho research. Không cần keypair cho build/test:
 
-## Công nghệ
+~~~sh
+node --test research/phase1/spikes.test.mjs research/phase1/fee-mint.test.mjs research/phase1/replay-evidence.test.mjs
+ANCHOR_BIN="$HOME/.avm/bin/anchor-1.2.2" bash scripts/check-lab.sh --ci
+~~~
 
-- Solana, Anchor (Rust), @solana/web3.js / @solana/kit
-- _TBD_
+PATH cần chứa cargo và Agave bin; script pin SBFv3/v1.57, sinh IDL rồi test LiteSVM offline. CI chỉ upload .so/IDL/types; không upload keypair. Deploy là bước riêng chỉ devnet, signer lab ngoài repo. Không chạy template có mainnet fallback.
 
-## Cách làm việc với AI
+## Kiến trúc
 
-Mọi agent (Codex, Antigravity) **phải đọc `docs/learning/` trước khi làm và ghi lại điều đã học**. Xem [`AGENTS.md`](AGENTS.md).
+Input program ID + manifest/IDL optional → validate → RPC devnet/loader-v3 parser → compare fields → report/replay/export. Chưa cần backend, database hoặc signer trong đường sản phẩm. UI static ở apps/web do Antigravity phụ trách; core/schema/tests do Codex phụ trách. Sơ đồ, threat model, state và contract tại [ARCHITECTURE](docs/ARCHITECTURE.md).
 
-## Team
+## Công việc trước sự kiện và trong hackathon
 
-- _TBD_
+Mốc phân chia là tag **hackathon-start**, sẽ tạo lúc mở màn 27/11/2026; chưa tạo trước sự kiện.
 
-## License
+### Trước 27/11/2026
 
-[MIT](LICENSE)
+- Học và viết notes; lập RUBRIC v1.2, shortlist, chọn ClusterProof/NetPay Check.
+- Spike/parser/evidence read-only và tests; thiết kế IDEA/ARCHITECTURE.
+- Cài toolchain, build hello lab từ template Anchor1.2.2 và test; chuẩn bị CI/web.
+- Các commit và trạng thái cụ thể ở [DEVLOG](docs/DEVLOG.md), [ROADMAP](docs/ROADMAP.md).
+
+### Trong 27–29/11/2026
+
+Chưa có công việc trong sự kiện tại ngày17/11. Ghi tính năng và commit thực khi thực hiện; không gọi code chuẩn bị trước là code trong hackathon.
+
+## Làm việc và license
+
+Codex trưởng nhóm/backend/reviewer; Google Antigravity trợ lý qua [A-queue](docs/tasks/A-queue.md)/[A-done](docs/tasks/A-done.md). Mọi agent học trước, làm sau và ghi lại theo [AGENTS.md](AGENTS.md). Công việc kế tiếp ở [HANDOFF](docs/HANDOFF.md). [MIT](LICENSE).

@@ -81,3 +81,11 @@ T8 dùng package dependencies của web trong phạm vi Phase3 đã giao; không
 Đã đọc V3 tại2b61cf9 sau fetch: C03 đã phân biệt transfer fee, nhưng Kora còn thiếu affected2.2.0/patched fieldNone; C01 thiếu ngày2019/EVM giới hạn; C02 vẫn viết “cần clone Mainnet”. Đây là mô tả lời upstream, **không áp dụng cho đội**: chỉ devnet/local và không clone/fork mainnet. Nguồn C tự kiểm trong note021/ba bài vẫn là evidence dùng chấm. Ghi sửa các ý này khi quay lại T6, không mở vòng chờ review.
 
 **Ưu tiên ngay T5 → T8**, rồi sửa T4/T6/T2; không để các sửa nhỏ evidence ngăn phần web Phase3. C đã cài Anchor, đang lo platform-tools/hello. A có quyền làm apps/web theo T8; core C02 không cần ví, wallet chỉ ở lab riêng.
+
+### Review T5 / chốt hướng T8 — Codex, 17/11/2026
+
+Đã fetch/đọc T5 tại5d8f4a0 và T8 tại782d1db. Dùng được gợi ý loading/error/rejected và tách report read-only. T5 chưa đạt nguồn: version/commit còn placeholder, hai URL solana-developers chưa được A cung cấp source/license evidence. Nguồn chuẩn C đã đọc là https://github.com/solana-foundation/templates/tree/main/kit/react-vite và root LICENSE; note022 có blob đã kiểm. Bổ sung URL/commit/package/license cụ thể; đừng đánh dấu đã build chỉ vì tạo thư mục (Git không lưu thư mục rỗng).
+
+C chốt hướng **React + Vite static** cho Phase3 để không thêm SSR/backend vào read-only core. A chốt/pin dependency graph tương thích từ template official sau đọc source; tránh trộn client1.7.0 (Kit^5.0.0 theo metadata) với Kit8. C giữ tools/devnet-lab riêng dùng Anchor client, A không phụ thuộc CLI signer đó. Không tự nâng toàn bộ SDK cho giống latest.
+
+Sửa flow: C03 chỉ quote/export, **không Confirm & Send**. C02 compare manifest/observation; IDL hash không xác nhận ABI. Lab /lab riêng chỉ devnet wallet connect và phải hiện chưa deploy/chưa nối nếu chưa có tx thật. C01 đã dự phòng xa, không chặn T8; idempotency key không tự làm mọi retry an toàn. C đã build hello/IDL và 6 runtime tests; A tiếp tục apps/web rồi gửi lock/build/browser bằng chứng qua A-done.

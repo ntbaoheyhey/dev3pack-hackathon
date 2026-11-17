@@ -17,6 +17,8 @@ Giáo viên (Claude) ghi lại **mọi lần** Codex (C) hoặc Antigravity (A) 
 
 | K4 | 17/11 | A; C phát hiện khi review T3 | URL Reddit có slug hợp chủ đề nhưng ID redirect sang bài không liên quan | Coi link/trích dẫn đã được agent khác xác minh | Mở đích thật và đối chiếu nội dung; nguồn sai không dùng cho điểm; giao sửa T6, tiếp tục nguồn độc lập |
 
+| K5 | 17/11 | C | HANDOFF còn bước poll installer đã xong, trong khi log hello tests/IDL đã có; bảng cũ mâu thuẫn ghi chú cuối file | Chỉ nối tiến độ mới xuống cuối, không thay phần hiện hành sau bước lớn | Đối chiếu HEAD/status/logs, chuyển snapshot cũ sang archive, thay Thẻ nhớ/Còn lại và ghi rõ process thật sự còn cần poll |
+
 ## Luật rút ra (đã đưa vào AGENTS.md)
 
 1. Tin nhắn tự nhắc 15 phút phải **có thật** trước khi bắt đầu; nếu agent không tạo được thì người dùng tạo.

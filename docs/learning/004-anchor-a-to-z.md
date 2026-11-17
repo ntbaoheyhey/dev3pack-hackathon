@@ -1,7 +1,7 @@
 # 004 — Anchor từ A đến Z: lý thuyết và ví dụ tối thiểu
 
 > Ngày kiểm tra: 2026-11-17 (Asia/Ho_Chi_Minh). Phạm vi: học, không tạo project sản phẩm.
-> Trạng thái: ví dụ counter bên dưới chưa chạy. Phase3 đã được phép; đang dựng hello từ template chính thức Anchor1.2.2, xem phần bổ sung cuối note.
+> Trạng thái: ví dụ study-counter bên dưới chưa chạy; lab phase3-hello riêng đã build SBFv3, sinh IDL và đạt 6 runtime tests, xem kết quả cuối note. Devnet/CI chưa được xác nhận.
 
 ## 1. Mục tiêu và điều cần nhớ
 
@@ -260,3 +260,15 @@ Chưa compile Rust snippet, generate client, chạy unit/integration, deploy ho�
 Đã đọc help `anchor init/build` từ binary1.2.2 và source `cli/src/template.rs` tại tagv1.2.2/rev8d9d1488. Chọn single-file hello, `--test-template litesvm`, `--no-install`, `--no-git`, `--no-security-metadata`: lab ít code, không phải template production. LiteSVM template0.15.0 kèm Cargo.lock upstream; chạy VM trong process, không cần validator hay mainnet fork.
 
 Scaffold tại thư mục tạm, đọc kết quả trước đưa manifests/program/tests vào repo. Pin Anchor1.2.2/Agave4.1.2; build platform-tools v1.57/SBPFv3. Fee payer devnet và program keypair để ngoài repo; target keypair chỉ symlink bị ignore. Test phải nạp .so thật, gọi initialize và assert thành công/log; thêm instruction discriminator sai bị reject để chứng minh dispatch, không gọi đó là audit quyền của sản phẩm. Build sinh IDL thật; địa chỉ IDL/declare_id/config phải khớp program keypair public address. Chưa scaffold/build/test ở lúc viết đoạn này.
+
+**Kết quả đọc scaffold thực tế:** template single1.2.2 cũng là counter hello, gồm initialize + increment, PDA seed `counter`, authority, MAX_COUNT10 và CPI chuyển **1 lamport devnet** từ payer sang counter ngoài rent. Giữ template này làm lab để học cả state/authority; không đưa counter vào product ClusterProof. Tests bổ sung: sai authority, thiếu signer, initialize lại, vượt MAX_COUNT và discriminator sai; assert lỗi đúng và state không đổi. Đây là điều chỉnh kế hoạch sau inspect template, chưa là test pass.
+
+Template tạo rust-toolchain1.89.0 và lockfile chứa anchor-lang1.2.0 trong khi manifest1.2.2. Pin host1.100.0 đã được cho phép, pin anchor-lang1.2.2 và cập nhật đúng dependency trước dùng --locked; không chạy cargo update toàn bộ. Platform-tools v1.57 đã install exit0, rustc SBF1.95.0-dev (ae660768a,2026-08-17), độc lập host compiler.
+
+### Kết quả lab Phase3 — 17/11/2026
+
+[check-lab.sh](../../scripts/check-lab.sh) đã chạy trọn, [log r2](../evidence/phase3/hello-check-r2.txt) exit0: fmt, SBF build, IDL build, 6 LiteSVM tests và Cargo.lock giữ nguyên. Program ID `2yzxUQEpaeLmgCMhDipwnVL3DHsxez18KcePonqZRiXL`; IDL khớp initialize/increment, signer/writable/PDA seed và Counter(count:u64, authority:pubkey). `.so` 127672 bytes; hashes ở evidence build-metadata.json. IDL generation không được tính là runtime test.
+
+Bài học forwarding cargo args: dùng build `--no-idl --tools-version v1.57 --arch v3 -- -- --locked`, sau đó `idl build ... -- --locked`; source [IDL builder v1.2.2](https://github.com/otter-sec/anchor/blob/v1.2.2/idl/src/build.rs). Hai lệnh sai trước đó vẫn giữ trong hello-build.txt, không thay exit1 bằng thành công giả. Template singleton có thể bị người khác initialize trước; smoke phải kiểm authority và dừng nếu khác payer. Đây là lab, không mẫu quản lý tiền sản phẩm.
+
+Client smoke sẽ dùng generated IDL và API @anchor-lang/core1.2.2 sau kiểm source/package, signer local devnet ngoài Git; verify genesis, executable/owner và status/log/account sau transaction. Chưa có bằng chứng deploy hoặc client send thành công.

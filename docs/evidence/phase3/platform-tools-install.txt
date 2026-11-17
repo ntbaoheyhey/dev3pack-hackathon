@@ -1,0 +1,3 @@
+/Users/bao/.local/share/solana/install/active_release/bin/cargo-build-sbf --tools-version v1.57 --install-only
+
+exit_code=0

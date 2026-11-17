@@ -81,7 +81,7 @@ Sau build: lưu OS/arch/version thực, source/lockfile và log. Keypair phát s
 
 ## 7. Giới hạn và bước tiếp theo
 
-Chưa cài/build/deploy/CI mới tại checkpoint này. Hoàn thiện IDEA/ARCHITECTURE cho lựa chọn đã ghi, triển khai setup Phase3 song song; chỉ cập nhật cổng ra bằng logs/link/transaction thật và review cần thiết.
+Phần kế hoạch bên trên được viết trước setup. Cập nhật 17/11: bộ toolchain đã cài, check-lab r2 exit0 (SBFv3/IDL/6 runtime tests). Workflow .github/workflows/ci.yml đã viết, chưa có run CI được xác nhận; chưa deploy hoặc web live. Hoàn thiện IDEA/ARCHITECTURE theo lựa chọn đã ghi; chỉ cập nhật cổng ra bằng logs/link/transaction thật và review cần thiết.
 
 ### Bài học / lỗi đã gặp
 
@@ -91,3 +91,5 @@ Chưa cài/build/deploy/CI mới tại checkpoint này. Hoàn thiện IDEA/ARCHI
 | Nhầm token fee với compute fee trong T4/T6 của A | So source Token-2022, không dùng ComputeBudget làm giải pháp net token |
 | T5 đã có queue nhưng A chờ chỉ thị | Ghi rõ T5 được làm ngay; C tiếp tục chuẩn bị độc lập, không chờ |
 | Kết quả build/version chưa có | Giữ D1, không đổi note003 thành đã cài chỉ từ sự đồng ý của người dùng |
+| Script pass local nhưng chưa có CI | Giữ cổng CI mở tới run thật trên đúng commit, không suy pass Linux từ macOS |
+| SDK cùng tên họ Solana nhưng major khác | npm metadata client1.7.0 dùng Kit^5.0.0; không ghép với Kit8 template bằng cast, kiểm graph/lock/build trước chốt |

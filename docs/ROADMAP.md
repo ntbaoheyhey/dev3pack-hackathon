@@ -238,9 +238,9 @@ Mỗi vòng ghi lại điểm và thay đổi. Ý tưởng sửa quá số vòng
 | Phase | Trạng thái | Ghi chú |
 | --- | --- | --- |
 | Nền (002–014) | xong | PR #1, REVIEW R01–R09 đã sửa |
-| 1 Ý tưởng & spec | đang làm · chặng D (C chủ trì) | Prompt `prompts/03-codex-lead.md`, `prompts/03-antigravity-assistant.md`; RUBRIC v1.1 xong; note 015–020 đã viết |
-| 2 Kiến trúc | chưa mở | |
-| 3 Môi trường | chờ mở | Cần người dùng đồng ý cài toolchain |
+| 1 Ý tưởng & spec | đang làm · chặng E | RUBRIC v1.2; C02/C03/C01 PLAN79/77/75, PR#7; người dùng chọn ClusterProof chính/NetPay Check dự phòng; IDEA chờ duyệt |
+| 2 Kiến trúc | đang làm | ARCHITECTURE v0.1; còn hoàn thiện lựa chọn web, review/giáo viên chấm/người dùng đồng ý |
+| 3 Môi trường | đang làm · đã được phép | Toolchain đúng bộ đã cài; SBF/IDL/6 runtime tests đạt local; còn CI xanh, devnet tx và web live |
 | 4 Program | chưa mở | |
 | 5 Frontend | chưa mở | |
 | 6 Tích hợp | chưa mở | |

@@ -1,0 +1,66 @@
+name: CI
+
+on:
+  push:
+    branches: [work, main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  research:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 24.22.2
+          package-manager-cache: false
+      - name: Offline parser and evidence replay
+        run: node --test research/phase1/spikes.test.mjs research/phase1/fee-mint.test.mjs research/phase1/replay-evidence.test.mjs
+
+  anchor-lab:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      CARGO_TERM_COLOR: never
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Install build prerequisites
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential pkg-config libssl-dev libudev-dev clang cmake
+          rustup toolchain install 1.100.0 --profile minimal --component rustfmt --component clippy
+      - name: Install pinned Agave and Anchor
+        run: |
+          curl --proto '=https' --tlsv1.2 -sSfL https://release.anza.xyz/v4.1.2/install -o /tmp/agave-install.sh
+          sh /tmp/agave-install.sh --no-modify-path v4.1.2
+          echo "$HOME/.local/share/solana/install/active_release/bin" >> "$GITHUB_PATH"
+          cargo install --git https://github.com/otter-sec/anchor --rev 8d9d1488d9b8af41b266d7513eea2e668adf15a2 --locked avm
+          avm install 1.2.2
+          echo "ANCHOR_BIN=$HOME/.avm/bin/anchor-1.2.2" >> "$GITHUB_ENV"
+      - name: Install pinned SBF compiler
+        run: cargo build-sbf --tools-version v1.57 --install-only
+      - name: Build bytecode and IDL, run LiteSVM
+        run: bash scripts/check-lab.sh --ci
+      - name: Upload public build artifacts
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: phase3-hello
+          path: |
+            target/deploy/phase3_hello.so
+            target/idl/phase3_hello.json
+            target/types/phase3_hello.ts
+          if-no-files-found: error
+          retention-days: 7

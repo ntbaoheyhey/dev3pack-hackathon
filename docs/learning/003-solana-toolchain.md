@@ -1,7 +1,7 @@
 # 003 — Toolchain Solana, phiên bản và cài đặt có kiểm soát
 
 > Ngày kiểm tra: 2026-11-17 (Asia/Ho_Chi_Minh). Phạm vi hiện hành: Phase3 đã được người dùng cho phép tại DECISION.
-> Rust1.100.0, Agave4.1.2, AVM/Anchor1.2.2 đã cài, version command đạt; platform-tools v1.57 đang cài. Chưa có build/test/deploy ở checkpoint này.
+> Rust1.100.0, Agave4.1.2, AVM/Anchor1.2.2 và platform-tools v1.57 đã cài. Hello SBFv3 + IDL + 6 runtime tests đạt qua check-lab; chưa deploy, CI/web chưa được xác nhận.
 
 ## 1. Mục tiêu và điều cần nhớ
 
@@ -22,8 +22,9 @@ Biết vai trò từng công cụ, chọn một bộ phiên bản có căn cứ 
 | pnpm | **10.28.0** | Đã chạy với `COREPACK_ENABLE_NETWORK=0` |
 | Docker CLI | **29.9.2**, build `a82e528` | Chỉ `docker --version`; chưa kiểm tra daemon/image |
 | Codex CLI | **0.169.0-alpha.11.1** | Đã chạy `codex --version` |
-| rustc / cargo / rustup | 1.100.0 / 1.100.0 / 1.29.3 | Install exit0, đã chạy version bằng binary tuyệt đối dưới ~/.cargo/bin; chưa build |
-| solana / anchor / avm | 4.1.2 / 1.2.2 / 1.2.2 | Install exit0; đã chạy version; chưa test runtime |
+| rustc / cargo / rustup | 1.100.0 / 1.100.0 / 1.29.3 | Install/version đạt; host tests đã chạy |
+| solana / anchor / avm | 4.1.2 / 1.2.2 / 1.2.2 | Install/version đạt; hello SBFv3/IDL/LiteSVM đạt |
+| SBF compiler | platform-tools v1.57, rustc 1.95.0-dev (ae660768a, 2026-08-17) | Install exit0, đã build .so; compiler độc lập host Rust |
 | surfpool / solana-verify | Không thấy trong PATH | Chưa cài/chưa verify |
 
 ### Bảng tương thích có căn cứ
@@ -130,7 +131,7 @@ Trên macOS, dùng Command Line Tools nếu thiếu. Với Node/pnpm, **máy hi�
 
 ### B. Ví devnet và airdrop
 
-Phase3 hello/devnet đã nằm trong scope được giao. Chọn signer lab mới, dành riêng devnet, đặt ngoài Git tại thư mục user riêng; không dùng ví tài sản thật hoặc xuất secret của ví browser. Program keypair scaffold sinh trong thư mục tạm sẽ chuyển ra ngoài repo trước build; target chỉ tham chiếu qua symlink bị ignore. Không in secret/seed vào log; chỉ lưu public address. Chưa tạo keypair ở checkpoint này.
+Phase3 hello/devnet đã nằm trong scope được giao. Đã tạo payer/program keypair riêng tại `~/.local/share/dev3pack/devnet/` ngoài Git (directory0700/files0600); target tham chiếu program keypair qua symlink bị ignore. Không dùng ví tài sản thật hoặc xuất secret của ví browser. Chỉ lưu public address trong evidence; không in secret/seed vào log.
 
 CLI muốn ký cần một signer đã có được cấu hình đúng; ví browser không tự trở thành signer của CLI. Không hướng dẫn xuất private key của ví browser vào project. Program ID keypair và fee-payer keypair cũng không phải một khái niệm.
 
@@ -143,7 +144,7 @@ solana airdrop 2 "$DEVNET_STUDY_ADDRESS" --url devnet
 solana balance "$DEVNET_STUDY_ADDRESS" --url devnet
 ```
 
-`airdrop` là yêu cầu làm thay đổi số dư devnet, chưa được thực hiện. Chỉ định `--url devnet` ở từng lệnh giúp tránh lệ thuộc default cluster. [Faucet chính thức](https://faucet.solana.com/) là lựa chọn cho người dùng mở bằng tay; giao diện có quota và có thể cần GitHub để tăng hạn mức. Không bảo đảm luôn nhận được 2 SOL. Khi bị giới hạn, chờ hoặc dùng local test; không mua “devnet SOL”.
+`airdrop` làm thay đổi số dư devnet. Lần xin2SOL đã thất bại, xem [log](../evidence/phase3/devnet-airdrop.txt); lần đọc balance sau đó0SOL. Câu hỏi nhờ người dùng nhận5SOL còn pending. Chỉ định `--url devnet` ở từng lệnh giúp tránh default cluster. [Faucet chính thức](https://faucet.solana.com/) có quota/Cloudflare; không bảo đảm nhận được SOL. Không mua “devnet SOL”.
 
 ### C. Ghi lại bộ đã thực sự chạy
 
@@ -168,7 +169,7 @@ Các trang sống truy cập 17/11/2026; thời điểm truy cập không phải
 
 ## 7. Điểm chưa kiểm chứng và bước tiếp theo
 
-Chưa kiểm chứng Rust host 1.100.0 + Agave 4.1.2 + Anchor 1.2.2 bằng build/test, chưa chạy Docker daemon, chưa biết Antigravity version hay ví devnet của người dùng. Không tự đổi config của Taskbar Hero để pin Solana.
+Đã kiểm bộ Rust host1.100.0 + Agave4.1.2 + Anchor1.2.2 + platform-tools v1.57 bằng build/IDL/6 LiteSVM tests: [hello-check-r2](../evidence/phase3/hello-check-r2.txt), exit0. Chưa xác nhận deploy/CI, chưa chạy Docker daemon. Các bảng/lệnh kế hoạch gốc ở trên chỉ là lịch sử nghiên cứu, không thay log thực hành này.
 
 Tiếp tục theo quyền Phase3 đã có, không trình lại phiếu cài. Đọc [004](004-anchor-a-to-z.md), dùng scaffold chính thức Anchor1.2.2, template single + LiteSVM0.15.0 cho hello tối thiểu, không clone RPC mainnet. Giữ signer lab ngoài Git; nếu hosting/faucet cần tài khoản thì ghi nhu cầu thực sau khi hoàn tất phần độc lập.
 
@@ -178,3 +179,5 @@ Tiếp tục theo quyền Phase3 đã có, không trình lại phiếu cài. Đ�
 - AVM1.2.2 nhắc latest platform-tools v1.58 dù cohort được chọn là v1.57. Đây là reminder (source `avm/src/lib.rs` tại tagv1.2.2), không là yêu cầu nâng. Đã đọc help và gọi `cargo-build-sbf --tools-version v1.57 --install-only`.
 - Agave solana-cli4.1.2 đi cùng cargo-build-sbf4.1.0/default v1.54; pin `--tools-version v1.57 --arch v3` cho build. Không suy số version của CLI chính là compiler SBF.
 - Log AVM có warning dependency yoke-derive0.8.3 yanked nhưng install exit0. Giữ lockfile upstream và log, không tắt kiểm tra nguồn gốc.
+- Bash3.2 trên macOS với `set -u` báo unbound variable khi expand array rỗng. Script dùng build_args luôn có phần tử; kiểm lockfile bằng checksum trước/sau nên vẫn phát hiện thay đổi trước lần commit đầu.
+- Forward `--locked` cho build SBF và IDL khác nhau: build `--no-idl … -- -- --locked`, rồi `anchor idl build … -- --locked`. Giữ hello-build.txt exit1 lịch sử; hello-check-r2.txt mới chứng minh toàn quy trình exit0.
