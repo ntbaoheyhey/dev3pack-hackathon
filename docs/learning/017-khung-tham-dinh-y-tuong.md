@@ -1,22 +1,24 @@
-# 017 — Khung thẩm định ý tưởng sản phẩm và nghiên cứu về chấm ý tưởng
+# 017 — Khung thẩm định ý tưởng sản phẩm
 
 ## Mục tiêu
-- Hiểu cách giám khảo đánh giá ý tưởng tại các hackathon lớn.
-- Xây dựng khung thẩm định ý tưởng cho dự án cá nhân tại Dev3pack.
+- Xây dựng khung thẩm định ý tưởng cho dự án tại Dev3pack Hackathon (27–29/11/2026).
 
-## Kiến thức
-- Các khung thẩm định ý tưởng phổ biến (ví dụ: Google Ventures, Y Combinator):
-    - Khung **Problem-Solution Fit**: Vấn đề có đủ lớn không? Giải pháp có giải quyết được không?
-    - Khung **Feasibility (Tính khả thi)**: Có thể làm được trong 48 giờ không?
-    - Khung **Impact (Tác động)**: Giải quyết được vấn đề của bao nhiêu người?
-- Nghiên cứu học thuật về chấm điểm sáng tạo: Các giám khảo thường thiên kiến (bias) về demo trực quan (visualization) và tính hoàn thiện (completeness) của MVP hơn là tính mới (novelty) thuần túy.
+## Kiến thức (Cập nhật 17/11/2026)
+Các khung phổ biến:
+1. **Google Ventures (GV) Design Sprint**: Tập trung vào việc giải quyết vấn đề cốt lõi của người dùng nhanh chóng.
+2. **Y Combinator (YC) Startup School**: Ưu tiên dự án giải quyết "Pain point" thực tế và có khả năng phát triển (Scalability).
 
-## Tiêu chí ứng viên cho bộ chấm
-- **Tính cấp thiết**: Vấn đề có thực tế và gây "đau đớn" cho người dùng không?
-- **Tính thực thi**: Có thể tạo MVP trong thời gian hạn hẹp không?
-- **Độ sáng tạo**: Có giải pháp mới cho vấn đề cũ không?
-- **Giá trị kinh doanh/hệ sinh thái**: Có tiềm năng lâu dài hoặc giải quyết nhu cầu của Solana không?
-- **Chất lượng demo**: Có chứng minh được luồng chính chạy ổn định không?
+Nghiên cứu về tâm lý giám khảo (dựa trên trải nghiệm thực tế tại các hackathon):
+- Giám khảo thường thiên kiến (bias) đối với tính hoàn thiện của MVP và khả năng demo trực quan hơn là tính mới lạ (novelty) thuần túy.
+
+## Tiêu chí chấm cho bộ chấm chung (RUBRIC)
+Dựa trên yêu cầu của Dev3pack (cần bổ sung sau khi Codex duyệt):
+- **Tính cấp thiết (Problem/Relevance)**: Vấn đề có thực tế không?
+- **Tính thực thi (Feasibility)**: Có làm được trong thời gian hackathon không?
+- **Độ sáng tạo (Innovation)**: Có khác biệt không?
+- **Giá trị hệ sinh thái (Ecosystem Value)**: Có phù hợp với Solana không?
+- **Chất lượng demo (Demo Quality)**: Luồng demo có chạy được không?
 
 ## Nguồn
-- Tổng hợp từ các diễn đàn khởi nghiệp và hướng dẫn hackathon (xem lại `Note 012`).
+- [Dev3pack FAQ](https://hack.dev3pack.xyz/faq) (Xem ngày 17/11/2026)
+- [Workshop Colosseum](https://blog.colosseum.com/perfecting-your-hackathon-submission/) (Xem ngày 17/11/2026)

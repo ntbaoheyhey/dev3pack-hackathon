@@ -1,24 +1,21 @@
-# 018 — Có thật sự cần blockchain/Solana không; thông tin chấm Dev3pack
+# 018 — Phép thử Blockchain và Solana
 
 ## Mục tiêu
-- Phân biệt sản phẩm crypto-native và sản phẩm chỉ "gắn mác" blockchain.
-- Xác định giá trị gia tăng khi sử dụng Solana.
+- Xác định khi nào cần Blockchain/Solana để giải quyết vấn đề.
 
 ## Kiến thức
-- **Phép thử blockchain**:
-    - Dự án có cần tính minh bạch (transparency) không?
-    - Dự án có cần tài sản số (token/NFT) làm động lực không?
-    - Dự án có cần thực hiện giao dịch phi tập trung/không biên giới không?
-    - Nếu bỏ blockchain, hệ thống có chạy được không? (Nếu có và rẻ hơn → đừng làm blockchain).
-- **Tại sao Solana**:
-    - Tốc độ (throughput) cao, chi phí thấp cho người dùng.
-    - Hệ sinh thái hỗ trợ mạnh (Solana Mobile, Blinks/Actions).
-    - Sự tập trung của cộng đồng nhà phát triển.
+Phép thử "Có cần Blockchain không?":
+- **Tính phi tập trung (Decentralization)**: Hệ thống có cần sự minh bạch và không phụ thuộc vào một bên trung gian không?
+- **Quyền sở hữu tài sản (Ownership)**: Người dùng có cần quyền sở hữu thực sự đối với tài sản số (token/NFT) không?
+- **Khả năng tương tác (Composability)**: Dự án có cần kết hợp với các giao thức DeFi/Solana khác không?
+- **Tại sao Solana?**:
+    - Tốc độ và chi phí thấp.
+    - Công nghệ Blinks/Actions (theo Dev3pack gợi ý).
 
-## Tiêu chí ứng viên cho bộ chấm
-- **Độ cần thiết**: Blockchain giải quyết được bài toán mà hệ thống tập trung (centralized) không làm được (hoặc làm quá tốn kém).
-- **Tính native**: Sử dụng các tính năng đặc trưng của Solana (ví dụ: Token-2022, PDA, Actions/Blinks).
-- **Giá trị người dùng**: Người dùng cuối nhận được giá trị thực (thanh toán rẻ, sở hữu tài sản) thay vì chỉ thấy "blockchain" trên giao diện.
+## Tiêu chí chấm cho bộ chấm chung (RUBRIC)
+- **Độ cần thiết**: Dự án có dùng Blockchain giải quyết được bài toán khó mà database tập trung không làm được không?
+- **Tính Native**: Sử dụng các tính năng đặc trưng của Solana (Token-2022, PDA, Actions/Blinks).
 
 ## Nguồn
-- Tài liệu Solana Foundation, Colosseum.
+- [Tài liệu Solana Foundation](https://solana.com/)
+- [Dev3pack FAQ](https://hack.dev3pack.xyz/faq)
