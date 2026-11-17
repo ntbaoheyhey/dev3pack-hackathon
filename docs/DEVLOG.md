@@ -9,6 +9,8 @@ Mỗi dòng: ngày · ai làm (Mai / Codex / Antigravity) · việc · note đã
 
 - R02 · sửa 005: parse nguyên mã và program ID từ runtime log, tra map riêng theo IDL; CPI mơ hồ trả bằng chứng thay vì đoán. Kiểm tra 11 fixture Node offline, không gọi chain.
 
+- R03 · sửa 009 do Antigravity bổ sung: nguồn trực tiếp cho từng cơ chế/lệnh, bỏ số liệu và mẹo gán nhầm forum; phân vai là quy ước repo, Codex có UI khi client cấp công cụ. Dùng skill openai-docs, đối chiếu nguồn Google/OpenAI và công cụ của phiên.
+
 ## Trước sự kiện
 
 - 2026-11-17 · Claude · Dựng khung repo, quy tắc "học trước, ghi lại", research Codex vs Antigravity · 000, 001

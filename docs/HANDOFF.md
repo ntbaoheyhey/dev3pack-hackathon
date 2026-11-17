@@ -5,8 +5,8 @@
 - **Trạng thái:** đang làm. Cập nhật 17/11/2026, Asia/Ho_Chi_Minh.
 - Repo duy nhất: `/Users/bao/Documents/dev3pack-hackathon`; remote `https://github.com/ntbaoheyhey/dev3pack-hackathon.git`; nhánh `prompts/01-learning`.
 - Chỉ tài liệu; không cài đặt, tạo keypair, deploy, mainnet, sửa Taskbar Hero, merge PR hoặc push main/force-push.
-- Đã xong: merge `origin/main` theo yêu cầu và push `58ffb5a`; giữ README/main, lịch sử HANDOFF, tách mẫu trống; R01 (`1ad1f28`) chuyển key ElevenLabs về backend; R02 sửa parser + fixture offline.
-- Còn lại: R03 → R04–R09, đồng bộ 001/012/013/014, kiểm tra tài liệu, ghi SHA từng finding vào REVIEW, push nhánh và kiểm tra PR không xung đột.
+- Đã xong: merge `origin/main` theo yêu cầu và push `58ffb5a`; giữ README/main, lịch sử HANDOFF, tách mẫu trống; R01 (`1ad1f28`) chuyển key ElevenLabs về backend; R02 (`37e8a3e`) sửa parser + 11 fixture offline; R03 sửa nguồn và nhãn UI.
+- Còn lại: R04–R09, đồng bộ 001/012/013/014, kiểm tra tài liệu, ghi SHA từng finding vào REVIEW, push nhánh và kiểm tra PR không xung đột.
 - Đã đọc trang chủ/FAQ Dev3pack bằng browser; xác nhận dữ liệu người dùng cung cấp, giờ UTC chưa công bố ngoài dashboard.
 - Bị chặn: không có. Sau compact đọc file này rồi làm tiếp.
 
