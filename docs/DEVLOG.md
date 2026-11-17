@@ -2,6 +2,13 @@
 
 Mỗi dòng: ngày · ai làm (Mai / Codex / Antigravity) · việc · note đã cập nhật.
 
+## 2026-11-17 — Claude (điều phối): lập ROADMAP 9 phase build app
+
+- Chấm phần học 002–014: tốt về nguồn và ghi giới hạn; thiếu thực hành (chưa cài/compile/deploy), chưa có ý tưởng sản phẩm, thiếu một số chủ đề kỹ thuật, chưa có quy trình phối hợp khi build.
+- Người dùng chốt: build ngay từ bây giờ, mỗi phase là một bước làm app; học sinh học đúng thứ phase cần rồi làm.
+- Tạo `docs/ROADMAP.md`: 1 ý tưởng & spec → 2 kiến trúc → 3 môi trường (song song) → 4 program ∥ 5 frontend → 6 tích hợp → 7 hoàn thiện → 8 trong sự kiện → 9 demo & nộp. Mỗi phase có danh sách cần học, việc làm, cổng ra, người chủ trì. Ghi luật tự đánh thức mỗi 15 phút.
+- AGENTS.md thêm bước 0 đọc ROADMAP; README trỏ tới ROADMAP.
+
 ## 2026-11-17 — Codex: sửa PR #1 và findings của phần Antigravity
 
 **Trạng thái: xong.** R01–R09 đã sửa và push; các giới hạn kiểm chứng được giữ rõ trong REVIEW.
