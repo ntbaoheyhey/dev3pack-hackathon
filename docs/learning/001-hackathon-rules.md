@@ -49,3 +49,7 @@ Chưa kiểm chứng danh sách từng perk theo tài khoản; bỏ danh sách t
 ## Nguồn và điều còn mở
 
 [Trang chủ Dev3pack](https://hack.dev3pack.xyz), [FAQ Dev3pack](https://hack.dev3pack.xyz/faq), kiểm tra **17/11/2026**. Giờ UTC trong dashboard và partner tracks/bounty chưa xác nhận; cần kiểm tra lại trước sự kiện. Các mốc chuẩn bị/video trong 012–013 là đề xuất nội bộ.
+
+## Bài học / lỗi đã gặp
+
+Danh sách sponsor không xác nhận bounty riêng; lịch sử giải khác không xác nhận thể lệ Dev3pack. Ghi ngày đọc trang chính thức và để mở chi tiết chưa được công bố hoặc chưa kiểm tra trong dashboard.

@@ -137,4 +137,6 @@ Template dưới chưa phải bằng chứng dự án đã xây xong; thay mọi
 
 Chưa có giờ UTC từ dashboard, partner tracks/bounty cụ thể hoặc trọng số BTC. Kiểm tra lại trang chính thức trước kickoff và trước khi nộp. Chưa có sản phẩm, test, video hoặc deployment trong task tài liệu này.
 
-**Bài học / lỗi đã gặp:** không gán nguồn homepage cho luật cụ thể; tách kết quả giải cũ, đề xuất nội bộ và điều kiện BTC hiện hành.
+### Bài học / lỗi đã gặp
+
+Không gán nguồn homepage cho luật cụ thể; tách kết quả giải cũ, đề xuất nội bộ và điều kiện BTC hiện hành.

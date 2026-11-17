@@ -2,6 +2,7 @@
 
 > Ngày kiểm tra: 2026-11-17 (Asia/Ho_Chi_Minh). Phạm vi: kiến trúc di động Solana Mobile Stack, Mobile Wallet Adapter, dApp Store và chiến lược hackathon.
 > Trạng thái: đã đối chiếu tài liệu chính thức từ Solana Mobile Developer Hub; phân tích khả thi kỹ thuật và rủi ro triển khai.
+> Phạm vi lần sửa của Codex: spec/type/encoding MWA ở R06, nhãn thể lệ ở R04 và heading R09. Các thông số phần cứng, store và version môi trường kế thừa từ Antigravity chưa được kiểm chứng lại toàn diện; chưa thử thiết bị hoặc build app.
 
 ---
 
@@ -193,4 +194,6 @@ Nếu nối bước ký/gửi sau: protocol package 3.0.2 nhận `signAndSendTra
 - **Điểm chưa kiểm chứng**: Trải nghiệm thực tế của thiết bị phần cứng Solana Seeker vật lý (vì thiết bị thuộc diện bàn giao thị trường mới; các nhà phát triển chủ yếu dùng Seeker Emulator trên Android Studio).
 - **Bước tiếp theo**: Trong trường hợp chọn làm sản phẩm có yếu tố mobile, ưu tiên thiết kế web responsive 100% trước, sau đó nếu còn thừa thời gian (trên 15 tiếng) mới cân nhắc bọc sang khung React Native hoặc Capacitor.
 
-**Bài học / lỗi đã gặp:** spec RPC và wrapper SDK không đồng nhất shape/encoding. R06 đã đối chiếu đúng source 3.0.2; chưa build, thử thiết bị hoặc xác nhận trải nghiệm PWA/native.
+### Bài học / lỗi đã gặp
+
+Spec RPC và wrapper SDK không đồng nhất shape/encoding. R06 đã đối chiếu đúng source 3.0.2; chưa build, thử thiết bị hoặc xác nhận trải nghiệm PWA/native.

@@ -1,7 +1,7 @@
 # 005 — Frontend Solana trong kỷ nguyên @solana/kit
 
 > Ngày kiểm tra: 2026-11-17 (Asia/Ho_Chi_Minh). Phạm vi: kiến trúc frontend Web3, kết nối ví và tích hợp program.
-> Trạng thái: đã đối chiếu docs chính thức; đã chạy thực tế sandbox Vite 8.3 + React 19 + @solana/kit 8.6.0 trên trình duyệt nội bộ.
+> Trạng thái hiện hành: Codex đã sửa R02/R08/R09; parser có 11 fixture offline đạt, Codama mới đối chiếu source. Sandbox Vite/React/Kit là **báo cáo lịch sử của Antigravity ở workspace nguồn**, chưa được Codex tái chạy hoặc kiểm chứng độc lập.
 
 ---
 
@@ -20,6 +20,8 @@ Thời lượng đọc: khoảng 15–20 phút.
 ---
 
 ## 2. Phiên bản và bằng chứng kiểm tra
+
+Ngoài dòng Codama được sửa theo R08, các version, API exports và số đo sandbox trong bảng là báo cáo của phiên Antigravity trước. Chưa kiểm chứng lại package, build hoặc browser ở repo đích; không coi bảng này là bộ tương thích đã thử trong lần sửa tài liệu.
 
 | Thành phần | Phiên bản (2026-11) | Mức kiểm chứng |
 | --- | --- | --- |
@@ -181,7 +183,9 @@ Trong ngân sách làm việc 48 giờ tự đặt của đội, lựa chọn fr
 
 ## 4. Ví dụ hoặc quy trình tối thiểu
 
-### Ví dụ 4.1. Khởi tạo RPC và đọc dữ liệu với `@solana/kit` (Đã chạy kiểm tra)
+### Ví dụ 4.1. Khởi tạo RPC và đọc dữ liệu với `@solana/kit`
+
+Theo báo cáo sandbox lịch sử của Antigravity; Codex chưa chạy lại đoạn này. Không dùng kết quả fixture parser ở mục 4.2 làm bằng chứng cho RPC/Kit.
 
 ```typescript
 import { createSolanaRpc, address } from '@solana/kit';
@@ -298,13 +302,15 @@ Bảng ca kiểm tra dùng IDL **giả lập** của program A: `6000 → BetToo
 - [Wallet Standard Specification](https://github.com/wallet-standard/wallet-standard) — Đặc tả chuẩn kết nối ví đa nền tảng (Đã đọc).
 - [Codama CLI README tại `141998e`](https://github.com/codama-idl/codama/blob/141998ef817294a79629c4592cdfdce93bd6939d/packages/cli/README.md) — `init`, `run`, schema config và renderer recipe; source version 2.0.0-rc.0, đã đọc, chưa chạy.
 - [Solana Transaction Confirmation Guide](https://solana.com/developers/guides/advanced/confirmation) — Hướng dẫn xử lý vòng đời giao dịch, commitment levels và blockhash expiry (Đã đọc).
-- [Sandbox cục bộ](/tmp/sandbox-frontend-solana) — Thử nghiệm thực tế với Vite 8.3 + React 19 + @solana/kit 8.6.0 đã chạy thành công và được xác minh qua browser subagent.
+- Sandbox lịch sử tại `/tmp/sandbox-frontend-solana` — Antigravity báo cáo đã thử Vite/React/Kit qua browser subagent. Đường dẫn tạm không được lưu trong Git, không phải link dùng được trên máy khác hoặc bằng chứng Codex đã chạy lại.
 
 ---
 
 ## 7. Điểm chưa kiểm chứng và bước tiếp theo
 
-- **Điểm chưa kiểm chứng**: Thử nghiệm sandbox trên được chạy trên localhost với mock outcome và devnet slot call, chưa thực hiện ký giao dịch thật qua tiện ích ví trình duyệt (extension Phantom/Solflare) vì môi trường chạy agent không có GUI extension.
+- **Điểm chưa kiểm chứng**: Theo báo cáo Antigravity, sandbox cũ dùng localhost, mock outcome và devnet slot call, chưa ký transaction thật qua ví extension. Codex chưa tái chạy; các nhận định kế thừa về version, bundle size, API exports và so sánh framework chưa được rà soát toàn diện trong R02/R08/R09.
 - **Bước tiếp theo**: Khi bắt đầu xây dựng dự án hackathon, khởi tạo project mẫu bằng Vite, cài đặt `@solana/wallet-adapter-react` để có sẵn giao diện chọn ví, kết hợp `@solana/kit` cho các lệnh đọc dữ liệu RPC và Codama cho client program.
 
-**Bài học / lỗi đã gặp (R02/R08):** parse custom error bằng cặp program ID/mã đầy đủ; pin tài liệu CLI và kiểm output codegen trước dùng tên hàm. 11 fixture parser là test offline, không chứng minh SDK/codegen hay transaction thật hoạt động.
+### Bài học / lỗi đã gặp
+
+Parse custom error bằng cặp program ID/mã đầy đủ; pin tài liệu CLI và kiểm output codegen trước dùng tên hàm. 11 fixture parser là test offline, không chứng minh SDK/codegen hay transaction thật hoạt động.

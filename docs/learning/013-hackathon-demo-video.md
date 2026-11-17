@@ -129,4 +129,6 @@ Kết thúc cả hình và tiếng không muộn hơn 2:45.
 
 Chưa có video xuất thật, số đo latency/rent, test log, deployment hay bằng chứng xây trong sự kiện. Giờ UTC trên dashboard và partner track/bounty cuối cùng còn chờ xác nhận. Khi có sản phẩm, điền bằng chứng và đo file xuất; không coi việc sửa tài liệu là đã build/test/deploy app.
 
-**Bài học / lỗi đã gặp:** lịch 180 giây không đáp ứng “dưới 3 phút”; placeholder phải yêu cầu bằng chứng, không cài sẵn thành tích để đọc như sự thật.
+### Bài học / lỗi đã gặp
+
+Lịch 180 giây không đáp ứng “dưới 3 phút”; placeholder phải yêu cầu bằng chứng, không cài sẵn thành tích để đọc như sự thật.

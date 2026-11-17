@@ -5,10 +5,11 @@
 - **Trạng thái:** đang làm. Cập nhật 17/11/2026, Asia/Ho_Chi_Minh.
 - Repo duy nhất: `/Users/bao/Documents/dev3pack-hackathon`; remote `https://github.com/ntbaoheyhey/dev3pack-hackathon.git`; nhánh `prompts/01-learning`.
 - Chỉ tài liệu; không cài đặt, tạo keypair, deploy, mainnet, sửa Taskbar Hero, merge PR hoặc push main/force-push.
-- Đã xong: merge `origin/main` theo yêu cầu và push `58ffb5a`; giữ README/main, lịch sử HANDOFF, tách mẫu trống; R01 (`1ad1f28`) chuyển key ElevenLabs về backend; R02 (`37e8a3e`) sửa parser + 11 fixture offline; R03 (`84846a2`) sửa nguồn và nhãn UI; R04/Phần 3 (`2e6889c`) đồng bộ thể lệ 001/012/013/014 và nguồn pricing; R05 (`8b900ff`) sửa Transfer Fee/ngân sách 006; R06 (`e7e2807`) sửa MWA đúng type/encoding; R07 (`3f0e29e`) sửa script video 165 giây, placeholder bằng chứng; R08 (`dd38da7`) sửa workflow Codama có source/version; R09 chuẩn hóa sáu heading mục 4.
-- Còn lại: kiểm tra tài liệu/scope, đồng bộ README và REVIEW với SHA từng finding, cập nhật trạng thái xong, push nhánh và kiểm tra PR không xung đột.
-- Đã đọc trang chủ/FAQ Dev3pack bằng browser; xác nhận dữ liệu người dùng cung cấp, giờ UTC chưa công bố ngoài dashboard.
-- Bị chặn: không có. Sau compact đọc file này rồi làm tiếp.
+- Đã xong: merge `origin/main` và push `58ffb5a`; giữ nội dung main/mục lục, tách mẫu trống. Đã sửa R01–R09, bảng commit và giới hạn nằm trong [REVIEW](learning/REVIEW-2026-11-17.md); R04 có ba commit `2e6889c`, `4bc4cd6`, `057085d`, R09 có `dd78420`, `c583fb6`.
+- README/REVIEW đã đồng bộ; mục bài học đúng template; báo cáo sandbox cũ được gắn nhãn lịch sử. Kiểm tra 27 Markdown, 52 fences, 103 link cục bộ, 3 JSON, sáu heading mục 4, video 165 giây và phạm vi tài liệu đạt; parser cuối khớp mã đã đạt 11 fixture offline.
+- Còn lại: commit/push các cập nhật cuối, xác minh SHA remote và PR không xung đột, ghi trạng thái xong rồi push bản ghi hoàn tất; báo cáo cuối tiếng Việt. Không cần hỏi lại.
+- Đã đọc trang chủ/FAQ Dev3pack bằng browser. Chưa kiểm giờ UTC trên dashboard, partner tracks/bounty cuối cùng; chưa có video, số đo sản phẩm hoặc kiểm thử SDK/MWA/backend/codegen tích hợp.
+- Bị chặn: không có. Sau compact đọc phần hiện hành này rồi tiếp tục việc còn lại.
 
 ---
 

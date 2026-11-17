@@ -169,3 +169,7 @@ Không có mẹo nào ở đây dựa trên tutorial trước 2025. Các kết l
 Chưa đo A/B hiệu quả prompt, tốc độ, usage hoặc độ chính xác của mẹo cộng đồng; chưa xác minh build desktop/model đang chọn. X, Juejin, Zhihu, Bilibili chưa đọc được nội dung gốc. Không biến các khoảng trống này thành bằng chứng thuận hay chống một mẹo.
 
 Áp dụng trước ba việc ít phụ thuộc công cụ: đầu ra rõ, nguồn đúng version, bàn giao có bước kế tiếp. Luật chạy tiếp sau compact đã nằm trong [AGENTS.md](../../AGENTS.md). R03 đã sửa nguồn phần Antigravity; các kết quả sandbox do phiên trước báo cáo vẫn chưa được tái chạy.
+
+### Bài học / lỗi đã gặp
+
+Permalink phải hỗ trợ đúng sản phẩm và đúng mẹo được gán. Tài liệu tính năng, trải nghiệm cộng đồng và phép đo model/quota là các mức bằng chứng khác nhau; công cụ UI phải xét theo client/quyền thực tế, không gán giới hạn chung cho tên agent.

@@ -200,4 +200,6 @@ Trước khi dùng thật: kiểm tra guard từ chối request chưa đăng nh�
 
 Chưa đo thời gian tích hợp, chưa chạy các snippet với dịch vụ thật, chưa kiểm quota tài khoản/model ElevenLabs và thiết bị MWA. Chưa biết partner tracks/bounty cuối cùng; kiểm tra thông báo BTC trước kickoff. Không đăng ký tài khoản, lấy key hay deploy trong phiên sửa tài liệu này.
 
-**Bài học / lỗi đã gặp:** key của nhà cung cấp phải ở backend; tài trợ, pricing và điều kiện track là ba loại thông tin khác nhau. Ví dụ ngắn chưa chứng minh tích hợp đã an toàn hoặc đã hoạt động.
+### Bài học / lỗi đã gặp
+
+Key của nhà cung cấp phải ở backend; tài trợ, pricing và điều kiện track là ba loại thông tin khác nhau. Ví dụ ngắn chưa chứng minh tích hợp đã an toàn hoặc đã hoạt động.

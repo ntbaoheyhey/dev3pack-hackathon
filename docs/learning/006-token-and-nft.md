@@ -2,6 +2,7 @@
 
 > Ngày kiểm tra: 2026-11-17 (Asia/Ho_Chi_Minh). Phạm vi: kiến trúc token, extensions, NFT và chiến lược chọn công nghệ.
 > Trạng thái: đã đối chiếu docs chính thức của Solana Foundation và Metaplex Developer Hub; phân tích ở mức kiến trúc và lựa chọn kỹ thuật.
+> Phạm vi lần sửa của Codex: R05 đối chiếu Transfer Fees và tính nhất quán ngân sách; R09 sửa heading. Bảng package/Program ID và các nhận định khác kế thừa từ Antigravity chưa được kiểm chứng lại toàn diện; chưa chạy on-chain.
 
 ---
 
@@ -193,4 +194,6 @@ Ví dụ tính toán trên giấy: transfer **10.000 raw units**, phí **100 bps
 - **Điểm chưa kiểm chứng**: Khả năng tương thích của các ví di động bên thứ ba đối với việc hiển thị trực tiếp Confidential Transfers và Transfer Hooks của Token-2022; một số ví cũ có thể hiển thị cảnh báo khi tương tác với token có hook.
 - **Bước tiếp theo**: Trong hackathon, nếu làm mảng NFT/Game, hãy dùng ngay SDK `@metaplex-foundation/mpl-core` để mint và fetch tài sản vì cú pháp gọn nhẹ hơn rất nhiều so với thư viện cũ.
 
-**Bài học / lỗi đã gặp:** phí withheld chưa phải tiền kho bạc; bài có trần ngân sách phải tính đủ chi phí hoặc ghi thiếu căn cứ. Mọi ví dụ trong lần sửa là trên giấy, chưa biên dịch/on-chain.
+### Bài học / lỗi đã gặp
+
+Phí withheld chưa phải tiền kho bạc; bài có trần ngân sách phải tính đủ chi phí hoặc ghi thiếu căn cứ. Mọi ví dụ trong lần sửa là trên giấy, chưa biên dịch/on-chain.

@@ -27,6 +27,9 @@ Mỗi dòng: ngày · ai làm (Mai / Codex / Antigravity) · việc · note đã
 
 - R04 bổ sung khi rà soát cuối · sửa cách gán “khuyến nghị chính thức Dev3pack 48h” trong 005 và lời hứa PWA đạt điểm tối đa/tiêu chí mobile bắt buộc trong 008. Đây là đề xuất nội bộ chưa đo; không suy thời gian tích hợp hoặc điểm giải từ lựa chọn framework.
 
+- Hoàn tất nội dung · đồng bộ README và [REVIEW](learning/REVIEW-2026-11-17.md) với trạng thái/commit R01–R09; giữ snapshot cũ dưới nhãn lịch sử, chuẩn hóa “Bài học / lỗi đã gặp” và phân biệt sandbox Antigravity với kiểm tra Codex. Không đụng repo Taskbar Hero.
+- Kiểm tra trước push · 27 Markdown tracked, 52 fenced blocks cân bằng, 103 link cục bộ có đích, 3 JSON parse được; sáu heading mục 4 và bảng/script 165 giây khớp. Mã parser cuối khớp mã đã đạt 11 fixture offline. Lịch sử HANDOFF/main, mục lục cũ và mẫu trống được bảo toàn; whitespace/scope đạt. Không chạy integration, cài đặt, RPC, keypair hoặc deploy; giới hạn còn lại ghi trong REVIEW.
+
 ## Trước sự kiện
 
 - 2026-11-17 · Claude · Dựng khung repo, quy tắc "học trước, ghi lại", research Codex vs Antigravity · 000, 001
