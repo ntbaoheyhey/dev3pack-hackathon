@@ -29,7 +29,7 @@ Khi làm task dài (Goal mode, nhiều bước), context có thể bị auto-com
    - mọi mục trong "Còn lại" đã xong và đã báo cáo cuối; hoặc
    - bị chặn bởi việc **cần người dùng** (cần quyết định, cần cài đặt, cần đăng nhập, cần quyền); khi đó ghi rõ cần gì vào mục "Bị chặn".
 4. **Không bao giờ** ghi trạng thái "tạm dừng / paused" trong file bàn giao, trừ khi người dùng tự nói tạm dừng. Trạng thái hợp lệ: `đang làm`, `bị chặn (cần người dùng)`, `xong`.
-5. Trước khi context đầy (hoặc sau mỗi mục lớn): cập nhật `docs/HANDOFF.md` để lần compact sau đọc lại là làm tiếp được.
+5. Trước khi context đầy (hoặc sau mỗi mục lớn): cập nhật `docs/HANDOFF.md` để lần compact sau đọc lại là làm tiếp được. Mẫu trống nằm tại [docs/HANDOFF-TEMPLATE.md](docs/HANDOFF-TEMPLATE.md); không ghi đè bàn giao hiện hành bằng mẫu.
 
 ## Luật an toàn (bắt buộc)
 
