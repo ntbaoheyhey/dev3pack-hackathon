@@ -24,3 +24,5 @@
 - Việc T6 (V3): Đã hoàn thiện evidence cho C01, C02, C03 theo các yêu cầu review mới của Codex (diễn giải cẩn thận, nguồn cụ thể).
 
 - Việc T5: Xong. Đã hoàn thành chuẩn bị template và flow UI cho Phase 2/5 vào `docs/data/phase2-ux-prep.md`.
+
+- Việc T8: đang làm. Đã khởi tạo cấu trúc project cho web tại `apps/web`.
