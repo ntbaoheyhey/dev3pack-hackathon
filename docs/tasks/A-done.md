@@ -18,3 +18,5 @@
 - Việc T4: đang làm.
   - Mục tiêu: So sánh đối thủ giải quyết C01/C02/C03, tìm negative evidence.
   - File kết quả: `docs/data/candidate-alternatives.md`.
+
+- Việc T4: Xong. Đã so sánh các alternative cho C01, C02, C03 vào `docs/data/candidate-alternatives.md`.
