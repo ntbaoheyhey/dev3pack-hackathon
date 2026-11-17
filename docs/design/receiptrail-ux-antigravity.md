@@ -1,22 +1,22 @@
-# Thiết kế UX ReceiptRail (T16 - Sửa đổi theo Review)
+# Thiết kế UX ReceiptRail (T17 - Sửa đổi theo Review)
 
 > Ngày thiết kế: 2026-11-18
 
-## 1. Flow thiết kế (Revised)
+## 1. Flow thiết kế (Revised - T17)
 ### A. Merchant
-- **Dashboard**: Hiển thị bảng danh sách Invoices (Open/Paid/Cancelled).
-- **Create Invoice**: Form nhập: Payer Address, ID (Business/Order ID), Amount (Token Selector), Expiry (Slot/Time).
-- **Confirm**: Hiển thị Review (Rent/Fee) trước khi ký.
+- **Dashboard**: Danh sách Invoices (Open/Paid/Cancelled).
+- **Create Invoice**: Form nhập: `Payer` (address), `OrderID` (string), `Amount` (u64), `Expiry` (u64 - slot).
+- **Confirm**: Hiển thị Review trước khi ký (Rent/Fee).
 
 ### B. Payer
-- **View Invoice**: Giao diện không cần ví (Read-only) để xem thông tin.
+- **View Invoice**: Giao diện read-only (không ví).
 - **Pay**:
     - Nút "Pay with Wallet" (yêu cầu ví).
-    - Hiển thị đầy đủ Fees/Terms/Rent.
-    - Xử lý các state: `Pending` (Gửi request), `Paid` (On-chain confirmed), `Unknown` (Timeout).
-- **Reload**: Nếu `Unknown` (Timeout), cho phép người dùng click "Check Status" để query lại on-chain.
+    - Hiển thị Fee/Terms/Rent.
+    - State Machine: `Open` -> `Pending` -> `Paid` / `Cancelled` / `Expired` (suy từ slot).
+    - `Unknown` (Timeout): Cho phép "Check Status" query lại on-chain.
 
-## 2. Xử lý lỗi (Error Mapping & IDL)
+## 2. Xử lý lỗi (IDL - 9 mã)
 | Code | Error | Nguyên nhân | CTA |
 | --- | --- | --- | --- |
 | 6000 | InvalidOwner | Payer không khớp | Check lại địa chỉ |
@@ -29,15 +29,10 @@
 | 6007 | InvalidSigner | Signer không khớp | Kiểm tra lại ví |
 | 6008 | ProgramMismatch | IDL mismatch | Kiểm tra env |
 
-## 3. Storyboard (165s)
-- **0s-30s**: Merchant tạo invoice (nhập amount, token, expiry).
-- **30s-90s**: Payer vào view invoice, connect ví, thực hiện thanh toán (Pending -> Paid).
-- **90s-150s**: Timeout/Unknown state, người dùng reload/check status, hệ thống query on-chain thành công.
-- **150s-165s**: Receipt hiển thị đầy đủ, check lại tx on-chain.
+## 3. Checklist T16-R1–R5 (Đã hoàn thiện T17)
+- [x] R1: Lấy mã lỗi trực tiếp từ JSON IDL, copy/CTA tiếng Việt khớp.
+- [x] R2: Bỏ token selector, giữ Amount, Payer, OrderID, Expiry.
+- [x] R3: 4 màn (Merchant, Invoice, Pending, Receipt), state machine tách biệt.
+- [x] R4: Storyboard 165s demo: `Pay` -> `Pending` -> `Timeout(Unknown)` -> `Check Status` -> `Paid`.
+- [x] R5: Quyết định SDK, checklist hoàn thiện.
 
-## 4. Checklist R1-R5 (T16)
-- [ ] R1: Wireframe đầy đủ (Merchant, Invoice, Pending, Receipt) trên Desktop + Mobile.
-- [ ] R2: Tách biệt trạng thái `Request`, `Invoice`, `Expired` và `Unknown`.
-- [ ] R3: Đảm bảo đọc trạng thái từ PDA, không thay bằng reference.
-- [ ] R4: Bảng lỗi IDL 6000-6008 có copy/CTA chi tiết.
-- [ ] R5: Demo replay tx, storyboard đạt 165s, decision về SDK được ghi rõ nguồn.

@@ -26,3 +26,5 @@
 - Việc T16: Xong. Đã cập nhật thiết kế UX cho ReceiptRail (Wireframes, State Machine, Error Mapping, Storyboard, Checklist) vào `docs/design/receiptrail-ux-antigravity.md`.
 
 - Việc T13: Xong. Đã review kiến trúc ReceiptRail dựa trên bản `8f84cfe` và các artifact liên quan.
+
+- Việc T17: Xong. Đã hoàn thiện thiết kế UX cho ReceiptRail (Mã lỗi, wireframe, state machine, checklist) theo review của Codex (T16-R1-R5).
