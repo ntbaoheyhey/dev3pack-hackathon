@@ -8,6 +8,8 @@ Mỗi dòng: ngày · ai làm (Mai / Codex / Antigravity) · việc · note đã
 - Người dùng đổi vai: Codex chủ trì, Antigravity là trợ lý nhận việc qua `docs/tasks/A-queue.md`, báo ở `docs/tasks/A-done.md`.
 - Thêm `docs/STOP-CAUSES.md` (S1–S7 dừng, K1–K3 quên context); AGENTS.md thêm "Chống dừng giữa chừng" và "Chống quên context" (Thẻ nhớ đầu HANDOFF). Prompt 03 cho hai bên kèm nội dung tin nhắn tự nhắc 15 phút.
 
+- 2026-11-17 · Codex · Tạo và xác minh automation heartbeat nhắc trưởng nhóm mỗi 15 phút vào chính chat theo nguyên văn người dùng; đã mở thẻ trong app, đối chiếu nội dung/lịch/trạng thái/chat đích, chưa quan sát lượt nhắc đầu tiên · Cập nhật note [009](learning/009-tips-codex-antigravity.md).
+
 ## 2026-11-17 — Claude (điều phối): luật làm cặp, không chờ nhau
 
 - Người dùng phản ánh hai agent thay phiên dừng để chờ nhau; Codex không tạo Automation tự đánh thức nên dừng hẳn; Antigravity báo chờ 015/016 dù đã có trên `origin/work` (487d5cf).

@@ -173,3 +173,5 @@ Chưa đo A/B hiệu quả prompt, tốc độ, usage hoặc độ chính xác c
 ### Bài học / lỗi đã gặp
 
 Permalink phải hỗ trợ đúng sản phẩm và đúng mẹo được gán. Tài liệu tính năng, trải nghiệm cộng đồng và phép đo model/quota là các mức bằng chứng khác nhau; công cụ UI phải xét theo client/quyền thực tế, không gán giới hạn chung cho tên agent.
+
+Ngày 17/11/2026, Codex đã tạo automation `Dev3pack — nhắc trưởng nhóm mỗi 15 phút` theo nguyên văn người dùng bằng công cụ chính thức `mcp__codex_app__automation_update`, loại `heartbeat` gắn với chat hiện tại. Đã mở lại thẻ automation trong app và đọc cấu hình lưu cục bộ: trạng thái `ACTIVE`, chu kỳ 15 phút, đúng nội dung và chat đích. Đây là bằng chứng đã tạo và kiểm tra cấu hình; chưa quan sát lượt nhắc đầu tiên. Khi cần nhắc vào cùng chat, dùng heartbeat và kiểm tra chat đích sau khi tạo; chỉ nói “đã tạo” khi công cụ trả thành công, không suy ra từ ý định hoặc lời hứa của agent.
