@@ -6,12 +6,12 @@
 - Queue lượt cuối đã viết; đầu vào4b3b144, T32/1b38e7e,T33/c249240,T31/d4dcf3c. Khi A nộp, C nhận/ghi nợ/đóng, không rework.
 - Kiểm21:48:35 UTC+7: payer GQRo…NhbFM2 có2.5SOL, đúng genesis devnet,hello chưa deploy. Tin funding cũ đã được thay thế.
 - P3-B chỉ hello2yzx…RiXL,signers thử cũ,một buffer tạm ngoài Git,trần1.5SOL cho deploy+initialize/increment; không in secrets.
-- Trước gửi: kiểm signer pubkeys/permissions,binary macOS127672bytes/hash9b5483f7…,rent/fee/flags; dùng max-len127672,CU price0,max-sign-attempts1,use-rpc.
+- Preflight21:51:38 UTC+7 đạt:signers/modes/binary/hash khớp,budget bảo thủ1.3147424SOL<1.5;đã tạo duy nhất buffer qSWzc…9s6D ngoài Git/chưa gửi. Evidence hello-devnet-preflight-2026-11-18.json.
 - Sau gửi: lưu signature,kiểm finalized/owner/executable/programdata/authority/bytecode,counter0→1 và chi phí; timeout giữ journal,không ký lại mù quáng.
 - CI27cf7ac đã đạt3jobs/57tests mỗi run; HEAD tài liệu không là revision CI,không chạy lại khi executable inputs không đổi.
 - Web/lab/toolchain ClusterProof giữ nguyên; ví thật chưa kiểm,không nhận là đã đạt. Không deploy ReceiptRail/public/cài thêm/mergePR7/mainnet/force-push.
 - Automation15phút có thật; checkpoint tài liệu và merge dùng [skip ci]. Cập nhật Thẻ nhớ sau mỗi bước lớn.
-- Bước tiếp: push chỉ đạo/queue,hoàn tất preflight,budget và triển khai hello; chốt lượt cuối A khi nộp,cập nhật PR7/bàn giao để trình Phase4.
+- Bước tiếp: deploy hello bằng buffer đã có,kiểm finalized/bytecode/authority,initialize/increment;không tạo buffer thứ hai. Queue cuối đã push7137ec0;chốt nợ/PR7 để trình Phase4.
 
 ## Bằng chứng hiện hành
 

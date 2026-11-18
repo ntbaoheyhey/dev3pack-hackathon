@@ -1,0 +1,53 @@
+{
+  "at": "2026-11-18T14:51:38.396Z",
+  "scope": "P3-B hello devnet only; preflight reads and one authorized local buffer keypair, no transaction sent",
+  "rpc": "https://api.devnet.solana.com",
+  "genesis": "EtWTRABZaYq6iMfeYKouRu166VU2xqa1wcaWoxPkrZBG",
+  "initialBalanceLamports": 2500000000,
+  "programId": "2yzxUQEpaeLmgCMhDipwnVL3DHsxez18KcePonqZRiXL",
+  "payer": "GQRoDMoWFV2nhgwm3bZGvSCC1LSa2wRkLeeJg8NhbFM2",
+  "programAccountBefore": null,
+  "binary": {
+    "path": "target/deploy/phase3_hello.so",
+    "bytes": 127672,
+    "sha256": "9b5483f7335a294b125ba458bcbcbdc9e222b605a2c67d7fabc76c132a23da54"
+  },
+  "rentLamports": {
+    "program": 833120,
+    "programData": 649452600,
+    "bufferMinimum": 649411960,
+    "counter": 894080,
+    "bufferFunding": 649452600
+  },
+  "feeEstimate": {
+    "baselineBytes": 271,
+    "chunkBytes": 960,
+    "maximumWriteMessages": 133,
+    "threeSignatureMessageLamports": 15000,
+    "conservativeMessageAttempts": 274,
+    "feeUpperBoundLamports": 4110000,
+    "reserveLamports": 10000000,
+    "quoteOnly": true
+  },
+  "conservativeBudgetLamports": 1314742400,
+  "approvedCapLamports": 1500000000,
+  "signersVerified": {
+    "payer": "GQRoDMoWFV2nhgwm3bZGvSCC1LSa2wRkLeeJg8NhbFM2",
+    "program": "2yzxUQEpaeLmgCMhDipwnVL3DHsxez18KcePonqZRiXL"
+  },
+  "signerModes": "directory0700/files0600",
+  "bufferPublicKey": "qSWzcDdMP7m2GhyE2tgaZ5FnHzAtgvMjZwGkQok9s6D",
+  "parameters": {
+    "maxLen": 127672,
+    "computeUnitPrice": 0,
+    "maxSignAttempts": 1,
+    "useRpc": true,
+    "commitment": "finalized"
+  },
+  "source": {
+    "url": "https://github.com/anza-xyz/agave/blob/v4.1.2/cli/src/program.rs",
+    "sha256": "59ef76315a484fb91ef171f7124467448f8abb55466f272c47d3a3038a9b1ea0",
+    "lines": "2521-2669,3046-3210"
+  },
+  "status": "READY"
+}

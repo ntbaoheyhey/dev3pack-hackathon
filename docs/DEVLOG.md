@@ -375,3 +375,5 @@ Các mô tả dưới đây là sự kiện ở Taskbar Hero, không phải hàn
   Kiểm snapshot PR/cuối lượt:76links local/5anchors,28report snapshots/6input hashes mỗi snapshot,9PR body hashes,Thẻ nhớ17dòng;file A/executable inputs khớp origin/workb9ddfab,git diff --check đạt. Không chạy suite mới.
 
 2026-11-18T21:49:46+07:00 · Codex · Ghi chỉ đạo trực tiếp: một lượt cuối T31/T32/T33 rồi ghi nợ/đóng; thay queue và lưu lịch sử. Inspect devnet có2.5SOL/hello chưa deploy; cập nhật DECISION/PHASE3-PLAN/Thẻ nhớ/note022 trước P3-B,giữ trần1.5SOL. Chưa tạo buffer/ký/gửi.
+
+2026-11-18T21:51:38+07:00 · Codex · Preflight P3-B đạt:2.5SOL đúng devnet,signers/binary khớp,budget1.3147424SOL<1.5. Tạo một buffer tạm ngoài Git0600,sau preflight;chưa gửi. Cập nhật note022/Thẻ nhớ/evidence;queue cuối đã push7137ec0 sau merge giữ hai phía [skip ci].
