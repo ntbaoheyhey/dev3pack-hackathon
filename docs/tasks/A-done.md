@@ -78,3 +78,6 @@
 
 - Việc T32: Đã sửa bổ sung (Authority check chi tiết, Bảng 3 ca rollback với Log, Ma trận 5 nhóm chi tiết).
 - Tiếp theo: T33 (Rework bổ sung UX).
+
+- Việc T33: Đã rework bổ sung (Khôi phục Phí, Terms, Unknown, CTA, Bảng lỗi, SDK).
+- Tình trạng: Hoàn tất toàn bộ (T32, T33, T31).
