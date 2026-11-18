@@ -29,6 +29,13 @@ Tin 00:05:05.678 ngày18/11 yêu cầu ghi “chưa có quyết định của ng
 
 Quyền mới này áp dụng đúng P3-A/P3-B; không khôi phục các kết luận cũ đã bị đính chính. Không hỏi duyệt lại hai mục. Lời đồng ý chưa chứng minh billing đã xử lý, tiền đã có, CI/test/devnet đã đạt hoặc giáo viên đã chấm.
 
+## Tiếp tục CI — tin trực tiếp ngày 18/11/2026
+
+- Nguyên văn: **“Đã mở CI, chạy tiếp Phase 3.”**
+- Giờ log: **10:35:20.180 ngày 18/11/2026, Asia/Saigon (UTC+7)**, tương ứng `2026-11-18T03:35:20.180Z`; người dùng không tự nêu giờ quyết định. [Record](../evidence/phase3/ci-resume-user-2026-11-18.json).
+- Tiếp tục P3-A trong phạm vi đã duyệt; tạo run mới và kiểm runner/steps/logs thật. Câu báo đã mở CI chưa tự chứng minh CI xanh hoặc billing đã hết chặn.
+- P3-B đã có quyền nhưng funding vẫn được để sau theo tin10:14; không suy thêm quyền cài trên máy người dùng, deploy ReceiptRail, public web hoặc merge.
+
 ## Đính chính bản cũ — sai, hết hiệu lực
 
 Các dòng cũ dưới đây **SAI** và không được dùng làm lựa chọn hoặc quyền hiện hành:
