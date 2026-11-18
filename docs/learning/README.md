@@ -52,7 +52,7 @@ Tiến độ và bước tiếp tục sau compact nằm trong [docs/HANDOFF.md](
 
 | [021 — Kiểm chứng payment, cluster và token net](021-payment-cluster-evidence.md) | Evidence C01–C03, RPC read-only và parser mint/u64 | Codex — T31/d4dcf3c giữ nhãn pain/Unknown; provenance/state/context còn thiếu,không crawl mới |
 
-| [022 — Chuẩn bị độc lập Phase 2/3](022-phase2-3-independent-prep.md) | Contract/harness, toolchain/client, web/hosting và runner offline hai program | Codex — macOS/cache25runtime+8client đạt; Linux27cf7ac push/PR đều đạt57tests/build/ReceiptRail IDL cmp. Hashes Linux khác macOS, chưa reproducible build; P3-A/P3-B có quyền, funding/review còn mở |
+| [022 — Chuẩn bị độc lập Phase 2/3](022-phase2-3-independent-prep.md) | Contract/harness, toolchain/client, web/hosting và runner offline hai program | Codex — macOS/cache25runtime+8client, Linux27cf7ac57tests/run đạt; chưa reproducible build. P3-B có2.5SOL/buffer duy nhất; deploy lần đầu lỗi parser fee-payer, chưa retry; A đúng một lượt cuối rồi ghi nợ/đóng |
 
 | [023 — ReceiptRail Phase2 và spike Anchor local](023-receiptrail-phase2-spike.md) | Account/PDA,payment atomicity,build offline và LiteSVM | Codex — 19runtime/IDL local đạt,F4 D2. Review17:32: T32/030b93c log đúng/tên rút gọn/PDA check sai; T33/4e1e2d7 giữ phí/Terms/Unknown/reload recipient.9findings mở |
 
