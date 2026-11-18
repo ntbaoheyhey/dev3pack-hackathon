@@ -45,6 +45,8 @@ Bảnv2/769d365 được pull tới2f1cde0 trước checkpoint: nhận cách nó
 
 **Bổ sung K8, lượt08:30 ngày18/11:** T24/7325169 đã tách Signer/has_one ở pay/cancel, nhưng bảng retry ghi Open trước transaction lỗi thay vì Paid sau lần pay trước; ma trận vẫn verified/r2 thay assertion/log/giới hạn. [Review T24](reviews/receiptrail-codex.md#review-t24--18112026-heartbeat0830-utc7) nhận phần đã đúng và ghi T24-R1–R3; giao T27 sau T25/T26. HANDOFF A/6eee5ac đã chuyển T25 đúng queue, không ghi lỗi hết việc. Script C đối chiếu log ban đầu không nhận METRIC + ok hai dòng; đã sửa parser, xác nhận19 kết quả log cũ, không coi AssertionError là runtime failure hoặc chạy lại suite. Chưa xác định nguyên nhân nội bộ của A; giữ source/log và cổng duyệt.
 
+**Tái diễn K8, lượt09:00 ngày18/11:** T25/33b71e7 có9mã đúng,8mục màn hình và tổng165giây, nhưng5checkbox vẫn tick trong khi copy/state/fields/CTA/bằng chứng duplicate/SDK chưa đủ. Điều kiện Explorer có signature và merchant cancel bị bỏ so vớiT22v2. [Review T25](reviews/receiptrail-codex.md#review-t25--18112026-heartbeat0900-utc7) giữ hash/phần nhận/5findings. HANDOFF A/9e7275e ghi “T25 xong. Hết việc.” dù queue tại ancestorcd3ccc1 đã cóT26/T27 (đã kiểm Git); giữ hai việc, thêmT28 sau đó, không cần cấp lại. Không suy số mục/giây thành bố cục/demo đạt; chưa biết nguyên nhân nội bộ của A. C không sửa file A hoặc mở cổng.
+
 ## Luật rút ra (đã đưa vào AGENTS.md)
 
 1. Tin nhắn tự nhắc 15 phút phải **có thật** trước khi bắt đầu; nếu agent không tạo được thì người dùng tạo.

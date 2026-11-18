@@ -118,3 +118,9 @@ Bổ sung07:28: T22v2/bfa184c có49dòng, thêm4mô tả màn và Explorer khi c
 T24/7325169 đã tách Signer/has_one ở pay/cancel và nhắc expire_blockhash đúng; nhận phần này, không lặp lỗi T21 đã sửa. [Review T24](../reviews/receiptrail-codex.md#review-t24--18112026-heartbeat0830-utc7) giữ hash31dòng và bảng đối chiếu3ca. “Trước lỗi” phải là ngay trước **transaction thất bại**: retry mới bắt đầu từ Paid sau lần pay thành công; `[pay,pay]` cùng transaction bắt đầu Open và rollback về Open. Snapshot không chứa fee payer, nên không suy phí cũng hoàn lại.
 
 Log test có thể in METRIC giữa tên test và dòng ok; parser một dòng đã báo AssertionError dù log r2 ghi19pass/0fail. Đọc tiếp dòng ok cho đúng cấu trúc, không sửa log hay rerun suite để giải quyết lỗi parser tài liệu. T27 yêu cầu assertion/log/giới hạn cho ma trận và từng finding; report nộp không tự là review chéo đạt. Không đổi source/test/IDL/thiết kế/điểm hoặc mở Phase3.
+
+## Bài học review T25 — 18/11/2026,09:00 UTC+7
+
+T25/33b71e7 có62dòng,9/9 mã–tên khớp IDL,8mục màn hình và4khoảng thời gian liên tục đủ165giây; nhận phần tiến bộ này. [Review T25](../reviews/receiptrail-codex.md#review-t25--18112026-heartbeat0900-utc7) giữ hash và5findings: số mục/tổng thời gian không thay bố cục có fields/CTA hoặc cảnh chứng minh duplicate transaction mới, principal một lần và phí fail riêng. Khi sửa report phải giữ phần đã đúng: điều kiện Explorer có signature và merchant cancel ở T22v2 đã bị bỏ trong T25.
+
+Code/name đúng vẫn có thể đi cùng copy sai: WrongVersion là invoice.version, Paid là Invoice state còn finalized là commitment. Claim SDK “tương thích tốt nhất” cần nguồn/phạm vi kiểm; các versions lịch sử note005 không là bằng chứng đã tích hợp ReceiptRail. GiaoT28 sauT26/T27; chỉ review tài liệu, không rerun suite hoặc mởPhase3. HANDOFF A báo hết việc dù queue trong ancestor đã cóT26/T27: kiểm Git trước khi cấp lại, giữ thứ tự task đang mở.

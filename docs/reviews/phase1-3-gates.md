@@ -4,19 +4,19 @@
 
 | Yêu cầu | Bằng chứng hiện hành | Trạng thái |
 | --- | --- | --- |
-| Nhắc15phút đúng chat | Automation action view/config ACTIVE15phút kiểm lúc05:19, đúng thread; record scheduler 2026-11-18T01:30:34.904Z | Đã nhận heartbeat lúc08:30:34.904 ngày18/11 UTC+7; không suy mọi lượt gửi đều thành công |
+| Nhắc15phút đúng chat | Automation action view/config ACTIVE15phút kiểm lúc05:19, đúng thread; record scheduler 2026-11-18T02:00:35.054Z | Đã nhận heartbeat lúc09:00:35.054 ngày18/11 UTC+7; không suy mọi lượt gửi đều thành công |
 | RUBRIC/3 ứng viên đạt | C01r2=79/F4, C02r1=79, C03r1=77; giữ lịch sử r0/r1 | PLAN theo Codex, chưa giáo viên chấm/DELIVERY |
 | Quyết định/nguyên văn/giờ/nguồn | DECISION, AGENTS, STOP-CAUSES K6; DEVLOG cũ đã gắn nhãn sai | Đã sửa, không suy quyền |
 | ClusterProof dự phòng | IDEA/ARCHITECTURE-clusterproof-draft | Dự phòng, chưa duyệt; source/web/lab/toolchain giữ nguyên |
 | IDEA/ARCHITECTURE ReceiptRail | Account/PDA/instructions/states/errors/events,IDL,wireframe/threat model/test plan/demo165s | Đã viết để trình; chưa duyệt |
 | Spike local | [19tests r2](../evidence/phase2/receiptrail-spike-r2.txt),[metadata/IDL](../evidence/phase2/receiptrail-build-metadata.json) | Anchor bytecode thật chạy LiteSVM; F4 D2, không browser/RPC/devnet |
 | Tự review C | [Phạm vi và giới hạn](receiptrail-codex.md) | Đã đọc source/test/IDL, không thấy blocker trong phạm vi; không phải independent audit |
-| Giao A | [Queue T25→T26→T27](../tasks/A-queue.md); pull6eee5ac, [review T23/v2](receiptrail-codex.md#review-t23--18112026-heartbeat0758-utc7) và [T24](receiptrail-codex.md#review-t24--18112026-heartbeat0830-utc7) | A đangT25 UX; giữT26 evidence và giaoT27 review sau đó. T23/v2 giữ phần metadata/EVM/state/PDA/uniqueness đúng, còn3findings; T22v2 giữ9mã/4mô tả màn. Chưa nhận toàn bộ các report, giữ score/contract/audit |
+| Giao A | [Queue T26→T27→T28](../tasks/A-queue.md); pull9e7275e, [review T25](receiptrail-codex.md#review-t25--18112026-heartbeat0900-utc7) | Nhận9mã/8mục màn/4khoảng đủ165giây, còn5findings UX quaT28. A báo hết việc dù ancestorcd3ccc1 đã cóT26/T27; yêu cầu tiếp tụcT26, giữT27 và thêmT28 sau đó. Chưa nhận toàn bộ report, giữ score/contract/audit |
 | Review chéo | [Report T24](receiptrail-antigravity.md) tại7325169;31dòng/hash trong review C | Nhận Signer/has_one/expire_blockhash đã sửa. Còn recipient/assertion, baseline retry phải Paid, fee boundary và ma trận/giới hạn; chưa nhận đạt, giaoT27. Đối chiếu19 kết quả log cũ, không rerun suite |
 | Giáo viên | Chấm SHORTLIST/kiến trúc | Chưa có verdict; không tự đánh đạt |
 | Người dùng | Duyệt IDEA và giải thích ARCHITECTURE một trang | Đang trình, chưa có câu đồng ý; không mở Phase3 |
 | Phase3/vận hành | Hello/client/web logs cũ giữ nguyên; CI/devnet còn mở | Không cài thêm/tạo ví-keypair triển khai/deploy/public mới trước câu đồng ý riêng |
-| PR7 | BodyT23/v2/T24 và queueT25→T26→T27 đã cập nhật, fetch đọc lại khớp ởhead6eee5ac trước checkpoint | Open,merged=false lúc fetch; không merge, commit review/bàn giao nối tiếp |
+| PR7 | BodyT25 và queueT26→T27→T28 đã cập nhật, fetch đọc lại khớp/head9e7275e trước checkpoint | Open,merged=false; không merge, commit review/bàn giao nối tiếp |
 
 **Đề nghị duyệt cụ thể:** native SOL, một payer/merchant trên mỗi invoice; create/pay/cancel/read; Open→Paid/Cancelled và Expired hiển thị; không close/reset/refund/stablecoin/x402. Cùng invoice chỉ chuyển principal1lần, vẫn có phí fail và rent lâu dài. Spike local là evidence phần lõi, UI/RPC recovery/devnet/CI/video chưa có.
 
