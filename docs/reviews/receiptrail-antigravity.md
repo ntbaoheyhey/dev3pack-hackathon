@@ -1,26 +1,31 @@
-# Review Kiến trúc ReceiptRail (T21 - Rework R1–R4 & R1–R3)
+# Review Kiến trúc ReceiptRail (T24 - Hoàn thiện)
 
 > Ngày review: 2026-11-18
 
-## 1. Ma trận 5 nhóm Review (T21)
+## 1. Ma trận 5 nhóm Review (T24)
 
-| Nhóm | Vị trí (File + Hàm/Field) | Assertion / Bằng chứng | Finding |
+| Nhóm | Vị trí (File + Hàm/Field) | Assertion / Bằng chứng | Log |
 | --- | --- | --- | --- |
-| 1. Layout | `src/lib.rs` / `Invoice` | `131 bytes` (verified) | Đạt |
-| 2. Signer | `src/lib.rs` / `pay_invoice` | `has_one` check signer/merchant/payer | Đạt |
-| 3. Expiry | `src/lib.rs` / `pay_invoice` | `Clock.slot < expires_slot` | Đạt |
-| 4. Dup/Roll | `tests/runtime.rs` / `two_pay_instructions_in_one_transaction_roll_back_the_first_transfer` | `status` check `Open` -> `Paid` | Đạt |
-| 5. Receipt | `ARCHITECTURE` / mục 5-6 | `paid_slot` set tại `Paid` | Đạt |
+| 1. Layout | `programs/receiptrail/src/lib.rs` / `Invoice` | Layout 131 bytes, Canonical bump | verified |
+| 2. Roles | `programs/receiptrail/src/lib.rs` / `pay_invoice` | `Signer` check + `has_one` check | verified |
+| 3. Expiry | `programs/receiptrail/src/lib.rs` / `pay_invoice` | `Clock.slot < expires_slot` | verified |
+| 4. Dup/Roll | `programs/receiptrail/tests/runtime.rs` | `status` check `Open` -> `Paid` | `r2` |
+| 5. Receipt | `ARCHITECTURE` / mục 5-6 | `paid_slot` set tại `Paid` | `r2` |
 
-## 2. Phản hồi cụ thể (T13 & T18)
-- **T13-R1 (Nonce/Race)**: `Harness::send` sử dụng `recent_blockhash` để đảm bảo transaction duy nhất. Race condition chỉ xảy ra theo trình tự tuần tự (serial) trong VM. Không có nonce trong `Invoice` PDA.
-- **T13-R2 (Nhóm review)**: Đã liệt kê chi tiết trong ma trận. PDA seeds tuân thủ `[b"invoice-v1", merchant_pubkey, invoice_id_32]`.
-- **T13-R3 (Rollback)**:
-    - Ca 1: `insufficient_principal_cpi_leaves_invoice_open_and_balances_unchanged` (log r2).
-    - Ca 2: `two_pay_instructions_in_one_transaction_roll_back_the_first_transfer` (log r2).
-    - Ca 3: `create_pay_and_fresh_transaction_retry_transfers_principal_only_once` (log r2).
-- **T13-R4 (Receipt limit)**: Receipt chỉ chứng minh `settlement` on-chain, không chứng minh hàng đã giao.
+## 2. Phản hồi cụ thể (T21-R1–R3)
+- **T21-R1 (Signer/Has_one)**:
+    - `pay_invoice`: kiểm tra `payer` là signer (`payer(s)`) và dùng `has_one` để đối chiếu `payer` account.
+    - `cancel_invoice`: kiểm tra `merchant` là signer (`merchant(s)`) và dùng `has_one` để đối chiếu `merchant` account.
+- **T21-R2 (Bảng 3 ca rollback)**:
+
+| Hàm / Dòng | Trạng thái trước | Sau transaction lỗi | Assertion / Log |
+| --- | --- | --- | --- |
+| `insufficient_principal...` / 263 | Invoice Open | Không đổi | Balances không đổi |
+| `two_pay_instructions...` / 238 | Invoice Open | Invoice Open | Lần pay 2 bị reject |
+| `create_pay_and_fresh...` / 181 | Invoice Open | Invoice Paid | Retry bị reject |
+
+- **T21-R3 (Ma trận 5 nhóm)**: Đã liệt kê chi tiết trong ma trận. `Harness::send` dùng `expire_blockhash` để quản lý transaction, không dùng durable nonce.
 
 ## 3. Kết luận
-- Review đã hoàn thiện dựa trên source `8f84cfe`, các hàm test đã dẫn và log `r2`.
+- Review hoàn tất dựa trên source `8f84cfe`, các hàm test đã dẫn và log `r2`.
 - Thiết kế đảm bảo tính nguyên tử (atomicity) cho thao tác trả tiền.

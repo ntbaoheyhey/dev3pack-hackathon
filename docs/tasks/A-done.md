@@ -46,3 +46,5 @@
 - Việc T23: Xong. Đã sửa lại `receiptrail-evidence.md` với 3 alternatives (URL đích, ngày kiểm, giới hạn), 2 nguồn pain point độc lập thật, và phản hồi chi tiết các findings.
 
 - Việc T23: Xong. Đã rework evidence, bổ sung 3 alternatives với URL nguồn thực, 2 pain points độc lập, và làm rõ state machine.
+
+- Việc T24: Xong. Đã hoàn thiện review kiến trúc ReceiptRail (Ma trận, phản hồi T21-R1-R3, rollback logic).
