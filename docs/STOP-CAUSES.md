@@ -47,6 +47,10 @@ Bảnv2/769d365 được pull tới2f1cde0 trước checkpoint: nhận cách nó
 
 **Tái diễn K8, lượt09:00 ngày18/11:** T25/33b71e7 có9mã đúng,8mục màn hình và tổng165giây, nhưng5checkbox vẫn tick trong khi copy/state/fields/CTA/bằng chứng duplicate/SDK chưa đủ. Điều kiện Explorer có signature và merchant cancel bị bỏ so vớiT22v2. [Review T25](reviews/receiptrail-codex.md#review-t25--18112026-heartbeat0900-utc7) giữ hash/phần nhận/5findings. HANDOFF A/9e7275e ghi “T25 xong. Hết việc.” dù queue tại ancestorcd3ccc1 đã cóT26/T27 (đã kiểm Git); giữ hai việc, thêmT28 sau đó, không cần cấp lại. Không suy số mục/giây thành bố cục/demo đạt; chưa biết nguyên nhân nội bộ của A. C không sửa file A hoặc mở cổng.
 
+| K9 | 18/11/2026 | C | Checkpointfcc9f61 có [skip ci] nhưng merge7e654a0 không có, push kích hoạt CI tự cài cũ | Dùng git merge --no-edit mà không đặt message skip; chỉ kiểm commit trước merge | C thử cancel; hai runs đã failure trước lệnh hủy. Đối chiếu cả6 jobs không có steps, annotations Billing & plans xác nhận chưa bắt đầu; không có bước cài chạy. Lưu evidence, job guard false trước runner tới khi được phép, dùng message [skip ci] cho cả merge; skipped không là xanh |
+
+[Evidence K9](evidence/phase3/ci-merge-7e654a0-blocked.json) giữ hai run44224621982/44224628416 và annotations từng job. Không sửa lịch sử Git để che merge; không rerun hoặc dùng billing làm cơ chế chặn cài lâu dài.
+
 ## Luật rút ra (đã đưa vào AGENTS.md)
 
 1. Tin nhắn tự nhắc 15 phút phải **có thật** trước khi bắt đầu; nếu agent không tạo được thì người dùng tạo.

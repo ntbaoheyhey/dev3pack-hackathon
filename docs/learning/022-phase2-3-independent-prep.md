@@ -59,13 +59,13 @@ Research suite 16 tests đã có nhưng chưa thay các test product/UI/runtime 
 
 [GitHub secure use](https://docs.github.com/en/actions/reference/security/secure-use) hỗ trợ least-privilege, cách tránh PR privileged checkout và khóa actions. Workflow đã viết tại .github/workflows/ci.yml với research, anchor-lab/client và web; actions pin full SHA. Sau push commit web f7a1a43, run44127842904 có cả3 jobs bị Billing & plans chặn trước khi chạy; đã lưu từng annotation trong ci-blocked-f7a1a43.json. Local pass chưa chứng minh Linux CI xanh.
 
-### Phiếu cài đã được người dùng chấp thuận
+### Phiếu cài trước đây — kết luận chấp thuận sai, hết hiệu lực
 
 Thứ tự: kiểm PATH/OS/Xcode và dung lượng → tải installer chính thức ra file tạm/đọc → Rust host1.100.0 → Agave4.1.2 → AVM/Anchor1.2.2 → build tools v1.57/SBPFv3 → kiểm version + build/test hello. Cài dưới user directories, không sửa checkout Antigravity/Taskbar Hero; không nâng Node/pnpm sẵn có chỉ vì template latest. Lệnh tham khảo và URL ở note003; khi source/version hiện hành khác phải ghi lại và xử lý, không ngầm đổi bộ.
 
 Rust dùng ~/.cargo và ~/.rustup; Agave theo user install active_release; PATH chỉ thêm đúng binary của task. Mọi cài thêm/download dependency hiện phải hỏi trước theo DECISION18/11; phần installer là lịch sử, không được chạy lại. Nếu thiếu cache cho spike local thì ghi gói/phiên bản cần thiết. Không tự bypass prompt quản trị.
 
-Sau build: lưu OS/arch/version thực, source/lockfile và log. Keypair phát sinh khi scaffold/build không được Git-track; signer dành riêng devnet giữ ngoài source, không in secret, không lấy ví tài sản thật. Scope vận hành devnet/hosting theo Prompt03; chỗ cần tài khoản người dùng phải báo đúng nhu cầu, không giả deploy thành công.
+Sau build: lưu OS/arch/version thực, source/lockfile và log. Keypair phát sinh khi scaffold/build không được Git-track; signer dành riêng devnet giữ ngoài source, không in secret, không lấy ví tài sản thật. Quyền vận hành hiện hành theo DECISION18/11: cài thêm/tạo signer triển khai/deploy/public phải hỏi riêng; Prompt03 và duyệt Phase2 không cấp quyền đó.
 
 ## 5. Tự kiểm tra
 
@@ -120,3 +120,13 @@ Bài học: chỉ sửa phiên bản bị peer conflict sau đọc dependency gr
 Core được Wallet Standard nhận diện ở public /lab/; request mở cửa sổ Core nhưng yêu cầu mật khẩu. Sau request không thành công, UI trở về chưa kết nối và cho thử lại. Không xác định nguyên nhân kết thúc request nên không gọi explicit reject đã đạt. Người dùng chưa có ví devnet sẵn sàng, giữ connect/disconnect thật chưa kiểm; không dùng fixture hoặc discovery để gọi compatibility end-to-end. [Evidence](../evidence/phase3/web-native-core.md).
 
 Bài học: mỗi cổng cần bằng chứng đúng phạm vi. Kết luận duyệt cũ sai/hết hiệu lực theo DECISION18/11; chỉ ghi quyết định từ nguyên văn/giờ và không suy sang cổng khác. Inspect16:55:40Z/slot523335879 vẫn payer0lamports và chưa deploy, đã lưu artifact; không cần chạy lại build/tests khi source không đổi.
+
+## Chuẩn bị sau duyệt Phase2 và sửa CI tự chạy — 18/11/2026
+
+Người dùng đã duyệt Phase2 bằng tin trực tiếp “duyệt phase 2” (log09:27:18.464 UTC+7), nhưng cài thêm/keypair triển khai/deploy/public vẫn cần câu đồng ý riêng. Đọc note này trước sửa workflow; không chạy các lệnh cài lịch sử.
+
+Merge7e654a0 sau checkpointfcc9f61 không có [skip ci], đã kích hoạt push run44224621982 và PR run44224628416. C thử hủy push run; nó đã completed trước lệnh hủy. Đã đọc cả6 jobs/annotations: steps rỗng và Billing & plans báo job không bắt đầu. [Evidence](../evidence/phase3/ci-merge-7e654a0-blocked.json) giữ kết quả; không có bước cài nào chạy, không gọi CI xanh.
+
+Đối chiếu [GitHub skip workflows](https://docs.github.com/en/actions/how-tos/manage-workflow-runs/skip-workflow-runs) và [contexts/job if](https://docs.github.com/en/actions/reference/workflows-and-actions/contexts#determining-when-to-use-contexts), đọc18/11: skip marker chỉ áp dụng commit phù hợp; job-level if được xét trước khi gửi job tới runner. Vì thế ghi [skip ci] cả vào commit merge và thêm điều kiện false ở cả3 jobs của workflow cũ cho tới khi có lời đồng ý vận hành. Cổng này không là cơ chế cấp quyền: chỉ mở bằng thay đổi có review sau câu đồng ý, không tự bật từ reminder hoặc lời duyệt thiết kế. Job skipped không chứng minh build/test đã chạy.
+
+Workflow cũ còn cần tích hợp runner ReceiptRail: check-lab chạy cargo test --workspace, trong khi ReceiptRail cần target/receiptrail-spike/receiptrail.so. Không bật lại workflow trước khi sửa đường build và xác minh flags không sinh signer triển khai; toàn bộ package/toolchain đã pin phải nằm trong phạm vi xin phép CI. Có thể chuẩn bị patch và kiểm cú pháp local, chưa được thực thi các installer hoặc upload artifact mới.
