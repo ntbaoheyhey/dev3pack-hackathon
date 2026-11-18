@@ -2,13 +2,13 @@
 
 ReceiptRail giúp người bán và người trả đọc chung trạng thái một hóa đơn SOL: sau timeout có thể kiểm tra lại, và cùng hóa đơn không chuyển tiền gốc lần thứ hai dù gửi transaction mới. Người dùng chọn **“ReceiptRail chính, ClusterProof phụ” lúc 00:07 ngày 18/11/2026 UTC+7**; [DECISION](docs/ideas/DECISION.md) ghi nguyên văn, giờ và đính chính kết luận cũ.
 
-**Người dùng đã duyệt Phase2 ReceiptRail: “duyệt phase 2”**, log nhận09:27:18.464 ngày18/11/2026 UTC+7 (người dùng không tự nêu giờ quyết định). [IDEA](docs/IDEA.md) · [Giải thích kiến trúc một trang](docs/ARCHITECTURE.md#1-giải-thích-một-trang-cho-người-dùng) · [Bằng chứng local](docs/evidence/phase2/README.md). Review chéo/giáo viên còn mở; tiếp tục chuẩn bị Phase3 trong quyền hiện có theo [NEXT](docs/NEXT.md). Cài thêm, tạo ví/keypair triển khai, deploy hoặc public mới phải hỏi riêng trước.
+**Người dùng đã duyệt Phase2 ReceiptRail: “duyệt phase 2”**, log nhận09:27:18.464 ngày18/11/2026 UTC+7 (người dùng không tự nêu giờ quyết định). [IDEA](docs/IDEA.md) · [Giải thích kiến trúc một trang](docs/ARCHITECTURE.md#1-giải-thích-một-trang-cho-người-dùng) · [Bằng chứng local](docs/evidence/phase2/README.md). T31/T32/T33 đã đóng sau lượt cuối, phần thiếu ở [nợ tài liệu](docs/DOCUMENTATION-DEBT.md); giáo viên chưa có verdict. P3-A/P3-B có bằng chứng, đang trình duyệt Phase4 theo [NEXT](docs/NEXT.md). Cài thêm, tạo ví/keypair triển khai, deploy hoặc public mới phải hỏi riêng trước.
 
 ## ReceiptRail đã có gì
 
 | Phần | Kết quả hiện hành | Giới hạn |
 | --- | --- | --- |
-| Thiết kế | Account/PDA, create/pay/cancel, trạng thái, lỗi/events/IDL, threat model, wireframe/test plan, storyboard165giây | Chưa UI/video ReceiptRail; review chéo/giáo viên còn mở |
+| Thiết kế | Account/PDA, create/pay/cancel, trạng thái, lỗi/events/IDL, threat model, wireframe/test plan, storyboard165giây | Chưa UI/video ReceiptRail; nợ tài liệu được giữ riêng, chưa verdict giáo viên |
 | Spike Anchor | Native SOL, invoice131bytes, điều khoản bất biến; chuyển tiền và Paid cùng transaction | Local-only, không escrow/refund/stablecoin/x402 |
 | Kiểm thử | **19/19 runtime tests**, bytecode SBFv3 thật trong LiteSVM; tx mới retry, rollback, sai quyền/account, expiry/race/lifecycle | Đã chạy cả Linux CI; chưa browser/wallet/RPC recovery, devnet hoặc audit độc lập |
 | IDL | [JSON generated](docs/idl/receiptrail.json),3 instructions/1 account/3 events/9 errors; đã đối chiếu source | Chưa client UI tích hợp; program ID chỉ local |
@@ -30,13 +30,13 @@ Script mặc định đường dẫn Apple Silicon của máy hiện tại; có 
 
 **CI Linux đạt trên `27cf7ac`:** [PR CI](https://github.com/ntbaoheyhey/dev3pack-hackathon/actions/runs/44237534047) và [push CI](https://github.com/ntbaoheyhey/dev3pack-hackathon/actions/runs/44237529539) đều thành công cả ba jobs. Mỗi run đạt **25 runtime + 8 client + 16 research + 8 web tests**, typecheck/build, sinh hai IDL và đối chiếu ReceiptRail IDL. [Evidence từng run](docs/evidence/phase3/ci-passed-27cf7ac.json) lưu steps/logs/hashes: Anchor1.2.2 build từ source/lock đã pin, archive SBFv1.57 qua SHA256 trước giải nén. Hai run có cùng bytecode hashes, khác snapshot macOS; chưa chứng nhận reproducible build. Lịch sử [attestation403/cancellation](docs/evidence/phase3/ci-resumed-7210aa6.json) và [installer SBF lỗi ở b906a37](docs/evidence/phase3/ci-anchor-source-b906a37.json) được giữ riêng.
 
-P3-A/P3-B được đồng ý riêng bằng **“Đồng ý cả hai”**, giờ log10:13:11.851 ngày18/11 UTC+7. [Phương án Phase3](docs/PHASE3-PLAN.md) giới hạn cài/build trên runner và hello devnet; người dùng **“chưa rảnh để chuyển sol devnet”**, nên deploy để sau funding. Checkpoint tài liệu/merge dùng `[skip ci]`; không gọi HEAD tài liệu có skip là một lượt CI xanh. Quyền này không mở cài thêm máy người dùng, deploy ReceiptRail hoặc public web mới.
+P3-A/P3-B được đồng ý riêng bằng **“Đồng ý cả hai”**, giờ log10:13:11.851 ngày18/11 UTC+7. [Phương án Phase3](docs/PHASE3-PLAN.md) giới hạn cài/build trên runner và hello devnet; funding đã được người dùng bổ sung. [P3-B đã kiểm](docs/evidence/phase3/README.md): hello deploy/initialize/increment finalized, counter1, tổng giảm số dư0.651874801SOL dưới trần1.5SOL, trong đó phí0.000695000SOL. Checkpoint tài liệu/merge dùng `[skip ci]`; không gọi HEAD tài liệu có skip là một lượt CI xanh. Quyền này không mở cài thêm máy người dùng, deploy ReceiptRail hoặc public web mới.
 
 ## ClusterProof dự phòng và lịch sử lab
 
 [IDEA ClusterProof](docs/IDEA-clusterproof-draft.md)/[ARCHITECTURE ClusterProof](docs/ARCHITECTURE-clusterproof-draft.md) giữ nhãn **“dự phòng, chưa duyệt”**. Source, toolchain, lab và [web công khai hiện có](https://clusterproof-devnet-17nov26.anthony-robinson-125.chatgpt.site) được giữ nguyên. [Wallet lab](https://clusterproof-devnet-17nov26.anthony-robinson-125.chatgpt.site/lab/) chỉ connect/disconnect, không ký/gửi; Core discovery/request đã quan sát, connect/disconnect thật còn chưa kiểm.
 
-Logs lịch sử [Phase3](docs/evidence/phase3/) ghi hello6/client8/web8 tests local, generated IDL và web build/browser. Hello counter ID `2yzxUQEpaeLmgCMhDipwnVL3DHsxez18KcePonqZRiXL` chưa deploy ở [preflight 18/11, 09:47:33 UTC+7](docs/evidence/phase3/preflight-after-phase2-approval.json), payer 0 lamports; không là program sản phẩm ReceiptRail. CI bị Billing & plans chặn là lịch sử; kết quả Linux mới được tách theo revision/run ở trên. Các kết quả này không được dùng thay evidence ReceiptRail. [Audit Prompt03](docs/reviews/prompt03-audit.md) tách phần đã nộp khỏi các cổng còn mở.
+Logs lịch sử [Phase3](docs/evidence/phase3/) ghi hello6/client8/web8 tests local, generated IDL và web build/browser. Hello counter ID [`2yzxUQEpaeLmgCMhDipwnVL3DHsxez18KcePonqZRiXL`](https://explorer.solana.com/address/2yzxUQEpaeLmgCMhDipwnVL3DHsxez18KcePonqZRiXL?cluster=devnet) đã deploy và smoke finalized theo [báo cáo P3-B](docs/evidence/phase3/README.md); không là program sản phẩm ReceiptRail. Preflight0SOL buổi sáng là lịch sử. CI bị Billing & plans chặn là lịch sử; kết quả Linux mới được tách theo revision/run ở trên. Các kết quả này không được dùng thay evidence ReceiptRail. [Audit Prompt03](docs/reviews/prompt03-audit.md) tách phần đã nộp khỏi các cổng còn mở.
 
 ## Công việc trước sự kiện và trong hackathon
 

@@ -2,14 +2,18 @@
 
 18/11/2026 · ReceiptRail chính, ClusterProof phụ. Người dùng đã nói **“duyệt phase 2”**, giờ log 09:27:18.464 UTC+7; không hỏi lại. [DECISION](ideas/DECISION.md) vẫn yêu cầu đồng ý riêng trước cài thêm, tạo ví/keypair triển khai, deploy/public.
 
+## Kết quả hiện hành — 22:31:59 ngày18/11/2026 UTC+7
+
+**P3-A và P3-B đạt trong phạm vi đã duyệt.** [Báo cáo P3-B](evidence/phase3/README.md) có137giao dịch finalized, counter1, bytecode/authority khớp; tổng giảm số dư **0.651874801SOL**, gồm phí0.000695000SOL và SOL giữ trong accounts, dưới trần1.5SOL. Web/lab cũ HTTP200; ví thật chưa kiểm. T31/T32/T33 đã đóng sau lượt cuối7857e9b, phần thiếu thành [nợ tài liệu](DOCUMENTATION-DEBT.md); không mở vòng sửa. Trình người dùng duyệt Phase4, chưa mở phase hoặc merge PR7; chưa verdict giáo viên.
+
 ## Phần đã chuẩn bị và kiểm được
 
 - [Runner offline](../scripts/check-phase3-offline.sh): hai program cùng pipeline; **25 runtime tests và 8 client tests đạt**. Hai IDL và bytecode khớp artifacts cũ. [Metadata/logs](evidence/phase3/offline-pipeline-metadata.json) ghi macOS arm64/cache; Linux CI mới được ghi riêng bên dưới.
 - [Workflow](../.github/workflows/ci.yml): revision27cf7ac đạt cả ba jobs trên Linux ở PR44237534047 và push44237529539. Mỗi run25runtime+8client+16research+8web/typecheck/build, sinh hai IDL và ReceiptRail IDL cmp ([evidence](evidence/phase3/ci-passed-27cf7ac.json)). Source/locks/web/lab giữ nguyên; không upload binary artifact.
 - [Preflight 09:47:33 UTC+7](evidence/phase3/preflight-after-phase2-approval.json): đúng devnet, hello chưa deploy, payer 0 lamports. Không đọc signer hoặc gửi airdrop/transaction.
-- [Review17:32](reviews/receiptrail-codex.md#review-bổ-sung1732--18112026)/[snapshot](evidence/phase2/receiptrail-supplement-1732-review.json): T31/d4dcf3c giữ5URL/nhãn pain/Unknown/expiry nhưng Paid vẫn Finalized và thiếu provenance/context. T32/030b93c giữ3log đúng, lại rút gọn3tên test và gọi payer/merchant là PDA check; merchant không ký pay đã khôi phục. T33/4e1e2d7 giữ phí/Terms/no-auto-retry/reload recipient,6002 vẫn reconnect.9findings còn mở;T32→T31→T33 cùng ID. Giáo viên chưa có verdict; lời duyệt người dùng là cổng riêng.
+- [Lượt cuối A7857e9b](evidence/phase2/receiptrail-final-pass-2026-11-18.json): nhận phần đạt, ghi nợ D01–D03 và đóng T31/T32/T33 theo chỉ đạo. Các review trước là lịch sử, không yêu cầu nộp lại.
 
-Review17:32 bên trên là lịch sử. Chỉ đạo trực tiếp mới thay vòng sửa bằng **đúng một lượt cuối**, nhận phần đạt/ghi nợ/đóng theo [queue](tasks/A-queue.md); không mở vòng bổ sung hoặc dùng thiếu sót tài liệu chặn P3-B.
+Queue hiện không còn việc mới; các khoản nợ không là blocker P3-B hoặc chỉ đạo mở lại task.
 
 ## P3-A — đã được phép CI trên runner GitHub
 
@@ -42,7 +46,7 @@ Hai bytecode hashes Linux khớp giữa push/PR27cf7ac và Linux7210aa6, khác b
 
 Chỉ nhận khi program đúng devnet, transaction success có log/state/commitment và bytecode/authority khớp; chữ ký đơn lẻ không đủ. Quyền hello không mở ReceiptRail deployment hoặc Phase 4.
 
-**Lần deploy đầu 21:52:21 UTC+7:** [evidence](evidence/phase3/hello-devnet-deploy-2026-11-18.json) exit 1 ở parser vì đặt `--fee-payer` trước `program deploy`; chưa có signature hoặc bằng chứng gửi giao dịch. Help local xác nhận flag thuộc subcommand. Chưa retry/đối soát chain sau lỗi; khi tiếp tục phải kiểm program/buffer/payer/journal trước, tái dùng buffer và lưu evidence/log r2 riêng. Không coi lỗi parser là bằng chứng chain mới đã được kiểm.
+**Lần deploy đầu 21:52:21 UTC+7:** [evidence](evidence/phase3/hello-devnet-deploy-2026-11-18.json) exit 1 ở parser vì đặt `--fee-payer` trước `program deploy`; chưa có signature hoặc bằng chứng gửi giao dịch. Help local xác nhận flag thuộc subcommand. Đây là lịch sử. R2/r3 ghi buffer một phần rồi Max retries; paced upload hoàn tất cùng buffer, CLI r4 thành công và đã xác minh finalized/smoke/chi phí theo báo cáo hiện hành. Không chạy lại upload/deploy/smoke.
 
 ## Web và ví
 
@@ -50,4 +54,4 @@ Giữ site ClusterProof và /lab đã public; không publish/update web mới tr
 
 ## Điều kiện kết thúc
 
-[ROADMAP](ROADMAP.md) yêu cầu hello devnet + transaction thật, web live/luồng ví và CI xanh; [bảng cổng](reviews/phase1-3-gates.md) giữ review/giáo viên riêng. Phương án và local tests chưa là Phase 3 hoàn thành hoặc quyền thi hành. [NEXT](NEXT.md) ghi việc sau câu trả lời.
+[ROADMAP](ROADMAP.md) yêu cầu hello devnet + transaction thật, web live/luồng ví và CI xanh; [bảng cổng](reviews/phase1-3-gates.md) giữ review/giáo viên riêng. P3-A/P3-B và HTTP web có bằng chứng; ví thật vẫn chưa kiểm, giáo viên chưa có verdict, Phase4 cần người dùng duyệt. Không tự đánh mọi cổng Phase3 hoàn thành hoặc mở rộng quyền. [NEXT](NEXT.md) ghi việc sau câu trả lời.

@@ -247,3 +247,9 @@ Bài học bàn giao: cập nhật HANDOFF và NEXT cùng lúc, gỡ chỉ dẫn
 18/11/2026: helper verify22:22:27 UTC+7 xác nhận deploy finalized, executable/ProgramData/upgrade authority và payload hash khớp; buffer đã được loader tiêu thụ, không gọi close. Smoke initialize/increment đúng một lần, confirmed thành công, account trước chưa tồn tại/sau count1. Finalizer read-only xác nhận137signatures finalized nhưng đọc metadata10tx rồi nhận429 Too Many Requests. Đây là rate-limit thực có response, khác lỗi Max retries trước không rõ nguyên nhân. Không ký/gửi lại.
 
 Giữ JSON lỗi/10tx và source helper; r2 tiếp tục phần metadata chưa đọc, kiểm prefix/signatures/cache, pacing3.5giây mỗi request và backoff10/20giây khi RPC lỗi. Cuối vẫn đối soát toàn bộ fees/debit/accounts/cap và finalized state; chưa ghi chi phí cuối trước các assertions đạt.
+
+### P3-B hoàn tất đối soát — 22:31:59 ngày18/11/2026 UTC+7
+
+[Finalizer r2](../evidence/phase3/hello-devnet-final-verification-r2-2026-11-18.json) resume10metadata từ snapshot429, đọc phần còn lại với pacing và kiểm137/137transactions finalized/meta.err=null. Tổng fees695000lamports; program/ProgramData/counter giữ651179801; debit651874801, payer còn1848125199; mọi phép đối soát khớp và dưới trần1.5SOL. Counter finalized1, authority/bytecode đúng, không còn buffer/pending journal. Không gửi lại smoke/upload/deploy.
+
+Source helpers được lưu byte-identical, kể cả newline cuối; kiểm diff cho các snapshots bỏ riêng blank-at-eof, không sửa hash nguồn chạy. Hello initialize được chứng minh bằng transaction/log/source; chưa có capture account0 giữa hai instructions. CI27cf7ac/executable inputs không đổi; không rerun suite cho tài liệu. P3-B đạt không mở Phase4, ReceiptRail deployment/public hoặc cài mới; ví thật/giáo viên còn riêng.

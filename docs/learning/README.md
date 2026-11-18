@@ -31,7 +31,7 @@ Tiến độ và bước tiếp tục sau compact nằm trong [docs/HANDOFF.md](
 | [000 — Codex vs Antigravity: điểm mạnh và chia việc](000-ai-tools-codex-vs-antigravity.md) | Nội dung gốc của repo đích, giữ nguyên | xong — theo mục lục ban đầu; chưa rà soát lại |
 | [001 — Luật hackathon Dev3pack](001-hackathon-rules.md) | Lịch, sponsors/supporters, giải, track, chấm, video, form và code | Claude; Codex sửa R04 — đã đọc trang chủ/FAQ ngày 17/11/2026; giờ UTC trên dashboard còn chưa kiểm chứng |
 | [002 — Solana căn bản](002-solana-basics.md) | Account, transaction, PDA, CPI, fees, cluster; bài đọc 15 phút | Codex — Đã đối chiếu docs; chưa chạy on-chain |
-| [003 — Toolchain](003-solana-toolchain.md) | Kiểm kê máy, bảng tương thích, lệnh cài và lỗi macOS/WSL | Codex — Bộ đã cài; Linux27cf7ac push/PR đều đạt3jobs/57tests+build; chưa deploy |
+| [003 — Toolchain](003-solana-toolchain.md) | Kiểm kê máy, bảng tương thích, lệnh cài và lỗi macOS/WSL | Codex — Bộ đã cài; Linux27cf7ac3jobs/57tests/run; hello devnet137tx finalized/counter1, chưa verified source build |
 | [004 — Anchor từ A đến Z](004-anchor-a-to-z.md) | Macro/constraints, IDL/Codama, ví dụ counter, test/deploy/verify | Codex — Lab phase3-hello đã build/IDL/6 runtime tests; snippet study-counter chưa chạy |
 | [005 — Frontend Solana](005-solana-frontend.md) | Kit/Wallet Standard, parser theo program ID + mã, Codama init/config/run có mốc source | Antigravity; Codex sửa R02/R08/R09 — 11 fixture offline đạt; codegen/SDK chưa chạy, sandbox cũ chỉ là báo cáo lịch sử |
 | [006 — Token & NFT](006-token-and-nft.md) | Token-2022: destination withholding, harvest/withdraw và authority; ngân sách NFT theo cấu hình | Antigravity; Codex sửa R05/R09 — đã đối chiếu nguồn Transfer Fees; chưa chạy on-chain, ngân sách 500.000 cNFT dưới 1 SOL chưa đủ căn cứ |
@@ -52,7 +52,7 @@ Tiến độ và bước tiếp tục sau compact nằm trong [docs/HANDOFF.md](
 
 | [021 — Kiểm chứng payment, cluster và token net](021-payment-cluster-evidence.md) | Evidence C01–C03, RPC read-only và parser mint/u64 | Codex — T31 đã đóng sau lượt cuối7857e9b; nhận phần đạt, phần thiếu thành nợ D01, không crawl/vòng sửa mới |
 
-| [022 — Chuẩn bị độc lập Phase 2/3](022-phase2-3-independent-prep.md) | Contract/harness, toolchain/client, web/hosting và runner offline hai program | Codex — macOS/cache25runtime+8client, Linux27cf7ac57tests/run đạt; chưa reproducible build. Buffer verified; CLI hello r4 exit0, còn kiểm finalized/smoke/chi phí. T31–T33 đã đóng, nợ D01–D03 |
+| [022 — Chuẩn bị độc lập Phase 2/3](022-phase2-3-independent-prep.md) | Contract/harness, toolchain/client, web/hosting và runner offline hai program | Codex — P3-A/P3-B đạt:137tx finalized, hello counter1/debit0.651874801SOL dưới1.5SOL; T31–T33 đóng với nợ D01–D03; trình duyệt Phase4 |
 
 | [023 — ReceiptRail Phase2 và spike Anchor local](023-receiptrail-phase2-spike.md) | Account/PDA,payment atomicity,build offline và LiteSVM | Codex — 19runtime/IDL local đạt,F4 D2; T32/T33 đã đóng sau lượt cuối7857e9b, nhận phần đạt/nợ D02–D03; không mở vòng sửa, chưa verdict giáo viên |
 

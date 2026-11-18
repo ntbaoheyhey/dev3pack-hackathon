@@ -93,3 +93,6 @@ Bản306466f/314b572 đến trước push checkpoint: khôi phục Request/copy6
 **Bổ sung K8,26fe656:** T32 khôi phục3tên test nhưng has_one/PDA check sai quay lại; T33 giữ phí/Terms nhưng6002 lại reconnect. [Review](reviews/receiptrail-codex.md#bổ-sung26fe656-trước-push) nhận phần đúng và giữ9findings,không suy nguyên nhân nội bộ; không tự đóng từ HANDOFF A ghi xong.
 
 **Bổ sung K8, heartbeat17:32 ngày18/11:** [Review](reviews/receiptrail-codex.md#review-bổ-sung1732--18112026) nhận các phần giữ đúng của d4dcf3c/030b93c/4e1e2d7 nhưng9findings còn mở. T32 lại rút tên test, bỏ Has_one so pubkey và khẳng định PDA check sai; thêm Final không sửa nội dung. C chuyển ưu tiên thực T32→T31→T33, giao bảng thay thế mục1 và yêu cầu tên/assertions mục2; R3 vẫn mở. Không sửa file A, không suy nguyên nhân nội bộ/process live hoặc lấy status xong làm nhận đạt.
+
+
+**Chốt K8 theo chỉ đạo mới ngày18/11:** người dùng giới hạn đúng một lượt cuối. C đã nhận bản7857e9b, giữ phần đạt, đưa phần thiếu thành [nợ tài liệu D01–D03](DOCUMENTATION-DEBT.md), đóng T31/T32/T33. Các chỉ dẫn mở lại/sửa hẹp trong lịch sử K8 bên trên đã hết hiệu lực; không mở vòng sửa hoặc task bổ sung, không lấy nợ tài liệu chặn P3-B. Đóng task không tự chứng nhận toàn bộ report đúng hoặc giáo viên đã chấm.

@@ -239,8 +239,8 @@ Mỗi vòng ghi lại điểm và thay đổi. Ý tưởng sửa quá số vòng
 | --- | --- | --- |
 | Nền (002–014) | xong | PR #1, REVIEW R01–R09 đã sửa |
 | 1 Ý tưởng & spec | người dùng đã duyệt IDEA ReceiptRail qua lời duyệt Phase2 | “ReceiptRail chính, ClusterProof phụ” lúc00:07; tin “duyệt phase 2” log09:27:18.464 ngày18/11 UTC+7. RUBRIC/SHORTLIST còn chờ verdict giáo viên, xem DECISION |
-| 2 Kiến trúc | người dùng đã duyệt · review chéo/giáo viên còn mở | IDEA/ARCHITECTURE/IDL/demo165giây,19runtime local,C01r2=79/F4. [Review17:32](reviews/receiptrail-codex.md#review-bổ-sung1732--18112026): T31/d4dcf3c giữ5URL/nhãn pain/Unknown/expiry nhưng Paid vẫn Finalized và thiếu provenance/context. T32/030b93c giữ3log đúng, lại rút gọn3tên test và gọi payer/merchant là PDA check; merchant không ký pay đã khôi phục. T33/4e1e2d7 giữ phí/Terms/no-auto-retry/reload recipient,6002 vẫn reconnect.9findings còn mở;T32→T31→T33 cùng ID. Không suy lời duyệt người dùng thành review/giáo viên đạt |
-| 3 Môi trường | CI Linux đạt · chờ funding hello và ví thật | P3-A/P3-B đã có quyền. Revision27cf7ac: PR44237534047/push44237529539 đều đạt3jobs/57tests+build và ReceiptRail IDL cmp. [Evidence](evidence/phase3/ci-passed-27cf7ac.json), [Plan](PHASE3-PLAN.md). Hello chưa deploy, ví thật chưa kiểm; funding được người dùng để sau, Phase3 chưa xong |
+| 2 Kiến trúc | người dùng đã duyệt · lượt cuối A đã đóng | IDEA/ARCHITECTURE/IDL/demo165giây,19runtime local,C01r2=79/F4. Nhận phần đạt từ7857e9b, phần thiếu ở [nợ tài liệu](DOCUMENTATION-DEBT.md); T31/T32/T33 đóng, không mở vòng sửa. Giáo viên chưa có verdict |
+| 3 Môi trường | P3-A/P3-B đạt · trình duyệt Phase4 | [P3-B](evidence/phase3/README.md): hello deploy/initialize/increment finalized,137tx, counter1, debit0.651874801SOL dưới1.5SOL. CI27cf7ac hai runs đạt3jobs/57tests/run; web/lab cũHTTP200, ví thật chưa kiểm/giáo viên chưa verdict. Không gọi mọi cổng đã đạt |
 | 4 Program | chưa mở | |
 | 5 Frontend | chưa mở | |
 | 6 Tích hợp | chưa mở | |

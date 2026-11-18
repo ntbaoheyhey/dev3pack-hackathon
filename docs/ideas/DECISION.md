@@ -6,7 +6,9 @@
 
 Nguồn: tin trực tiếp người dùng ở chat này, [record](../evidence/phase3/user-funded-final-review-2026-11-18.json). Giờ người dùng quyết định và giờ log tin **chưa xác định**; C ghi hồ sơ lúc 21:49:46 UTC+7 ngày18/11/2026, không dùng giờ này thay giờ người dùng. Quyền P3-B trước đó đã có nguyên văn/giờ log10:13:11.851; tin mới yêu cầu thực hiện trong đúng phạm vi/trần cũ.
 
-T31/T32/T33 chỉ còn **một lượt cuối gộp** sau queue mới; nhận phần đạt, phần còn thiếu đưa vào **nợ tài liệu**, rồi đóng task. Không tự mở vòng sửa hoặc dùng9findings để chặn P3-B. Chưa gọi review độc lập/giáo viên đạt nếu không có bằng chứng. Tin funding thay trạng thái để sau của10:14; đã kiểm ví có2.5SOL devnet lúc21:48:35 UTC+7, hello chưa deploy. P3-B chỉ hello/signers cũ/một buffer tạm ngoài Git/trần1.5SOL. Chưa cấp quyền Phase4/ReceiptRail deploy/public/cài thêm/merge.
+**Phạm vi chỉ đạo, ghi tại thời điểm nhận tin:** T31/T32/T33 chỉ còn **một lượt cuối gộp** sau queue mới; nhận phần đạt, phần còn thiếu đưa vào **nợ tài liệu**, rồi đóng task. Không tự mở vòng sửa hoặc dùng9findings để chặn P3-B. Chưa gọi review độc lập/giáo viên đạt nếu không có bằng chứng. Tin funding thay trạng thái để sau của10:14; đã kiểm ví có2.5SOL devnet lúc21:48:35 UTC+7, hello chưa deploy. P3-B chỉ hello/signers cũ/một buffer tạm ngoài Git/trần1.5SOL. Chưa cấp quyền Phase4/ReceiptRail deploy/public/cài thêm/merge.
+
+**Kết quả thực thi của Codex, không phải quyết định mới của người dùng:** đã nhận đúng lượt cuối7857e9b, giữ phần đạt, chuyển phần thiếu vào [nợ tài liệu](../DOCUMENTATION-DEBT.md) và đóng T31/T32/T33. Không nộp lại hoặc mở task sửa bổ sung. Kết quả P3-B theo [PHASE3-PLAN](../PHASE3-PLAN.md)/[HANDOFF](../HANDOFF.md); Phase4 chưa được duyệt.
 
 ## Quyết định hiện hành của người dùng
 
@@ -42,7 +44,7 @@ Quyền mới này áp dụng đúng P3-A/P3-B; không khôi phục các kết l
 - Nguyên văn: **“Đã mở CI, chạy tiếp Phase 3.”**
 - Giờ log: **10:35:20.180 ngày 18/11/2026, Asia/Saigon (UTC+7)**, tương ứng `2026-11-18T03:35:20.180Z`; người dùng không tự nêu giờ quyết định. [Record](../evidence/phase3/ci-resume-user-2026-11-18.json).
 - Tiếp tục P3-A trong phạm vi đã duyệt; tạo run mới và kiểm runner/steps/logs thật. Câu báo đã mở CI chưa tự chứng minh CI xanh hoặc billing đã hết chặn.
-- P3-B đã có quyền nhưng funding vẫn được để sau theo tin10:14; không suy thêm quyền cài trên máy người dùng, deploy ReceiptRail, public web hoặc merge.
+- **Tại mốc10:35:** P3-B đã có quyền nhưng funding vẫn được để sau theo tin10:14; không suy thêm quyền cài trên máy người dùng, deploy ReceiptRail, public web hoặc merge.
 
 ## Đính chính bản cũ — sai, hết hiệu lực
 

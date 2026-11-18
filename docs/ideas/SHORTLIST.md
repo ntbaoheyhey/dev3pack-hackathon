@@ -28,6 +28,6 @@ P4 dùng hai nguồn độc lập hỗ trợ workflow mỗi bài, chưa phỏng 
 
 ## Cổng còn cần
 
-Bản [IDEA](../IDEA.md) và [ARCHITECTURE](../ARCHITECTURE.md) ReceiptRail đã được người dùng duyệt bằng câu “duyệt phase 2” (giờ log09:27:18.464 ngày18/11 UTC+7); review chéo/giáo viên chưa nhận đạt. ClusterProof giữ “dự phòng, chưa duyệt”. Toolchain/web đã có giữ nguyên; không xin cài lại, không cài thêm/deploy/public mới khi chưa có câu đồng ý nguyên văn kèm giờ. Repo MIT, không đổi visibility.
+Bản [IDEA](../IDEA.md) và [ARCHITECTURE](../ARCHITECTURE.md) ReceiptRail đã được người dùng duyệt bằng câu “duyệt phase 2” (giờ log09:27:18.464 ngày18/11 UTC+7); T31/T32/T33 đã đóng theo giới hạn một lượt cuối với [nợ tài liệu](../DOCUMENTATION-DEBT.md); giáo viên chưa có verdict. ClusterProof giữ “dự phòng, chưa duyệt”. Toolchain/web đã có giữ nguyên; không xin cài lại, không cài thêm/deploy/public mới khi chưa có câu đồng ý nguyên văn kèm giờ. Repo MIT, không đổi visibility.
 
-[PR#7](https://github.com/ntbaoheyhey/dev3pack-hackathon/pull/7) vẫn `work→main`, không merge. Không hỏi duyệt Phase2 lại; tiếp tục review và chuẩn bị Phase3 trong quyền hiện có. Cổng review/giáo viên và quyền vận hành không tự đóng từ lời duyệt.
+[PR#7](https://github.com/ntbaoheyhey/dev3pack-hackathon/pull/7) vẫn `work→main`, không merge. Không hỏi duyệt Phase2 lại hoặc mở thêm vòng sửa T31/T32/T33. Chốt Phase3 theo [NEXT](../NEXT.md), rồi trình duyệt Phase4; cổng giáo viên và quyền vận hành vẫn phải ghi riêng.

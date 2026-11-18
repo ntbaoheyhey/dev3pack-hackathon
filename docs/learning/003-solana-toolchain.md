@@ -169,7 +169,7 @@ Các trang sống truy cập 17/11/2026; thời điểm truy cập không phải
 
 ## 7. Điểm chưa kiểm chứng và bước tiếp theo
 
-Đã kiểm bộ Rust host1.100.0 + Agave4.1.2 + Anchor1.2.2 + platform-tools v1.57 bằng build/IDL/6 LiteSVM tests: [hello-check-r2](../evidence/phase3/hello-check-r2.txt), exit0. [Linux27cf7ac](../evidence/phase3/ci-passed-27cf7ac.json) có push/PR đều đạt cả3jobs/57tests, typecheck/build và ReceiptRail IDL cmp. Chưa deploy, chưa chạy Docker daemon. Các bảng/lệnh kế hoạch gốc ở trên chỉ là lịch sử nghiên cứu, không thay log thực hành này.
+Đã kiểm bộ Rust host1.100.0 + Agave4.1.2 + Anchor1.2.2 + platform-tools v1.57 bằng build/IDL/6 LiteSVM tests: [hello-check-r2](../evidence/phase3/hello-check-r2.txt), exit0. [Linux27cf7ac](../evidence/phase3/ci-passed-27cf7ac.json) có push/PR đều đạt cả3jobs/57tests, typecheck/build và ReceiptRail IDL cmp. Hello đã deploy/smoke finalized theo [P3-B](../evidence/phase3/README.md); chưa chạy Docker daemon. Các bảng/lệnh kế hoạch gốc ở trên chỉ là lịch sử nghiên cứu, không thay log thực hành này.
 
 Câu lịch sử “Tiếp tục theo quyền Phase3 đã có” sai/hết hiệu lực; không dùng làm quyền hiện hành. Giữ bộ đã cài, chỉ chuẩn bị local bằng cache và hỏi riêng trước cài thêm/keypair triển khai/deploy/public. Đọc [004](004-anchor-a-to-z.md), dùng scaffold chính thức Anchor1.2.2, template single + LiteSVM0.15.0 cho hello tối thiểu, không clone RPC mainnet. Giữ signer lab ngoài Git; nếu hosting/faucet cần tài khoản thì ghi nhu cầu thực sau khi hoàn tất phần độc lập.
 
@@ -191,3 +191,7 @@ Bài học18/11: version/build logs chứng minh phần đã chạy, không ch�
 Hashes bytecode Linux trong log khác bản macOS/cache ở metadata offline; giữ hai bộ riêng, chưa xác định nguyên nhân hoặc chứng nhận reproducible/verified build. Phương án deploy hello vẫn dùng binary macOS đã kiểm/hash trước đó; chưa upload hay lấy binary CI thay thế. Bộ version/pipeline chạy được không đóng cổng devnet hoặc ví thật.
 
 Kết quả sửa ngày18/11: b906a37 đã qua build AVM/Anchor/version nhưng lỗi installer SBF;27cf7ac kiểm SHA256 archive v1.57 trước extract và cả push/PR đều pass. [Evidence mới](../evidence/phase3/ci-passed-27cf7ac.json) lưu host Rust/cargo1.100.0, SBF rustc1.95.0-dev ae660768a, Node24.22.2, Anchor source8d9d148 và steps/logs. Installer Agave pin4.1.2 thành công, không có output `solana --version` độc lập trong logs mới. Hello IDL được sinh/dùng cho8client tests; chỉ ReceiptRail IDL được cmp trong workflow. Hai run có bytecode hashes giống Linux7210aa6; chưa giải quyết khác biệt macOS. Không cần rerun local suites cho checkpoint tài liệu này.
+
+### Kết quả hello devnet — 18/11/2026
+
+[P3-B](../evidence/phase3/README.md) kiểm137giao dịch finalized, bytecode/authority khớp và counter1; tổng debit0.651874801SOL gồm phí0.000695000SOL. Dùng toolchain/signers/binary macOS cũ, không cài thêm local hoặc deploy ReceiptRail. Buffer được loader tiêu thụ; không close riêng. Bài học: exit0 không thay kiểm chain/chi phí; binary equality không chứng nhận reproducible source build.
