@@ -66,3 +66,5 @@
 - Việc T31: Xong. Đã rework evidence (Alternatives, Pain Points, State machine, Phản hồi findings).
 
 - Việc T32: Xong. Đã rework kiến trúc review (Authority, 3 rollback cases, 5 nhóm kiến trúc, phản hồi 13 findings).
+
+- Việc T33: Xong. Đã rework hoàn thiện UX (State machine, bảng lỗi IDL, wireframes, storyboard 165s, SDK).
