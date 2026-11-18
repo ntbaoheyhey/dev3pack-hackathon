@@ -87,3 +87,5 @@
 
 - Việc T31, T32, T33: Đã sửa bổ sung các log rollback, PDA check và UX 6002/6007.
 - Tình trạng: Hoàn tất các patch.
+
+- Việc T32, T31, T33: LƯỢT CUỐI — đã nộp (Final). Đã sửa Authority check (Has_one), Provenance, và UX fixes (6002/6007).

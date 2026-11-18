@@ -1,4 +1,4 @@
-# ReceiptRail Evidence Report (T31 - Correction Finalized)
+# ReceiptRail Evidence Report (T31 - Correction Final)
 
 > Ngày cập nhật: 2026-11-18
 

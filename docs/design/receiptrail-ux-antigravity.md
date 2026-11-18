@@ -1,4 +1,4 @@
-# Thiết kế UX ReceiptRail (T33 - Final Correction Patch)
+# Thiết kế UX ReceiptRail (T33 - Final Correction)
 
 > Ngày thiết kế: 2026-11-18
 
