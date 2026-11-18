@@ -42,3 +42,5 @@
 - Việc T22: Xong. Đã hoàn thiện thiết kế UX cho ReceiptRail (Wireframes, State Machine, Error Mapping, Checklist) theo review T17 của Codex.
 
 - Việc T22: Xong. Đã hoàn thiện thiết kế UX cho ReceiptRail (Bảng lỗi, wireframes, state machine, checklist) theo review của Codex (T17).
+
+- Việc T23: Xong. Đã sửa lại `receiptrail-evidence.md` với 3 alternatives (URL đích, ngày kiểm, giới hạn), 2 nguồn pain point độc lập thật, và phản hồi chi tiết các findings.
