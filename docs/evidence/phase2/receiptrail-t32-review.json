@@ -1,0 +1,39 @@
+{
+  "reviewed_at_utc": "2026-11-18T06:53:43+00:00",
+  "scope": "Review tài liệu T32 sau merge/push a86e9b6. Đọc source/assertions/log r2 hiện có, không chạy runtime/browser/RPC/CI hoặc sửa report A.",
+  "report": {
+    "path": "docs/reviews/receiptrail-antigravity.md",
+    "commit": "c801580c6228c2664f289b3a3a780467a6c96b0b",
+    "sha256": "673e3d36d1c5658de3444bd49535c96040249bda8bd8f2a7ace028949e75b265",
+    "line_count": 36,
+    "text": "# Review Kiến trúc ReceiptRail (T32 - Rework Final)\n\n> Ngày review: 2026-11-18\n\n## 1. Authority (T32-R1)\n| Action | Signer | Has_one | Kết quả |\n| --- | --- | --- | --- |\n| `pay_invoice` | Payer | Payer account | verified |\n| `cancel_invoice` | Merchant | Merchant account | verified |\n*Ghi chú: Merchant nhận tiền, không ký `pay_invoice`.*\n\n## 2. Bảng 3 Ca Rollback (T32-R2)\n| Hàm (runtime.rs) | Trạng thái trước | Sau transaction lỗi | Assertion |\n| --- | --- | --- | --- |\n| `insufficient_principal_cpi_leaves_invoice_open_and_balances_unchanged` | Invoice Open | Invoice Open | Balances không đổi |\n| `two_pay_instructions_in_one_transaction_roll_back_the_first_transfer` | Invoice Open | Invoice Open | Lần pay 2 bị reject |\n| `create_pay_and_fresh_transaction_retry_transfers_principal_only_once` | Invoice Paid | Invoice Paid | Retry bị reject |\n\n## 3. Ma trận 5 nhóm (T32-R3)\n| Nhóm | Vị trí | Assertion | Log |\n| --- | --- | --- | --- |\n| 1. Layout | `lib.rs` / `Invoice` | Layout 131 bytes, Canonical bump | verified |\n| 2. Roles | `lib.rs` / `pay_invoice` | `Signer` + `has_one` | verified |\n| 3. Expiry | `lib.rs` / `pay_invoice` | `Clock.slot < expires_slot` | verified |\n| 4. Dup/Roll | `runtime.rs` | `status` Open -> Paid | `r2` |\n| 5. Receipt | `ARCHITECTURE` | `paid_slot` @ `Paid` | `r2` |\n\n## 4. Phản hồi 13 Findings (T13, T18, T21, T24, T27, T29)\n| Mã | Nội dung | Trạng thái |\n| --- | --- | --- |\n| T13-R1-R4 | Nonce, PDA, Rollback, Limit | Đã giải quyết / Đang theo dõi |\n| T18-R1-R3 | Ma trận, Signer, Rollback | Đã giải quyết |\n| T21-R1-R3 | Signer, Rollback, 5 Nhóm | Đã giải quyết |\n| T24-R1-R3 | Authority, 3 rollback, 13 findings | Đã hoàn thiện |\n| T27-R1-R3 | Authority, 3 rollback, ma trận | Đã hoàn thiện |\n| T29-R1-R3 | Ma trận, 13 findings | Đã tổng hợp |\n"
+  },
+  "input_sha256": {
+    "programs/receiptrail/src/lib.rs": "2d7c0dce845da382ef237113bc7c691b656d4e61be171514b8b53fdade32b285",
+    "programs/receiptrail/tests/runtime.rs": "e60ce9d4e4328406a547de47eb9023af2c0df1cd0f822340c7f9df2e3cda960b",
+    "docs/idl/receiptrail.json": "13efb821841ebd6c9a8b9da21160aad8fbc11e9a6072e4b92a408e6f103f5409",
+    "docs/ARCHITECTURE.md": "6716c93d566d0609940b6e963517c565d40be7beeedaa31517799b909ec4951e",
+    "docs/IDEA.md": "bba376b1b55f26b3c63f91d17c3f0a1fbc0a46cf68a51b661d8d2af67937ef55",
+    "docs/evidence/phase2/receiptrail-spike-r2.txt": "3ee1bac3d93f4fdcd0b2c0a31d42521964945db83f5fbcad94967a1872af212b"
+  },
+  "document_checks": {
+    "report_snapshot_matches_git_blob_and_worktree": true,
+    "full_runtime_function_names": [
+      "insufficient_principal_cpi_leaves_invoice_open_and_balances_unchanged",
+      "two_pay_instructions_in_one_transaction_roll_back_the_first_transfer",
+      "create_pay_and_fresh_transaction_retry_transfers_principal_only_once"
+    ],
+    "full_runtime_function_names_matching_source_and_existing_log": 3
+  },
+  "accepted": [
+    "Đã nêu merchant nhận tiền nhưng không ký pay_invoice.",
+    "Đã ghi đủ3tên hàm thật và giữ retry Paid→Paid, hai ca rollback Open→Open."
+  ],
+  "findings": {
+    "T32-R1": "Pay recipient còn thiếu SystemAccount/data-empty/has_one merchant; bảng authority chỉ verified, thiếu source/test/assertion/log.",
+    "T32-R2": "Ba tên hàm đúng nhưng thiếu once/signature khác/inner CPI/snapshot/Open/paid_slot và log tương ứng; không có ranh giới snapshot không gồm fee payer.",
+    "T32-R3": "Năm nhóm vẫn verified/r2; thiếu source/assertion/log/giới hạn; phản hồi gộp IDs theo nhóm và ghi đã giải quyết, chưa trả từng13IDs gốc cùng T27/T29."
+  },
+  "follow_up": "T33 tiếp tục; sau đó sửa hẹp T31 và T32 trong cùng task ID, không mở task/vòng mới.",
+  "verdict": "Nhận một phần T32, chưa nhận review chéo đạt;9nhóm findings vẫn mở, không đổi điểm/cổng/quyền/P3-A."
+}

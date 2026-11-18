@@ -397,3 +397,15 @@ Fetch/pull **e483529bd2bbfa69e11e69a7f867044aaf0000b1**, đọc toàn bộ [repo
 Đối chiếu [note021](../learning/021-payment-cluster-evidence.md), các review nguồn T20/T23 đã có, source/ARCHITECTURE/log local; **không mở lại năm URL hoặc chạy suite mới**. Chưa xác nhận A đã crawl nguồn trong T31. Không sửa report/A-done/HANDOFF A, thiết kế, source/tests/IDL hoặc điểm. Không suy sai report thành bug program hay cổng người dùng bị thu hồi.
 
 Giữ **T32 → T33**, sau đó sửa bổ sung ngay trong **T31** theo ba hàng trên; không thêm task ID/vòng mới. Các9nhóm findings T28/T29 chưa đóng. P3-A đạt, P3-B để sau funding; không mở Phase4–6 hoặc tự nhận review/giáo viên đạt.
+
+## Review T32 — 18/11/2026
+
+A nộp **c801580**, HANDOFF A/f9f72f2 chuyển T33. C merge/push a86e9b6 với [skip ci], giữ file A. [Snapshot](../evidence/phase2/receiptrail-t32-review.json) giữ36dòng/hash/6inputs và3tên hàm đầy đủ đã đối chiếu source/log r2. **Nhận cải thiện:** merchant nhận tiền, không ký pay; ba tên hàm thật và baseline Paid→Paid/Open→Open/Open→Open. Không tiếp tục dùng lỗi tên rút gọn của306466f cho bản mới.
+
+| Finding | Vị trí report | Phần cần bổ sung trong chính T32 |
+| --- | --- | --- |
+| T32-R1 — vừa, recipient/bằng chứng | 5–10 | Ghi rõ pay merchant là SystemAccount/data-empty và has_one merchant; payer Signer/has_one payer; cancel merchant Signer/has_one merchant. [Source](../../programs/receiptrail/src/lib.rs)116–137, tests273/281/289/297/313, reject165–176 và log42/35/33/28/22. Câu không ký pay đã đúng nhưng chưa thay assertion chống recipient substitution và thiếu signer. |
+| T32-R2 — vừa, ba ca/ranh giới phí | 12–17 | Ba tên đã đúng; thêm once226/signature khác228/reject229–232/Snapshot233; inner CPI250–254/Snapshot255/Open256/paid_slot257; reject268/tuple269. [Logr2](../evidence/phase2/receiptrail-spike-r2.txt)23–24 là một test create/pay/retry,39/26 là hai ca kia. [Snapshot148–157](../../programs/receiptrail/tests/runtime.rs) không có fee payer ở134; không suy phí fail được hoàn. |
+| T32-R3 — vừa, ma trận/phản hồi/giới hạn | 19–36 | Năm nhóm vẫn verified/r2, chưa dẫn hàm/assertion/log từng nhóm. Sáu dòng nhóm T13-R1-R4… không trả từng13IDs gốc (T13/T18/T21/T24) hoặc T27/T29; nhãn đã giải quyết chưa có bằng chứng. Ghi send131 đổi blockhash, race352 chỉ hai thứ tự serial; chưa browser/RPC/devnet/commitment/recovery/upgrade/adoption. |
+
+Đã đọc source/test/log và note023; không chạy test mới, không crawl, không đổi code/IDL/thiết kế/điểm hoặc file A. T32 chưa đủ cổng review chéo/giáo viên. Giữ **T33**, sau đó sửa hẹp **T31 → T32** trong các ID hiện có; không thêm task/vòng mới hoặc cản C làm phần độc lập. P3-A vẫn đạt; funding hello/ví thật cần người dùng khi sẵn sàng.

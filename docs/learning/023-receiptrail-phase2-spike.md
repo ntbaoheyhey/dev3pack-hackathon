@@ -148,3 +148,7 @@ Bản306466f đến trước push vẫn9mã/165giây/4mục nhưng bỏ phí cre
 [T30/0d7b9d3](../reviews/receiptrail-codex.md#review-t30--18112026-heartbeat1327-utc7) đã khôi phục phí/terms/Unknown và sửa expiry đúng biên;9/9 code–name vẫn khớp IDL. Tuy nhiên Paid=finalized và WrongVersion=IDL version chưa sửa; tên lỗi đúng không chứng minh nguyên nhân/CTA đúng. Mục3–5 được đánh chưa đạt nhưng nội dung bị xóa thành placeholder: bản này không còn bố cục hoặc các khoảng để kiểm165giây. Không tiếp tục gán kết quả của snapshot cũ cho report mới.
 
 Snapshot43dòng/hash46f24510… và6hashes đầu vào đã kiểm; không rerun runtime vì executable inputs không đổi. Nhận phần đúng, giữ9nhóm findings và gộp T30 còn thiếu vào T33 sau T31/T32. Review nội dung, quyền người dùng, CI và funding là những trạng thái riêng; không suy một phần cải thiện thành cổng đạt.
+
+## Bài học review T32 — 18/11/2026
+
+[T32/c801580](../reviews/receiptrail-codex.md#review-t32--18112026) sửa3tên hàm đầy đủ, giữ baseline retry Paid→Paid và nói merchant không ký pay; nhận các phần này. C đối chiếu source/assertions/log r2 hiện có, lưu [snapshot](../evidence/phase2/receiptrail-t32-review.json)36dòng/6hashes/3tên đúng, không rerun suite. Tên hàm tồn tại không thay assertion/log: cần recipient constraint, snapshot và fee boundary, phạm vi serial race; không dùng verified/r2 hoặc nhóm IDs đã giải quyết thay từng bằng chứng. Giữ T33 rồi sửa hẹp T31/T32 cùng ID, không đổi cổng/quyền/điểm.
