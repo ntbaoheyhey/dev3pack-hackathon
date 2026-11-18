@@ -73,7 +73,15 @@ jobs:
           test "$("$RUNNER_TEMP/anchor-1.2.2/bin/anchor" --version)" = "anchor-cli 1.2.2"
           echo "ANCHOR_BIN=$RUNNER_TEMP/anchor-1.2.2/bin/anchor" >> "$GITHUB_ENV"
       - name: Install pinned SBF compiler
-        run: cargo build-sbf --tools-version v1.57 --install-only
+        run: |
+          test "$(uname -m)" = x86_64
+          archive="$RUNNER_TEMP/platform-tools-v1.57.tar.bz2"
+          platform_dir="$HOME/.cache/solana/v1.57/platform-tools"
+          curl --proto '=https' --tlsv1.2 -sSfL --retry 3 https://github.com/anza-xyz/platform-tools/releases/download/v1.57/platform-tools-linux-x86_64.tar.bz2 -o "$archive"
+          printf '%s  %s\n' b0f7af104adf726fff2a6a09ea2eb2f2d2965c92295f4d7388c08d140e0c2b00 "$archive" | sha256sum --check
+          mkdir -p "$platform_dir"
+          tar -xjf "$archive" -C "$platform_dir"
+          "$platform_dir/rust/bin/rustc" --version
       - name: Warm locked dependency cache after approval
         run: cargo fetch --locked
       - name: Build both programs offline and verify generated IDLs

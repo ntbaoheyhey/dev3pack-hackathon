@@ -16,7 +16,7 @@
 | Giáo viên | Chấm SHORTLIST/kiến trúc | Chưa có verdict; không tự đánh đạt |
 | Người dùng | Nguyên văn “duyệt phase 2”, [record](../evidence/phase2/user-approval-2026-11-18.json) | Giờ log09:27:18.464 ngày18/11 UTC+7, người dùng không tự nêu giờ quyết định; không hỏi lại |
 | Phase3/vận hành | [Pipeline offline](../evidence/phase3/offline-pipeline-metadata.json), [preflight](../evidence/phase3/preflight-after-phase2-approval.json), [P3-A/P3-B](../PHASE3-PLAN.md) | 25 runtime +8 client tests local đạt. P3-A/P3-B đã được “Đồng ý cả hai”, log10:13:11.851 UTC+7; Linux push7210aa6 đạt3jobs/57tests+build; PR lỗi attestation403, patchb906a37 đang chạy ([evidence](../evidence/phase3/ci-resumed-7210aa6.json)). Billing cũ đã qua; funding để sau, chưa hello deploy/ví thật |
-| PR7 | Snapshot fetch 18/11 lúc10:27:54 UTC+7: work→main, open, merged=false, heada2784dd | Title/body đã cập nhật và đọc lại khớp P3-A/P3-B, sáu jobs bị billing chặn, funding để sau và review còn mở. Checkpoint tiếp theo chỉ ghi xác minh; không merge |
+| PR7 | Fetch18/11 lúc10:54:53 UTC+7: work→main, open, merged=false, head05a8cf8 | Body khớp Linux7210aa6/pending patchb906a37/quyền P3-A/P3-B/funding/review; comments10:56 rỗng. Không merge |
 
 **Phạm vi đã được người dùng duyệt:** native SOL, một payer/merchant trên mỗi invoice; create/pay/cancel/read; Open→Paid/Cancelled và Expired hiển thị; không close/reset/refund/stablecoin/x402. Cùng invoice chỉ chuyển principal1lần, vẫn có phí fail và rent lâu dài. Spike và Linux tests là evidence phần lõi; UI/RPC recovery/devnet/video chưa có, bản sửa CI còn cần kết quả riêng.
 

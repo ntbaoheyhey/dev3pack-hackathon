@@ -11,8 +11,8 @@
 - Record ci-resume-user và note022 lưu tin mới; giữ pins/locks; thay riêng installer đúng upstream source để xử lý403, không tự đổi billing/limit.
 - Pipeline cache25runtime+8client pass cũ; source/tests/IDL/web/lab giữ nguyên. Workflow hash cũ trong metadata offline là snapshot trước mởguard.
 - T26/T27 đã review; T28→T29 còn mở. Fetch cuối chưa có report mới; không suy process live từ HANDOFF A.
-- PR7 đã sửa quyền/CI/funding; lần đọc lại trước checkpoint này xác nhận head3b92ce2/work→main/open/merged=false, body khớp, không có comments mới. Không merge.
-- Đã pushb906a37 sửa installer, cùng source8d9d148/lock/Rust1.100.0; YAML/10bash blocks đạt. Theo dõi PR44233192373/job134562955349 và push44233187077/job134562937429; research/web đã pass, Anchor đang cài.
+- PR7 đã sửa body theo Linux/pending patch/funding; fetch10:54:53 UTC+7 xác nhận head05a8cf8/work→main/open/merged=false/body khớp. Comments kiểm10:56 rỗng; không merge.
+- b906a37: hai runs đã failure ở installer SBF (parse GitHub response); Anchor source/version đã pass. Evidence ci-anchor-source-b906a37. Đã sửa tải đúng archivev1.57+SHA256 trước extract; YAML/10shell blocks đạt, cần push/chạy CI mới.
 - Automation15phút ACTIVE; checkpoint tài liệu/merge dùng [skip ci], chỉ run cần thiết trong P3-A mới bỏ marker.
 - Review chéo/giáo viên vẫn mở; ClusterProof dự phòng, chưa duyệt. Không mở Phase4–6/merge/force-push/mainnet/secrets/visibility.
 
@@ -22,7 +22,7 @@
 
 ## Còn lại
 
-1. **CI:** theo dõi hai runb906a37 ở Thẻ nhớ tới terminal, đọc logs. Push7210aa6 xanh/PR lỗi403 đã lưu evidence; chưa chứng minh patch mới đạt. Sau kết quả đồng bộ README/ROADMAP/PHASE3-PLAN/NEXT/mục lục003/022/cổng/audit/PR7, push checkpoint tài liệu có skip và xác minh PR open/chưa merge. Không tự đổi pins/locks/billing/quyền hoặc gọi skipped là đạt.
+1. **CI:** push patch SBF mới, lấy handles rồi theo dõi tới terminal/đọc logs. Hai runb906a37 đã failure sau khi Anchor source/version pass, không poll lại như live. Push7210aa6 xanh/PR lỗi403 đã lưu evidence; chưa chứng minh patch mới đạt. Sau kết quả đồng bộ README/ROADMAP/PHASE3-PLAN/NEXT/mục lục003/022/cổng/audit/PR7, push checkpoint tài liệu có skip và xác minh PR open/chưa merge. Không tự đổi pins/locks/billing/quyền hoặc gọi skipped là đạt.
 2. **Hello:** funding được người dùng để sau. Khi có đủ SOL devnet, recheck balance/rent/flags/hash/signers/trần1.5SOL rồi triển khai và kiểm initialize/increment/finalized; chưa tạo buffer/sign/send lúc này.
 3. **A:** fetch và review T28/T29 khi nộp, nhận phần có bằng chứng; không sửa file A hoặc coi report nộp là đã qua cổng.
 4. **Cổng:** review chéo được nhận, giáo viên chấm và ví thật vẫn mở. Không tự gọi Phase3/goal xong; NEXT/ROADMAP/PR7 theo evidence thật.
