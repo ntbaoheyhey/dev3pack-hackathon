@@ -1,6 +1,6 @@
 # Thẻ nhớ — Codex / P3-B sau CLI deploy, chờ kiểm chứng
-- Trạng thái **đang làm**: CLI hello r4 exit 0; P3-B chưa xong vì chưa kiểm finalized sau deploy hoặc chạy smoke. Chưa mở Phase 4.
-- Lượt bàn giao này chỉ lưu trạng thái; không chạy thêm RPC/giao dịch. Các bước thực thi dưới đây dành cho lượt tiếp tục.
+- Trạng thái **đang làm**: deploy đã finalized, smoke confirmed; đang đối soát137transactions/chi phí. Chưa mở Phase4.
+- Tiếp tục22:22 UTC+7: deploy finalized/bytecode/authority đạt; smoke initialize và increment confirmed, counter1. Không gửi lại smoke.
 - C trưởng nhóm tại `/Users/bao/Documents/ChatGPT/dev3pack`, branch `work`; không sửa checkout/file do A sở hữu.
 - ReceiptRail chính/ClusterProof phụ; Phase 2 đã duyệt. Nguyên văn/giờ và quyền P3-A/P3-B ở DECISION; không phục hồi quyết định ClusterProof sai.
 - **T31/T32/T33 đã đóng** sau lượt cuối A `7857e9b`; nhận phần đạt, D01–D03 ở DOCUMENTATION-DEBT. Không mở thêm vòng sửa/task bổ sung.
@@ -10,8 +10,8 @@
 - Trước deploy cuối: payer1.849.872.400lamports, debit650.127.600 = buffer649.452.600 + phí675.000; **chưa là chi phí P3-B cuối**.
 - CLI r4 chạy22:14:19–22:14:21 ngày18/11/2026 UTC+7, exit0; signature ở evidence hello-devnet-deploy-r4-2026-11-18.json. Session66421 đã terminal.
 - **Không chạy lại upload/deploy thành công, không tạo lại buffer.** Trước gửi tiếp: đối soát chain, hai pending journals và ngân sách.
-- Bước tiếp theo: đọc helper `/tmp/dev3pack-verify-hello-deploy.mjs`, kiểm finalized/ProgramData/authority/bytecode; chỉ sau đạt mới smoke `--send` một lần.
-- Sau smoke dùng helper finalize để đối soát signatures/meta.err/fees và counter1. Không suy đã quan sát account0 nếu chỉ có before null/after1.
+- Finalizer r2 đang chạy session6752, source/evidence r2 riêng; resume10/137tx, pacing3.5s/backoff10–20s sau429. Poll handle, không ký hoặc gửi thêm.
+- Smoke record devnet-smoke-1795015356860.json VERIFIED, before null/after1; journal không còn. Final accounting chưa hoàn tất.
 - CI `27cf7ac` đạt3jobs/57tests mỗi run; HEAD tài liệu không là revision CI. Web/lab cũ HTTP200 lúc22:09:50; ví thật chưa kiểm.
 - Không deploy ReceiptRail/cài thêm/public hoặc update web/merge PR7/mainnet/force-push/close buffer/đổi authority/tăng trần.
 - Automation15phút **PAUSED** theo lần đọc app21:59; giữ cấu hình, không tạo trùng hoặc tuyên bố ACTIVE. Task không được đánh xong.
@@ -25,7 +25,11 @@
 
 A nộp `7857e9b` lúc22:10:31 UTC+7, sau queue `7137ec0`; đã fast-forward đến `6e26051`. C đã nhận phần đạt, lưu [snapshot cuối](evidence/phase2/receiptrail-final-pass-2026-11-18.json), [queue lịch sử](archive/A-queue-final-pass-2026-11-18.md), ghi [D01–D03](DOCUMENTATION-DEBT.md) và [đóng queue](tasks/A-queue.md). Nợ tài liệu không là task sửa hoặc blocker P3-B; không sửa ba report/A-done/HANDOFF A, không mở review mới. Chưa có verdict giáo viên/audit độc lập.
 
-## Còn lại — khi tiếp tục
+## Còn lại — checkpoint trước finalizer r2
+
+**Hiện hành:** bước2–3 bên dưới đã xong: deploy evidence finalized, smoke VERIFIED. Bước4 đã xác nhận cả137signature finalized nhưng chỉ đọc metadata10tx trước429; tiếp tục read-only bằng helper r2. Không chạy lại verify helper có assert counter null hoặc smoke send. Các bước2–3 giữ tạm để truy nguyên và sẽ rút gọn khi chốt.
+
+## Trình tự trước checkpoint — không chạy lại bước đã xong
 
 1. Đọc AGENTS/ROADMAP/learning và trạng thái queue đã đóng; inspect Git, fetch/đồng bộ giữ cả hai phía. Không khởi động lại sessions6853/66421/37765/51317: tất cả đã terminal. Đọc hai helper trong `/tmp` trước dùng; chúng đã có nhưng **chưa chạy**, cần kiểm lại nếu file thay đổi/mất.
 2. Chạy read-only `/tmp/dev3pack-verify-hello-deploy.mjs`: r4 finalized/meta/log, genesis, executable/loader, ProgramData PDA/authority/payload hash, payer và ngân sách smoke. Dự kiến ghi `hello-devnet-deploy-finalized-2026-11-18.json`. Nếu buffer/counter không khớp giả định thì đối soát, không tự close/redeploy.

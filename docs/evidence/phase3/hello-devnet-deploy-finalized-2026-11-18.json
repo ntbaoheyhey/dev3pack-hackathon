@@ -1,0 +1,60 @@
+{
+  "at": "2026-11-18T15:22:27.110Z",
+  "rpc": "https://api.devnet.solana.com",
+  "genesis": "EtWTRABZaYq6iMfeYKouRu166VU2xqa1wcaWoxPkrZBG",
+  "commitment": "finalized",
+  "observationSlot": 523673669,
+  "programId": "2yzxUQEpaeLmgCMhDipwnVL3DHsxez18KcePonqZRiXL",
+  "programOwner": "BPFLoaderUpgradeab1e11111111111111111111111",
+  "executable": true,
+  "programLamports": 833120,
+  "programData": "BJQzgSHrumuS7K9QFqpCTanzqm2whAEje51hwLavFJ32",
+  "programDataLamports": 649452600,
+  "programDataBytes": 127717,
+  "deploymentSlot": "523671636",
+  "upgradeAuthority": "GQRoDMoWFV2nhgwm3bZGvSCC1LSa2wRkLeeJg8NhbFM2",
+  "binarySha256": "9b5483f7335a294b125ba458bcbcbdc9e222b605a2c67d7fabc76c132a23da54",
+  "deployedPayloadSha256": "9b5483f7335a294b125ba458bcbcbdc9e222b605a2c67d7fabc76c132a23da54",
+  "bufferAccount": null,
+  "counterAccount": null,
+  "payerLamports": 1849029280,
+  "payerDeltaFromBaseline": 650970720,
+  "deploySignature": "4bsAQ4JYw52KTv1EjcWZ4mJJNzr4KRTqnznDQEP5d95SBNcADMRrersNNADscEpFJgVNqP6vZNxbc28qV7UgHUDq",
+  "deployTransaction": {
+    "slot": 523671636,
+    "err": null,
+    "feeLamports": 10000,
+    "logs": [
+      "Program 11111111111111111111111111111111 invoke [1]",
+      "Program 11111111111111111111111111111111 success",
+      "Program BPFLoaderUpgradeab1e11111111111111111111111 invoke [1]",
+      "Program 11111111111111111111111111111111 invoke [2]",
+      "Program 11111111111111111111111111111111 success",
+      "Deployed program 2yzxUQEpaeLmgCMhDipwnVL3DHsxez18KcePonqZRiXL",
+      "Program BPFLoaderUpgradeab1e11111111111111111111111 success",
+      "Program ComputeBudget111111111111111111111111111111 invoke [1]",
+      "Program ComputeBudget111111111111111111111111111111 success",
+      "Program ComputeBudget111111111111111111111111111111 invoke [1]",
+      "Program ComputeBudget111111111111111111111111111111 success"
+    ],
+    "computeUnitsConsumed": 2970
+  },
+  "deploySignatureStatus": {
+    "confirmationStatus": "finalized",
+    "confirmations": null,
+    "err": null,
+    "slot": 523671636,
+    "status": {
+      "Ok": null
+    }
+  },
+  "smokeBudget": {
+    "counterRentLamports": 894080,
+    "helloTransferLamports": 1,
+    "initializeFeeLamports": 5000,
+    "incrementFeeLamports": 5000,
+    "projectedTotalLamports": 651874801,
+    "capLamports": 1500000000
+  },
+  "status": "DEPLOY_FINALIZED_BYTECODE_VERIFIED_READY_FOR_SMOKE"
+}

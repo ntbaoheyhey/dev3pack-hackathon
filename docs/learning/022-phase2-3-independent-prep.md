@@ -241,3 +241,9 @@ Paced upload lần đầu: simulateTransaction với sigVerify trả SignatureFa
 [CLI r4](../evidence/phase3/hello-devnet-deploy-r4-2026-11-18.json) chạy22:14:19–22:14:21 UTC+7, exit0 với signature trong record; status `CLI_SUCCESS_PENDING_CHAIN_VERIFICATION`. Không chạy lại upload/deploy hoặc tạo buffer mới. Chưa kiểm finalized/meta.err/ProgramData/authority/payload sau r4, chưa initialize/increment. Helper verify/finalize trong `/tmp` đã có nhưng chưa chạy; phải đọc trước dùng, đối soát pending journals/ngân sách rồi mới gửi smoke một lần. Không lấy exit0 thay bằng chứng on-chain hoặc coi dự toán là chi phí thực.
 
 Bài học bàn giao: cập nhật HANDOFF và NEXT cùng lúc, gỡ chỉ dẫn retry/process handle đã terminal và review đã đóng khỏi phần hiện hành. T31/T32/T33 đã nhận đúng một lượt cuối A7857e9b, phần thiếu thành D01–D03 trong DOCUMENTATION-DEBT; không biến nợ tài liệu thành vòng sửa mới. Lượt bàn giao chỉ lưu/kiểm tài liệu, chưa RPC hoặc gửi giao dịch tiếp; không gán CI27cf7ac cho checkpoint tài liệu hay gọi Phase3 hoàn tất.
+
+### Đối soát sau deploy/smoke — trước helper r2
+
+18/11/2026: helper verify22:22:27 UTC+7 xác nhận deploy finalized, executable/ProgramData/upgrade authority và payload hash khớp; buffer đã được loader tiêu thụ, không gọi close. Smoke initialize/increment đúng một lần, confirmed thành công, account trước chưa tồn tại/sau count1. Finalizer read-only xác nhận137signatures finalized nhưng đọc metadata10tx rồi nhận429 Too Many Requests. Đây là rate-limit thực có response, khác lỗi Max retries trước không rõ nguyên nhân. Không ký/gửi lại.
+
+Giữ JSON lỗi/10tx và source helper; r2 tiếp tục phần metadata chưa đọc, kiểm prefix/signatures/cache, pacing3.5giây mỗi request và backoff10/20giây khi RPC lỗi. Cuối vẫn đối soát toàn bộ fees/debit/accounts/cap và finalized state; chưa ghi chi phí cuối trước các assertions đạt.

@@ -1,0 +1,178 @@
+{
+  "startedAt": "2026-11-18T15:23:05.807Z",
+  "rpc": "https://api.devnet.solana.com",
+  "genesis": "EtWTRABZaYq6iMfeYKouRu166VU2xqa1wcaWoxPkrZBG",
+  "commitment": "finalized",
+  "programId": "2yzxUQEpaeLmgCMhDipwnVL3DHsxez18KcePonqZRiXL",
+  "programData": "BJQzgSHrumuS7K9QFqpCTanzqm2whAEje51hwLavFJ32",
+  "payer": "GQRoDMoWFV2nhgwm3bZGvSCC1LSa2wRkLeeJg8NhbFM2",
+  "counter": "WPFLETxvxk2hq48C7YzC1VJVVZcEhzqF2tur6vBDvnB",
+  "smokeEvidence": "docs/evidence/phase3/devnet-smoke-1795015356860.json",
+  "baselineLamports": 2500000000,
+  "approvedCapLamports": 1500000000,
+  "transactionCount": 137,
+  "transactions": [
+    {
+      "signature": "3dE6qTXCrU8tUsiVzKQzc1Cog2Wry47yBQhxeSeuzrA9X9uw84KGLfpGijHc8gBSQHUnTLPctybw6nukMUEcRB8w",
+      "slot": 523668871,
+      "err": null,
+      "confirmationStatus": "finalized",
+      "feeLamports": 5000,
+      "requiredSignatures": 1,
+      "payerDebitLamports": 5000,
+      "computeUnitsConsumed": 2670,
+      "programs": [
+        "BPFLoaderUpgradeab1e11111111111111111111111",
+        "ComputeBudget111111111111111111111111111111",
+        "ComputeBudget111111111111111111111111111111"
+      ],
+      "transactionJsonSha256": "e40143c7971f6db60cedff6cbb5f3d5580be761cb805cd5a6d2293ff078ef7f7"
+    },
+    {
+      "signature": "5ph3z9okKssz6doPCx5jCa6G9KB5siYumGWHvw1491uv8Ccm1hKmEJS2BfvqpcaQpFNuAH6vwiejVBVFLJeuKpLg",
+      "slot": 523668871,
+      "err": null,
+      "confirmationStatus": "finalized",
+      "feeLamports": 5000,
+      "requiredSignatures": 1,
+      "payerDebitLamports": 5000,
+      "computeUnitsConsumed": 2670,
+      "programs": [
+        "BPFLoaderUpgradeab1e11111111111111111111111",
+        "ComputeBudget111111111111111111111111111111",
+        "ComputeBudget111111111111111111111111111111"
+      ],
+      "transactionJsonSha256": "83436b4563043a13e3e9fd67db530ddf018e48fe5383d32aa562d39558df8e9e"
+    },
+    {
+      "signature": "3wfZ4BsveFjRzwPpMJdVqRgdKF8E9LyMgYoDwzwTf1R3NC9Gur2mYGL8oHq2MUPGE4o2EgHLmB9DFrPG6TCL39en",
+      "slot": 523668871,
+      "err": null,
+      "confirmationStatus": "finalized",
+      "feeLamports": 5000,
+      "requiredSignatures": 1,
+      "payerDebitLamports": 5000,
+      "computeUnitsConsumed": 2670,
+      "programs": [
+        "BPFLoaderUpgradeab1e11111111111111111111111",
+        "ComputeBudget111111111111111111111111111111",
+        "ComputeBudget111111111111111111111111111111"
+      ],
+      "transactionJsonSha256": "fb5b459617c0f7037f693b59ea623154a5f8bf9fb32e46d59952c6419ca8cfe4"
+    },
+    {
+      "signature": "3uoUYmzE3fWacjybmWywBidgQqpNXMjRU1cVc5Z9vXgU5YTBCY3FFwJqaCtfHQbDtgMEzRWXAJL1NTkXu5LqvsyZ",
+      "slot": 523668871,
+      "err": null,
+      "confirmationStatus": "finalized",
+      "feeLamports": 5000,
+      "requiredSignatures": 1,
+      "payerDebitLamports": 5000,
+      "computeUnitsConsumed": 2670,
+      "programs": [
+        "BPFLoaderUpgradeab1e11111111111111111111111",
+        "ComputeBudget111111111111111111111111111111",
+        "ComputeBudget111111111111111111111111111111"
+      ],
+      "transactionJsonSha256": "b6d55446d9647dc0f5a4c9671dab86e597ace6e95c55458319eda334bba4e1a2"
+    },
+    {
+      "signature": "3TE71wF5SyWayybiXjwJH9jo1Av2623ZxM6uZouo1AyJWxcVcNxRZ1dcYCieycTBQPB8kVxsABeZcDFRFVhsnUcd",
+      "slot": 523668871,
+      "err": null,
+      "confirmationStatus": "finalized",
+      "feeLamports": 5000,
+      "requiredSignatures": 1,
+      "payerDebitLamports": 5000,
+      "computeUnitsConsumed": 2670,
+      "programs": [
+        "BPFLoaderUpgradeab1e11111111111111111111111",
+        "ComputeBudget111111111111111111111111111111",
+        "ComputeBudget111111111111111111111111111111"
+      ],
+      "transactionJsonSha256": "5bbd6cc5e37f7da0d4eac138f782c863897f03e910a12f4242b8cc5b1f8405da"
+    },
+    {
+      "signature": "5yL2r9LqGHX73KGnSJFurVfLw5JG49dwggrewFfqjm5rXJ2xRzcX41nmkYNcfuta4NJ69yehdyVHx5bxj9F41Abe",
+      "slot": 523668871,
+      "err": null,
+      "confirmationStatus": "finalized",
+      "feeLamports": 5000,
+      "requiredSignatures": 1,
+      "payerDebitLamports": 5000,
+      "computeUnitsConsumed": 2670,
+      "programs": [
+        "BPFLoaderUpgradeab1e11111111111111111111111",
+        "ComputeBudget111111111111111111111111111111",
+        "ComputeBudget111111111111111111111111111111"
+      ],
+      "transactionJsonSha256": "fa80afac86aa254af99769ddeb4e44621ea0d0fdef37ae1029f290aa1f706f39"
+    },
+    {
+      "signature": "2B3rW2AqdX177Vkqo4CMDmpZxwFzWm24okFo2n7GG7pPQxfTkexyt6X4fY9BrDLpo7vMnt5AB9o4ggjF5h3h99uU",
+      "slot": 523668871,
+      "err": null,
+      "confirmationStatus": "finalized",
+      "feeLamports": 5000,
+      "requiredSignatures": 1,
+      "payerDebitLamports": 5000,
+      "computeUnitsConsumed": 2670,
+      "programs": [
+        "BPFLoaderUpgradeab1e11111111111111111111111",
+        "ComputeBudget111111111111111111111111111111",
+        "ComputeBudget111111111111111111111111111111"
+      ],
+      "transactionJsonSha256": "f4913db256fd41106de64a60211c8f68737a2a1bdacaaf94f9773cd3e1c864c0"
+    },
+    {
+      "signature": "5mmVXyxxZZaMYRy6veeTw99VnYQoX1j32DEGRMgawHKZqLHDcfryDZGmygKN7wyJ3yYY6g96sybMk9BWnyNbdhm9",
+      "slot": 523668871,
+      "err": null,
+      "confirmationStatus": "finalized",
+      "feeLamports": 5000,
+      "requiredSignatures": 1,
+      "payerDebitLamports": 5000,
+      "computeUnitsConsumed": 2670,
+      "programs": [
+        "BPFLoaderUpgradeab1e11111111111111111111111",
+        "ComputeBudget111111111111111111111111111111",
+        "ComputeBudget111111111111111111111111111111"
+      ],
+      "transactionJsonSha256": "8bbf39b82c44cbbba4c1dd3111f2f095e6488aed3014d059ca2ff12917625e43"
+    },
+    {
+      "signature": "2otfvdUpSHAxQsRLvbizjBnV2nSGvBY4wdJkJah4fE4PxMzswqXcrEuELS2mq69y4FF37Tjy66Ed24KjNHaSC4hj",
+      "slot": 523668871,
+      "err": null,
+      "confirmationStatus": "finalized",
+      "feeLamports": 5000,
+      "requiredSignatures": 1,
+      "payerDebitLamports": 5000,
+      "computeUnitsConsumed": 2670,
+      "programs": [
+        "BPFLoaderUpgradeab1e11111111111111111111111",
+        "ComputeBudget111111111111111111111111111111",
+        "ComputeBudget111111111111111111111111111111"
+      ],
+      "transactionJsonSha256": "fff675b584c4df12bd11b3201c290ad144da359dc1f42f4e7b7175b4a7b6f118"
+    },
+    {
+      "signature": "52c9aejTTPRfBXKucjbHfEveWmUsAQNhuSEzqkormAZXyVzdPmYyuZfXV4J1BpvT19633puy9FdBrW2BQscibobY",
+      "slot": 523668871,
+      "err": null,
+      "confirmationStatus": "finalized",
+      "feeLamports": 5000,
+      "requiredSignatures": 1,
+      "payerDebitLamports": 5000,
+      "computeUnitsConsumed": 2670,
+      "programs": [
+        "BPFLoaderUpgradeab1e11111111111111111111111",
+        "ComputeBudget111111111111111111111111111111",
+        "ComputeBudget111111111111111111111111111111"
+      ],
+      "transactionJsonSha256": "58b030d9736375adac1703544d42be7125747924e6d81d7db743a021d33f48a3"
+    }
+  ],
+  "status": "VERIFICATION_FAILED_OR_INCOMPLETE",
+  "error": "429 Too Many Requests:  {\"jsonrpc\":\"2.0\",\"error\":{\"code\": 429, \"message\":\"Too many requests for a specific RPC call\"}, \"id\": \"45d9661d-3488-4917-9900-10ca798d7c58\" } \r\n"
+}
