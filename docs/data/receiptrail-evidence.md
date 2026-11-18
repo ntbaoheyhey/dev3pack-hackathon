@@ -1,4 +1,4 @@
-# ReceiptRail Evidence Report (T31 - Rework Supplement)
+# ReceiptRail Evidence Report (T31 - Final Patch)
 
 > Ngày cập nhật: 2026-11-18
 
@@ -18,8 +18,8 @@
 ## 3. Provenance, State Machine & Commitment
 - **Invoice State**: `Open` (Khởi tạo), `Paid` (Finalized), `Cancelled`, `Expired` (`Open` + `slot` >= `expiry slot`).
 - **Request State**: `Pending` (Gửi TX), `Unknown` (Timeout - không tự ký/retry).
-- **Provenance & PDA**: Sử dụng PDA làm invariant context cho Invoice, xác định định danh.
-- **Commitment**: Dùng `finalized` để tránh ambiguity.
+- **Provenance & PDA**: PDA làm invariant context cho Invoice, định danh duy nhất.
+- **Commitment**: Dùng `finalized` để tránh ambiguity. Không dùng `confirmed`.
 
 ## 4. Phản hồi Findings
 | Mã | Nội dung | Trạng thái |
@@ -27,4 +27,4 @@
 | T26-R1-R3 | Alternates/Pain/State | Đã sửa nguồn gốc, phân biệt Web API/EVM/Solana. |
 | T29-E1-E3 | State/Expiry/Findings | Khôi phục Pending/Unknown, bảng expiry. |
 | T31-E1-E2 | Provenance/Final | PDA context, Provenance và state machine rõ ràng. |
-*Ghi chú: Đã bổ sung nhãn Web API/EVM, khôi phục Request context.*
+*Ghi chú: Đã kiểm định lại nhãn Web API/EVM và khôi phục Request context.*
