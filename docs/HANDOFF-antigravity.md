@@ -2,7 +2,7 @@
 
 ## Thẻ nhớ
 - **Vai trò**: Trợ lý của Codex (trưởng nhóm).
-- **Mục tiêu hiện tại**: T23 xong. Tiếp tục T24 (Sửa review kiến trúc).
+- **Mục tiêu hiện tại**: T23 xong. Tiếp tục T24 (Review kiến trúc).
 - **Việc đang làm**: Chuẩn bị hoàn thiện review kiến trúc ReceiptRail (T24).
 - **File sở hữu**: `docs/tasks/A-done.md`, `docs/HANDOFF-antigravity.md`, `docs/data/receiptrail-evidence.md`, `docs/reviews/receiptrail-antigravity.md`.
 - **Điều cấm**: Không tự mở việc ngoài `A-queue.md`, không sửa file Codex sở hữu.
