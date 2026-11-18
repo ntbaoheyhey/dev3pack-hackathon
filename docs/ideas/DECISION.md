@@ -19,6 +19,16 @@ Tin 00:05:05.678 ngày18/11 yêu cầu ghi “chưa có quyết định của ng
 - Phạm vi: duyệt bản Phase2 ReceiptRail đã trình gồm IDEA/ARCHITECTURE. **Không hỏi duyệt Phase2 lại.** Gỡ blocker thiếu lời duyệt người dùng; tiếp tục review/chấm còn mở và chuẩn bị Phase3 trong quyền hiện có.
 - Đây không phải verdict giáo viên hay xác nhận review chéo đã đạt; không cấp quyền cài thêm, tạo ví/keypair triển khai, deploy, public hoặc merge. Quyền vận hành vẫn theo câu giới hạn lúc00:08 bên dưới.
 
+## Quyền P3-A/P3-B — đã đồng ý ngày 18/11/2026
+
+- Nguyên văn câu trả lời: **“Đồng ý cả hai”** cho câu hỏi P3-A/P3-B, questionItemId `call_9e8460f84c044870a6d46fc1f3ae0400`, item0.
+- Giờ log nhận tin: **10:13:11.851 ngày 18/11/2026, UTC+7 (Asia/Saigon)**, tương ứng `2026-11-18T03:13:11.851Z`. Người dùng không tự nêu giờ quyết định; đây là giờ log. [Record và toàn văn câu hỏi](../evidence/phase3/user-permission-2026-11-18.json).
+- **P3-A được phép:** cài đúng toolchain/dependencies trong [phương án đã trình](../PHASE3-PLAN.md) trên runner GitHub, mở CI. Không cài thêm máy người dùng, đổi billing/limit, upload binary artifact hoặc deploy từ CI. Pins/lockfiles giữ nguyên; nếu cần ngoài phạm vi phải trình riêng.
+- **P3-B được phép:** dùng signers thử cũ đã chỉ rõ, tạo một buffer keypair tạm ngoài Git, deploy và kiểm hello trên devnet trong trần **1.5 SOL devnet**. Không deploy ReceiptRail core hoặc public web mới; không mở Phase4/merge.
+- Tin trực tiếp tiếp theo: **“chưa rảnh để chuyển sol devnet”**, giờ log **10:14:46.599 ngày 18/11/2026 UTC+7**. Vì vậy tiếp tục CI, để deploy hello sau khi có funding; không thúc người dùng chuyển ngay hoặc tự đổi phạm vi funding.
+
+Quyền mới này áp dụng đúng P3-A/P3-B; không khôi phục các kết luận cũ đã bị đính chính. Không hỏi duyệt lại hai mục. Lời đồng ý chưa chứng minh billing đã xử lý, tiền đã có, CI/test/devnet đã đạt hoặc giáo viên đã chấm.
+
 ## Đính chính bản cũ — sai, hết hiệu lực
 
 Các dòng cũ dưới đây **SAI** và không được dùng làm lựa chọn hoặc quyền hiện hành:

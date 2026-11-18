@@ -9,9 +9,9 @@
 - [Preflight 09:47:33 UTC+7](evidence/phase3/preflight-after-phase2-approval.json): đúng devnet, hello chưa deploy, payer 0 lamports. Không đọc signer hoặc gửi airdrop/transaction.
 - [Review T26/T27](reviews/receiptrail-codex.md#review-t26-và-t27--18112026-sau-duyệt-phase2) chưa nhận toàn bộ; A tiếp tục T28 → T29. Giáo viên chưa có verdict; lời duyệt người dùng là cổng riêng.
 
-## P3-A — xin quyền CI trên runner GitHub
+## P3-A — đã được phép CI trên runner GitHub
 
-**Chưa được phép thực thi.** Đề nghị mở ba guards của patch đã chuẩn bị và chạy CI trên PR #7 với bộ sau:
+**Đã được người dùng đồng ý** bằng “Đồng ý cả hai”, giờ log 10:13:11.851 ngày 18/11/2026 UTC+7; [record](evidence/phase3/user-permission-2026-11-18.json). Phạm vi là mở ba guards của patch đã chuẩn bị và chạy CI trên PR #7 với bộ sau:
 
 | Thành phần | Phạm vi đề nghị |
 | --- | --- |
@@ -25,9 +25,9 @@ Chỉ cài trên runner, không cài thêm máy người dùng; không deploy pr
 
 Sau câu đồng ý, lưu nguyên văn, giờ log và phạm vi vào DECISION trước mở guard; checkpoint quyền/patch tạo run mới. Chỉ nhận khi cả ba jobs thực chạy/pass trên đúng HEAD, đối chiếu steps/logs; skipped/blocked không là CI xanh. Quyền CI không mở deploy.
 
-## P3-B — xin quyền deploy hello lên devnet
+## P3-B — đã được phép, chờ funding để deploy hello
 
-**Chưa được phép thực thi.** Đề nghị chỉ triển khai hello của Phase 3, không deploy ReceiptRail core hoặc publish web mới.
+**Đã được người dùng đồng ý** bằng cùng câu trả lời P3-A/P3-B. Tin sau đó **“chưa rảnh để chuyển sol devnet”**, giờ log 10:14:46.599 UTC+7, để bước deploy sau khi có funding. Chỉ triển khai hello của Phase 3, không deploy ReceiptRail core hoặc publish web mới.
 
 - Program ID đã có: `2yzxUQEpaeLmgCMhDipwnVL3DHsxez18KcePonqZRiXL`; payer/upgrade authority dự kiến `GQRoDMoWFV2nhgwm3bZGvSCC1LSa2wRkLeeJg8NhbFM2`.
 - Sau đồng ý mới kiểm public key từ signers thử cũ ngoài Git có khớp hai địa chỉ trên. Không in secret hoặc import ví browser. Nếu thiếu/sai signer thì dừng, không tự tạo payer/program mới.

@@ -146,3 +146,9 @@ CI đề xuất sau quyền: cài đúng bộ pins hiện có trong runner Linux
 CI đã chuyển sang runner mới, warm Cargo.lock cache **chỉ sau quyền cài trên runner**, copy riêng hello .so vào đường dẫn client cũ và sinh/đối chiếu IDL. Không sửa source/tests/lab/web; bỏ upload artifact mới. Cả3guards vẫn false; chỉ kiểm YAML/command wiring local, chưa Linux CI.
 
 [Preflight read-only](../evidence/phase3/preflight-after-phase2-approval.json) lúc09:47:33 UTC+7: đúng genesis devnet, slot523484369, payer0lamports, hello chưa có account. RPC trả rent program36bytes=833120; programdata45+127672=649452600; buffer37+127672=649411960lamports. Layout headers đã đối chiếu source solana-loader-v3-interface cached. Tổng dự phòng cả3accounts1.29969768SOL là estimate bảo thủ, chưa gồm phí/counter; không là báo giá deploy cuối. [Kế hoạch Phase3](../PHASE3-PLAN.md) đề xuất trần1.5SOL devnet và dừng nếu vượt. Chỉ chạy CLI --help để kiểm flags, chưa đọc/dùng signer cũ.
+
+## Mở CI sau quyền cụ thể — 18/11/2026
+
+Người dùng trả lời “Đồng ý cả hai” cho P3-A/P3-B (giờ log10:13:11.851 UTC+7); DECISION/evidence giữ toàn văn câu hỏi và câu trả lời. Kế hoạch trước sửa workflow: chỉ bỏ ba guards false, giữ SHA actions/pins/lockfiles và command blocks đã kiểm; push quyền trước bằng skip marker, rồi commit mở CI không skip để tạo run. Không dùng rerun của commit cũ còn guard false. Theo dõi run/job handles thật, chỉ gọi CI đạt khi steps thực chạy/pass. Billing chặn thì lưu annotation, không lặp rerun hoặc tự đổi limit.
+
+Tin “chưa rảnh để chuyển sol devnet” (log10:14:46.599 UTC+7) để funding/deploy sau; không suy câu đồng ý thành đã có tiền. Bài học: tách thiếu quyền, thiếu funding và lỗi runner; gỡ đúng blocker đã giải quyết, không hỏi lại quyền hoặc đánh hoàn thành từ lời đồng ý. Không tạo buffer/sign/send khi chưa đủ funding.

@@ -1,12 +1,10 @@
-# NEXT — ReceiptRail sau duyệt Phase 2
+# NEXT — thực hiện P3-A, để P3-B sau funding
 
-18/11/2026 · Người dùng đã nói **“duyệt phase 2”**, giờ log 09:27:18.464 UTC+7; không có giờ quyết định tự nêu. [DECISION](ideas/DECISION.md) giữ lời duyệt và phạm vi quyền. Không hỏi chọn ý tưởng hoặc duyệt Phase 2 lại.
+18/11/2026 · Người dùng đã duyệt Phase2 và trả lời **“Đồng ý cả hai”** cho P3-A/P3-B, giờ log10:13:11.851 UTC+7. [DECISION](ideas/DECISION.md)/[record](evidence/phase3/user-permission-2026-11-18.json) giữ nguyên văn và phạm vi; không hỏi lại.
 
-Phần chuẩn bị trong quyền hiện có đã có [runner offline](../scripts/check-phase3-offline.sh), 25 runtime tests, 8 client tests, đối chiếu IDL/bytecode và [audit Prompt03](reviews/prompt03-audit.md). Kết quả local không đóng cổng CI/devnet/review. Bước phụ thuộc tiếp theo cần người dùng chọn phạm vi tại [PHASE3-PLAN](PHASE3-PLAN.md):
+1. **Codex — P3-A:** ghi/push quyền trước mở ba jobs CI đã review, giữ pins/lockfiles. Chạy và theo dõi đúng commit; local25 runtime/client8 không thay Linux CI. Billing/limit nếu còn chặn là việc người dùng xử lý, C không tự đổi chi trả.
+2. **Codex — P3-B:** đã có quyền hello devnet/signers thử cũ/một buffer tạm/trần1.5SOL. Người dùng nói **“chưa rảnh để chuyển sol devnet”**, log10:14:46.599 UTC+7: deploy sau funding, không thúc chuyển ngay. Recheck trước thi hành theo [PHASE3-PLAN](PHASE3-PLAN.md); không deploy ReceiptRail hoặc public web mới.
+3. **Antigravity:** T28 UX → T29 evidence/review theo [A-queue](tasks/A-queue.md). Quyền A vẫn là tài liệu, không mở UI/deploy/CI; C review khi có report mới.
+4. **Giáo viên:** [SHORTLIST](ideas/SHORTLIST.md) và [bảng cổng](reviews/phase1-3-gates.md) còn chờ verdict; không suy từ lời duyệt thiết kế/quyền vận hành. Phase4–6 chưa mở.
 
-1. **P3-A — CI:** chỉ sau câu đồng ý cài bộ pins/dependencies trên runner GitHub mới mở ba job guards. Người dùng xử lý billing/limit nếu vẫn chặn; C không tự đổi hạn mức. Kiểm đúng HEAD và tất cả steps thực chạy; skipped/blocked không là CI xanh.
-2. **P3-B — hello devnet:** chỉ sau câu đồng ý dùng signers thử cũ, tạo một buffer keypair tạm và deploy/test hello trong trần 1.5 SOL devnet. Cần funding vì lần kiểm 09:47:33 UTC+7 payer có 0 lamports. Recheck balance/rent/flags trước thi hành; không deploy ReceiptRail core hoặc public web mới.
-3. **Antigravity:** T28 UX → T29 sửa evidence/review, theo [A-queue](tasks/A-queue.md). C đã nhận phần sửa đúng của T26/T27 và ghi sáu findings; chưa nhận review chéo đạt. Khi A nộp, fetch và review tài liệu trong quyền hiện có; không cần chờ quyền vận hành để đọc report.
-4. **Giáo viên:** [SHORTLIST](ideas/SHORTLIST.md) và [bảng cổng](reviews/phase1-3-gates.md) sẵn sàng chấm. Chưa có verdict, không suy từ lời duyệt thiết kế của người dùng. Phase 4–6 chưa mở.
-
-Khi có câu trả lời, ghi nguyên văn, giờ log/múi giờ và đúng phạm vi vào DECISION **trước** thao tác tương ứng; câu trả lời một mục không cấp quyền mục khác. Nếu chưa có trả lời, chỉ tiếp tục review/đồng bộ được phép, không cài/sign/deploy/public. Giữ source/web/lab/toolchain ClusterProof và nhãn dự phòng, chưa duyệt. Không merge [PR #7](https://github.com/ntbaoheyhey/dev3pack-hackathon/pull/7), force-push hoặc mainnet; mọi commit **và merge** dùng `[skip ci]` đến khi quyền CI được ghi và guard được review.
+Giữ toolchain/source/web/lab ClusterProof và nhãn dự phòng, chưa duyệt. Không merge PR7/force-push/mainnet/đổi visibility. Chỉ commit cần chạy CI trong quyền P3-A mới bỏ skip marker; checkpoint tài liệu và merge tiếp tục dùng [skip ci]. [HANDOFF](HANDOFF.md) ghi trạng thái hiện hành.
