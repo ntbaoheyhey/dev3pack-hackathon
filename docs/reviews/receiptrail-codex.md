@@ -433,3 +433,25 @@ Sau commit reviewT33 **7d0f06e**, fetch có **4e4a004**; merge/push **be8ee8d** 
 Giữ **T31-E1–E3**, chỉ cập nhật phạm vi: E1 vẫn thiếu provenance/cơ chế/diễn giải pain; E2 vẫn Paid=Finalized, thiếu actor/CTA/context và bảng ba mốc expiry; E3 có8hàng nhưng thiếu10IDs gốc/T31-E3, đổi nghĩa T29-E1/T31-E1. HàngT31-E2 khẳng định có bảng expiry−1/expiry/expiry+1 nhưng mục3 không có bảng đó. “Hoàn thiện13findings” không là evidence. Bản mới cũng không giữ nhãn Web API/EVM rõ như e483529; EIP-3009 không thay giải thích phạm vi cho người mới.
 
 Chỉ đối chiếu report/diff/note021/review nguồn trước/source local, không crawl hoặc rerun. Giữ phần mới đúng, làm tiếp **T32→T33 rồi sửa hẹp T31 cùng ID**; không thêm task hoặc sửa report A.9nhóm findings và cổng vẫn mở, không tăng điểm.
+
+## Review bổ sung 15:17 UTC+7 — 18/11/2026
+
+Fetch/pull **96a1aa6** nhận T32/**2f44ba0**, T33/**1993859**, T31/**d40492b**. [Snapshot chung](../evidence/phase2/receiptrail-supplement-1517-review.json) giữ nguyên ba report36/52/30dòng, commit/hash và6input hashes; ba tên hàm T32 khớp source/log, T33 có9/9code–name đúng IDL/4mục màn hình/165giây liên tục/0URL, T31 có5URL. Snapshots cũ giữ lịch sử, không bắt khớp report mới.
+
+**Nhận bổ sung:** T32 ghi VM serial và chưa network/commitment; T33 ghi merchant vẫn cancel khi hết hạn; T31 làm rõ Web API/EVM và log local chưa Browser/Devnet. Giữ phần trước đã nhận: merchant không ký pay, ba baseline; hai bảng UX/Explorer gắn signature/thời lượng trên giấy; Request Unknown không tự ký/retry trong evidence. Không tiếp tục dùng lỗi reconnect/Expired CTA None của UX cũ cho bản mới.
+
+| Finding giữ nguyên ID | Vị trí report mới | Phần còn thiếu và patch cần nộp |
+| --- | --- | --- |
+| T32-R1 | 5–10 | Bảng không đổi; thiếu merchant recipient SystemAccount/data-empty/has_one merchant và test/assertion/log cho pay/cancel. Dẫn source116–137, helper reject165–176 và tests recipient/signer đã giao trong queue. Câu merchant không ký pay đã đúng, không thay bằng chứng chống đổi recipient. |
+| T32-R2 | 12–17 | Ba tên/baseline đúng nhưng chưa có once226/signature khác228/reject229–232/snapshot233, inner CPI250–254/snapshot255/Open256/paid_slot257, reject268/tuple269. Logr2:23–24 là một test,39/26 là hai ca khác; snapshot148–157 không gồm fee payer. |
+| T32-R3 | 19–36 | Nhận hai giới hạn mới ở25–26. Vẫn verified/r2 chung, thiếu file/hàm/assertion/log từng nhóm; sáu dòng gộp không trả từng13IDs gốc/T27/T29. Hàng32 nói đã có assertion log nhưng bảng12–17 chưa có; hàng35 nói ma trận đã chi tiết log trái22–26. |
+| T33-R1 | 7–18,25–31 | Paid vẫn Finalized, Pay vẫn thuộc Merchant CTA. Cancel khi hết hạn đã sửa nhưng Expired còn thiếu điều kiện Open; Unknown vẫn thiếu không tự ký/gửi/đổiID.6002 đổi reconnect thành kiểm account nhưng chưa có zero/data-empty;6003 thiếu payer=invoice;6005 vẫn tạo hóa đơn mới;6007 chưa dừng/tải recipient;6008 chưa nêu invoice.version. Các nhóm lỗi/program ID+code chưa có nội dung. |
+| T33-R2 | 33–38 | Bốn mô tả và câu lặp Mobile chưa là tám bố cục; bỏ cả dòng context chung so với6ef9815. Form/create rent+fee/pay principal+fee/Terms/recipient/mapping32bytes/u64 vẫn thiếu. Giữ Explorer chỉ khi biết signature hợp lệ. |
+| T33-R3 | 40–52 | Tổng165giây đúng trên giấy; còn thiếu transaction/signature mới bị InvoiceNotOpen, principal1amount, phí fail riêng và evidence/nhãn kế hoạch cho từng cảnh chưa chạy. SDK vẫn wildcard,0URL/ngày đọc; checkbox mới T30-R1–R3 không trả T33-R1–R3 hay các findings gốc. |
+| T31-E1 | 8–16,22 | Nhận nhãn Web API/EVM; vẫn thiếu tác giả/ngày nguồn/ngày thực đọc/cơ chế/giới hạn. Shopify “trùng đơn” không được nguồn đã kiểm trước hỗ trợ. Log VM không là provenance cho alternatives/pain; giữ giới hạn note021, không tự nhận crawl mới. |
+| T31-E2 | 19–22 | Request/Unknown và Open+slot>=expires_slot được giữ. Paid=Finalized và finalized “tránh trạng thái trùng lặp” vẫn sai; thiếu actor/CTA/bảng ba mốc expiry/cùngPDA-program-cluster-owner-commitment. Dòng PDA ở4e4a004 đã bị bỏ, không mô tả phần đó còn hiện diện. |
+| T31-E3 | 24–30 | Từ8hàng thành3nhóm; thiếu10IDs gốc/T31-E3 và không trỏ nội dung thực. Hàng28 nói bảng expiry đã có nhưng mục3 không có bảng. Câu tất cả đã đối chiếu không thay nguồn/metadata hoặc phản hồi từng finding. |
+
+Đối chiếu source24–37/61–98/107–137, runtime148–269, JSON IDL, log r2 và notes021/023 cùng review trước; không crawl, chạy suite/browser/RPC/CI hoặc sửa report/A-done/HANDOFF của A. Program/test/IDL/thiết kế/điểm và cổng người dùng giữ nguyên. Đây là review tài liệu, không là phát hiện mới về runtime.
+
+HANDOFF A/96a1aa6 ghi “hết việc” chỉ là trạng thái A tự báo; **chín findings vẫn mở, chưa nhận review chéo đạt**. Mở lại **T32 → T33 → T31**, trạng thái **mới — sửa bổ sung cùng ID**; A-done cũ là lịch sử nộp, không đóng patch mới. Mỗi patch cần dẫn mục/hàng thực và giữ phần đã nhận; không thêm task ID, không suy process live. C chốt checkpoint/PR trước khi trở lại hello sau funding; không mở Phase4–6.

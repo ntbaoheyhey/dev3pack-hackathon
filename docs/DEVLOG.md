@@ -329,3 +329,7 @@ Các mô tả dưới đây là sự kiện ở Taskbar Hero, không phải hàn
 - 2026-11-18T14:44:05+07:00 · Codex · Push e48172b chốt reviewT31v2; cập nhật PR7 và read-back body khớp/head e48172b/work→main/open/merged=false, reviews/comments rỗng. Lưu snapshot T33/T31v2 riêng; cập nhật note022/NEXT/cổng/audit/Thẻ nhớ, bỏ bước chốt PR đã xong. Automation ACTIVE/15phút/đúng chat đã kiểm; CI27cf7ac giữ57tests/run, không rerun suites hoặc CI vì chỉ đổi tài liệu. Funding hello/ví thật và review chéo/giáo viên còn mở; không sửa file A, cài thêm, RPC, ký/gửi, deploy/public hoặc merge PR.
 
   Kiểm checkpoint lưu PR:103 links local/5anchors,11report snapshots khớp Git blobs và6input hashes mỗi snapshot,4PR body hashes,Thẻ nhớ17dòng; file A/executable inputs khớp origin/work e48172b, git diff --check đạt. Chỉ kiểm tài liệu, không chạy suite mới.
+
+- 2026-11-18T15:22:05+07:00 · Codex · Heartbeat15:17 fetch/pull96a1aa6, reviewT32/2f44ba0,T33/1993859,T31/d40492b; nhận delta VM/network/cancel/nhãn Web API-EVM,giữ9findings còn thiếu. Lưu ba report/hash/6inputs trong snapshot riêng; cập nhật note021/023,mục lục,K8,queue,cổng,plan,ROADMAP,NEXT,Thẻ nhớ. Mở lại T32→T33→T31 mới/cùng ID, không sửa file A/source/IDL/thiết kế hoặc crawl/rerun/RPC/deploy. Tiếp theo kiểm/push/chốt PR; không bỏ hồ sơ vì funding.
+
+  Kiểm checkpoint15:17:297 links local/57anchors,14report snapshots khớp Git blobs/6input hashes mỗi snapshot,4PR body hashes,Thẻ nhớ17dòng; file A/executable inputs khớp origin/work96a1aa6; git diff --check đạt. Snapshots report cũ giữ đúng revision riêng, không bắt khớp bản mới.

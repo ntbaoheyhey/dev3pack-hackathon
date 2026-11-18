@@ -195,3 +195,7 @@ Patch cần giữ phần đã nhận và so với revision trước; ngày cập
 ### Bổ sung T31 v2 — 18/11/2026
 
 [4e4a004](../reviews/receiptrail-codex.md#bổ-sung-t31-v2-trước-checkpoint--18112026) khôi phục Pending/Unknown và không tự ký/retry; nhận phần sửa, không dùng lỗi Request mất của snapshot e483529 cho bản mới. [Snapshot v2](../evidence/phase2/receiptrail-t31-v2-review.json)34dòng/5URL/6hashes giữ riêng. Paid=Finalized, provenance/pain/cơ chế, actor/CTA/context và bảng3mốc expiry vẫn thiếu;8hàng phản hồi đổi nghĩa IDs và nói có bảng chưa tồn tại. Đọc note/review nguồn cũ/source, không crawl mới; giữ T31-E1–E3 theo phạm vi còn thiếu, không tăng điểm hoặc tự đóng cổng.
+
+### Review T31 bổ sung15:17 — 18/11/2026
+
+[d40492b](../reviews/receiptrail-codex.md#review-bổ-sung-1517-utc7--18112026) giữ Unknown/no-auto-retry/expiry và khôi phục nhãn Web API/EVM; nhận các phần đó. Ba hàng nhóm thay tám hàng, bỏ dòng PDA, còn Paid=finalized và bảng expiry không tồn tại. Log VM không làm provenance cho pain/alternatives; đối chiếu note/review nguồn trước, không crawl mới. [Snapshot](../evidence/phase2/receiptrail-supplement-1517-review.json) giữ30dòng/5URL/hash; giữ T31-E1–E3 cùng ID, không suy A-done/HANDOFF hết việc thành nhận đạt.

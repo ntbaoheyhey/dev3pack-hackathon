@@ -160,3 +160,7 @@ Snapshot43dòng/hash46f24510… và6hashes đầu vào đã kiểm; không rerun
 Số4x2 và tổng165 không thay8bố cục hoặc bằng chứng duplicate bằng transaction mới. Log VM không chứng minh timeout/commitment của browser; version dạngx/ngày không có URL không là xác minh SDK. Chỉ review tài liệu/source/log, không rerun suites. Giữ T31/T32 rồi sửa hẹp T33 cùng ID; không đổi thiết kế/điểm/quyền hoặc đóng cổng.
 
 Helper Python tạm để ghi review báo SyntaxError non-UTF-8 ở dòng literal dài, dù decode UTF-8 toàn file đạt; chưa xác định nguyên nhân parser. Đổi helper tạm sang ASCII với Unicode escapes rồi chạy thành công, giữ nguyên nội dung Unicode đầu ra. Đây là lỗi công cụ cập nhật tài liệu, không phải runtime failure; không rerun program suite.
+
+## Review bổ sung15:17 — 18/11/2026
+
+[2f44ba0/1993859](../reviews/receiptrail-codex.md#review-bổ-sung-1517-utc7--18112026) thêm giới hạn VM serial/chưa network và merchant cancel khi hết hạn; nhận delta, không tiếp tục gán lỗi reconnect/CTA None của bản cũ. [Snapshot](../evidence/phase2/receiptrail-supplement-1517-review.json) giữ36/52dòng,ba tên hàm đúng/9code-name/165giây trên giấy,6input hashes. Findings về recipient/assertions/phí, state/vai/form/bố cục/demo/SDK vẫn mở; bỏ dòng context/chuyển checkbox không đóng finding. Reopen cùng task ID dưới trạng thái mới để A-done cũ không làm mất yêu cầu bổ sung; không sửa file A/source/IDL hoặc rerun suite.
