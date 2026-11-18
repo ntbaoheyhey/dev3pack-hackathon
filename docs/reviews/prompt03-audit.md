@@ -6,7 +6,7 @@ Codex · 18/11/2026. Đây là đối chiếu yêu cầu với hồ sơ trong re
 
 | Yêu cầu Prompt03 | Bằng chứng | Kết luận và giới hạn |
 | --- | --- | --- |
-| 0.1 Nhắc 15 phút đúng chat | Automation dev3pack-nh-c-tr-ng-nh-m-m-i-15-ph-t, chat01a1e9c8-1b24-7911-91a4-4897fc175566; config ACTIVE14:42, heartbeat16:17:09.954 UTC+7 | Đã nhận reminder thực; không suy mọi lần scheduler đã gửi thành công |
+| 0.1 Nhắc 15 phút đúng chat | Automation dev3pack-nh-c-tr-ng-nh-m-m-i-15-ph-t,chat01a1e9c8-1b24-7911-91a4-4897fc175566; config ACTIVE14:42,heartbeat16:47:09.842 UTC+7 | Reminder thực đã nhận; không suy mọi lượt gửi thành công |
 | 0.2–4 Đồng bộ, luật, Thẻ nhớ ngắn | [AGENTS](../../AGENTS.md), [HANDOFF](../HANDOFF.md), [lịch sử bàn giao](../archive/HANDOFF-history-codex.md), [STOP-CAUSES](../STOP-CAUSES.md) | Làm trên work; fetch trước review, giữ lịch sử; không merge PR. K9 bổ sung skip marker cho cả commit merge và job guards |
 | 1 Xử lý nhận xét bài A | [Cross-scores](../ideas/cross-scores-codex.md) | Bỏ nhãn ĐẠT cũ, sửa phép tính, đánh giá evidence/account/dependency/threat model; giữ file A |
 | 2.1 RUBRIC v1.2 | [RUBRIC](../ideas/RUBRIC.md), [kiểm số liệu](../evidence/phase3/goal-audit-2026-11-18.json) | Codex chấm bằng chứng, A trợ lý, giáo viên chấm qua PR; weights/floors khớp v1.1 tại 3bb7003 |
@@ -14,7 +14,7 @@ Codex · 18/11/2026. Đây là đối chiếu yêu cầu với hồ sơ trong re
 | 2.3 Dùng trợ lý và kết quả | [Queue](../tasks/A-queue.md), [review16:47](receiptrail-codex.md#review-bổ-sung1647--18112026)/[snapshot](../evidence/phase2/receiptrail-supplement-26fe656-review.json) | T31/a6a4338 giữ nhãn pain/Unknown/expiry; T32/a3ef1e0 khôi phục3tên test và3log đúng nhưng PDA check sai quay lại; T33/8e5c18b giữ phí/Terms/no-auto-retry/reload,6002 lại reconnect.9findings còn mở,T31→T32→T33 cùng ID. |
 | 2.4 Chấm lại ba ứng viên A | Cross-scores và snapshot 3a6359b | Tính lại 42/40/37; cả ba dưới sàn, có lý do không chọn/giữ vấn đề/bỏ. Ba file nguồn khớp snapshot |
 | 3.1 SHORTLIST và lịch sử thay bản A | [SHORTLIST](../ideas/SHORTLIST.md) | Có một câu, điểm, evidence, rủi ro mỗi bài; bổ sung dòng bản A bị thay vì thiếu evidence/F4/phép tính; giữ r0/r1/r2 |
-| 3.2 PR work → main, không merge | [PR7](https://github.com/ntbaoheyhey/dev3pack-hackathon/pull/7), [snapshot16:26:10](../evidence/phase3/pr7-review-580b903-snapshot.json) | Review580b903 đã pushf412393; read-back body/head/work→main/open/chưa merge khớp. Snapshot trước giữ lịch sử; không là revision CI |
+| 3.2 PR work → main, không merge | [PR7](https://github.com/ntbaoheyhey/dev3pack-hackathon/pull/7), [snapshot16:55:47](../evidence/phase3/pr7-review-1647-snapshot.json) | Review26fe656 đã push36ac581; read-back body/head/work→main/open/chưa merge khớp. Snapshot trước giữ lịch sử; không là revision CI |
 | 3.3 Chọn chính/phụ và quyền cài | [DECISION](../ideas/DECISION.md), STOP-CAUSES K6 | Payload cũ bị người dùng đính chính đã vô hiệu. Hiện ReceiptRail chính, ClusterProof phụ; giữ bộ đã cài. Không dùng prompt cũ để mở rộng quyền |
 | 3.4 Chuẩn bị độc lập khi chờ | [Note022](../learning/022-phase2-3-independent-prep.md), [kế hoạch Phase3](../PHASE3-PLAN.md) | Runner cache/offline và phương án cụ thể đã chuẩn bị; không installer/sign/deploy/public mới |
 | 4 Phase1–2 và spike sớm | [IDEA](../IDEA.md), [ARCHITECTURE](../ARCHITECTURE.md), [note023](../learning/023-receiptrail-phase2-spike.md), [catalog Phase2](../evidence/phase2/README.md) | Account/PDA/instructions/state/test plan/demo 165 giây và Anchor spike thật; người dùng duyệt. Review chéo/giáo viên chưa nhận đạt |
@@ -39,3 +39,5 @@ Codex · 18/11/2026. Đây là đối chiếu yêu cầu với hồ sơ trong re
 Người dùng duyệt Phase2 không là quyền cài/deploy/public. [P3-A/P3-B](../PHASE3-PLAN.md) đã được đồng ý riêng bằng “Đồng ý cả hai”; [CI27cf7ac](../evidence/phase3/ci-passed-27cf7ac.json) push/PR đều đạt, phần CI đã đóng. Funding hello được người dùng để sau. Web ClusterProof cũ được giữ, chưa có web ReceiptRail. Cổng giáo viên và bài tập ví thật vẫn mở. Hashes Linux khác macOS, chưa verified build; không thay binary dự kiến deploy. Không đổi visibility trong checkpoint này.
 
 Checkpoint8b412df và snapshot PR16:19:09 giữ lịch sử hai review trước. Review580b903 đã pushf412393; PR read-back16:26:10 UTC+7 đúng body/head/work→main/open/chưa merge, comments/reviews rỗng. Hồ sơ đã chốt; funding/ví thật và review chéo/giáo viên vẫn mở.
+
+**Chốt16:55:47:** review16:47 và bổ sung26fe656 đã push36ac581; PR body/head/work→main/open/chưa merge khớp,comments/reviews rỗng. Snapshot mới giữ riêng,đã gỡ bước chốt khỏi Còn lại; funding/ví thật và9findings/review chéo/giáo viên còn mở.

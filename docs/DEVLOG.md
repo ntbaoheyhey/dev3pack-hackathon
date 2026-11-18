@@ -361,3 +361,7 @@ Các mô tả dưới đây là sự kiện ở Taskbar Hero, không phải hàn
 2026-11-18T16:53:10+07:00 · Codex · Pushd15fe43 bị non-fast-forward; fetch/merge/push0e59f65 [skip ci],review thêm26fe656. Nhận3tên/3log đúng; PDA check/6002 regress,giữ9findings. Lưu snapshot mới,cập nhật notes021/023/index/queue/cổng/audit/plan/ROADMAP/NEXT/Thẻ nhớ/K8. Không sửa file A/code/IDL hoặc rerun/crawl/RPC/deploy.
 
   Kiểm bổ sung26fe656: 326links/68anchors,25report snapshots/6inputs,7PR body hashes,Thẻ nhớ17dòng; file A/code khớp origin/work0e59f65,git diff --check đạt. Không rerun suite.
+
+2026-11-18T16:56:47+07:00 · Codex · Đã push36ac581 và cập nhật/read-back PR7 lúc16:55:47 UTC+7,body/head/work→main/open/chưa merge khớp,comments/reviews rỗng. Lưu snapshot mới,cập nhật note022/NEXT/Thẻ nhớ/cổng/audit và mốc HANDOFF A trong queue. Gỡ bước chốt,giữ funding/ví thật/9findings/review chéo/giáo viên; không mở Phase4–6,cài/deploy/rerun/crawl/RPC.
+
+  Kiểm checkpoint PR: 109links/9anchors,25report snapshots/6inputs,8PR body hashes,Thẻ nhớ17dòng; file A/executable inputs khớp origin/work36ac581,git diff --check đạt; không chạy suite mới.

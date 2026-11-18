@@ -4,7 +4,7 @@
 
 | Yêu cầu | Bằng chứng hiện hành | Trạng thái |
 | --- | --- | --- |
-| Nhắc15phút đúng chat | Action/config ACTIVE kiểm14:42; heartbeat thực nhận16:17:09.954 UTC+7 ngày18/11 | Đang bật; không suy mọi lượt scheduler đều gửi thành công |
+| Nhắc15phút đúng chat | Action/config ACTIVE kiểm14:42; heartbeat thực16:47:09.842 UTC+7 ngày18/11 | Đang bật; không suy mọi lượt scheduler đều gửi thành công |
 | RUBRIC/3 ứng viên đạt | C01r2=79/F4, C02r1=79, C03r1=77; giữ lịch sử r0/r1 | PLAN theo Codex, chưa giáo viên chấm/DELIVERY; [audit từng yêu cầu](prompt03-audit.md) và [kiểm số liệu](../evidence/phase3/goal-audit-2026-11-18.json) đã có |
 | Quyết định/nguyên văn/giờ/nguồn | DECISION, AGENTS, STOP-CAUSES K6 | Đã đính chính và ghi lời duyệt mới, không suy quyền |
 | ClusterProof dự phòng | IDEA/ARCHITECTURE-clusterproof-draft | Dự phòng, chưa duyệt; source/web/lab/toolchain giữ nguyên |
@@ -16,7 +16,7 @@
 | Giáo viên | Chấm SHORTLIST/kiến trúc | Chưa có verdict; không tự đánh đạt |
 | Người dùng | Nguyên văn “duyệt phase 2”, [record](../evidence/phase2/user-approval-2026-11-18.json) | Giờ log09:27:18.464 ngày18/11 UTC+7, người dùng không tự nêu giờ quyết định; không hỏi lại |
 | Phase3/vận hành | [Pipeline offline](../evidence/phase3/offline-pipeline-metadata.json), [CI27cf7ac](../evidence/phase3/ci-passed-27cf7ac.json), [P3-A/P3-B](../PHASE3-PLAN.md) | 25runtime+8client local đạt; Linux PR44237534047/push44237529539 đều đạt3jobs/57tests+build/ReceiptRail IDL cmp. P3-A đạt, P3-B có quyền nhưng funding để sau; chưa hello deploy/ví thật, chưa đóng Phase3 |
-| PR7 | [Snapshot16:26:10 UTC+7](../evidence/phase3/pr7-review-580b903-snapshot.json): headf412393/work→main/open/merged=false | Body khớp review580b903/T31→T32→T33/9findings. Comments/reviews rỗng; checkpoint review đã push, snapshot cũ giữ lịch sử. Không lấy HEAD tài liệu thay revision CI; không merge |
+| PR7 | [Snapshot16:55:47 UTC+7](../evidence/phase3/pr7-review-1647-snapshot.json): head36ac581/work→main/open/merged=false | Body khớp review16:47/26fe656/T31→T32→T33/9findings; comments/reviews rỗng. Checkpoint đã push,snapshot cũ giữ lịch sử; không gán CI27cf7ac cho HEAD tài liệu,không merge |
 
 **Phạm vi đã được người dùng duyệt:** native SOL, một payer/merchant trên mỗi invoice; create/pay/cancel/read; Open→Paid/Cancelled và Expired hiển thị; không close/reset/refund/stablecoin/x402. Cùng invoice chỉ chuyển principal1lần, vẫn có phí fail và rent lâu dài. Spike và Linux tests là evidence phần lõi; UI/RPC recovery/devnet/video chưa có. CI27cf7ac có bằng chứng riêng; hashes Linux khác macOS, chưa chứng nhận reproducible build.
 
