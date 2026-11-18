@@ -16,7 +16,7 @@
 | Giáo viên | Chấm SHORTLIST/kiến trúc | Chưa có verdict; không tự đánh đạt |
 | Người dùng | Nguyên văn “duyệt phase 2”, [record](../evidence/phase2/user-approval-2026-11-18.json) | Giờ log09:27:18.464 ngày18/11 UTC+7, người dùng không tự nêu giờ quyết định; không hỏi lại |
 | Phase3/vận hành | [Pipeline offline](../evidence/phase3/offline-pipeline-metadata.json), [CI27cf7ac](../evidence/phase3/ci-passed-27cf7ac.json), [P3-A/P3-B](../PHASE3-PLAN.md) | 25runtime+8client local đạt; Linux PR44237534047/push44237529539 đều đạt3jobs/57tests+build/ReceiptRail IDL cmp. P3-A đạt, P3-B có quyền nhưng funding để sau; chưa hello deploy/ví thật, chưa đóng Phase3 |
-| PR7 | [Snapshot18/11 lúc11:46:11 UTC+7](../evidence/phase3/pr7-ci-passed-snapshot.json): headca5312c, work→main, open, merged=false | Body khớp CI27cf7ac đạt/quyền/funding/review; checkpoint bàn giao sau snapshot chỉ lưu hồ sơ, không tự là revision có CI. Không merge |
+| PR7 | [Snapshot18/11 lúc12:53:40 UTC+7](../evidence/phase3/pr7-review-t28-t29-snapshot.json): headb1804eb, work→main, open, merged=false | Body khớp CI27cf7ac/quyền/funding/review601e723-306466f/queueT30–T33. Checkpoint bàn giao sau snapshot chỉ lưu hồ sơ, không tự là revision có CI. Không merge |
 
 **Phạm vi đã được người dùng duyệt:** native SOL, một payer/merchant trên mỗi invoice; create/pay/cancel/read; Open→Paid/Cancelled và Expired hiển thị; không close/reset/refund/stablecoin/x402. Cùng invoice chỉ chuyển principal1lần, vẫn có phí fail và rent lâu dài. Spike và Linux tests là evidence phần lõi; UI/RPC recovery/devnet/video chưa có. CI27cf7ac có bằng chứng riêng; hashes Linux khác macOS, chưa chứng nhận reproducible build.
 
