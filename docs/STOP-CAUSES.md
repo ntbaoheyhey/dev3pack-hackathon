@@ -57,6 +57,8 @@ Bảnv2/769d365 được pull tới2f1cde0 trước checkpoint: nhận cách nó
 
 **Tái diễn K8, review12:35 ngày18/11:** A nộp T28/T29 tại601e723 và ghi hoàn thiện, nhưng UX chỉ4mục thay8, state/commitment/expiry/version còn sai; evidence bỏ metadata/Request và review thiếu recipient/assertions/logs. C nhận phí/Unknown/baseline Paid→Paid đã đúng, lưu [snapshot](evidence/phase2/receiptrail-t28-t29-review.json) và [9 findings](reviews/receiptrail-codex.md#review-t28-và-t29--18112026-heartbeat1235-utc7), giao các patch nhỏ T30→T31→T32→T33. T28/T29 là hai task cuối đang giao tại thời điểm A nộp; **không có bằng chứng A bỏ sót task khác**, không gán lỗi hết việc hoặc suy nguyên nhân nội bộ. Mỗi patch cần giữ phần đã được nhận; checkbox, tên mục và URL không thay nội dung kiểm được.
 
+Bản306466f/314b572 đến trước push checkpoint: khôi phục Request/copy6007 nhưng UX mất phí create/Unknown/terms/context. C giữ snapshot cũ/mới và cập nhật cùng T30–T33; các task này chưa được công bố trước commit A nên không coi đó là bỏ sót queue. Chưa có bằng chứng nguyên nhân nội bộ; giữ phần đúng và kiểm revision thay chỉ đọc nhãn “Final”.
+
 ## Luật rút ra (đã đưa vào AGENTS.md)
 
 1. Tin nhắn tự nhắc 15 phút phải **có thật** trước khi bắt đầu; nếu agent không tạo được thì người dùng tạo.

@@ -9,6 +9,7 @@
 - Bytecode hashes Linux khớp nhau/7210, khác macOS; chưa reproducible/verified build. Giữ binary macOS cho hello; source/tests/IDL/web/lab/locks không đổi.
 - P3-B chỉ hello devnet/signers thử cũ/một buffer tạm/trần1.5SOL. **“chưa rảnh để chuyển sol devnet”**, log10:14:46.599 UTC+7: funding để sau, chưa tạo buffer/sign/send/deploy.
 - **T28/T29 tại601e723 đã review:** nhận phí create/pay, Unknown không tự ký/retry và baseline retry Paid→Paid; còn9findings. Snapshot3reports/6hashes/9mã/165giây đã kiểm, UX4mục.
+- Bản306466f đến trước push: đã merge23edfc1, review bổ sung nhận Request/copy6007; UX lại mất phí create/Unknown/terms/context. Snapshot v2 giữ riêng; chưa đóng9findings.
 - A làm **T30→T31→T32→T33**: semantics/form UX, evidence, review assertions, bố cục/demo/SDK. Queue cũ T21–T29 đã archive; không sửa report/A-done/HANDOFF A hoặc suy process live.
 - PR7 read-back trong lượt này: head601e723/work→main/open/merged=false; body còn T28/T29. Phải cập nhật/read-back sau push checkpoint review, chưa coi đã xong bàn giao.
 - Automation15phút ACTIVE, đúng chat, đã kiểm action/config18/11; checkpoint tài liệu/merge dùng [skip ci]. HEAD tài liệu không là revision đã chạy CI.
@@ -17,7 +18,7 @@
 
 ## Bằng chứng hiện hành
 
-[DECISION](ideas/DECISION.md), [quyền/funding](evidence/phase3/user-permission-2026-11-18.json), [CI27cf7ac đạt](evidence/phase3/ci-passed-27cf7ac.json), [snapshot PR7 trước review](evidence/phase3/pr7-ci-passed-snapshot.json), [phương án](PHASE3-PLAN.md), [snapshot review601e723](evidence/phase2/receiptrail-t28-t29-review.json), [findings C](reviews/receiptrail-codex.md#review-t28-và-t29--18112026-heartbeat1235-utc7), [cổng](reviews/phase1-3-gates.md), [audit](reviews/prompt03-audit.md). [Bàn giao trước review](archive/HANDOFF-before-t28-t29-review-2026-11-18.md) là lịch sử; T28/T29 không còn là việc chưa nộp.
+[DECISION](ideas/DECISION.md), [quyền/funding](evidence/phase3/user-permission-2026-11-18.json), [CI27cf7ac đạt](evidence/phase3/ci-passed-27cf7ac.json), [snapshot PR7 trước review](evidence/phase3/pr7-ci-passed-snapshot.json), [phương án](PHASE3-PLAN.md), [snapshot review601e723](evidence/phase2/receiptrail-t28-t29-review.json), [bản306466f](evidence/phase2/receiptrail-t28-t29-v2-review.json), [findings C](reviews/receiptrail-codex.md#review-t28-và-t29--18112026-heartbeat1235-utc7), [cổng](reviews/phase1-3-gates.md), [audit](reviews/prompt03-audit.md). [Bàn giao trước review](archive/HANDOFF-before-t28-t29-review-2026-11-18.md) là lịch sử; T28/T29 không còn là việc chưa nộp.
 
 ## Còn lại
 

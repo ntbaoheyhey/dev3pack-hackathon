@@ -357,3 +357,15 @@ GiữT28 UX đang được A báo làm; giaoT29 bổ sung gọn hai report theo 
 | T29-R3 — vừa, ma trận/phản hồi | Review8–12 vẫn verified/r2,26 chỉ một câu thay13findings; không có các giới hạn đã giao | Từng nhóm cần source/test/assertion/log và phần chưa kiểm. send131 đổi blockhash; race352 chỉ2thứ tự serial, không mạng. Paid_slot local không là finalized/RPC recovery. Trả riêng13IDs T13/T18/T21/T24 và3IDs T27, không tự đặt lại ID thành T29 để bỏ nội dung. |
 
 **Kết luận:** chưa nhận toàn bộ T28/T29 hoặc review chéo. Giữ phần đúng, yêu cầu các patch nhỏ qua **T30 → T31 → T32 → T33**: sửa semantics UX trước, rồi evidence, review, cuối cùng bố cục/demo/SDK. Không viết lại report để mất phần đã đạt, không sửa contract theo copy sai. Cổng người dùng Phase2 và CI27cf7ac đã có bằng chứng riêng; không đảo lời duyệt, nâng điểm, cài/deploy/public hoặc mở Phase4–6. Funding hello vẫn theo lời người dùng để sau.
+
+## Bổ sung bản306466f trước checkpoint — 18/11/2026
+
+Fetch trước push nhận306466f/314b572. C đã commit snapshot601e723 ở17dc04f, merge giữ nguyên file A ở23edfc1, tất cả có [skip ci]. [Snapshot v2](../evidence/phase2/receiptrail-t28-t29-v2-review.json) lưu UX44dòng/hashb8a28789…, evidence36dòng/987facc6…, review28dòng/f25fb1bb…. Đã đối chiếu3Git blobs/6input hashes/9mã/165giây/4mục bố cục/3tên hàm rút gọn không tồn tại; không crawl/rerun suite. Dòng trong bảng601e723 phía trên nói về snapshot cũ, không tự áp vào vị trí mới.
+
+| Phần | Nhận bổ sung ở306466f | Còn phải sửa theo findings cũ |
+| --- | --- | --- |
+| UX | 6007 đổi thành sai ví merchant; giữ pay principal+fee,9mã và165giây | Bỏ phí create, terms read-only, Unknown không tự ký/retry và context PDA/program/cluster/commitment. Khôi phục các phần này từ601e723; vẫn cần sửa state/expiry/version/form/8bố cục/demo/SDK. T30/T33 còn mở |
+| Evidence | Khôi phục nhóm Request; alternatives có nhãn Idempotency Key/Fingerprint-Cache và reference không đảm bảo duy nhất | Paid vẫn đồng nhất finalized, thiếu provenance/cơ chế đầy đủ, diễn giải pain và mapping findings vẫn sai. T29-E2/E3 không còn thiếu nhóm Request ở bản này; phần còn lại sửa quaT31 |
+| Review | Giữ hai cột Signer/has_one và baseline Paid→Paid | Thiếu recipient/assertions/log/fee scope/giới hạn; paths bị rút gọn. T32 cần trả lời bằng nguồn cụ thể; một câu không thay13findings |
+
+Giữ9nhóm finding chưa đóng; không tạo thêm vòng task. **T30–T33 chưa được push khi A nộp bản này**, nên không coi A đã làm hoặc bỏ qua chúng. Queue cập nhật đầu vào306466f, giữ phần tiến bộ và yêu cầu khôi phục phần đúng bị mất. Người dùng đã duyệt Phase2 và P3-A đạt; funding hello vẫn để sau.

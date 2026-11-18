@@ -6,33 +6,35 @@
 
 **Lưu ý CI18/11:** commit7210aa6 chỉ sửa HANDOFF A nhưng thiếu `[skip ci]`, tạo hai run mới khi Anchor còn build; hai run a114a98 đã bị cancelled. Mọi commit tài liệu/HANDOFF của A **phải có `[skip ci]`**, kể cả commit merge. P3-A đã đạt hai runs27cf7ac; không còn CI live. Thứ tự đang giao **T30 → T31 → T32 → T33**, không chỉ đổi Thẻ nhớ rồi coi report đã nộp. Không sửa workflow/file C hoặc tạo thêm run.
 
+**Đầu vào cập nhật306466f:** [review bổ sung](../reviews/receiptrail-codex.md#bổ-sung-bản306466f-trước-checkpoint--18112026) nhận Request và copy6007 đã sửa, nhưng UX bỏ phí create/Unknown/terms/context từng đúng. T30–T33 chưa được công bố khi A nộp bản này; vẫn làm bốn task dưới, không nộp lại tên T26–T29. Dòng dẫn trong review601e723 là snapshot lịch sử; đọc bản mới theo nội dung/source.
+
 Lịch sử yêu cầu T21–T29 đã chuyển vào [archive](../archive/A-queue-before-T30.md). Phần dưới chỉ liệt kê việc đang giao.
 
 ## T30 — sửa semantics UX trước, giữ phí và Unknown đã đúng
 
-**Trạng thái: mới, làm đầu tiên.** Chỉ sửa mục1–2 và trạng thái checklist của [UX A](../design/receiptrail-ux-antigravity.md); giữ mục3–5 để T33 bổ sung, đánh chưa đạt thay vì xóa. Đầu vào601e723/hash3f913957…; đọc T28-R1/R2 trong [review12:35](../reviews/receiptrail-codex.md#review-t28-và-t29--18112026-heartbeat1235-utc7), [ARCHITECTURE4–6](../ARCHITECTURE.md), [source](../../programs/receiptrail/src/lib.rs)24–37/61–81/107–137 và JSON IDL. Không code/rerun suite/cài.
+**Trạng thái: mới, làm đầu tiên.** Chỉ sửa mục1–2 và trạng thái checklist của [UX A](../design/receiptrail-ux-antigravity.md); giữ mục3–5 để T33 bổ sung, đánh chưa đạt thay vì xóa. Đầu vào306466f/hashb8a28789…; đọc T28-R1/R2 trong [review12:35](../reviews/receiptrail-codex.md#review-t28-và-t29--18112026-heartbeat1235-utc7), [ARCHITECTURE4–6](../ARCHITECTURE.md), [source](../../programs/receiptrail/src/lib.rs)24–37/61–81/107–137 và JSON IDL. Không code/rerun suite/cài.
 
-- Giữ create=merchant rent+fee, pay=payer principal+fee và Unknown không tự ký/retry. Viết **hai bảng** Invoice Open/Paid/Cancelled (Expired=Open+slot>=expiry) và request Pending/Unknown; commitment là cột riêng, merchant vẫn cancel Open khi hết hạn. Không định nghĩa Paid bằng finalized.
+- Khôi phục từ601e723: create=merchant rent+fee, Unknown không tự ký/retry và terms read-only; giữ pay=payer principal+fee. Viết **hai bảng** Invoice Open/Paid/Cancelled (Expired=Open+slot>=expiry) và request Pending/Unknown; commitment là cột riêng, merchant vẫn cancel Open khi hết hạn. Không định nghĩa Paid bằng finalized.
 - Giữ9code–name từ IDL, sửa **nguyên nhân/CTA**:6001 khi expiry<=current slot;6005 khi current slot>=expiry;6008 là invoice.version không hỗ trợ→không ký.6002 là điều kiện ví/địa chỉ trong program (zero/data), lỗi owner/type của Anchor tách riêng; no-wallet của browser không tự là6002.6006/6007 so payer/merchant public key trong invoice;6007 dừng/tải lại recipient. Tra program ID+code, nhóm Anchor/System/fee/wallet/RPC riêng; giữ6004 đọc state và6005 không đổiID để retry.
 - Bổ sung merchant/recipient, mapping OrderID→32bytes cụ thể/lưu/tái dùng, SOL→lamports bằng integer/u64 và terms bất biến; nếu chưa quyết định thuật toán mapping thì ghi rõ đề xuất/chưa chốt thay vì nói đã có.
 - Nộp ba dòng phản hồi T28-R1 và phần form T28-R2, còn wireframes/demo/SDK đánh chưa đạt/chuyểnT33. Đọc/so9mã JSON và lưu output thực; code–name đúng không chứng minh nguyên nhân/CTA đúng. Không tick chungR1–R5.
 
-**Xong khi:** các dòng sai15/22/23/26–29 được sửa theo nguồn và bảng state thực có; phần phí/Unknown không bị mất. Sau nộp làm tiếpT31, không đợi C duyệt.
+**Xong khi:** state và nguyên nhân/CTA6001/6002/6005/6006/6007/6008 được đối chiếu nguồn và bảng state thực có; phần phí/Unknown không bị mất. Sau nộp làm tiếpT31, không đợi C duyệt.
 
 ## T31 — sửa evidence, khôi phục provenance và state
 
-**Trạng thái: mới, sauT30.** Chỉ sửa [evidence A](../data/receiptrail-evidence.md) từ601e723/hashdbdc60d3…; đọc T29-E1–E3 và [note021](../learning/021-payment-cluster-evidence.md). Giữ5URL; không giảm bảng thành nhãn chung hoặc tự nhận crawl mới khi chỉ đọc note.
+**Trạng thái: mới, sauT30.** Chỉ sửa [evidence A](../data/receiptrail-evidence.md) từ306466f/hash987facc6…; đọc T29-E1–E3 và [note021](../learning/021-payment-cluster-evidence.md). Giữ5URL; không giảm bảng thành nhãn chung hoặc tự nhận crawl mới khi chỉ đọc note.
 
 1. Ba alternatives có cơ chế/nguồn/ngày A thực đọc/giới hạn/tác động: Stripe idempotency key, v1/v2; Solana Pay reference **không bắt buộc unique**; x402 fingerprint/cache/conflict409. PDA định danh cần invariant program mới chống trả cùng invoice; không tự suy lợi thế market.
 2. Hai pain sources có tác giả/ngày bài/ngày đọc và điều nguồn không chứng minh. Shopify là unknown charge/retry risk; issue452 là nonce đã dùng/AuthorizationUsed, phân biệt settlement và lỗi. Khôi phục metadata đã đúng ởT26; không viết trùng đơn/Solana double-debit/adoption khi nguồn không chứng minh. Nếu chưa mở URL thì nêu nguồn gián tiếp và chưa crawl.
-3. Khôi phục Request Pending/Unknown bị mất. Paid là state, commitment riêng; bảng expiry−1/expiry/expiry+1 với actor/CTA và cùngPDA/program/cluster/owner/commitment. Tại/sau expiry chặn pay, merchant vẫn cancelOpen; không tự ký/gửi/đổiID.
+3. Giữ Request Pending/Unknown đã khôi phục ở306466f. Paid là state, commitment riêng; bảng expiry−1/expiry/expiry+1 với actor/CTA và cùngPDA/program/cluster/owner/commitment. Tại/sau expiry chặn pay, merchant vẫn cancelOpen; không tự ký/gửi/đổiID.
 4. Đúng10IDs gốc: T14R1state/R2idempotency/R3pain/R4alternatives; T20/T23 R1alternatives/R2pain/R3mapping-state. Trả thêmT26-R1–R3/T29-E1–E3 bằng mục/hàng thực; chưa đủ ghi chưa đạt. Không nhận “đã tách” khi bảng còn thiếu.
 
 **Xong khi:** mỗi claim/ID trỏ nội dung kiểm được, provenance thật; không đổi điểm/thiết kế hoặc mở quyền. Sau nộp làm tiếpT32.
 
 ## T32 — review bằng assertion, giữ baseline Paid→Paid
 
-**Trạng thái: mới, sauT31.** Chỉ sửa [review A](../reviews/receiptrail-antigravity.md) từ601e723/hash2d026f94…; đọc T29-R1–R3, source/test/log đã dẫn ở [review12:35](../reviews/receiptrail-codex.md#review-t28-và-t29--18112026-heartbeat1235-utc7). Không chạy code hoặc sửa source để khớp báo cáo.
+**Trạng thái: mới, sauT31.** Chỉ sửa [review A](../reviews/receiptrail-antigravity.md) từ306466f/hashf25fb1bb…; đọc T29-R1–R3, source/test/log đã dẫn ở [review12:35](../reviews/receiptrail-codex.md#review-t28-và-t29--18112026-heartbeat1235-utc7). Không chạy code hoặc sửa source để khớp báo cáo.
 
 - Pay: payer Signer/has_one payer; merchant SystemAccount recipient/data-empty/has_one merchant, không ký pay. Cancel: merchant Signer/has_one merchant. Bảng source line/test đầy đủ/assertion/log cho từng vai; helper reject165–176 và log r2:42/35/33/28/22.
 - Ba hàng dùng **tên hàm đầy đủ** trong runtime.rs:181 `create_pay_and_fresh_transaction_retry_transfers_principal_only_once`,238 `two_pay_instructions_in_one_transaction_roll_back_the_first_transfer`,263 `insufficient_principal_cpi_leaves_invoice_open_and_balances_unchanged`. Giữ Paid→Paid/Open→Open/Open→Open; thêm `once`226, signature khác228, snapshot233; inner CPI250–254/snapshot255/Open256/paid_slot257; reject268/tuple269. Log23–24 là **một test**,39/26 là hai ca còn lại. Snapshot148–157 không gồm fee payer, không suy phí fail được hoàn.

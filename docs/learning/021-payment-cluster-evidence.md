@@ -183,3 +183,5 @@ BảnT23v2/769d365 đến trước checkpoint: nhận cách nói “không đả
 ### Bài học review T29 — 18/11/2026
 
 T29/601e723 giữ 5 URL nhưng bỏ metadata nguồn và nhóm Request từng có; các câu “đã tách” trong phản hồi không khớp nội dung. [Snapshot](../evidence/phase2/receiptrail-t28-t29-review.json) giữ nguyên report; [review C](../reviews/receiptrail-codex.md#review-t28-và-t29--18112026-heartbeat1235-utc7) mở T29-E1–E3, giao T31 khôi phục provenance, cơ chế alternatives và state/commitment. Lượt này chỉ đối chiếu note, review cũ và source/log local, không crawl lại 5 URL. Giữ ID findings và dẫn mục thực có; khi patch phải kiểm cả phần từng được nhận để tránh mất bằng chứng. Không đổi điểm, thiết kế hoặc gọi report nộp là review đạt.
+
+Bản306466f đến trước push khôi phục Request và nhãn idempotency key/fingerprint-cache; nhận phần này trong [review bổ sung](../reviews/receiptrail-codex.md#bổ-sung-bản306466f-trước-checkpoint--18112026). State/commitment, provenance/pain/mapping vẫn chưa đủ; không tiếp tục mô tả Request hiện hành là mất. Giữ snapshot601e723 riêng, cập nhật đầu vàoT31.
