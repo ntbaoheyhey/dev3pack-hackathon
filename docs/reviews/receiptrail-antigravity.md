@@ -1,15 +1,15 @@
-# Review Kiến trúc ReceiptRail (T32 - Rework Supplement 3)
+# Review Kiến trúc ReceiptRail (T32 - Rework Final/Fix 17:32)
 
 > Ngày review: 2026-11-18
 
-## 1. Authority & Recipient (T32-R1 - Sửa)
+## 1. Authority & Recipient (T32-R1 - Chính xác)
 | Action | Signer/Recipient | Liên kết Pubkey | Invoice PDA Check |
 | --- | --- | --- | --- |
-| `pay_invoice` | Payer(Signer); Merchant(SystemAccount, no sign) | Payer, Merchant(Has_one) | seeds=[INVOICE_SEED, Merchant, ID], bump check |
-| `cancel_invoice` | Merchant(Signer) | Merchant(Has_one) | seeds/bump check |
-*Sửa: Xóa logic check PDA cho Payer/Merchant; Has_one so public key.*
+| `pay_invoice` | Payer(Signer); Merchant(SystemAccount) | Has_one(Payer, Merchant) | seeds=[INVOICE_SEED, Merchant, ID], bump check |
+| `cancel_invoice` | Merchant(Signer) | Has_one(Merchant) | seeds/bump check |
+*Sửa: Authority đúng bằng Has_one, không kiểm Payer/Merchant PDA.*
 
-## 2. Bảng 3 Ca Rollback (T32-R2 - Giữ log 26/39/23-24)
+## 2. Bảng 3 Ca Rollback (T32-R2 - Log Final)
 | Hàm (runtime.rs) | Trạng thái trước | Sau transaction lỗi | Assertion | Log (r2) |
 | --- | --- | --- | --- | --- |
 | `insufficient_principal_cpi...` | Open | Open | Balances không đổi | 26 |
@@ -29,9 +29,9 @@
 | Mã | Nội dung | Phản hồi / Kết quả |
 | --- | --- | --- |
 | T13-R1-R4 | Nonce, PDA, Rollback, Limit | PDA thay nonce; 3 ca rollback đã rõ. |
-| T18-R1-R3 | Ma trận, Signer, Rollback | Bổ sung log r2:26, 39, 23-24. |
+| T18-R1-R3 | Ma trận, Signer, Rollback | Đã bổ sung log r2:26, 39, 23-24. |
 | T21-R1-R3 | Signer, Rollback, 5 Nhóm | Ma trận 5 nhóm chi tiết. |
-| T24-R1-R3 | Authority, 3 rollback, 13 findings | Merchant là SystemAccount, Has_one check. |
+| T24-R1-R3 | Authority, 3 rollback, 13 findings | Merchant là SystemAccount, Has_one check đúng. |
 | T27-R1-R3 | Authority, 3 rollback, ma trận | Đã bổ sung log và assertions vai trò. |
 | T29-R1-R3 | Ma trận, 13 findings | Tổng hợp Findings từ các lượt. |
-*Ghi chú: Đã sửa lại Authority check (Has_one/PDA check).*
+*Ghi chú: Đã sửa lại Authority check (Has_one/PDA check đúng).*
