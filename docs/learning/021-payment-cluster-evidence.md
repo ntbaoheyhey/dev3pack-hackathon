@@ -185,3 +185,9 @@ BảnT23v2/769d365 đến trước checkpoint: nhận cách nói “không đả
 T29/601e723 giữ 5 URL nhưng bỏ metadata nguồn và nhóm Request từng có; các câu “đã tách” trong phản hồi không khớp nội dung. [Snapshot](../evidence/phase2/receiptrail-t28-t29-review.json) giữ nguyên report; [review C](../reviews/receiptrail-codex.md#review-t28-và-t29--18112026-heartbeat1235-utc7) mở T29-E1–E3, giao T31 khôi phục provenance, cơ chế alternatives và state/commitment. Lượt này chỉ đối chiếu note, review cũ và source/log local, không crawl lại 5 URL. Giữ ID findings và dẫn mục thực có; khi patch phải kiểm cả phần từng được nhận để tránh mất bằng chứng. Không đổi điểm, thiết kế hoặc gọi report nộp là review đạt.
 
 Bản306466f đến trước push khôi phục Request và nhãn idempotency key/fingerprint-cache; nhận phần này trong [review bổ sung](../reviews/receiptrail-codex.md#bổ-sung-bản306466f-trước-checkpoint--18112026). State/commitment, provenance/pain/mapping vẫn chưa đủ; không tiếp tục mô tả Request hiện hành là mất. Giữ snapshot601e723 riêng, cập nhật đầu vàoT31.
+
+### Bài học review T31 — 18/11/2026
+
+[T31/e483529](../reviews/receiptrail-codex.md#review-t31--18112026) giữ5URL/nhãnEVM/expiry đúng nhưng lại bỏ Request và cơ chế idempotency key/fingerprint-cache của306466f. Paid=finalized còn sai; bảng phản hồi ghi Request đã có trái nội dung, đổi nghĩa T29-E1 và thiếu10IDs gốc. [Snapshot](../evidence/phase2/receiptrail-t31-review.json) giữ đúng bytes/hash/6inputs; chỉ đối chiếu note/review nguồn cũ và source local, không crawl lại hoặc suy A đã mở nguồn.
+
+Patch cần giữ phần đã nhận và so với revision trước; ngày cập nhật không là ngày truy cập, số URL không là provenance, PDA định danh không tự thực thi invariant. Giữ T32/T33 và phần sửa hẹp T31 cùng ID, không thêm vòng task; không đổi điểm/cổng/quyền hoặc rerun suite cho tài liệu.

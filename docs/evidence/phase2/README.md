@@ -23,3 +23,5 @@ Số đo VM: account131bytes, rent1,802,640lamports, principal1,000,000 trả1l�
 [Bản bổ sung306466f](receiptrail-t28-t29-v2-review.json): UX44dòng/evidence36/review28;3snapshot/6hashes/9mã/165giây/4mục đã đối chiếu. Request và copy6007 cải thiện, UX lại bỏ phí create/Unknown/terms/context. Findings giữ9nhóm, queueT30–T33 cập nhật đầu vào; snapshot601e723 vẫn là lịch sử độc lập.
 
 [Review T30/0d7b9d3](receiptrail-t30-review.json):43dòng,9/9 code–name,6input hashes khớp; nhận phí/terms/Unknown và expiry đúng biên. State/version/form/CTA còn thiếu, mục3–5 thành placeholder nên0bố cục/0khoảng thời gian, không xác nhận165giây ở bản mới. T31→T32→T33, T33 bao gồm phần T30 chưa đạt; không runtime/browser/CI mới.
+
+[Review T31/e483529](receiptrail-t31-review.json): giữ5URL/nhãnEVM/expiry; thiếu provenance/state/phản hồi, mất Request và cơ chế từng có. Snapshot nguyên văn/hash khớp Git blob,6input hashes không đổi. Không crawl/runtime/browser/CI mới; T32/T33 tiếp tục, phầnT31 chưa đạt sửa trong cùng task.

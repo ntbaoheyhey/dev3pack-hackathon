@@ -383,3 +383,17 @@ Giữ9nhóm finding chưa đóng; không tạo thêm vòng task. **T30–T33 ch�
 | T30-R3 — vừa, mất nội dung | Mục3–5 bị thay toàn bộ bằng placeholder dù queue yêu cầu giữ; hiện0bố cục/0khoảng thời gian | Nhãn165s không chứng minh tổng thời lượng. T33 viết đủ8bố cục, storyboard có các khoảng liên tục cộng165giây và cảnh tx mới/principal một lần/phí fail riêng, SDK có nguồn hoặc chưa quyết định. Có thể dùng snapshot306466f để nhớ phần từng có; không chép lại copy/SDK sai hoặc coi replay log là video thật |
 
 T30 nhận một phần; giữ9nhóm findings T28/T29 chưa đóng. **T31 → T32 → T33**, bổ sung phần còn thiếu của T30 vào T33 thay tạo vòng task mới. Không đảo lời duyệt Phase2, đổi điểm, sửa contract hoặc mở Phase4–6; hello vẫn sau funding theo lời người dùng.
+
+## Review T31 — 18/11/2026
+
+Fetch/pull **e483529bd2bbfa69e11e69a7f867044aaf0000b1**, đọc toàn bộ [report T31](https://github.com/ntbaoheyhey/dev3pack-hackathon/blob/e483529bd2bbfa69e11e69a7f867044aaf0000b1/docs/data/receiptrail-evidence.md) và diff với306466f. [Snapshot](../evidence/phase2/receiptrail-t31-review.json) giữ nguyên bytes/hash,5URL và6hashes đầu vào. Nhận phần đã giữ đúng: nhãn EVM/Web API và Expired = Open + slot>=expiry. A-done báo đã nộp; **chưa nhận T31 đạt**, không dùng nhãn Rework thay nội dung.
+
+| Finding | Vị trí report | Kết luận và patch cần thiết |
+| --- | --- | --- |
+| T31-E1 — vừa, nguồn (tiếp T29-E1) | 8–16 | Thiếu tác giả/ngày bài/ngày A thực đọc/cơ chế. Bản306466f từng có idempotency key và fingerprint/cache, nay mất. Khôi phục Stripe v1/v2; Solana Pay reference không **bắt buộc** unique; x402 fingerprint/cache/conflict409. Shopify nói unknown charge outcome/retry risk; issue452 nói nonce đã dùng/AuthorizationUsed, không chứng minh trùng đơn/Solana double-debit/adoption. PDA định danh cần invariant program, không tự là chống trả lặp. Nguồn gián tiếp phải ghi note/commit và chưa crawl; không lấy ngày cập nhật làm ngày mở nguồn. |
+| T31-E2 — cao, state (tiếp T29-E2) | 19–21 | Mất Request Pending/Unknown từng có ở306466f; Paid vẫn Finalized on-chain, dòng20 gán finalized là cách tránh trùng. [Source](../../programs/receiptrail/src/lib.rs)64–81 kiểm Open rồi transfer+Paid atomic; commitment là thuộc tính lần đọc. Cần bảng Invoice riêng, Request riêng, ba mốc expiry−1/expiry/expiry+1 với actor/CTA; merchant vẫn cancel Open. Giữ cùng PDA/program/cluster/owner/commitment, Unknown không tự ký/gửi/đổiID. |
+| T31-E3 — vừa, phản hồi (tiếp T29-E3) | 23–31 | Thiếu cả10IDs T14/T20/T23. T29-E1 bị đổi từ nguồn thành state; E2 là state, E3 là phản hồi. Hàng E1 nói có Request State nhưng mục3 không có. T26-R1–R3/T29-E1–E3 cần trỏ mục/hàng thực, phần chưa sửa ghi chưa đạt; sáu nhãn chung không thay bằng chứng. |
+
+Đối chiếu [note021](../learning/021-payment-cluster-evidence.md), các review nguồn T20/T23 đã có, source/ARCHITECTURE/log local; **không mở lại năm URL hoặc chạy suite mới**. Chưa xác nhận A đã crawl nguồn trong T31. Không sửa report/A-done/HANDOFF A, thiết kế, source/tests/IDL hoặc điểm. Không suy sai report thành bug program hay cổng người dùng bị thu hồi.
+
+Giữ **T32 → T33**, sau đó sửa bổ sung ngay trong **T31** theo ba hàng trên; không thêm task ID/vòng mới. Các9nhóm findings T28/T29 chưa đóng. P3-A đạt, P3-B để sau funding; không mở Phase4–6 hoặc tự nhận review/giáo viên đạt.

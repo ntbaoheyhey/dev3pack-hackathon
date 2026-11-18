@@ -2,11 +2,11 @@
 
 **Chủ file: Codex. Chỉ nhận việc từ file này.** A sở hữu các report của mình, A-done và HANDOFF A; C không sửa thay các file đó. Chỉ làm tài liệu Phase2 ReceiptRail. Quyết định **“ReceiptRail chính, ClusterProof phụ” lúc00:07 ngày18/11/2026 UTC+7** ở [DECISION](../ideas/DECISION.md); **người dùng đã duyệt Phase2** bằng “duyệt phase 2”, log09:27:18.464 ngày18/11 UTC+7. C đã được đồng ý P3-A/P3-B lúc log10:13:11.851 UTC+7, chỉ CI/hello theo DECISION; funding hello để sau. Quyền A vẫn là tài liệu trong queue; không cài/code/tạo ví-keypair triển khai/build web/deploy/public hoặc tự mở Phase3.
 
-**Làm tiếp T31 → T32 → T33.** T28/T29 tại601e723 đã được C review: nhận phí create/pay, Unknown không tự ký/retry và baseline retry Paid→Paid; chưa nhận toàn bộ. [Review12:35](../reviews/receiptrail-codex.md#review-t28-và-t29--18112026-heartbeat1235-utc7) có9findings và snapshot. Giữ phần đã đúng, làm patch nhỏ theo từng task, không viết lại toàn report hoặc chỉ tick “hoàn tất”. Người dùng đã duyệt Phase2 riêng; chưa đóng review/giáo viên. Mọi commit/merge dùng [skip ci]; quyền A vẫn chỉ tài liệu.
+**Làm tiếp T32 → T33 → T31 (sửa bổ sung).** T28/T29 tại601e723 đã được C review: nhận phí create/pay, Unknown không tự ký/retry và baseline retry Paid→Paid; chưa nhận toàn bộ. [Review12:35](../reviews/receiptrail-codex.md#review-t28-và-t29--18112026-heartbeat1235-utc7) có9findings và snapshot. Giữ phần đã đúng, làm patch nhỏ theo từng task, không viết lại toàn report hoặc chỉ tick “hoàn tất”. Người dùng đã duyệt Phase2 riêng; chưa đóng review/giáo viên. Mọi commit/merge dùng [skip ci]; quyền A vẫn chỉ tài liệu.
 
-**Lưu ý CI18/11:** commit7210aa6 chỉ sửa HANDOFF A nhưng thiếu `[skip ci]`, tạo hai run mới khi Anchor còn build; hai run a114a98 đã bị cancelled. Mọi commit tài liệu/HANDOFF của A **phải có `[skip ci]`**, kể cả commit merge. P3-A đã đạt hai runs27cf7ac; không còn CI live. Thứ tự đang giao **T31 → T32 → T33**, không chỉ đổi Thẻ nhớ rồi coi report đã nộp. Không sửa workflow/file C hoặc tạo thêm run.
+**Lưu ý CI18/11:** commit7210aa6 chỉ sửa HANDOFF A nhưng thiếu `[skip ci]`, tạo hai run mới khi Anchor còn build; hai run a114a98 đã bị cancelled. Mọi commit tài liệu/HANDOFF của A **phải có `[skip ci]`**, kể cả commit merge. P3-A đã đạt hai runs27cf7ac; không còn CI live. Thứ tự đang giao **T32 → T33 → T31 (sửa bổ sung)**, không chỉ đổi Thẻ nhớ rồi coi report đã nộp. Không sửa workflow/file C hoặc tạo thêm run.
 
-**T30 đã nộp0d7b9d3, C nhận một phần.** [Review13:27](../reviews/receiptrail-codex.md#review-t30--18112026-heartbeat1327-utc7) nhận phí/terms/Unknown và expiry đúng biên, còn state/version/form/CTA và mục3–5 bị thay bằng placeholder. T31 evidence và T32 review vẫn dùng đầu vào306466f; T33 dùng UX0d7b9d3, sửa phần còn thiếu củaT30 trước khi hoàn thiện bố cục/demo/SDK. Không tạo vòng task mới hoặc viết lại toàn report làm mất phần đã nhận.
+**T30/0d7b9d3 nhận một phần; T31/e483529 đã nộp nhưng chưa đạt.** [ReviewT30](../reviews/receiptrail-codex.md#review-t30--18112026-heartbeat1327-utc7) giữ phần phí/terms/Unknown/expiry; [reviewT31](../reviews/receiptrail-codex.md#review-t31--18112026) phát hiện provenance/state/phản hồi chưa đủ và Request lại bị mất. T32 giữ đầu vào306466f; T33 dùng UX0d7b9d3. Làm T32 rồi T33, sau đó sửa hẹp T31 trên e483529 theo findings bên dưới; không thêm task ID hoặc viết lại toàn report làm mất phần đã nhận.
 
 Lịch sử yêu cầu T21–T29 đã chuyển vào [archive](../archive/A-queue-before-T30.md). Phần dưới giữ T30 đã nộp để đối chiếu; việc đang giao là T31–T33.
 
@@ -23,18 +23,18 @@ Lịch sử yêu cầu T21–T29 đã chuyển vào [archive](../archive/A-queue
 
 ## T31 — sửa evidence, khôi phục provenance và state
 
-**Trạng thái: mới, sauT30.** Chỉ sửa [evidence A](../data/receiptrail-evidence.md) từ306466f/hash987facc6…; đọc T29-E1–E3 và [note021](../learning/021-payment-cluster-evidence.md). Giữ5URL; không giảm bảng thành nhãn chung hoặc tự nhận crawl mới khi chỉ đọc note.
+**Trạng thái: đã nộp e483529, chưa đạt; sửa bổ sung sauT33 trong cùng task.** Chỉ sửa [evidence A](../data/receiptrail-evidence.md) hiện hành e483529; đọc [T31-E1–E3](../reviews/receiptrail-codex.md#review-t31--18112026), T29-E1–E3 và [note021](../learning/021-payment-cluster-evidence.md). Giữ5URL/nhãnEVM/expiry đã đúng; khôi phục Request và cơ chế đã có ở306466f. Không giảm bảng thành nhãn chung hoặc tự nhận crawl mới khi chỉ đọc note.
 
 1. Ba alternatives có cơ chế/nguồn/ngày A thực đọc/giới hạn/tác động: Stripe idempotency key, v1/v2; Solana Pay reference **không bắt buộc unique**; x402 fingerprint/cache/conflict409. PDA định danh cần invariant program mới chống trả cùng invoice; không tự suy lợi thế market.
 2. Hai pain sources có tác giả/ngày bài/ngày đọc và điều nguồn không chứng minh. Shopify là unknown charge/retry risk; issue452 là nonce đã dùng/AuthorizationUsed, phân biệt settlement và lỗi. Khôi phục metadata đã đúng ởT26; không viết trùng đơn/Solana double-debit/adoption khi nguồn không chứng minh. Nếu chưa mở URL thì nêu nguồn gián tiếp và chưa crawl.
 3. Giữ Request Pending/Unknown đã khôi phục ở306466f. Paid là state, commitment riêng; bảng expiry−1/expiry/expiry+1 với actor/CTA và cùngPDA/program/cluster/owner/commitment. Tại/sau expiry chặn pay, merchant vẫn cancelOpen; không tự ký/gửi/đổiID.
 4. Đúng10IDs gốc: T14R1state/R2idempotency/R3pain/R4alternatives; T20/T23 R1alternatives/R2pain/R3mapping-state. Trả thêmT26-R1–R3/T29-E1–E3 bằng mục/hàng thực; chưa đủ ghi chưa đạt. Không nhận “đã tách” khi bảng còn thiếu.
 
-**Xong khi:** mỗi claim/ID trỏ nội dung kiểm được, provenance thật; không đổi điểm/thiết kế hoặc mở quyền. Sau nộp làm tiếpT32.
+**Xong khi:** mỗi claim/ID trỏ nội dung kiểm được, provenance thật; không đổi điểm/thiết kế hoặc mở quyền. Sau bản sửa bổ sung, ghi rõ đã kiểm/chưa kiểm và không tự đóng cổng. Không tạo task mới thay ba finding chưa sửa.
 
 ## T32 — review bằng assertion, giữ baseline Paid→Paid
 
-**Trạng thái: mới, sauT31.** Chỉ sửa [review A](../reviews/receiptrail-antigravity.md) từ306466f/hashf25fb1bb…; đọc T29-R1–R3, source/test/log đã dẫn ở [review12:35](../reviews/receiptrail-codex.md#review-t28-và-t29--18112026-heartbeat1235-utc7). Không chạy code hoặc sửa source để khớp báo cáo.
+**Trạng thái: mới, làm tiếp sau bản nộpT31/e483529.** Chỉ sửa [review A](../reviews/receiptrail-antigravity.md) từ306466f/hashf25fb1bb…; đọc T29-R1–R3, source/test/log đã dẫn ở [review12:35](../reviews/receiptrail-codex.md#review-t28-và-t29--18112026-heartbeat1235-utc7). Không chạy code hoặc sửa source để khớp báo cáo.
 
 - Pay: payer Signer/has_one payer; merchant SystemAccount recipient/data-empty/has_one merchant, không ký pay. Cancel: merchant Signer/has_one merchant. Bảng source line/test đầy đủ/assertion/log cho từng vai; helper reject165–176 và log r2:42/35/33/28/22.
 - Ba hàng dùng **tên hàm đầy đủ** trong runtime.rs:181 `create_pay_and_fresh_transaction_retry_transfers_principal_only_once`,238 `two_pay_instructions_in_one_transaction_roll_back_the_first_transfer`,263 `insufficient_principal_cpi_leaves_invoice_open_and_balances_unchanged`. Giữ Paid→Paid/Open→Open/Open→Open; thêm `once`226, signature khác228, snapshot233; inner CPI250–254/snapshot255/Open256/paid_slot257; reject268/tuple269. Log23–24 là **một test**,39/26 là hai ca còn lại. Snapshot148–157 không gồm fee payer, không suy phí fail được hoàn.
@@ -55,7 +55,7 @@ Lịch sử yêu cầu T21–T29 đã chuyển vào [archive](../archive/A-queue
 - Bảng SDK chọn/bỏ hoặc chưa quyết định, version/mốc source chính xác+URL/ngày thực đọc/giới hạn; so React/Vite/Wallet Standard hiện có. Không dùng v1.9x/v0.2x làm version đã kiểm, không suy quyền cài từ đề xuất. Giữ giới hạn lịch sử note005.
 - Trả từngT16/T22/T25-R1–R5 vàT28-R2/R3 bằng mục thực; mục còn thiếu không tick. Tự cộng thời lượng và ghi đúng phạm vi kiểm tài liệu.
 
-**Xong khi:** T30-R1–R3 và mục3–5 có nội dung đủ tái kiểm, không chỉ số8/tổng165/checkbox. Chưa code UI/browser/cài/deploy/public; nộp rồi A tự cập nhật trạng thái đúng phạm vi.
+**Xong khi:** T30-R1–R3 và mục3–5 có nội dung đủ tái kiểm, không chỉ số8/tổng165/checkbox. Chưa code UI/browser/cài/deploy/public; nộp rồi A tự cập nhật trạng thái đúng phạm vi và sửa bổ sung T31 hiện có, không chờ C cấp task mới.
 
 ## Ghi kết quả và giới hạn
 

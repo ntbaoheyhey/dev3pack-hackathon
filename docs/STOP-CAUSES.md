@@ -71,3 +71,5 @@ Bản306466f/314b572 đến trước push checkpoint: khôi phục Request/copy6
 6. Thẻ nhớ ở đầu HANDOFF, đọc lại mỗi lần bắt đầu/compact/tự nhắc; HANDOFF ngắn, lịch sử chuyển sang `docs/archive/`.
 
 7. Quyết định cần nguyên văn câu người dùng + giờ/múi giờ; lời đính chính mới nhất có ưu tiên. Nguồn gây ghi sai phải giữ để audit, không dùng lại làm quyền. Xem DECISION và AGENTS mục “Chống dừng giữa chừng”.
+
+**Bổ sung K8, reviewT31 ngày18/11:** e483529 giữ5URL/expiry/nhãnEVM nhưng bỏ Request và cơ chế đã có; Paid=finalized vẫn sai, phản hồi tự nói có Request và đổi nghĩa findings. [Review](reviews/receiptrail-codex.md#review-t31--18112026)/[snapshot](evidence/phase2/receiptrail-t31-review.json) phân biệt report đã nộp với được nhận. Giữ T32/T33, sửa hẹp ngay trongT31 sau đó; không thêm task ID hoặc sửa file A. Chưa có bằng chứng A bỏ sót queue hoặc nguyên nhân nội bộ; kiểm cả phần từng nhận để ngăn regression.
