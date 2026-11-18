@@ -168,3 +168,5 @@ Helper Python tạm để ghi review báo SyntaxError non-UTF-8 ở dòng litera
 ## Review T32 lúc15:47 — 18/11/2026
 
 [3083ce4](../reviews/receiptrail-codex.md#review-t32-bổ-sung1547--18112026) thêm has_one payer+merchant/sig khác và cột log, nhưng hai dẫn sai test: r2:42 là wrong_payer,35 là recipient_substitution; đúng cho insufficient/two_pay là26/39. Retry23–24 đúng. [Snapshot](../evidence/phase2/receiptrail-t32-3083ce4-review.json) giữ35dòng/hash/6inputs và nội dung từng dòng dẫn. Số dòng tồn tại không là bằng chứng đúng claim; tách bảng authority và ba ca rollback trong queue,giữ phần đã nhận. Không suy has_one thành kiểm tồn tại, không rerun suite hoặc sửa file A/source.
+
+Bổ sung T33/509adac trước push: [review](../reviews/receiptrail-codex.md#bổ-sung-t33509adac-trước-chốt-pr--18112026) nhận phí create/pay,Terms,no-auto-retry và reload recipient được khôi phục; không dùng lỗi snapshot cũ cho bản mới.6002 lùi về reconnect; r2:23–24 bị tách sai thành create/pay dù là một test/METRIC+ok. [Snapshot](../evidence/phase2/receiptrail-t33-509adac-review.json)58dòng/9mã/165giây trên giấy/6hashes giữ riêng; thiếu state/vai/form/bố cục/demo/SDK,không rerun suite.

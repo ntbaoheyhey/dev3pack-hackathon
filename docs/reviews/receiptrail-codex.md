@@ -469,3 +469,17 @@ Fetch/pull **7831e5f** nhận report **3083ce4**,35dòng. [Snapshot](../evidence
 Đối chiếu [source116–137](../../programs/receiptrail/src/lib.rs), [runtime225–269](../../programs/receiptrail/tests/runtime.rs), [logr2:22–42](../evidence/phase2/receiptrail-spike-r2.txt) và note023; không rerun suite/crawl/browser/RPC/CI. Dẫn một số dòng có thật chưa đủ: nội dung tại dòng đó phải đúng test/claim. Queue tách bảng ba ca rollback khỏi log authority để tránh lẫn; không sửa report A.
 
 HANDOFF A/7831e5f chuyển T33 đúng việc đã giao; không quy bỏ sót hoặc suy process live. Giữ **T33 → T31 → T32**, sửa bổ sung cùng ID;9nhóm findings/review chéo/giáo viên còn mở. P3-A đạt, hello sau funding; chốt checkpoint/PR trước khi trở lại blocker, không mở Phase4–6.
+
+### Bổ sung T33/509adac trước chốt PR — 18/11/2026
+
+Sau commit reviewT32 **2432524**, remote có509adac/91f94fc nên push bị non-fast-forward. Đã merge **5dba9d9** với [skip ci] và push, giữ file A. [Snapshot T33 mới](../evidence/phase2/receiptrail-t33-509adac-review.json)58dòng/6input hashes/9code–name/4mục/165giây/0URL; snapshot1993859 giữ lịch sử.
+
+**Nhận phần sửa:** dòng18 khôi phục Unknown no-auto-retry;21–23 khôi phục create merchant rent+fee/pay payer principal+fee/Terms read-only;6007 thêm reload recipient. Giữ merchant cancel khi hết hạn/hai bảng/Explorer gắn signature/thời lượng trên giấy. Không tiếp tục gọi phí/Terms/no-auto-retry ở bản hiện hành là bị mất.
+
+| Finding giữ ID | Vị trí report | Phần còn thiếu |
+| --- | --- | --- |
+| T33-R1 | 7–18,30–36 | Paid vẫn Finalized; Merchant CTA vẫn có Pay; Expired thiếu Open.6002 lùi về reconnect, không sửa được zero/data-empty;6003 thiếu payer=invoice;6005 vẫn tạo ID mới;6007 đã có reload nhưng thiếu dừng/xác minh;6008 thiếu invoice.version. Cần context/program ID+code/nhóm lỗi và Unknown không tự ký/gửi/đổiID; giữ no-auto-retry đã thêm. |
+| T33-R2 | 20–23,38–43 | Phí/Terms đã khôi phục, nhưng chưa có form fields/recipient/mapping32bytes/u64. Bốn mô tả và câu mỗi bố cục có context không là tám bố cục desktop/mobile với CTA/no-wallet/lỗi; không đánh thiếu phần phí nữa. |
+| T33-R3 | 45–58 | r2:23–24 là một test/METRIC+ok, không là hai bằng chứng create/pay riêng như46–47. Chưa có fresh-transaction retry/InvoiceNotOpen/principal1amount/phí fail và evidence cho cảnh timeout/finalized chưa chạy. SDK wildcard/0URL và checkbox chưa thay phản hồi từng finding. |
+
+Chỉ đối chiếu diff/source/IDL/log hiện có, không rerun/crawl/browser/RPC/CI. HANDOFF A/91f94fc lại ghi hết việc; T31 vẫn d40492b, chưa có bản mới sau review15:17 trong origin/work đã quan sát. Tiếp tục **T31 → T32 → T33**, mới/sửa bổ sung cùng ID; giữ9findings và cổng review/giáo viên, không suy trạng thái A thành process live hoặc kết quả đạt.

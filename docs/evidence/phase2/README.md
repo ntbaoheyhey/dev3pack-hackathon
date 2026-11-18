@@ -35,3 +35,5 @@ Số đo VM: account131bytes, rent1,802,640lamports, principal1,000,000 trả1l�
 [Review bổ sung15:17](receiptrail-supplement-1517-review.json): T32/2f44ba0 36dòng/3tên hàm; T33/1993859 52dòng/9code-name/4mục/165giây/0URL; T31/d40492b 30dòng/5URL. Ba blobs/hash và6input hashes lưu riêng; snapshots cũ giữ lịch sử. Nhận delta VM/network/cancel/nhãn Web API-EVM,9findings chưa đóng; reopen T32→T33→T31 cùng ID. Không chạy suite/crawl/RPC mới.
 
 [T32/3083ce4 review15:47](receiptrail-t32-3083ce4-review.json):35dòng/6input hashes/3tên hàm đúng;1/3log references đúng test. Sai42→26 và35→39; nhận has_one payer+merchant/sig khác,giữ3findings. Snapshot2f44ba0 trong bundle15:17 giữ lịch sử; không rerun suite.
+
+[T33/509adac](receiptrail-t33-509adac-review.json):58dòng/6input hashes/9mã/4mục/165giây/0URL. Nhận phí create/pay,Terms,no-auto-retry,reload recipient; state/vai/form/bố cục/demo/SDK còn thiếu. Không tiếp tục gọi các phần mới khôi phục là bị mất; r2:23–24 không là hai test/cảnh khác nhau. Snapshot1993859 giữ riêng.
