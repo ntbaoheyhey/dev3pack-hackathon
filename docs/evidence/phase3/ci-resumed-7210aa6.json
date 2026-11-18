@@ -1,5 +1,12 @@
 {
   "observed_at": "2026-11-18T10:49:12+07:00",
+  "linux_push_sha256": {
+    "Cargo.lock": "8ea462bb0d93de7e4f82e24bdb9bd3a1a1ab78ca227fd09880bb52c1dd6583c9",
+    "scripts/check-phase3-offline.sh": "c7e9b208be0aec1642b044be824f6f300cbf5908a0d4a1c6db716528cc3294d2",
+    "target/phase3-offline/deploy/phase3_hello.so": "f81e29627b4643d93b91a5a30c3b09f62f794d2a0cb72112458d4a0c97a8c246",
+    "target/phase3-offline/deploy/receiptrail.so": "41ff32ec9eb6aefe0322f1da0a04053b95cbd29e06afb6f0e22e76658dd024b9"
+  },
+  "cross_host_limit": "Hai hash bytecode Linux khác snapshot macOS trong offline-pipeline-metadata.json; chưa xác định nguyên nhân/chứng nhận reproducible hoặc verified build. Không thay binary macOS dùng cho phương án deploy hello.",
   "repository": "ntbaoheyhey/dev3pack-hackathon",
   "runs": [
     {

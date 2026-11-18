@@ -4,8 +4,8 @@
 
 ## Phần đã chuẩn bị và kiểm được
 
-- [Runner offline](../scripts/check-phase3-offline.sh): hai program cùng pipeline; **25 runtime tests và 8 client tests đạt**. Hai IDL và bytecode khớp artifacts cũ. [Metadata/logs](evidence/phase3/offline-pipeline-metadata.json) ghi macOS arm64/cache; chưa Linux CI.
-- [Workflow](../.github/workflows/ci.yml): đã mở đúng ba guards tại51bf866 sau khi push quyền fd78236; YAML và 10 shell blocks đã kiểm, pins/commands giữ nguyên. [Hai runs sau quyền](evidence/phase3/ci-approved-51bf866-blocked.json) bị billing chặn trước mọi step, chưa thực thi installer. Đã nối build ReceiptRail trước workspace tests, bỏ upload artifact mới; giữ source/web/lab.
+- [Runner offline](../scripts/check-phase3-offline.sh): hai program cùng pipeline; **25 runtime tests và 8 client tests đạt**. Hai IDL và bytecode khớp artifacts cũ. [Metadata/logs](evidence/phase3/offline-pipeline-metadata.json) ghi macOS arm64/cache; Linux CI mới được ghi riêng bên dưới.
+- [Workflow](../.github/workflows/ci.yml): ba jobs đã thực thi trên Linux. Push7210aa6 đạt25runtime+8client+16research+8web/typecheck/build/ReceiptRail IDL cmp; PR7210aa6 lỗi lấy attestation403 ([evidence](evidence/phase3/ci-resumed-7210aa6.json)). Patchb906a37 build cùng source8d9d148/lock đang được kiểm ở PR44233192373/push44233187077. Giữ source/web/lab; không upload binary artifact.
 - [Preflight 09:47:33 UTC+7](evidence/phase3/preflight-after-phase2-approval.json): đúng devnet, hello chưa deploy, payer 0 lamports. Không đọc signer hoặc gửi airdrop/transaction.
 - [Review T26/T27](reviews/receiptrail-codex.md#review-t26-và-t27--18112026-sau-duyệt-phase2) chưa nhận toàn bộ; A tiếp tục T28 → T29. Giáo viên chưa có verdict; lời duyệt người dùng là cổng riêng.
 
@@ -21,9 +21,9 @@
 | JS và dependencies | Node 24.22.2; Cargo.lock và hai package-lock hiện có trong repo; Actions giữ SHA pin |
 | Công việc | Build/test/research/client/web và sinh/đối chiếu IDL |
 
-Chỉ cài trên runner, không cài thêm máy người dùng; không deploy program/web, upload binary artifact hoặc dùng secrets/keypair. Nếu cần đổi pins/dependency ngoài lock thì trình lại. [K9](evidence/phase3/ci-merge-7e654a0-blocked.json) xác nhận Billing & plans đã chặn sáu jobs trước mọi step; người dùng cần xử lý billing/limit hoặc chọn runner phù hợp. C không đổi hạn mức/chi trả.
+Chỉ cài trên runner, không cài thêm máy người dùng; không deploy program/web, upload binary artifact hoặc dùng secrets/keypair. Nếu cần đổi pins/dependency ngoài lock thì trình lại. [K9](evidence/phase3/ci-merge-7e654a0-blocked.json) giữ lỗi Billing & plans lịch sử. Sau tin “Đã mở CI, chạy tiếp Phase 3.” (log10:35:20.180 UTC+7), runner đã hoạt động; không còn yêu cầu người dùng sửa billing theo evidence cũ. C không đổi hạn mức/chi trả.
 
-Đã lưu nguyên văn/giờ/phạm vi và push fd78236 trước mở guard. Commit51bf866 tạo runs44229364614/44229359109; cả sáu jobs failure với steps rỗng và cùng annotation Billing & plans. Chỉ nhận khi cả ba jobs thực chạy/pass trên đúng HEAD, đối chiếu steps/logs; skipped/blocked không là CI xanh. Quyền CI không mở deploy.
+Đã lưu quyền/push fd78236 trước mở guard. Lịch sử51bf866 bị billing chặn và a114a98 cancelled được giữ riêng. Patchb906a37 chỉ đổi cách cài AVM/Anchor: cargo1.100.0 build cả hai từ cùng SHA8d9d148 với lock upstream vào RUNNER_TEMP, kiểm binary Anchor1.2.2, không bỏ kiểm chứng binary tải về hoặc thêm token/quyền. YAML/10shell blocks/scope diff đã kiểm trước push; chờ hai run terminal. Chỉ nhận khi cả3jobs thực chạy/pass trên đúng revision và có steps/logs; checkpoint tài liệu có skip không tự có chứng nhận CI. Quyền CI không mở deploy.
 
 ## P3-B — đã được phép, chờ funding để deploy hello
 

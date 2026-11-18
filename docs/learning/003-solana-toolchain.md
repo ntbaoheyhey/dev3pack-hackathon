@@ -1,7 +1,7 @@
 # 003 — Toolchain Solana, phiên bản và cài đặt có kiểm soát
 
 > Ngày kiểm tra: 2026-11-17 (Asia/Ho_Chi_Minh). Đính chính18/11: giữ bộ đã cài; cài thêm cần hỏi trước theo DECISION. Người dùng đã duyệt Phase2 ReceiptRail (DECISION, log09:27:18.464 ngày18/11 UTC+7); không suy quyền cài/deploy/public.
-> Rust1.100.0, Agave4.1.2, AVM/Anchor1.2.2 và platform-tools v1.57 đã cài. Hello SBFv3 + IDL + 6 runtime tests đạt qua check-lab; chưa deploy, CI/web chưa được xác nhận.
+> Rust1.100.0, Agave4.1.2, AVM/Anchor1.2.2 và platform-tools v1.57 đã cài. Hello SBFv3/IDL/local tests đạt; Linux push7210aa6 đạt25runtime+8client+16research+8web/build. PR lỗi lấy attestation403; patchb906a37 đang kiểm. Chưa deploy; web cũ giữ nguyên, ví thật chưa kiểm.
 
 ## 1. Mục tiêu và điều cần nhớ
 
@@ -169,7 +169,7 @@ Các trang sống truy cập 17/11/2026; thời điểm truy cập không phải
 
 ## 7. Điểm chưa kiểm chứng và bước tiếp theo
 
-Đã kiểm bộ Rust host1.100.0 + Agave4.1.2 + Anchor1.2.2 + platform-tools v1.57 bằng build/IDL/6 LiteSVM tests: [hello-check-r2](../evidence/phase3/hello-check-r2.txt), exit0. Chưa xác nhận deploy/CI, chưa chạy Docker daemon. Các bảng/lệnh kế hoạch gốc ở trên chỉ là lịch sử nghiên cứu, không thay log thực hành này.
+Đã kiểm bộ Rust host1.100.0 + Agave4.1.2 + Anchor1.2.2 + platform-tools v1.57 bằng build/IDL/6 LiteSVM tests: [hello-check-r2](../evidence/phase3/hello-check-r2.txt), exit0. Linux push7210aa6 đã đạt pipeline, PR bị lỗi lấy chứng thực Anchor403; bản sửa b906a37 đang kiểm. Chưa deploy, chưa chạy Docker daemon. Các bảng/lệnh kế hoạch gốc ở trên chỉ là lịch sử nghiên cứu, không thay log thực hành này.
 
 Câu lịch sử “Tiếp tục theo quyền Phase3 đã có” sai/hết hiệu lực; không dùng làm quyền hiện hành. Giữ bộ đã cài, chỉ chuẩn bị local bằng cache và hỏi riêng trước cài thêm/keypair triển khai/deploy/public. Đọc [004](004-anchor-a-to-z.md), dùng scaffold chính thức Anchor1.2.2, template single + LiteSVM0.15.0 cho hello tối thiểu, không clone RPC mainnet. Giữ signer lab ngoài Git; nếu hosting/faucet cần tài khoản thì ghi nhu cầu thực sau khi hoàn tất phần độc lập.
 
@@ -183,3 +183,9 @@ Câu lịch sử “Tiếp tục theo quyền Phase3 đã có” sai/hết hiệ
 - Forward `--locked` cho build SBF và IDL khác nhau: build `--no-idl … -- -- --locked`, rồi `anchor idl build … -- --locked`. Giữ hello-build.txt exit1 lịch sử; hello-check-r2.txt mới chứng minh toàn quy trình exit0.
 
 Bài học18/11: version/build logs chứng minh phần đã chạy, không chứng minh người dùng đã duyệt việc cài. Nguồn payload và đính chính ở DECISION; không tái dùng quyền cũ.
+
+### Linux CI — 18/11/2026
+
+[Evidence7210aa6](../evidence/phase3/ci-resumed-7210aa6.json) ghi push run đã chạy25runtime+8client+16research+8web và typecheck/build; PR run lỗi403 từ API attestation của AVM. Kết quả một run không chứng minh run khác hoặc commit sau đạt. [Note022](022-phase2-3-independent-prep.md#ci-linux-sau-mở-billing--lỗi-attestation-và-cách-sửa-trước-code) giải thích sửa build cùng Anchor/AVM source8d9d148 và upstream lock bằng Rust1.100.0 trên runner, không cài thêm local.
+
+Hashes bytecode Linux trong log khác bản macOS/cache ở metadata offline; giữ hai bộ riêng, chưa xác định nguyên nhân hoặc chứng nhận reproducible/verified build. Phương án deploy hello vẫn dùng binary macOS đã kiểm/hash trước đó; chưa upload hay lấy binary CI thay thế. Bộ version/pipeline chạy được không đóng cổng devnet hoặc ví thật.

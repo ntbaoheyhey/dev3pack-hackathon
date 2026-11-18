@@ -240,7 +240,7 @@ Mỗi vòng ghi lại điểm và thay đổi. Ý tưởng sửa quá số vòng
 | Nền (002–014) | xong | PR #1, REVIEW R01–R09 đã sửa |
 | 1 Ý tưởng & spec | người dùng đã duyệt IDEA ReceiptRail qua lời duyệt Phase2 | “ReceiptRail chính, ClusterProof phụ” lúc00:07; tin “duyệt phase 2” log09:27:18.464 ngày18/11 UTC+7. RUBRIC/SHORTLIST còn chờ verdict giáo viên, xem DECISION |
 | 2 Kiến trúc | người dùng đã duyệt · review chéo/giáo viên còn mở | IDEA/ARCHITECTURE/IDL/demo165giây,19 runtime tests local; C01r2=79/F4. Đã review T26/62286cc và T27/50718d0, nhận phần sửa đúng; sáu findings chuyển T29 sau T28 UX. Không suy lời duyệt người dùng thành review/giáo viên đã đạt |
-| 3 Môi trường | P3-A/P3-B đã có quyền · còn billing/funding | “Đồng ý cả hai”, log10:13:11.851 UTC+7; CI51bf866 mở3jobs, hai runs bị billing chặn trước steps. Người dùng để funding hello sau; chưa deploy/CI xanh. [Plan](PHASE3-PLAN.md), [evidence](evidence/phase3/ci-approved-51bf866-blocked.json); local25 runtime+8client đã đạt, không thay cổng mạng |
+| 3 Môi trường | CI Linux đã chạy · đang xác minh bản sửa PR · chờ funding | P3-A/P3-B đã có quyền. Push7210aa6 đạt3jobs/57tests+build; PR lỗi lấy attestation403, patchb906a37 đang chạy hai CI. [Evidence](evidence/phase3/ci-resumed-7210aa6.json), [Plan](PHASE3-PLAN.md). Billing cũ đã qua; hello chưa deploy, ví thật chưa kiểm, funding được người dùng để sau |
 | 4 Program | chưa mở | |
 | 5 Frontend | chưa mở | |
 | 6 Tích hợp | chưa mở | |
