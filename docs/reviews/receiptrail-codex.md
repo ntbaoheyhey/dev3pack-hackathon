@@ -409,3 +409,19 @@ A nộp **c801580**, HANDOFF A/f9f72f2 chuyển T33. C merge/push a86e9b6 với 
 | T32-R3 — vừa, ma trận/phản hồi/giới hạn | 19–36 | Năm nhóm vẫn verified/r2, chưa dẫn hàm/assertion/log từng nhóm. Sáu dòng nhóm T13-R1-R4… không trả từng13IDs gốc (T13/T18/T21/T24) hoặc T27/T29; nhãn đã giải quyết chưa có bằng chứng. Ghi send131 đổi blockhash, race352 chỉ hai thứ tự serial; chưa browser/RPC/devnet/commitment/recovery/upgrade/adoption. |
 
 Đã đọc source/test/log và note023; không chạy test mới, không crawl, không đổi code/IDL/thiết kế/điểm hoặc file A. T32 chưa đủ cổng review chéo/giáo viên. Giữ **T33**, sau đó sửa hẹp **T31 → T32** trong các ID hiện có; không thêm task/vòng mới hoặc cản C làm phần độc lập. P3-A vẫn đạt; funding hello/ví thật cần người dùng khi sẵn sàng.
+
+## Review T33 — 18/11/2026, heartbeat14:28 UTC+7
+
+Pull **5aada5e968d27499b352e55095ddf50a37d477dd**, đọc [UX T33/6ef9815](https://github.com/ntbaoheyhey/dev3pack-hackathon/blob/6ef9815e658ec302b74a908404f9e34b381dfcb7/docs/design/receiptrail-ux-antigravity.md) và diff so vớiT30. [Snapshot](../evidence/phase2/receiptrail-t33-review.json) giữ54dòng/hash/6inputs;9/9 code–name đúng JSON IDL,4mục màn hình,4khoảng0–30/30–90/90–150/150–165 liên tục đủ165giây,0URL HTTP(S).
+
+**Nhận phần cải thiện:** đã tách Invoice/Request thành hai bảng; không tiếp tục dùng lỗi Pending cùng bảng Invoice củaT30.6008 bỏ chữ IDL và có Không ký, nhưng chưa nêu invoice.version. Mục3–5 đã có nội dung thay placeholder; Explorer gắn signature, storyboard có nhãn Replay và tổng thời lượng trên giấy. Những điểm này chưa chứng minh bố cục/demo/SDK đạt.
+
+| Finding | Vị trí report T33 | Nội dung cần sửa trong chính T33 |
+| --- | --- | --- |
+| T33-R1 — cao, state/vai/lỗi | 7–18,25–31,54 | Paid vẫn Finalized; Pay nằm ở cột Merchant CTA dù [source](../../programs/receiptrail/src/lib.rs)119/124 cần payer Signer/has_one payer. Expired thiếu Open và ghi None, trong khi cancel91–98 chỉ cần Open. Unknown mất no-auto-retry. Tách commitment khỏi state; payer Pay chỉ khi Open/chưa hết hạn/đúng ví, merchant vẫn cancel Open.6002 là zero/data-empty, reconnect không sửa điều kiện program;6003 còn payer=invoice;6005 không tạo ID mới để retry;6007 dừng/tải recipient;6008 nêu invoice.version. Giữ biên6001/6005/pubkey6006/6007; program ID+code và nhóm Anchor/System/fee/wallet/RPC cần nội dung riêng, không chỉ checkbox. |
+| T33-R2 — vừa, form/phí/bố cục | 5–18,33–40 | Bỏ form và các dòng create merchant rent+fee/pay payer principal+fee/Terms từng đúng ởT30. Khôi phục, bổ sung merchant/recipient, mapping32bytes/lưu/tái dùng, SOL→lamports integer/u64. Bốn mô tả dòng37–40 và phép4x2 không thay8bố cục desktop/mobile có vùng fields/CTA/context/no-wallet/lỗi; giữ Explorer chỉ khi có signature hợp lệ đã biết. |
+| T33-R3 — vừa, demo/SDK/phản hồi | 42–54 | Tổng165giây đúng, nhưng chưa có transaction/signature mới bị InvoiceNotOpen, principal1amount và fee fail riêng. r2:23–24 là một testVM/METRIC+ok, không chứng minh timeout browser hoặc finalized; cần nhãn kế hoạch/replay cho từng cảnh chưa chạy. SDK v1.9x/v0.2x không là mốc chính xác,0URL/ngày thực đọc/giới hạn hoặc so React/Vite/Wallet Standard hiện có ([ARCHITECTURE6](../ARCHITECTURE.md#6-off-chain-retry-và-ux)). CheckboxR1–R5 không thay phản hồi từng T16/T22/T25/T28/T30. |
+
+Đọc source24–37/61–98/107–137, ARCHITECTURE6 và notes005/013/014/023; log r2 hiện có giữ nguyên. Không crawl/version lookup mới hoặc chạy runtime/browser/RPC/CI; không sửa report A/source/IDL/thiết kế/điểm. Nhãn ngày trong bảng SDK không chứng minh đã mở nguồn hoặc cấp quyền cài.
+
+HANDOFF A/5aada5e chuyển T31/T32 đúng queue; không suy process live hoặc lỗi bỏ sót việc. Giữ **T31 → T32 → T33 (sửa bổ sung cùng ID)**; ưu tiên khôi phục phần đúng bị mất và source semantics trước bố cục/demo. Không thêm task ID hoặc tự đóng9nhóm findings/review chéo/giáo viên. P3-A đạt; hello/ví thật vẫn cần người dùng khi sẵn sàng.

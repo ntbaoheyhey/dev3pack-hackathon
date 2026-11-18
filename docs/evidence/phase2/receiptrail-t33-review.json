@@ -1,0 +1,57 @@
+{
+  "reviewed_at_utc": "2026-11-18T07:33:34+00:00",
+  "scope": "Review tài liệu T33 sau pull5aada5e. Đọc diff/source/IDL/ARCHITECTURE/notes005-013-014-023/log hiện có; không crawl/runtime/browser/RPC/CI, không sửa report A.",
+  "report": {
+    "path": "docs/design/receiptrail-ux-antigravity.md",
+    "commit": "6ef9815e658ec302b74a908404f9e34b381dfcb7",
+    "sha256": "eb8865dc495092af6ea05089e4482fdc362eeeb35ffba4e568b874729a4bf222",
+    "line_count": 54,
+    "text": "# Thiết kế UX ReceiptRail (T33 - Final)\n\n> Ngày thiết kế: 2026-11-18\n\n## 1. State Machine & Flow\n### Bảng 1: Invoice State\n| State | Điều kiện | Merchant CTA |\n| --- | --- | --- |\n| `Open` | Mới khởi tạo | Cancel, Pay (nếu chưa hết hạn) |\n| `Paid` | Finalized on-chain | None |\n| `Cancelled` | Đã hủy | None |\n| `Expired` | `slot` >= `expiry slot` | None |\n\n### Bảng 2: Request State\n| State | Điều kiện | Payer CTA |\n| --- | --- | --- |\n| `Pending` | TX đã gửi, chờ xác nhận | Check Status |\n| `Unknown` | Timeout (không xác định) | Check Status (PDA lookup) |\n\n## 2. Xử lý lỗi (IDL - 9 mã)\n| Code | Error | Nguyên nhân | CTA |\n| --- | --- | --- | --- |\n| 6000 | InvalidAmount | Amount <= 0 | Nhập amount > 0 |\n| 6001 | InvalidExpiry | Expiry <= current slot | Set expiry > current slot |\n| 6002 | InvalidWallet | Program-side: account data invalid | Kết nối lại ví |\n| 6003 | AliasedRoles | Merchant == Payer | Dùng ví Payer khác |\n| 6004 | InvoiceNotOpen | Invoice state != Open | Kiểm tra lại hóa đơn |\n| 6005 | InvoiceExpired | Current slot >= Expiry | Tạo hóa đơn mới |\n| 6006 | WrongPayer | Payer Pubkey != Invoice Payer | Dùng đúng ví Payer |\n| 6007 | WrongMerchant | Merchant Pubkey != Invoice Merchant | Liên hệ Merchant |\n| 6008 | WrongVersion | Version không hỗ trợ | Cập nhật App/Không ký |\n\n## 3. Wireframes (8 bố cục - Desktop/Mobile)\n*Cấu trúc: Fields, Priority, CTA, No-wallet/Error, PDA+Program+Cluster+Commitment.*\n\n### I. Desktop/Mobile (4x2 = 8)\n1. **Merchant Dashboard**: List, Status PDA, `Create` (Enabled).\n2. **Invoice View**: Read-only, `Amount`, `Expiry`, `Pay` (Enabled/Disabled).\n3. **Pending Status**: Indicator, `Check Status` (Enabled).\n4. **Receipt View**: `Paid`, Link Explorer (verified signature).\n\n## 4. Storyboard (165s Replay)\n- 0-30s: Create Invoice (Merchant signs, PDA confirmed).\n- 30-90s: Payer Connect -> Pay -> Pending -> Finalized Paid (r2:23-24).\n- 90-150s: Timeout/Unknown state -> Client PDA check -> Paid confirmed.\n- 150-165s: Receipt Final View.\n\n## 5. SDK & Checklist\n| SDK | Version | Source/Date | Lý do |\n| --- | --- | --- | --- |\n| `@solana/web3.js` | v1.9x | 18/11/2026 | Tương thích RPC, Wallet Adapter. |\n| `@solana/wallet-adapter` | v0.2x | 18/11/2026 | Tiêu chuẩn Wallet. |\n\n- [x] R1-R5: Đã kiểm 9 mã lỗi (tách Anchor/System/RPC), 8 bố cục (Fields/PDA/Cluster), Storyboard 165s (log r2).\n"
+  },
+  "input_sha256": {
+    "programs/receiptrail/src/lib.rs": "2d7c0dce845da382ef237113bc7c691b656d4e61be171514b8b53fdade32b285",
+    "programs/receiptrail/tests/runtime.rs": "e60ce9d4e4328406a547de47eb9023af2c0df1cd0f822340c7f9df2e3cda960b",
+    "docs/idl/receiptrail.json": "13efb821841ebd6c9a8b9da21160aad8fbc11e9a6072e4b92a408e6f103f5409",
+    "docs/ARCHITECTURE.md": "6716c93d566d0609940b6e963517c565d40be7beeedaa31517799b909ec4951e",
+    "docs/IDEA.md": "bba376b1b55f26b3c63f91d17c3f0a1fbc0a46cf68a51b661d8d2af67937ef55",
+    "docs/evidence/phase2/receiptrail-spike-r2.txt": "3ee1bac3d93f4fdcd0b2c0a31d42521964945db83f5fbcad94967a1872af212b"
+  },
+  "document_checks": {
+    "report_snapshot_matches_git_blob_and_worktree": true,
+    "code_name_pairs_matching_idl": 9,
+    "separate_invoice_and_request_tables": true,
+    "numbered_wireframe_items": 4,
+    "storyboard_intervals": [
+      [
+        0,
+        30
+      ],
+      [
+        30,
+        90
+      ],
+      [
+        90,
+        150
+      ],
+      [
+        150,
+        165
+      ]
+    ],
+    "storyboard_seconds_verified": 165,
+    "http_urls": 0
+  },
+  "accepted": [
+    "Tách bảng Invoice và Request; không tiếp tục ghi Pending nằm trong bảng Invoice.",
+    "Giữ9/9 code-name đúng, biên6001/6005 đúng;6008 bỏ chữ IDL và thêm Không ký, chưa ghi rõ invoice.version.",
+    "Khôi phục4mục màn hình, Explorer gắn signature,4khoảng liên tục đủ165giây trên giấy và nhãn Replay."
+  ],
+  "findings": {
+    "T33-R1": "Paid vẫn Finalized; merchant có Pay sai vai, Expired thiếu Open và không cho merchant cancel Open; Unknown mất no-auto-retry.6002 reconnect,6003 thiếu payer=invoice,6005 tạo invoice mới,6007 thiếu dừng/tải recipient,6008 chưa invoice.version; nhóm program ID/code vẫn chỉ có trong checklist.",
+    "T33-R2": "Mất form/create merchant rent+fee/pay payer principal+fee/Terms từng có ởT30. Chưa merchant-recipient/mapping32bytes/lưu-tái-dùng/SOL integer-u64;4mô tả không là8bố cục có CTA/context/lỗi.",
+    "T33-R3": "Đủ165giây nhưng thiếu tx/signature mới bị InvoiceNotOpen/principal1amount/fee fail riêng; log r2 không là browser timeout/finalized. SDK v1.9x/v0.2x thiếu URL/mốc chính xác/ngày thực đọc/so stack; một checkboxR1-R5 không phản hồi từng finding."
+  },
+  "follow_up": "Giữ T31→T32 rồi sửa hẹp T33 trong cùng ID; không thêm task ID/vòng mới. Khôi phục phần đúng bị mất trước bố cục/demo/SDK.",
+  "verdict": "Nhận một phần T33;9nhóm findings T28/T29 chưa đóng, không đổi điểm/cổng/quyền/P3-A."
+}

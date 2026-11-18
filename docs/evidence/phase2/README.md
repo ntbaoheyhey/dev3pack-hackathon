@@ -27,3 +27,5 @@ Số đo VM: account131bytes, rent1,802,640lamports, principal1,000,000 trả1l�
 [Review T31/e483529](receiptrail-t31-review.json): giữ5URL/nhãnEVM/expiry; thiếu provenance/state/phản hồi, mất Request và cơ chế từng có. Snapshot nguyên văn/hash khớp Git blob,6input hashes không đổi. Không crawl/runtime/browser/CI mới; T32/T33 tiếp tục, phầnT31 chưa đạt sửa trong cùng task.
 
 [Review T32/c801580](receiptrail-t32-review.json):36dòng,3tên hàm đầy đủ khớp source/log r2,6input hashes khớp. Nhận merchant không ký pay và baseline retry/rollback; recipient/assertions/log/fee boundary/ma trận/phản hồi còn thiếu. Không runtime/browser/CI mới; T33 tiếp tục rồi sửa hẹp T31/T32 cùng task ID.
+
+[Review T33/6ef9815](receiptrail-t33-review.json):54dòng/6input hashes/9mã đúng; hai bảng Invoice/Request,4mục màn hình,4khoảng liên tục đủ165giây trên giấy,0URL. Nhận phần cải thiện; state/vai/CTA, form/phí bị mất,8bố cục/demo/SDK/phản hồi vẫn chưa đạt. T31→T32 rồi sửa hẹp T33 cùng ID; không runtime/browser/CI mới.

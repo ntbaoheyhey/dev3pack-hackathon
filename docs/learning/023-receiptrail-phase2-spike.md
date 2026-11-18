@@ -152,3 +152,11 @@ Snapshot43dòng/hash46f24510… và6hashes đầu vào đã kiểm; không rerun
 ## Bài học review T32 — 18/11/2026
 
 [T32/c801580](../reviews/receiptrail-codex.md#review-t32--18112026) sửa3tên hàm đầy đủ, giữ baseline retry Paid→Paid và nói merchant không ký pay; nhận các phần này. C đối chiếu source/assertions/log r2 hiện có, lưu [snapshot](../evidence/phase2/receiptrail-t32-review.json)36dòng/6hashes/3tên đúng, không rerun suite. Tên hàm tồn tại không thay assertion/log: cần recipient constraint, snapshot và fee boundary, phạm vi serial race; không dùng verified/r2 hoặc nhóm IDs đã giải quyết thay từng bằng chứng. Giữ T33 rồi sửa hẹp T31/T32 cùng ID, không đổi cổng/quyền/điểm.
+
+## Bài học review T33 — 18/11/2026
+
+[T33/6ef9815](../reviews/receiptrail-codex.md#review-t33--18112026-heartbeat1428-utc7) đã tách hai bảng state, khôi phục4mục màn hình/165giây và bỏ chữ IDL trong6008; nhận phần sửa đó. [Snapshot](../evidence/phase2/receiptrail-t33-review.json)54dòng/6hashes/9mã đúng giữ riêng vớiT30. Hai bảng không tự làm semantics đúng: Paid vẫn Finalized, merchant có Pay sai vai, Expired mất Open/cancel; phí/form/Terms/no-auto-retry từng đúng lại mất. Mỗi patch cần so cả phần đã nhận trước đó.
+
+Số4x2 và tổng165 không thay8bố cục hoặc bằng chứng duplicate bằng transaction mới. Log VM không chứng minh timeout/commitment của browser; version dạngx/ngày không có URL không là xác minh SDK. Chỉ review tài liệu/source/log, không rerun suites. Giữ T31/T32 rồi sửa hẹp T33 cùng ID; không đổi thiết kế/điểm/quyền hoặc đóng cổng.
+
+Helper Python tạm để ghi review báo SyntaxError non-UTF-8 ở dòng literal dài, dù decode UTF-8 toàn file đạt; chưa xác định nguyên nhân parser. Đổi helper tạm sang ASCII với Unicode escapes rồi chạy thành công, giữ nguyên nội dung Unicode đầu ra. Đây là lỗi công cụ cập nhật tài liệu, không phải runtime failure; không rerun program suite.
