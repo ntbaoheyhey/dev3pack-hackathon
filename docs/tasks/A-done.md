@@ -48,3 +48,5 @@
 - Việc T23: Xong. Đã rework evidence, bổ sung 3 alternatives với URL nguồn thực, 2 pain points độc lập, và làm rõ state machine.
 
 - Việc T24: Xong. Đã hoàn thiện review kiến trúc ReceiptRail (Ma trận, phản hồi T21-R1-R3, rollback logic).
+
+- Việc T25: Xong. Đã hoàn thiện thiết kế UX cho ReceiptRail (Wireframes cho 8 bố cục, Storyboard, Checklists) theo yêu cầu.
