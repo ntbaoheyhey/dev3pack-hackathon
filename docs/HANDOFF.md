@@ -8,9 +8,9 @@
 - Anchor source8d9d148/lock/version và SBFv1.57/SHA256 đạt; runs cũ terminal, không poll/rerun như live. HEAD tài liệu không là revision có CI.
 - Linux bytecode hashes khớp nhau, khác macOS; chưa reproducible/verified build. Giữ binary macOS dự kiến hello; executable inputs không đổi.
 - P3-B chỉ hello devnet/signers thử cũ/một buffer tạm/trần1.5SOL. **“chưa rảnh để chuyển sol devnet”** log10:14:46.599 UTC+7: funding để sau; chưa tạo buffer/ký/gửi/deploy.
-- **T33/ee200e3 khôi phục phí/Terms/no-auto-retry/reload**;6002 bỏ reconnect,6008 không ký. State/vai/Open/form/bố cục/demo/SDK chưa đủ;9mã/165giây trên giấy giữ đúng.
-- **T31/71d6ff6 khôi phục nhãn pain Web API/EVM,nhắc PDA**; giữ Unknown/expiry,nguồn/state/context/bảng expiry/phản hồi chưa đủ.
-- **T32/e12c8e6 sửa3log đúng**, bỏ PDA check sai nhưng rút gọn3tên test; assertions/data-empty/phí/ma trận/phản hồi thiếu. A làm T31→T32→T33 cùng ID; không suy process live.
+- **T33/8e5c18b giữ phí/Terms/no-auto-retry/reload**,6002 lại reconnect. State/vai/Open/form/bố cục/demo/SDK còn thiếu;9mã/165giây trên giấy giữ đúng.
+- **T31/a6a4338 giữ nhãn pain Web API/EVM,Unknown/expiry/nhắc PDA**; nguồn/state/context/bảng expiry/phản hồi chưa đủ.
+- **T32/a3ef1e0 khôi phục3tên đầy đủ/3log đúng**, nhưng PDA check sai quay lại; assertions/data-empty/phí/ma trận/phản hồi thiếu. T31→T32→T33 cùng ID.
 - **Review580b903 đã pushf412393.** PR read-back16:26:10 UTC+7/headf412393/work→main/open/merged=false/body khớp; snapshot riêng, comments/reviews rỗng.
 - Automation15phút ACTIVE/đúng chat, action/config14:42; heartbeat thực16:17:09.954 UTC+7. Checkpoint tài liệu và merge dùng [skip ci].
 - Giữ ClusterProof source/web/lab/toolchain, thiết kế dự phòng/chưa duyệt. Cấm Phase4–6/deploy ReceiptRail/public mới/mergePR7/force-push/mainnet/secrets/đổi visibility.
@@ -18,7 +18,7 @@
 
 ## Bằng chứng hiện hành
 
-[DECISION](ideas/DECISION.md), [quyền/funding](evidence/phase3/user-permission-2026-11-18.json), [CI27cf7ac](evidence/phase3/ci-passed-27cf7ac.json), [review16:47](reviews/receiptrail-codex.md#review-bổ-sung1647--18112026)/[snapshot ba report](evidence/phase2/receiptrail-supplement-1647-review.json), [PR16:26:10](evidence/phase3/pr7-review-580b903-snapshot.json), [PR trung gian16:19:09](evidence/phase3/pr7-review-1547-snapshot.json), [plan](PHASE3-PLAN.md), [cổng](reviews/phase1-3-gates.md), [audit](reviews/prompt03-audit.md). Các snapshot PR/report cũ giữ riêng, không sửa đè.
+[DECISION](ideas/DECISION.md), [quyền/funding](evidence/phase3/user-permission-2026-11-18.json), [CI27cf7ac](evidence/phase3/ci-passed-27cf7ac.json), [review16:47](reviews/receiptrail-codex.md#review-bổ-sung1647--18112026)/[snapshot ba report](evidence/phase2/receiptrail-supplement-26fe656-review.json), [PR16:26:10](evidence/phase3/pr7-review-580b903-snapshot.json), [PR trung gian16:19:09](evidence/phase3/pr7-review-1547-snapshot.json), [plan](PHASE3-PLAN.md), [cổng](reviews/phase1-3-gates.md), [audit](reviews/prompt03-audit.md). Các snapshot PR/report cũ giữ riêng, không sửa đè.
 
 ## Còn lại
 

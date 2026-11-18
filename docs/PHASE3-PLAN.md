@@ -7,7 +7,7 @@
 - [Runner offline](../scripts/check-phase3-offline.sh): hai program cùng pipeline; **25 runtime tests và 8 client tests đạt**. Hai IDL và bytecode khớp artifacts cũ. [Metadata/logs](evidence/phase3/offline-pipeline-metadata.json) ghi macOS arm64/cache; Linux CI mới được ghi riêng bên dưới.
 - [Workflow](../.github/workflows/ci.yml): revision27cf7ac đạt cả ba jobs trên Linux ở PR44237534047 và push44237529539. Mỗi run25runtime+8client+16research+8web/typecheck/build, sinh hai IDL và ReceiptRail IDL cmp ([evidence](evidence/phase3/ci-passed-27cf7ac.json)). Source/locks/web/lab giữ nguyên; không upload binary artifact.
 - [Preflight 09:47:33 UTC+7](evidence/phase3/preflight-after-phase2-approval.json): đúng devnet, hello chưa deploy, payer 0 lamports. Không đọc signer hoặc gửi airdrop/transaction.
-- [Review16:47](reviews/receiptrail-codex.md#review-bổ-sung1647--18112026)/[snapshot](evidence/phase2/receiptrail-supplement-1647-review.json): T31/71d6ff6 khôi phục nhãn pain Web API/EVM và nhắc PDA; T32/e12c8e6 sửa3log đúng nhưng rút gọn3tên test; T33/ee200e3 khôi phục phí/Terms/no-auto-retry/reload. Provenance/state/context/assertions/phí/form/bố cục/demo/SDK/phản hồi còn thiếu;9findings mở,T31→T32→T33. Giáo viên chưa có verdict; lời duyệt người dùng là cổng riêng.
+- [Review16:47](reviews/receiptrail-codex.md#review-bổ-sung1647--18112026)/[snapshot](evidence/phase2/receiptrail-supplement-26fe656-review.json): T31/a6a4338 giữ nhãn pain/Unknown/expiry; T32/a3ef1e0 khôi phục3tên test và3log đúng nhưng PDA check sai quay lại; T33/8e5c18b giữ phí/Terms/no-auto-retry/reload,6002 lại reconnect.9findings còn mở,T31→T32→T33 cùng ID. Giáo viên chưa có verdict; lời duyệt người dùng là cổng riêng.
 
 ## P3-A — đã được phép CI trên runner GitHub
 

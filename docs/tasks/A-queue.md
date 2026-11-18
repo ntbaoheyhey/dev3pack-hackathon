@@ -2,11 +2,11 @@
 
 **Chủ file: Codex. Chỉ nhận việc từ file này.** A sở hữu các report của mình, A-done và HANDOFF A; C không sửa thay các file đó. Chỉ làm tài liệu Phase2 ReceiptRail. Quyết định **“ReceiptRail chính, ClusterProof phụ” lúc00:07 ngày18/11/2026 UTC+7** ở [DECISION](../ideas/DECISION.md); **người dùng đã duyệt Phase2** bằng “duyệt phase 2”, log09:27:18.464 ngày18/11 UTC+7. C đã được đồng ý P3-A/P3-B lúc log10:13:11.851 UTC+7, chỉ CI/hello theo DECISION; funding hello để sau. Quyền A vẫn là tài liệu trong queue; không cài/code/tạo ví-keypair triển khai/build web/deploy/public hoặc tự mở Phase3.
 
-**Làm tiếp T31 → T32 → T33 (mới — sửa bổ sung cùng ID).** T31/71d6ff6 khôi phục nhãn pain Web API/EVM và nhắc PDA; T32/e12c8e6 sửa3log đúng nhưng rút gọn3tên test; T33/ee200e3 khôi phục phí/Terms/no-auto-retry/reload. Provenance/state/context/assertions/phí/form/bố cục/demo/SDK/phản hồi còn thiếu;9findings mở,T31→T32→T33. A-done chưa có dòng nộp mới; HANDOFF2cbe13d ghi xong không là C nhận đạt. Sửa từng đoạn, giữ phần đã nhận; không thêm task ID hoặc viết lại report bằng checkbox.
+**Làm tiếp T31 → T32 → T33 (mới — sửa bổ sung cùng ID).** T31/a6a4338 giữ nhãn pain/Unknown/expiry; T32/a3ef1e0 khôi phục3tên test và3log đúng nhưng PDA check sai quay lại; T33/8e5c18b giữ phí/Terms/no-auto-retry/reload,6002 lại reconnect.9findings còn mở,T31→T32→T33 cùng ID. A-done chưa có dòng nộp mới; HANDOFF2cbe13d ghi xong không là C nhận đạt. Sửa từng đoạn, giữ phần đã nhận; không thêm task ID hoặc viết lại report bằng checkbox.
 
 **Lưu ý CI18/11:** commit7210aa6 chỉ sửa HANDOFF A nhưng thiếu `[skip ci]`, tạo hai run mới khi Anchor còn build; hai run a114a98 đã bị cancelled. Mọi commit tài liệu/HANDOFF của A **phải có `[skip ci]`**, kể cả commit merge. P3-A đã đạt hai runs27cf7ac; không còn CI live. Thứ tự đang giao **T31 → T32 → T33 (sửa bổ sung cùng ID)**, không chỉ đổi Thẻ nhớ rồi coi report đã nộp. Không sửa workflow/file C hoặc tạo thêm run.
 
-**Các bản hiện hành16:47:** [review C](../reviews/receiptrail-codex.md#review-bổ-sung1647--18112026)/[snapshot](../evidence/phase2/receiptrail-supplement-1647-review.json) giữ30/36/57dòng/6input hashes. Log26/39/23–24 đã đúng, phí/Terms/no-auto-retry/reload đã khôi phục; không xóa lại các phần đó. T32 phải dùng tên hàm đầy đủ trong bảng dưới; còn9findings, cùng task IDs.
+**Các bản hiện hành26fe656:** [review C](../reviews/receiptrail-codex.md#bổ-sung26fe656-trước-push)/[snapshot](../evidence/phase2/receiptrail-supplement-26fe656-review.json) giữ30/37/58dòng/6input hashes. Giữ3tên đầy đủ/3log đúng,phí/Terms/no-auto-retry/reload; sửa has_one/PDA check và6002 reconnect quay lại.9findings cùng IDs; không viết lại report hoặc bỏ phần đã nhận.
 
 Lịch sử yêu cầu T21–T29 đã chuyển vào [archive](../archive/A-queue-before-T30.md). Phần dưới giữ T30 đã nộp để đối chiếu; việc đang giao là T31–T33.
 
@@ -23,7 +23,7 @@ Lịch sử yêu cầu T21–T29 đã chuyển vào [archive](../archive/A-queue
 
 ## T31 — sửa evidence, khôi phục provenance và state
 
-**Trạng thái: mới — sửa bổ sung T31 sau71d6ff6, làm đầu tiên.** Chỉ sửa [evidence A](../data/receiptrail-evidence.md), đọc [review16:47](../reviews/receiptrail-codex.md#review-bổ-sung1647--18112026) và note021. Giữ nhãn Shopify Web API/GraphQL và issue452 EVM/EIP-3009, Request Unknown/expiry/5URL và nhắc PDA. Nhãn của issue không thay scope của extension; bổ sung cơ chế/provenance/commitment/context/từng finding, không tự nhận crawl từ note.
+**Trạng thái: mới — sửa bổ sung T31 saua6a4338, làm đầu tiên.** Chỉ sửa [evidence A](../data/receiptrail-evidence.md), đọc [review16:47](../reviews/receiptrail-codex.md#review-bổ-sung1647--18112026) và note021. Giữ nhãn Shopify Web API/GraphQL và issue452 EVM/EIP-3009, Request Unknown/expiry/5URL và nhắc PDA. Nhãn của issue không thay scope của extension; bổ sung cơ chế/provenance/commitment/context/từng finding, không tự nhận crawl từ note.
 
 1. Ba alternatives có cơ chế/nguồn/ngày A thực đọc/giới hạn/tác động: Stripe idempotency key, v1/v2; Solana Pay reference **không bắt buộc unique**; x402 fingerprint/cache/conflict409. PDA định danh cần invariant program mới chống trả cùng invoice; không tự suy lợi thế market.
 2. Hai pain sources có tác giả/ngày bài/ngày đọc và điều nguồn không chứng minh. Shopify là unknown charge/retry risk; issue452 là nonce đã dùng/AuthorizationUsed, phân biệt settlement và lỗi. Khôi phục metadata đã đúng ởT26; không viết trùng đơn/Solana double-debit/adoption khi nguồn không chứng minh. Nếu chưa mở URL thì nêu nguồn gián tiếp và chưa crawl.
@@ -34,7 +34,7 @@ Lịch sử yêu cầu T21–T29 đã chuyển vào [archive](../archive/A-queue
 
 ## T32 — review bằng assertion, giữ baseline Paid→Paid
 
-**Trạng thái: mới — sửa bổ sung T32 saue12c8e6, làm sauT31.** Chỉ sửa [review A](../reviews/receiptrail-antigravity.md), đọc [review16:47](../reviews/receiptrail-codex.md#review-bổ-sung1647--18112026). Giữ3log26/39/23–24 đã đúng, Signer/SystemAccount/has_one, baseline/VM serial/chưa network-commitment. Khôi phục3tên đầy đủ, signature khác/canonical bump; giải thích has_one so pubkey, thêm data-empty/assertions/phí/từng finding. Không rerun suite.
+**Trạng thái: mới — sửa bổ sung T32 saua3ef1e0, làm sauT31.** Chỉ sửa [review A](../reviews/receiptrail-antigravity.md),đọc [bổ sung mới](../reviews/receiptrail-codex.md#bổ-sung26fe656-trước-push). Giữ3tên đầy đủ/3log26/39/23–24 đúng, SystemAccount/không ký pay và baseline/VM serial. Xóa diễn giải Payer/Merchant PDA check sai: has_one so pubkey; bổ sung data-empty/assertions/signature khác/canonical bump/phí/từng finding. Không rerun suite.
 
 - Authority: pay payer Signer/has_one payer; merchant SystemAccount recipient/data-empty/has_one merchant, không ký pay. has_one so public key trong Invoice với account truyền vào, không chỉ kiểm tồn tại. Cancel merchant Signer/has_one merchant. Source116–137/helper reject165–176; log r2 cho vai: wrong_payer→42,recipient_substitution→35,payer thiếu ký→33,merchant thiếu ký→28,merchant khác cancel→22. Các dòng này không thay log ba ca rollback bên dưới.
 - Ba ca rollback: dùng đúng bảng dưới với [runtime](../../programs/receiptrail/tests/runtime.rs) và [log r2](../evidence/phase2/receiptrail-spike-r2.txt). Giữ ba baseline; đọc lại nội dung từng dòng log trước ghi đã kiểm. Snapshot148–157 không gồm fee payer, không suy phí fail được hoàn.
@@ -50,9 +50,9 @@ Lịch sử yêu cầu T21–T29 đã chuyển vào [archive](../archive/A-queue
 
 **Xong khi:** người đọc tái đối chiếu được authority,3ca và5nhóm, hiểu giới hạn. Sau bản sửa bổ sung, ghi đã kiểm/chưa kiểm và finding còn mở; không tự đóng review chéo/cổng giáo viên.
 
-## T33 — sửa bổ sung UX sau bảnee200e3
+## T33 — sửa bổ sung UX sau bản8e5c18b
 
-**Trạng thái: mới — sửa bổ sung T33 sauee200e3, làm sauT31/T32.** Chỉ sửa [UX A](../design/receiptrail-ux-antigravity.md), đọc [review16:47](../reviews/receiptrail-codex.md#review-bổ-sung1647--18112026). Giữ phí create/pay,Terms,no-auto-retry,reload recipient,6002 đã bỏ reconnect và6008 không ký. Sửa state/vai/Open/điều kiện6002-6008/form/bố cục/demo/SDK/từng finding bên dưới. Không xóa phần vừa khôi phục.
+**Trạng thái: mới — sửa bổ sung T33 sau8e5c18b, làm sauT31/T32.** Chỉ sửa [UX A](../design/receiptrail-ux-antigravity.md). Giữ phí/Terms/no-auto-retry/reload/6008 không ký;6002 lại reconnect nên sửa theo zero/data-empty bên dưới.6007 phải dừng/tải lại recipient/xác minh; state/vai/Open/form/8bố cục/demo/SDK/từng finding vẫn còn. Không xóa phần đã nhận.
 
 - Trước bố cục: viết hai bảng riêng **Invoice** (Open/Paid/Cancelled; Expired=Open+slot>=expiry, merchant vẫn cancel Open) và **Request** (Pending/Unknown). Paid là giá trị state; commitment là cột của lần đọc, không định nghĩa Paid bằng finalized. Unknown không tự ký/gửi transaction mới hoặc đổiID.
 - Sửa6008 thành invoice.version không được hỗ trợ→không ký (source121/135), không IDL mismatch.6002: payer zero hoặc data không rỗng theo27/107/123/125; owner/type là lỗi Anchor riêng, không tự gán account missing thành6002.6003 gồm payer=merchant/invoice;6004 đọc state;6007 dừng/tải lại recipient, không bảo payer dùng ví merchant. Giữ6001/6005/6006/6007 đã so đúng biên/pubkey; tra program ID+code, tách nhóm Anchor/System/fee/wallet/RPC.

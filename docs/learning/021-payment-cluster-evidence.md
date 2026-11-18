@@ -207,3 +207,5 @@ Patch cần giữ phần đã nhận và so với revision trước; ngày cập
 ### Review16:47 — 18/11/2026
 
 [71d6ff6](../reviews/receiptrail-codex.md#review-bổ-sung1647--18112026) khôi phục nhãn Shopify Web API/GraphQL, issue452 EVM/EIP-3009 và nhắc PDA; nhận phần này. Câu PDA invariant context không thay context account đầy đủ, provenance hoặc bảng state/expiry. Nhãn issue không tự chứng minh scope toàn extension; giữ T31-E1–E3 và đối chiếu note cũ, không crawl mới.
+
+Bổ sung26fe656: [review mới](../reviews/receiptrail-codex.md#bổ-sung26fe656-trước-push) nhận3tên test đầy đủ/3log đúng và giữ phí/Terms/Unknown/reload; has_one/PDA check và6002 reconnect sai quay lại. T31 vẫn chưa tách state/commitment/context. Snapshot30/37/58dòng/6hashes giữ riêng; không crawl/rerun suite,9findings cùng ID.

@@ -523,3 +523,9 @@ Fetch/pull2cbe13d nhận T31/71d6ff6, T32/e12c8e6, T33/ee200e3; A-done chưa có
 | T33-R3 | 46–57 | 165giây trên giấy/4mục/9mã đúng; chưa fresh-tx/principal/phí fail/evidence cảnh/SDK URL/từng finding. r2:24 chỉ là ok của cùng test23–24. |
 
 Các tên đầy đủ/assertions và fee boundary vẫn ở bảng T32 trong [queue](../tasks/A-queue.md); snapshot148–157 không gồm fee payer. Log đúng không thay tên test đầy đủ hoặc assertions; Paid là invoice state, chữ Commitment trong ngoặc không làm Finalized thành điều kiện đúng. Nhãn của issue EIP-3009 không chứng minh toàn extension chỉ EVM; nguồn chưa đọc lại được giữ là evidence cũ, không crawl mới. Giữ9findings/T31→T32→T33 cùng ID; không sửa file A, không suy status xong thành review chéo đạt hoặc process live. Chốt checkpoint/PR trước trở lại funding.
+
+### Bổ sung26fe656 trước push
+
+Pushd15fe43 bị non-fast-forward do A nộpa6a4338/a3ef1e0/8e5c18b. Đã fetch,merge0e59f65 [skip ci] và push, giữ cả hai phía. [Snapshot mới](../evidence/phase2/receiptrail-supplement-26fe656-review.json)30/37/58dòng/6inputs giữ riêng với snapshot16:47. Nhận T32 khôi phục3tên đầy đủ và giữ3log đúng, không tiếp tục gọi tên bị rút gọn. Tuy nhiên report8–10/37 lại gọi has_one thành Payer/Merchant PDA check: sai với source116–137; T32-R1/R2/R3 vẫn thiếu pubkey/data-empty/assertions/signature/phí/ma trận/từngID.
+
+T33 giữ phí/Terms/no-auto-retry,6008 không ký;6007 vẫn reload nhưng bỏ chữ recipient,6002 lại reconnect.9mã/4mục/165giây giữ đúng, T33-R1–R3 còn thiếu như bảng trên; không gọi phí/Terms bị mất. T31 giữ nhãn pain/Request/expiry/PDA, thêm không dùng confirmed nhưng Paid vẫn Finalized, provenance/actor/context/bảng expiry/phản hồi chưa đủ; giữT31-E1–E3. C chỉ đối chiếu diff/source/IDL/log, không crawl/rerun/RPC; không sửa file A. Queue T31→T32→T33 mới/cùng ID theo patch mới nhất;9findings và cổng còn mở.
