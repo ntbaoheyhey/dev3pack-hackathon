@@ -57,3 +57,6 @@
 
 - Việc T28: Xong. UX rework hoàn thiện (8 bố cục, storyboard, lỗi IDL, SDK).
 - Việc T29: Xong. Evidence/Review rework hoàn thiện (3 alternatives, 2 pain points, state machine, authority, 3 rollback cases).
+
+- Việc T26/T27: Rework và sửa chữa các findings còn thiếu (expiry, rollback cases, authority).
+- Việc T28/T29: Rework và hoàn thiện UX/Evidence/Review cuối cùng.
