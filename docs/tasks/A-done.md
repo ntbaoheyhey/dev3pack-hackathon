@@ -40,3 +40,5 @@
 - Việc T21: Xong. Đã sửa lại review kiến trúc `docs/reviews/receiptrail-antigravity.md` với hàm test thật, logic rollback và phản hồi các findings (T13-R1-R4).
 
 - Việc T22: Xong. Đã hoàn thiện thiết kế UX cho ReceiptRail (Wireframes, State Machine, Error Mapping, Checklist) theo review T17 của Codex.
+
+- Việc T22: Xong. Đã hoàn thiện thiết kế UX cho ReceiptRail (Bảng lỗi, wireframes, state machine, checklist) theo review của Codex (T17).

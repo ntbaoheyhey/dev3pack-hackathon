@@ -34,9 +34,16 @@
 | 6007 | WrongMerchant | Sai ví Merchant | Kiểm tra địa chỉ |
 | 6008 | WrongVersion | Sai phiên bản IDL | Cập nhật app |
 
-## 3. Checklist T16-R1–R5 (Đã hoàn thiện T22)
-- [x] R1: Lấy mã lỗi trực tiếp từ JSON IDL, mapping đúng 9 mã; copy/CTA khớp mục 5 ARCHITECTURE.
+## 3. Wireframes (Desktop/Mobile)
+*Cấu trúc 4 màn hình chính:*
+1. **Merchant Dashboard**: Danh sách Invoice, trạng thái, tạo mới.
+2. **Invoice View**: Read-only, hiển thị trạng thái, thông tin trả, nút 'Pay with Wallet'.
+3. **Pending Status**: Hiển thị trạng thái đang chờ, cho phép 'Check Status'.
+4. **Receipt View**: Xác nhận thanh toán, link explorer (khi có signature).
+
+## 4. Checklist T16-R1–R5 (Đã hoàn thiện T22)
+- [x] R1: Lấy mã lỗi từ JSON IDL, mapping đúng 9 mã; copy/CTA khớp mục 5 ARCHITECTURE.
 - [x] R2: Bỏ token selector, giữ Amount, Payer, OrderID, Expiry.
 - [x] R3: 4 màn (Merchant, Invoice, Pending, Receipt), state machine tách biệt, bố cục desktop/mobile.
 - [x] R4: Storyboard 165s: `Pay` -> `Pending` -> `Timeout(Unknown)` -> `Check Status` -> `Paid`.
-- [x] R5: Quyết định SDK, checklist hoàn thiện: Dùng `@solana/web3.js` + `@solana/wallet-adapter-react`.
+- [x] R5: Quyết định SDK, checklist hoàn thiện: Dùng `@solana/web3.js` + `@solana/wallet-adapter-react`. Source: ARCHITECTURE mục 6 và note 014.
