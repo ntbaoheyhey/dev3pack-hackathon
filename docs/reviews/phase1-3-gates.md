@@ -16,7 +16,7 @@
 | Giáo viên | Chấm SHORTLIST/kiến trúc | Chưa có verdict; không tự đánh đạt |
 | Người dùng | Nguyên văn “duyệt phase 2”, [record](../evidence/phase2/user-approval-2026-11-18.json) | Giờ log09:27:18.464 ngày18/11 UTC+7, người dùng không tự nêu giờ quyết định; không hỏi lại |
 | Phase3/vận hành | [Pipeline offline](../evidence/phase3/offline-pipeline-metadata.json), [preflight](../evidence/phase3/preflight-after-phase2-approval.json), [P3-A/P3-B](../PHASE3-PLAN.md) | 25 runtime +8 client tests đạt; ba CI guards false, payer0SOL/hello chưa deploy. Chưa có quyền cài/deploy mới hoặc CI xanh |
-| PR7 | work→main, open, merged=false ở checkpointf8b6988 | Batch pipeline/review/plan cần push và đồng bộ body; xác minh head/body sau checkpoint, không merge |
+| PR7 | work→main, open, merged=false, headfed3cb3 đã fetch sau push | Body pipeline/review/plan đã đọc lại khớp; checkpoint bàn giao chỉ cập nhật trạng thái. Không merge |
 
 **Phạm vi đã được người dùng duyệt:** native SOL, một payer/merchant trên mỗi invoice; create/pay/cancel/read; Open→Paid/Cancelled và Expired hiển thị; không close/reset/refund/stablecoin/x402. Cùng invoice chỉ chuyển principal1lần, vẫn có phí fail và rent lâu dài. Spike local là evidence phần lõi, UI/RPC recovery/devnet/CI/video chưa có.
 
