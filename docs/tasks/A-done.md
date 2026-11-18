@@ -75,3 +75,6 @@
 
 - Việc T31: Xong. Đã sửa bổ sung (Provenance, State Machine, Phản hồi 13 findings).
 - Tình trạng: T32, T33, T31 đều đã rework bổ sung xong.
+
+- Việc T32: Đã sửa bổ sung (Authority check chi tiết, Bảng 3 ca rollback với Log, Ma trận 5 nhóm chi tiết).
+- Tiếp theo: T33 (Rework bổ sung UX).
