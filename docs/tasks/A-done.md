@@ -64,3 +64,5 @@
 - Việc T30: Xong. Đã rework semantics UX (Khôi phục phí, Unknown, terms, state machine và 9 lỗi IDL). Đã đánh dấu mục 3-5 là chưa đạt (chuyển T33).
 
 - Việc T31: Xong. Đã rework evidence (Alternatives, Pain Points, State machine, Phản hồi findings).
+
+- Việc T32: Xong. Đã rework kiến trúc review (Authority, 3 rollback cases, 5 nhóm kiến trúc, phản hồi 13 findings).
