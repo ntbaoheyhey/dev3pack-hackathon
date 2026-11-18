@@ -54,3 +54,6 @@
 - Việc T26: Xong. Đã rework evidence, hoàn thiện bảng Alternatives (URL đích, giới hạn), Pain points, State machine và bảng phản hồi findings.
 
 - Việc T27: Xong. Đã bổ sung review kiến trúc (Authority/Recipient, Bảng 3 ca rollback, Kết luận ma trận 5 nhóm) theo yêu cầu T24.
+
+- Việc T28: Xong. UX rework hoàn thiện (8 bố cục, storyboard, lỗi IDL, SDK).
+- Việc T29: Xong. Evidence/Review rework hoàn thiện (3 alternatives, 2 pain points, state machine, authority, 3 rollback cases).
