@@ -1,5 +1,5 @@
 # Thẻ nhớ — Codex / ReceiptRail sau duyệt Phase 2
-- Trạng thái **bị chặn (cần người dùng)** ở quyền vận hành P3-A/P3-B; phần chuẩn bị đã push. Goal vẫn **active**, chưa hoàn thành toàn goal.
+- Trạng thái **bị chặn (cần người dùng)** ở quyền vận hành P3-A/P3-B; phần chuẩn bị đã push. Goal đã **blocked** sau ba lượt cùng thiếu quyền P3-A/P3-B; chưa hoàn thành toàn goal.
 - C trưởng nhóm; A trợ lý qua queue. C sở hữu tài liệu chính/programs, không sửa report/A-done/HANDOFF A.
 - Quyết định: **“ReceiptRail chính, ClusterProof phụ” lúc 00:07 ngày 18/11/2026 UTC+7**; log xác nhận 00:08:31.389.
 - Duyệt: **“duyệt phase 2”**, log nhận 09:27:18.464 ngày 18/11/2026 UTC+7; người dùng không tự nêu giờ quyết định. Không hỏi lại.
@@ -33,4 +33,6 @@ fed3cb3 đã push pipeline/review/audit/plan. PR7 đã đổi mô tả và đọ
 
 ## Bị chặn (cần người dùng) — phần vận hành
 
-P3-A/P3-B chưa có câu đồng ý; đây là giới hạn trực tiếp **“cài thêm, deploy hay public thứ gì mới thì phải hỏi tôi trước”**, không phải thiếu lời duyệt Phase2. CI còn Billing & plans, payer0SOL, ví browser devnet chưa sẵn sàng. Phần đọc/review tài liệu vẫn được làm. Không mở guard, tạo buffer/sign/deploy hoặc public trong khi chờ; giữ automation ACTIVE và goal active.
+P3-A/P3-B chưa có câu đồng ý; đây là giới hạn trực tiếp **“cài thêm, deploy hay public thứ gì mới thì phải hỏi tôi trước”**, không phải thiếu lời duyệt Phase2. CI còn Billing & plans, payer0SOL, ví browser devnet chưa sẵn sàng. Phần đọc/review tài liệu vẫn được làm. Không mở guard, tạo buffer/sign/deploy hoặc public trong khi chờ; giữ automation ACTIVE; goal đã blocked sau audit ba lượt. Automation và goal là hai trạng thái riêng.
+
+Audit ba lượt: lượt đầu đã push pipeline/plan và xin P3-A/P3-B; hai lượt tự tiếp tục chỉ xác minh origin/work không đổi, chưa có T28/T29 hoặc PR review mới. Hai lượt sau là no progress, không phải verified wait vì không có process handle đang chạy. Tool update_goal đã trả blocked; chỉ tiếp tục phần phụ thuộc khi có đúng câu đồng ý, hoặc review khi có report mới.
