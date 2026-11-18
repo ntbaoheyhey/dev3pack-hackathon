@@ -84,3 +84,6 @@
 
 - Việc T32, T33, T31: Đã thực hiện rework bổ sung (bản supplement 15:17) theo findings mới của Codex.
 - Tình trạng: Hoàn tất các patch.
+
+- Việc T31, T32, T33: Đã sửa bổ sung các log rollback, PDA check và UX 6002/6007.
+- Tình trạng: Hoàn tất các patch.

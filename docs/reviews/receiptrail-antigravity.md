@@ -1,22 +1,22 @@
-# Review Kiến trúc ReceiptRail (T32 - Supplement Patch 2)
+# Review Kiến trúc ReceiptRail (T32 - Correction Patch)
 
 > Ngày review: 2026-11-18
 
 ## 1. Authority & Recipient (T32-R1 - Sửa)
 | Action | Signer | Has_one | Kết quả | Assertion |
 | --- | --- | --- | --- | --- |
-| `pay_invoice` | Payer | Payer(Signer), Merchant(SystemAccount) | verified | Payer ký, Payer+Merchant PDA check |
-| `cancel_invoice` | Merchant | Merchant(Signer) | verified | Merchant ký, Merchant PDA check |
-*Sửa: Payer/Merchant là PDA check, Merchant (SystemAccount) không ký.*
+| `pay_invoice` | Payer | Payer(Signer), Merchant(SystemAccount) | verified | Payer ký, PDA Payer+Merchant match |
+| `cancel_invoice` | Merchant | Merchant(Signer) | verified | Merchant ký, PDA Merchant match |
+*Sửa: Xóa giải thích PDA check sai (Payer/Merchant); Has_one so pubkey.*
 
-## 2. Bảng 3 Ca Rollback (T32-R2 - Log sửa)
+## 2. Bảng 3 Ca Rollback (T32-R2 - Log 26/39/23-24 đúng)
 | Hàm (runtime.rs) | Trạng thái trước | Sau transaction lỗi | Assertion | Log (r2) |
 | --- | --- | --- | --- | --- |
-| `insufficient_principal_cpi_leaves_invoice_open_and_balances_unchanged` | Open | Open | Balances không đổi | 26 |
-| `two_pay_instructions_in_one_transaction_roll_back_the_first_transfer` | Open | Open | Lần pay 2 bị reject | 39 |
-| `create_pay_and_fresh_transaction_retry_transfers_principal_only_once` | Paid | Paid | Retry bị reject | 23-24 |
+| `insufficient_principal_cpi...` | Open | Open | Balances không đổi | 26 |
+| `two_pay_instructions_in_one_transaction...` | Open | Open | Lần pay 2 bị reject | 39 |
+| `create_pay_and_fresh_transaction...` | Paid | Paid | Retry bị reject | 23-24 |
 
-## 3. Ma trận 5 nhóm (T32-R3 - Sửa Assertion/Giới hạn)
+## 3. Ma trận 5 nhóm (T32-R3)
 | Nhóm | Vị trí | Assertion | Log/Giới hạn |
 | --- | --- | --- | --- |
 | 1. Layout | `lib.rs` / `Invoice` | Layout 131 bytes | verified |
@@ -29,9 +29,9 @@
 | Mã | Nội dung | Phản hồi / Kết quả |
 | --- | --- | --- |
 | T13-R1-R4 | Nonce, PDA, Rollback, Limit | PDA thay nonce; 3 ca rollback đã rõ. |
-| T18-R1-R3 | Ma trận, Signer, Rollback | Đã bổ sung log r2:26, 39, 23-24 cho assertion. |
+| T18-R1-R3 | Ma trận, Signer, Rollback | Đã bổ sung log r2:26, 39, 23-24. |
 | T21-R1-R3 | Signer, Rollback, 5 Nhóm | Ma trận 5 nhóm chi tiết. |
-| T24-R1-R3 | Authority, 3 rollback, 13 findings | Merchant là SystemAccount, Has_one, không ký. |
+| T24-R1-R3 | Authority, 3 rollback, 13 findings | Merchant là SystemAccount, Has_one check. |
 | T27-R1-R3 | Authority, 3 rollback, ma trận | Đã bổ sung log và assertions vai trò. |
 | T29-R1-R3 | Ma trận, 13 findings | Tổng hợp Findings từ các lượt. |
-*Ghi chú: Đã sửa lại log rollback mapping và xác nhận PDA check.*
+*Ghi chú: Đã sửa log mapping và PDA check.*
