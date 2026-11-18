@@ -1,20 +1,17 @@
-# Thẻ nhớ — Codex / review17:32 đã chốt, P3-A đạt
-- Trạng thái **bị chặn (cần người dùng)**: hello/funding và ví thật để sau; hồ sơ review17:32/queue/PR đã chốt. Phase3/goal chưa xong;9findings/review chéo/giáo viên còn mở.
-- C trưởng nhóm, sở hữu tài liệu chính/A-queue; A qua queue. Repo /Users/bao/Documents/ChatGPT/dev3pack, branch work; không sửa checkout/file A.
-- **“ReceiptRail chính, ClusterProof phụ” lúc00:07 ngày18/11/2026 UTC+7**; **“duyệt phase 2”** log09:27:18.464 UTC+7; nguồn đính chính tại DECISION.
-- **“Đồng ý cả hai”** P3-A/P3-B, log10:13:11.851 ngày18/11 UTC+7. Hai câu duyệt không có giờ quyết định tự nêu; không hỏi lại hoặc suy quyền.
-- P3-A chỉ ba jobs/pins/locks trên GitHub Ubuntu24.04; không cài thêm local/token/quyền/billing/limit/upload binary.
-- **27cf7ac CI đạt:** PR44237534047/push44237529539 đều completed/success3jobs;57tests/run (25runtime+8client+16research+8web), typecheck/build, sinh IDL/ReceiptRail cmp.
-- Anchor source8d9d148/lock/version và SBFv1.57/SHA256 đạt; runs cũ terminal, không poll/rerun như live. HEAD tài liệu không là revision có CI.
-- Linux bytecode hashes khớp nhau, khác macOS; chưa reproducible/verified build. Giữ binary macOS dự kiến hello; executable inputs không đổi.
-- P3-B chỉ hello devnet/signers thử cũ/một buffer tạm/trần1.5SOL. **“chưa rảnh để chuyển sol devnet”** log10:14:46.599 UTC+7: funding để sau; chưa tạo buffer/ký/gửi/deploy.
-- **T32/030b93c:**3log đúng/tên rút gọn;has_one/PDA check sai;merchant không ký pay khôi phục. Queue T32→T31→T33 cùng IDs, patch bảng authority trước.
-- **T31/d4dcf3c:**5URL/nhãn pain/Unknown/expiry giữ được;Paid vẫn Finalized,provenance/context/bảng expiry/từng finding thiếu.
-- **T33/4e1e2d7:**giữ phí/Terms/no-auto-retry/reload recipient;6002 vẫn reconnect,state/vai/form/8bố cục/demo/SDK thiếu.
-- Review17:32 đã pushb9ddfab;PR read-back17:42:30 UTC+7/body khớp/headb9ddfab/work→main/open/chưa merge. Snapshot mới giữ riêng;không suy CI cho HEAD tài liệu.
-- Automation15phút ACTIVE theo config14:42;heartbeat thực17:32:40.755 UTC+7. Checkpoint tài liệu và merge dùng [skip ci].
-- Giữ ClusterProof source/web/lab/toolchain, thiết kế dự phòng/chưa duyệt. Cấm Phase4–6/deploy ReceiptRail/public mới/mergePR7/force-push/mainnet/secrets/đổi visibility.
-- Bước tiếp: hello khi funding sẵn sàng; mỗi reminder fetch/pull/read A-done và review patch mới. Hồ sơ/PR đã chốt,không rerun suites/CI hoặc báo lại blocker không đổi.
+# Thẻ nhớ — Codex / P3-B hello và đóng vòng review
+- Trạng thái **đang làm**: người dùng đã báo funding và yêu cầu thực hiện P3-B; báo kết quả để duyệt Phase4, chưa mở Phase4.
+- C trưởng nhóm tại /Users/bao/Documents/ChatGPT/dev3pack, branch work; A qua A-queue, không sửa file/checkout A.
+- ReceiptRail chính/ClusterProof phụ: nguyên văn/giờ trong DECISION. Phase2 đã duyệt; P3-A/P3-B có quyền log10:13:11.851 UTC+7.
+- Tin mới: đúng một lượt cuối gộp T31/T32/T33, sau đó nhận phần đạt/ghi nợ tài liệu/đóng; không mở vòng sửa. Record user-funded-final-review-2026-11-18.json.
+- Queue lượt cuối đã viết; đầu vào4b3b144, T32/1b38e7e,T33/c249240,T31/d4dcf3c. Khi A nộp, C nhận/ghi nợ/đóng, không rework.
+- Kiểm21:48:35 UTC+7: payer GQRo…NhbFM2 có2.5SOL, đúng genesis devnet,hello chưa deploy. Tin funding cũ đã được thay thế.
+- P3-B chỉ hello2yzx…RiXL,signers thử cũ,một buffer tạm ngoài Git,trần1.5SOL cho deploy+initialize/increment; không in secrets.
+- Trước gửi: kiểm signer pubkeys/permissions,binary macOS127672bytes/hash9b5483f7…,rent/fee/flags; dùng max-len127672,CU price0,max-sign-attempts1,use-rpc.
+- Sau gửi: lưu signature,kiểm finalized/owner/executable/programdata/authority/bytecode,counter0→1 và chi phí; timeout giữ journal,không ký lại mù quáng.
+- CI27cf7ac đã đạt3jobs/57tests mỗi run; HEAD tài liệu không là revision CI,không chạy lại khi executable inputs không đổi.
+- Web/lab/toolchain ClusterProof giữ nguyên; ví thật chưa kiểm,không nhận là đã đạt. Không deploy ReceiptRail/public/cài thêm/mergePR7/mainnet/force-push.
+- Automation15phút có thật; checkpoint tài liệu và merge dùng [skip ci]. Cập nhật Thẻ nhớ sau mỗi bước lớn.
+- Bước tiếp: push chỉ đạo/queue,hoàn tất preflight,budget và triển khai hello; chốt lượt cuối A khi nộp,cập nhật PR7/bàn giao để trình Phase4.
 
 ## Bằng chứng hiện hành
 
@@ -22,10 +19,10 @@
 
 ## Còn lại
 
-1. **Hello sau funding:** quyền P3-B đã có; người dùng để funding sau. Recheck genesis/balance/rent/fees/flags/hash/signers cũ/trần1.5SOL trước tạo buffer/ký/gửi; deploy hello, kiểm executable/owner/programdata/authority/bytecode, initialize/increment/finalized. Preflight09:47:33 UTC+7 payer0lamports/hello chưa deploy là lịch sử, chưa đọc lại.
-2. **A:** fetch/pull an toàn, đọc A-done và review T32→T31→T33 bổ sung khi có; chỉ nhận phần có bằng chứng, không sửa file A thay A hoặc đợi A để làm phần độc lập.
-3. **Cổng:** giáo viên/review chéo được nhận và connect/disconnect ví thật còn mở; người dùng chưa có ví devnet sẵn sàng. Không tự gọi Phase3/goal xong hoặc mở Phase4–6.
+1. Preflight funding/signers/binary/rent/fee; deploy hello và chạy initialize/increment, xác minh finalized trong trần1.5SOL.
+2. Nhận đúng một lượt cuối của A, phần đạt giữ lại, phần thiếu đưa vào nợ tài liệu, đóng T31/T32/T33; không mở vòng sửa.
+3. Chốt evidence/notes/Thẻ nhớ/PR7, push sau mỗi bước lớn; báo người dùng để duyệt Phase4. Không merge.
 
 ## Bị chặn và điều kiện tiếp tục
 
-Funding hello/ví thật cần người dùng khi họ sẵn sàng; không thúc chuyển ngay,hỏi lại quyền hoặc tự faucet/deploy. CI đã đạt,không có run live cần theo dõi. Review A/giáo viên là cổng riêng; tiếp tục khi có report/verdict mới. Review17:32 đã pushb9ddfab,PR read-back17:42:30 UTC+7 khớp body/head/work→main/open/chưa merge; snapshot lưu riêng. Hồ sơ đã chốt,không còn bước độc lập của lượt này. Phase3/goal chưa xong,không mở Phase4–6.
+Funding đã có2.5SOL; không còn blocker thiếu funding. Chưa có quyền Phase4/ReceiptRail deploy/public/cài thêm. Ví thật chưa được người dùng chuẩn bị nên vẫn chưa kiểm; tách giới hạn này khỏi kết quả P3-B.

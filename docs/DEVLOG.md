@@ -373,3 +373,5 @@ Các mô tả dưới đây là sự kiện ở Taskbar Hero, không phải hàn
 2026-11-18T17:43:26+07:00 · Codex · Đã pushb9ddfab [skip ci],cập nhật/read-back PR7 lúc17:42:30 UTC+7,body/head/work→main/open/chưa merge khớp. Lưu snapshot mới,cập nhật NEXT/Thẻ nhớ/cổng/audit; bỏ bước chốt đã xong,giữ hello sau funding/ví thật/9findings. Notes021/023 đã cập nhật ở checkpoint review. Không cài/deploy/rerun/crawl/RPC hoặc mở Phase4–6.
 
   Kiểm snapshot PR/cuối lượt:76links local/5anchors,28report snapshots/6input hashes mỗi snapshot,9PR body hashes,Thẻ nhớ17dòng;file A/executable inputs khớp origin/workb9ddfab,git diff --check đạt. Không chạy suite mới.
+
+2026-11-18T21:49:46+07:00 · Codex · Ghi chỉ đạo trực tiếp: một lượt cuối T31/T32/T33 rồi ghi nợ/đóng; thay queue và lưu lịch sử. Inspect devnet có2.5SOL/hello chưa deploy; cập nhật DECISION/PHASE3-PLAN/Thẻ nhớ/note022 trước P3-B,giữ trần1.5SOL. Chưa tạo buffer/ký/gửi.

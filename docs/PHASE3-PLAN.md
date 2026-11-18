@@ -27,9 +27,9 @@ Chỉ cài trên runner, không cài thêm máy người dùng; không deploy pr
 
 Hai bytecode hashes Linux khớp giữa push/PR27cf7ac và Linux7210aa6, khác bản macOS/cache. Chưa kết luận nguyên nhân hoặc reproducible/verified build; giữ binary macOS đã chuẩn bị trong P3-B. Hello IDL được sinh/dùng trong client tests, workflow chỉ cmp ReceiptRail IDL với bản đã track.
 
-## P3-B — đã được phép, chờ funding để deploy hello
+## P3-B — đã được phép, funding đã được kiểm ngày18/11
 
-**Đã được người dùng đồng ý** bằng cùng câu trả lời P3-A/P3-B. Tin sau đó **“chưa rảnh để chuyển sol devnet”**, giờ log 10:14:46.599 UTC+7, để bước deploy sau khi có funding. Chỉ triển khai hello của Phase 3, không deploy ReceiptRail core hoặc publish web mới.
+**Đã được người dùng đồng ý** bằng cùng câu trả lời P3-A/P3-B. Tin10:14:46.599 UTC+7 từng để funding sau; **tin trực tiếp mới yêu cầu triển khai hello trong cùng trần1.5SOL**, xem [record](evidence/phase3/user-funded-final-review-2026-11-18.json). Kiểm21:48:35 UTC+7: ví2.5SOL devnet, hello chưa deploy. Chỉ triển khai hello của Phase 3, không deploy ReceiptRail core hoặc publish web mới.
 
 - Program ID đã có: `2yzxUQEpaeLmgCMhDipwnVL3DHsxez18KcePonqZRiXL`; payer/upgrade authority dự kiến `GQRoDMoWFV2nhgwm3bZGvSCC1LSa2wRkLeeJg8NhbFM2`.
 - Khi funding sẵn sàng, kiểm public key từ signers thử cũ ngoài Git có khớp hai địa chỉ trên theo quyền đã có. Không in secret hoặc import ví browser. Nếu thiếu/sai signer thì dừng, không tự tạo payer/program mới.

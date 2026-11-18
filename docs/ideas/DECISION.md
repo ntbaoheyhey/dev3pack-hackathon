@@ -1,5 +1,13 @@
 # Quyết định sản phẩm — ReceiptRail
 
+## Chỉ đạo mới: một lượt cuối và thực hiện P3-B — 18/11/2026
+
+> Dừng vòng review T31/T32/T33. Cho A đúng 1 lượt cuối, sau đó nhận phần đạt, ghi phần còn thiếu vào "nợ tài liệu" và đóng task. Không mở thêm vòng sửa bổ sung. Tôi đã chuyển SOL devnet vào GQRoDMoWFV2nhgwm3bZGvSCC1LSa2wRkLeeJg8NhbFM2: kiểm tra số dư rồi làm P3-B (deploy hello, trần 1.5 SOL) theo PHASE3-PLAN. Xong thì báo tôi để duyệt Phase 4.
+
+Nguồn: tin trực tiếp người dùng ở chat này, [record](../evidence/phase3/user-funded-final-review-2026-11-18.json). Giờ người dùng quyết định và giờ log tin **chưa xác định**; C ghi hồ sơ lúc 21:49:46 UTC+7 ngày18/11/2026, không dùng giờ này thay giờ người dùng. Quyền P3-B trước đó đã có nguyên văn/giờ log10:13:11.851; tin mới yêu cầu thực hiện trong đúng phạm vi/trần cũ.
+
+T31/T32/T33 chỉ còn **một lượt cuối gộp** sau queue mới; nhận phần đạt, phần còn thiếu đưa vào **nợ tài liệu**, rồi đóng task. Không tự mở vòng sửa hoặc dùng9findings để chặn P3-B. Chưa gọi review độc lập/giáo viên đạt nếu không có bằng chứng. Tin funding thay trạng thái để sau của10:14; đã kiểm ví có2.5SOL devnet lúc21:48:35 UTC+7, hello chưa deploy. P3-B chỉ hello/signers cũ/một buffer tạm ngoài Git/trần1.5SOL. Chưa cấp quyền Phase4/ReceiptRail deploy/public/cài thêm/merge.
+
 ## Quyết định hiện hành của người dùng
 
 **Chính: ReceiptRail (C01). Dự phòng: ClusterProof (C02).**
