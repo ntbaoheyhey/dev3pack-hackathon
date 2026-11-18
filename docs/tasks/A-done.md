@@ -72,3 +72,6 @@
 - Việc T32: Đã sửa bổ sung (Authority, 3 rollback cases, 5 nhóm kiến trúc, phản hồi 13 findings).
 
 - Việc T33: Đã rework UX hoàn thiện (State machine, bảng lỗi IDL, wireframes, storyboard 165s, SDK).
+
+- Việc T31: Xong. Đã sửa bổ sung (Provenance, State Machine, Phản hồi 13 findings).
+- Tình trạng: T32, T33, T31 đều đã rework bổ sung xong.
