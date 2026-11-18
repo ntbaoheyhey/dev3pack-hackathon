@@ -391,3 +391,5 @@ Các mô tả dưới đây là sự kiện ở Taskbar Hero, không phải hàn
 2026-11-18 · Codex · Deploy r4 đã kiểm finalized/bytecode/authority; smoke initialize/increment confirmed lúc22:22 UTC+7, counter1. Finalizer read-only kiểm10/137metadata rồi429, đã lưu failure; note022/HANDOFF ghi resume đọc chậm có checkpoint, không ký/gửi lại. Chưa chốt chi phí hoặc Phase4.
 
 2026-11-18T22:32:38+07:00 · Codex · P3-B kiểm đủ137tx finalized, counter1/bytecode/authority đúng; debit0.651874801SOL=accounts+fees0.000695000SOL, dưới trần1.5SOL. Finalizer r2 resume read-only sau429, không gửi thêm; cập nhật report/PHASE3-PLAN/ROADMAP/README/NEXT/HANDOFF/notes003-022/mục lục và trạng thái đóng A. Source snapshots byte-identical; không runtime suite/CI mới, cài/public/ReceiptRail deploy hoặc mở Phase4.
+
+2026-11-18T22:44:35+07:00 · Codex · Checkpoint2fbc987 đã push; cập nhật PR7 title/body theo ReceiptRail Phase2/P3-A/P3-B và một lượt cuối A. Read-back đúng body/head/work→main/open/unmerged; lưu snapshot trước commit metadata, gỡ việc chốt khỏi Còn lại. HANDOFF cần người dùng duyệt Phase4; ví thật/giáo viên giữ giới hạn, không mở phase hoặc review mới.

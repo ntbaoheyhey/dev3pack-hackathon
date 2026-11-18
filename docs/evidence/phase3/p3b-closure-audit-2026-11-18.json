@@ -26,14 +26,21 @@
   "noPendingJournals": true,
   "executableInputsMatchCIRevision": "27cf7aceba5b077d07e04daaa0cb03d2f8f1cd8f",
   "newRuntimeTestsOrCIRuns": false,
-  "remainingBeforeReport": [
-    "push docs",
-    "update and read back PR7"
-  ],
   "remainingUserGates": [
     "Phase4 approval",
     "real extension wallet test deferred by user",
     "teacher verdict not present"
   ],
-  "automationStatus": "PAUSED"
+  "automationStatus": "PAUSED",
+  "remainingBeforeReportAtCheck": [
+    "push docs",
+    "update and read back PR7"
+  ],
+  "followupPRReadback": {
+    "snapshot": "docs/evidence/phase3/pr7-p3b-final-snapshot.json",
+    "bodyMatches": true,
+    "titleMatches": true,
+    "openUnmerged": true,
+    "head": "2fbc987f666623ecdbda6254f789390e3d55e6f6"
+  }
 }

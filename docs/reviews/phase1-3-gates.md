@@ -14,7 +14,7 @@ Codex · 22:31:59 ngày18/11/2026 UTC+7. **P3-A/P3-B đã đạt phạm vi đã 
 | P3-A CI | [CI27cf7ac](../evidence/phase3/ci-passed-27cf7ac.json), [sáu jobs read-back](../evidence/phase3/ci-rechecked-2026-11-18.json) | Hai run3jobs/57tests mỗi run+build/IDL đạt; executable inputs không đổi, không gán CI cho HEAD tài liệu |
 | P3-B devnet | [Báo cáo](../evidence/phase3/README.md), [final137tx](../evidence/phase3/hello-devnet-final-verification-r2-2026-11-18.json) | Deploy/initialize/increment finalized, counter1, bytecode/authority đúng; debit0.651874801SOL dưới1.5SOL |
 | Web/lab cũ | [HTTP22:09:50UTC+7](../evidence/phase3/existing-web-http-2026-11-18.json) | Hai route200; không publish/update; ví thật vẫn chưa kiểm theo lựa chọn người dùng |
-| PR7 | [PR](https://github.com/ntbaoheyhey/dev3pack-hackathon/pull/7), [NEXT](../NEXT.md) | Chốt body/read-back sau checkpoint P3-B; giữ work→main/open/chưa merge. Snapshot17:42 là lịch sử |
+| PR7 | [PR](https://github.com/ntbaoheyhey/dev3pack-hackathon/pull/7), [snapshot P3-B](../evidence/phase3/pr7-p3b-final-snapshot.json) | Body/title khớp kết quả2fbc987, work→main/open/unmerged; snapshot trước commit metadata, không merge |
 | Phase4 | [Phạm vi trình duyệt](../NEXT.md) | Chưa có câu duyệt, chưa bắt đầu code/task phụ thuộc Phase4 |
 
 Giới hạn không thay đổi: chỉ chống trả principal lần hai cho cùng invoice; rent/upgrade/RPC trust, merchant dùngIDkhác, chưa browser/RPC recovery/demo sản phẩm. Hello bytecode khớp artifact macOS nhưng chưa verified/reproducible source build. Giữ ClusterProof dự phòng/chưa duyệt, source/web/lab/toolchain. Không cài thêm local, deploy ReceiptRail, public web mới hoặc mergePR7 từ quyền P3-B.

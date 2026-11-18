@@ -1,5 +1,5 @@
-# Thẻ nhớ — Codex / P3-B đã kiểm, chốt hồ sơ trình Phase4
-- Trạng thái **đang làm**: P3-B đã đạt, còn kiểm/push tài liệu và cập nhật/read-back PR7 rồi trình người dùng duyệt Phase4.
+# Thẻ nhớ — Codex / P3-B xong, cần duyệt Phase4
+- Trạng thái **bị chặn (cần người dùng)**: P3-B đã đạt; hồ sơ đã chốt và PR7 đã cập nhật/read-back. Cần duyệt Phase4 trước làm tiếp.
 - C trưởng nhóm tại `/Users/bao/Documents/ChatGPT/dev3pack`, branch`work`; A trợ lý, queue trống, không sửa file/checkout A.
 - ReceiptRail chính/ClusterProof phụ; Phase2 đã duyệt; P3-A/P3-B có quyền riêng. Nguyên văn/giờ ở DECISION, không phục hồi quyết định sai cũ.
 - **T31/T32/T33 đã đóng** sau đúng lượt cuối7857e9b; nhận phần đạt, D01–D03 là nợ tài liệu, không mở vòng/task sửa.
@@ -13,13 +13,15 @@
 - Chưa verdict giáo viên; không tự đánh toàn goal/Phase3 xong từ P3-B. Người dùng yêu cầu trình duyệt trước mở Phase4.
 - Không cài thêm/deploy ReceiptRail/public hoặc update web/merge PR7/mainnet/force-push/đổi authority/tăng trần.
 - Automation15phút **PAUSED**, đã đọc app/config trong lượt này; giữ cấu hình, không tạo trùng hoặc tuyên bố ACTIVE.
-- Bước tiếp theo: kiểm tài liệu/JSON/sources, push checkpoint; cập nhật/read-back PR7 đúng work→main/open/unmerged; trình Phase4 theo NEXT.
+- Checkpoint kết quả2fbc987 đã push; PR7 body/title read-back khớp, work→main/open/unmerged. Snapshot lưu trước commit metadata này.
 
-## Còn lại
+## Còn lại — cần người dùng
 
-1. Kiểm hồ sơ sau đối soát, push bằng `[skip ci]`; không chạy lại suite/CI hoặc ký thêm giao dịch cho thay đổi tài liệu.
-2. Cập nhật mô tả PR7 bằng kết quả P3-B/chi phí/lượt cuối A/giới hạn, đọc lại body/head/base/open/chưa merge và lưu snapshot.
-3. Trình người dùng duyệt Phase4 theo [NEXT](NEXT.md), rồi chỉ làm khi có câu duyệt đúng phạm vi. Các mục ví thật/giáo viên giữ thiếu bằng chứng; không tự tạo quyền hoặc mở vòng review A.
+1. Người dùng duyệt mở Phase4 ReceiptRail theo [NEXT](NEXT.md), trước tiên code/test local bằng cache hiện có. Chưa có câu duyệt; không tự mở Phase4 hoặc hỏi lại Phase2/P3-A/P3-B.
+2. Ví extension connect/disconnect vẫn chưa kiểm theo lựa chọn người dùng; kiểm khi người dùng có ví devnet sẵn sàng. Không tự tạo/import ví hoặc dùng CLI smoke thay bài kiểm ví.
+3. Giáo viên chưa có verdict SHORTLIST/kiến trúc; không tự chấm thay. T31/T32/T33 đã đóng với nợ tài liệu, không mở vòng/task sửa bổ sung.
+
+Báo cáo hiện hành ở [P3-B](evidence/phase3/README.md). [Snapshot PR7](evidence/phase3/pr7-p3b-final-snapshot.json) ghi body/head2fbc987 tại thời điểm read-back trước commit chứa snapshot; không gán CI27cf7ac cho HEAD tài liệu. Không còn process hoặc transaction P3-B cần poll/gửi lại.
 
 ## Bằng chứng và quyền
 
