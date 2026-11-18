@@ -1,44 +1,43 @@
-# Thiết kế UX ReceiptRail (T28 - Final Rework)
+# Thiết kế UX ReceiptRail (T30 - Semantics Rework)
 
 > Ngày thiết kế: 2026-11-18
 
 ## 1. Flow & Form
-- **Merchant**: Dashboard, `Create Invoice` (Form: `PayerAddress`, `OrderID`->32bytes, `Amount` u64, `Expiry` slot).
-- **Payer**: View Invoice (Status PDA), Pay action (Payer principal + fee).
-- **State Machine**: `Open` -> `Pending` -> `Paid` (finalized) / `Cancelled` / `Expired`.
+### A. Merchant
+- **Dashboard**: Danh sách Invoices (Open/Paid/Cancelled), Status PDA lookup, `Create` action.
+- **Create Invoice**: Form: `PayerAddress`, `OrderID` (mapped 32 bytes PDA), `Amount` (u64 lamports), `Expiry` (u64 slot).
+- **Fees**: Create = Merchant pays (Rent + Fee).
+
+### B. Payer
+- **View Invoice**: Read-only, `Amount`, `Expiry`, `Terms`.
+- **Pay**:
+    - Action = Payer (Principal + Fee).
+    - **State Machine**: 
+        - `Open` (Mới).
+        - `Pending` (Gửi request, chờ xác nhận).
+        - `Paid` (Finalized on-chain).
+        - `Cancelled` (Open -> Cancelled by merchant).
+        - `Expired` (`Open` + `slot` >= `expiry slot`).
+    - `Unknown` (Timeout): PDA status lookup, No auto-retry.
 
 ## 2. Xử lý lỗi (IDL - 9 mã)
 | Code | Error | Nguyên nhân | CTA |
 | --- | --- | --- | --- |
-| 6000 | InvalidAmount | Amount <= 0 | Nhập lại amount > 0 |
-| 6001 | InvalidExpiry | Expiry < current slot | Set expiry > current slot |
-| 6002 | InvalidWallet | Ví không kết nối/sai | Kết nối lại ví |
-| 6003 | AliasedRoles | Merchant = Payer | Dùng ví khác |
-| 6004 | InvoiceNotOpen | Invoice state != Open | Xem lại trạng thái Invoice |
-| 6005 | InvoiceExpired | Slot > Expiry | Không thanh toán được |
-| 6006 | WrongPayer | Sai Payer PDA | Dùng ví đã chỉ định |
-| 6007 | WrongMerchant | Sai ví Merchant | Liên hệ merchant |
-| 6008 | WrongVersion | Version IDL mismatch | App update required |
+| 6000 | InvalidAmount | Amount <= 0 | Nhập amount > 0 |
+| 6001 | InvalidExpiry | Expiry <= current slot | Set expiry > current slot |
+| 6002 | InvalidWallet | Wallet account data invalid/missing | Kiểm tra ví/account |
+| 6003 | AliasedRoles | Merchant == Payer | Dùng ví khác |
+| 6004 | InvoiceNotOpen | Invoice state != Open | Trạng thái Invoice không hợp lệ |
+| 6005 | InvoiceExpired | Slot >= Expiry | Invoice đã hết hạn |
+| 6006 | WrongPayer | Payer Pubkey != Invoice Payer | Dùng đúng ví Payer |
+| 6007 | WrongMerchant | Merchant Pubkey != Invoice Merchant | Dùng đúng ví Merchant |
+| 6008 | WrongVersion | Version IDL mismatch | App cần update |
 
-## 3. Wireframes (8 bố cục - Chi tiết)
-*Mỗi màn hình có: Fields, Priority, CTA (Enabled/Disabled), No-wallet/Error state.*
+## 3. Wireframes (8 bố cục)
+*Trạng thái: Chưa đạt (Sẽ bổ sung trong T33)*
 
-### I. Desktop/Mobile (4x2 = 8)
-1. **Merchant Dashboard**: List Invoices, Status, `Create` (Enabled).
-2. **Invoice View**: Read-only, `Amount`, `Expiry`, `Pay` (Enabled/Disabled).
-3. **Pending Status**: Status indicator, `Check Status` (Enabled).
-4. **Receipt View**: `Paid` status, Link Explorer, signature verified.
+## 4. Storyboard (165s)
+*Trạng thái: Chưa đạt (Sẽ bổ sung trong T33)*
 
-## 4. Storyboard 165s (Replay/Local)
-- 0-30s: Merchant tạo invoice (Log: `r2:23`).
-- 30-90s: Payer pay, Pending -> Paid (Log: `r2:24`).
-- 90-150s: Client timeout (Unknown) -> Check Status -> PDA confirm Paid.
-- 150-165s: Receipt View: `Paid` + Link Explorer (Signature).
-
-## 5. SDK Decision & Checklist
-| SDK | Version | Source/Date | Lý do/Giới hạn |
-| --- | --- | --- | --- |
-| `@solana/web3.js` | v1.9x | 18/11/2026 | Tương thích ví, RPC node support. |
-| `@solana/wallet-adapter` | v0.2x | 18/11/2026 | Wallet standard integration. |
-
-- [x] R1-R5: Đã kiểm tra 9 mã lỗi, 8 bố cục, Storyboard (165s, log r2:23-24).
+## 5. SDK & Checklist
+*Trạng thái: Chưa đạt (Sẽ bổ sung trong T33)*

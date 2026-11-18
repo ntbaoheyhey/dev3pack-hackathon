@@ -60,3 +60,5 @@
 
 - Việc T26/T27: Rework và sửa chữa các findings còn thiếu (expiry, rollback cases, authority).
 - Việc T28/T29: Rework và hoàn thiện UX/Evidence/Review cuối cùng.
+
+- Việc T30: Xong. Đã rework semantics UX (Khôi phục phí, Unknown, terms, state machine và 9 lỗi IDL). Đã đánh dấu mục 3-5 là chưa đạt (chuyển T33).
