@@ -8,9 +8,9 @@
 - Spike Anchor1.2.2/LiteSVM: bytecode thật, **19/19 runtime tests**,131bytes, principal trả1lần, duplicate tx mới/rollback/expiry/authority.
 - Runner offline dùng compiler cache trực tiếp; r1 build+test64s, r2 cached3s, bytecode hash như nhau; IDLr3 exit0 đã copy/đối chiếu.
 - C01 r2 **79/100/F4 PLAN** dựa19tests/D2; r0/r1 giữ. README/SHORTLIST/review/ROADMAP/DECISION đã đồng bộ.
-- Đã push spike **8f84cfe**, hồ sơ/điểm **b5cb544**, review T18–T20 **5725b75**; commit Thẻ nhớ cuối xem HEAD. PR7 body đã cập nhật T21/T24, fetch khớp/open/merged=false tại headd5436c2 trước checkpoint; không merge.
-- Pull **d5436c2**: T21/6921d5a sửa đúng3tên test, bỏ tên giả; vẫn nhầm has_one/signer, thiếu assertions/fee boundary/giới hạn. A đã ghi đang làmT22, đúng queue. Giữ T19 **9/9 mã–tên đúng**,T20 có5URL nhưng chưa nhận toàn bộ. Queue **T22 UX → T23 evidence → T24 review**; giữ score/contract/file A.
-- Automation **ACTIVE mỗi15phút**, đúng chat; action view/config kiểm lúc05:19, nhận heartbeat scheduler **06:13:03.072 ngày18/11/2026 UTC+7**. Record chứng minh lượt này đã gửi; reminder không mở cổng duyệt hoặc Phase3.
+- Đã push spike **8f84cfe**, hồ sơ/điểm **b5cb544**, review T21 **f96e9d2**; commit Thẻ nhớ cuối xem HEAD. PR7 body đã cập nhậtT22/T25, fetch khớp/head3d7ca13/open/merged=false trước checkpoint này; không merge.
+- Pull **3d7ca13**: T22/e2ef270 giữ **9/9 mã–tên đúng**, rõ lamports/slot/merchant cancel; CTA/state/wireframe/demo/SDK còn thiếu. Đã reviewT22, giaoT25; A đang làmT23 đúng queue. T21 còn authority/assertions/giới hạn, T20 còn diễn giải nguồn. Queue **T23 evidence → T24 review → T25 UX**; giữ score/contract/file A.
+- Automation **ACTIVE mỗi15phút** tại lần action view/config05:19, đúng chat; nhận heartbeat scheduler **06:58:03.712 ngày18/11/2026 UTC+7**. Record chứng minh lượt này đã gửi; reminder không mở cổng duyệt hoặc Phase3.
 - Push sau mỗi bước lớn bằng `[skip ci]`; workflow cũ tự cài nên không kích hoạt, không gọi CI xanh.
 - Cài thêm/tạo ví-keypair triển khai/deploy/public mới hỏi trước; Phase3 chỉ mở sau duyệt Phase2. Không merge/force-push/mainnet/secrets.
 
@@ -18,12 +18,12 @@
 
 [IDEA](IDEA.md), [ARCHITECTURE](ARCHITECTURE.md), [note023](learning/023-receiptrail-phase2-spike.md), [metadata](evidence/phase2/receiptrail-build-metadata.json), [tests r2](evidence/phase2/receiptrail-spike-r2.txt), [IDL](idl/receiptrail.json). Source/tests/IDL đã đối chiếu3hash lượt05:42; chưa có client/browser/RPC/devnet/CI ReceiptRail, review chéo A chưa nhận đạt. Không còn process build cần poll.
 
-[Review T21](reviews/receiptrail-codex.md#review-t21--18112026-heartbeat0613-utc7) xác nhận3/3 tên có thật trong source/log; source/tests/IDL/log không đổi. [Audit T18–T20](evidence/phase2/receiptrail-reviews-t18-t20-audit.json) giữ snapshot f49716a, không dùng lỗi tên test cũ như report hiện hành; chỉ kiểm tài liệu/source/log cũ. [Audit T17](evidence/phase2/receiptrail-ux-t17-audit.json) giữ snapshot sai9/9 lịch sử, không dùng như kết quả UX hiện hành.
+[Review T22](reviews/receiptrail-codex.md#review-t22--18112026-heartbeat0658-utc7) lưu hash42dòng/9mã đúng và5findings;5checkbox không thay nội dung còn thiếu. [Review T21](reviews/receiptrail-codex.md#review-t21--18112026-heartbeat0613-utc7) xác nhận3/3 tên có thật trong source/log; source/tests/IDL/thiết kế/điểm/evidence không đổi từf96e9d2. [Audit T18–T20](evidence/phase2/receiptrail-reviews-t18-t20-audit.json) giữ snapshot f49716a, không dùng lỗi tên test cũ như report hiện hành. [Audit T17](evidence/phase2/receiptrail-ux-t17-audit.json) giữ snapshot sai9/9 lịch sử, không dùng như kết quả UX hiện hành. Chỉ kiểm tài liệu/source đã có, không rerun tests.
 
 ## Còn lại và cổng chưa mở
 
 1. **Người dùng duyệt** [IDEA](IDEA.md) và [giải thích kiến trúc một trang](ARCHITECTURE.md#1-giải-thích-một-trang-cho-người-dùng). Ghi nguyên văn + giờ/múi giờ khi thật sự có câu đồng ý, không ghi sẵn đã duyệt hoặc hỏi chọn ý tưởng lại.
-2. Khi A có bản mới, review theo [queue T22→T23→T24](tasks/A-queue.md) và [bảng cổng](reviews/phase1-3-gates.md). Review tài liệu đã giao được phép tiếp tục; không chờ A để trình bản C hoặc tự đóng cổng A/giáo viên. T21/T19/T20 chưa nhận đạt toàn bộ; giữ phần3tên test/9mã đã đúng, không nhận tên đúng/checkbox/URL thay assertions hoặc bằng chứng về nội dung.
+2. Khi A có bản mới, review theo [queue T23→T24→T25](tasks/A-queue.md) và [bảng cổng](reviews/phase1-3-gates.md). T22 đã review; tiếp theo xem evidenceT23, giữT24/T25 đã giao. Review tài liệu được phép tiếp tục; không chờ A để trình bản C hoặc tự đóng cổng A/giáo viên. Giữ phần3tên test/9mã đã đúng, không nhận tên đúng/checkbox/URL thay assertions hoặc bằng chứng nội dung.
 3. Sau duyệt và các cổng cần thiết mới lập bước Phase3 cụ thể; hỏi riêng trước mọi cài thêm/tạo ví-keypair triển khai/deploy/public mới. Duyệt tài liệu không là quyền vận hành.
 
 ## Bị chặn (cần người dùng)

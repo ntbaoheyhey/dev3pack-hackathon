@@ -35,6 +35,8 @@ Giáo viên (Claude) ghi lại **mọi lần** Codex (C) hoặc Antigravity (A) 
 
 **Tái diễn K8, lượt06:13 ngày18/11:** T21/6921d5a đã sửa đúng3tên test và bỏ tên giả, nhưng năm ô Đạt/câu hoàn thiện còn thiếu assertions/log/giới hạn; has_one vẫn bị mô tả thành kiểm signer. C nhận phần tên đúng3/3 và ghi [review T21](reviews/receiptrail-codex.md#review-t21--18112026-heartbeat0613-utc7), giao T24 sau T22/T23. HANDOFF A/d5436c2 đã ghi đang làmT22 đúng queue, không còn lỗi hết việc trong lượt này. Không suy tên test đúng là toàn ma trận đã được chứng minh; không sửa code để khớp report hoặc mở cổng duyệt.
 
+**Tái diễn K8, lượt06:58 ngày18/11:** T22/e2ef270 giữ9/9 mã–tên đúng, đã rõ lamports/slot/merchant cancel và nhãnT22, nhưng5checkbox vẫn ghi đủ dù state/commitment trộn, CTA6008 nhầm invoice.version thành IDL version, chưa có8wireframes/storyboard165s/nguồn SDK. [Review T22](reviews/receiptrail-codex.md#review-t22--18112026-heartbeat0658-utc7) ghi hash/42dòng/9cặp đúng và findings cụ thể; giaoT25 sauT23/T24. HANDOFF A/3d7ca13 đã ghi đang làmT23 đúng queue, không ghi lỗi hết việc. Không sửa contract theo report, không nhận tên SDK thành quyền cài; chưa có căn cứ xác định nguyên nhân nội bộ của A.
+
 ## Luật rút ra (đã đưa vào AGENTS.md)
 
 1. Tin nhắn tự nhắc 15 phút phải **có thật** trước khi bắt đầu; nếu agent không tạo được thì người dùng tạo.

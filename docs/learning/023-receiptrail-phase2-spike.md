@@ -104,3 +104,9 @@ T18/073d781 dẫn test_duplicate không tồn tại và nhầm signer/expiry v�
 ## Bài học review T21 — 18/11/2026,06:13 UTC+7
 
 T21/6921d5a sửa đúng3tên hàm rollback/retry; C đối chiếu cả3 với source/log r2. Nhận phần sửa tên, không tiếp tục dùng lỗi test_duplicate của snapshotT18 để mô tả report hiện tại. Tên test tồn tại không thay assertion/kết quả và fee boundary. `Signer` kiểm signer, `has_one` đối chiếu key với field; merchant ở pay là SystemAccount, ở cancel mới cần Signer. [Review T21](../reviews/receiptrail-codex.md#review-t21--18112026-heartbeat0613-utc7) chỉ ra phần còn thiếu và T24 yêu cầu bảng trước-sau/assertion/log/giới hạn. Không rerun tests vì source/tests/IDL/log không đổi; không coi cải thiện report là review chéo đạt hoặc quyền triển khai.
+
+## Bài học review T22 — 18/11/2026,06:58 UTC+7
+
+T22/e2ef270 giữ9/9 mã–tên đúng, làm rõ lamports/slot/merchant cancel nhưng copy6008 vẫn gọi WrongVersion là lỗi IDL. Source PayInvoice/CancelInvoice kiểm **invoice.version**, nên phải đọc điều kiện phát lỗi trước khi viết CTA; không suy đổi IDL hoặc cập nhật app sẽ sửa được account version. State Paid và mức commitment là hai thông tin khác nhau; Expired chỉ suy khi invoice còn Open. Đơn vị đúng không tự làm form đủ: string32 chưa là mapping32bytes, create rent khác pay principal/fee.
+
+[Review T22](../reviews/receiptrail-codex.md#review-t22--18112026-heartbeat0658-utc7) giữ snapshot/hash và phân biệt tiến bộ với5checkbox chưa được chứng minh. Một dòng flow không thay8wireframes hay storyboard có tổng165giây và duplicate tx mới; tên SDK không thay nguồn/compatibility hoặc quyền cài. GiaoT25 sauT23/T24, giữ contract/điểm/fileA; chỉ kiểm tài liệu/source có sẵn, không rerun suite vì phần thực thi không đổi.
