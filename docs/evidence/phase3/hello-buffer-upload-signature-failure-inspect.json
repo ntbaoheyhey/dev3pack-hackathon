@@ -1,0 +1,15 @@
+{
+  "at": "2026-11-18T15:08:02.853Z",
+  "genesis": "EtWTRABZaYq6iMfeYKouRu166VU2xqa1wcaWoxPkrZBG",
+  "commitment": "finalized",
+  "slot": 523670059,
+  "payerLamports": 1850382400,
+  "signature": "5ZAeS6nEfTYDjF4nZwTyrc9cJaZMKm2AgANU5SjpPfR8BMNjsyoAHYkwqUySgouzuSBS3jBV5H3us54xAfBrbR9y",
+  "signatureStatus": null,
+  "programAccount": null,
+  "counterAccount": null,
+  "bufferLamports": 649452600,
+  "broadcastReached": false,
+  "reason": "First simulateTransaction returned SignatureFailure before sendRawTransaction; signer secret array was zeroed through shared reference. Keypair files unchanged.",
+  "additionalFeesLamports": 0
+}

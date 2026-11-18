@@ -1,0 +1,33 @@
+{
+  "startedAt": "2026-11-18T15:07:03.927Z",
+  "rpc": "https://api.devnet.solana.com",
+  "genesis": "EtWTRABZaYq6iMfeYKouRu166VU2xqa1wcaWoxPkrZBG",
+  "programId": "2yzxUQEpaeLmgCMhDipwnVL3DHsxez18KcePonqZRiXL",
+  "buffer": "qSWzcDdMP7m2GhyE2tgaZ5FnHzAtgvMjZwGkQok9s6D",
+  "authority": "GQRoDMoWFV2nhgwm3bZGvSCC1LSa2wRkLeeJg8NhbFM2",
+  "binarySha256": "9b5483f7335a294b125ba458bcbcbdc9e222b605a2c67d7fabc76c132a23da54",
+  "sourceFile": "hello-buffer-paced-upload-source.txt",
+  "wireSample": "3dE6qTXCrU8tUsiVzKQzc1Cog2Wry47yBQhxeSeuzrA9X9uw84KGLfpGijHc8gBSQHUnTLPctybw6nukMUEcRB8w",
+  "wireRoundtripVerified": true,
+  "computeUnitPrice": 0,
+  "computeUnitLimit": 2670,
+  "capLamports": 1500000000,
+  "bufferLamports": 649452600,
+  "initialPayerLamports": 1850382400,
+  "initialSpentLamports": 649617600,
+  "remainingChunks": 102,
+  "transactions": [
+    {
+      "offset": 29760,
+      "length": 960,
+      "signature": "5ZAeS6nEfTYDjF4nZwTyrc9cJaZMKm2AgANU5SjpPfR8BMNjsyoAHYkwqUySgouzuSBS3jBV5H3us54xAfBrbR9y",
+      "blockhash": "9fEdqvwuawRV5E7a6SDZjfmuz1mYw5VjDTspxzgoPN5s",
+      "lastValidBlockHeight": 510782149,
+      "feeQuoteLamports": 5000,
+      "status": "SIGNED_NOT_CONFIRMED"
+    }
+  ],
+  "status": "FAILED_OR_UNCONFIRMED_INSPECT_BEFORE_RETRY",
+  "error": "Expected values to be strictly equal:\n+ actual - expected\n\n+ 'SignatureFailure'\n- null\n",
+  "endedAt": "2026-11-18T15:07:05.793Z"
+}

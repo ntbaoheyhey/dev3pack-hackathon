@@ -1,0 +1,71 @@
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+import {createHash} from 'node:crypto';
+import {setTimeout as delay} from 'node:timers/promises';
+import {anchor,RPC,GENESIS,PROGRAM,PAYER,COUNTER,LOADER} from '/Users/bao/Documents/ChatGPT/dev3pack/tools/devnet-lab/client.mjs';
+process.chdir('/Users/bao/Documents/ChatGPT/dev3pack');
+assert.deepEqual(process.argv.slice(2),['--send-approved-hello-buffer']);
+const file='docs/evidence/phase3/hello-buffer-paced-upload-r2-2026-11-18.json';
+const journal='docs/evidence/phase3/hello-buffer-upload-pending.json';
+assert(!fs.existsSync(file)&&!fs.existsSync(journal));
+const buffer=new anchor.web3.PublicKey('qSWzcDdMP7m2GhyE2tgaZ5FnHzAtgvMjZwGkQok9s6D');
+const c=new anchor.web3.Connection(RPC,{commitment:'confirmed',disableRetryOnRateLimit:true,fetch:(u,i)=>fetch(u,{...i,signal:AbortSignal.timeout(15000)})});
+assert.equal(await c.getGenesisHash(),GENESIS);
+const binary=fs.readFileSync('target/deploy/phase3_hello.so');
+const sha=createHash('sha256').update(binary).digest('hex');
+assert.equal(sha,'9b5483f7335a294b125ba458bcbcbdc9e222b605a2c67d7fabc76c132a23da54');
+const sample=JSON.parse(fs.readFileSync('docs/evidence/phase3/hello-buffer-cli-write-sample.json','utf8'));
+const sm=sample.transaction.transaction.message;const si=sm.instructions[0];
+assert.equal(sm.accountKeys[si.programIdIndex],LOADER.toBase58());
+assert.deepEqual(si.accounts.map(n=>sm.accountKeys[n]),[buffer.toBase58(),PAYER.toBase58()]);
+const sampleData=Buffer.from(anchor.utils.bytes.bs58.decode(si.data));
+function payload(offset,length){assert(offset>=0&&length>0&&length<=960&&offset+length<=binary.length);const d=Buffer.alloc(16+length);d.writeUInt32LE(1,0);d.writeUInt32LE(offset,4);d.writeBigUInt64LE(BigInt(length),8);binary.copy(d,16,offset,offset+length);return d;}
+assert(sampleData.equals(payload(sampleData.readUInt32LE(4),Number(sampleData.readBigUInt64LE(8)))));
+const computeIxs=sm.instructions.slice(1).map(i=>new anchor.web3.TransactionInstruction({programId:new anchor.web3.PublicKey(sm.accountKeys[i.programIdIndex]),keys:[],data:Buffer.from(anchor.utils.bytes.bs58.decode(i.data))}));
+assert(computeIxs.every(i=>i.programId.equals(anchor.web3.ComputeBudgetProgram.programId)));
+assert.equal(computeIxs[0].data.readBigUInt64LE(1),0n);assert.equal(computeIxs[1].data.readUInt32LE(1),2670);
+const state=await c.getMultipleAccountsInfoAndContext([PAYER,PROGRAM,buffer,COUNTER],{commitment:'finalized'});
+const [pa,pr,ba,ca]=state.value;assert.equal(pr,null);assert.equal(ca,null);
+assert(ba.owner.equals(LOADER)&&!ba.executable&&ba.data.length===127709&&ba.data.readUInt32LE(0)===1&&ba.data[4]===1&&new anchor.web3.PublicKey(ba.data.subarray(5,37)).equals(PAYER));
+const remaining=[];for(let o=0;o<binary.length;o+=960){const n=Math.min(960,binary.length-o);if(!ba.data.subarray(37+o,37+o+n).equals(binary.subarray(o,o+n)))remaining.push({offset:o,length:n});}
+assert.equal(remaining.length,102);
+const rents=await Promise.all([36,127717,48].map(n=>c.getMinimumBalanceForRentExemption(n,'finalized')));
+const initialSpent=2500000000-pa.lamports;
+const reserve=rents.reduce((a,b)=>a+b,0)+1+15000+10000+10000000;
+assert(initialSpent+reserve+remaining.length*5000<=1500000000);
+const keyFile='/Users/bao/.local/share/dev3pack/devnet/payer-keypair.json';
+assert.equal(fs.statSync(keyFile).mode&0o777,0o600);
+const secret=Uint8Array.from(JSON.parse(fs.readFileSync(keyFile,'utf8')));const signer=anchor.web3.Keypair.fromSecretKey(Uint8Array.from(secret));secret.fill(0);assert(signer.publicKey.equals(PAYER));
+const record={startedAt:new Date().toISOString(),rpc:RPC,genesis:GENESIS,programId:PROGRAM.toBase58(),buffer:buffer.toBase58(),authority:PAYER.toBase58(),binarySha256:sha,sourceFile:'hello-buffer-paced-upload-source.txt',wireSample:sample.signature,wireRoundtripVerified:true,computeUnitPrice:0,computeUnitLimit:2670,capLamports:1500000000,bufferLamports:ba.lamports,initialPayerLamports:pa.lamports,initialSpentLamports:initialSpent,remainingChunks:remaining.length,transactions:[],status:'RUNNING'};
+const save=()=>fs.writeFileSync(file,JSON.stringify(record,null,2)+'\n');
+fs.writeFileSync(file,JSON.stringify(record,null,2)+'\n',{flag:'wx'});
+console.log(JSON.stringify({status:'RUNNING',remainingChunks:remaining.length,initialSpentLamports:initialSpent}));
+try{
+ for(const chunk of remaining){
+  await delay(1700);
+  const block=await c.getLatestBlockhash('confirmed');
+  const ix=new anchor.web3.TransactionInstruction({programId:LOADER,keys:[{pubkey:buffer,isSigner:false,isWritable:true},{pubkey:PAYER,isSigner:true,isWritable:false}],data:payload(chunk.offset,chunk.length)});
+  const tx=new anchor.web3.Transaction({feePayer:PAYER,recentBlockhash:block.blockhash}).add(ix,...computeIxs);
+  const message=tx.compileMessage();assert.equal(message.header.numRequiredSignatures,1);
+  const quote=await c.getFeeForMessage(message,'confirmed');assert.equal(quote.value,5000);
+  assert(initialSpent+reserve+(record.transactions.length+1)*5000<=1500000000);
+  const signed=new anchor.web3.VersionedTransaction(message);signed.sign([signer]);assert(anchor.web3.Transaction.from(signed.serialize()).verifySignatures());
+  const signature=anchor.utils.bytes.bs58.encode(signed.signatures[0]);
+  const entry={...chunk,signature,...block,feeQuoteLamports:quote.value,broadcastStarted:false,offlineSignatureVerified:true,status:'SIGNED_NOT_CONFIRMED'};
+  record.transactions.push(entry);fs.writeFileSync(journal,JSON.stringify({evidence:file,...entry},null,2)+'\n',{flag:'wx'});save();
+  if(record.transactions.length===1){const simulation=await c.simulateTransaction(signed,{commitment:'confirmed',sigVerify:true});assert.equal(simulation.value.err,null);assert(simulation.value.logs?.includes('Program '+LOADER.toBase58()+' success'));record.firstSimulation={err:simulation.value.err,unitsConsumed:simulation.value.unitsConsumed,logs:simulation.value.logs};save();}
+  entry.broadcastStarted=true;save();const returned=await c.sendRawTransaction(signed.serialize(),{skipPreflight:false,preflightCommitment:'confirmed',maxRetries:0});assert.equal(returned,signature);
+  let status;for(let n=0;n<8;n++){await delay(1200);status=(await c.getSignatureStatuses([signature],{searchTransactionHistory:true})).value[0];if(status?.err)throw new Error('WRITE_TRANSACTION_FAILED');if(status?.confirmationStatus==='confirmed'||status?.confirmationStatus==='finalized')break;}
+  assert(status&&(status.confirmationStatus==='confirmed'||status.confirmationStatus==='finalized'),'WRITE_NOT_CONFIRMED_INSPECT_JOURNAL');
+  entry.status='CONFIRMED_SUCCESS';entry.slot=status.slot;save();fs.unlinkSync(journal);
+  if(record.transactions.length%10===0||record.transactions.length===remaining.length)console.log(JSON.stringify({confirmedWrites:record.transactions.length,total:remaining.length,quotedFeesLamports:record.transactions.length*5000,at:new Date().toISOString()}));
+ }
+ let statuses;for(let n=0;n<25;n++){statuses=(await c.getSignatureStatuses(record.transactions.map(t=>t.signature),{searchTransactionHistory:true})).value;if(statuses.every(s=>s?.confirmationStatus==='finalized'&&s.err===null))break;await delay(2000);}
+ assert(statuses.every(s=>s?.confirmationStatus==='finalized'&&s.err===null),'WRITES_NOT_FINALIZED_YET');
+ const after=await c.getMultipleAccountsInfoAndContext([PAYER,PROGRAM,buffer,COUNTER],{commitment:'finalized'});
+ assert.equal(after.value[1],null);assert.equal(after.value[3],null);
+ const full=after.value[2];assert(full.owner.equals(LOADER)&&!full.executable&&full.data.subarray(37).equals(binary));assert.equal(full.lamports,ba.lamports);assert(new anchor.web3.PublicKey(full.data.subarray(5,37)).equals(PAYER));
+ const actualDebit=pa.lamports-after.value[0].lamports;assert.equal(actualDebit,remaining.length*5000);
+ record.status='FINALIZED_BUFFER_VERIFIED';record.endedAt=new Date().toISOString();record.after={slot:after.context.slot,balanceLamports:after.value[0].lamports,bufferLamports:full.lamports,payloadSha256:createHash('sha256').update(full.data.subarray(37)).digest('hex'),allWritesFinalized:true,actualDebitLamports:actualDebit,payerDeltaFromBaseline:2500000000-after.value[0].lamports};record.finalizedStatuses=statuses;save();console.log(JSON.stringify({status:record.status,after:record.after,transactions:record.transactions.length}));
+}catch(error){record.status='FAILED_OR_UNCONFIRMED_INSPECT_BEFORE_RETRY';record.error=error.message;record.endedAt=new Date().toISOString();save();console.error(JSON.stringify({status:record.status,error:record.error,pendingJournal:fs.existsSync(journal),confirmed:record.transactions.filter(t=>t.status==='CONFIRMED_SUCCESS').length}));process.exitCode=1;}
+

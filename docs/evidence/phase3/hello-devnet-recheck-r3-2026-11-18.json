@@ -1,0 +1,23 @@
+{
+  "at": "2026-11-18T15:03:15.985Z",
+  "rpc": "https://api.devnet.solana.com",
+  "genesis": "EtWTRABZaYq6iMfeYKouRu166VU2xqa1wcaWoxPkrZBG",
+  "slot": 523668859,
+  "commitment": "finalized",
+  "payer": "GQRoDMoWFV2nhgwm3bZGvSCC1LSa2wRkLeeJg8NhbFM2",
+  "balanceLamports": 1850467400,
+  "programId": "2yzxUQEpaeLmgCMhDipwnVL3DHsxez18KcePonqZRiXL",
+  "buffer": "qSWzcDdMP7m2GhyE2tgaZ5FnHzAtgvMjZwGkQok9s6D",
+  "bufferLamports": 649452600,
+  "bufferAuthority": "GQRoDMoWFV2nhgwm3bZGvSCC1LSa2wRkLeeJg8NhbFM2",
+  "matchingChunks": 14,
+  "remainingChunks": 119,
+  "payerDeltaFromBaseline": 649532600,
+  "conservativeAdditionalBudgetLamports": 663009801,
+  "conservativeTotalBudgetLamports": 1312542401,
+  "capLamports": 1500000000,
+  "threeSignatureFeeLamports": 15000,
+  "newKeypairCreated": false,
+  "binarySha256": "9b5483f7335a294b125ba458bcbcbdc9e222b605a2c67d7fabc76c132a23da54",
+  "status": "READY_TO_RESUME_EXISTING_BUFFER"
+}

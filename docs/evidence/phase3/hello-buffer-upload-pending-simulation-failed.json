@@ -1,0 +1,10 @@
+{
+  "evidence": "docs/evidence/phase3/hello-buffer-paced-upload-2026-11-18.json",
+  "offset": 29760,
+  "length": 960,
+  "signature": "5ZAeS6nEfTYDjF4nZwTyrc9cJaZMKm2AgANU5SjpPfR8BMNjsyoAHYkwqUySgouzuSBS3jBV5H3us54xAfBrbR9y",
+  "blockhash": "9fEdqvwuawRV5E7a6SDZjfmuz1mYw5VjDTspxzgoPN5s",
+  "lastValidBlockHeight": 510782149,
+  "feeQuoteLamports": 5000,
+  "status": "SIGNED_NOT_CONFIRMED"
+}
