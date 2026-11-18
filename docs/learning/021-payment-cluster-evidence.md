@@ -191,3 +191,7 @@ Bản306466f đến trước push khôi phục Request và nhãn idempotency key
 [T31/e483529](../reviews/receiptrail-codex.md#review-t31--18112026) giữ5URL/nhãnEVM/expiry đúng nhưng lại bỏ Request và cơ chế idempotency key/fingerprint-cache của306466f. Paid=finalized còn sai; bảng phản hồi ghi Request đã có trái nội dung, đổi nghĩa T29-E1 và thiếu10IDs gốc. [Snapshot](../evidence/phase2/receiptrail-t31-review.json) giữ đúng bytes/hash/6inputs; chỉ đối chiếu note/review nguồn cũ và source local, không crawl lại hoặc suy A đã mở nguồn.
 
 Patch cần giữ phần đã nhận và so với revision trước; ngày cập nhật không là ngày truy cập, số URL không là provenance, PDA định danh không tự thực thi invariant. Giữ T32/T33 và phần sửa hẹp T31 cùng ID, không thêm vòng task; không đổi điểm/cổng/quyền hoặc rerun suite cho tài liệu.
+
+### Bổ sung T31 v2 — 18/11/2026
+
+[4e4a004](../reviews/receiptrail-codex.md#bổ-sung-t31-v2-trước-checkpoint--18112026) khôi phục Pending/Unknown và không tự ký/retry; nhận phần sửa, không dùng lỗi Request mất của snapshot e483529 cho bản mới. [Snapshot v2](../evidence/phase2/receiptrail-t31-v2-review.json)34dòng/5URL/6hashes giữ riêng. Paid=Finalized, provenance/pain/cơ chế, actor/CTA/context và bảng3mốc expiry vẫn thiếu;8hàng phản hồi đổi nghĩa IDs và nói có bảng chưa tồn tại. Đọc note/review nguồn cũ/source, không crawl mới; giữ T31-E1–E3 theo phạm vi còn thiếu, không tăng điểm hoặc tự đóng cổng.

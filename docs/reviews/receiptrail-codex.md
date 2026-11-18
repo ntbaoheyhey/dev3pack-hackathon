@@ -425,3 +425,11 @@ Pull **5aada5e968d27499b352e55095ddf50a37d477dd**, đọc [UX T33/6ef9815](https
 Đọc source24–37/61–98/107–137, ARCHITECTURE6 và notes005/013/014/023; log r2 hiện có giữ nguyên. Không crawl/version lookup mới hoặc chạy runtime/browser/RPC/CI; không sửa report A/source/IDL/thiết kế/điểm. Nhãn ngày trong bảng SDK không chứng minh đã mở nguồn hoặc cấp quyền cài.
 
 HANDOFF A/5aada5e chuyển T31/T32 đúng queue; không suy process live hoặc lỗi bỏ sót việc. Giữ **T31 → T32 → T33 (sửa bổ sung cùng ID)**; ưu tiên khôi phục phần đúng bị mất và source semantics trước bố cục/demo. Không thêm task ID hoặc tự đóng9nhóm findings/review chéo/giáo viên. P3-A đạt; hello/ví thật vẫn cần người dùng khi sẵn sàng.
+
+### Bổ sung T31 v2 trước checkpoint — 18/11/2026
+
+Sau commit reviewT33 **7d0f06e**, fetch có **4e4a004**; merge/push **be8ee8d** với [skip ci], chỉ nhận file evidence A thay đổi. [Snapshot v2](../evidence/phase2/receiptrail-t31-v2-review.json) giữ34dòng/hash/5URL/6inputs. Nhận Request Pending/Unknown đã được khôi phục, Unknown ghi **không tự ký/retry**, và đường đọc Invoice không dùng Solana Pay reference. Không tiếp tục mô tả Request ở bản mới là bị mất; snapshot e483529 giữ lịch sử.
+
+Giữ **T31-E1–E3**, chỉ cập nhật phạm vi: E1 vẫn thiếu provenance/cơ chế/diễn giải pain; E2 vẫn Paid=Finalized, thiếu actor/CTA/context và bảng ba mốc expiry; E3 có8hàng nhưng thiếu10IDs gốc/T31-E3, đổi nghĩa T29-E1/T31-E1. HàngT31-E2 khẳng định có bảng expiry−1/expiry/expiry+1 nhưng mục3 không có bảng đó. “Hoàn thiện13findings” không là evidence. Bản mới cũng không giữ nhãn Web API/EVM rõ như e483529; EIP-3009 không thay giải thích phạm vi cho người mới.
+
+Chỉ đối chiếu report/diff/note021/review nguồn trước/source local, không crawl hoặc rerun. Giữ phần mới đúng, làm tiếp **T32→T33 rồi sửa hẹp T31 cùng ID**; không thêm task hoặc sửa report A.9nhóm findings và cổng vẫn mở, không tăng điểm.
