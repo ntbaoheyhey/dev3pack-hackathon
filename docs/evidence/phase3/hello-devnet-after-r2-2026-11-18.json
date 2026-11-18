@@ -1,0 +1,706 @@
+{
+  "at": "2026-11-18T15:01:37.519Z",
+  "rpc": "https://api.devnet.solana.com",
+  "genesis": "EtWTRABZaYq6iMfeYKouRu166VU2xqa1wcaWoxPkrZBG",
+  "commitment": "finalized",
+  "slot": 523668441,
+  "accounts": [
+    {
+      "address": "GQRoDMoWFV2nhgwm3bZGvSCC1LSa2wRkLeeJg8NhbFM2",
+      "owner": "11111111111111111111111111111111",
+      "executable": false,
+      "lamports": 1850467400,
+      "bytes": 0,
+      "tag": null,
+      "dataSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    null,
+    {
+      "address": "qSWzcDdMP7m2GhyE2tgaZ5FnHzAtgvMjZwGkQok9s6D",
+      "owner": "BPFLoaderUpgradeab1e11111111111111111111111",
+      "executable": false,
+      "lamports": 649452600,
+      "bytes": 127709,
+      "tag": 1,
+      "dataSha256": "01de3ee38b3a7bc42ec9c89145734b0018266864f93e0041d91c4199e86a6353",
+      "authorityPresent": 1,
+      "authority": "GQRoDMoWFV2nhgwm3bZGvSCC1LSa2wRkLeeJg8NhbFM2",
+      "payloadMatchesBinary": false,
+      "matchingChunks": [
+        {
+          "offset": 0,
+          "matches": true
+        },
+        {
+          "offset": 960,
+          "matches": true
+        },
+        {
+          "offset": 1920,
+          "matches": true
+        },
+        {
+          "offset": 2880,
+          "matches": true
+        },
+        {
+          "offset": 3840,
+          "matches": true
+        },
+        {
+          "offset": 4800,
+          "matches": true
+        },
+        {
+          "offset": 5760,
+          "matches": true
+        },
+        {
+          "offset": 6720,
+          "matches": true
+        },
+        {
+          "offset": 7680,
+          "matches": true
+        },
+        {
+          "offset": 8640,
+          "matches": true
+        },
+        {
+          "offset": 9600,
+          "matches": true
+        },
+        {
+          "offset": 10560,
+          "matches": false
+        },
+        {
+          "offset": 11520,
+          "matches": true
+        },
+        {
+          "offset": 12480,
+          "matches": true
+        },
+        {
+          "offset": 13440,
+          "matches": true
+        },
+        {
+          "offset": 14400,
+          "matches": false
+        },
+        {
+          "offset": 15360,
+          "matches": false
+        },
+        {
+          "offset": 16320,
+          "matches": false
+        },
+        {
+          "offset": 17280,
+          "matches": false
+        },
+        {
+          "offset": 18240,
+          "matches": false
+        },
+        {
+          "offset": 19200,
+          "matches": false
+        },
+        {
+          "offset": 20160,
+          "matches": false
+        },
+        {
+          "offset": 21120,
+          "matches": false
+        },
+        {
+          "offset": 22080,
+          "matches": false
+        },
+        {
+          "offset": 23040,
+          "matches": false
+        },
+        {
+          "offset": 24000,
+          "matches": false
+        },
+        {
+          "offset": 24960,
+          "matches": false
+        },
+        {
+          "offset": 25920,
+          "matches": false
+        },
+        {
+          "offset": 26880,
+          "matches": false
+        },
+        {
+          "offset": 27840,
+          "matches": false
+        },
+        {
+          "offset": 28800,
+          "matches": false
+        },
+        {
+          "offset": 29760,
+          "matches": false
+        },
+        {
+          "offset": 30720,
+          "matches": false
+        },
+        {
+          "offset": 31680,
+          "matches": false
+        },
+        {
+          "offset": 32640,
+          "matches": false
+        },
+        {
+          "offset": 33600,
+          "matches": false
+        },
+        {
+          "offset": 34560,
+          "matches": false
+        },
+        {
+          "offset": 35520,
+          "matches": false
+        },
+        {
+          "offset": 36480,
+          "matches": false
+        },
+        {
+          "offset": 37440,
+          "matches": false
+        },
+        {
+          "offset": 38400,
+          "matches": false
+        },
+        {
+          "offset": 39360,
+          "matches": false
+        },
+        {
+          "offset": 40320,
+          "matches": false
+        },
+        {
+          "offset": 41280,
+          "matches": false
+        },
+        {
+          "offset": 42240,
+          "matches": false
+        },
+        {
+          "offset": 43200,
+          "matches": false
+        },
+        {
+          "offset": 44160,
+          "matches": false
+        },
+        {
+          "offset": 45120,
+          "matches": false
+        },
+        {
+          "offset": 46080,
+          "matches": false
+        },
+        {
+          "offset": 47040,
+          "matches": false
+        },
+        {
+          "offset": 48000,
+          "matches": false
+        },
+        {
+          "offset": 48960,
+          "matches": false
+        },
+        {
+          "offset": 49920,
+          "matches": false
+        },
+        {
+          "offset": 50880,
+          "matches": false
+        },
+        {
+          "offset": 51840,
+          "matches": false
+        },
+        {
+          "offset": 52800,
+          "matches": false
+        },
+        {
+          "offset": 53760,
+          "matches": false
+        },
+        {
+          "offset": 54720,
+          "matches": false
+        },
+        {
+          "offset": 55680,
+          "matches": false
+        },
+        {
+          "offset": 56640,
+          "matches": false
+        },
+        {
+          "offset": 57600,
+          "matches": false
+        },
+        {
+          "offset": 58560,
+          "matches": false
+        },
+        {
+          "offset": 59520,
+          "matches": false
+        },
+        {
+          "offset": 60480,
+          "matches": false
+        },
+        {
+          "offset": 61440,
+          "matches": false
+        },
+        {
+          "offset": 62400,
+          "matches": false
+        },
+        {
+          "offset": 63360,
+          "matches": false
+        },
+        {
+          "offset": 64320,
+          "matches": false
+        },
+        {
+          "offset": 65280,
+          "matches": false
+        },
+        {
+          "offset": 66240,
+          "matches": false
+        },
+        {
+          "offset": 67200,
+          "matches": false
+        },
+        {
+          "offset": 68160,
+          "matches": false
+        },
+        {
+          "offset": 69120,
+          "matches": false
+        },
+        {
+          "offset": 70080,
+          "matches": false
+        },
+        {
+          "offset": 71040,
+          "matches": false
+        },
+        {
+          "offset": 72000,
+          "matches": false
+        },
+        {
+          "offset": 72960,
+          "matches": false
+        },
+        {
+          "offset": 73920,
+          "matches": false
+        },
+        {
+          "offset": 74880,
+          "matches": false
+        },
+        {
+          "offset": 75840,
+          "matches": false
+        },
+        {
+          "offset": 76800,
+          "matches": false
+        },
+        {
+          "offset": 77760,
+          "matches": false
+        },
+        {
+          "offset": 78720,
+          "matches": false
+        },
+        {
+          "offset": 79680,
+          "matches": false
+        },
+        {
+          "offset": 80640,
+          "matches": false
+        },
+        {
+          "offset": 81600,
+          "matches": false
+        },
+        {
+          "offset": 82560,
+          "matches": false
+        },
+        {
+          "offset": 83520,
+          "matches": false
+        },
+        {
+          "offset": 84480,
+          "matches": false
+        },
+        {
+          "offset": 85440,
+          "matches": false
+        },
+        {
+          "offset": 86400,
+          "matches": false
+        },
+        {
+          "offset": 87360,
+          "matches": false
+        },
+        {
+          "offset": 88320,
+          "matches": false
+        },
+        {
+          "offset": 89280,
+          "matches": false
+        },
+        {
+          "offset": 90240,
+          "matches": false
+        },
+        {
+          "offset": 91200,
+          "matches": false
+        },
+        {
+          "offset": 92160,
+          "matches": false
+        },
+        {
+          "offset": 93120,
+          "matches": false
+        },
+        {
+          "offset": 94080,
+          "matches": false
+        },
+        {
+          "offset": 95040,
+          "matches": false
+        },
+        {
+          "offset": 96000,
+          "matches": false
+        },
+        {
+          "offset": 96960,
+          "matches": false
+        },
+        {
+          "offset": 97920,
+          "matches": false
+        },
+        {
+          "offset": 98880,
+          "matches": false
+        },
+        {
+          "offset": 99840,
+          "matches": false
+        },
+        {
+          "offset": 100800,
+          "matches": false
+        },
+        {
+          "offset": 101760,
+          "matches": false
+        },
+        {
+          "offset": 102720,
+          "matches": false
+        },
+        {
+          "offset": 103680,
+          "matches": false
+        },
+        {
+          "offset": 104640,
+          "matches": false
+        },
+        {
+          "offset": 105600,
+          "matches": false
+        },
+        {
+          "offset": 106560,
+          "matches": false
+        },
+        {
+          "offset": 107520,
+          "matches": false
+        },
+        {
+          "offset": 108480,
+          "matches": false
+        },
+        {
+          "offset": 109440,
+          "matches": false
+        },
+        {
+          "offset": 110400,
+          "matches": false
+        },
+        {
+          "offset": 111360,
+          "matches": false
+        },
+        {
+          "offset": 112320,
+          "matches": false
+        },
+        {
+          "offset": 113280,
+          "matches": false
+        },
+        {
+          "offset": 114240,
+          "matches": false
+        },
+        {
+          "offset": 115200,
+          "matches": false
+        },
+        {
+          "offset": 116160,
+          "matches": false
+        },
+        {
+          "offset": 117120,
+          "matches": false
+        },
+        {
+          "offset": 118080,
+          "matches": false
+        },
+        {
+          "offset": 119040,
+          "matches": false
+        },
+        {
+          "offset": 120000,
+          "matches": false
+        },
+        {
+          "offset": 120960,
+          "matches": false
+        },
+        {
+          "offset": 121920,
+          "matches": false
+        },
+        {
+          "offset": 122880,
+          "matches": false
+        },
+        {
+          "offset": 123840,
+          "matches": false
+        },
+        {
+          "offset": 124800,
+          "matches": false
+        },
+        {
+          "offset": 125760,
+          "matches": false
+        },
+        {
+          "offset": 126720,
+          "matches": false
+        }
+      ]
+    },
+    null
+  ],
+  "payerDeltaFromBaseline": 649532600,
+  "signatureCount": 15,
+  "signatures": [
+    {
+      "blockTime": 1795014004,
+      "confirmationStatus": "finalized",
+      "err": null,
+      "memo": null,
+      "signature": "5iDLicFUGU6JJAP64ECACnmA6cuWMj2GkpDotvJvw572vonix6ArK5WRynaswy15VLKaDkj6wk8u4yELg5DiLGQu",
+      "slot": 523668057,
+      "transactionIndex": 46
+    },
+    {
+      "blockTime": 1795014004,
+      "confirmationStatus": "finalized",
+      "err": null,
+      "memo": null,
+      "signature": "5CuvBjHLhga7zYysjkcRdytL948HqXaKVq6xFoGgU8zfNixbezzFMwLeXpfpVGNpA3m3JUWpHwbvD6UAkDha2Q1M",
+      "slot": 523668057,
+      "transactionIndex": 45
+    },
+    {
+      "blockTime": 1795014004,
+      "confirmationStatus": "finalized",
+      "err": null,
+      "memo": null,
+      "signature": "2rJ54EFw22DkH3Z3bzz1FgYBEFYjW8GxzCKSVkSe87s4DDXsYyvZyQgZ7xNAJdjdk1TjVbu3zTniPGapb2WW58rf",
+      "slot": 523668057,
+      "transactionIndex": 44
+    },
+    {
+      "blockTime": 1795014004,
+      "confirmationStatus": "finalized",
+      "err": null,
+      "memo": null,
+      "signature": "GESSNdpkLydws7pDHDgECvmJarFF2ksJGfJXJHMakowapXHQmSvxancoWCLcCTfWG8pLKHmA4h6dLZiqk7g8QSV",
+      "slot": 523668057,
+      "transactionIndex": 43
+    },
+    {
+      "blockTime": 1795014004,
+      "confirmationStatus": "finalized",
+      "err": null,
+      "memo": null,
+      "signature": "3jE9yLwonkWYoJpYfvAufETFWh5vwNCb2Eb8j4hWPGLd6m26zgXSa2WFvBvsbJyfKZk5xmGUE1EtkcyLusgW7Dte",
+      "slot": 523668057,
+      "transactionIndex": 41
+    },
+    {
+      "blockTime": 1795014004,
+      "confirmationStatus": "finalized",
+      "err": null,
+      "memo": null,
+      "signature": "4BDXkd3SyHpgG2zvhK95UBjwDQL4CTJx3PJNr9yRhQsYBGPWS2yerAiGbbETdpmUpZ4kDvPx1RdbitLW6F8zdrRX",
+      "slot": 523668057,
+      "transactionIndex": 39
+    },
+    {
+      "blockTime": 1795014004,
+      "confirmationStatus": "finalized",
+      "err": null,
+      "memo": null,
+      "signature": "cBQ7vMPt87TG4n6dzZKJC448jfKYWzxaVUg1Kz46cwjF47PDQ4SmnxdB8K2oXPSBywUirwX8t5BCuR1KQnvCHbk",
+      "slot": 523668057,
+      "transactionIndex": 36
+    },
+    {
+      "blockTime": 1795014004,
+      "confirmationStatus": "finalized",
+      "err": null,
+      "memo": null,
+      "signature": "22rGR2ntTyeWvoAPjUw7GtnbGWZrBYAs2gGhEuXiYW3A3tAb3zG52tdKyX9bZqCdEBp7ZDCANqMBDRDaFY9fSTQg",
+      "slot": 523668057,
+      "transactionIndex": 34
+    },
+    {
+      "blockTime": 1795014004,
+      "confirmationStatus": "finalized",
+      "err": null,
+      "memo": null,
+      "signature": "2rka5JcrCwBiu8VaDPbFN2RzKGW7tyohtKpQPzisd5NMNhy5c8Mrd6gp6gpt6goX2Sex1JxbhHeZFTyGcefmbwuU",
+      "slot": 523668057,
+      "transactionIndex": 33
+    },
+    {
+      "blockTime": 1795014004,
+      "confirmationStatus": "finalized",
+      "err": null,
+      "memo": null,
+      "signature": "3kBeUcV9dJrtk9swGyf6irpfXSzR8nkJPj3T4SLYrt71EGXKMr8iqre8cp8DXjX7siDRNYwdHs4uQSoZufBCzAQo",
+      "slot": 523668057,
+      "transactionIndex": 31
+    },
+    {
+      "blockTime": 1795014004,
+      "confirmationStatus": "finalized",
+      "err": null,
+      "memo": null,
+      "signature": "5G3TPUS8jCiyQfvLPwqcZN718kCGCFgJykhVRerKCCfYpraxTWW1sfA5qpjcm3ekaY6vnVNpVQ9qihAinPTHHEo8",
+      "slot": 523668057,
+      "transactionIndex": 30
+    },
+    {
+      "blockTime": 1795014004,
+      "confirmationStatus": "finalized",
+      "err": null,
+      "memo": null,
+      "signature": "2bKeHnnEJX8W4MCzkcMGasNjxxYccL35HTwYxzygMrGWvPFHpMUiiLMiQXJL6hb753gXTC5TpFzX4QuB2oUCnZ9d",
+      "slot": 523668057,
+      "transactionIndex": 26
+    },
+    {
+      "blockTime": 1795014004,
+      "confirmationStatus": "finalized",
+      "err": null,
+      "memo": null,
+      "signature": "2hSbFiXdUEd7K7exykggfBhvV1jbbif3xBdhtSmQibGFuVp4iiXtxZgxoaMGXa43FVQA6C4HNQadw34D7xJQaDQf",
+      "slot": 523668057,
+      "transactionIndex": 24
+    },
+    {
+      "blockTime": 1795014004,
+      "confirmationStatus": "finalized",
+      "err": null,
+      "memo": null,
+      "signature": "5sp273JA3G7of1yYRYcPVqhJH9ABj1rNg7AS2CMWCvxmmM2xnUaBJSSaXrRZhRnVGDVgUBAJG4uEbxvGd7Q173gQ",
+      "slot": 523668057,
+      "transactionIndex": 23
+    },
+    {
+      "blockTime": 1795014002,
+      "confirmationStatus": "finalized",
+      "err": null,
+      "memo": null,
+      "signature": "33HvSbSmtMKLpJrotS5BLJubNK8gS3ymAR23YDe1XcdGySwi8Ys8uNiLmR6qi2N7FsXSRqNk5edkpanrG7FuWWsH",
+      "slot": 523668050,
+      "transactionIndex": 49
+    }
+  ],
+  "pendingJournal": false
+}

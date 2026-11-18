@@ -219,3 +219,9 @@ Lần deploy 21:52:21 UTC+7 exit 1 sau khoảng 30 ms: `Found argument '--fee-pa
 Khi tiếp tục, đối soát genesis/balance/program/buffer/pending journal trước khi sửa vị trí flag rồi gửi lại. Tái dùng buffer `qSWzcDdMP7m2GhyE2tgaZ5FnHzAtgvMjZwGkQok9s6D`; không chạy lại đoạn tạo keypair. Evidence/log r2 phải riêng, giữ checks và trần 1.5 SOL. Client smoke kiểm confirmed nên cần xác minh finalized riêng. Dự toán 1.3147424 SOL không là chi phí thực.
 
 Bàn giao phải gỡ trạng thái funding/review hết hiệu lực khỏi NEXT/PHASE3-PLAN, không chỉ thêm cuối HANDOFF. Queue cuối xuất bản qua7137ec0; bbecb24/e376f9e có trước nên chưa chứng minh A nộp lượt cuối mới. Sau lần nộp đó chỉ nhận phần đạt, ghi nợ tài liệu và đóng T31/T32/T33; không mở thêm vòng sửa. Snapshot cũ giữ nguyên revision; helper kiểm tài liệu ép vòng sửa cũ phải đổi phạm vi, không sửa lịch sử để làm pass.
+
+### P3-B r2 — ghi buffer một phần, 22:01 ngày18/11/2026 UTC+7
+
+CLI exit1 sau69giây: `Data writes to account failed: Custom error: Max retries exceeded`. Đối soát finalized: buffer owner loader-v3/authority đúng/127709bytes/649452600lamports,14/133chunks khớp binary; program/counter chưa tồn tại, payer1850467400lamports.15signatures finalized không lỗi; delta649532600 gồm buffer rent và80000lamports phí. Không kết luận nguyên nhân RPC rate-limit khi log không có status429.
+
+Đã đọc source Agave4.1.2 program.rs:1379–1409,2556–2607,3130–3238: buffer đã có thì không allocate lại, chỉ viết các chunk khác binary. Kế hoạch resume cùng buffer sau kiểm state/ngân sách và blockhash; giữ flags/max-sign-attempts1, không bỏ preflight/feature/fee checks hoặc tăng trần. Mỗi retry ghi evidence/log riêng, chỉ ký sau đối soát lần trước; chưa chứng minh deploy thành công. Web tool vẫn lỗi route_not_found, dùng source chính thức đã tải có hash trong preflight.

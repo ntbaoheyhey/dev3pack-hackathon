@@ -1,5 +1,5 @@
 # Thẻ nhớ — Codex / P3-B hello và đóng vòng review
-- Trạng thái **đang làm**; lượt bàn giao chỉ chốt hồ sơ. P3-B chưa xong; báo kết quả để người dùng duyệt Phase 4, chưa mở Phase 4.
+- Trạng thái **đang làm**: đã tiếp tục P3-B; retry r2 hết lượt ghi dữ liệu, đang đối soát/resume cùng buffer. Chưa mở Phase 4.
 - C trưởng nhóm tại `/Users/bao/Documents/ChatGPT/dev3pack`, branch `work`; A qua A-queue, không sửa file/checkout A.
 - ReceiptRail chính/ClusterProof phụ; Phase 2 đã duyệt. Nguyên văn/giờ và quyền P3-A/P3-B ở DECISION; không phục hồi quyết định ClusterProof sai.
 - Tin mới: đúng một lượt cuối gộp T31/T32/T33, nhận phần đạt/ghi nợ tài liệu/đóng; không mở vòng sửa. Record user-funded-final-review-2026-11-18.json.
@@ -9,11 +9,12 @@
 - Buffer **qSWzcDdMP7m2GhyE2tgaZ5FnHzAtgvMjZwGkQok9s6D** phải tái dùng; không chạy lại đoạn tạo keypair hoặc tạo buffer thứ hai.
 - Preflight binary/signers/modes đạt; dự toán bảo thủ 1.3147424 SOL là estimate, chưa phải chi phí thực. Evidence hello-devnet-preflight-2026-11-18.json.
 - Lần deploy 21:52:21 UTC+7 exit 1 do đặt `--fee-payer` ở root; không có signature trong evidence. Chưa đối soát chain sau lỗi.
-- Bước tiếp khi tiếp tục: kiểm RPC/journal/program/buffer/balance rồi đặt `--fee-payer` sau `program deploy`; lưu retry r2 riêng, giữ nguyên evidence lỗi đầu.
+- R2 22:01:10 UTC+7 lỗi Max retries; finalized22:01:37: buffer đã funded649452600lamports/14trong133chunks, payer1850467400; program chưa deploy. Không tạo/allocate buffer lại.
+- R3 bắt đầu22:03:15 UTC+7, process39714/session95982; precheck14/133chunks/totalbudget1.312542401SOL. Poll handle/evidence trước mọi retry, không khởi động trùng. Giữ flags/checks/trần.
 - Sau gửi: kiểm finalized, loader/ProgramData/authority/bytecode, initialize 0 → increment 1 và tổng chi phí; timeout đối soát, không ký lại mù quáng.
 - CI `27cf7ac` đạt 3 jobs/57 tests mỗi run; HEAD tài liệu không là revision CI, không chạy lại khi executable inputs không đổi.
 - Web/lab/toolchain ClusterProof giữ nguyên; ví thật chưa kiểm. Không deploy ReceiptRail/public/cài thêm/merge PR7/mainnet/force-push/close buffer/đổi authority.
-- Automation 15 phút giữ nguyên; checkpoint tài liệu và merge dùng `[skip ci]`; không tạo automation trùng.
+- Automation 15 phút hiện **PAUSED** theo config app đọc lại21:59, khác hồ sơ cũ; giữ nguyên cấu hình. Checkpoint/merge dùng `[skip ci]`; không tạo bản trùng.
 - Khi chốt P3-B và lượt cuối A: đồng bộ notes/cổng/ROADMAP/PR7, push, trình Phase 4. Không lấy review tài liệu làm blocker triển khai.
 
 ## Trạng thái thực thi đã bàn giao
