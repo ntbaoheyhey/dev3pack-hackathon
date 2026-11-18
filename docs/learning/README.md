@@ -50,11 +50,11 @@ Tiến độ và bước tiếp tục sau compact nằm trong [docs/HANDOFF.md](
 | [019 — Nguồn ý tưởng trong hệ sinh thái Solana](019-solana-idea-sources.md) | RFS/RFP/funding, dự án thật/archived, P-Token/Light/x402, evidence filtering | Codex — đã nghiên cứu; chưa spike |
 | [020 — Nguồn vấn đề thật của người dùng](020-nguon-van-de-that.md) | Bản đầu của A; review C01–C04 tại reviews/C-codex | Antigravity — cần bổ sung nguồn cụ thể; review không chặn |
 
-| [021 — Kiểm chứng payment, cluster và token net](021-payment-cluster-evidence.md) | Evidence C01–C03, RPC read-only và parser mint/u64; Ryntra/Pay alternatives | Codex — 16test đạt; T31/580b903 giữ Unknown/expiry, mất nhãn Web API-EVM/giới hạn local, provenance/state/context/phản hồi chưa đủ; không crawl mới |
+| [021 — Kiểm chứng payment, cluster và token net](021-payment-cluster-evidence.md) | Evidence C01–C03, RPC read-only và parser mint/u64 | Codex — T31/71d6ff6 khôi phục nhãn pain/nhắc PDA; provenance/state/context/phản hồi chưa đủ, không crawl mới |
 
 | [022 — Chuẩn bị độc lập Phase 2/3](022-phase2-3-independent-prep.md) | Contract/harness, toolchain/client, web/hosting và runner offline hai program | Codex — macOS/cache25runtime+8client đạt; Linux27cf7ac push/PR đều đạt57tests/build/ReceiptRail IDL cmp. Hashes Linux khác macOS, chưa reproducible build; P3-A/P3-B có quyền, funding/review còn mở |
 
-| [023 — ReceiptRail Phase2 và spike Anchor local](023-receiptrail-phase2-spike.md) | Account/PDA,payment atomicity,build offline và LiteSVM | Codex — 19runtime/IDL local đạt,F4 D2; người dùng duyệtPhase2. 580b903 nhận SystemAccount/giới hạn commitment, T32 vẫn2log sai, T33 mất phí/Terms/no-auto-retry/reload.9findings mở,T31→T32→T33;chưa integration/devnet/giáo viên |
+| [023 — ReceiptRail Phase2 và spike Anchor local](023-receiptrail-phase2-spike.md) | Account/PDA,payment atomicity,build offline và LiteSVM | Codex — 19runtime/IDL local đạt,F4 D2; người dùng duyệtPhase2. T32/e12c8e6 sửa3log nhưng rút gọn tên test; T33/ee200e3 khôi phục phí/Terms/Unknown/reload.9findings mở,T31→T32→T33 |
 
 ## Bài học / lỗi đã gặp
 

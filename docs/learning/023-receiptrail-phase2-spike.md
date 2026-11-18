@@ -174,3 +174,7 @@ Bổ sung T33/509adac trước push: [review](../reviews/receiptrail-codex.md#b�
 ## Bài học review580b903 — 18/11/2026
 
 [Review](../reviews/receiptrail-codex.md#review-580b903--18112026) nhận T32 thêm SystemAccount và giới hạn commitment, nhưng hai dẫn log sai vẫn chưa sửa; signature khác/canonical bump bị bỏ. T33 lại bỏ phí/Terms/no-auto-retry/reload dù checkbox tự nhận đủ. Giữ9mã/4mục/165giây trên giấy không chứng minh semantics/8bố cục/demo thật. [Snapshot](../evidence/phase2/receiptrail-supplement-580b903-review.json) lưu từng blob/hash/6inputs; phải kiểm cả phần đã nhận khi sửa, không đổi report lịch sử để khớp hiện tại. Chỉ review tài liệu/source/log, không rerun suite; cùng9findings và task IDs.
+
+## Review16:47 — 18/11/2026
+
+[Review](../reviews/receiptrail-codex.md#review-bổ-sung1647--18112026) nhận log26/39/23–24 đúng củae12c8e6, nhưng3tên test lại bị rút gọn; log đúng chưa thay assertion/fee boundary. ee200e3 khôi phục phí/Terms/no-auto-retry/reload, không tiếp tục gán regression580b903 cho bản mới. Paid vẫn định nghĩa bằng Finalized dù thêm chữ Commitment. [Snapshot](../evidence/phase2/receiptrail-supplement-1647-review.json) giữ30/36/57dòng/6hashes;9findings mở,không rerun suite.

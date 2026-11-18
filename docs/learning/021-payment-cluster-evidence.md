@@ -203,3 +203,7 @@ Patch cần giữ phần đã nhận và so với revision trước; ngày cập
 ### Bài học review580b903 — 18/11/2026
 
 [Review mới](../reviews/receiptrail-codex.md#review-580b903--18112026) nhận Request/Unknown/expiry và giới hạn không chứng minh Solana được giữ. Nhãn Web API/EVM và giới hạn log local bị bỏ, cơ chế/provenance/commitment/context/phản hồi vẫn thiếu. Bỏ câu commitment sai không thay bằng chứng state đúng; checkbox đã khôi phục không thay bảng thực. Đối chiếu note/source/log đã có, không crawl lại; [snapshot](../evidence/phase2/receiptrail-supplement-580b903-review.json) giữ revision mới riêng. Không đổi điểm/thiết kế/quyền.
+
+### Review16:47 — 18/11/2026
+
+[71d6ff6](../reviews/receiptrail-codex.md#review-bổ-sung1647--18112026) khôi phục nhãn Shopify Web API/GraphQL, issue452 EVM/EIP-3009 và nhắc PDA; nhận phần này. Câu PDA invariant context không thay context account đầy đủ, provenance hoặc bảng state/expiry. Nhãn issue không tự chứng minh scope toàn extension; giữ T31-E1–E3 và đối chiếu note cũ, không crawl mới.

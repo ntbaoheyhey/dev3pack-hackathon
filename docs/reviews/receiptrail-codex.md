@@ -16,7 +16,7 @@ Không thấy finding chặn bản Phase2 trong phạm vi đọc/chạy này; kh
 
 Rủi ro thiết kế cố ý: một PDA chỉ một principal, không chống merchant tạo invoiceID khác cho cùng order; rent terminal bị giữ; native SOL chưa stablecoin/x402; tin RPC/program/upgrade authority; receipt không chứng minh hàng đã giao. Mọi mở rộng/triển khai cần cổng riêng.
 
-C01 nâng F3→4 theo D2 ở [mục9](../ideas/codex/01-receipt-rail.md), R/D giữ4 PLAN; không nâng R5 khi thiếu reviewer độc lập. Findings hiện hành ở [review580b903](#review-580b903--18112026); queue **T31 → T32 → T33**, sửa bổ sung cùng ID. Các report chưa nhận đạt toàn bộ. Không lấy kết quả ClusterProof cũ thay review.
+C01 nâng F3→4 theo D2 ở [mục9](../ideas/codex/01-receipt-rail.md), R/D giữ4 PLAN; không nâng R5 khi thiếu reviewer độc lập. Findings hiện hành ở [review16:47](#review-bổ-sung1647--18112026); queue **T31 → T32 → T33**, sửa bổ sung cùng ID. Các report chưa nhận đạt toàn bộ. Không lấy kết quả ClusterProof cũ thay review.
 
 ## Review đầu ra T11 — 18/11/2026, heartbeat01:25 UTC+7
 
@@ -503,3 +503,23 @@ Heartbeat16:17 xác nhận checkpoint **8b412df đã push**. PR7 đã cập nh�
 | T33-R3 | 41–52 | Không còn gán r2:23 cho cảnh create; nhưng r2:24 chỉ là dòng ok của test/METRIC23–24, không chứng minh cảnh UI/finalized. Thiếu fresh-tx retry/InvoiceNotOpen/principal1amount/phí fail/evidence timeout chưa chạy; SDK wildcard/0URL và phản hồi từng finding còn thiếu. |
 
 Đối chiếu note021/023, source và runtime/log r2 hiện có,9cặp IDL,4khoảng0–30/30–90/90–150/150–165. Không crawl mới hoặc chạy runtime/browser/RPC/CI. Không sửa report/A-done/HANDOFF của A; HANDOFF64e9393 ghi xong không là nhận đạt hoặc process live. Giữ9findings/T31→T32→T33 cùng ID; queue yêu cầu patch từng phần và kiểm phần đã nhận trước push. C chốt hồ sơ/PR độc lập, hello sau funding; không mở Phase4–6.
+
+## Review bổ sung16:47 — 18/11/2026
+
+Fetch/pull2cbe13d nhận T31/71d6ff6, T32/e12c8e6, T33/ee200e3; A-done chưa có dòng nộp mới, HANDOFF A ghi xong. [Snapshot](../evidence/phase2/receiptrail-supplement-1647-review.json) giữ30/36/57dòng, từng commit/blob/hash và6inputs. Chỉ đối chiếu note021/023/source/assertions/IDL/log hiện có; không crawl hoặc rerun suite/browser/RPC/CI.
+
+**Nhận:** T31 khôi phục nhãn Web API/GraphQL cho Shopify, EVM/EIP-3009 cho issue452 và nhắc PDA; giữ Unknown/expiry/5URL. T32 bỏ câu Payer/Merchant PDA check sai, giữ Signer/SystemAccount/has_one và sửa đúng3vị trí log26/39/23–24. T33 khôi phục phí create/pay, Terms, no-auto-retry, reload recipient;6002 bỏ reconnect,6008 chỉ còn không ký. Không tiếp tục gán lỗi mất các phần này hoặc2log sai của580b903 cho bản mới.
+
+| Finding giữ ID | Vị trí report | Còn thiếu |
+| --- | --- | --- |
+| T31-E1 | 8–16 | Nhãn Shopify Web API/issue452 EVM được khôi phục; cơ chế/provenance/tác giả/ngày đọc/diễn giải pain còn thiếu. Nhãn EVM ở extension chưa được report chứng minh. |
+| T31-E2 | 19–22 | PDA được nhắc lại nhưng thiếu cùng program/cluster/owner/commitment/actor/CTA/bảng expiry; Paid vẫn Finalized. |
+| T31-E3 | 27–30 | Ba dòng nhóm chưa trả từng ID; không có bảng expiry dù tự nhận đã khôi phục. |
+| T32-R1 | 8–10,23 | Bỏ PDA check sai, giữ SystemAccount/Signer/has_one; thiếu giải thích so pubkey/data-empty/assertion vai trò. |
+| T32-R2 | 15–17 | Log26/39/23–24 đúng cả3; cả3tên test bị rút gọn, thiếu signature khác/assertions/fee boundary. |
+| T32-R3 | 22–36 | Canonical bump/ma trận cụ thể/13IDs/giới hạn đầy đủ còn thiếu; giữ VM serial/chưa network-commitment. |
+| T33-R1 | 9–18,30–36 | Nhận no-auto-retry/reload/6002 bỏ reconnect/6008 không ký; Paid vẫn gắn Finalized, merchant Pay, Expired thiếu Open,6002/6003/6005/6007/6008 còn thiếu điều kiện/context. |
+| T33-R2 | 20–23,39–43 | Nhận phí create/pay và Terms; form/recipient/mapping32bytes/u64/8bố cục còn thiếu. |
+| T33-R3 | 46–57 | 165giây trên giấy/4mục/9mã đúng; chưa fresh-tx/principal/phí fail/evidence cảnh/SDK URL/từng finding. r2:24 chỉ là ok của cùng test23–24. |
+
+Các tên đầy đủ/assertions và fee boundary vẫn ở bảng T32 trong [queue](../tasks/A-queue.md); snapshot148–157 không gồm fee payer. Log đúng không thay tên test đầy đủ hoặc assertions; Paid là invoice state, chữ Commitment trong ngoặc không làm Finalized thành điều kiện đúng. Nhãn của issue EIP-3009 không chứng minh toàn extension chỉ EVM; nguồn chưa đọc lại được giữ là evidence cũ, không crawl mới. Giữ9findings/T31→T32→T33 cùng ID; không sửa file A, không suy status xong thành review chéo đạt hoặc process live. Chốt checkpoint/PR trước trở lại funding.
