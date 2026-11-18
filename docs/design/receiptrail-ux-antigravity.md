@@ -1,4 +1,4 @@
-# Thiết kế UX ReceiptRail (T33 - Correction Patch 2)
+# Thiết kế UX ReceiptRail (T33 - Final Correction Patch)
 
 > Ngày thiết kế: 2026-11-18
 
@@ -55,4 +55,4 @@
 | `@solana/wallet-adapter` | v0.2x | 18/11/2026 | Tiêu chuẩn Wallet |
 
 - [x] Khôi phục Phí, Terms, Unknown, Bảng lỗi (6002/6007/6008), SDK.
-*Ghi chú: Đã sửa lại 6002 reconnect và 6007 reload recipient.*
+*Ghi chú: Đã sửa lại 6002 reconnect và 6007 reload recipient (Final).*

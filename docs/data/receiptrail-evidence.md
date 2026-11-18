@@ -1,4 +1,4 @@
-# ReceiptRail Evidence Report (T31 - Correction Final)
+# ReceiptRail Evidence Report (T31 - Correction Finalized)
 
 > Ngày cập nhật: 2026-11-18
 
@@ -27,4 +27,4 @@
 | T26-R1-R3 | Alternates/Pain/State | Đã sửa nguồn gốc, phân biệt Web API/EVM/Solana. |
 | T29-E1-E3 | State/Expiry/Findings | Khôi phục Pending/Unknown, bảng expiry. |
 | T31-E1-E2 | Provenance/Final | PDA context, Provenance và state machine rõ ràng. |
-*Ghi chú: Đã kiểm định lại nhãn Web API/EVM và khôi phục Request context (Final).*
+*Ghi chú: Đã kiểm định lại nhãn Web API/EVM và khôi phục Request context (Finalized).*
