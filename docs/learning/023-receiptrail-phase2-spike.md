@@ -142,3 +142,9 @@ Tin trực tiếp **“duyệt phase 2”**, log2026-11-18T02:27:18.464Z =09:27:
 Paid là invoice state, còn commitment là thuộc tính của lần quan sát; WrongVersion kiểm invoice.version. Tại đúng expiry đã cấm pay. Log r2:23–24 là một test với METRIC rồi `ok`, không chứng minh hai cảnh UI riêng. Snapshot balances không gồm fee payer, vì thế rollback principal không chứng minh hoàn phí. Giao các patch nhỏ T30→T31→T32→T33, giữ phần đã đúng và trả lời từng finding bằng nội dung thực. P3-A đã đạt tại 27cf7ac theo note022; người dùng đã duyệt Phase2, còn review chéo/giáo viên và hello sau funding. Không mở Phase4–6 từ kết quả này.
 
 Bản306466f đến trước push vẫn9mã/165giây/4mục nhưng bỏ phí create, Unknown không tự ký/retry, terms và context từng đúng. [Snapshot v2](../evidence/phase2/receiptrail-t28-t29-v2-review.json) giữ bằng chứng; T30/T33 cần khôi phục các phần này. Nhận copy6007 và Request được sửa, giữ baseline Paid→Paid. Bàn giao phải mô tả đúng revision hiện hành, không dùng phần nhận601e723 để xác nhận report mới.
+
+## Bài học review T30 — 18/11/2026
+
+[T30/0d7b9d3](../reviews/receiptrail-codex.md#review-t30--18112026-heartbeat1327-utc7) đã khôi phục phí/terms/Unknown và sửa expiry đúng biên;9/9 code–name vẫn khớp IDL. Tuy nhiên Paid=finalized và WrongVersion=IDL version chưa sửa; tên lỗi đúng không chứng minh nguyên nhân/CTA đúng. Mục3–5 được đánh chưa đạt nhưng nội dung bị xóa thành placeholder: bản này không còn bố cục hoặc các khoảng để kiểm165giây. Không tiếp tục gán kết quả của snapshot cũ cho report mới.
+
+Snapshot43dòng/hash46f24510… và6hashes đầu vào đã kiểm; không rerun runtime vì executable inputs không đổi. Nhận phần đúng, giữ9nhóm findings và gộp T30 còn thiếu vào T33 sau T31/T32. Review nội dung, quyền người dùng, CI và funding là những trạng thái riêng; không suy một phần cải thiện thành cổng đạt.

@@ -59,6 +59,8 @@ Bảnv2/769d365 được pull tới2f1cde0 trước checkpoint: nhận cách nó
 
 Bản306466f/314b572 đến trước push checkpoint: khôi phục Request/copy6007 nhưng UX mất phí create/Unknown/terms/context. C giữ snapshot cũ/mới và cập nhật cùng T30–T33; các task này chưa được công bố trước commit A nên không coi đó là bỏ sót queue. Chưa có bằng chứng nguyên nhân nội bộ; giữ phần đúng và kiểm revision thay chỉ đọc nhãn “Final”.
 
+**Bổ sung K8, heartbeat13:27 ngày18/11:** T30/0d7b9d3 khôi phục phí/terms/Unknown, sửa expiry và đánh mục3–5 chưa đạt, nhưng Paid/IDL version vẫn sai và nội dung3–5 bị xóa thành placeholder trái queue. C lưu [snapshot](evidence/phase2/receiptrail-t30-review.json), nhận phần đúng và đưa3findings vào T33 hiện có sau T31/T32. HANDOFF A/554c2b7 đã chuyểnT31 đúng thứ tự; không quy lỗi bỏ sót queue hoặc suy nguyên nhân nội bộ. Kiểm bản hiện hành thay dùng lại con số165giây/4mục từ snapshot cũ; tên lỗi đúng không thay kiểm nguyên nhân/CTA.
+
 ## Luật rút ra (đã đưa vào AGENTS.md)
 
 1. Tin nhắn tự nhắc 15 phút phải **có thật** trước khi bắt đầu; nếu agent không tạo được thì người dùng tạo.

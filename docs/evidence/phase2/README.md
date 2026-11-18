@@ -21,3 +21,5 @@ Số đo VM: account131bytes, rent1,802,640lamports, principal1,000,000 trả1l�
 [Review T28/T29](receiptrail-t28-t29-review.json) giữ 3 report tại601e723 cùng hashes/Git blob, 6 hashes đầu vào và phạm vi kiểm tài liệu. Nhận phí/Unknown/baseline retry Paid→Paid; 9/9 cặp IDL, 165giây, 4 mục wireframe và 0/3 tên hàm rút gọn khớp source. Còn 9 findings, giao T30–T33; không crawl/rerun runtime hoặc tự đóng review chéo. [Kết luận C](../../reviews/receiptrail-codex.md#review-t28-và-t29--18112026-heartbeat1235-utc7).
 
 [Bản bổ sung306466f](receiptrail-t28-t29-v2-review.json): UX44dòng/evidence36/review28;3snapshot/6hashes/9mã/165giây/4mục đã đối chiếu. Request và copy6007 cải thiện, UX lại bỏ phí create/Unknown/terms/context. Findings giữ9nhóm, queueT30–T33 cập nhật đầu vào; snapshot601e723 vẫn là lịch sử độc lập.
+
+[Review T30/0d7b9d3](receiptrail-t30-review.json):43dòng,9/9 code–name,6input hashes khớp; nhận phí/terms/Unknown và expiry đúng biên. State/version/form/CTA còn thiếu, mục3–5 thành placeholder nên0bố cục/0khoảng thời gian, không xác nhận165giây ở bản mới. T31→T32→T33, T33 bao gồm phần T30 chưa đạt; không runtime/browser/CI mới.

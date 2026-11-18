@@ -7,7 +7,7 @@
 - [Runner offline](../scripts/check-phase3-offline.sh): hai program cùng pipeline; **25 runtime tests và 8 client tests đạt**. Hai IDL và bytecode khớp artifacts cũ. [Metadata/logs](evidence/phase3/offline-pipeline-metadata.json) ghi macOS arm64/cache; Linux CI mới được ghi riêng bên dưới.
 - [Workflow](../.github/workflows/ci.yml): revision27cf7ac đạt cả ba jobs trên Linux ở PR44237534047 và push44237529539. Mỗi run25runtime+8client+16research+8web/typecheck/build, sinh hai IDL và ReceiptRail IDL cmp ([evidence](evidence/phase3/ci-passed-27cf7ac.json)). Source/locks/web/lab giữ nguyên; không upload binary artifact.
 - [Preflight 09:47:33 UTC+7](evidence/phase3/preflight-after-phase2-approval.json): đúng devnet, hello chưa deploy, payer 0 lamports. Không đọc signer hoặc gửi airdrop/transaction.
-- [Review T28/T29](reviews/receiptrail-codex.md#review-t28-và-t29--18112026-heartbeat1235-utc7) tại601e723/bổ sung306466f còn9findings; baseline retry Paid→Paid đúng nhưng bản mới lại bỏ phí create/Unknown. A sửa qua T30 → T31 → T32 → T33 theo queue. Giáo viên chưa có verdict; lời duyệt người dùng là cổng riêng.
+- [Review T30](reviews/receiptrail-codex.md#review-t30--18112026-heartbeat1327-utc7) nhận một phần tại0d7b9d3;9nhóm findings còn mở. A tiếp tục T31→T32→T33; T33 gồm phần semantics/form còn thiếu trước bố cục/demo/SDK. Giáo viên chưa có verdict; lời duyệt người dùng là cổng riêng.
 
 ## P3-A — đã được phép CI trên runner GitHub
 

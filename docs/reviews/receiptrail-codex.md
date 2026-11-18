@@ -369,3 +369,17 @@ Fetch trước push nhận306466f/314b572. C đã commit snapshot601e723 ở17dc
 | Review | Giữ hai cột Signer/has_one và baseline Paid→Paid | Thiếu recipient/assertions/log/fee scope/giới hạn; paths bị rút gọn. T32 cần trả lời bằng nguồn cụ thể; một câu không thay13findings |
 
 Giữ9nhóm finding chưa đóng; không tạo thêm vòng task. **T30–T33 chưa được push khi A nộp bản này**, nên không coi A đã làm hoặc bỏ qua chúng. Queue cập nhật đầu vào306466f, giữ phần tiến bộ và yêu cầu khôi phục phần đúng bị mất. Người dùng đã duyệt Phase2 và P3-A đạt; funding hello vẫn để sau.
+
+## Review T30 — 18/11/2026, heartbeat13:27 UTC+7
+
+Đã fetch/pull tới554c2b7; T30 được nộp ở0d7b9d3. [Snapshot](../evidence/phase2/receiptrail-t30-review.json) giữ43dòng/hash46f24510… và6hashes đầu vào. Đã đối chiếu Git blob, JSON IDL, source/ARCHITECTURE và diff;9/9 code–name đúng. Không crawl, chạy lại suite/browser/RPC/CI hoặc sửa report A. HANDOFF A đã ghi T31 đúng thứ tự; đây là trạng thái trong file, không chứng minh process live.
+
+**Nhận:** phí create merchant rent+fee, pay payer principal+fee và terms read-only được khôi phục; Unknown đọc PDA/no auto-retry. Điều kiện6001 expiry<=slot và6005 slot>=expiry đúng;6006/6007 so public key trong invoice. Mục3–5 được đánh chưa đạt, không còn checkbox hoàn tất. Chỉ nhận phần diễn giải thực có, chưa suy no auto-retry là đã nêu rõ không tự ký lại.
+
+| Finding | Quan sát tại0d7b9d3 | Sửa tiếp trong T33, trước bố cục/demo |
+| --- | --- | --- |
+| T30-R1 — cao, state/version | Dòng15–21 vẫn trộn Pending với Invoice;18 Paid=Finalized;34 WrongVersion=IDL mismatch | Tách bảng Invoice Open/Paid/Cancelled và bảng Request Pending/Unknown; commitment là cột của lần đọc. Expired=Open+slot>=expiry, merchant vẫn cancel Open sau expiry. Source121/135 kiểm invoice.version;6008 không hỗ trợ version thì không ký. Giữ Unknown, nêu rõ không tự ký/gửi tx mới hoặc đổiID |
+| T30-R2 — vừa, form/error/CTA | Dòng8 chưa có mapping/lưu/tái dùng32bytes hoặc parse SOL→u64;28 ghi invalid/missing,30 chỉ nhãn lỗi,33 yêu cầu dùng ví merchant | Source27 bắt payer zero;107/123/125 bắt data không rỗng, owner/type là lỗi Anchor riêng.6003 còn bao gồm payer=invoice ở source33–36.6004 đọc trạng thái;6007 dừng/tải lại recipient, không bảo payer đổi thành merchant. Dẫn program ID+code, nhóm Anchor/System/fee/wallet/RPC; bổ sung merchant/recipient, mapping và integer/u64 theo ARCHITECTURE60/104–106. Trả lời các findings bằng mục thật và output đối chiếu9mã, chưa kiểm ghi rõ |
+| T30-R3 — vừa, mất nội dung | Mục3–5 bị thay toàn bộ bằng placeholder dù queue yêu cầu giữ; hiện0bố cục/0khoảng thời gian | Nhãn165s không chứng minh tổng thời lượng. T33 viết đủ8bố cục, storyboard có các khoảng liên tục cộng165giây và cảnh tx mới/principal một lần/phí fail riêng, SDK có nguồn hoặc chưa quyết định. Có thể dùng snapshot306466f để nhớ phần từng có; không chép lại copy/SDK sai hoặc coi replay log là video thật |
+
+T30 nhận một phần; giữ9nhóm findings T28/T29 chưa đóng. **T31 → T32 → T33**, bổ sung phần còn thiếu của T30 vào T33 thay tạo vòng task mới. Không đảo lời duyệt Phase2, đổi điểm, sửa contract hoặc mở Phase4–6; hello vẫn sau funding theo lời người dùng.

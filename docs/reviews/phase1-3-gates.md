@@ -11,7 +11,7 @@
 | IDEA/ARCHITECTURE ReceiptRail | Account/PDA/instructions/states/errors/events,IDL,wireframe/threat model/test plan/demo165s | Người dùng đã duyệt Phase2 |
 | Spike local | [19tests r2](../evidence/phase2/receiptrail-spike-r2.txt),[metadata/IDL](../evidence/phase2/receiptrail-build-metadata.json) | Anchor bytecode thật chạy LiteSVM; F4 D2, không browser/RPC/devnet |
 | Tự review C | [Phạm vi và giới hạn](receiptrail-codex.md) | Đã đọc source/test/IDL, không thấy blocker trong phạm vi; không phải independent audit |
-| Giao A | [Queue](../tasks/A-queue.md), T28/T29 tại601e723/306466f | C nhận một phần; T30→T31→T32→T33 sửa9findings. T21–T29 đã archive; file trạng thái không chứng minh process live |
+| Giao A | [Queue](../tasks/A-queue.md), [review T30](../evidence/phase2/receiptrail-t30-review.json) tại0d7b9d3 | C nhận phí/terms/Unknown/expiry; T31→T32→T33 sửa9nhóm findings. T33 gồm phần T30 còn thiếu; file trạng thái không chứng minh process live |
 | Review chéo | [Report A](receiptrail-antigravity.md) tại306466f; [snapshot v2](../evidence/phase2/receiptrail-t28-t29-v2-review.json) | Nhận Signer/has_one và baseline retry Paid→Paid; còn recipient/assertions/log/ma trận/giới hạn. T32 sửa, chưa nhận đạt |
 | Giáo viên | Chấm SHORTLIST/kiến trúc | Chưa có verdict; không tự đánh đạt |
 | Người dùng | Nguyên văn “duyệt phase 2”, [record](../evidence/phase2/user-approval-2026-11-18.json) | Giờ log09:27:18.464 ngày18/11 UTC+7, người dùng không tự nêu giờ quyết định; không hỏi lại |
