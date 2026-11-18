@@ -7,12 +7,12 @@
 - P3-B: chỉ hello devnet/signers thử cũ/một buffer tạm/trần1.5SOL; chưa ReceiptRail/public web mới.
 - **“chưa rảnh để chuyển sol devnet”**, log10:14:46.599 UTC+7: deploy sau funding; không thúc chuyển ngay, chưa tạo buffer/sign/send.
 - Repo /Users/bao/Documents/ChatGPT/dev3pack, work; đã fast-forward7210aa6 (chỉ HANDOFF A). Code/pins/locks không đổi; queue nhắc skip marker.
-- Runs a114a98 đã cancelled sau commit7210aa6 thiếu skip. Runs7210aa6: PR44231910864/push44231906106; research/web pass, Anchor còn live.
+- Runs a114a98 cancelled;7210aa6 push44231906106 đạt3jobs/57tests+build, PR44231910864 lỗi lấy attestation Anchor403. Evidence ci-resumed-7210aa6 lưu riêng, không còn blocker billing cũ.
 - Record ci-resume-user và note022 lưu tin mới; giữ pins/commands, tạo run đúng HEAD để kiểm việc mở CI, không tự đổi billing/limit.
 - Pipeline cache25runtime+8client pass cũ; source/tests/IDL/web/lab giữ nguyên. Workflow hash cũ trong metadata offline là snapshot trước mởguard.
 - T26/T27 đã review; T28→T29 còn mở. Fetch cuối chưa có report mới; không suy process live từ HANDOFF A.
 - PR7 đã sửa quyền/CI/funding; lần đọc lại trước checkpoint này xác nhận head3b92ce2/work→main/open/merged=false, body khớp, không có comments mới. Không merge.
-- Bước tiếp: theo dõi Anchor jobs134558836766(PR)/134558814849(push) tới terminal, đọc log và sửa đúng lỗi quan sát được. Checkpoint này dùng skip, không tạo run thay thế.
+- Đã chuẩn bị sửa installer: build AVM/Anchor từ đúng source8d9d148/lock/Rust1.100.0 trên runner;10shell blocks/YAML đạt. Push commit sửa có chủ đích chạy CI rồi theo dõi hai run mới; không dùng skip cho commit code này.
 - Automation15phút ACTIVE; checkpoint tài liệu/merge dùng [skip ci], chỉ run cần thiết trong P3-A mới bỏ marker.
 - Review chéo/giáo viên vẫn mở; ClusterProof dự phòng, chưa duyệt. Không mở Phase4–6/merge/force-push/mainnet/secrets/visibility.
 
@@ -22,7 +22,7 @@
 
 ## Còn lại
 
-1. **CI:** theo dõi hai runs7210aa6 ở Thẻ nhớ. Old runs cancelled đã có log; run mới đang thực thi install, research/web pass. Dùng run/job IDs khi HEAD docs tiếp theo có skip marker; diagnostics theo HEAD không đọc được run cũ. Sửa lỗi trong pins/locks đã duyệt, lưu steps/logs và cập nhật các cổng sau terminal. Không tự đổi billing/limit hoặc visibility; không gọi queued/skipped là đạt.
+1. **CI:** push patch installer đúng commit upstream đã duyệt; lấy handles mới và theo dõi tới terminal, đọc logs. Push7210aa6 xanh/PR lỗi403 đã lưu evidence; chưa chứng minh patch mới đạt. Sau kết quả đồng bộ README/ROADMAP/PHASE3-PLAN/NEXT/mục lục003/022/cổng/audit/PR7, push checkpoint tài liệu có skip và xác minh PR open/chưa merge. Không tự đổi pins/locks/billing/quyền hoặc gọi skipped là đạt.
 2. **Hello:** funding được người dùng để sau. Khi có đủ SOL devnet, recheck balance/rent/flags/hash/signers/trần1.5SOL rồi triển khai và kiểm initialize/increment/finalized; chưa tạo buffer/sign/send lúc này.
 3. **A:** fetch và review T28/T29 khi nộp, nhận phần có bằng chứng; không sửa file A hoặc coi report nộp là đã qua cổng.
 4. **Cổng:** review chéo được nhận, giáo viên chấm và ví thật vẫn mở. Không tự gọi Phase3/goal xong; NEXT/ROADMAP/PR7 theo evidence thật.

@@ -68,9 +68,10 @@ jobs:
           curl --proto '=https' --tlsv1.2 -sSfL https://release.anza.xyz/v4.1.2/install -o /tmp/agave-install.sh
           sh /tmp/agave-install.sh --no-modify-path v4.1.2
           echo "$HOME/.local/share/solana/install/active_release/bin" >> "$GITHUB_PATH"
-          cargo install --git https://github.com/otter-sec/anchor --rev 8d9d1488d9b8af41b266d7513eea2e668adf15a2 --locked avm
-          avm install 1.2.2
-          echo "ANCHOR_BIN=$HOME/.avm/bin/anchor-1.2.2" >> "$GITHUB_ENV"
+          # Build the approved source/lock: AVM's binary attestation request can return 403.
+          cargo +1.100.0 install --git https://github.com/otter-sec/anchor --rev 8d9d1488d9b8af41b266d7513eea2e668adf15a2 --locked avm anchor-cli --root "$RUNNER_TEMP/anchor-1.2.2" --target-dir "$RUNNER_TEMP/anchor-build"
+          test "$("$RUNNER_TEMP/anchor-1.2.2/bin/anchor" --version)" = "anchor-cli 1.2.2"
+          echo "ANCHOR_BIN=$RUNNER_TEMP/anchor-1.2.2/bin/anchor" >> "$GITHUB_ENV"
       - name: Install pinned SBF compiler
         run: cargo build-sbf --tools-version v1.57 --install-only
       - name: Warm locked dependency cache after approval
