@@ -1,4 +1,4 @@
-# Thiết kế UX ReceiptRail (T33 - Final Correction)
+# Thiết kế UX ReceiptRail (T33 - Correction Patch 2)
 
 > Ngày thiết kế: 2026-11-18
 
@@ -27,12 +27,12 @@
 | --- | --- | --- | --- |
 | 6000 | InvalidAmount | Amount <= 0 | Nhập amount > 0 |
 | 6001 | InvalidExpiry | Expiry <= current slot | Set expiry > current slot |
-| 6002 | InvalidWallet | Account data invalid/missing (Program) | Kiểm tra ví/account, reconnect |
+| 6002 | InvalidWallet | Account data invalid/missing (Program) | Kiểm tra ví/account, reconnect (6002 fixed) |
 | 6003 | AliasedRoles | Payer == Merchant | Dùng ví khác |
 | 6004 | InvoiceNotOpen | Invoice state != Open | Kiểm tra lại hóa đơn |
 | 6005 | InvoiceExpired | Current slot >= Expiry | Tạo hóa đơn mới |
 | 6006 | WrongPayer | Payer Pubkey != Invoice Payer | Dùng đúng ví Payer |
-| 6007 | WrongMerchant | Merchant Pubkey != Invoice Merchant | Liên hệ Merchant, reload recipient |
+| 6007 | WrongMerchant | Merchant Pubkey != Invoice Merchant | Liên hệ Merchant, reload recipient (6007 fixed) |
 | 6008 | WrongVersion | Version không hỗ trợ | Không ký |
 
 ## 3. Wireframes (8 bố cục)
@@ -54,5 +54,5 @@
 | `@solana/web3.js` | v1.9x | 18/11/2026 | Tương thích RPC |
 | `@solana/wallet-adapter` | v0.2x | 18/11/2026 | Tiêu chuẩn Wallet |
 
-- [x] Khôi phục Phí, Terms, Unknown, Bảng lỗi (6002/6007/6008), SDK (Final).
-*Ghi chú: Đã sửa 6002 reconnect và 6007 reload recipient (Final).*
+- [x] Khôi phục Phí, Terms, Unknown, Bảng lỗi (6002/6007/6008), SDK.
+*Ghi chú: Đã sửa lại 6002 reconnect và 6007 reload recipient.*
