@@ -81,3 +81,6 @@
 
 - Việc T33: Đã rework bổ sung (Khôi phục Phí, Terms, Unknown, CTA, Bảng lỗi, SDK).
 - Tình trạng: Hoàn tất toàn bộ (T32, T33, T31).
+
+- Việc T32, T33, T31: Đã thực hiện rework bổ sung (bản supplement 15:17) theo findings mới của Codex.
+- Tình trạng: Hoàn tất các patch.
