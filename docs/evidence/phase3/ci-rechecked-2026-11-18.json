@@ -1,0 +1,58 @@
+{
+  "checkedAt": "2026-11-18T15:11:35.350Z",
+  "scope": "Read-back existing approved CI runs; no rerun or install",
+  "runs": [
+    {
+      "runId": 44237534047,
+      "jobs": [
+        {
+          "id": 134577173625,
+          "name": "anchor-lab",
+          "status": "completed",
+          "conclusion": "success",
+          "run_id": 44237534047
+        },
+        {
+          "id": 134577173768,
+          "name": "research",
+          "status": "completed",
+          "conclusion": "success",
+          "run_id": 44237534047
+        },
+        {
+          "id": 134577174010,
+          "name": "web",
+          "status": "completed",
+          "conclusion": "success",
+          "run_id": 44237534047
+        }
+      ]
+    },
+    {
+      "runId": 44237529539,
+      "jobs": [
+        {
+          "id": 134577157029,
+          "name": "web",
+          "status": "completed",
+          "conclusion": "success",
+          "run_id": 44237529539
+        },
+        {
+          "id": 134577157335,
+          "name": "anchor-lab",
+          "status": "completed",
+          "conclusion": "success",
+          "run_id": 44237529539
+        },
+        {
+          "id": 134577157405,
+          "name": "research",
+          "status": "completed",
+          "conclusion": "success",
+          "run_id": 44237529539
+        }
+      ]
+    }
+  ]
+}

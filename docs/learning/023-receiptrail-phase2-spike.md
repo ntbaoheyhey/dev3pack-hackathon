@@ -184,3 +184,7 @@ Bổ sung26fe656: [review mới](../reviews/receiptrail-codex.md#bổ-sung26fe65
 ## Bài học review17:32 — 18/11/2026
 
 T32/030b93c bỏ câu has_one so pubkey, lại gọi payer/merchant là PDA check; source116–137 áp dụng seeds/bump cho Invoice và has_one đối chiếu key. Tên test bị rút gọn từ36b63f3, trong khi ba dẫn log vẫn đúng. [Review](../reviews/receiptrail-codex.md#review-bổ-sung1732--18112026)/[snapshot](../evidence/phase2/receiptrail-supplement-1732-review.json) giữ từng blob và6hashes; queue giao bảng thay thế authority, tên/assertions đầy đủ, không tickR3 theo patchR1/R2. T33 giữ phí/Terms/Unknown/reload recipient;6002 reconnect và state/vai vẫn chưa đúng. Kiểm9code-name/165giây không thay semantics hay demo; không rerun suite, không sửa file A.
+
+### Chốt lượt cuối7857e9b — 18/11/2026
+
+Người dùng giới hạn đúng một lượt cuối. Đã nhận phần đạt, giữ report A và chuyển thiếu sót vào [nợ tài liệu](../DOCUMENTATION-DEBT.md), đóng T31/T32/T33; không yêu cầu nộp lại. Snapshot giữ phiên bản/inputs riêng. Bài học: ghi đúng giới hạn thay vì vòng sửa vô hạn hoặc blocker P3-B; đóng task không chứng nhận toàn bộ report đúng.

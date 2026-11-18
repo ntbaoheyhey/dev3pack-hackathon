@@ -213,3 +213,7 @@ Bổ sung26fe656: [review mới](../reviews/receiptrail-codex.md#bổ-sung26fe65
 ### Bài học review17:32 — 18/11/2026
 
 T31/d4dcf3c bỏ câu không dùng confirmed nhưng Paid vẫn Finalized; giữ nhãn pain/5URL/Unknown/expiry. [Review](../reviews/receiptrail-codex.md#review-bổ-sung1732--18112026) giữT31-E1–E3: tiêu đề Final không thay provenance/cơ chế/context/bảng expiry hoặc từng phản hồi. Không crawl mới; chỉ dùng note/evidence nguồn đã đọc trước. C đổi queue T32→T31→T33 vì authority đang bị giải thích sai lặp lại.
+
+### Chốt lượt cuối7857e9b — 18/11/2026
+
+Người dùng giới hạn đúng một lượt cuối. Đã nhận phần đạt, giữ report A và chuyển thiếu sót vào [nợ tài liệu](../DOCUMENTATION-DEBT.md), đóng T31/T32/T33; không yêu cầu nộp lại. Snapshot giữ phiên bản/inputs riêng. Bài học: ghi đúng giới hạn thay vì vòng sửa vô hạn hoặc blocker P3-B; đóng task không chứng nhận toàn bộ report đúng.

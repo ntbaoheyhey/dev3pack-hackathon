@@ -1,0 +1,30 @@
+{
+  "startedAt": "2026-11-18T15:14:19.041Z",
+  "rpc": "https://api.devnet.solana.com",
+  "programId": "2yzxUQEpaeLmgCMhDipwnVL3DHsxez18KcePonqZRiXL",
+  "payer": "GQRoDMoWFV2nhgwm3bZGvSCC1LSa2wRkLeeJg8NhbFM2",
+  "buffer": "qSWzcDdMP7m2GhyE2tgaZ5FnHzAtgvMjZwGkQok9s6D",
+  "binarySha256": "9b5483f7335a294b125ba458bcbcbdc9e222b605a2c67d7fabc76c132a23da54",
+  "precheck": "docs/evidence/phase3/hello-devnet-recheck-r4-2026-11-18.json",
+  "approvedCapLamports": 1500000000,
+  "parameters": {
+    "maxLen": 127672,
+    "computeUnitPrice": 0,
+    "maxSignAttempts": 1,
+    "useRpc": true,
+    "commitment": "finalized",
+    "skipPreflight": false,
+    "skipFeatureVerify": false
+  },
+  "newKeypairCreated": false,
+  "status": "CLI_SUCCESS_PENDING_CHAIN_VERIFICATION",
+  "endedAt": "2026-11-18T15:14:21.129Z",
+  "exitCode": 0,
+  "signal": null,
+  "stdoutSha256": "449b5dd239b582613aa6acba013d74defed5609ece47162e8e2b43e5e0f81385",
+  "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "result": {
+    "programId": "2yzxUQEpaeLmgCMhDipwnVL3DHsxez18KcePonqZRiXL",
+    "signature": "4bsAQ4JYw52KTv1EjcWZ4mJJNzr4KRTqnznDQEP5d95SBNcADMRrersNNADscEpFJgVNqP6vZNxbc28qV7UgHUDq"
+  }
+}

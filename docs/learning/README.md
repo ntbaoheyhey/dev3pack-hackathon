@@ -50,11 +50,11 @@ Tiến độ và bước tiếp tục sau compact nằm trong [docs/HANDOFF.md](
 | [019 — Nguồn ý tưởng trong hệ sinh thái Solana](019-solana-idea-sources.md) | RFS/RFP/funding, dự án thật/archived, P-Token/Light/x402, evidence filtering | Codex — đã nghiên cứu; chưa spike |
 | [020 — Nguồn vấn đề thật của người dùng](020-nguon-van-de-that.md) | Bản đầu của A; review C01–C04 tại reviews/C-codex | Antigravity — cần bổ sung nguồn cụ thể; review không chặn |
 
-| [021 — Kiểm chứng payment, cluster và token net](021-payment-cluster-evidence.md) | Evidence C01–C03, RPC read-only và parser mint/u64 | Codex — T31/d4dcf3c giữ nhãn pain/Unknown; provenance/state/context còn thiếu,không crawl mới |
+| [021 — Kiểm chứng payment, cluster và token net](021-payment-cluster-evidence.md) | Evidence C01–C03, RPC read-only và parser mint/u64 | Codex — T31 đã đóng sau lượt cuối7857e9b; nhận phần đạt, phần thiếu thành nợ D01, không crawl/vòng sửa mới |
 
-| [022 — Chuẩn bị độc lập Phase 2/3](022-phase2-3-independent-prep.md) | Contract/harness, toolchain/client, web/hosting và runner offline hai program | Codex — macOS/cache25runtime+8client, Linux27cf7ac57tests/run đạt; chưa reproducible build. P3-B có2.5SOL/buffer duy nhất; deploy lần đầu lỗi parser fee-payer, chưa retry; A đúng một lượt cuối rồi ghi nợ/đóng |
+| [022 — Chuẩn bị độc lập Phase 2/3](022-phase2-3-independent-prep.md) | Contract/harness, toolchain/client, web/hosting và runner offline hai program | Codex — macOS/cache25runtime+8client, Linux27cf7ac57tests/run đạt; chưa reproducible build. Buffer verified; CLI hello r4 exit0, còn kiểm finalized/smoke/chi phí. T31–T33 đã đóng, nợ D01–D03 |
 
-| [023 — ReceiptRail Phase2 và spike Anchor local](023-receiptrail-phase2-spike.md) | Account/PDA,payment atomicity,build offline và LiteSVM | Codex — 19runtime/IDL local đạt,F4 D2. Review17:32: T32/030b93c log đúng/tên rút gọn/PDA check sai; T33/4e1e2d7 giữ phí/Terms/Unknown/reload recipient.9findings mở |
+| [023 — ReceiptRail Phase2 và spike Anchor local](023-receiptrail-phase2-spike.md) | Account/PDA,payment atomicity,build offline và LiteSVM | Codex — 19runtime/IDL local đạt,F4 D2; T32/T33 đã đóng sau lượt cuối7857e9b, nhận phần đạt/nợ D02–D03; không mở vòng sửa, chưa verdict giáo viên |
 
 ## Bài học / lỗi đã gặp
 

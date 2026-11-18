@@ -16,7 +16,7 @@ Không thấy finding chặn bản Phase2 trong phạm vi đọc/chạy này; kh
 
 Rủi ro thiết kế cố ý: một PDA chỉ một principal, không chống merchant tạo invoiceID khác cho cùng order; rent terminal bị giữ; native SOL chưa stablecoin/x402; tin RPC/program/upgrade authority; receipt không chứng minh hàng đã giao. Mọi mở rộng/triển khai cần cổng riêng.
 
-C01 nâng F3→4 theo D2 ở [mục9](../ideas/codex/01-receipt-rail.md), R/D giữ4 PLAN; không nâng R5 khi thiếu reviewer độc lập. Findings hiện hành ở [review16:47](#review-bổ-sung1647--18112026); queue **T31 → T32 → T33**, sửa bổ sung cùng ID. Các report chưa nhận đạt toàn bộ. Không lấy kết quả ClusterProof cũ thay review.
+C01 nâng F3→4 theo D2 ở [mục9](../ideas/codex/01-receipt-rail.md), R/D giữ4 PLAN; không nâng R5 khi thiếu reviewer độc lập. Hiện hành: nhận lượt cuối7857e9b, giữ phần đạt, phần thiếu ở [nợ tài liệu](../DOCUMENTATION-DEBT.md); T31/T32/T33 đã đóng, không mở vòng sửa. Review/queue bên dưới là lịch sử, không yêu cầu nộp lại. Không lấy kết quả ClusterProof cũ thay review.
 
 ## Review đầu ra T11 — 18/11/2026, heartbeat01:25 UTC+7
 
@@ -553,3 +553,7 @@ Heartbeat17:32:40.755 UTC+7 tiếp tục phần review chưa chốt của17:17. 
 Đã đọc source27/107/116–137, runtime129–176/203–269 và log r2:22–42; đối chiếu9cặp lỗi IDL và bốn khoảng storyboard liên tục đủ165giây. Snapshot148–157 không gồm fee payer; retry228 kiểm signature khác,233 giữ snapshot Paid; hai pay250–257 có inner CPI rồi rollback về Open/paid_slot0; insufficient268–269 giữ Open. Đây là kiểm source/log cũ, không runtime/browser/RPC/crawl/CI mới.
 
 C đổi thứ tự thực trong [queue](../tasks/A-queue.md) thành **T32 → T31 → T33**, cùng IDs; giao bảng thay thế mục authority và tên/assertions ba test để tránh tiếp tục sửa nhãn. R3/từng finding vẫn phải bổ sung, không tick cả T32 sau patch mục1–2. Không sửa file A hoặc suy nguyên nhân nội bộ/process live. P3-A đã đạt; hello sau funding, Phase3 chưa xong và không mở Phase4–6.
+
+## Nhận một lượt cuối và đóng T31/T32/T33 — 18/11/2026
+
+Đã pull6e26051, nhận bản nộp7857e9b sau queue7137ec0 và đọc A-done. [Snapshot](../evidence/phase2/receiptrail-final-pass-2026-11-18.json) giữ ba report/blobs/hashes và sáu inputs; đối chiếu source/tests/IDL/log đã có, không crawl/rerun. Nhận phần đúng trong [bảng nợ tài liệu](../DOCUMENTATION-DEBT.md); còn D01/D02/D03 nhưng đóng cả ba task theo chỉ đạo, không tạo vòng sửa. File A giữ nguyên; chưa verdict giáo viên/audit độc lập.
