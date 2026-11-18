@@ -54,7 +54,7 @@ Tiến độ và bước tiếp tục sau compact nằm trong [docs/HANDOFF.md](
 
 | [022 — Chuẩn bị độc lập Phase 2/3](022-phase2-3-independent-prep.md) | Contract/harness, toolchain/client, web/hosting và runner offline hai program | Codex — macOS/cache25runtime+8client đạt; Linux27cf7ac push/PR đều đạt57tests/build/ReceiptRail IDL cmp. Hashes Linux khác macOS, chưa reproducible build; P3-A/P3-B có quyền, funding/review còn mở |
 
-| [023 — ReceiptRail Phase2 và spike Anchor local](023-receiptrail-phase2-spike.md) | Account/PDA, payment atomicity, build offline không signer triển khai và LiteSVM | Codex — bytecode Anchor1.2.2 local,19 runtime tests pass, generated IDL đã đối chiếu; F4 PLAN từ D2, chưa integration/devnet; người dùng đã duyệt Phase2, review chéo/giáo viên còn mở |
+| [023 — ReceiptRail Phase2 và spike Anchor local](023-receiptrail-phase2-spike.md) | Account/PDA, payment atomicity, build offline không signer triển khai và LiteSVM | Codex — bytecode Anchor1.2.2 local,19 runtime tests pass, generated IDL đã đối chiếu; F4 PLAN từ D2, chưa integration/devnet; người dùng đã duyệt Phase2; review601e723 nhận một phần,9findings quaT30–T33; giáo viên còn mở |
 
 ## Bài học / lỗi đã gặp
 

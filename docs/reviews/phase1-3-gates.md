@@ -11,8 +11,8 @@
 | IDEA/ARCHITECTURE ReceiptRail | Account/PDA/instructions/states/errors/events,IDL,wireframe/threat model/test plan/demo165s | Người dùng đã duyệt Phase2 |
 | Spike local | [19tests r2](../evidence/phase2/receiptrail-spike-r2.txt),[metadata/IDL](../evidence/phase2/receiptrail-build-metadata.json) | Anchor bytecode thật chạy LiteSVM; F4 D2, không browser/RPC/devnet |
 | Tự review C | [Phạm vi và giới hạn](receiptrail-codex.md) | Đã đọc source/test/IDL, không thấy blocker trong phạm vi; không phải independent audit |
-| Giao A | [Queue](../tasks/A-queue.md), T26/62286cc và T27/50718d0 | C đã review, nhận phần đúng; T28 UX → T29 sửa sáu findings; file trạng thái không chứng minh process live |
-| Review chéo | [Report T27](receiptrail-antigravity.md) tại50718d0; [snapshot T26/T27](../evidence/phase2/receiptrail-t26-t27-review.json) | Giữ Signer/has_one, còn recipient/assertion, baseline retry/ma trận/giới hạn; expire_blockhash bị bỏ lại. T29 sửa, chưa nhận đạt |
+| Giao A | [Queue](../tasks/A-queue.md), T28/T29 tại601e723 | C nhận một phần; T30→T31→T32→T33 sửa9findings. T21–T29 đã archive; file trạng thái không chứng minh process live |
+| Review chéo | [Report T29](receiptrail-antigravity.md) tại601e723; [snapshot T28/T29](../evidence/phase2/receiptrail-t28-t29-review.json) | Nhận Signer/has_one và baseline retry Paid→Paid; còn recipient/assertions/log/ma trận/giới hạn. T32 sửa, chưa nhận đạt |
 | Giáo viên | Chấm SHORTLIST/kiến trúc | Chưa có verdict; không tự đánh đạt |
 | Người dùng | Nguyên văn “duyệt phase 2”, [record](../evidence/phase2/user-approval-2026-11-18.json) | Giờ log09:27:18.464 ngày18/11 UTC+7, người dùng không tự nêu giờ quyết định; không hỏi lại |
 | Phase3/vận hành | [Pipeline offline](../evidence/phase3/offline-pipeline-metadata.json), [CI27cf7ac](../evidence/phase3/ci-passed-27cf7ac.json), [P3-A/P3-B](../PHASE3-PLAN.md) | 25runtime+8client local đạt; Linux PR44237534047/push44237529539 đều đạt3jobs/57tests+build/ReceiptRail IDL cmp. P3-A đạt, P3-B có quyền nhưng funding để sau; chưa hello deploy/ví thật, chưa đóng Phase3 |

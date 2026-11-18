@@ -179,3 +179,7 @@ T23/a82490a thêm đúng tác giả/ngày, nhãnEVM, nhóm Invoice/request và P
 C không suy ngày A ghi là đã crawl, hai nguồn độc lập là adoption, hoặc bảng state ngắn đã bao phủ authority/commitment/Unknown. GiaoT26 sauT24/T25; giữ score79/F4, thiết kế và logs spike, không chạy implementation hoặc mởPhase3.
 
 BảnT23v2/769d365 đến trước checkpoint: nhận cách nói “không đảm bảo tính duy nhất”, nhưng dòng19 dùng expiry `>` và Paid=finalized. Đọc source dòng65/test321/logr2:25 xác nhận đúng expiry đã cấm pay, vì thế hiển thị dùng Open+`>=`; state và commitment phải tách. [Bổ sung v2](../reviews/receiptrail-codex.md#bổ-sung-t23-v2-trước-checkpoint) giữ hash mới riêng, cập nhậtT26 hiện có, không rerun suite hoặc sửa code theo lỗi tài liệu.
+
+### Bài học review T29 — 18/11/2026
+
+T29/601e723 giữ 5 URL nhưng bỏ metadata nguồn và nhóm Request từng có; các câu “đã tách” trong phản hồi không khớp nội dung. [Snapshot](../evidence/phase2/receiptrail-t28-t29-review.json) giữ nguyên report; [review C](../reviews/receiptrail-codex.md#review-t28-và-t29--18112026-heartbeat1235-utc7) mở T29-E1–E3, giao T31 khôi phục provenance, cơ chế alternatives và state/commitment. Lượt này chỉ đối chiếu note, review cũ và source/log local, không crawl lại 5 URL. Giữ ID findings và dẫn mục thực có; khi patch phải kiểm cả phần từng được nhận để tránh mất bằng chứng. Không đổi điểm, thiết kế hoặc gọi report nộp là review đạt.

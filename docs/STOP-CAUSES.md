@@ -55,6 +55,8 @@ Bảnv2/769d365 được pull tới2f1cde0 trước checkpoint: nhận cách nó
 
 | K10 | 18/11/2026 | C | Khi tiếp tục ở HEAD51bf866, Thẻ nhớ chỉ liệt kê billing/funding/report A, nhưng còn 12 file tài liệu/evidence chưa commit và PR7 vẫn ghi chưa có quyền/guards false | Bàn giao bỏ mất bước chốt thay đổi local và đồng bộ PR, dễ bị đọc thành hết việc độc lập; lượt chỉ bàn giao không chứng minh đã push | Kiểm git status và đọc body/head PR trước kết luận hết việc; đưa commit/push/PR thành việc đầu tiên trong Còn lại, xác minh xong mới gỡ. Không dùng blocker ngoài để bỏ việc còn làm được |
 
+**Tái diễn K8, review12:35 ngày18/11:** A nộp T28/T29 tại601e723 và ghi hoàn thiện, nhưng UX chỉ4mục thay8, state/commitment/expiry/version còn sai; evidence bỏ metadata/Request và review thiếu recipient/assertions/logs. C nhận phí/Unknown/baseline Paid→Paid đã đúng, lưu [snapshot](evidence/phase2/receiptrail-t28-t29-review.json) và [9 findings](reviews/receiptrail-codex.md#review-t28-và-t29--18112026-heartbeat1235-utc7), giao các patch nhỏ T30→T31→T32→T33. T28/T29 là hai task cuối đang giao tại thời điểm A nộp; **không có bằng chứng A bỏ sót task khác**, không gán lỗi hết việc hoặc suy nguyên nhân nội bộ. Mỗi patch cần giữ phần đã được nhận; checkbox, tên mục và URL không thay nội dung kiểm được.
+
 ## Luật rút ra (đã đưa vào AGENTS.md)
 
 1. Tin nhắn tự nhắc 15 phút phải **có thật** trước khi bắt đầu; nếu agent không tạo được thì người dùng tạo.
