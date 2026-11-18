@@ -1,30 +1,32 @@
-# Thẻ nhớ — Codex / Phase3 trong quyền đã duyệt
-- Trạng thái **đang làm**; goal active theo người dùng, chưa hoàn thành toàn goal.
-- C trưởng nhóm; A trợ lý qua queue. Không sửa report/A-done/HANDOFF A hoặc checkout của A.
+# Thẻ nhớ — Codex / Phase3 đã có quyền, còn billing và funding
+- Trạng thái **đang làm**: chốt tài liệu/evidence còn local và cập nhật PR7; billing CI/funding hello còn chặn riêng. Goal **active**, chưa hoàn thành.
+- C trưởng nhóm, sở hữu tài liệu chính/A-queue; A trợ lý qua queue. RUBRIC v1.2: điểm theo bằng chứng, chưa spike F≤3. Không sửa file/checkout A.
 - “ReceiptRail chính, ClusterProof phụ” lúc00:07 ngày18/11/2026 UTC+7; duyệt Phase2 log09:27:18.464 UTC+7. Không hỏi lại.
-- Quyền mới **“Đồng ý cả hai”** cho P3-A/P3-B, giờ log10:13:11.851 ngày18/11/2026 UTC+7; không có giờ quyết định tự nêu. DECISION/record giữ nguyên câu hỏi.
-- P3-A: chỉ runner GitHub Ubuntu24.04, pins/locks đã trình, được mở3jobs; không cài thêm máy người dùng hoặc đổi billing/limit.
-- P3-B: chỉ hello devnet, signers thử cũ/một buffer tạm/trần1.5SOL; chưa ReceiptRail/public web mới.
-- Người dùng nói **“chưa rảnh để chuyển sol devnet”**, log10:14:46.599 UTC+7: làm CI trước, deploy sau funding; không thúc chuyển ngay.
-- Repo /Users/bao/Documents/ChatGPT/dev3pack, work; pipeline fed3cb3, bàn giao75f3aa7; quyền mới đang checkpoint.
-- Pipeline cache25 runtime+8client tests đạt; IDL/bytecode khớp, source/tests/web/lab cũ giữ nguyên. Không lấy local làm CI xanh.
-- Bước tiếp: push quyền bằng [skip ci], kiểm/mở đúng3guards rồi push commit CI không skip; theo dõi run/jobs/annotations thật.
-- K9 cũ: hai runs bị billing chặn trước steps. Quyền P3-A không chứng minh billing đã được xử lý.
-- T26/T27 đã review; T28→T29 còn mở. Fetch cuối chưa có report mới; không coi HANDOFF A là process live.
-- Review chéo/giáo viên vẫn mở; ClusterProof dự phòng, chưa duyệt. Phase4–6 chưa mở.
+- **“Đồng ý cả hai”** cho P3-A/P3-B, giờ log10:13:11.851 ngày18/11/2026 UTC+7; record lưu toàn văn câu hỏi, không có giờ quyết định tự nêu.
+- P3-A: runner GitHub Ubuntu24.04/pins/locks đã trình; không cài thêm máy người dùng hoặc đổi billing/limit.
+- P3-B: chỉ hello devnet/signers thử cũ/một buffer tạm/trần1.5SOL; chưa ReceiptRail/public web mới.
+- **“chưa rảnh để chuyển sol devnet”**, log10:14:46.599 UTC+7: deploy sau funding; không thúc chuyển ngay, chưa tạo buffer/sign/send.
+- Repo /Users/bao/Documents/ChatGPT/dev3pack, work; quyền fd78236 đã push, mở3jobs CI tại51bf866; checkpoint hiện tại ghi kết quả.
+- Hai runs44229364614/44229359109 completed/failure: cả6jobs bị Billing & plans chặn trước steps. Không có build/install/test chạy, không CI xanh.
+- Note022/evidence ci-approved-51bf866-blocked giữ annotations/steps/HEAD. Không rerun cho tới billing/limit được xử lý, không tự đổi chi trả.
+- Pipeline cache25runtime+8client pass cũ; source/tests/IDL/web/lab giữ nguyên. Workflow hash cũ trong metadata offline là snapshot trước mởguard.
+- T26/T27 đã review; T28→T29 còn mở. Fetch cuối chưa có report mới; không suy process live từ HANDOFF A.
+- Bước tiếp: commit/push batch tài liệu bằng [skip ci], cập nhật PR7 theo quyền đã có/CI bị billing chặn; fetch xác minh body/head/open/merged=false.
 - Automation15phút ACTIVE; checkpoint tài liệu/merge dùng [skip ci], chỉ run cần thiết trong P3-A mới bỏ marker.
-- Không merge/force-push/mainnet/secrets/đổi visibility hoặc mở rộng quyền ngoài P3-A/P3-B.
+- Review chéo/giáo viên vẫn mở; ClusterProof dự phòng, chưa duyệt. Không mở Phase4–6/merge/force-push/mainnet/secrets/visibility.
 
-## Bằng chứng và bước còn lại
+## Bằng chứng hiện hành
 
-[DECISION](ideas/DECISION.md), [record quyền mới](evidence/phase3/user-permission-2026-11-18.json), [phương án](PHASE3-PLAN.md), [pipeline](evidence/phase3/offline-pipeline-metadata.json), [audit](reviews/prompt03-audit.md). Lịch sử trước quyền ở [archive](archive/HANDOFF-before-p3-permission.md).
+[DECISION](ideas/DECISION.md), [record quyền/funding](evidence/phase3/user-permission-2026-11-18.json), [CI sau quyền](evidence/phase3/ci-approved-51bf866-blocked.json), [phương án](PHASE3-PLAN.md), [pipeline local](evidence/phase3/offline-pipeline-metadata.json), [audit](reviews/prompt03-audit.md). [Bàn giao trước quyền](archive/HANDOFF-before-p3-permission.md) là lịch sử, không tái hỏi P3-A/P3-B.
 
-1. Ghi/push quyền trước mở CI. Kiểm YAML/command wiring và giữ pins/locks; mở ba guards, push commit cần run. Theo dõi đúng SHA, lấy jobs/steps/annotations; failed/skipped không đạt.
-2. Nếu CI vẫn bị billing chặn, lưu evidence và nhờ người dùng xử lý billing/limit khi họ sẵn sàng; không tự đổi chi trả hoặc rerun vô ích.
-3. P3-B đã có quyền, **funding được người dùng để sau**. Chỉ deploy/test hello khi đủ SOL và đã recheck rent/balance/flags/hash/signers/trần1.5SOL. Chưa tạo buffer hoặc ký giao dịch trong lúc thiếu funding.
-4. Khi A nộp T28/T29: fetch, review tài liệu và dùng phần đúng; không đợi A cho CI. Cổng giáo viên/review chéo vẫn riêng.
-5. Đồng bộ kết quả vào NEXT/ROADMAP/DEVLOG/PR7, không merge; không tự gọi Phase3/goal hoàn thành trước đủ cổng.
+## Còn lại
 
-## Cần người dùng / giới hạn còn lại
+0. **Chốt bàn giao:** push batch tài liệu/evidence, sửa mô tả PR7 còn ghi chưa có quyền/guards false; xác minh sau push. Chỉ sau đó mới hết việc chốt hồ sơ độc lập.
+1. **CI:** khi người dùng xử lý Billing & plans, kiểm lại điều kiện và chạy CI đúng revision hiện hành; theo dõi cả3jobs/steps thực. Không rerun lặp khi blocker không đổi. Quyền đã có, không xin lại; không đổi billing/limit hoặc visibility.
+2. **Hello:** funding được người dùng để sau. Khi có đủ SOL devnet, recheck balance/rent/flags/hash/signers/trần1.5SOL rồi triển khai và kiểm initialize/increment/finalized; chưa tạo buffer/sign/send lúc này.
+3. **A:** fetch và review T28/T29 khi nộp, nhận phần có bằng chứng; không sửa file A hoặc coi report nộp là đã qua cổng.
+4. **Cổng:** review chéo được nhận, giáo viên chấm và ví thật vẫn mở. Không tự gọi Phase3/goal xong; NEXT/ROADMAP/PR7 theo evidence thật.
 
-Thiếu quyền P3-A/P3-B **đã giải quyết**, không dùng blocker cũ. Funding hello được người dùng để sau; billing cần kiểm run mới, ví thật vẫn chưa kiểm. Quyền CI không cho phép deploy/public web hoặc cài thêm máy người dùng. Lời đồng ý không thay evidence CI/devnet hay verdict giáo viên.
+## Bị chặn (cần người dùng)
+
+Thiếu quyền P3-A/P3-B đã giải quyết. Blocker hiện hành là GitHub Billing & plans và funding hello người dùng để sau; chưa có reply nói hai điều kiện đã được xử lý. Hai run đã terminal, không là verified wait. Lượt trước chỉ bàn giao, không tạo tiến triển mới; lượt này vẫn còn việc commit/push/PR nên chưa ở thế hết đường. Giữ automation ACTIVE và goal active; không dùng blocked audit ba lượt của quyền cũ.

@@ -51,6 +51,8 @@ Bảnv2/769d365 được pull tới2f1cde0 trước checkpoint: nhận cách nó
 
 [Evidence K9](evidence/phase3/ci-merge-7e654a0-blocked.json) giữ hai run44224621982/44224628416 và annotations từng job. Không sửa lịch sử Git để che merge; không rerun hoặc dùng billing làm cơ chế chặn cài lâu dài.
 
+| K10 | 18/11/2026 | C | Khi tiếp tục ở HEAD51bf866, Thẻ nhớ chỉ liệt kê billing/funding/report A, nhưng còn 12 file tài liệu/evidence chưa commit và PR7 vẫn ghi chưa có quyền/guards false | Bàn giao bỏ mất bước chốt thay đổi local và đồng bộ PR, dễ bị đọc thành hết việc độc lập; lượt chỉ bàn giao không chứng minh đã push | Kiểm git status và đọc body/head PR trước kết luận hết việc; đưa commit/push/PR thành việc đầu tiên trong Còn lại, xác minh xong mới gỡ. Không dùng blocker ngoài để bỏ việc còn làm được |
+
 ## Luật rút ra (đã đưa vào AGENTS.md)
 
 1. Tin nhắn tự nhắc 15 phút phải **có thật** trước khi bắt đầu; nếu agent không tạo được thì người dùng tạo.

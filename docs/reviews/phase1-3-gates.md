@@ -15,8 +15,8 @@
 | Review chéo | [Report T27](receiptrail-antigravity.md) tại50718d0; [snapshot T26/T27](../evidence/phase2/receiptrail-t26-t27-review.json) | Giữ Signer/has_one, còn recipient/assertion, baseline retry/ma trận/giới hạn; expire_blockhash bị bỏ lại. T29 sửa, chưa nhận đạt |
 | Giáo viên | Chấm SHORTLIST/kiến trúc | Chưa có verdict; không tự đánh đạt |
 | Người dùng | Nguyên văn “duyệt phase 2”, [record](../evidence/phase2/user-approval-2026-11-18.json) | Giờ log09:27:18.464 ngày18/11 UTC+7, người dùng không tự nêu giờ quyết định; không hỏi lại |
-| Phase3/vận hành | [Pipeline offline](../evidence/phase3/offline-pipeline-metadata.json), [preflight](../evidence/phase3/preflight-after-phase2-approval.json), [P3-A/P3-B](../PHASE3-PLAN.md) | 25 runtime +8 client tests đạt; ba CI guards false, payer0SOL/hello chưa deploy. Chưa có quyền cài/deploy mới hoặc CI xanh |
-| PR7 | work→main, open, merged=false, headfed3cb3 đã fetch sau push | Body pipeline/review/plan đã đọc lại khớp; checkpoint bàn giao chỉ cập nhật trạng thái. Không merge |
+| Phase3/vận hành | [Pipeline offline](../evidence/phase3/offline-pipeline-metadata.json), [preflight](../evidence/phase3/preflight-after-phase2-approval.json), [P3-A/P3-B](../PHASE3-PLAN.md) | 25 runtime +8 client tests local đạt. P3-A/P3-B đã được “Đồng ý cả hai”, log10:13:11.851 UTC+7; CI51bf866 mở guards nhưng [6jobs bị billing chặn trước steps](../evidence/phase3/ci-approved-51bf866-blocked.json). Người dùng để funding sau; chưa hello deploy/CI xanh |
+| PR7 | Lần fetch 18/11 trước checkpoint: work→main, open, merged=false, head51bf866 | Body còn ghi chưa có quyền/guards false; phải cập nhật theo P3-A/P3-B và kết quả billing sau khi push batch này. Không merge |
 
 **Phạm vi đã được người dùng duyệt:** native SOL, một payer/merchant trên mỗi invoice; create/pay/cancel/read; Open→Paid/Cancelled và Expired hiển thị; không close/reset/refund/stablecoin/x402. Cùng invoice chỉ chuyển principal1lần, vẫn có phí fail và rent lâu dài. Spike local là evidence phần lõi, UI/RPC recovery/devnet/CI/video chưa có.
 

@@ -5,7 +5,7 @@
 ## Phần đã chuẩn bị và kiểm được
 
 - [Runner offline](../scripts/check-phase3-offline.sh): hai program cùng pipeline; **25 runtime tests và 8 client tests đạt**. Hai IDL và bytecode khớp artifacts cũ. [Metadata/logs](evidence/phase3/offline-pipeline-metadata.json) ghi macOS arm64/cache; chưa Linux CI.
-- [Workflow đề xuất](../.github/workflows/ci.yml): ba job guards `false`; đã kiểm YAML và cú pháp 10 shell blocks, chưa thực thi installer. Đã nối build ReceiptRail trước workspace tests, bỏ upload artifact mới; giữ source/web/lab.
+- [Workflow](../.github/workflows/ci.yml): đã mở đúng ba guards tại51bf866 sau khi push quyền fd78236; YAML và 10 shell blocks đã kiểm, pins/commands giữ nguyên. [Hai runs sau quyền](evidence/phase3/ci-approved-51bf866-blocked.json) bị billing chặn trước mọi step, chưa thực thi installer. Đã nối build ReceiptRail trước workspace tests, bỏ upload artifact mới; giữ source/web/lab.
 - [Preflight 09:47:33 UTC+7](evidence/phase3/preflight-after-phase2-approval.json): đúng devnet, hello chưa deploy, payer 0 lamports. Không đọc signer hoặc gửi airdrop/transaction.
 - [Review T26/T27](reviews/receiptrail-codex.md#review-t26-và-t27--18112026-sau-duyệt-phase2) chưa nhận toàn bộ; A tiếp tục T28 → T29. Giáo viên chưa có verdict; lời duyệt người dùng là cổng riêng.
 
@@ -23,7 +23,7 @@
 
 Chỉ cài trên runner, không cài thêm máy người dùng; không deploy program/web, upload binary artifact hoặc dùng secrets/keypair. Nếu cần đổi pins/dependency ngoài lock thì trình lại. [K9](evidence/phase3/ci-merge-7e654a0-blocked.json) xác nhận Billing & plans đã chặn sáu jobs trước mọi step; người dùng cần xử lý billing/limit hoặc chọn runner phù hợp. C không đổi hạn mức/chi trả.
 
-Sau câu đồng ý, lưu nguyên văn, giờ log và phạm vi vào DECISION trước mở guard; checkpoint quyền/patch tạo run mới. Chỉ nhận khi cả ba jobs thực chạy/pass trên đúng HEAD, đối chiếu steps/logs; skipped/blocked không là CI xanh. Quyền CI không mở deploy.
+Đã lưu nguyên văn/giờ/phạm vi và push fd78236 trước mở guard. Commit51bf866 tạo runs44229364614/44229359109; cả sáu jobs failure với steps rỗng và cùng annotation Billing & plans. Chỉ nhận khi cả ba jobs thực chạy/pass trên đúng HEAD, đối chiếu steps/logs; skipped/blocked không là CI xanh. Quyền CI không mở deploy.
 
 ## P3-B — đã được phép, chờ funding để deploy hello
 

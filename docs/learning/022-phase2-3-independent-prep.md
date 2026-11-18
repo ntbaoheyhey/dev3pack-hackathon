@@ -1,6 +1,6 @@
 # 022 — Chuẩn bị Phase 2/3: interface, test và môi trường
 
-> Codex · 17/11/2026 · trước sự kiện. Đặt chỗ tại commit `1aa322a` trước khi viết. Ban đầu chuẩn bị độc lập ở chặng E; kết luận cũ về chọn ClusterProof/quyền cài sai, đã đính chính tại DECISION. ReceiptRail chính, ClusterProof phụ; tài liệu này giữ kiến thức/lịch sử ClusterProof, không mở Phase3. **Cập nhật: hello/client/web đã build/test local, web đã public; devnet deploy và CI xanh còn mở.** Phần kế hoạch product không tự trở thành tính năng đã triển khai.
+> Codex · 17/11/2026 · trước sự kiện. Đặt chỗ tại commit `1aa322a` trước khi viết. Ban đầu chuẩn bị độc lập ở chặng E; kết luận cũ về chọn ClusterProof/quyền cài sai, đã đính chính tại DECISION. ReceiptRail chính, ClusterProof phụ; tài liệu này giữ kiến thức/lịch sử ClusterProof; P3-A/P3-B được đồng ý ngày18/11 ở phần cập nhật cuối, không mở rộng phạm vi. **Cập nhật: hello/client/web đã build/test local, web đã public; devnet deploy và CI xanh còn mở.** Phần kế hoạch product không tự trở thành tính năng đã triển khai.
 
 ## 1. Mục tiêu và điều cần nhớ
 
@@ -152,3 +152,13 @@ CI đã chuyển sang runner mới, warm Cargo.lock cache **chỉ sau quyền c�
 Người dùng trả lời “Đồng ý cả hai” cho P3-A/P3-B (giờ log10:13:11.851 UTC+7); DECISION/evidence giữ toàn văn câu hỏi và câu trả lời. Kế hoạch trước sửa workflow: chỉ bỏ ba guards false, giữ SHA actions/pins/lockfiles và command blocks đã kiểm; push quyền trước bằng skip marker, rồi commit mở CI không skip để tạo run. Không dùng rerun của commit cũ còn guard false. Theo dõi run/job handles thật, chỉ gọi CI đạt khi steps thực chạy/pass. Billing chặn thì lưu annotation, không lặp rerun hoặc tự đổi limit.
 
 Tin “chưa rảnh để chuyển sol devnet” (log10:14:46.599 UTC+7) để funding/deploy sau; không suy câu đồng ý thành đã có tiền. Bài học: tách thiếu quyền, thiếu funding và lỗi runner; gỡ đúng blocker đã giải quyết, không hỏi lại quyền hoặc đánh hoàn thành từ lời đồng ý. Không tạo buffer/sign/send khi chưa đủ funding.
+
+### Kết quả P3-A sau lời đồng ý
+
+Quyền được push fd78236 trước thay workflow. Commit51bf866 chỉ bỏ ba guards; so YAML parsed object trước/sau xác nhận pins và command blocks không đổi, 10 shell blocks qua bash -n. Không rerun local suite vì program/test/script không đổi; hash workflow trong metadata offline là snapshot trước mở guard, không sửa đè lịch sử.
+
+[Evidence CI sau quyền](../evidence/phase3/ci-approved-51bf866-blocked.json) gắn đúng HEAD51bf866: runs44229364614/44229359109 đều completed/failure. Đọc cả sáu check annotations và job steps: tất cả bị Billing & plans chặn trước bắt đầu, steps rỗng. Không có installer/build/test chạy; không là lỗi compiler đã quan sát hoặc CI xanh. Không rerun cho tới external state đổi, không tự đổi billing/limit.
+
+Funding được người dùng để sau; chưa đọc/dùng signers, tạo buffer hoặc gửi giao dịch trong lượt này. Bài học: quyền P3-A/P3-B đã có thì không hỏi lại, nhưng consent không sửa được quota/billing hoặc cấp tiền. Run terminal là bằng chứng failure cần xử lý, không được gọi là verified wait chỉ vì còn việc.
+
+Bài học khi tiếp tục bàn giao: kiểm `git status` và body/head PR trước khi kết luận chỉ còn blocker bên ngoài. Ở HEAD51bf866 vẫn có 12 file tài liệu/evidence chưa commit và PR7 còn câu chưa có quyền; ghi các việc chốt này vào đầu Còn lại, push bằng [skip ci], rồi kiểm lại PR. Lượt chỉ tóm tắt bàn giao không là tiến triển hay bằng chứng đã push; xem STOP-CAUSES K10.
