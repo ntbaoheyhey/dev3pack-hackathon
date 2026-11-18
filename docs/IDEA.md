@@ -1,6 +1,6 @@
 # IDEA — ReceiptRail
 
-Codex · 18/11/2026 · **bản Phase2 để người dùng duyệt, chưa duyệt**. Người dùng chọn **“ReceiptRail chính, ClusterProof phụ” lúc00:07 ngày18/11/2026 UTC+7**; [DECISION](ideas/DECISION.md) ghi nguyên văn, giờ và đính chính nguồn cũ. [ClusterProof](IDEA-clusterproof-draft.md) giữ làm **dự phòng, chưa duyệt**.
+Codex · 18/11/2026 · **người dùng đã duyệt Phase2: “duyệt phase 2”**, giờ log09:27:18.464 ngày18/11/2026 UTC+7; không có giờ quyết định tự nêu. Người dùng chọn **“ReceiptRail chính, ClusterProof phụ” lúc00:07 ngày18/11/2026 UTC+7**; [DECISION](ideas/DECISION.md) ghi nguyên văn, giờ và đính chính nguồn cũ. [ClusterProof](IDEA-clusterproof-draft.md) giữ làm **dự phòng, chưa duyệt**.
 
 ## Một câu dễ hiểu
 

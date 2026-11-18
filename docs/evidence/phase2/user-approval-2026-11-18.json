@@ -1,0 +1,24 @@
+{
+  "quote": "duyệt phase 2",
+  "source_role": "user",
+  "source_record_type": "response_item",
+  "source_session": "rollout-2026-11-17T20-52-47-01a1e9c8-1b24-7911-91a4-4897fc175566.jsonl",
+  "log_timestamp_utc": "2026-11-18T02:27:18.464Z",
+  "log_timestamp_local": "2026-11-18T09:27:18.464+07:00",
+  "timezone": "Asia/Ho_Chi_Minh",
+  "user_stated_decision_time": null,
+  "timestamp_note": "Giờ log nhận tin, không phải giờ quyết định do người dùng tự nêu.",
+  "scope": "Duyệt tài liệu Phase2 ReceiptRail; không cấp quyền vận hành mới.",
+  "not_authorized_by_this_quote": [
+    "install dependencies/toolchain",
+    "deployment wallet/keypair",
+    "deploy",
+    "publish",
+    "merge PR"
+  ],
+  "not_proven_by_this_quote": [
+    "Antigravity review accepted",
+    "teacher verdict",
+    "Phase3 gate passed"
+  ]
+}

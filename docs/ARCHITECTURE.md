@@ -1,6 +1,6 @@
 # ARCHITECTURE — ReceiptRail
 
-Codex · 18/11/2026 · **v0.1, bản Phase2 để duyệt, chưa duyệt**. Scope [IDEA](IDEA.md); lựa chọn/nguyên văn/giờ tại [DECISION](ideas/DECISION.md). [ClusterProof](ARCHITECTURE-clusterproof-draft.md) là **dự phòng, chưa duyệt**. Note trước code: [023](learning/023-receiptrail-phase2-spike.md), 004/007/016/021.
+Codex · 18/11/2026 · **v0.1, người dùng đã duyệt Phase2: “duyệt phase 2”**, giờ log09:27:18.464 ngày18/11/2026 UTC+7; không có giờ quyết định tự nêu. Scope [IDEA](IDEA.md); lựa chọn/nguyên văn/giờ tại [DECISION](ideas/DECISION.md). [ClusterProof](ARCHITECTURE-clusterproof-draft.md) là **dự phòng, chưa duyệt**. Note trước code: [023](learning/023-receiptrail-phase2-spike.md), 004/007/016/021.
 
 ## 1. Giải thích một trang cho người dùng
 
@@ -12,7 +12,7 @@ Nếu trình duyệt mất phản hồi, app giữ địa chỉ hóa đơn và �
 
 Cơ chế chỉ bảo vệ **cùng một hóa đơn**. Người bán vẫn có thể tạo mã khác cho cùng đơn hàng; app không chứng minh giao hàng, không escrow/refund và chưa hỗ trợ stablecoin/x402. Invoice terminal được giữ lại nên tốn rent lâu dài. Người dùng còn phải tin code, upgrade authority và nguồn RPC; đây chưa phải sản phẩm đã audit.
 
-Bản Phase2 hiện có thiết kế và program Anchor tối thiểu chạy trong LiteSVM cục bộ: **19 runtime tests đạt**, gồm transaction mới trả lặp, CPI thiếu tiền, rollback cả `[pay,pay]`, sai signer/recipient/account, expiry và pay/cancel. Chưa có UI ReceiptRail, wallet integration, devnet deployment hoặc demo mạng. Toolchain/web ClusterProof hiện có được giữ nguyên. Phần tiếp theo chỉ mở sau khi người dùng duyệt; cài thêm/deploy/public mới hỏi riêng.
+Bản Phase2 hiện có thiết kế và program Anchor tối thiểu chạy trong LiteSVM cục bộ: **19 runtime tests đạt**, gồm transaction mới trả lặp, CPI thiếu tiền, rollback cả `[pay,pay]`, sai signer/recipient/account, expiry và pay/cancel. Chưa có UI ReceiptRail, wallet integration, devnet deployment hoặc demo mạng. Toolchain/web ClusterProof hiện có được giữ nguyên. Người dùng đã duyệt Phase2; review chéo/giáo viên còn mở. Chuẩn bị Phase3 trong quyền hiện có; cài thêm/deploy/public mới hỏi riêng.
 
 ## 2. Sơ đồ và ranh giới hệ thống
 
@@ -152,15 +152,15 @@ Chưa kiểm: frontend/client browser, RPC timeout/reorg/retry thật, Wallet St
 
 | Phase / phạm vi dự kiến | Codex | Antigravity | Bằng chứng/cổng |
 | --- | --- | --- | --- |
-| 2 hiện tại | Quyết định/luật, IDEA/ARCHITECTURE, note023, spike/tests/IDL, PR | T11 crawl/T12 UX/T13 review qua A-queue | Bản cụ thể để người dùng duyệt; review chéo/giáo viên ghi riêng |
-| 3 chỉ sau duyệt | Kiểm lại quyền cần thiết, deployment identity/authority, CI local→runner | Kế hoạch web/hosting theo quyền được cho | Không cài/deploy/public mới khi chưa có câu đồng ý |
+| 2 hiện tại | Quyết định/luật, IDEA/ARCHITECTURE, note023, spike/tests/IDL, PR | T11 crawl/T12 UX/T13 review qua A-queue | Người dùng đã duyệt; hoàn thiện review chéo và trình giáo viên |
+| 3 chuẩn bị trong quyền hiện có | Kiểm lại quyền cần thiết, deployment identity/authority, CI local→runner | Kế hoạch web/hosting theo quyền được cho | Không cài/deploy/public mới khi chưa có câu đồng ý |
 | 4 dự kiến | Harden program, độc lập review, CU/resource tests, client generated | Review lỗi hợp đồng UI | Tests/CI và devnet khi được phép, IDL contract versioned |
 | 5 dự kiến | Review phần chạm ví/giao dịch | Merchant/invoice/receipt states theo contract | Mock ghi nhãn, responsive/reject/no-wallet; public hỏi trước |
 | 6 dự kiến | RPC/state/confirmation/retry integration | E2E/browser/fault injection/demo | Devnet flow/evidence thật sau quyền triển khai |
 
 C sở hữu `programs/`, scripts build, Cargo/IDL/core/docs quyết định. A sở hữu file kết quả được giao, UX/frontend khi scope mở. C không sửa A-done/HANDOFF A; A không sửa queue/core. Fetch/pull nhánhwork trước tích hợp; commit nhỏ, không force-push/merge PR7. File chung giữ cả phần có nguồn; conflict giải quyết và đi tiếp. C review thay đổi tiền/quyền; không lấy “A nói xong” thay test hoặc câu người dùng.
 
-**Điểm dừng hiện tại:** trình IDEA và phần1 kiến trúc cùng log spike để người dùng duyệt Phase2. T11–T13/review giáo viên chưa có kết quả được xác nhận thì ghi còn mở, không tự ghi phase đã được duyệt. Lựa chọn ReceiptRail không tự mở Phase3. Giữ toolchain/web/lab ClusterProof; mọi cài thêm/tạo ví-keypair triển khai/deploy/public mới hỏi trước.
+**Bước hiện tại:** lời duyệt “duyệt phase 2” đã được ghi tại DECISION, không hỏi lại. Hoàn thiện review chéo và hồ sơ cho giáo viên; chuẩn bị Phase3/local theo [NEXT](NEXT.md). Chưa có verdict giáo viên hoặc quyền vận hành mới. Giữ toolchain/web/lab ClusterProof; mọi cài thêm/tạo ví-keypair triển khai/deploy/public mới hỏi trước.
 
 ## 10. Nguồn và thay đổi
 

@@ -1,6 +1,6 @@
 # SHORTLIST — ba ý tưởng ĐẠT PLAN
 
-Codex · cập nhật18/11/2026 · RUBRIC v1.2. Người dùng đã chọn **“ReceiptRail chính, ClusterProof phụ” lúc00:07 ngày18/11/2026 UTC+7**, [nguyên văn/nguồn đính chính](DECISION.md). Không hỏi chọn lại. Điểm là đánh giá PLAN của Codex, chưa verdict giáo viên hoặc duyệt thiết kế.
+Codex · cập nhật18/11/2026 · RUBRIC v1.2. Người dùng đã chọn **“ReceiptRail chính, ClusterProof phụ” lúc00:07 ngày18/11/2026 UTC+7**, [nguyên văn/nguồn đính chính](DECISION.md). Không hỏi chọn lại. Điểm là đánh giá PLAN của Codex, chưa verdict giáo viên; người dùng đã duyệt Phase2 ReceiptRail, xem DECISION.
 
 | Hạng điểm | Ý tưởng / vai trò | Một câu dễ hiểu | Điểm / vòng | Bằng chứng chính | Rủi ro chính |
 | --- | --- | --- | --- | --- | --- |
@@ -26,6 +26,6 @@ P4 dùng hai nguồn độc lập hỗ trợ workflow mỗi bài, chưa phỏng 
 
 ## Cổng còn cần
 
-Bản [IDEA](../IDEA.md) và [ARCHITECTURE](../ARCHITECTURE.md) ReceiptRail đã sẵn sàng để người dùng duyệt; review chéo/giáo viên chưa có verdict. ClusterProof giữ “dự phòng, chưa duyệt”. Toolchain/web đã có giữ nguyên; không xin cài lại, không cài thêm/deploy/public mới khi chưa có câu đồng ý nguyên văn kèm giờ. Repo MIT, không đổi visibility.
+Bản [IDEA](../IDEA.md) và [ARCHITECTURE](../ARCHITECTURE.md) ReceiptRail đã được người dùng duyệt bằng câu “duyệt phase 2” (giờ log09:27:18.464 ngày18/11 UTC+7); review chéo/giáo viên chưa nhận đạt. ClusterProof giữ “dự phòng, chưa duyệt”. Toolchain/web đã có giữ nguyên; không xin cài lại, không cài thêm/deploy/public mới khi chưa có câu đồng ý nguyên văn kèm giờ. Repo MIT, không đổi visibility.
 
-[PR#7](https://github.com/ntbaoheyhey/dev3pack-hackathon/pull/7) vẫn `work→main`, không merge. Chỉ trình bản Phase2; không làm Phase3 hoặc việc phụ thuộc ý tưởng trong lúc chờ duyệt.
+[PR#7](https://github.com/ntbaoheyhey/dev3pack-hackathon/pull/7) vẫn `work→main`, không merge. Không hỏi duyệt Phase2 lại; tiếp tục review và chuẩn bị Phase3 trong quyền hiện có. Cổng review/giáo viên và quyền vận hành không tự đóng từ lời duyệt.

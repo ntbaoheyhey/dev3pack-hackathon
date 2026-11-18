@@ -7,9 +7,17 @@
 - Nguyên văn người dùng: **“ReceiptRail chính, ClusterProof phụ”**.
 - Giờ lựa chọn do người dùng xác nhận: **00:07 ngày 18/11/2026, Asia/Ho_Chi_Minh (UTC+7)**.
 - Tin trực tiếp chứa lời xác nhận được ghi nhận trong log lúc **00:08:31.389 ngày 18/11/2026 UTC+7**. Giờ ghi nhận khác giờ lựa chọn, không thay giờ người dùng đã nói.
-- Đây là lựa chọn ý tưởng và yêu cầu làm Phase 2; **chưa phải duyệt IDEA/ARCHITECTURE ReceiptRail hoặc cho phép Phase 3**. Xong bản thiết kế và spike local phải trình người dùng duyệt.
+- Tin lựa chọn này chỉ chọn hướng/yêu cầu làm Phase2. Lời duyệt thiết kế đến từ tin trực tiếp riêng **“duyệt phase 2”**, ghi bên dưới; không suy quyền vận hành từ tin lựa chọn.
 
 Tin 00:05:05.678 ngày18/11 yêu cầu ghi “chưa có quyết định của người dùng” đã được tin xác nhận ReceiptRail mới thay thế. Không hỏi chọn lại; không giữ “chưa có quyết định” làm trạng thái hiện hành.
+
+## Người dùng đã duyệt Phase 2 ReceiptRail
+
+- Nguyên văn tin trực tiếp: **“duyệt phase 2”**.
+- Giờ log nhận tin: **09:27:18.464 ngày18/11/2026, Asia/Ho_Chi_Minh (UTC+7)**, tương ứng 2026-11-18T02:27:18.464Z.
+- Người dùng không tự nêu giờ quyết định trong câu này. Record response_item, role user, chỉ chứa câu trên; không phải reminder, tin agent, bản bàn giao hoặc question_reply cũ. [Trích record liên quan](../evidence/phase2/user-approval-2026-11-18.json).
+- Phạm vi: duyệt bản Phase2 ReceiptRail đã trình gồm IDEA/ARCHITECTURE. **Không hỏi duyệt Phase2 lại.** Gỡ blocker thiếu lời duyệt người dùng; tiếp tục review/chấm còn mở và chuẩn bị Phase3 trong quyền hiện có.
+- Đây không phải verdict giáo viên hay xác nhận review chéo đã đạt; không cấp quyền cài thêm, tạo ví/keypair triển khai, deploy, public hoặc merge. Quyền vận hành vẫn theo câu giới hạn lúc00:08 bên dưới.
 
 ## Đính chính bản cũ — sai, hết hiệu lực
 
@@ -52,7 +60,7 @@ Thực hiện thiết kế, spike/test **cục bộ** bằng toolchain/cache có
 
 ## Trạng thái duyệt
 
-- [IDEA](../IDEA.md)/[ARCHITECTURE](../ARCHITECTURE.md) ReceiptRail: **bản Phase2 đã soạn xong để trình, chưa duyệt**. Spike19/19 local, generated IDL và test plan/demo165giây đã có; bằng chứng ở [Phase2](../evidence/phase2/README.md). Không coi việc soạn xong là cổng đã được người dùng/giáo viên duyệt.
+- [IDEA](../IDEA.md)/[ARCHITECTURE](../ARCHITECTURE.md) ReceiptRail: **người dùng đã duyệt Phase2**, nguyên văn và giờ log ở mục trên. Spike19/19 local, generated IDL và test plan/demo165giây có [bằng chứng Phase2](../evidence/phase2/README.md). Review chéo/giáo viên và quyền vận hành theo dõi riêng; không suy toàn bộ cổng đã đạt.
 - [IDEA ClusterProof](../IDEA-clusterproof-draft.md), [ARCHITECTURE ClusterProof](../ARCHITECTURE-clusterproof-draft.md): **dự phòng, chưa duyệt**; giữ source/web/lab hiện có.
 - Review A và verdict giáo viên: chỉ ghi khi có kết quả thật; không thay duyệt người dùng.
 - Payload ví lúc17/11 23:54:48.498, `call_qOWTCC3sdHrix5DfEq1upmM0`, item0: “Chưa có ví devnet sẵn sàng; giữ bước này chưa kiểm”. Đây là giới hạn kiểm ví, không phải quyền tạo/import ví. Core connect/disconnect thật vẫn chưa kiểm, không thuộc spike ReceiptRail.

@@ -1,8 +1,8 @@
 # Hàng đợi việc của Antigravity (A)
 
-**Chủ file: Codex. Chỉ nhận việc từ file này.** A sở hữu các report của mình, A-done và HANDOFF A; C không sửa thay các file đó. Chỉ làm tài liệu Phase2 ReceiptRail. Quyết định **“ReceiptRail chính, ClusterProof phụ” lúc00:07 ngày18/11/2026 UTC+7** ở [DECISION](../ideas/DECISION.md); thiết kế chưa duyệt. Không cài/code/tạo ví-keypair triển khai/build web/deploy/public hoặc mở Phase3.
+**Chủ file: Codex. Chỉ nhận việc từ file này.** A sở hữu các report của mình, A-done và HANDOFF A; C không sửa thay các file đó. Chỉ làm tài liệu Phase2 ReceiptRail. Quyết định **“ReceiptRail chính, ClusterProof phụ” lúc00:07 ngày18/11/2026 UTC+7** ở [DECISION](../ideas/DECISION.md); **người dùng đã duyệt Phase2** bằng “duyệt phase 2”, log09:27:18.464 ngày18/11 UTC+7. Quyền A vẫn là tài liệu trong queue; không cài/code/tạo ví-keypair triển khai/build web/deploy/public hoặc tự mở Phase3.
 
-**Làm ngay T26 → T27 → T28; không hết việc, không chờ C giao lại.** Pull9e7275e: T25/33b71e7 đã nộp; nhận9/9 mã đúng,8mục màn hình và4khoảng thời gian đủ165giây. Còn5findings, sửa quaT28 sauT26/T27. HANDOFF A báo hết việc nhưng **queue tại ancestor cd3ccc1 đã cóT26/T27**; hai việc này vẫn mở. T26 sửa evidenceT23/v2; T27 sửa bằng chứng reviewT24, giữ phần Signer/has_one/expire_blockhash đúng. Nguồn: [review T25](../reviews/receiptrail-codex.md#review-t25--18112026-heartbeat0900-utc7), [review T24](../reviews/receiptrail-codex.md#review-t24--18112026-heartbeat0830-utc7), [review T23](../reviews/receiptrail-codex.md#review-t23--18112026-heartbeat0758-utc7). Queue cũ giữ ở [archive](../archive/A-queue-before-T21.md); task đã nộp bên dưới là lịch sử review.
+**Làm tiếp T27 → T28.** T26 đã nộp tại62286cc/pull0a8a488; C đang review evidence mới. HANDOFF A đã chuyểnT27 đúng thứ tự; đây là báo cáo trạng thái, không chứng minh process đang chạy. GiữT27 reviewT24 vàT28 UXT25, không cấp lại hoặc bỏ các việc chưa nộp. Người dùng đã duyệt thiết kế, không cần hỏi lại; các tiêu chí review và quyền vận hành vẫn riêng. Queue cũ giữ ở [archive](../archive/A-queue-before-T21.md); task đã nộp bên dưới là lịch sử review.
 
 ## T21 — đã nộp; phần tên test đạt, phần còn thiếu chuyển T24
 
@@ -33,7 +33,7 @@
 2. Thay danh sách3tên bằng bảng với cột **hàm + dòng; trạng thái/principal trước; sau tx fail; assertion đã đọc; file log + dòng kết quả; điều chưa kiểm**. Dùng đúng3hàm T21 đã dẫn. Đối chiếu Snapshot/reject: không gồm fee payer riêng; `[pay,pay]` và retry tx mới khác ranh giới transaction. Đọc log không khai rerun.
 3. Điền5nhóm của T21 bằng vị trí/assertion/kết quả và giới hạn; chưa kiểm một nhóm thì ghi chưa kiểm, không “Đạt” suông. Dẫn expire_blockhash/khác signature, chỉ2thứ tự serial; receipt local/commitment/RPC/upgrade/rent/merchant dùng ID khác. Trả lời T13-R1–R4,T18-R1–R3,T21-R1–R3 bằng vị trí đã sửa; phần chưa đạt ghi rõ.
 
-**Nhận khi:** người đọc kiểm được từng kết luận trên source/log hiện có; chỉ3tên tồn tại không đủ. Không cài/rerun runtime tests/sửa source/IDL/thiết kế C hoặc mở Phase3. C chưa nhận toàn bộ review và người dùng chưa duyệt.
+**Nhận khi:** người đọc kiểm được từng kết luận trên source/log hiện có; chỉ3tên tồn tại không đủ. Không cài/rerun runtime tests/sửa source/IDL/thiết kế C hoặc mở Phase3. C chưa nhận toàn bộ review; người dùng đã duyệt Phase2 riêng.
 
 ## T25 — sửa UX theo năm findings T22, có nội dung để kiểm
 
@@ -55,7 +55,7 @@ Trước nộp: đọc lại8bố cục, cộng thời lượng, kiểm9mã theo
 
 ## T26 — hoàn thiện cơ chế nguồn và phản hồi còn thiếu của T23
 
-**Trạng thái: mới — làm ngay; đã giao từcd3ccc1, không cần cấp lại. Nộp xong tiếp tụcT27.** Sửa [evidence A](../data/receiptrail-evidence.md) dựa trên [review T23](../reviews/receiptrail-codex.md#review-t23--18112026-heartbeat0758-utc7), [review T20](../reviews/receiptrail-codex.md#t20-nguồn-đã-có-diễn-giảiphản-hồi-chưa-đạt), [note021](../learning/021-payment-cluster-evidence.md), [ARCHITECTURE mục4–6](../ARCHITECTURE.md). Giữ5URL và tác giả/ngày đã đúng; không đổi điểm/contract/fileC.
+**Trạng thái: đã nộp62286cc; C đang review, không làm lại task cũ. Tiếp tụcT27.** Sửa [evidence A](../data/receiptrail-evidence.md) dựa trên [review T23](../reviews/receiptrail-codex.md#review-t23--18112026-heartbeat0758-utc7), [review T20](../reviews/receiptrail-codex.md#t20-nguồn-đã-có-diễn-giảiphản-hồi-chưa-đạt), [note021](../learning/021-payment-cluster-evidence.md), [ARCHITECTURE mục4–6](../ARCHITECTURE.md). Giữ5URL và tác giả/ngày đã đúng; không đổi điểm/contract/fileC.
 
 **Bản đầu vào mới nhất769d365:** giữ cách nói “không đảm bảo tính duy nhất” đã cải thiện. Sửa dòng19: tại đúng expiry đã hết hạn pay; viết bảng3hàng expiry−1/expiry/expiry+1 với state/CTA và nguồn test321/logr2:25 đã đọc, không rerun. Paid là state, confirmed/finalized là nhãn commitment riêng. Đây là bổ sungT26 hiện có.
 
@@ -93,4 +93,4 @@ Nộp bốn bảng sau, mỗi hàng dẫn **đường dẫn + dòng/hàm + asser
 
 ## Ghi kết quả và giới hạn
 
-A ghi task/commit/đã kiểm/chưa kiểm vào [A-done](A-done.md), cập nhật HANDOFF của A; không đổi file C/audit lịch sử. Nộp report không tự là C nhận đạt. C tiếp tục review khi có bản mới; không đợi A để trình bản Phase2 đã soạn. Người dùng/giáo viên chưa duyệt; không mở code/triển khai mới. T8–T10 ClusterProof đã bỏ, giữ web/source/lab cũ; không khôi phục việc đó.
+A ghi task/commit/đã kiểm/chưa kiểm vào [A-done](A-done.md), cập nhật HANDOFF của A; không đổi file C/audit lịch sử. Nộp report không tự là C nhận đạt. C tiếp tục review khi có bản mới; không đợi A để trình bản Phase2 đã soạn. Người dùng đã duyệt Phase2; giáo viên chưa có verdict. Quyền A vẫn là tài liệu, không mở code/triển khai mới. T8–T10 ClusterProof đã bỏ, giữ web/source/lab cũ; không khôi phục việc đó.

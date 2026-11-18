@@ -2,13 +2,13 @@
 
 ReceiptRail giúp người bán và người trả đọc chung trạng thái một hóa đơn SOL: sau timeout có thể kiểm tra lại, và cùng hóa đơn không chuyển tiền gốc lần thứ hai dù gửi transaction mới. Người dùng chọn **“ReceiptRail chính, ClusterProof phụ” lúc 00:07 ngày 18/11/2026 UTC+7**; [DECISION](docs/ideas/DECISION.md) ghi nguyên văn, giờ và đính chính kết luận cũ.
 
-**Bản Phase 2 đã sẵn sàng để duyệt, chưa được duyệt.** [IDEA](docs/IDEA.md) · [Giải thích kiến trúc một trang](docs/ARCHITECTURE.md#1-giải-thích-một-trang-cho-người-dùng) · [Bằng chứng local](docs/evidence/phase2/README.md). Chỉ mở Phase 3 sau duyệt; cài thêm, tạo ví/keypair triển khai, deploy hoặc public mới phải hỏi riêng trước.
+**Người dùng đã duyệt Phase2 ReceiptRail: “duyệt phase 2”**, log nhận09:27:18.464 ngày18/11/2026 UTC+7 (người dùng không tự nêu giờ quyết định). [IDEA](docs/IDEA.md) · [Giải thích kiến trúc một trang](docs/ARCHITECTURE.md#1-giải-thích-một-trang-cho-người-dùng) · [Bằng chứng local](docs/evidence/phase2/README.md). Review chéo/giáo viên còn mở; tiếp tục chuẩn bị Phase3 trong quyền hiện có theo [NEXT](docs/NEXT.md). Cài thêm, tạo ví/keypair triển khai, deploy hoặc public mới phải hỏi riêng trước.
 
 ## ReceiptRail đã có gì
 
 | Phần | Kết quả hiện hành | Giới hạn |
 | --- | --- | --- |
-| Thiết kế | Account/PDA, create/pay/cancel, trạng thái, lỗi/events/IDL, threat model, wireframe/test plan, storyboard165giây | Chưa UI/video ReceiptRail hoặc duyệt thiết kế |
+| Thiết kế | Account/PDA, create/pay/cancel, trạng thái, lỗi/events/IDL, threat model, wireframe/test plan, storyboard165giây | Chưa UI/video ReceiptRail; review chéo/giáo viên còn mở |
 | Spike Anchor | Native SOL, invoice131bytes, điều khoản bất biến; chuyển tiền và Paid cùng transaction | Local-only, không escrow/refund/stablecoin/x402 |
 | Kiểm thử | **19/19 runtime tests**, bytecode SBFv3 thật trong LiteSVM; tx mới retry, rollback, sai quyền/account, expiry/race/lifecycle | Chưa browser/wallet/RPC recovery, devnet, CI hoặc audit độc lập |
 | IDL | [JSON generated](docs/idl/receiptrail.json),3 instructions/1 account/3 events/9 errors; đã đối chiếu source | Chưa client UI tích hợp; program ID chỉ local |

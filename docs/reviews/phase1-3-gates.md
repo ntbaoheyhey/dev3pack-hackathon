@@ -1,23 +1,23 @@
 # Hồ sơ review Phase 1–3 — ReceiptRail
 
-18/11/2026 · **bản Phase2 đã soạn xong để trình, chưa qua cổng duyệt**. Lựa chọn **“ReceiptRail chính, ClusterProof phụ” lúc00:07 UTC+7**, [DECISION](../ideas/DECISION.md). Các kết luận lựa chọn/duyệt/quyền cũ **sai/hết hiệu lực**, giữ lịch sử có nhãn trong Git/archive.
+18/11/2026 · **người dùng đã duyệt Phase2; review chéo/giáo viên còn mở**. [DECISION](../ideas/DECISION.md) giữ lựa chọn “ReceiptRail chính, ClusterProof phụ” lúc00:07 UTC+7, lời duyệt và nguồn kết luận sai cũ.
 
 | Yêu cầu | Bằng chứng hiện hành | Trạng thái |
 | --- | --- | --- |
-| Nhắc15phút đúng chat | Automation action view/config ACTIVE15phút kiểm lúc05:19, đúng thread; record scheduler 2026-11-18T02:00:35.054Z | Đã nhận heartbeat lúc09:00:35.054 ngày18/11 UTC+7; không suy mọi lượt gửi đều thành công |
-| RUBRIC/3 ứng viên đạt | C01r2=79/F4, C02r1=79, C03r1=77; giữ lịch sử r0/r1 | PLAN theo Codex, chưa giáo viên chấm/DELIVERY |
-| Quyết định/nguyên văn/giờ/nguồn | DECISION, AGENTS, STOP-CAUSES K6; DEVLOG cũ đã gắn nhãn sai | Đã sửa, không suy quyền |
+| Nhắc15phút đúng chat | Action view/config ACTIVE, interval15, thread01a1e9c8-1b24-7911-91a4-4897fc175566 đã kiểm trong lượt này | Đang bật; không suy mọi lượt scheduler đều gửi thành công |
+| RUBRIC/3 ứng viên đạt | C01r2=79/F4, C02r1=79, C03r1=77; giữ lịch sử r0/r1 | PLAN theo Codex, chưa giáo viên chấm/DELIVERY; audit đầy đủ tiếp theo |
+| Quyết định/nguyên văn/giờ/nguồn | DECISION, AGENTS, STOP-CAUSES K6 | Đã đính chính và ghi lời duyệt mới, không suy quyền |
 | ClusterProof dự phòng | IDEA/ARCHITECTURE-clusterproof-draft | Dự phòng, chưa duyệt; source/web/lab/toolchain giữ nguyên |
-| IDEA/ARCHITECTURE ReceiptRail | Account/PDA/instructions/states/errors/events,IDL,wireframe/threat model/test plan/demo165s | Đã viết để trình; chưa duyệt |
+| IDEA/ARCHITECTURE ReceiptRail | Account/PDA/instructions/states/errors/events,IDL,wireframe/threat model/test plan/demo165s | Người dùng đã duyệt Phase2 |
 | Spike local | [19tests r2](../evidence/phase2/receiptrail-spike-r2.txt),[metadata/IDL](../evidence/phase2/receiptrail-build-metadata.json) | Anchor bytecode thật chạy LiteSVM; F4 D2, không browser/RPC/devnet |
 | Tự review C | [Phạm vi và giới hạn](receiptrail-codex.md) | Đã đọc source/test/IDL, không thấy blocker trong phạm vi; không phải independent audit |
-| Giao A | [Queue T26→T27→T28](../tasks/A-queue.md); pull9e7275e, [review T25](receiptrail-codex.md#review-t25--18112026-heartbeat0900-utc7) | Nhận9mã/8mục màn/4khoảng đủ165giây, còn5findings UX quaT28. A báo hết việc dù ancestorcd3ccc1 đã cóT26/T27; yêu cầu tiếp tụcT26, giữT27 và thêmT28 sau đó. Chưa nhận toàn bộ report, giữ score/contract/audit |
-| Review chéo | [Report T24](receiptrail-antigravity.md) tại7325169;31dòng/hash trong review C | Nhận Signer/has_one/expire_blockhash đã sửa. Còn recipient/assertion, baseline retry phải Paid, fee boundary và ma trận/giới hạn; chưa nhận đạt, giaoT27. Đối chiếu19 kết quả log cũ, không rerun suite |
+| Giao A | [Queue](../tasks/A-queue.md), pull0a8a488 cóT26/62286cc | T26 đang được C review; A báoT27, giữT28; file trạng thái không chứng minh process live |
+| Review chéo | [Report T24](receiptrail-antigravity.md) tại7325169;31dòng/hash trong review C | Nhận Signer/has_one/expire_blockhash; còn recipient/assertion, baseline retry, fee/ma trận/giới hạn quaT27; chưa nhận đạt |
 | Giáo viên | Chấm SHORTLIST/kiến trúc | Chưa có verdict; không tự đánh đạt |
-| Người dùng | Duyệt IDEA và giải thích ARCHITECTURE một trang | Đang trình, chưa có câu đồng ý; không mở Phase3 |
-| Phase3/vận hành | Hello/client/web logs cũ giữ nguyên; CI/devnet còn mở | Không cài thêm/tạo ví-keypair triển khai/deploy/public mới trước câu đồng ý riêng |
-| PR7 | BodyT25 và queueT26→T27→T28 đã cập nhật, fetch đọc lại khớp/head9e7275e trước checkpoint | Open,merged=false; không merge, commit review/bàn giao nối tiếp |
+| Người dùng | Nguyên văn “duyệt phase 2”, [record](../evidence/phase2/user-approval-2026-11-18.json) | Giờ log09:27:18.464 ngày18/11 UTC+7, người dùng không tự nêu giờ quyết định; không hỏi lại |
+| Phase3/vận hành | Hello/client/web logs cũ giữ nguyên; CI/devnet còn mở | Chuẩn bị trong quyền hiện có; cài thêm/keypair triển khai/deploy/public mới cần câu đồng ý riêng |
+| PR7 | Fetch trong lượt này: work→main, open, merged=false; body cũ trước duyệt | Cập nhật body/checkpoint lời duyệt rồi xác minh head sau push |
 
-**Đề nghị duyệt cụ thể:** native SOL, một payer/merchant trên mỗi invoice; create/pay/cancel/read; Open→Paid/Cancelled và Expired hiển thị; không close/reset/refund/stablecoin/x402. Cùng invoice chỉ chuyển principal1lần, vẫn có phí fail và rent lâu dài. Spike local là evidence phần lõi, UI/RPC recovery/devnet/CI/video chưa có.
+**Phạm vi đã được người dùng duyệt:** native SOL, một payer/merchant trên mỗi invoice; create/pay/cancel/read; Open→Paid/Cancelled và Expired hiển thị; không close/reset/refund/stablecoin/x402. Cùng invoice chỉ chuyển principal1lần, vẫn có phí fail và rent lâu dài. Spike local là evidence phần lõi, UI/RPC recovery/devnet/CI/video chưa có.
 
-Theo ROADMAP, Phase2 cần review chéo, giáo viên chấm và người dùng đồng ý. Theo yêu cầu hiện hành, hoàn tất artifact rồi trình duyệt và dừng công việc phụ thuộc ý tưởng. Không suy việc push hoặc lựa chọn ReceiptRail thành bất kỳ cổng nào đã được duyệt.
+Theo ROADMAP, Phase2 cần review chéo, giáo viên chấm và người dùng đồng ý. Cổng người dùng có bằng chứng riêng, không suy hai cổng kia đã đạt. Tiếp tục review và chuẩn bị Phase3 trong quyền hiện có theo [NEXT](../NEXT.md).

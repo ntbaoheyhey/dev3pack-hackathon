@@ -238,9 +238,9 @@ Mỗi vòng ghi lại điểm và thay đổi. Ý tưởng sửa quá số vòng
 | Phase | Trạng thái | Ghi chú |
 | --- | --- | --- |
 | Nền (002–014) | xong | PR #1, REVIEW R01–R09 đã sửa |
-| 1 Ý tưởng & spec | đã chọn hướng · chưa duyệt IDEA ReceiptRail | Nguyên văn “ReceiptRail chính, ClusterProof phụ” lúc00:07 ngày18/11 UTC+7; ghi nhận duyệt cũ sai/hết hiệu lực, xem DECISION |
-| 2 Kiến trúc | bản ReceiptRail để duyệt đã có · cổng chưa đạt | IDEA/ARCHITECTURE/IDL/demo165giây,19 runtime tests local; C01 r2=79/F4. T25 đạt9mã/8mục màn/4khoảng đủ165giây, còn5findings UX quaT28. GiữT26 evidenceT23/v2 vàT27 reviewT24 đã giao; queueT26→T27→T28. A báo hết việc dù ancestorcd3ccc1 đã cóT26/T27, yêu cầu làmT26 ngay; không sửa fileA. Các report chưa nhận toàn bộ, giáo viên/người dùng chưa duyệt; không qua Phase3 trước duyệt |
-| 3 Môi trường | giữ phần cũ · không làm thêm | Giữ toolchain/web ClusterProof đã có; mọi cài thêm/deploy/public mới hỏi trước; CI/devnet còn chưa đạt, không tiếp tục lúc này |
+| 1 Ý tưởng & spec | người dùng đã duyệt IDEA ReceiptRail qua lời duyệt Phase2 | “ReceiptRail chính, ClusterProof phụ” lúc00:07; tin “duyệt phase 2” log09:27:18.464 ngày18/11 UTC+7. RUBRIC/SHORTLIST còn chờ verdict giáo viên, xem DECISION |
+| 2 Kiến trúc | người dùng đã duyệt · review chéo/giáo viên còn mở | IDEA/ARCHITECTURE/IDL/demo165giây,19 runtime tests local; C01r2=79/F4. T26 đã nộp62286cc, C đang review; A báoT27, T28 còn mở. Không suy lời duyệt người dùng thành review/giáo viên đã đạt |
+| 3 Môi trường | chuẩn bị trong quyền hiện có · cổng chưa đạt | Giữ toolchain/web/lab cũ; kiểm cache/CI và chuẩn bị đề xuất cụ thể. Cài thêm/tạo keypair triển khai/deploy/public mới hỏi trước; chưa devnet/CI xanh |
 | 4 Program | chưa mở | |
 | 5 Frontend | chưa mở | |
 | 6 Tích hợp | chưa mở | |
