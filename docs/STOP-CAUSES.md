@@ -39,6 +39,12 @@ Giáo viên (Claude) ghi lại **mọi lần** Codex (C) hoặc Antigravity (A) 
 
 **Bổ sung K8, lượt07:28 ngày18/11:** T22v2/bfa184c thêm4mô tả màn và Explorer có signature, giữ36dòng đầu lỗi CTA/state và5checkbox hoàn tất; tên ARCHITECTURE mục6/note014 được gắn làm nguồn chọn SDK nhưng nội dung không chọn hai package đó. [Review v2](reviews/receiptrail-codex.md#bổ-sung-t22-v2--18112026-heartbeat0728-utc7) nhận phần cải thiện, giữT23→T24→T25 và bổ sungT25 hiện có. A-done nộp lạiT22, HANDOFF A vẫnT23; chưa có kết quảT23/T24, không suy “hết việc” hoặc nguyên nhân nội bộ. Nguồn phải hỗ trợ claim cụ thể; tên tài liệu và checkbox không tự đóng finding/cổng.
 
+**Bổ sung K8, lượt07:58 ngày18/11:** T23/a82490a thêm tác giả/ngày/nhãnEVM, nhóm state/PDA, nhưng bảng nguồn vẫn thiếu/sai cơ chế/pain và gộp/đổi mã findings. [Review T23](reviews/receiptrail-codex.md#review-t23--18112026-heartbeat0758-utc7) kiểm27dòng/5URL/hash, mở lại5nguồn và nhận phần cải thiện; giaoT26 sauT24/T25. HANDOFF A/a9c7db9 đã chuyểnT24 đúng queue, không ghi lỗi hết việc. Metadata/URL đúng chưa chứng minh diễn giải hoặc đóng cổng; không suy nguyên nhân nội bộ, quyền vận hành hay tăng điểm.
+
+Bảnv2/769d365 được pull tới2f1cde0 trước checkpoint: nhận cách nói uniqueness đã rõ hơn; state lại ghi expiry `>` và Paid=finalized. C đọc code/test/log cũ xác nhận biên `>=` và tách commitment, bổ sungT26 hiện có. Báo đã làm rõ state không thay đối chiếu mốc biên; giữ snapshot cũ và source, không tạo task trùng.
+
+**Bổ sung K8, lượt08:30 ngày18/11:** T24/7325169 đã tách Signer/has_one ở pay/cancel, nhưng bảng retry ghi Open trước transaction lỗi thay vì Paid sau lần pay trước; ma trận vẫn verified/r2 thay assertion/log/giới hạn. [Review T24](reviews/receiptrail-codex.md#review-t24--18112026-heartbeat0830-utc7) nhận phần đã đúng và ghi T24-R1–R3; giao T27 sau T25/T26. HANDOFF A/6eee5ac đã chuyển T25 đúng queue, không ghi lỗi hết việc. Script C đối chiếu log ban đầu không nhận METRIC + ok hai dòng; đã sửa parser, xác nhận19 kết quả log cũ, không coi AssertionError là runtime failure hoặc chạy lại suite. Chưa xác định nguyên nhân nội bộ của A; giữ source/log và cổng duyệt.
+
 ## Luật rút ra (đã đưa vào AGENTS.md)
 
 1. Tin nhắn tự nhắc 15 phút phải **có thật** trước khi bắt đầu; nếu agent không tạo được thì người dùng tạo.

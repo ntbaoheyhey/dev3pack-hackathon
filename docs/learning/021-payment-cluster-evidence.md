@@ -171,3 +171,11 @@ Tiêu chí sửa qua T20: mỗi claim trỏ URL đích, ngày thực sự mở, 
 T20/337322b đã có5 URL. C mở cả5đích thật; tác giả/ngày/phạm vi và kết luận hẹp nằm trong [review T20](../reviews/receiptrail-codex.md#t20-nguồn-đã-có-diễn-giảiphản-hồi-chưa-đạt). Shopify/issue452 độc lập về retry/outcome, không là evidence Solana double-payment hoặc adoption. Stripe hiện phân biệt API v1/v2; không áp dụng chi tiết retention/response v1 cho mọi API. payment_identifier đọc blob e85f0d53101aa7a4246b01d9f31f0e2b1ba24f12 có fingerprint/cache; chưa chạy implementation. Không suy A đã mở nguồn từ việc C truy cập được.
 
 Report đổi mã R1–R4 và chỉ nói đã tách state nhưng không còn bảng/PDA/authority/commitment. Phản hồi review phải giữ ID gốc và trỏ nội dung thực; URL đúng chỉ là điều kiện ban đầu, không thay đọc/diễn giải. Giao T23, không tăng điểm hoặc đổi thiết kế; các phần thiếu được ghi rõ thay vì tick nhận toàn report.
+
+### Bài học review T23 — 18/11/2026,07:58 UTC+7
+
+T23/a82490a thêm đúng tác giả/ngày, nhãnEVM, nhóm Invoice/request và PDA; C mở lại5nguồn, issue chỉ đọc body, spec giữ blob e85f0d53101aa7a4246b01d9f31f0e2b1ba24f12. [Review T23](../reviews/receiptrail-codex.md#review-t23--18112026-heartbeat0758-utc7) ghi phần nhận vàT23-R1–R3 còn mở. Bảng có metadata đầy đủ hơn vẫn cần cơ chế/diễn giải đúng nguồn; idempotency key khác khóa xác thực API, và điều không bị bắt buộc không có nghĩa không thể xảy ra. Giữ từng findingID và trỏ evidence cụ thể thay gộp các nhóm khác nghĩa.
+
+C không suy ngày A ghi là đã crawl, hai nguồn độc lập là adoption, hoặc bảng state ngắn đã bao phủ authority/commitment/Unknown. GiaoT26 sauT24/T25; giữ score79/F4, thiết kế và logs spike, không chạy implementation hoặc mởPhase3.
+
+BảnT23v2/769d365 đến trước checkpoint: nhận cách nói “không đảm bảo tính duy nhất”, nhưng dòng19 dùng expiry `>` và Paid=finalized. Đọc source dòng65/test321/logr2:25 xác nhận đúng expiry đã cấm pay, vì thế hiển thị dùng Open+`>=`; state và commitment phải tách. [Bổ sung v2](../reviews/receiptrail-codex.md#bổ-sung-t23-v2-trước-checkpoint) giữ hash mới riêng, cập nhậtT26 hiện có, không rerun suite hoặc sửa code theo lỗi tài liệu.

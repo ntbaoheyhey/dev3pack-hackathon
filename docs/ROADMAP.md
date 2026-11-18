@@ -239,7 +239,7 @@ Mỗi vòng ghi lại điểm và thay đổi. Ý tưởng sửa quá số vòng
 | --- | --- | --- |
 | Nền (002–014) | xong | PR #1, REVIEW R01–R09 đã sửa |
 | 1 Ý tưởng & spec | đã chọn hướng · chưa duyệt IDEA ReceiptRail | Nguyên văn “ReceiptRail chính, ClusterProof phụ” lúc00:07 ngày18/11 UTC+7; ghi nhận duyệt cũ sai/hết hiệu lực, xem DECISION |
-| 2 Kiến trúc | bản ReceiptRail để duyệt đã có · cổng chưa đạt | IDEA/ARCHITECTURE/IDL/demo165giây,19 runtime tests local; C01 r2=79/F4. T22v2 giữ9/9 mã lỗi, thêm4mô tả màn/Explorer có signature; CTA/state/8wireframes/demo/SDK chưa đạt. T21 còn authority/assertions/giới hạn; T20 còn diễn giải nguồn. Queue T23→T24→T25, chưa có kết quảT23/T24; giáo viên/người dùng chưa duyệt. Không qua Phase3 trước duyệt |
+| 2 Kiến trúc | bản ReceiptRail để duyệt đã có · cổng chưa đạt | IDEA/ARCHITECTURE/IDL/demo165giây,19 runtime tests local; C01 r2=79/F4. T23/v2 còn cơ chế/pain/mapping và expiry/commitment, quaT26. T24 đã sửa Signer/has_one/expire_blockhash; còn recipient/assertion, baseline retry/fee và ma trận/giới hạn, quaT27. T22v2 đạt9mã và4mô tả màn, UX quaT25. Queue T25→T26→T27, A đangT25; các report chưa nhận toàn bộ, giáo viên/người dùng chưa duyệt. Không qua Phase3 trước duyệt |
 | 3 Môi trường | giữ phần cũ · không làm thêm | Giữ toolchain/web ClusterProof đã có; mọi cài thêm/deploy/public mới hỏi trước; CI/devnet còn chưa đạt, không tiếp tục lúc này |
 | 4 Program | chưa mở | |
 | 5 Frontend | chưa mở | |
