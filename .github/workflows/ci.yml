@@ -15,8 +15,7 @@ concurrency:
 
 jobs:
   web:
-    # DECISION: new CI installs need explicit user approval; skipped is not a passing test.
-    if: ${{ false }}
+    # P3-A approved: docs/ideas/DECISION.md, user reply logged 2026-11-18 10:13:11.851 UTC+7.
     runs-on: ubuntu-24.04
     timeout-minutes: 5
     defaults:
@@ -35,8 +34,7 @@ jobs:
       - run: npm run build
 
   research:
-    # DECISION: new CI installs need explicit user approval; skipped is not a passing test.
-    if: ${{ false }}
+    # P3-A approved: docs/ideas/DECISION.md, user reply logged 2026-11-18 10:13:11.851 UTC+7.
     runs-on: ubuntu-24.04
     timeout-minutes: 5
     steps:
@@ -51,8 +49,7 @@ jobs:
         run: node --test research/phase1/spikes.test.mjs research/phase1/fee-mint.test.mjs research/phase1/replay-evidence.test.mjs
 
   anchor-lab:
-    # DECISION: new CI installs need explicit user approval; skipped is not a passing test.
-    if: ${{ false }}
+    # P3-A approved: docs/ideas/DECISION.md, user reply logged 2026-11-18 10:13:11.851 UTC+7.
     runs-on: ubuntu-24.04
     timeout-minutes: 30
     env:
