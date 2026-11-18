@@ -68,3 +68,5 @@
 - Việc T32: Xong. Đã rework kiến trúc review (Authority, 3 rollback cases, 5 nhóm kiến trúc, phản hồi 13 findings).
 
 - Việc T33: Xong. Đã rework hoàn thiện UX (State machine, bảng lỗi IDL, wireframes, storyboard 165s, SDK).
+
+- Việc T32: Đã sửa bổ sung (Authority, 3 rollback cases, 5 nhóm kiến trúc, phản hồi 13 findings).
