@@ -6,13 +6,13 @@
 - P3-A: runner GitHub Ubuntu24.04/pins/locks đã trình; không cài thêm máy người dùng hoặc đổi billing/limit.
 - P3-B: chỉ hello devnet/signers thử cũ/một buffer tạm/trần1.5SOL; chưa ReceiptRail/public web mới.
 - **“chưa rảnh để chuyển sol devnet”**, log10:14:46.599 UTC+7: deploy sau funding; không thúc chuyển ngay, chưa tạo buffer/sign/send.
-- Repo /Users/bao/Documents/ChatGPT/dev3pack, work; baseline cfa6523 sạch/đã push. Checkpoint này lưu tin tiếp tục trước khi tạo run mới.
-- Hai runs44229364614/44229359109 completed/failure: cả6jobs bị Billing & plans chặn trước steps. Không có build/install/test chạy, không CI xanh.
+- Repo /Users/bao/Documents/ChatGPT/dev3pack, work; đã fast-forward7210aa6 (chỉ HANDOFF A). Code/pins/locks không đổi; queue nhắc skip marker.
+- Runs a114a98 đã cancelled sau commit7210aa6 thiếu skip. Runs7210aa6: PR44231910864/push44231906106; research/web pass, Anchor còn live.
 - Record ci-resume-user và note022 lưu tin mới; giữ pins/commands, tạo run đúng HEAD để kiểm việc mở CI, không tự đổi billing/limit.
 - Pipeline cache25runtime+8client pass cũ; source/tests/IDL/web/lab giữ nguyên. Workflow hash cũ trong metadata offline là snapshot trước mởguard.
 - T26/T27 đã review; T28→T29 còn mở. Fetch cuối chưa có report mới; không suy process live từ HANDOFF A.
 - PR7 đã sửa quyền/CI/funding; lần đọc lại trước checkpoint này xác nhận head3b92ce2/work→main/open/merged=false, body khớp, không có comments mới. Không merge.
-- Bước tiếp: push record [skip ci], tạo commit chạy CI trong P3-A không skip; theo dõi run/job handles tới terminal, sửa đúng lỗi quan sát được.
+- Bước tiếp: theo dõi Anchor jobs134558836766(PR)/134558814849(push) tới terminal, đọc log và sửa đúng lỗi quan sát được. Checkpoint này dùng skip, không tạo run thay thế.
 - Automation15phút ACTIVE; checkpoint tài liệu/merge dùng [skip ci], chỉ run cần thiết trong P3-A mới bỏ marker.
 - Review chéo/giáo viên vẫn mở; ClusterProof dự phòng, chưa duyệt. Không mở Phase4–6/merge/force-push/mainnet/secrets/visibility.
 
@@ -22,7 +22,7 @@
 
 ## Còn lại
 
-1. **CI:** người dùng đã báo mở CI; tạo run mới đúng HEAD, theo dõi cả3jobs/steps thực tới terminal. Sửa lỗi trong pins/locks đã duyệt, kiểm lại tương ứng. Không tự đổi billing/limit hoặc visibility; không gọi queued/skipped là đạt.
+1. **CI:** theo dõi hai runs7210aa6 ở Thẻ nhớ. Old runs cancelled đã có log; run mới đang thực thi install, research/web pass. Dùng run/job IDs khi HEAD docs tiếp theo có skip marker; diagnostics theo HEAD không đọc được run cũ. Sửa lỗi trong pins/locks đã duyệt, lưu steps/logs và cập nhật các cổng sau terminal. Không tự đổi billing/limit hoặc visibility; không gọi queued/skipped là đạt.
 2. **Hello:** funding được người dùng để sau. Khi có đủ SOL devnet, recheck balance/rent/flags/hash/signers/trần1.5SOL rồi triển khai và kiểm initialize/increment/finalized; chưa tạo buffer/sign/send lúc này.
 3. **A:** fetch và review T28/T29 khi nộp, nhận phần có bằng chứng; không sửa file A hoặc coi report nộp là đã qua cổng.
 4. **Cổng:** review chéo được nhận, giáo viên chấm và ví thật vẫn mở. Không tự gọi Phase3/goal xong; NEXT/ROADMAP/PR7 theo evidence thật.

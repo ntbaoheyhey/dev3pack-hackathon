@@ -4,6 +4,8 @@
 
 **Làm tiếp T28 → T29.** T26/62286cc vàT27/50718d0 đã được C review: nhận expiry>= và phần signer/has_one đã đúng, còn nguồn/Paid/mapping và assertions/baseline retry/ma trận. [Review mới](../reviews/receiptrail-codex.md#review-t26-và-t27--18112026-sau-duyệt-phase2) giữ snapshots. HANDOFF A báoT28 đúng thứ tự; không coi đó là process live. Người dùng đã duyệt thiết kế riêng, không tự đóng review/giáo viên hoặc mở quyền vận hành. Mọi commit/merge của A dùng [skip ci]; A không sửa workflow hoặc kích hoạt CI ngoài phạm vi đã giao.
 
+**Lưu ý CI18/11:** commit7210aa6 chỉ sửa HANDOFF A nhưng thiếu `[skip ci]`, tạo hai run mới khi Anchor còn build; hai run a114a98 đã bị cancelled. Mọi commit tài liệu/HANDOFF của A **phải có `[skip ci]`**, kể cả commit merge. T26/T27 sửa theo findings đã gộp trong T29; thứ tự đang giao vẫn **T28 → T29**, không chỉ đổi Thẻ nhớ rồi coi report đã nộp. C đang theo dõi CI, A tiếp tục tài liệu trong queue và không sửa file C.
+
 ## T21 — đã nộp; phần tên test đạt, phần còn thiếu chuyển T24
 
 **Trạng thái: đã review6921d5a; T24 đã bổ sung một phần, phần còn thiếu qua T27.** Đầu ra: sửa [review A](../reviews/receiptrail-antigravity.md), phản hồi từng T13-R1–R4 và T18-R1–R3. Không sửa source để làm report đúng.

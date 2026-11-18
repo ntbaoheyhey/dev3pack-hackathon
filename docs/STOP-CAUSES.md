@@ -51,6 +51,8 @@ Bảnv2/769d365 được pull tới2f1cde0 trước checkpoint: nhận cách nó
 
 [Evidence K9](evidence/phase3/ci-merge-7e654a0-blocked.json) giữ hai run44224621982/44224628416 và annotations từng job. Không sửa lịch sử Git để che merge; không rerun hoặc dùng billing làm cơ chế chặn cài lâu dài.
 
+**Bổ sung K9,18/11 sau mở CI:** commit7210aa6 chỉ sửa HANDOFF-antigravity nhưng thiếu skip marker, tạo runs44231910864/44231906106. Hai runs a114a98/44231749529/44231743826 kết thúc cancelled khi đang cài Anchor; log ghi operation canceled, chưa tới runtime tests. Thứ tự sự kiện và `cancel-in-progress: true` của cùng group phù hợp việc run mới hủy run cũ; không coi đây là lỗi compiler hoặc suy agent cố ý hủy. Khác K9 trước, P3-A hiện đã có quyền. C fast-forward, giữ file A, chuyển theo dõi handles mới và nhắc `[skip ci]` trên mọi commit/merge tài liệu của A qua queue; không tự rerun thêm.
+
 | K10 | 18/11/2026 | C | Khi tiếp tục ở HEAD51bf866, Thẻ nhớ chỉ liệt kê billing/funding/report A, nhưng còn 12 file tài liệu/evidence chưa commit và PR7 vẫn ghi chưa có quyền/guards false | Bàn giao bỏ mất bước chốt thay đổi local và đồng bộ PR, dễ bị đọc thành hết việc độc lập; lượt chỉ bàn giao không chứng minh đã push | Kiểm git status và đọc body/head PR trước kết luận hết việc; đưa commit/push/PR thành việc đầu tiên trong Còn lại, xác minh xong mới gỡ. Không dùng blocker ngoài để bỏ việc còn làm được |
 
 ## Luật rút ra (đã đưa vào AGENTS.md)
