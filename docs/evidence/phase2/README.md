@@ -43,3 +43,5 @@ Số đo VM: account131bytes, rent1,802,640lamports, principal1,000,000 trả1l�
 [Review16:47](receiptrail-supplement-1647-review.json): T31/71d6ff6,T32/e12c8e6,T33/ee200e3 có30/36/57dòng/6input hashes. Nhận nhãn pain/nhắc PDA,3log đúng,phí/Terms/no-auto-retry/reload;3tên test bị rút gọn,9findings vẫn mở.9mã/4mục/165giây trên giấy giữ đúng; snapshots cũ giữ riêng, không crawl/rerun suite.
 
 [Bổ sung26fe656](receiptrail-supplement-26fe656-review.json): a6a4338/a3ef1e0/8e5c18b có30/37/58dòng/6inputs. T32 khôi phục3tên đầy đủ và giữ3log đúng, nhưng PDA check sai quay lại; T33 giữ phí/Terms/no-auto-retry/reload nhưng6002 reconnect.9findings mở; snapshot16:47 giữ lịch sử.
+
+[Review17:32 hiện hành](receiptrail-supplement-1732-review.json): T31/d4dcf3c,T32/030b93c,T33/4e1e2d7 có30/37/58dòng,3commit/blob/SHA256 và6input hashes. T32 giữ3log đúng nhưng3tên rút gọn/PDA check sai; merchant không ký pay và T33 reload recipient được khôi phục. T31 bỏ câu không dùng confirmed; state/provenance chưa đủ.9findings mở,T32→T31→T33; snapshot26fe656 trở thành lịch sử. Không crawl/rerun suite/RPC/CI.

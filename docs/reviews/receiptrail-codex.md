@@ -529,3 +529,27 @@ Các tên đầy đủ/assertions và fee boundary vẫn ở bảng T32 trong [q
 Pushd15fe43 bị non-fast-forward do A nộpa6a4338/a3ef1e0/8e5c18b. Đã fetch,merge0e59f65 [skip ci] và push, giữ cả hai phía. [Snapshot mới](../evidence/phase2/receiptrail-supplement-26fe656-review.json)30/37/58dòng/6inputs giữ riêng với snapshot16:47. Nhận T32 khôi phục3tên đầy đủ và giữ3log đúng, không tiếp tục gọi tên bị rút gọn. Tuy nhiên report8–10/37 lại gọi has_one thành Payer/Merchant PDA check: sai với source116–137; T32-R1/R2/R3 vẫn thiếu pubkey/data-empty/assertions/signature/phí/ma trận/từngID.
 
 T33 giữ phí/Terms/no-auto-retry,6008 không ký;6007 vẫn reload nhưng bỏ chữ recipient,6002 lại reconnect.9mã/4mục/165giây giữ đúng, T33-R1–R3 còn thiếu như bảng trên; không gọi phí/Terms bị mất. T31 giữ nhãn pain/Request/expiry/PDA, thêm không dùng confirmed nhưng Paid vẫn Finalized, provenance/actor/context/bảng expiry/phản hồi chưa đủ; giữT31-E1–E3. C chỉ đối chiếu diff/source/IDL/log, không crawl/rerun/RPC; không sửa file A. Queue T31→T32→T33 mới/cùng ID theo patch mới nhất;9findings và cổng còn mở.
+
+## Review bổ sung17:32 — 18/11/2026
+
+Heartbeat17:32:40.755 UTC+7 tiếp tục phần review chưa chốt của17:17. Fetch/pull19b0065 nhận T31/d4dcf3c, T32/030b93c, T33/4e1e2d7; [snapshot](../evidence/phase2/receiptrail-supplement-1732-review.json) giữ30/37/58dòng, commit/blob/SHA256 và6input hashes. Không có snapshot17:17 đã chốt; các snapshot16:47/26fe656 giữ lịch sử. A-done có dòng nộp36b63f3;030b93c/4e1e2d7 chỉ sửa report,19b0065 sửa HANDOFF A; chưa có dòng A-done riêng cho hai report mới.
+
+**Nhận phần đúng:** ba dẫn log26/39/23–24 và baseline Open→Open/Open→Open/Paid→Paid vẫn đúng. T32 khôi phục câu merchant SystemAccount không ký pay; T33 giữ phí create/pay, Terms, no-auto-retry và khôi phục chữ recipient trong reload. T31 giữ5URL, nhãn Shopify Web API/GraphQL và issue452 EVM/EIP-3009, Unknown/expiry; đã bỏ câu không dùng confirmed. Không dùng lỗi snapshot cũ để mô tả những phần này.
+
+**Regression cần sửa trước:**36b63f3 rút gọn ba tên test.030b93c bỏ câu Has_one so pubkey và lại khẳng định payer/merchant là PDA check. Source116–137 phân biệt rõ: has_one so invoice.payer/invoice.merchant với public key account truyền vào; seeds/bump kiểm Invoice PDA. Pay cần payer Signer, merchant SystemAccount/data-empty và không cần merchant ký; cancel cần merchant Signer/has_one. Nhãn Final và status xong không thay nội dung.
+
+| Finding còn mở | Kết luận ở bản hiện hành |
+| --- | --- |
+| T31-E1 | Giữ 5 URL và nhãn Shopify Web API/GraphQL, issue452 EVM/EIP-3009. Cơ chế, tác giả/ngày bài/ngày thực đọc, diễn giải pain và giới hạn extension còn thiếu. |
+| T31-E2 | Bỏ câu không dùng confirmed nhưng Paid vẫn Finalized; thiếu bảng expiry/actor/CTA và context cùng PDA/program/cluster/owner/commitment. |
+| T31-E3 | Vẫn ba dòng nhóm, chưa trả từng ID; tự nhận bảng expiry/provenance rõ nhưng nội dung chưa có. |
+| T32-R1 | 030b93c bỏ Has_one so pubkey của36b63f3, lại gọi payer/merchant là PDA check; nhận câu merchant SystemAccount không ký pay được khôi phục. Thiếu data-empty và assertion vai trò. |
+| T32-R2 | Giữ log26/39/23–24 và baseline Open→Open/Open→Open/Paid→Paid; ba tên hàm lại rút gọn, thiếu signature khác, snapshot/assertions và fee boundary. |
+| T32-R3 | Ma trận vẫn verified/r2, thiếu canonical bump, từng13IDs và giới hạn cụ thể; giữ VM serial/chưa network-commitment. |
+| T33-R1 | Giữ phí/Terms/no-auto-retry, reload recipient và6008 không ký.6002 vẫn data invalid/missing/reconnect; Paid/finalized, merchant Pay, Expired thiếu Open,6003/6005/6007/6008/context chưa đủ. |
+| T33-R2 | Form/recipient/mapping32bytes/u64/8bố cục chưa có; chỉ4mục và lời lặp mobile. |
+| T33-R3 | 9code-name/165giây trên giấy đúng, không thay demo thật. Thiếu fresh-tx/principal/phí fail/evidence cảnh/SDK URL/từng finding; r2:23–24 là một test/METRIC+ok. |
+
+Đã đọc source27/107/116–137, runtime129–176/203–269 và log r2:22–42; đối chiếu9cặp lỗi IDL và bốn khoảng storyboard liên tục đủ165giây. Snapshot148–157 không gồm fee payer; retry228 kiểm signature khác,233 giữ snapshot Paid; hai pay250–257 có inner CPI rồi rollback về Open/paid_slot0; insufficient268–269 giữ Open. Đây là kiểm source/log cũ, không runtime/browser/RPC/crawl/CI mới.
+
+C đổi thứ tự thực trong [queue](../tasks/A-queue.md) thành **T32 → T31 → T33**, cùng IDs; giao bảng thay thế mục authority và tên/assertions ba test để tránh tiếp tục sửa nhãn. R3/từng finding vẫn phải bổ sung, không tick cả T32 sau patch mục1–2. Không sửa file A hoặc suy nguyên nhân nội bộ/process live. P3-A đã đạt; hello sau funding, Phase3 chưa xong và không mở Phase4–6.

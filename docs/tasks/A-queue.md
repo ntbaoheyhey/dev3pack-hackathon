@@ -2,13 +2,11 @@
 
 **Chủ file: Codex. Chỉ nhận việc từ file này.** A sở hữu các report của mình, A-done và HANDOFF A; C không sửa thay các file đó. Chỉ làm tài liệu Phase2 ReceiptRail. Quyết định **“ReceiptRail chính, ClusterProof phụ” lúc00:07 ngày18/11/2026 UTC+7** ở [DECISION](../ideas/DECISION.md); **người dùng đã duyệt Phase2** bằng “duyệt phase 2”, log09:27:18.464 ngày18/11 UTC+7. C đã được đồng ý P3-A/P3-B lúc log10:13:11.851 UTC+7, chỉ CI/hello theo DECISION; funding hello để sau. Quyền A vẫn là tài liệu trong queue; không cài/code/tạo ví-keypair triển khai/build web/deploy/public hoặc tự mở Phase3.
 
-**Làm tiếp T31 → T32 → T33 (mới — sửa bổ sung cùng ID).** T31/a6a4338 giữ nhãn pain/Unknown/expiry; T32/a3ef1e0 khôi phục3tên test và3log đúng nhưng PDA check sai quay lại; T33/8e5c18b giữ phí/Terms/no-auto-retry/reload,6002 lại reconnect.9findings còn mở,T31→T32→T33 cùng ID. A-done chưa có dòng nộp mới; HANDOFF26fe656 ghi xong không là C nhận đạt. Sửa từng đoạn, giữ phần đã nhận; không thêm task ID hoặc viết lại report bằng checkbox.
+**Làm tiếp T32 → T31 → T33 (mới — sửa bổ sung cùng ID).** Bản hiện hành: T32/030b93c, T31/d4dcf3c, T33/4e1e2d7. C đã review tại [17:32](../reviews/receiptrail-codex.md#review-bổ-sung1732--18112026), [snapshot](../evidence/phase2/receiptrail-supplement-1732-review.json). Chín findings vẫn mở; A-done/HANDOFF ghi xong chỉ là trạng thái tự báo. Làm T32 trước vì giải thích authority sai lặp lại; chỉ patch đoạn được chỉ ra và giữ phần đã nhận.
 
-**Lưu ý CI18/11:** commit7210aa6 chỉ sửa HANDOFF A nhưng thiếu `[skip ci]`, tạo hai run mới khi Anchor còn build; hai run a114a98 đã bị cancelled. Mọi commit tài liệu/HANDOFF của A **phải có `[skip ci]`**, kể cả commit merge. P3-A đã đạt hai runs27cf7ac; không còn CI live. Thứ tự đang giao **T31 → T32 → T33 (sửa bổ sung cùng ID)**, không chỉ đổi Thẻ nhớ rồi coi report đã nộp. Không sửa workflow/file C hoặc tạo thêm run.
+**CI:** P3-A đã đạt hai runs27cf7ac; không có CI live. Mọi commit tài liệu/HANDOFF và merge phải có `[skip ci]`. Không sửa workflow/file C hoặc tạo run mới. C không sửa report/A-done/HANDOFF thay A.
 
-**Các bản hiện hành26fe656:** [review C](../reviews/receiptrail-codex.md#bổ-sung26fe656-trước-push)/[snapshot](../evidence/phase2/receiptrail-supplement-26fe656-review.json) giữ30/37/58dòng/6input hashes. Giữ3tên đầy đủ/3log đúng,phí/Terms/no-auto-retry/reload; sửa has_one/PDA check và6002 reconnect quay lại.9findings cùng IDs; không viết lại report hoặc bỏ phần đã nhận.
-
-Lịch sử yêu cầu T21–T29 đã chuyển vào [archive](../archive/A-queue-before-T30.md). Phần dưới giữ T30 đã nộp để đối chiếu; việc đang giao là T31–T33.
+T30 bên dưới là lịch sử đã nộp; thứ tự thực của các task đang mở là **T32 → T31 → T33**. Yêu cầu T21–T29 ở [archive](../archive/A-queue-before-T30.md). Nộp rõ commit/từng finding đã sửa/chưa sửa; thiếu bằng chứng thì ghi còn việc, không đổi tiêu đề thành Final để đóng task.
 
 ## T30 — sửa semantics UX trước, giữ phí và Unknown đã đúng
 
@@ -21,20 +19,22 @@ Lịch sử yêu cầu T21–T29 đã chuyển vào [archive](../archive/A-queue
 
 **Xong khi:** state và nguyên nhân/CTA6001/6002/6005/6006/6007/6008 được đối chiếu nguồn và bảng state thực có; phần phí/Unknown không bị mất. Sau nộp làm tiếpT31, không đợi C duyệt.
 
-## T31 — sửa evidence, khôi phục provenance và state
-
-**Trạng thái: mới — sửa bổ sung T31 saua6a4338, làm đầu tiên.** Chỉ sửa [evidence A](../data/receiptrail-evidence.md), đọc [review16:47](../reviews/receiptrail-codex.md#review-bổ-sung1647--18112026) và note021. Giữ nhãn Shopify Web API/GraphQL và issue452 EVM/EIP-3009, Request Unknown/expiry/5URL và nhắc PDA. Nhãn của issue không thay scope của extension; bổ sung cơ chế/provenance/commitment/context/từng finding, không tự nhận crawl từ note.
-
-1. Ba alternatives có cơ chế/nguồn/ngày A thực đọc/giới hạn/tác động: Stripe idempotency key, v1/v2; Solana Pay reference **không bắt buộc unique**; x402 fingerprint/cache/conflict409. PDA định danh cần invariant program mới chống trả cùng invoice; không tự suy lợi thế market.
-2. Hai pain sources có tác giả/ngày bài/ngày đọc và điều nguồn không chứng minh. Shopify là unknown charge/retry risk; issue452 là nonce đã dùng/AuthorizationUsed, phân biệt settlement và lỗi. Khôi phục metadata đã đúng ởT26; không viết trùng đơn/Solana double-debit/adoption khi nguồn không chứng minh. Nếu chưa mở URL thì nêu nguồn gián tiếp và chưa crawl.
-3. Giữ Request Pending/Unknown đã khôi phục ở306466f. Paid là state, commitment riêng; bảng expiry−1/expiry/expiry+1 với actor/CTA và cùngPDA/program/cluster/owner/commitment. Tại/sau expiry chặn pay, merchant vẫn cancelOpen; không tự ký/gửi/đổiID.
-4. Đúng10IDs gốc: T14R1state/R2idempotency/R3pain/R4alternatives; T20/T23 R1alternatives/R2pain/R3mapping-state. Trả thêmT26-R1–R3/T29-E1–E3 bằng mục/hàng thực; chưa đủ ghi chưa đạt. Không nhận “đã tách” khi bảng còn thiếu.
-
-**Xong khi:** mỗi claim/ID trỏ nội dung kiểm được, provenance thật; không đổi điểm/thiết kế hoặc mở quyền. Sau bản sửa bổ sung, ghi rõ đã kiểm/chưa kiểm; không tự đóng cổng hoặc tạo task mới thay ba finding chưa sửa.
-
 ## T32 — review bằng assertion, giữ baseline Paid→Paid
 
-**Trạng thái: mới — sửa bổ sung T32 saua3ef1e0, làm sauT31.** Chỉ sửa [review A](../reviews/receiptrail-antigravity.md),đọc [bổ sung mới](../reviews/receiptrail-codex.md#bổ-sung26fe656-trước-push). Giữ3tên đầy đủ/3log26/39/23–24 đúng, SystemAccount/không ký pay và baseline/VM serial. Xóa diễn giải Payer/Merchant PDA check sai: has_one so pubkey; bổ sung data-empty/assertions/signature khác/canonical bump/phí/từng finding. Không rerun suite.
+**Trạng thái: mới — sửa bổ sung T32 sau030b93c, làm đầu tiên.** Chỉ sửa [review A](../reviews/receiptrail-antigravity.md); đọc [review17:32](../reviews/receiptrail-codex.md#review-bổ-sung1732--18112026). Giữ log26/39/23–24, ba baseline, merchant SystemAccount không ký pay và VM serial/chưa network-commitment. Khôi phục ba tên hàm đầy đủ; thay giải thích Payer/Merchant PDA check bằng bảng dưới. Không rerun suite.
+
+### Patch trước tiên: thay mục1 và sửa mục2, không viết lại toàn report
+
+Đọc [source116–137](../../programs/receiptrail/src/lib.rs), rồi thay bảng authority và câu Payer/Merchant là PDA check bằng nội dung đúng sau; A tự đối chiếu trước khi ghi đã kiểm:
+
+| Action | Signer/recipient | Liên kết public key | Invoice PDA và giới hạn |
+| --- | --- | --- | --- |
+| pay_invoice | payer là Signer/System-owned/data-empty; merchant là SystemAccount/data-empty, không cần merchant ký pay | has_one=payer so invoice.payer với payer.key(); has_one=merchant so invoice.merchant với merchant.key() | seeds=[INVOICE_SEED, invoice.merchant, invoice.invoice_id], bump=invoice.bump kiểm địa chỉ **Invoice**; không kiểm payer/merchant là PDA |
+| cancel_invoice | merchant là Signer | has_one=merchant so invoice.merchant với merchant.key() | seeds/bump kiểm Invoice PDA; version phải đúng; merchant không được thay bằng ví khác |
+
+Create dùng canonical bump tại init/source109–110, lưu invoice.bump/source41; runtime207–215 đối chiếu find_program_address. Merchant không ký **pay** không có nghĩa merchant không ký **create/cancel**. Thêm test/assertion/log vai trò từ yêu cầu bên dưới, không giữ cột verified làm bằng chứng.
+
+Mục2: thay từng tên có `...` bằng **nguyên tên trong bảng ba test bên dưới**, thêm vị trí assertion và giới hạn fee payer; giữ ba baseline và log đã đúng. Retry là transaction/signature mới, không phải phát lại cùng signature. Patch mục1–2 xong vẫn còn T32-R3 và phản hồi từng ID; đánh đúng phần xong/chưa xong rồi tiếp tục phần còn lại.
 
 - Authority: pay payer Signer/has_one payer; merchant SystemAccount recipient/data-empty/has_one merchant, không ký pay. has_one so public key trong Invoice với account truyền vào, không chỉ kiểm tồn tại. Cancel merchant Signer/has_one merchant. Source116–137/helper reject165–176; log r2 cho vai: wrong_payer→42,recipient_substitution→35,payer thiếu ký→33,merchant thiếu ký→28,merchant khác cancel→22. Các dòng này không thay log ba ca rollback bên dưới.
 - Ba ca rollback: dùng đúng bảng dưới với [runtime](../../programs/receiptrail/tests/runtime.rs) và [log r2](../evidence/phase2/receiptrail-spike-r2.txt). Giữ ba baseline; đọc lại nội dung từng dòng log trước ghi đã kiểm. Snapshot148–157 không gồm fee payer, không suy phí fail được hoàn.
@@ -50,9 +50,20 @@ Lịch sử yêu cầu T21–T29 đã chuyển vào [archive](../archive/A-queue
 
 **Xong khi:** người đọc tái đối chiếu được authority,3ca và5nhóm, hiểu giới hạn. Sau bản sửa bổ sung, ghi đã kiểm/chưa kiểm và finding còn mở; không tự đóng review chéo/cổng giáo viên.
 
-## T33 — sửa bổ sung UX sau bản8e5c18b
+## T31 — sửa evidence, khôi phục provenance và state
 
-**Trạng thái: mới — sửa bổ sung T33 sau8e5c18b, làm sauT31/T32.** Chỉ sửa [UX A](../design/receiptrail-ux-antigravity.md). Giữ phí/Terms/no-auto-retry/reload/6008 không ký;6002 lại reconnect nên sửa theo zero/data-empty bên dưới.6007 phải dừng/tải lại recipient/xác minh; state/vai/Open/form/8bố cục/demo/SDK/từng finding vẫn còn. Không xóa phần đã nhận.
+**Trạng thái: mới — sửa bổ sung T31 saud4dcf3c, làm sauT32.** Chỉ sửa [evidence A](../data/receiptrail-evidence.md), đọc [review17:32](../reviews/receiptrail-codex.md#review-bổ-sung1732--18112026) và note021. Giữ nhãn Shopify Web API/GraphQL và issue452 EVM/EIP-3009, Request Unknown/expiry/5URL và nhắc PDA. Nhãn của issue không thay scope của extension; bổ sung cơ chế/provenance/commitment/context/từng finding, không tự nhận crawl từ note.
+
+1. Ba alternatives có cơ chế/nguồn/ngày A thực đọc/giới hạn/tác động: Stripe idempotency key, v1/v2; Solana Pay reference **không bắt buộc unique**; x402 fingerprint/cache/conflict409. PDA định danh cần invariant program mới chống trả cùng invoice; không tự suy lợi thế market.
+2. Hai pain sources có tác giả/ngày bài/ngày đọc và điều nguồn không chứng minh. Shopify là unknown charge/retry risk; issue452 là nonce đã dùng/AuthorizationUsed, phân biệt settlement và lỗi. Khôi phục metadata đã đúng ởT26; không viết trùng đơn/Solana double-debit/adoption khi nguồn không chứng minh. Nếu chưa mở URL thì nêu nguồn gián tiếp và chưa crawl.
+3. Giữ Request Pending/Unknown đã khôi phục ở306466f. Paid là state, commitment riêng; bảng expiry−1/expiry/expiry+1 với actor/CTA và cùngPDA/program/cluster/owner/commitment. Tại/sau expiry chặn pay, merchant vẫn cancelOpen; không tự ký/gửi/đổiID.
+4. Đúng10IDs gốc: T14R1state/R2idempotency/R3pain/R4alternatives; T20/T23 R1alternatives/R2pain/R3mapping-state. Trả thêmT26-R1–R3/T29-E1–E3 bằng mục/hàng thực; chưa đủ ghi chưa đạt. Không nhận “đã tách” khi bảng còn thiếu.
+
+**Xong khi:** mỗi claim/ID trỏ nội dung kiểm được, provenance thật; không đổi điểm/thiết kế hoặc mở quyền. Sau bản sửa bổ sung, ghi rõ đã kiểm/chưa kiểm; không tự đóng cổng hoặc tạo task mới thay ba finding chưa sửa.
+
+## T33 — sửa bổ sung UX sau bản4e1e2d7
+
+**Trạng thái: mới — sửa bổ sung T33 sau4e1e2d7, làm sauT32/T31.** Chỉ sửa [UX A](../design/receiptrail-ux-antigravity.md). Giữ phí/Terms/no-auto-retry/reload/6008 không ký;6002 lại reconnect nên sửa theo zero/data-empty bên dưới.6007 phải dừng/tải lại recipient/xác minh; state/vai/Open/form/8bố cục/demo/SDK/từng finding vẫn còn. Không xóa phần đã nhận.
 
 - Trước bố cục: viết hai bảng riêng **Invoice** (Open/Paid/Cancelled; Expired=Open+slot>=expiry, merchant vẫn cancel Open) và **Request** (Pending/Unknown). Paid là giá trị state; commitment là cột của lần đọc, không định nghĩa Paid bằng finalized. Unknown không tự ký/gửi transaction mới hoặc đổiID.
 - Sửa6008 thành invoice.version không được hỗ trợ→không ký (source121/135), không IDL mismatch.6002: payer zero hoặc data không rỗng theo27/107/123/125; owner/type là lỗi Anchor riêng, không tự gán account missing thành6002.6003 gồm payer=merchant/invoice;6004 đọc state;6007 dừng/tải lại recipient, không bảo payer dùng ví merchant. Giữ6001/6005/6006/6007 đã so đúng biên/pubkey; tra program ID+code, tách nhóm Anchor/System/fee/wallet/RPC.
@@ -62,7 +73,7 @@ Lịch sử yêu cầu T21–T29 đã chuyển vào [archive](../archive/A-queue
 - Bảng SDK chọn/bỏ hoặc chưa quyết định, version/mốc source chính xác+URL/ngày thực đọc/giới hạn; so React/Vite/Wallet Standard hiện có. Không dùng v1.9x/v0.2x làm version đã kiểm, không suy quyền cài từ đề xuất. Giữ giới hạn lịch sử note005.
 - Trả T33-R1–R3 và từngT16/T22/T25-R1–R5/T28-R2/R3 bằng mục thực; mục còn thiếu không tick. Tự cộng thời lượng và ghi đúng phạm vi kiểm tài liệu.
 
-**Xong khi:** T33-R1–R3 và các yêu cầu T30 còn thiếu có nội dung đủ tái kiểm, không chỉ số8/tổng165/checkbox; phí/Terms/no-auto-retry không bị mất. Chưa code UI/browser/cài/deploy/public; nộp rồi sửa phầnT31 còn thiếu và tự cập nhật trạng thái đúng phạm vi, không tự đóng cổng.
+**Xong khi:** T33-R1–R3 và các yêu cầu T30 còn thiếu có nội dung đủ tái kiểm, không chỉ số8/tổng165/checkbox; phí/Terms/no-auto-retry không bị mất. Chưa code UI/browser/cài/deploy/public; nộp từng finding đã sửa/chưa sửa và tự cập nhật trạng thái đúng phạm vi, không tự đóng cổng.
 
 ## Ghi kết quả và giới hạn
 

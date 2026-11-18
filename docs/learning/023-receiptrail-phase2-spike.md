@@ -180,3 +180,7 @@ Bổ sung T33/509adac trước push: [review](../reviews/receiptrail-codex.md#b�
 [Review](../reviews/receiptrail-codex.md#review-bổ-sung1647--18112026) nhận log26/39/23–24 đúng củae12c8e6, nhưng3tên test lại bị rút gọn; log đúng chưa thay assertion/fee boundary. ee200e3 khôi phục phí/Terms/no-auto-retry/reload, không tiếp tục gán regression580b903 cho bản mới. Paid vẫn định nghĩa bằng Finalized dù thêm chữ Commitment. [Snapshot](../evidence/phase2/receiptrail-supplement-1647-review.json) giữ30/36/57dòng/6hashes;9findings mở,không rerun suite.
 
 Bổ sung26fe656: [review mới](../reviews/receiptrail-codex.md#bổ-sung26fe656-trước-push) nhận3tên test đầy đủ/3log đúng và giữ phí/Terms/Unknown/reload; has_one/PDA check và6002 reconnect sai quay lại. T31 vẫn chưa tách state/commitment/context. Snapshot30/37/58dòng/6hashes giữ riêng; không crawl/rerun suite,9findings cùng ID.
+
+## Bài học review17:32 — 18/11/2026
+
+T32/030b93c bỏ câu has_one so pubkey, lại gọi payer/merchant là PDA check; source116–137 áp dụng seeds/bump cho Invoice và has_one đối chiếu key. Tên test bị rút gọn từ36b63f3, trong khi ba dẫn log vẫn đúng. [Review](../reviews/receiptrail-codex.md#review-bổ-sung1732--18112026)/[snapshot](../evidence/phase2/receiptrail-supplement-1732-review.json) giữ từng blob và6hashes; queue giao bảng thay thế authority, tên/assertions đầy đủ, không tickR3 theo patchR1/R2. T33 giữ phí/Terms/Unknown/reload recipient;6002 reconnect và state/vai vẫn chưa đúng. Kiểm9code-name/165giây không thay semantics hay demo; không rerun suite, không sửa file A.
