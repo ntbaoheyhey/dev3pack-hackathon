@@ -1,6 +1,6 @@
 # 003 — Toolchain Solana, phiên bản và cài đặt có kiểm soát
 
-> Ngày kiểm tra: 2026-11-17 (Asia/Ho_Chi_Minh). Đính chính18/11: giữ bộ đã cài; cài thêm cần hỏi trước theo DECISION. Không tiếp tục Phase3 trước duyệt Phase2 ReceiptRail.
+> Ngày kiểm tra: 2026-11-17 (Asia/Ho_Chi_Minh). Đính chính18/11: giữ bộ đã cài; cài thêm cần hỏi trước theo DECISION. Người dùng đã duyệt Phase2 ReceiptRail (DECISION, log09:27:18.464 ngày18/11 UTC+7); không suy quyền cài/deploy/public.
 > Rust1.100.0, Agave4.1.2, AVM/Anchor1.2.2 và platform-tools v1.57 đã cài. Hello SBFv3 + IDL + 6 runtime tests đạt qua check-lab; chưa deploy, CI/web chưa được xác nhận.
 
 ## 1. Mục tiêu và điều cần nhớ
@@ -131,7 +131,7 @@ Trên macOS, dùng Command Line Tools nếu thiếu. Với Node/pnpm, **máy hi�
 
 ### B. Ví devnet và airdrop
 
-Phase3 hello/devnet đã nằm trong scope được giao. Đã tạo payer/program keypair riêng tại `~/.local/share/dev3pack/devnet/` ngoài Git (directory0700/files0600); target tham chiếu program keypair qua symlink bị ignore. Không dùng ví tài sản thật hoặc xuất secret của ví browser. Chỉ lưu public address trong evidence; không in secret/seed vào log.
+Lịch sử17/11: assistant đã suy Phase3 hello/devnet nằm trong scope; kết luận quyền này sai/hết hiệu lực theo DECISION18/11. Đã tạo payer/program keypair riêng tại `~/.local/share/dev3pack/devnet/` ngoài Git (directory0700/files0600); target tham chiếu program keypair qua symlink bị ignore. Không dùng ví tài sản thật hoặc xuất secret của ví browser. Chỉ lưu public address trong evidence; không in secret/seed vào log.
 
 CLI muốn ký cần một signer đã có được cấu hình đúng; ví browser không tự trở thành signer của CLI. Không hướng dẫn xuất private key của ví browser vào project. Program ID keypair và fee-payer keypair cũng không phải một khái niệm.
 
@@ -171,7 +171,7 @@ Các trang sống truy cập 17/11/2026; thời điểm truy cập không phải
 
 Đã kiểm bộ Rust host1.100.0 + Agave4.1.2 + Anchor1.2.2 + platform-tools v1.57 bằng build/IDL/6 LiteSVM tests: [hello-check-r2](../evidence/phase3/hello-check-r2.txt), exit0. Chưa xác nhận deploy/CI, chưa chạy Docker daemon. Các bảng/lệnh kế hoạch gốc ở trên chỉ là lịch sử nghiên cứu, không thay log thực hành này.
 
-Tiếp tục theo quyền Phase3 đã có, không trình lại phiếu cài. Đọc [004](004-anchor-a-to-z.md), dùng scaffold chính thức Anchor1.2.2, template single + LiteSVM0.15.0 cho hello tối thiểu, không clone RPC mainnet. Giữ signer lab ngoài Git; nếu hosting/faucet cần tài khoản thì ghi nhu cầu thực sau khi hoàn tất phần độc lập.
+Câu lịch sử “Tiếp tục theo quyền Phase3 đã có” sai/hết hiệu lực; không dùng làm quyền hiện hành. Giữ bộ đã cài, chỉ chuẩn bị local bằng cache và hỏi riêng trước cài thêm/keypair triển khai/deploy/public. Đọc [004](004-anchor-a-to-z.md), dùng scaffold chính thức Anchor1.2.2, template single + LiteSVM0.15.0 cho hello tối thiểu, không clone RPC mainnet. Giữ signer lab ngoài Git; nếu hosting/faucet cần tài khoản thì ghi nhu cầu thực sau khi hoàn tất phần độc lập.
 
 ### Bài học / lỗi đã gặp — Phase3
 

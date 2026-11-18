@@ -1,6 +1,6 @@
 # C01 — ReceiptRail: một invoice, một lần chuyển tiền
 
-Codex · cập nhật18/11/2026 · RUBRIC v1.2 · **PLAN r2 — ĐẠT theo Codex, 79/100; F=4 sau spike, chưa được giáo viên duyệt**. Người dùng chọn “ReceiptRail chính, ClusterProof phụ” lúc00:07 ngày18/11 UTC+7; [DECISION](../DECISION.md). Thiết kế Phase2 chưa duyệt.
+Codex · cập nhật18/11/2026 · RUBRIC v1.2 · **PLAN r2 — ĐẠT theo Codex, 79/100; F=4 sau spike, chưa được giáo viên duyệt**. Người dùng chọn “ReceiptRail chính, ClusterProof phụ” lúc00:07 ngày18/11 UTC+7; [DECISION](../DECISION.md). Người dùng đã duyệt Phase2 bằng “duyệt phase 2”, giờ log09:27:18.464 ngày18/11 UTC+7; không có giờ quyết định tự nêu.
 
 **Mục1–8 giữ snapshot r1 ngày17/11**: các câu “chưa chạy/chưa cài/chưa IDL” chỉ mô tả mốc r1. Trạng thái hiện hành và delta r2 nằm ở mục9; không sửa điểm lịch sử. Nguồn/primitive tại [021](../../learning/021-payment-cluster-evidence.md), phương pháp [016](../../learning/016-technical-feasibility-risk.md).
 
@@ -159,4 +159,4 @@ Tổng `(80+60+40+60+60+60+15)/5=75`; mọi sàn đạt. Đây là bài sát ng�
 
 G1–G6 vẫn pass **PLAN**: primitive thực thi là core; code tự viết/MIT và kế hoạch open source; demo gắn nhãn; dependency bắt buộc có đường xử lý; kiểm quyền/lifecycle/atomicity đã chạy local; README tách trước/trong sự kiện. Không dùng PLAN pass thay gate DELIVERY/public repo/video/CI/devnet. Toolchain/web cũ giữ nguyên; thêm cài/deploy/public phải hỏi trước.
 
-Rủi ro còn lại: rent terminal tích lũy; program/upgrade/RPC trust; merchant tạo ID khác cho cùng đơn hàng; native SOL chưa stablecoin/x402; nhu cầu market chưa xác nhận. Review A/giáo viên và duyệt IDEA/ARCHITECTURE người dùng còn mở. Không suy ĐẠT79 thành qua Phase2/3.
+Rủi ro còn lại: rent terminal tích lũy; program/upgrade/RPC trust; merchant tạo ID khác cho cùng đơn hàng; native SOL chưa stablecoin/x402; nhu cầu market chưa xác nhận. Review A/giáo viên còn mở; người dùng đã duyệt IDEA/ARCHITECTURE qua lời duyệt Phase2, xem DECISION. Không suy ĐẠT79 thành qua Phase2/3.

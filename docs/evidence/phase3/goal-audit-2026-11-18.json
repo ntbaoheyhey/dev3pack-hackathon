@@ -1,0 +1,99 @@
+{
+  "observed_at_utc": "2026-11-18T02:52:02.778079+00:00",
+  "rubric_weights_floors_match_v1_1_at": "3bb7003",
+  "scores_recomputed": {
+    "C01r2": {
+      "vector": [
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        3
+      ],
+      "total": 79.0,
+      "meets_floors": true
+    },
+    "C02r1": {
+      "vector": [
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        3
+      ],
+      "total": 79.0,
+      "meets_floors": true
+    },
+    "C03r1": {
+      "vector": [
+        4,
+        4,
+        3,
+        4,
+        4,
+        4,
+        3
+      ],
+      "total": 77.0,
+      "meets_floors": true
+    },
+    "A01": {
+      "vector": [
+        2,
+        3,
+        2,
+        2,
+        2,
+        2,
+        1
+      ],
+      "total": 42.0,
+      "meets_floors": false
+    },
+    "A02": {
+      "vector": [
+        2,
+        3,
+        1,
+        2,
+        2,
+        2,
+        1
+      ],
+      "total": 40.0,
+      "meets_floors": false
+    },
+    "A03": {
+      "vector": [
+        2,
+        2,
+        1,
+        2,
+        2,
+        2,
+        1
+      ],
+      "total": 37.0,
+      "meets_floors": false
+    }
+  },
+  "A_sources_match_snapshot": "3a6359b (3/3 byte-identical)",
+  "netpay_script_hashes": {
+    "rpc.mjs": true,
+    "cluster-proof.mjs": true,
+    "netpay.mjs": true,
+    "fee-mint.mjs": true,
+    "netpay-live.mjs": true
+  },
+  "phase1_logs": {
+    "tests16_pass": "docs/evidence/phase1/spikes-tests-r1-final.txt",
+    "cluster_duration_ms": 747,
+    "netpay_duration_ms": 283,
+    "both_writes_to_chain": 0
+  },
+  "scope": "Arithmetic, file and artifact verification; PLAN judgments remain Codex evaluation, not teacher approval or current market validation. Full goal is not complete."
+}

@@ -26,13 +26,13 @@ bash scripts/check-receiptrail.sh
 
 Script mặc định đường dẫn Apple Silicon của máy hiện tại; có thể trỏ `RECEIPTRAIL_HOST_TOOLS` và `RECEIPTRAIL_PLATFORM_TOOLS` tới bộ có sẵn ở máy khác. [Note023](docs/learning/023-receiptrail-phase2-spike.md) có lệnh sinh IDL riêng và bài học. [Metadata](docs/evidence/phase2/receiptrail-build-metadata.json) ghi hashes, versions, logs/CU/rent. R1 build+test64s/suite1.06s; r2 bằng cache3s/suite1.00s sau siết runner, cùng source/bytecode. Đây là số đo VM, không báo giá/latency mạng.
 
-CI/script lab hiện có phục vụ luồng cũ, chưa tích hợp runner ReceiptRail; `cargo test --workspace` cần `.so` ReceiptRail được build đúng đường dẫn trước. Các checkpoint mới dùng `[skip ci]` để không kích hoạt workflow tự cài toolchain/dependency khi chưa có quyền; **không coi đó là CI xanh**. Chưa chạy lại web/lab hoặc cài gì trong Phase2 ReceiptRail.
+[Runner Phase3 offline](scripts/check-phase3-offline.sh) đã build cả hello và ReceiptRail trước workspace tests: **25 runtime tests + 8 client tests đạt**; hai IDL/bytecode khớp artifacts cũ, Cargo.lock giữ nguyên. [Metadata/logs](docs/evidence/phase3/offline-pipeline-metadata.json) ghi phạm vi macOS/cache; chưa Linux CI. Workflow đã nối runner mới và giữ cả ba job guards ở `false`; mọi checkpoint **và merge** dùng `[skip ci]` đến khi có quyền CI riêng. **Skipped/blocked không là CI xanh.** [Phương án Phase3](docs/PHASE3-PLAN.md) tách quyền CI và hello devnet; không cài/deploy/public mới từ lời duyệt thiết kế.
 
 ## ClusterProof dự phòng và lịch sử lab
 
 [IDEA ClusterProof](docs/IDEA-clusterproof-draft.md)/[ARCHITECTURE ClusterProof](docs/ARCHITECTURE-clusterproof-draft.md) giữ nhãn **“dự phòng, chưa duyệt”**. Source, toolchain, lab và [web công khai hiện có](https://clusterproof-devnet-17nov26.anthony-robinson-125.chatgpt.site) được giữ nguyên. [Wallet lab](https://clusterproof-devnet-17nov26.anthony-robinson-125.chatgpt.site/lab/) chỉ connect/disconnect, không ký/gửi; Core discovery/request đã quan sát, connect/disconnect thật còn chưa kiểm.
 
-Logs lịch sử [Phase3](docs/evidence/phase3/) ghi hello6/client8/web8 tests local, generated IDL và web build/browser. Hello counter ID `2yzxUQEpaeLmgCMhDipwnVL3DHsxez18KcePonqZRiXL` chưa deploy ở lần inspect17/11; không là program sản phẩm ReceiptRail. CI cũ bị Billing & plans chặn trước jobs, chưa có Linux CI xanh. Các kết quả này không được dùng thay evidence ReceiptRail.
+Logs lịch sử [Phase3](docs/evidence/phase3/) ghi hello6/client8/web8 tests local, generated IDL và web build/browser. Hello counter ID `2yzxUQEpaeLmgCMhDipwnVL3DHsxez18KcePonqZRiXL` chưa deploy ở [preflight 18/11, 09:47:33 UTC+7](docs/evidence/phase3/preflight-after-phase2-approval.json), payer 0 lamports; không là program sản phẩm ReceiptRail. CI cũ bị Billing & plans chặn trước jobs, chưa có Linux CI xanh. Các kết quả này không được dùng thay evidence ReceiptRail. [Audit Prompt03](docs/reviews/prompt03-audit.md) tách phần đã nộp khỏi các cổng còn mở.
 
 ## Công việc trước sự kiện và trong hackathon
 

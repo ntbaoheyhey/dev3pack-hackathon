@@ -1,0 +1,27 @@
+{
+  "at": "2026-11-18T02:47:33.173Z",
+  "scope": "Read-only devnet preflight, no signer/keypair read, no transaction or airdrop",
+  "rpc": "https://api.devnet.solana.com",
+  "payer": "GQRoDMoWFV2nhgwm3bZGvSCC1LSa2wRkLeeJg8NhbFM2",
+  "program": "2yzxUQEpaeLmgCMhDipwnVL3DHsxez18KcePonqZRiXL",
+  "binaryBytes": 127672,
+  "genesis": "EtWTRABZaYq6iMfeYKouRu166VU2xqa1wcaWoxPkrZBG",
+  "payerBalance": {
+    "context": {
+      "apiVersion": "4.5.0-beta.0",
+      "slot": 523484369
+    },
+    "value": 0
+  },
+  "programAccount": {
+    "context": {
+      "apiVersion": "4.5.0-beta.0",
+      "slot": 523484369
+    },
+    "value": null
+  },
+  "programRent": 833120,
+  "programDataRent": 649452600,
+  "bufferRent": 649411960,
+  "status": "OBSERVED"
+}

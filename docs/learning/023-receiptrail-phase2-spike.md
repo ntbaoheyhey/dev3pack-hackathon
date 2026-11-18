@@ -128,3 +128,9 @@ Code/name đúng vẫn có thể đi cùng copy sai: WrongVersion là invoice.ve
 ## Cập nhật lời duyệt — 18/11/2026
 
 Tin trực tiếp **“duyệt phase 2”**, log2026-11-18T02:27:18.464Z =09:27:18.464 UTC+7, đã được đối chiếu record role=user chỉ chứa câu này. Người dùng không tự nêu giờ quyết định. [DECISION](../ideas/DECISION.md) và [trích record](../evidence/phase2/user-approval-2026-11-18.json) tách giờ log với giờ người dùng tự nêu, tách duyệt thiết kế khỏi review chéo/giáo viên/quyền vận hành. Các câu “chưa duyệt” trong phần lịch sử trước mốc này không còn là trạng thái hiện hành. Không hỏi duyệt lại; tiếp tục phần chuẩn bị được phép và hỏi riêng trước cài thêm/keypair triển khai/deploy/public. Chỉ cập nhật tài liệu, không rerun suite khi executable inputs không đổi.
+
+## Bài học review T26/T27 và pipeline — 18/11/2026
+
+[Review mới](../reviews/receiptrail-codex.md#review-t26-và-t27--18112026-sau-duyệt-phase2) nhận expiry `>=` của T26 và Signer/has_one của T27; còn sáu findings nguồn/state/mapping và recipient/assertion/baseline/giới hạn. Phải giữ phần đã đúng khi sửa report: expire_blockhash của T24 bị bỏ trong T27. API key không là idempotency key; Paid không là finalized; baseline của retry lỗi là Paid sau transaction thành công trước đó. Snapshot/hash giữ riêng, không sửa report A; T29 tiếp sau T28.
+
+[Runner offline Phase3](../../scripts/check-phase3-offline.sh) đổi pipeline nên đã chạy kiểm thật: build hai program trước workspace tests, 6 hello +19 ReceiptRail pass; 8 client tests và IDL/bytecode đều khớp. [Note022](022-phase2-3-independent-prep.md) ghi thiết kế trước code, logs/hash và giới hạn. Không đổi source/tests/IDL ReceiptRail hoặc điểm; kiểm tài liệu sau đó không cần rerun suite. Workflow mới vẫn guard false và chưa Linux CI, không dùng local pass để vượt quyền cài/deploy/public.

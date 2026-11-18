@@ -1,31 +1,33 @@
 # Thẻ nhớ — Codex / ReceiptRail sau duyệt Phase 2
-- Trạng thái **đang làm**; goal **active**, không còn blocker thiếu duyệt người dùng. Chưa hoàn thành toàn goal.
-- Vai: C trưởng nhóm, A trợ lý qua queue; C sở hữu tài liệu chính/programs, không sửa report/A-done/HANDOFF A.
-- Quyết định: **“ReceiptRail chính, ClusterProof phụ” lúc00:07 ngày18/11/2026 UTC+7**; log xác nhận00:08:31.389.
-- Duyệt mới: **“duyệt phase 2”**, log nhận09:27:18.464 ngày18/11/2026 UTC+7; người dùng không tự nêu giờ quyết định. Xem DECISION; không hỏi lại.
-- Repo /Users/bao/Documents/ChatGPT/dev3pack, branch work; merge7e654a0 cóT27/50718d0, không sửa checkout A.
-- IDEA/ARCHITECTURE ReceiptRail đã được người dùng duyệt; review chéo/giáo viên vẫn còn mở, không tự ghi đạt.
-- Spike8f84cfe: Anchor1.2.2/SBFv3/LiteSVM,19/19 runtime tests; IDLr3 đã đối chiếu, C01r2=79/F4 PLAN.
-- CI đã thêm guard false cho3jobs: merge7e654a0 thiếu [skip ci] gây2runs, cả6jobs bị billing chặn trước steps; evidence/K9 đã ghi. Không có bước cài chạy; mọi commit/merge dùng [skip ci].
-- T26/62286cc vàT27/50718d0 đã nộp; C đang review. HANDOFF A báoT28, không coi file trạng thái là process live.
-- Lời duyệtfcc9f61 đã push tại merge7e654a0. Bước tiếp: push guard CI/PR; reviewT26/T27; chuẩn bị Phase3 và audit goal theo NEXT.
-- Automation action view/config vừa xác minh **ACTIVE mỗi15phút**, đúng chat01a1e9c8-1b24-7911-91a4-4897fc175566; không suy mọi lượt đã gửi.
-- ClusterProof giữ **dự phòng, chưa duyệt**; toolchain/source/web/lab giữ nguyên.
-- Cài thêm/tạo ví-keypair triển khai/deploy/public mới phải hỏi trước bằng đề xuất cụ thể; duyệt Phase2 không cấp các quyền đó.
-- Không merge/force-push/mainnet/secrets. Không sửa lịch sử/audit cũ; snapshot trước duyệt đã archive.
+- Trạng thái **đang làm** checkpoint bàn giao; goal **active**, chưa hoàn thành toàn goal.
+- C trưởng nhóm; A trợ lý qua queue. C sở hữu tài liệu chính/programs, không sửa report/A-done/HANDOFF A.
+- Quyết định: **“ReceiptRail chính, ClusterProof phụ” lúc 00:07 ngày 18/11/2026 UTC+7**; log xác nhận 00:08:31.389.
+- Duyệt: **“duyệt phase 2”**, log nhận 09:27:18.464 ngày 18/11/2026 UTC+7; người dùng không tự nêu giờ quyết định. Không hỏi lại.
+- Repo /Users/bao/Documents/ChatGPT/dev3pack, work; checkpoint đã push f8b6988, batch pipeline/review/plan đang chốt. Không sửa checkout A.
+- IDEA/ARCHITECTURE ReceiptRail được người dùng duyệt; review chéo/giáo viên vẫn mở. ClusterProof dự phòng, chưa duyệt.
+- Spike ReceiptRail 19/19 local, C01 r2=79/F4 PLAN; audit Prompt03 có 3 bài 79/79/77, A=42/40/37, chưa verdict giáo viên.
+- Runner Phase3 offline mới build hello+ReceiptRail:25 runtime +8 client tests đạt; IDL/bytecode khớp artifacts cũ, Cargo.lock không đổi.
+- CI YAML/10 shell blocks đã kiểm; ba guards vẫn false. Mọi commit VÀ merge dùng [skip ci]; local/skipped/blocked không là CI xanh.
+- K9: merge7e654a0 thiếu marker gây hai runs; cả6jobs bị billing chặn trước steps. Không có bước cài chạy; không nói cancel thành công.
+- T26/62286cc và T27/50718d0 đã review: nhận expiry>=, Signer/has_one; sáu findings quaT29. Queue T28→T29; không suy process live từ HANDOFF A.
+- Preflight 09:47:33 UTC+7: đúng devnet, hello chưa deploy, payer0lamports; không đọc signer/gửi transaction.
+- PHASE3-PLAN có P3-A (CI runner/pins) và P3-B (hello devnet/signers cũ/buffer tạm/trần1.5SOL); CHƯA có quyền hai mục.
+- Automation action/config vừa kiểm ACTIVE15phút đúng chat01a1e9c8-1b24-7911-91a4-4897fc175566; không suy mọi lần gửi thành công.
+- Bước tiếp: chốt commit/push [skip ci], cập nhật/xác minh PR7 rồi xin P3-A/P3-B; không cài/sign/deploy/public trước câu đồng ý đúng phạm vi.
+- Giữ toolchain/source/web/lab cũ; không merge/force-push/mainnet/secrets hoặc sửa audit lịch sử.
 
 ## Bằng chứng hiện hành
 
-[DECISION](ideas/DECISION.md), [record duyệt](evidence/phase2/user-approval-2026-11-18.json), [IDEA](IDEA.md), [ARCHITECTURE](ARCHITECTURE.md), [note023](learning/023-receiptrail-phase2-spike.md), [metadata](evidence/phase2/receiptrail-build-metadata.json), [tests r2](evidence/phase2/receiptrail-spike-r2.txt), [IDL](idl/receiptrail.json). Các kết quả local không thay browser/RPC/devnet/CI hoặc review độc lập. [Snapshot trước lời duyệt](archive/HANDOFF-before-phase2-user-approval.md) chỉ là lịch sử.
+[DECISION](ideas/DECISION.md), [record duyệt](evidence/phase2/user-approval-2026-11-18.json), [IDEA](IDEA.md), [ARCHITECTURE](ARCHITECTURE.md), [spike Phase2](evidence/phase2/README.md). [Pipeline/logs/hash](evidence/phase3/offline-pipeline-metadata.json), [note022](learning/022-phase2-3-independent-prep.md), [review T26/T27](reviews/receiptrail-codex.md#review-t26-và-t27--18112026-sau-duyệt-phase2), [audit Prompt03](reviews/prompt03-audit.md). Local pass không thay browser/RPC/devnet/CI hoặc independent review.
 
 ## Còn lại
 
-1. Push guard CI/K9 bằng [skip ci], đồng bộ PR7 và xác minh head/body.
-2. Review T26/T27 theo source/log đã dẫn; giữT28 và giao sửa phần còn thiếu. T26 sửa expiry nhưng Paid/nguồn/mapping còn sai; T27 vẫn baseline retry Open và chưa đủ assertions.
-3. Chuẩn bị Phase3 trong quyền hiện có: đọc workflow/scripts/cache, xác định thay đổi CI cần thiết và kế hoạch hello devnet/web/wallet cụ thể. Không thực thi installer/sign/deploy/public.
-4. Audit RUBRIC v1.2/3 bài ĐẠT/chấm ứng viên A/SHORTLIST và các cổng ROADMAP. Chuẩn bị hồ sơ cho giáo viên; không coi approval người dùng là verdict giáo viên.
-5. Theo [NEXT](NEXT.md), sau khi đề xuất vận hành đủ cụ thể mới xin đúng quyền còn thiếu; không hỏi chọn ý tưởng hoặc duyệt Phase2 lại.
+1. Chốt checkpoint pipeline/review/audit/plan, push bằng [skip ci]; cập nhật PR7 và xác minh head/body/open/merged=false. Không merge.
+2. Trình hai quyền cụ thể trong [PHASE3-PLAN](PHASE3-PLAN.md) sau checkpoint; ghi nguyên văn/giờ log/phạm vi trước thao tác phụ thuộc. Không hỏi duyệt Phase2 lại.
+3. Khi A nộp T28/T29: fetch và review tài liệu, dùng phần đúng; không sửa file A, không chờ A để hoàn thành việc riêng.
+4. Khi có quyền vận hành, làm đúng [NEXT](NEXT.md): CI cần billing/limit; hello cần devnet funding. Recheck trước thi hành, không dùng snapshot cũ để gửi giao dịch.
+5. Giáo viên chấm SHORTLIST/kiến trúc và review chéo được nhận còn mở; không tự ghi toàn goal hoặc Phase3 xong.
 
-## Cổng cần người dùng và bằng chứng còn thiếu
+## Bị chặn (cần người dùng) — phần vận hành
 
-Review chéo và verdict giáo viên chưa nhận đạt; cài thêm/keypair triển khai/deploy/public chưa có câu đồng ý mới. Chưa ReceiptRail client/browser/RPC recovery/devnet/CI. Những cổng này không chặn đọc/review/chuẩn bị độc lập. PR7 vẫn open, không merge; head/body cần đồng bộ sau checkpoint. CI guard chưa mở, [K9](evidence/phase3/ci-merge-7e654a0-blocked.json) giữ bằng chứng không bước cài nào chạy.
+P3-A/P3-B chưa có câu đồng ý; đây là giới hạn trực tiếp **“cài thêm, deploy hay public thứ gì mới thì phải hỏi tôi trước”**, không phải thiếu lời duyệt Phase2. CI còn Billing & plans, payer0SOL, ví browser devnet chưa sẵn sàng. Phần đọc/review tài liệu vẫn được làm. Không mở guard, tạo buffer/sign/deploy hoặc public trong khi chờ; giữ automation ACTIVE và goal active.

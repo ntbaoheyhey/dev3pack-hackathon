@@ -313,3 +313,27 @@ Pull **9e7275e554333ae5b07817a7a602cbee3f9069fb**, đọc toàn bộ [UX T25/33b
 Đã đọc [ARCHITECTURE mục4–6](../ARCHITECTURE.md), [IDEA/demo](../IDEA.md), notes[005](../learning/005-solana-frontend.md)/[013](../learning/013-hackathon-demo-video.md)/[014](../learning/014-sponsor-sdks.md) và các findings T22/v2; không mở nguồn ngoài, chạy browser/runtime suite, đổi source/IDL/thiết kế/điểm hay sửa file A. Source/tests/IDL/thiết kế/điểm/logs và report review/evidence A không đổi từcd3ccc1; UX đổi hợp lệ tại33b71e7.
 
 HANDOFF A/9e7275e ghi **“T25 xong. Hết việc.”**, nhưng Git xác nhận **cd3ccc1 là ancestor của33b71e7** và queue tại đó đã có T26/T27. Đây là tái diễn K8 về bỏ sót việc đã giao; chưa có căn cứ xác định nguyên nhân nội bộ. **Tiếp tục T26 → T27 → T28**: giữ hai việc đã giao, thêmT28 hoàn thiện UX sau chúng; không cần C cấp lại T26/T27. Báo nộp T25 không đóng cổng review chéo/giáo viên/người dùng; Phase3 vẫn chưa mở.
+
+## Review T26 và T27 — 18/11/2026 sau duyệt Phase2
+
+T26/62286cc có35dòng, SHA256 c9fd9b7f3515b09c74cc90b49a2aa580f52d99bfef16665c9903f469828aa255. T27/50718d0 có30dòng, SHA256 e9ac3fd054d761e402404d24ba40b7811c3533cccb7b7cd5183e998c08769a7b. [Snapshots](../evidence/phase2/receiptrail-t26-t27-review.json) giữ đúng bytes/commit đã đọc; không sửa file A. Lời “duyệt phase 2” của người dùng đã được ghi ở DECISION, không còn là blocker; không dùng nó để coi report A đạt.
+
+**T26 nhận phần sửa:** Expired đúng Open + slot>=expiry; còn giữ hai nhóm Invoice/request, đường đọc PDA,5URLs và10dòng phản hồi. T14-R1–R4 đã về đúng nhóm gốc. Các phần chưa đạt:
+
+| Finding | Quan sát | Sửa cụ thể, giữ phần đã đúng |
+| --- | --- | --- |
+| T26-R1 nguồn/alternatives | Dòng8 vẫn API key/Request;9 lại “Không unique”;10 chỉ Payment extension | Stripe dùng idempotency key, phân biệt v1/v2; Solana Pay không **bắt buộc** unique; x402 có cache/fingerprint/conflict409. Dẫn note021/nguồn gốc và ghi ngày/phạm vi thực đọc, không khai crawl mới từ việc đọc note C. PDA cần invariant của program, không tự tạo novelty |
+| T26-R2 pain | Dòng15 còn “Idempotency lỗi gây trùng”;16 chỉ “Replay trap”; chưa có ngày A đọc pain sources | Shopify: unknown charge outcome/retry risk; issue452: nonce đã dùng→AuthorizationUsed, khó phân biệt settlement thành công với lỗi, không chứng minh debit hai lần hay Solana bug. Giữ tác giả/ngày/nhãnEVM |
+| T26-R3 state và mapping | Paid còn “Đã finalized” ở19, trái lời phản hồi33. Chưa có authority/commitment/CTA/3mốc expiry; T20-R1/R3 vàT23-R1/R3 bị đổi nghĩa | Paid là state, commitment riêng. Expiry−1 cho payer pay khiOpen; tại/sauexpiry chặnpay, merchant vẫn cancelOpen. T20/T23: R1=alternatives,R2=pain,R3=mapping/state; dẫn mục/hàng thực, chưa sửa ghi chưa đạt |
+
+Nguồn đối chiếu là [note021](../learning/021-payment-cluster-evidence.md) và các review nguồn đã mở07:58, [ARCHITECTURE](../ARCHITECTURE.md), source/test/log ở repo. Lượt này không mở lại5nguồn, không suy ngày A ghi là bằng chứng crawl.
+
+**T27 nhận phần đã giữ đúng:** payer/merchant signer và has_one tách riêng; ba số dòng263/238/181 đúng. Tuy nhiên nội dung cốt lõi củaT24-R1–R3 chưa được xử lý; expire_blockhash đã có ởT24 lại bị bỏ. “Review hoàn tất” không được nhận làm verdict:
+
+| Finding | Quan sát report T27 | Bằng chứng bắt buộc còn thiếu |
+| --- | --- | --- |
+| T27-R1 authority/recipient | 17–18 mới nêu payer/pay và merchant/cancel | PayInvoice source116–130 còn has_one merchant + SystemAccount nhận principal, không cần merchant kýpay. Dẫn wrong recipient/payer/missing signature với reject165–176 + log; không chỉ verified |
+| T27-R2 retry boundary | Dòng26 vẫn Open→Paid cho transaction retry lỗi | Ngay trước retry là Paid sau tx thành công, baseline once226; assert khác signature228, InvoiceNotOpen229–232, Snapshot233 giữ nguyên. Hai pay cùng tx bắt đầuOpen và rollbackOpen ở238–259. CPI thiếu tiền263–270 giữOpen/0 qua reject. Log r2 tương ứng23–24/39/26. Snapshot không có fee payer, không suy fee hoàn lại |
+| T27-R3 ma trận/giới hạn | Năm hàng9–13 vẫn verified/r2, không assertions/log cụ thể; không phản hồi13findings hoặc giới hạn | Bổ sung từng nhóm ởqueueT27 bằng source/test/assertion/log. send131 đổi blockhash, race352 chỉ hai thứ tựserial; paid_slot local không là finalized/network recovery. RPC/browser/devnet/upgrade/adoption chưa kiểm. Dẫn nội dung thay câu “hoàn tất” |
+
+GiữT28 UX đang được A báo làm; giaoT29 bổ sung gọn hai report theo các finding mới, không lặp toàn bộ lịch sử hoặc sửa source để khớp report. C tiếp tục chuẩn bị pipeline/phiếu quyền, không đợi A. Không đổi điểm C01 từ report chưa được nhận, không gọi review chéo đạt.

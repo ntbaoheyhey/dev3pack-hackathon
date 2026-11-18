@@ -52,7 +52,7 @@ Tiến độ và bước tiếp tục sau compact nằm trong [docs/HANDOFF.md](
 
 | [021 — Kiểm chứng payment, cluster và token net](021-payment-cluster-evidence.md) | Evidence C01–C03, RPC read-only và parser mint/u64; Ryntra/Pay alternatives | Codex — 16 test đạt, C02 live read và C03 fee-only live quote; chưa settlement/custom program |
 
-| [022 — Chuẩn bị độc lập Phase 2/3](022-phase2-3-independent-prep.md) | Contract/harness, toolchain/client, React/Vite/Wallet Standard và hosting | Codex — hello6/client8/web8 tests đạt local; web public/build/browser đã có evidence; CI billing/devnet funding và review còn mở |
+| [022 — Chuẩn bị độc lập Phase 2/3](022-phase2-3-independent-prep.md) | Contract/harness, toolchain/client, web/hosting và runner offline hai program | Codex — runner mới25 runtime/client8 tests đạt, IDL/bytecode khớp; giữ web cũ. Workflow guard false; kế hoạch P3-A/P3-B chưa có quyền, CI billing/devnet funding và review còn mở |
 
 | [023 — ReceiptRail Phase2 và spike Anchor local](023-receiptrail-phase2-spike.md) | Account/PDA, payment atomicity, build offline không signer triển khai và LiteSVM | Codex — bytecode Anchor1.2.2 local,19 runtime tests pass, generated IDL đã đối chiếu; F4 PLAN từ D2, chưa integration/devnet; người dùng đã duyệt Phase2, review chéo/giáo viên còn mở |
 

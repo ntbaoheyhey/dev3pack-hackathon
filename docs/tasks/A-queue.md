@@ -2,7 +2,7 @@
 
 **Chủ file: Codex. Chỉ nhận việc từ file này.** A sở hữu các report của mình, A-done và HANDOFF A; C không sửa thay các file đó. Chỉ làm tài liệu Phase2 ReceiptRail. Quyết định **“ReceiptRail chính, ClusterProof phụ” lúc00:07 ngày18/11/2026 UTC+7** ở [DECISION](../ideas/DECISION.md); **người dùng đã duyệt Phase2** bằng “duyệt phase 2”, log09:27:18.464 ngày18/11 UTC+7. Quyền A vẫn là tài liệu trong queue; không cài/code/tạo ví-keypair triển khai/build web/deploy/public hoặc tự mở Phase3.
 
-**Làm tiếp T27 → T28.** T26 đã nộp tại62286cc/pull0a8a488; C đang review evidence mới. HANDOFF A đã chuyểnT27 đúng thứ tự; đây là báo cáo trạng thái, không chứng minh process đang chạy. GiữT27 reviewT24 vàT28 UXT25, không cấp lại hoặc bỏ các việc chưa nộp. Người dùng đã duyệt thiết kế, không cần hỏi lại; các tiêu chí review và quyền vận hành vẫn riêng. Queue cũ giữ ở [archive](../archive/A-queue-before-T21.md); task đã nộp bên dưới là lịch sử review.
+**Làm tiếp T28 → T29.** T26/62286cc vàT27/50718d0 đã được C review: nhận expiry>= và phần signer/has_one đã đúng, còn nguồn/Paid/mapping và assertions/baseline retry/ma trận. [Review mới](../reviews/receiptrail-codex.md#review-t26-và-t27--18112026-sau-duyệt-phase2) giữ snapshots. HANDOFF A báoT28 đúng thứ tự; không coi đó là process live. Người dùng đã duyệt thiết kế riêng, không tự đóng review/giáo viên hoặc mở quyền vận hành. Mọi commit/merge dùng [skip ci]; job guardfalse không được A mở.
 
 ## T21 — đã nộp; phần tên test đạt, phần còn thiếu chuyển T24
 
@@ -55,7 +55,7 @@ Trước nộp: đọc lại8bố cục, cộng thời lượng, kiểm9mã theo
 
 ## T26 — hoàn thiện cơ chế nguồn và phản hồi còn thiếu của T23
 
-**Trạng thái: đã nộp62286cc; C đang review, không làm lại task cũ. Tiếp tụcT27.** Sửa [evidence A](../data/receiptrail-evidence.md) dựa trên [review T23](../reviews/receiptrail-codex.md#review-t23--18112026-heartbeat0758-utc7), [review T20](../reviews/receiptrail-codex.md#t20-nguồn-đã-có-diễn-giảiphản-hồi-chưa-đạt), [note021](../learning/021-payment-cluster-evidence.md), [ARCHITECTURE mục4–6](../ARCHITECTURE.md). Giữ5URL và tác giả/ngày đã đúng; không đổi điểm/contract/fileC.
+**Trạng thái: đã review62286cc, nhận phần expiry; T26-R1–R3 còn mở quaT29. Không làm lạiT26.** Sửa [evidence A](../data/receiptrail-evidence.md) dựa trên [review T23](../reviews/receiptrail-codex.md#review-t23--18112026-heartbeat0758-utc7), [review T20](../reviews/receiptrail-codex.md#t20-nguồn-đã-có-diễn-giảiphản-hồi-chưa-đạt), [note021](../learning/021-payment-cluster-evidence.md), [ARCHITECTURE mục4–6](../ARCHITECTURE.md). Giữ5URL và tác giả/ngày đã đúng; không đổi điểm/contract/fileC.
 
 **Bản đầu vào mới nhất769d365:** giữ cách nói “không đảm bảo tính duy nhất” đã cải thiện. Sửa dòng19: tại đúng expiry đã hết hạn pay; viết bảng3hàng expiry−1/expiry/expiry+1 với state/CTA và nguồn test321/logr2:25 đã đọc, không rerun. Paid là state, confirmed/finalized là nhãn commitment riêng. Đây là bổ sungT26 hiện có.
 
@@ -68,7 +68,7 @@ Trước nộp: đọc lại8bố cục, cộng thời lượng, kiểm9mã theo
 
 ## T27 — hoàn thiện bằng chứng review sau T24
 
-**Trạng thái: mới, sau T26; đã giao từcd3ccc1, nộp xong tiếp tụcT28.** Chỉ sửa [review A](../reviews/receiptrail-antigravity.md), phản hồi [T24-R1–R3](../reviews/receiptrail-codex.md#review-t24--18112026-heartbeat0830-utc7). Đầu vào7325169 có hash `6a2155e29439d284d2a6ce5e3f4b5fc885f304e5d16b7ee90705d32471c99247`. Giữ phần Signer/has_one đã sửa đúng và expire_blockhash; không ghi lại has_one kiểm chữ ký hoặc bịa nonce.
+**Trạng thái: đã review50718d0, nhận phần signer/has_one; T27-R1–R3 còn mở quaT29. Tiếp tụcT28 trước.** Chỉ sửa [review A](../reviews/receiptrail-antigravity.md), phản hồi [T24-R1–R3](../reviews/receiptrail-codex.md#review-t24--18112026-heartbeat0830-utc7). Đầu vào7325169 có hash `6a2155e29439d284d2a6ce5e3f4b5fc885f304e5d16b7ee90705d32471c99247`. Giữ phần Signer/has_one đã sửa đúng và expire_blockhash; không ghi lại has_one kiểm chữ ký hoặc bịa nonce.
 
 Nộp bốn bảng sau, mỗi hàng dẫn **đường dẫn + dòng/hàm + assertion hoặc điều kiện + log nếu thực sự có + giới hạn**. Chưa kiểm phần nào ghi chưa kiểm; không thay bằng verified/r2.
 
@@ -90,6 +90,17 @@ Nộp bốn bảng sau, mỗi hàng dẫn **đường dẫn + dòng/hàm + asser
 5. **SDK và phản hồi:** bảng chọn/bỏ/nguồn/mốc source hoặc version/ngày thực đọc/giới hạn, đối chiếu React/Vite/Wallet Standard hiện có. Chưa kiểm thì ghi chưa kiểm, không gọi tương thích tốt nhất hoặc dùng version lịch sử note005 làm evidence. Trả từng T16-R1–R5/T22-R1–R5/T25-R1–R5 bằng mục thực có; checkbox thiếu phải để chưa đạt. Đề xuất package không là quyền cài.
 
 **Nhận khi:** nội dung đáp ứng từng phần, không chỉ số8/tổng165/checkbox. A tự kiểm9mã bằng JSON IDL, cộng thời gian và lưu output/phạm vi thật vào report; tự sửa A-done/HANDOFF đúng việc còn lại. Không sửa source/test/IDL/thiết kế/fileC hoặc chạy suite/browser/cài/deploy/public; không mở Phase3.
+
+## T29 — sửa đúng các chỗ còn sai của T26/T27
+
+**Trạng thái: mới, sauT28.** Chỉ sửa hai report A: evidence và review; không sửa file C hoặc chạy code. Đọc [review T26/T27](../reviews/receiptrail-codex.md#review-t26-và-t27--18112026-sau-duyệt-phase2). Mục tiêu là nội dung kiểm được, không đổi tiêu đề thành “final” hoặc chỉ tick ô.
+
+1. **Evidence:** sửa ba hàng alternatives và hai hàng pain theoT26-R1/R2. Nếu chỉ đọc note021 thì ghi nguyên phạm vi đó, không khai đã crawl. Viết bảng state/commitment/CTA có expiry−1/expiry/expiry+1, Paid táchfinalized; giữ mapping đúng10IDs (T14 R1state/R2idempotency/R3pain/R4alternatives; T20/T23 R1alternatives/R2pain/R3mapping-state).
+2. **Review:** thêm merchant SystemAccount recipient và has_one merchant ởpay. Thay bảng3ca bằng đúng bảng C đã dẫn trong reviewT24: baseline retry **Paid→Paid**, [pay,pay] **Open→Open**, CPI thiếu tiền **Open→Open**; dùng đầy đủ tên hàm, assertion và dòng log. Không viết “balance không đổi” thành fee được hoàn lại.
+3. **Ma trận và phản hồi:** từng nhóm củaT27 phải có đường dẫn/hàm/assertion/log thực và giới hạn; phần chưa kiểm ghi rõ. Trả6findings T26-R1–R3/T27-R1–R3 bằng mục/hàng thực. Với13findings cũ, giữ ID/ý nghĩa và dẫn mục tương ứng; không thay yêu cầu bằng một câu “đã hoàn tất”.
+4. **Tự kiểm trước nộp:** Paid không định nghĩa bằngfinalized; không còn “API key/Request” hoặc “Không unique”; baseline ngay trước retry đãPaid; không còn verified/r2 đứng một mình như bằng chứng. Nêu chính xác đã đọc file/nguồn gì. C sẽ đối chiếu nội dung, không nhận số dòng/checkbox thay kết quả.
+
+Không chờ C cấp lại T28; không đổi score/IDL/program, không installer/deploy/public hoặc mở CI guard. C không sửa file A thay A.
 
 ## Ghi kết quả và giới hạn
 

@@ -10,6 +10,8 @@ Codex · cập nhật18/11/2026 · RUBRIC v1.2. Người dùng đã chọn **“
 
 C01/C02 hòa cả F/R/P theo luật tie-break; lựa chọn hiện hành là câu của người dùng, không suy từ thứ hạng. Đề xuất cũ của Codex “C02 chính, C03 dự phòng” đã được lựa chọn trực tiếp mới thay thế; nó chưa bao giờ thay cho câu chọn của người dùng. Hồ sơ ghi nhận sai trước đây được đính chính tại DECISION/K6.
 
+Bản SHORTLIST cũ của Antigravity đã bị thay: thiếu nguồn kiểm được, F4 chưa có spike, phép tính sai và chưa được Codex chấm theo v1.2; [cross-scores](cross-scores-codex.md) giữ lý do từng bài.
+
 ## Cách chấm và giới hạn
 
 | Ý tưởng / vòng | P | S | N | F | R | D | V | Tổng |
