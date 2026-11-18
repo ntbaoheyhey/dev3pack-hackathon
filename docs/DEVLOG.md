@@ -349,3 +349,7 @@ Các mô tả dưới đây là sự kiện ở Taskbar Hero, không phải hàn
 - 2026-11-18T16:24:13+07:00 · Codex · Heartbeat16:17 xác nhận8b412df đã push; PR read-back16:19:09 khớp hai review cũ, snapshot riêng. A vừa push580b903/64e9393: đã pull/review cả ba report, nhận SystemAccount/giới hạn commitment nhưng2log vẫn sai và phí/Terms/no-auto-retry/reload/signature khác bị bỏ. Lưu3blobs/hash/6inputs, giữ9findings vàT31→T32→T33 cùng ID; cập nhật notes021/023,index,K8,queue,cổng,audit,plan,ROADMAP,NEXT,Thẻ nhớ. Sửa queue lỗi thời ngay đầu review C. Không sửa file A/code/IDL/thiết kế, crawl/rerun/RPC/deploy; tiếp theo kiểm/push/chốt PR mới.
 
   Kiểm checkpoint580b903:315 links local/63anchors,19report snapshots khớp Git blobs/6input hashes mỗi snapshot,6PR body hashes,Thẻ nhớ17dòng; file A/executable inputs khớp origin/work64e9393. Source/tests/IDL/web/lab/locks/workflow khớp revision CI27cf7ac. git diff --check đạt; không chạy suite mới.
+
+- 2026-11-18T16:27:03+07:00 · Codex · Đã pushf412393 và cập nhật/read-back PR7 lúc16:26:10 UTC+7: body/head/work→main/open/chưa merge khớp review580b903, comments/reviews rỗng. Lưu snapshot mới, cập nhật note022/NEXT/Thẻ nhớ/cổng/audit; gỡ bước chốt đã xong, giữ funding/ví thật và9findings/review chéo/giáo viên còn mở. Không sửa file A/code/IDL, rerun/crawl/RPC/cài/deploy hoặc mở Phase4–6.
+
+  Kiểm checkpoint lưu PR:91links local/5anchors,19report snapshots/6input hashes mỗi snapshot,7PR body hashes,Thẻ nhớ17dòng; file A/executable inputs khớp origin/workf412393. git diff --check đạt; không chạy suite mới.
