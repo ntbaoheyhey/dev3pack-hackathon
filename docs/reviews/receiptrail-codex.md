@@ -455,3 +455,17 @@ Fetch/pull **96a1aa6** nhận T32/**2f44ba0**, T33/**1993859**, T31/**d40492b**.
 Đối chiếu source24–37/61–98/107–137, runtime148–269, JSON IDL, log r2 và notes021/023 cùng review trước; không crawl, chạy suite/browser/RPC/CI hoặc sửa report/A-done/HANDOFF của A. Program/test/IDL/thiết kế/điểm và cổng người dùng giữ nguyên. Đây là review tài liệu, không là phát hiện mới về runtime.
 
 HANDOFF A/96a1aa6 ghi “hết việc” chỉ là trạng thái A tự báo; **chín findings vẫn mở, chưa nhận review chéo đạt**. Mở lại **T32 → T33 → T31**, trạng thái **mới — sửa bổ sung cùng ID**; A-done cũ là lịch sử nộp, không đóng patch mới. Mỗi patch cần dẫn mục/hàng thực và giữ phần đã nhận; không thêm task ID, không suy process live. C chốt checkpoint/PR trước khi trở lại hello sau funding; không mở Phase4–6.
+
+## Review T32 bổ sung15:47 — 18/11/2026
+
+Fetch/pull **7831e5f** nhận report **3083ce4**,35dòng. [Snapshot](../evidence/phase2/receiptrail-t32-3083ce4-review.json) giữ commit/hash/6inputs và đối chiếu từng dòng log: **1/3 dẫn log cho ba ca đúng test**. Nhận pay has_one đã ghi cả payer+merchant, retry ghi signature khác và trỏ đúng r2:23–24; ba tên hàm/baseline, merchant không ký pay (nay ở dòng33), VM serial/chưa network được giữ.
+
+| Finding | Vị trí report | Phần còn thiếu và sửa cụ thể |
+| --- | --- | --- |
+| T32-R1 | 5–9,33 | has_one kiểm public key trong Invoice khớp account truyền vào, không chỉ Payer/Merchant tồn tại. Vẫn thiếu merchant SystemAccount/data-empty, source116–137 và test/assertion/log từng vai. Câu merchant không ký pay còn ở33, không coi bị mất. |
+| T32-R2 | 11–16 | Dòng14 dẫn r2:42 là wrong_payer_signer_cannot_pay, phải **r2:26** cho insufficient_principal. Dòng15 dẫn r2:35 là recipient_substitution, phải **r2:39** cho two_pay rollback. Retry23–24 đã đúng và là một test/METRIC+ok. Vẫn thiếu once226/signature228/reject229–232/snapshot233; innerCPI250–254/snapshot255/Open256/paid_slot257; reject268/tuple269. Snapshot148–157 không gồm fee payer, không suy phí fail được hoàn. |
+| T32-R3 | 18–35 | Năm nhóm vẫn verified/r2 chung; sáu dòng nhóm chưa trả13IDs/T27/T29. Hàng31 lặp hai dẫn log sai, hàng32/34 nhận đã có chi tiết chưa hiện diện. Giữ VM serial/chưa network; bổ sung giới hạn commitment/browser/RPC/devnet/recovery/upgrade/adoption và dẫn từng assertion. |
+
+Đối chiếu [source116–137](../../programs/receiptrail/src/lib.rs), [runtime225–269](../../programs/receiptrail/tests/runtime.rs), [logr2:22–42](../evidence/phase2/receiptrail-spike-r2.txt) và note023; không rerun suite/crawl/browser/RPC/CI. Dẫn một số dòng có thật chưa đủ: nội dung tại dòng đó phải đúng test/claim. Queue tách bảng ba ca rollback khỏi log authority để tránh lẫn; không sửa report A.
+
+HANDOFF A/7831e5f chuyển T33 đúng việc đã giao; không quy bỏ sót hoặc suy process live. Giữ **T33 → T31 → T32**, sửa bổ sung cùng ID;9nhóm findings/review chéo/giáo viên còn mở. P3-A đạt, hello sau funding; chốt checkpoint/PR trước khi trở lại blocker, không mở Phase4–6.
