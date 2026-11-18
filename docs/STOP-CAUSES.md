@@ -37,6 +37,8 @@ Giáo viên (Claude) ghi lại **mọi lần** Codex (C) hoặc Antigravity (A) 
 
 **Tái diễn K8, lượt06:58 ngày18/11:** T22/e2ef270 giữ9/9 mã–tên đúng, đã rõ lamports/slot/merchant cancel và nhãnT22, nhưng5checkbox vẫn ghi đủ dù state/commitment trộn, CTA6008 nhầm invoice.version thành IDL version, chưa có8wireframes/storyboard165s/nguồn SDK. [Review T22](reviews/receiptrail-codex.md#review-t22--18112026-heartbeat0658-utc7) ghi hash/42dòng/9cặp đúng và findings cụ thể; giaoT25 sauT23/T24. HANDOFF A/3d7ca13 đã ghi đang làmT23 đúng queue, không ghi lỗi hết việc. Không sửa contract theo report, không nhận tên SDK thành quyền cài; chưa có căn cứ xác định nguyên nhân nội bộ của A.
 
+**Bổ sung K8, lượt07:28 ngày18/11:** T22v2/bfa184c thêm4mô tả màn và Explorer có signature, giữ36dòng đầu lỗi CTA/state và5checkbox hoàn tất; tên ARCHITECTURE mục6/note014 được gắn làm nguồn chọn SDK nhưng nội dung không chọn hai package đó. [Review v2](reviews/receiptrail-codex.md#bổ-sung-t22-v2--18112026-heartbeat0728-utc7) nhận phần cải thiện, giữT23→T24→T25 và bổ sungT25 hiện có. A-done nộp lạiT22, HANDOFF A vẫnT23; chưa có kết quảT23/T24, không suy “hết việc” hoặc nguyên nhân nội bộ. Nguồn phải hỗ trợ claim cụ thể; tên tài liệu và checkbox không tự đóng finding/cổng.
+
 ## Luật rút ra (đã đưa vào AGENTS.md)
 
 1. Tin nhắn tự nhắc 15 phút phải **có thật** trước khi bắt đầu; nếu agent không tạo được thì người dùng tạo.

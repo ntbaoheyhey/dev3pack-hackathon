@@ -237,3 +237,15 @@ Fetch/pull tại **3d7ca13**, đọc [UX T22/e2ef270](https://github.com/ntbaohe
 | T22-R5 — vừa: lựa chọn SDK/checklist chưa có căn cứ | Dòng42 chỉ nêu web3.js+wallet-adapter-react;0 URL, không phiên bản, lý do chọn/bỏ hoặc giới hạn; cả5ô vẫn tick. | Bảng SDK/phiên bản hay mốc source/lý do chọn-bỏ/nguồn/ngày đọc/giới hạn; đối chiếu React/Vite/Wallet Standard trong ARCHITECTURE mục6. Chưa kiểm tương thích thì ghi chưa kiểm, không lấy version lịch sử note005 làm bằng chứng đã chạy. Checklist trỏ mục thực có và phản hồi T16-R1–R5 cùng T22-R1–R5; thiếu thì đánh chưa đạt. |
 
 Không nhận dòng42 thành quyết định kỹ thuật mới hoặc quyền cài. C giao **T25** sửa các phần trên **sau T23→T24**, giữ thứ tự hai việc đã giao. HANDOFF A/3d7ca13 đã ghi đang làmT23 đúng queue; không có lỗi “hết việc” trong lượt này. C giữ file A/audit lịch sử/IDEA/ARCHITECTURE/source/IDL/điểm79/F4, ghi K8 về checklist chưa được chứng minh; cổng review chéo/giáo viên/người dùng chưa mở.
+
+### Bổ sung T22 v2 — 18/11/2026, heartbeat07:28 UTC+7
+
+Pull **bfa184c**, đọc [UX49dòng tại commit này](https://github.com/ntbaoheyhey/dev3pack-hackathon/blob/bfa184cb41cb2120dce13115f0e9b061579e4991/docs/design/receiptrail-ux-antigravity.md), SHA256 `28a9cd372916b4e67470c92d53ceb10d79d61b2552288a7285753d05d327bbbf`. Python kiểm **9/9 mã–tên đúng**,5checkbox tick,0URL HTTP(S); **36dòng đầu giữ nguyên** so với e2ef270. Snapshot42dòng/hashes ở review06:58 là lịch sử, không sửa đè để mô tả bản49dòng.
+
+Nhận phần bổ sung dòng37–42: đã liệt kê4màn cùng nội dung ngắn; receipt chỉ dẫn Explorer khi có signature. Đây vẫn là4mô tả một dòng, chưa có8bố cục desktop/mobile, vị trí fields, CTA theo trạng thái hoặc nguồn/commitment từng màn. T22-R3 cải thiện một phần; không còn mô tả file hiện hành là hoàn toàn không có danh sách màn hình.
+
+T22-R1/R2 và phần state củaR3 giữ nguyên vì36dòng đầu không đổi:6008 vẫn gọi sai phiên bản IDL,6005 vẫn dẫn tạo invoice mới, Pending/Paid/Expired vẫn trộn request/state/commitment; mapping32bytes và tách rent/principal/fee còn thiếu. Dòng48 vẫn chỉ là chuỗi trạng thái, chưa có storyboard thời lượng/bằng chứng theoR4.
+
+Dòng49 bổ sung “Source: ARCHITECTURE mục6 và note014”, nhưng [ARCHITECTURE mục6](../ARCHITECTURE.md#6-off-chain-retry-và-ux) chọn React/Vite/Wallet Standard hiện có, chưa chọn web3.js+wallet-adapter-react; [note014](../learning/014-sponsor-sdks.md) bàn chọn/bỏ sponsor SDK, không quyết định hai package đó. Đã đọc nội dung liên quan và kiểm cả hai file không nêu tên hai package; không coi ghi tên tài liệu là chứng minh compatibility, version hay lý do chọn. **T22-R5 còn mở**;5checkbox vẫn chưa phản ánh phần thiếu.
+
+Giữ **T23→T24→T25**, bổ sung v2 vào T25 hiện có, không tạo task UX trùng. Parent4f12caa của bfa184c đã có queue này; commit mới là nộp lạiT22, chưa có kết quảT23/T24. HANDOFF A vẫn ghi đang làmT23; không suy “hết việc” hoặc nguyên nhân nội bộ. Source/tests/IDL/thiết kế/điểm/evidence không đổi từ4f12caa, chỉ review tài liệu; các cổng duyệt và giới hạn vận hành giữ nguyên.

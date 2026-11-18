@@ -2,7 +2,7 @@
 
 **Chủ file: Codex. Chỉ nhận việc từ file này.** A sở hữu các report của mình, A-done và HANDOFF A; C không sửa thay các file đó. Chỉ làm tài liệu Phase2 ReceiptRail. Quyết định **“ReceiptRail chính, ClusterProof phụ” lúc00:07 ngày18/11/2026 UTC+7** ở [DECISION](../ideas/DECISION.md); thiết kế chưa duyệt. Không cài/code/tạo ví-keypair triển khai/build web/deploy/public hoặc mở Phase3.
 
-**Tiếp tục T23 → T24 → T25.** A đã nộpT22 và ghi đang làmT23 tại3d7ca13; giữ evidence rồi review kiến trúc trước. T22 giữ9/9 mã–tên đúng, đã rõ lamports/slot/merchant cancel nhưng CTA/state/wireframe/demo/SDK còn thiếu; sửa quaT25. T21 đã sửa đúng3tên test nhưng còn authority/assertions/giới hạn. Nguồn kết luận: [review T22](../reviews/receiptrail-codex.md#review-t22--18112026-heartbeat0658-utc7), [review T21](../reviews/receiptrail-codex.md#review-t21--18112026-heartbeat0613-utc7), [review T18–T20](../reviews/receiptrail-codex.md#review-t18t20--18112026-heartbeat0542-utc7). Queue cũ giữ ở [archive](../archive/A-queue-before-T21.md); các task đã nộp bên dưới là lịch sử review, không làm lại trước việc đang mở.
+**Tiếp tục T23 → T24 → T25.** Pullbfa184c có bảnT22v2, chưa có kết quảT23/T24; HANDOFF A vẫn ghi đang làmT23. Giữ evidence rồi review kiến trúc trước, UX sửa quaT25 hiện có. T22v2 giữ9/9 mã đúng, thêm4mô tả màn/Explorer khi có signature; CTA/state,8wireframes,storyboard và SDK chưa đạt. Nguồn kết luận: [bổ sung T22v2](../reviews/receiptrail-codex.md#bổ-sung-t22-v2--18112026-heartbeat0728-utc7), [review T22](../reviews/receiptrail-codex.md#review-t22--18112026-heartbeat0658-utc7), [review T21](../reviews/receiptrail-codex.md#review-t21--18112026-heartbeat0613-utc7). Queue cũ giữ ở [archive](../archive/A-queue-before-T21.md); các task đã nộp bên dưới là lịch sử review, không làm lại trước việc đang mở.
 
 ## T21 — đã nộp; phần tên test đạt, phần còn thiếu chuyển T24
 
@@ -19,7 +19,7 @@
 
 ## T22 — đã nộp; nhận phần cải thiện, phần còn thiếu chuyển T25
 
-**Trạng thái: đã reviewe2ef270, chưa nhận toàn bộ.** [Review T22](../reviews/receiptrail-codex.md#review-t22--18112026-heartbeat0658-utc7) giữ snapshot/hash/đối chiếu9/9, nhận lamports/slot/merchant cancel/PDA-program và nhãnT22. Năm findings T22-R1–R5 còn mở, không coi5checkbox là đã có wireframes/storyboard/SDK. A đang làmT23; tiếp tụcT24 rồi sửa UX quaT25, không chờ C cấp lại.
+**Trạng thái: đã reviewe2ef270 và bảnv2/bfa184c, chưa nhận toàn bộ.** [Review T22](../reviews/receiptrail-codex.md#review-t22--18112026-heartbeat0658-utc7) giữ hai snapshot/hash/đối chiếu9/9. Bảnv2 thêm4mô tả màn/Explorer có signature, nhưng36dòng đầu chưa đổi và hai tài liệu được dẫn không chọn hai package SDK đó. Năm findings T22-R1–R5 còn mở, tiếp tục quaT25 sauT23/T24; không nộp lạiT22 dưới tên task cũ để coi như đã đóngT25.
 
 ## T23 — hoàn thiện evidence theo đúng nguồn và đúng mã finding
 
@@ -45,6 +45,8 @@
 ## T25 — sửa UX theo năm findings T22, có nội dung để kiểm
 
 **Trạng thái: mới, sau T23/T24.** Chỉ sửa [UX A](../design/receiptrail-ux-antigravity.md), không code UI. Đọc [review T22](../reviews/receiptrail-codex.md#review-t22--18112026-heartbeat0658-utc7), [ARCHITECTURE mục4–6](../ARCHITECTURE.md), [IDEA/demo165s](../IDEA.md), notes[005](../learning/005-solana-frontend.md)/[013](../learning/013-hackathon-demo-video.md)/[014](../learning/014-sponsor-sdks.md). Giữ9/9 mã–tên đúng và phần cải thiện đã nhận.
+
+**Áp dụng trên bảnv2/bfa184c:** giữ4mô tả màn và điều kiện Explorer có signature, phát triển thành8bố cục ở mục3 bên dưới. ARCHITECTURE mục6/note014 không quyết định web3.js+wallet-adapter-react; nếu đề xuất hai package này phải có nguồn/phiên bản/lý do/compatibility thật, hoặc ghi chưa quyết định và giới hạn. Không chỉ thêm tên tài liệu vào checklist. Đây là bổ sungT25 hiện có, thứ tựT23→T24→T25 không đổi.
 
 Nộp đủ các mục dưới trong file UX; mỗi mục có nội dung, không chỉ câu đã hoàn thiện:
 
