@@ -16,7 +16,7 @@ Không thấy finding chặn bản Phase2 trong phạm vi đọc/chạy này; kh
 
 Rủi ro thiết kế cố ý: một PDA chỉ một principal, không chống merchant tạo invoiceID khác cho cùng order; rent terminal bị giữ; native SOL chưa stablecoin/x402; tin RPC/program/upgrade authority; receipt không chứng minh hàng đã giao. Mọi mở rộng/triển khai cần cổng riêng.
 
-C01 nâng F3→4 theo D2 ở [mục9](../ideas/codex/01-receipt-rail.md), R/D giữ4 PLAN; không nâng R5 khi thiếu reviewer độc lập. T21 đã sửa đúng3tên test, T19 đạt riêng9/9 mã–tên IDL; các report chưa nhận đạt toàn bộ. Findings và hướng sửa ở cuối file; queue hiện hành: **T22 → T23 → T24**. Không lấy kết quả ClusterProof cũ thay review.
+C01 nâng F3→4 theo D2 ở [mục9](../ideas/codex/01-receipt-rail.md), R/D giữ4 PLAN; không nâng R5 khi thiếu reviewer độc lập. Findings hiện hành ở [review580b903](#review-580b903--18112026); queue **T31 → T32 → T33**, sửa bổ sung cùng ID. Các report chưa nhận đạt toàn bộ. Không lấy kết quả ClusterProof cũ thay review.
 
 ## Review đầu ra T11 — 18/11/2026, heartbeat01:25 UTC+7
 
@@ -483,3 +483,23 @@ Sau commit reviewT32 **2432524**, remote có509adac/91f94fc nên push bị non-f
 | T33-R3 | 45–58 | r2:23–24 là một test/METRIC+ok, không là hai bằng chứng create/pay riêng như46–47. Chưa có fresh-transaction retry/InvoiceNotOpen/principal1amount/phí fail và evidence cho cảnh timeout/finalized chưa chạy. SDK wildcard/0URL và checkbox chưa thay phản hồi từng finding. |
 
 Chỉ đối chiếu diff/source/IDL/log hiện có, không rerun/crawl/browser/RPC/CI. HANDOFF A/91f94fc lại ghi hết việc; T31 vẫn d40492b, chưa có bản mới sau review15:17 trong origin/work đã quan sát. Tiếp tục **T31 → T32 → T33**, mới/sửa bổ sung cùng ID; giữ9findings và cổng review/giáo viên, không suy trạng thái A thành process live hoặc kết quả đạt.
+
+## Review 580b903 — 18/11/2026
+
+Heartbeat16:17 xác nhận checkpoint **8b412df đã push**. PR7 đã cập nhật/read-back lúc16:19:09 UTC+7 cho T32/3083ce4 và T33/509adac, nhưng HEAD lúc đọc đã là64e9393 do A vừa push580b903. [Snapshot PR trung gian](../evidence/phase3/pr7-review-1547-snapshot.json) ghi rõ body thuộc checkpoint8b412df, không tự chứng minh report mới đã được review. Fetch/pull64e9393 rồi đọc đủ ba report/A-done; [snapshot580b903](../evidence/phase2/receiptrail-supplement-580b903-review.json) giữ29/36/52dòng, blobs/hash và6input hashes. Source/tests/IDL/thiết kế không đổi.
+
+**Nhận:** T32 thêm merchant recipient là SystemAccount, không ký pay và giới hạn chưa network/commitment; giữ ba tên hàm/baseline, has_one payer+merchant và VM serial. T31 giữ5URL, Request Unknown không tự ký/retry, Open+slot>=expiry và điều nguồn không chứng minh Solana double-pay. T33 giữ hai bảng/9code-name/4mục/165giây trên giấy, merchant cancel và Explorer với signature. Không nhận các checkbox thay nội dung.
+
+| Finding giữ ID | Vị trí report580b903 | Còn thiếu hoặc bị mất |
+| --- | --- | --- |
+| T31-E1 | 8–16 | Cơ chế Stripe v1/v2/idempotency key, Solana Pay reference không bắt buộc unique, x402 fingerprint/cache/conflict và provenance/tác giả/ngày đọc còn thiếu. Nhãn Web API/EVM rõ ở d40492b bị bỏ; EIP-3009 vẫn còn và giới hạn không chứng minh Solana vẫn được giữ. PDA định danh cần invariant program, còn RPC/upgrade trust; không tự là không phụ thuộc ngoài. |
+| T31-E2 | 19–21 | Paid vẫn Finalized. Unknown/expiry được giữ, nhưng thiếu context cùng PDA/program/cluster/owner/commitment, actor/CTA và bảng expiry−1/expiry/expiry+1. Bỏ dòng commitment sai chưa thành bảng commitment đúng. Log r2 không là provenance nguồn ngoài; giới hạn local/chưa Browser-Devnet bị bỏ. |
+| T31-E3 | 26–29 | Ba nhóm không trả từng10IDs/T26/T29 và T31-E1–E3. Tự nhận đã khôi phục bảng Request/PDA context/provenance nhưng nội dung thiếu; chưa được coi đã đạt. |
+| T32-R1 | 8–10,23 | Nhận SystemAccount/merchant không ký pay. has_one là so public key lưu trong Invoice với account truyền vào, không phải Payer/Merchant PDA check. Thiếu data-empty, source116–137 và test/assertion/log từng vai. |
+| T32-R2 | 15–17 | Hai log42/35 vẫn sai test; đúng26/39. Retry23–24 đúng, baseline Open→Open/Open→Open/Paid→Paid giữ được nhưng câu signature khác bị bỏ. Cần once226/signature228/reject229–232/snapshot233; innerCPI250–254/snapshot255/Open256/paid_slot257; reject268/tuple269. Snapshot148–157 không gồm fee payer. |
+| T32-R3 | 22–36 | Nhận giới hạn chưa network/commitment, VM serial; canonical bump bị bỏ. Năm nhóm verified/r2 và sáu dòng nhóm chưa thay từng13IDs/T27/T29, assertion/giới hạn browser/RPC/recovery/upgrade/adoption. |
+| T33-R1 | 9–18,25–31 | Paid/Finalized, merchant Pay và Expired thiếu Open chưa sửa; Pay còn bỏ điều kiện chưa hết hạn. Unknown no-auto-retry và6007 reload recipient bị bỏ.6002 vẫn reconnect/data missing;6003 thiếu payer=invoice;6005 tạo ID mới;6008 chưa chỉ invoice.version. Giữ Unknown/PDA lookup, không nói hai bảng bị mất. |
+| T33-R2 | 20–38,52 | Toàn khối phí create/pay và Terms read-only ở509adac bị bỏ dù checkbox52 tự nhận đã khôi phục. Form/recipient/mapping32bytes/u64 và8bố cục vẫn thiếu;4mô tả/context chung chưa đủ. |
+| T33-R3 | 41–52 | Không còn gán r2:23 cho cảnh create; nhưng r2:24 chỉ là dòng ok của test/METRIC23–24, không chứng minh cảnh UI/finalized. Thiếu fresh-tx retry/InvoiceNotOpen/principal1amount/phí fail/evidence timeout chưa chạy; SDK wildcard/0URL và phản hồi từng finding còn thiếu. |
+
+Đối chiếu note021/023, source và runtime/log r2 hiện có,9cặp IDL,4khoảng0–30/30–90/90–150/150–165. Không crawl mới hoặc chạy runtime/browser/RPC/CI. Không sửa report/A-done/HANDOFF của A; HANDOFF64e9393 ghi xong không là nhận đạt hoặc process live. Giữ9findings/T31→T32→T33 cùng ID; queue yêu cầu patch từng phần và kiểm phần đã nhận trước push. C chốt hồ sơ/PR độc lập, hello sau funding; không mở Phase4–6.

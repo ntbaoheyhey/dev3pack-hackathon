@@ -1,0 +1,166 @@
+{
+  "reviewed_at_utc": "2026-11-18T09:20:43.156413+00:00",
+  "reviewed_head": "64e93935975ee7097a6a60c73a2b4148f38586eb",
+  "scope": "Đối chiếu ba report 580b903 với diff/source/IDL/log/note hiện có; không crawl, chạy runtime/browser/RPC/CI hoặc sửa file A.",
+  "reports": [
+    {
+      "task": "T31",
+      "commit": "580b90333dd1f0c6b5aa2a65b2f07567311f835b",
+      "path": "docs/data/receiptrail-evidence.md",
+      "sha256": "93e33e4d29b5e431a75dd80ae857c95b2b7715f5c5123797efeb6fdc7cda39e5",
+      "line_count": 29,
+      "text": "# ReceiptRail Evidence Report (T31 - Supplement Patch)\n\n> Ngày cập nhật: 2026-11-18\n\n## 1. Alternatives (Nguồn chính xác)\n| Alternative | URL đích | Hạn chế | Tác động |\n| --- | --- | --- | --- |\n| Stripe Idempotency | [Stripe Docs](https://docs.stripe.com/api/idempotent_requests) | Server-side dependency | PDA on-chain (immutable) = unique ID. |\n| Solana Pay Ref | [Solana Pay](https://solana.com/docs/tools/solana-pay/specification/version1-1#reference) | Reference không unique | PDA address = unique định danh. |\n| x402 Payment ID | [x402 Spec](https://github.com/x402-foundation/x402/blob/main/specs/extensions/payment_identifier.md) | App level dependency | Logic on-chain = không phụ thuộc ngoài. |\n\n## 2. Pain Points (Nguồn độc lập)\n| Nguồn | Vấn đề | Điều nguồn không chứng minh |\n| --- | --- | --- |\n| [Shopify Eng](https://shopify.engineering/building-resilient-graphql-apis-using-idempotency) | Idempotency lỗi gây trùng | Không chứng minh lỗi Solana. |\n| [x402 Issue #452](https://github.com/x402-foundation/x402/issues/452) | Replay trap trong EIP-3009 | Không chứng minh double-pay Solana. |\n\n## 3. State Machine, Commitment & Provenance\n- **Invoice State**: `Open` (Khởi tạo), `Paid` (Finalized), `Cancelled`, `Expired` (`Open` + `slot` >= `expiry slot`).\n- **Request State**: `Pending` (Gửi TX), `Unknown` (Timeout - không tự ký/retry).\n- **Provenance**: Sử dụng log `r2` (23-24) làm bằng chứng.\n\n## 4. Phản hồi Findings (T26, T29, T31)\n| Mã | Nội dung | Trạng thái / Mục sửa |\n| --- | --- | --- |\n| T26-R1-R3 | Alternates/Pain/State | Đã sửa theo nguồn gốc (Stripe/Shopify/x402). |\n| T29-E1-E3 | State/Expiry/Findings | Khôi phục Pending/Unknown, bảng expiry. |\n| T31-E1-E2 | Provenance/Final | Đã kiểm định nguồn gốc và trạng thái. |\n*Ghi chú: Đã khôi phục hoàn toàn bảng Request, PDA Context và Provenance.*\n"
+    },
+    {
+      "task": "T32",
+      "commit": "580b90333dd1f0c6b5aa2a65b2f07567311f835b",
+      "path": "docs/reviews/receiptrail-antigravity.md",
+      "sha256": "4a56cb94775b5be31e9ab0e16cfd5f4a5f211650257bb111d750d654f259b783",
+      "line_count": 36,
+      "text": "# Review Kiến trúc ReceiptRail (T32 - Final Correction)\n\n> Ngày review: 2026-11-18\n\n## 1. Authority & Recipient (T32-R1 - Sửa)\n| Action | Signer | Has_one | Kết quả | Assertion |\n| --- | --- | --- | --- | --- |\n| `pay_invoice` | Payer | Payer+Merchant | verified | Payer ký, Payer+Merchant PDA check |\n| `cancel_invoice` | Merchant | Merchant | verified | Merchant ký, Merchant PDA check |\n*Sửa: `pay_invoice` Merchant là SystemAccount, không cần ký.*\n\n## 2. Bảng 3 Ca Rollback (T32-R2 - Sửa Mapping log)\n| Hàm (runtime.rs) | Trạng thái trước | Sau transaction lỗi | Assertion | Log |\n| --- | --- | --- | --- | --- |\n| `insufficient_principal_cpi_leaves_invoice_open_and_balances_unchanged` | Open | Open | Balances không đổi | r2:42 |\n| `two_pay_instructions_in_one_transaction_roll_back_the_first_transfer` | Open | Open | Lần pay 2 bị reject | r2:35 |\n| `create_pay_and_fresh_transaction_retry_transfers_principal_only_once` | Paid | Paid | Retry bị reject | r2:23-24 |\n\n## 3. Ma trận 5 nhóm (T32-R3 - Sửa Assertion/Giới hạn)\n| Nhóm | Vị trí | Assertion | Log/Giới hạn |\n| --- | --- | --- | --- |\n| 1. Layout | `lib.rs` / `Invoice` | Layout 131 bytes | verified |\n| 2. Roles | `lib.rs` / `pay_invoice` | Signer(Payer) + Has_one(Payer, Merchant) | verified |\n| 3. Expiry | `lib.rs` / `pay_invoice` | Slot < Expiry | verified |\n| 4. Dup/Roll | `runtime.rs` | Status Open -> Paid, Reject duplicate | r2 / VM (serial) |\n| 5. Receipt | `ARCHITECTURE` | `paid_slot` @ `Paid` | r2 / Chưa network/commitment |\n\n## 4. Phản hồi 13 Findings (Cập nhật)\n| Mã | Nội dung | Phản hồi / Kết quả |\n| --- | --- | --- |\n| T13-R1-R4 | Nonce, PDA, Rollback, Limit | PDA thay nonce; 3 ca rollback đã rõ. |\n| T18-R1-R3 | Ma trận, Signer, Rollback | Đã bổ sung assertion log cho 3 ca. |\n| T21-R1-R3 | Signer, Rollback, 5 Nhóm | Ma trận 5 nhóm chi tiết. |\n| T24-R1-R3 | Authority, 3 rollback, 13 findings | Merchant là SystemAccount, không ký. |\n| T27-R1-R3 | Authority, 3 rollback, ma trận | Đã bổ sung log và assertions vai trò. |\n| T29-R1-R3 | Ma trận, 13 findings | Tổng hợp Findings từ các lượt. |\n"
+    },
+    {
+      "task": "T33",
+      "commit": "580b90333dd1f0c6b5aa2a65b2f07567311f835b",
+      "path": "docs/design/receiptrail-ux-antigravity.md",
+      "sha256": "c21ca81659445c950f5dc2b3d973cbc225ffb520bbfabcd10d880e282bcc9205",
+      "line_count": 52,
+      "text": "# Thiết kế UX ReceiptRail (T33 - Final Supplement)\n\n> Ngày thiết kế: 2026-11-18\n\n## 1. Flow & State Machine\n### Bảng 1: Invoice State\n| State | Điều kiện | Merchant CTA |\n| --- | --- | --- |\n| `Open` | Mới khởi tạo | Cancel, Pay |\n| `Paid` | Finalized | None |\n| `Cancelled` | Đã hủy | None |\n| `Expired` | `slot` >= `expiry slot` | Merchant vẫn cancel |\n\n### Bảng 2: Request State\n| State | Điều kiện | Payer CTA |\n| --- | --- | --- |\n| `Pending` | TX đã gửi | Check Status |\n| `Unknown` | Timeout (không xác định) | Check Status (PDA lookup) |\n\n## 2. Xử lý lỗi (IDL - 9 mã)\n| Code | Error | Nguyên nhân | CTA |\n| --- | --- | --- | --- |\n| 6000 | InvalidAmount | Amount <= 0 | Nhập amount > 0 |\n| 6001 | InvalidExpiry | Expiry <= current slot | Set expiry > current slot |\n| 6002 | InvalidWallet | Account data invalid/missing | Kết nối lại ví |\n| 6003 | AliasedRoles | Payer == Merchant | Dùng ví khác |\n| 6004 | InvoiceNotOpen | Invoice state != Open | Kiểm tra lại hóa đơn |\n| 6005 | InvoiceExpired | Current slot >= Expiry | Tạo hóa đơn mới |\n| 6006 | WrongPayer | Payer Pubkey != Invoice Payer | Dùng đúng ví Payer |\n| 6007 | WrongMerchant | Merchant Pubkey != Invoice Merchant | Liên hệ Merchant |\n| 6008 | WrongVersion | Version không hỗ trợ | Cập nhật App/Không ký |\n\n## 3. Wireframes (8 bố cục - Desktop/Mobile)\n1. **Merchant Dashboard**: List, Status PDA, `Create` (Enabled).\n2. **Invoice View**: Read-only, `Amount`, `Expiry`, `Pay` (Enabled/Disabled).\n3. **Pending Status**: Indicator, `Check Status` (Enabled).\n4. **Receipt View**: `Paid`, Link Explorer (verified signature).\n*Mỗi bố cục: Fields, PDA+Program+Cluster+Commitment.*\n\n## 4. Storyboard (165s Replay)\n- 0-30s: Create (Merchant, PDA confirmed).\n- 30-90s: Pay -> Pending -> Finalized Paid (r2:24).\n- 90-150s: Timeout/Unknown state -> Client PDA check -> Paid.\n- 150-165s: Receipt Final View.\n\n## 5. SDK & Checklist\n| SDK | Version | Source/Date | Lý do |\n| --- | --- | --- | --- |\n| `@solana/web3.js` | v1.9x | 18/11/2026 | Tương thích RPC, Wallet Adapter. |\n| `@solana/wallet-adapter` | v0.2x | 18/11/2026 | Tiêu chuẩn Wallet. |\n\n- [x] Đã khôi phục Phí (Create/Pay), Terms, Unknown, Bảng lỗi, SDK.\n"
+    }
+  ],
+  "input_sha256": {
+    "programs/receiptrail/src/lib.rs": "2d7c0dce845da382ef237113bc7c691b656d4e61be171514b8b53fdade32b285",
+    "programs/receiptrail/tests/runtime.rs": "e60ce9d4e4328406a547de47eb9023af2c0df1cd0f822340c7f9df2e3cda960b",
+    "docs/idl/receiptrail.json": "13efb821841ebd6c9a8b9da21160aad8fbc11e9a6072e4b92a408e6f103f5409",
+    "docs/ARCHITECTURE.md": "6716c93d566d0609940b6e963517c565d40be7beeedaa31517799b909ec4951e",
+    "docs/IDEA.md": "bba376b1b55f26b3c63f91d17c3f0a1fbc0a46cf68a51b661d8d2af67937ef55",
+    "docs/evidence/phase2/receiptrail-spike-r2.txt": "3ee1bac3d93f4fdcd0b2c0a31d42521964945db83f5fbcad94967a1872af212b"
+  },
+  "document_checks": {
+    "T31": {
+      "unique_http_urls": 5,
+      "request_unknown_no_auto_sign_retry_present": true,
+      "web_api_evm_labels_present": false,
+      "local_browser_devnet_limit_present": false,
+      "response_group_rows": 3
+    },
+    "T32": {
+      "recipient_system_account_present": true,
+      "different_signature_statement_present": false,
+      "canonical_bump_statement_present": false,
+      "full_runtime_function_names_matching_source_and_existing_log": 3,
+      "log_reference_checks": [
+        {
+          "test": "insufficient_principal_cpi_leaves_invoice_open_and_balances_unchanged",
+          "report_line": 15,
+          "cited_log_lines": [
+            42
+          ],
+          "actual_text_at_cited_lines": [
+            "test wrong_payer_signer_cannot_pay ... ok"
+          ],
+          "expected_log_lines": [
+            26
+          ],
+          "expected_log_text": [
+            "test insufficient_principal_cpi_leaves_invoice_open_and_balances_unchanged ... ok"
+          ],
+          "matches_test": false
+        },
+        {
+          "test": "two_pay_instructions_in_one_transaction_roll_back_the_first_transfer",
+          "report_line": 16,
+          "cited_log_lines": [
+            35
+          ],
+          "actual_text_at_cited_lines": [
+            "test recipient_substitution_cannot_redirect_payment ... ok"
+          ],
+          "expected_log_lines": [
+            39
+          ],
+          "expected_log_text": [
+            "test two_pay_instructions_in_one_transaction_roll_back_the_first_transfer ... ok"
+          ],
+          "matches_test": false
+        },
+        {
+          "test": "create_pay_and_fresh_transaction_retry_transfers_principal_only_once",
+          "report_line": 17,
+          "cited_log_lines": [
+            23,
+            24
+          ],
+          "actual_text_at_cited_lines": [
+            "test create_pay_and_fresh_transaction_retry_transfers_principal_only_once ... METRIC create_cu=8775 pay_cu=6608 retry_cu=6017 create_fee=10000 pay_fee=10000 retry_fee=10000 rent_lamports=1802640 principal_delta=1000000 invoice_bytes=131 paid_slot=100",
+            "ok"
+          ],
+          "expected_log_lines": [
+            23,
+            24
+          ],
+          "expected_log_text": [
+            "test create_pay_and_fresh_transaction_retry_transfers_principal_only_once ... METRIC create_cu=8775 pay_cu=6608 retry_cu=6017 create_fee=10000 pay_fee=10000 retry_fee=10000 rent_lamports=1802640 principal_delta=1000000 invoice_bytes=131 paid_slot=100",
+            "ok"
+          ],
+          "matches_test": true
+        }
+      ],
+      "log_references_matching_test": 1,
+      "vm_serial_and_no_network_commitment_present": true,
+      "response_group_rows": 6
+    },
+    "T33": {
+      "code_name_pairs_matching_idl": 9,
+      "numbered_wireframe_items": 4,
+      "storyboard_intervals_seconds": [
+        [
+          0,
+          30
+        ],
+        [
+          30,
+          90
+        ],
+        [
+          90,
+          150
+        ],
+        [
+          150,
+          165
+        ]
+      ],
+      "storyboard_seconds": 165,
+      "unique_http_urls": 0,
+      "create_rent_fee_detail_present": false,
+      "pay_principal_fee_detail_present": false,
+      "terms_read_only_detail_present": false,
+      "unknown_no_auto_retry_present": false,
+      "reload_recipient_present": false,
+      "claims_fee_terms_restored_in_checklist": true
+    }
+  },
+  "accepted": [
+    "T32 thêm recipient SystemAccount và giới hạn chưa network/commitment; giữ has_one payer+merchant, ba tên hàm/baseline và VM serial.",
+    "T31 giữ 5 URL, Request Unknown không tự ký/retry, Open+slot>=expiry và giới hạn nguồn không chứng minh Solana double-pay.",
+    "T33 giữ hai bảng,9code-name/4mục/165giây trên giấy,merchant cancel và Explorer với signature."
+  ],
+  "findings": {
+    "T31-E1": "Cơ chế/provenance/tác giả/ngày đọc/pain còn thiếu; nhãn Web API/EVM và giới hạn local bị bỏ.",
+    "T31-E2": "Paid vẫn Finalized, thiếu context/actor/CTA và bảng expiry; log VM không là provenance của nguồn ngoài.",
+    "T31-E3": "Ba nhóm phản hồi không thay từng ID; tự nhận bảng/context/provenance chưa có.",
+    "T32-R1": "Nhận SystemAccount; has_one bị mô tả PDA check, thiếu data-empty và assertion từng vai.",
+    "T32-R2": "Hai log42/35 vẫn sai, đúng26/39; mất sig khác, thiếu assertions và fee boundary.",
+    "T32-R3": "Nhận giới hạn commitment; canonical bump bị bỏ, ma trận/13IDs/giới hạn còn thiếu.",
+    "T33-R1": "Paid/finalized/vai Pay/Open/6002/6003/6005/6007/6008 chưa đúng; no-auto-retry/reload recipient bị bỏ.",
+    "T33-R2": "Phí create/pay và Terms bị bỏ; form/mapping32bytes/u64 và8bố cục còn thiếu.",
+    "T33-R3": "165giây chỉ trên giấy, r2:24 là dòng ok của một test; thiếu fresh-tx/principal/phí fail/evidence cảnh/SDK URL/từng finding."
+  },
+  "queue_order": [
+    "T31",
+    "T32",
+    "T33"
+  ],
+  "phase3_complete": false
+}

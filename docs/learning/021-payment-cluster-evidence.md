@@ -199,3 +199,7 @@ Patch cần giữ phần đã nhận và so với revision trước; ngày cập
 ### Review T31 bổ sung15:17 — 18/11/2026
 
 [d40492b](../reviews/receiptrail-codex.md#review-bổ-sung-1517-utc7--18112026) giữ Unknown/no-auto-retry/expiry và khôi phục nhãn Web API/EVM; nhận các phần đó. Ba hàng nhóm thay tám hàng, bỏ dòng PDA, còn Paid=finalized và bảng expiry không tồn tại. Log VM không làm provenance cho pain/alternatives; đối chiếu note/review nguồn trước, không crawl mới. [Snapshot](../evidence/phase2/receiptrail-supplement-1517-review.json) giữ30dòng/5URL/hash; giữ T31-E1–E3 cùng ID, không suy A-done/HANDOFF hết việc thành nhận đạt.
+
+### Bài học review580b903 — 18/11/2026
+
+[Review mới](../reviews/receiptrail-codex.md#review-580b903--18112026) nhận Request/Unknown/expiry và giới hạn không chứng minh Solana được giữ. Nhãn Web API/EVM và giới hạn log local bị bỏ, cơ chế/provenance/commitment/context/phản hồi vẫn thiếu. Bỏ câu commitment sai không thay bằng chứng state đúng; checkbox đã khôi phục không thay bảng thực. Đối chiếu note/source/log đã có, không crawl lại; [snapshot](../evidence/phase2/receiptrail-supplement-580b903-review.json) giữ revision mới riêng. Không đổi điểm/thiết kế/quyền.
