@@ -5,7 +5,7 @@
 ## Phần đã chuẩn bị và kiểm được
 
 - [Runner offline](../scripts/check-phase3-offline.sh): hai program cùng pipeline; **25 runtime tests và 8 client tests đạt**. Hai IDL và bytecode khớp artifacts cũ. [Metadata/logs](evidence/phase3/offline-pipeline-metadata.json) ghi macOS arm64/cache; Linux CI mới được ghi riêng bên dưới.
-- [Workflow](../.github/workflows/ci.yml): ba jobs đã thực thi trên Linux. Push7210aa6 đạt25runtime+8client+16research+8web/typecheck/build/ReceiptRail IDL cmp; PR7210aa6 lỗi lấy attestation403 ([evidence](evidence/phase3/ci-resumed-7210aa6.json)). Patchb906a37 build cùng source8d9d148/lock đang được kiểm ở PR44233192373/push44233187077. Giữ source/web/lab; không upload binary artifact.
+- [Workflow](../.github/workflows/ci.yml): revision27cf7ac đạt cả ba jobs trên Linux ở PR44237534047 và push44237529539. Mỗi run25runtime+8client+16research+8web/typecheck/build, sinh hai IDL và ReceiptRail IDL cmp ([evidence](evidence/phase3/ci-passed-27cf7ac.json)). Source/locks/web/lab giữ nguyên; không upload binary artifact.
 - [Preflight 09:47:33 UTC+7](evidence/phase3/preflight-after-phase2-approval.json): đúng devnet, hello chưa deploy, payer 0 lamports. Không đọc signer hoặc gửi airdrop/transaction.
 - [Review T26/T27](reviews/receiptrail-codex.md#review-t26-và-t27--18112026-sau-duyệt-phase2) chưa nhận toàn bộ; A tiếp tục T28 → T29. Giáo viên chưa có verdict; lời duyệt người dùng là cổng riêng.
 
@@ -23,17 +23,19 @@
 
 Chỉ cài trên runner, không cài thêm máy người dùng; không deploy program/web, upload binary artifact hoặc dùng secrets/keypair. Nếu cần đổi pins/dependency ngoài lock thì trình lại. [K9](evidence/phase3/ci-merge-7e654a0-blocked.json) giữ lỗi Billing & plans lịch sử. Sau tin “Đã mở CI, chạy tiếp Phase 3.” (log10:35:20.180 UTC+7), runner đã hoạt động; không còn yêu cầu người dùng sửa billing theo evidence cũ. C không đổi hạn mức/chi trả.
 
-Đã lưu quyền/push fd78236 trước mở guard. Lịch sử51bf866 bị billing chặn và a114a98 cancelled được giữ riêng. Patchb906a37 chỉ đổi cách cài AVM/Anchor: cargo1.100.0 build cả hai từ cùng SHA8d9d148 với lock upstream vào RUNNER_TEMP, kiểm binary Anchor1.2.2, không bỏ kiểm chứng binary tải về hoặc thêm token/quyền. YAML/10shell blocks/scope diff đã kiểm trước push; chờ hai run terminal. Chỉ nhận khi cả3jobs thực chạy/pass trên đúng revision và có steps/logs; checkpoint tài liệu có skip không tự có chứng nhận CI. Quyền CI không mở deploy.
+Đã lưu quyền/push fd78236 trước mở guard. Lịch sử51bf866 bị billing chặn, a114a98 cancelled và PR7210aa6 attestation403 được giữ riêng. Patchb906a37 build AVM/Anchor1.2.2 từ cùng SHA8d9d148/lock bằng cargo1.100.0 đã qua cài/version nhưng lỗi lấy SBF qua API ([evidence](evidence/phase3/ci-anchor-source-b906a37.json)). Patch27cf7ac tải đúng archive platform-tools v1.57, kiểm SHA256 trước extract; hai run đã completed/success, xác minh logs ngày18/11 lúc11:41:50 UTC+7. YAML/10shell blocks/scope diff được kiểm trước push; không thêm token/quyền hoặc cài local. Checkpoint tài liệu dùng skip không tự là một run CI xanh. Quyền CI không mở deploy.
+
+Hai bytecode hashes Linux khớp giữa push/PR27cf7ac và Linux7210aa6, khác bản macOS/cache. Chưa kết luận nguyên nhân hoặc reproducible/verified build; giữ binary macOS đã chuẩn bị trong P3-B. Hello IDL được sinh/dùng trong client tests, workflow chỉ cmp ReceiptRail IDL với bản đã track.
 
 ## P3-B — đã được phép, chờ funding để deploy hello
 
 **Đã được người dùng đồng ý** bằng cùng câu trả lời P3-A/P3-B. Tin sau đó **“chưa rảnh để chuyển sol devnet”**, giờ log 10:14:46.599 UTC+7, để bước deploy sau khi có funding. Chỉ triển khai hello của Phase 3, không deploy ReceiptRail core hoặc publish web mới.
 
 - Program ID đã có: `2yzxUQEpaeLmgCMhDipwnVL3DHsxez18KcePonqZRiXL`; payer/upgrade authority dự kiến `GQRoDMoWFV2nhgwm3bZGvSCC1LSa2wRkLeeJg8NhbFM2`.
-- Sau đồng ý mới kiểm public key từ signers thử cũ ngoài Git có khớp hai địa chỉ trên. Không in secret hoặc import ví browser. Nếu thiếu/sai signer thì dừng, không tự tạo payer/program mới.
-- Cần **một buffer keypair tạm ngoài Git**, thư mục 0700/file 0600; tạo chỉ sau câu đồng ý. Không in seed vào chat/log hoặc tạo ví mới cho người dùng.
+- Khi funding sẵn sàng, kiểm public key từ signers thử cũ ngoài Git có khớp hai địa chỉ trên theo quyền đã có. Không in secret hoặc import ví browser. Nếu thiếu/sai signer thì dừng, không tự tạo payer/program mới.
+- Đã có quyền tạo **một buffer keypair tạm ngoài Git**, thư mục 0700/file 0600, nhưng chưa tạo; chỉ thực hiện sau preflight đủ funding. Không in seed vào chat/log hoặc tạo ví mới cho người dùng.
 - CLI `--buffer`, `--program-id`, `--fee-payer`, `--upgrade-authority`, `--max-len`, `--max-sign-attempts`, `--use-rpc` đã kiểm bằng help. Binary hello 127,672 bytes có hash trong metadata. Dùng devnet rõ ràng, `--max-len 127672`, compute unit price 0, tối đa một lần ký lại; giữ upgrade authority tại payer thử.
-- Rent snapshot program + programdata + buffer là **1.29969768 SOL**, estimate bảo thủ trước phí/counter. Đề xuất **trần 1.5 SOL devnet** cho deploy + initialize/increment; recheck balance/rent/fee/flags trước gửi, dừng nếu vượt. Payer hiện 0 SOL, cần người dùng cấp SOL devnet sau khi cho phép; không mua SOL hoặc dùng mainnet.
+- Rent snapshot program + programdata + buffer là **1.29969768 SOL**, estimate bảo thủ trước phí/counter. **Trần đã duyệt 1.5 SOL devnet** cho deploy + initialize/increment; recheck balance/rent/fee/flags trước gửi, dừng nếu vượt. Payer 0 SOL tại preflight09:47:33 UTC+7; chưa kiểm lại số dư, funding được người dùng để sau; không mua SOL hoặc dùng mainnet.
 - Sau deploy: đọc genesis/executable/owner/programdata/authority/bytecode; chạy client initialize/increment đã có, lưu chữ ký/log/state và xác nhận finalized. Timeout giữ pending journal để đối soát, không ký lại mù quáng; không tự close buffer hoặc tăng trần.
 
 Chỉ nhận khi program đúng devnet, transaction success có log/state/commitment và bytecode/authority khớp; chữ ký đơn lẻ không đủ. Quyền hello không mở ReceiptRail deployment hoặc Phase 4.

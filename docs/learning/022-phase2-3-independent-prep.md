@@ -1,6 +1,6 @@
 # 022 — Chuẩn bị Phase 2/3: interface, test và môi trường
 
-> Codex · 17/11/2026 · trước sự kiện. Đặt chỗ tại commit `1aa322a` trước khi viết. Ban đầu chuẩn bị độc lập ở chặng E; kết luận cũ về chọn ClusterProof/quyền cài sai, đã đính chính tại DECISION. ReceiptRail chính, ClusterProof phụ; tài liệu này giữ kiến thức/lịch sử ClusterProof; P3-A/P3-B được đồng ý ngày18/11 ở phần cập nhật cuối, không mở rộng phạm vi. **Cập nhật: hello/client/web đã build/test local, web đã public; devnet deploy và CI xanh còn mở.** Phần kế hoạch product không tự trở thành tính năng đã triển khai.
+> Codex · 17/11/2026 · trước sự kiện. Đặt chỗ tại commit `1aa322a` trước khi viết. Ban đầu chuẩn bị độc lập ở chặng E; kết luận cũ về chọn ClusterProof/quyền cài sai, đã đính chính tại DECISION. ReceiptRail chính, ClusterProof phụ; tài liệu này giữ kiến thức/lịch sử ClusterProof; P3-A/P3-B được đồng ý ngày18/11 ở phần cập nhật cuối, không mở rộng phạm vi. **Cập nhật: Linux27cf7ac có push/PR đều đạt3jobs/57tests+build; web cũ giữ nguyên, devnet deploy/ví thật còn mở.** Phần kế hoạch product không tự trở thành tính năng đã triển khai.
 
 ## 1. Mục tiêu và điều cần nhớ
 
@@ -189,3 +189,13 @@ Hai runb906a37 đã terminal/failure: AVM/Anchor1.2.2 build từ source8d9d148 v
 Đã đọc [release v1.57](https://github.com/anza-xyz/platform-tools/releases/tag/v1.57) qua API chính thức18/11: asset523147257 `platform-tools-linux-x86_64.tar.bz2`,531380716bytes, SHA256 `b0f7af104adf726fff2a6a09ea2eb2f2d2965c92295f4d7388c08d140e0c2b00`. [build.sh](https://github.com/anza-xyz/platform-tools/blob/v1.57/build.sh#L201), blob a7fb849afb07ce17c33757111c2528088ae51cb8, đóng gói từ deploy bằng tar với root `.`; bên trong có rust/ và llvm/. Source AVM8d9d148/platform_tools.rs đối chiếu tên asset, cache Solana và tar extraction.
 
 Kế hoạch sửa chỉ runner: thay lệnh cài SBF qua API bằng HTTPS release URL cố định, curl retry hữu hạn, **sha256sum check trước giải nén**, giữ cache `$HOME/.cache/solana/v1.57/platform-tools` cho runner hiện có. Assert host x86_64 và in rustc version; không dùng latest, không thêm token/quyền/pin/dependency, không tải/cài compiler local. Giữ installer Anchor đã pass. Kiểm YAML/bash/scope rồi chạy CI mới; pipeline/tests mới quyết định kết quả, không dùng pass7210aa6 thay thế.
+
+### Kết quả CI27cf7ac — 18/11/2026
+
+[PR44237534047](https://github.com/ntbaoheyhey/dev3pack-hackathon/actions/runs/44237534047) và [push44237529539](https://github.com/ntbaoheyhey/dev3pack-hackathon/actions/runs/44237529539) đều completed/success. [Evidence](../evidence/phase3/ci-passed-27cf7ac.json) kiểm logs/steps lúc11:41:50 UTC+7: mỗi run6hello+19ReceiptRail runtime,8client,16research,8web =57tests, typecheck/build, sinh hai IDL và cmp ReceiptRail IDL. PR checkout synthetic merge63f8a462; run head27cf7ac, không có nghĩa PR đã merge. Push checkout27cf7ac.
+
+Hai installers đã qua: AVM/anchor-cli1.2.2 build đúng source8d9d148/lock, assertion Anchor version đạt; archive v1.57 hash b0f7af10… trả OK trước extract. Host Rust/cargo1.100.0; SBF rustc1.95.0-dev ae660768a; Node24.22.2. Agave installer pin4.1.2 step thành công nhưng không có `solana --version` độc lập trong log; không nâng mức kiểm chứng. Hello IDL được sinh và dùng bởi client tests, không có cmp hello với artifact macOS trong CI.
+
+Cargo.lock và runner hashes khớp local. Bytecode hello f81e2962…/ReceiptRail41ff32ec… khớp cả hai run và Linux7210aa6, vẫn khác macOS9b5483f7…/962b721a…. Đây là kết quả của các runs đã quan sát, chưa chứng nhận reproducible/source-to-chain; không thay binary macOS trong phương án P3-B. Không đổi source/tests/IDL/web/lab/locks hay cài thêm local trong sửa CI; không rerun local suites chỉ để chốt tài liệu.
+
+Bài học: chỉ đóng mục CI khi đúng revision có cả jobs/steps/logs đạt; không lấy pass cũ hoặc checkpoint skip làm bằng chứng mới. Giữ failure/cancellation cũ để truy nguyên. P3-A đã đạt, funding hello được người dùng để sau; không tự mở Phase4–6 hoặc gọi toàn Phase3 hoàn tất. Sau push checkpoint tài liệu có skip phải sửa/read-back body PR7 và lưu snapshot cụ thể, không bỏ bước này khỏi Thẻ nhớ.

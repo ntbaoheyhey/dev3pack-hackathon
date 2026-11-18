@@ -1,6 +1,6 @@
 # Audit Prompt 03 — checkpoint sau duyệt Phase 2
 
-Codex · 18/11/2026. Đây là đối chiếu yêu cầu với hồ sơ trong repo, không phải verdict giáo viên. **Goal chưa hoàn thành**: P3-A/P3-B đã có quyền, nhưng funding/devnet/review còn mở; CI Linux push đã đạt, bản sửa PR đang kiểm. Tin **“duyệt phase 2”** đã được ghi đúng [nguyên văn/giờ log](../ideas/DECISION.md), không hỏi lại.
+Codex · 18/11/2026. Đây là đối chiếu yêu cầu với hồ sơ trong repo, không phải verdict giáo viên. **Goal chưa hoàn thành**: P3-A đạt cả push/PR CI Linux27cf7ac; P3-B có quyền nhưng funding/devnet/review còn mở. Tin **“duyệt phase 2”** đã được ghi đúng [nguyên văn/giờ log](../ideas/DECISION.md), không hỏi lại.
 
 ## Đối chiếu từng yêu cầu
 
@@ -18,7 +18,7 @@ Codex · 18/11/2026. Đây là đối chiếu yêu cầu với hồ sơ trong re
 | 3.3 Chọn chính/phụ và quyền cài | [DECISION](../ideas/DECISION.md), STOP-CAUSES K6 | Payload cũ bị người dùng đính chính đã vô hiệu. Hiện ReceiptRail chính, ClusterProof phụ; giữ bộ đã cài. Không dùng prompt cũ để mở rộng quyền |
 | 3.4 Chuẩn bị độc lập khi chờ | [Note022](../learning/022-phase2-3-independent-prep.md), [kế hoạch Phase3](../PHASE3-PLAN.md) | Runner cache/offline và phương án cụ thể đã chuẩn bị; không installer/sign/deploy/public mới |
 | 4 Phase1–2 và spike sớm | [IDEA](../IDEA.md), [ARCHITECTURE](../ARCHITECTURE.md), [note023](../learning/023-receiptrail-phase2-spike.md), [catalog Phase2](../evidence/phase2/README.md) | Account/PDA/instructions/state/test plan/demo 165 giây và Anchor spike thật; người dùng duyệt. Review chéo/giáo viên chưa nhận đạt |
-| 4 Phase3 có điều kiện | [Metadata offline](../evidence/phase3/offline-pipeline-metadata.json), [preflight](../evidence/phase3/preflight-after-phase2-approval.json), PHASE3-PLAN | 25 runtime +8 client local đạt; Linux push7210aa6 đạt3jobs/57tests+build, PR lỗi attestation403 và patchb906a37 đang kiểm. Giữ web cũ; chưa hello devnet/tx/ví thật. P3-A/P3-B có quyền; funding được người dùng để sau |
+| 4 Phase3 có điều kiện | [Metadata offline](../evidence/phase3/offline-pipeline-metadata.json), [CI27cf7ac](../evidence/phase3/ci-passed-27cf7ac.json), PHASE3-PLAN | 25runtime+8client local đạt; Linux push/PR27cf7ac đều đạt3jobs/57tests+build/ReceiptRail IDL cmp. Giữ web cũ; chưa hello devnet/tx/ví thật. P3-A/P3-B có quyền; funding được người dùng để sau |
 | 5 Điểm dừng cuối | [NEXT](../NEXT.md), [ROADMAP](../ROADMAP.md), [DEVLOG](../DEVLOG.md), [bảng cổng](phase1-3-gates.md) | Hồ sơ đã cập nhật nhưng chưa được ghi goal/Phase3 xong; cần đúng quyền và evidence còn thiếu |
 
 ## Điểm và bằng chứng đã kiểm
@@ -36,4 +36,4 @@ Codex · 18/11/2026. Đây là đối chiếu yêu cầu với hồ sơ trong re
 
 T26 sửa expiry đúng; T27 giữ Signer/has_one đúng nhưng chưa đủ recipient/assertions/logs, baseline retry và giới hạn. [Review T26/T27](receiptrail-codex.md#review-t26-và-t27--18112026-sau-duyệt-phase2) đã giao phần sửa qua T29, giữ T28 UX trước. Không tự nhận review độc lập đạt.
 
-Người dùng duyệt Phase2 không là quyền cài/deploy/public. [P3-A/P3-B](../PHASE3-PLAN.md) đã được đồng ý riêng bằng “Đồng ý cả hai”; [CI sau mở billing](../evidence/phase3/ci-resumed-7210aa6.json) đã thực thi: push đạt, PR lỗi lấy attestation403, patchb906a37 đang kiểm. Funding hello được người dùng để sau. Web ClusterProof cũ được giữ, chưa có web ReceiptRail. Cổng giáo viên và bài tập ví thật vẫn mở. Repo có MIT và kế hoạch public trước nộp; không đổi visibility trong checkpoint này.
+Người dùng duyệt Phase2 không là quyền cài/deploy/public. [P3-A/P3-B](../PHASE3-PLAN.md) đã được đồng ý riêng bằng “Đồng ý cả hai”; [CI27cf7ac](../evidence/phase3/ci-passed-27cf7ac.json) push/PR đều đạt, phần CI đã đóng. Funding hello được người dùng để sau. Web ClusterProof cũ được giữ, chưa có web ReceiptRail. Cổng giáo viên và bài tập ví thật vẫn mở. Hashes Linux khác macOS, chưa verified build; không thay binary dự kiến deploy. Repo có MIT và kế hoạch public trước nộp; không đổi visibility trong checkpoint này.

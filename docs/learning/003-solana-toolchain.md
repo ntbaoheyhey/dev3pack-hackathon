@@ -1,7 +1,7 @@
 # 003 — Toolchain Solana, phiên bản và cài đặt có kiểm soát
 
 > Ngày kiểm tra: 2026-11-17 (Asia/Ho_Chi_Minh). Đính chính18/11: giữ bộ đã cài; cài thêm cần hỏi trước theo DECISION. Người dùng đã duyệt Phase2 ReceiptRail (DECISION, log09:27:18.464 ngày18/11 UTC+7); không suy quyền cài/deploy/public.
-> Rust1.100.0, Agave4.1.2, AVM/Anchor1.2.2 và platform-tools v1.57 đã cài. Hello SBFv3/IDL/local tests đạt; Linux push7210aa6 đạt25runtime+8client+16research+8web/build. PR lỗi lấy attestation403; patchb906a37 đang kiểm. Chưa deploy; web cũ giữ nguyên, ví thật chưa kiểm.
+> Rust1.100.0, Agave4.1.2, AVM/Anchor1.2.2 và platform-tools v1.57 đã cài. Hello SBFv3/IDL/local tests đạt; Linux27cf7ac có push/PR đều đạt25runtime+8client+16research+8web/build, sinh IDL và ReceiptRail cmp. Chưa deploy; web cũ giữ nguyên, ví thật chưa kiểm.
 
 ## 1. Mục tiêu và điều cần nhớ
 
@@ -144,7 +144,7 @@ solana airdrop 2 "$DEVNET_STUDY_ADDRESS" --url devnet
 solana balance "$DEVNET_STUDY_ADDRESS" --url devnet
 ```
 
-`airdrop` làm thay đổi số dư devnet. Lần xin2SOL đã thất bại, xem [log](../evidence/phase3/devnet-airdrop.txt); lần đọc balance sau đó0SOL. Câu hỏi nhờ người dùng nhận5SOL còn pending. Chỉ định `--url devnet` ở từng lệnh giúp tránh default cluster. [Faucet chính thức](https://faucet.solana.com/) có quota/Cloudflare; không bảo đảm nhận được SOL. Không mua “devnet SOL”.
+`airdrop` làm thay đổi số dư devnet. Lần xin2SOL đã thất bại, xem [log](../evidence/phase3/devnet-airdrop.txt); lần đọc balance sau đó0SOL. Yêu cầu5SOL trước đây là lịch sử; P3-B hiện đã được duyệt với trần1.5SOL cho hello, người dùng để funding sau theo [phương án](../PHASE3-PLAN.md). Chỉ định `--url devnet` ở từng lệnh giúp tránh default cluster. [Faucet chính thức](https://faucet.solana.com/) có quota/Cloudflare; không bảo đảm nhận được SOL. Không mua “devnet SOL”.
 
 ### C. Ghi lại bộ đã thực sự chạy
 
@@ -169,7 +169,7 @@ Các trang sống truy cập 17/11/2026; thời điểm truy cập không phải
 
 ## 7. Điểm chưa kiểm chứng và bước tiếp theo
 
-Đã kiểm bộ Rust host1.100.0 + Agave4.1.2 + Anchor1.2.2 + platform-tools v1.57 bằng build/IDL/6 LiteSVM tests: [hello-check-r2](../evidence/phase3/hello-check-r2.txt), exit0. Linux push7210aa6 đã đạt pipeline, PR bị lỗi lấy chứng thực Anchor403; bản sửa b906a37 đang kiểm. Chưa deploy, chưa chạy Docker daemon. Các bảng/lệnh kế hoạch gốc ở trên chỉ là lịch sử nghiên cứu, không thay log thực hành này.
+Đã kiểm bộ Rust host1.100.0 + Agave4.1.2 + Anchor1.2.2 + platform-tools v1.57 bằng build/IDL/6 LiteSVM tests: [hello-check-r2](../evidence/phase3/hello-check-r2.txt), exit0. [Linux27cf7ac](../evidence/phase3/ci-passed-27cf7ac.json) có push/PR đều đạt cả3jobs/57tests, typecheck/build và ReceiptRail IDL cmp. Chưa deploy, chưa chạy Docker daemon. Các bảng/lệnh kế hoạch gốc ở trên chỉ là lịch sử nghiên cứu, không thay log thực hành này.
 
 Câu lịch sử “Tiếp tục theo quyền Phase3 đã có” sai/hết hiệu lực; không dùng làm quyền hiện hành. Giữ bộ đã cài, chỉ chuẩn bị local bằng cache và hỏi riêng trước cài thêm/keypair triển khai/deploy/public. Đọc [004](004-anchor-a-to-z.md), dùng scaffold chính thức Anchor1.2.2, template single + LiteSVM0.15.0 cho hello tối thiểu, không clone RPC mainnet. Giữ signer lab ngoài Git; nếu hosting/faucet cần tài khoản thì ghi nhu cầu thực sau khi hoàn tất phần độc lập.
 
@@ -189,3 +189,5 @@ Bài học18/11: version/build logs chứng minh phần đã chạy, không ch�
 [Evidence7210aa6](../evidence/phase3/ci-resumed-7210aa6.json) ghi push run đã chạy25runtime+8client+16research+8web và typecheck/build; PR run lỗi403 từ API attestation của AVM. Kết quả một run không chứng minh run khác hoặc commit sau đạt. [Note022](022-phase2-3-independent-prep.md#ci-linux-sau-mở-billing--lỗi-attestation-và-cách-sửa-trước-code) giải thích sửa build cùng Anchor/AVM source8d9d148 và upstream lock bằng Rust1.100.0 trên runner, không cài thêm local.
 
 Hashes bytecode Linux trong log khác bản macOS/cache ở metadata offline; giữ hai bộ riêng, chưa xác định nguyên nhân hoặc chứng nhận reproducible/verified build. Phương án deploy hello vẫn dùng binary macOS đã kiểm/hash trước đó; chưa upload hay lấy binary CI thay thế. Bộ version/pipeline chạy được không đóng cổng devnet hoặc ví thật.
+
+Kết quả sửa ngày18/11: b906a37 đã qua build AVM/Anchor/version nhưng lỗi installer SBF;27cf7ac kiểm SHA256 archive v1.57 trước extract và cả push/PR đều pass. [Evidence mới](../evidence/phase3/ci-passed-27cf7ac.json) lưu host Rust/cargo1.100.0, SBF rustc1.95.0-dev ae660768a, Node24.22.2, Anchor source8d9d148 và steps/logs. Installer Agave pin4.1.2 thành công, không có output `solana --version` độc lập trong logs mới. Hello IDL được sinh/dùng cho8client tests; chỉ ReceiptRail IDL được cmp trong workflow. Hai run có bytecode hashes giống Linux7210aa6; chưa giải quyết khác biệt macOS. Không cần rerun local suites cho checkpoint tài liệu này.

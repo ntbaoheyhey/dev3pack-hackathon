@@ -1,4 +1,4 @@
-# Thẻ nhớ — Codex / tiếp tục CI Phase3
+# Thẻ nhớ — Codex / CI Phase3 đạt, chốt hồ sơ
 - Trạng thái **đang làm** theo tin “Đã mở CI, chạy tiếp Phase 3.”, giờ log10:35:20.180 ngày18/11 UTC+7. Chưa hoàn thành Phase3.
 - C trưởng nhóm, sở hữu tài liệu chính/A-queue; A trợ lý qua queue. RUBRIC v1.2: điểm theo bằng chứng, chưa spike F≤3. Không sửa file/checkout A.
 - “ReceiptRail chính, ClusterProof phụ” lúc00:07 ngày18/11/2026 UTC+7; duyệt Phase2 log09:27:18.464 UTC+7. Không hỏi lại.
@@ -12,17 +12,17 @@
 - Pipeline cache25runtime+8client pass cũ; source/tests/IDL/web/lab giữ nguyên. Workflow hash cũ trong metadata offline là snapshot trước mởguard.
 - T26/T27 đã review; T28→T29 còn mở. Fetch cuối chưa có report mới; không suy process live từ HANDOFF A.
 - PR7 đã sửa body theo Linux/pending patch/funding; fetch10:54:53 UTC+7 xác nhận head05a8cf8/work→main/open/merged=false/body khớp. Comments kiểm10:56 rỗng; không merge.
-- b906a37: hai runs đã failure ở installer SBF (parse GitHub response); Anchor source/version đã pass. Evidence ci-anchor-source-b906a37. Đã sửa tải đúng archivev1.57+SHA256 trước extract; YAML/10shell blocks đạt, cần push/chạy CI mới.
+- **27cf7ac CI đạt:** PR44237534047/anchor134577173625 và push44237529539/anchor134577157335 đều completed/success3jobs, mỗi run57tests+build/ReceiptRail IDL cmp; evidence ci-passed-27cf7ac. Hai installer đã pass; b906a37 failure SBF giữ lịch sử.
 - Automation15phút ACTIVE; checkpoint tài liệu/merge dùng [skip ci], chỉ run cần thiết trong P3-A mới bỏ marker.
 - Review chéo/giáo viên vẫn mở; ClusterProof dự phòng, chưa duyệt. Không mở Phase4–6/merge/force-push/mainnet/secrets/visibility.
 
 ## Bằng chứng hiện hành
 
-[DECISION](ideas/DECISION.md), [record quyền/funding](evidence/phase3/user-permission-2026-11-18.json), [CI Linux và lỗi403](evidence/phase3/ci-resumed-7210aa6.json), [phương án](PHASE3-PLAN.md), [pipeline local](evidence/phase3/offline-pipeline-metadata.json), [audit](reviews/prompt03-audit.md). [Bàn giao trước quyền](archive/HANDOFF-before-p3-permission.md) là lịch sử, không tái hỏi P3-A/P3-B.
+[DECISION](ideas/DECISION.md), [record quyền/funding](evidence/phase3/user-permission-2026-11-18.json), [CI27cf7ac đạt](evidence/phase3/ci-passed-27cf7ac.json), [lịch sử403](evidence/phase3/ci-resumed-7210aa6.json), [phương án](PHASE3-PLAN.md), [pipeline local](evidence/phase3/offline-pipeline-metadata.json), [audit](reviews/prompt03-audit.md). [Bàn giao trước quyền](archive/HANDOFF-before-p3-permission.md) là lịch sử, không tái hỏi P3-A/P3-B.
 
 ## Còn lại
 
-1. **CI:** push patch SBF mới, lấy handles rồi theo dõi tới terminal/đọc logs. Hai runb906a37 đã failure sau khi Anchor source/version pass, không poll lại như live. Push7210aa6 xanh/PR lỗi403 đã lưu evidence; chưa chứng minh patch mới đạt. Sau kết quả đồng bộ README/ROADMAP/PHASE3-PLAN/NEXT/mục lục003/022/cổng/audit/PR7, push checkpoint tài liệu có skip và xác minh PR open/chưa merge. Không tự đổi pins/locks/billing/quyền hoặc gọi skipped là đạt.
+1. **Chốt hồ sơ CI đã đạt:** evidence27cf7ac/README/ROADMAP/PHASE3-PLAN/NEXT/mục lục003/022/cổng/audit đã cập nhật local; kiểm và push checkpoint [skip ci], sửa body PR7 rồi fetch xác minh head/work→main/open/merged=false/body khớp. Lưu snapshot/Thẻ nhớ và push nốt; chưa được bỏ bước này. Không rerun CI hoặc local suites cho tài liệu. CI được chứng minh ở27cf7ac, không suy HEAD tài liệu mới đã chạy.
 2. **Hello:** funding được người dùng để sau. Khi có đủ SOL devnet, recheck balance/rent/flags/hash/signers/trần1.5SOL rồi triển khai và kiểm initialize/increment/finalized; chưa tạo buffer/sign/send lúc này.
 3. **A:** fetch và review T28/T29 khi nộp, nhận phần có bằng chứng; không sửa file A hoặc coi report nộp là đã qua cổng.
 4. **Cổng:** review chéo được nhận, giáo viên chấm và ví thật vẫn mở. Không tự gọi Phase3/goal xong; NEXT/ROADMAP/PR7 theo evidence thật.

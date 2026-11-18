@@ -1,0 +1,875 @@
+{
+  "observed_at_utc": "2026-11-18 04:41:50 UTC",
+  "repository": "ntbaoheyhey/dev3pack-hackathon",
+  "head_sha": "27cf7aceba5b077d07e04daaa0cb03d2f8f1cd8f",
+  "source_sha256": {
+    ".github/workflows/ci.yml": "480cd3ea9494c933cdcf7a8047442300c8477612762777cf20ad088af76cfe28",
+    "scripts/check-phase3-offline.sh": "c7e9b208be0aec1642b044be824f6f300cbf5908a0d4a1c6db716528cc3294d2",
+    "Cargo.lock": "8ea462bb0d93de7e4f82e24bdb9bd3a1a1ab78ca227fd09880bb52c1dd6583c9",
+    "apps/web/package-lock.json": "39f1b8c400cf41bf7705ff98b8ae7235189b3c41c5972dd32633014435eac3dd",
+    "tools/devnet-lab/package-lock.json": "bcd2ab2f51aa0d7d57c76b541cb9a7b3ebd720fb7b613c8f36c3340713501189",
+    "docs/idl/receiptrail.json": "13efb821841ebd6c9a8b9da21160aad8fbc11e9a6072e4b92a408e6f103f5409"
+  },
+  "scope": "P3-A: ba jobs trên GitHub Ubuntu24.04 trong quyền đã ghi; không installer local, signers/deploy/public hoặc binary upload.",
+  "runs": [
+    {
+      "id": 44237534047,
+      "event": "pull_request",
+      "head_sha": "27cf7aceba5b077d07e04daaa0cb03d2f8f1cd8f",
+      "checkout_sha": "63f8a4624acfe945bcf746d7af9269a666c9d277",
+      "checkout_note": "GitHub synthetic merge commit dùng để kiểm PR; PR7 vẫn chưa merge.",
+      "url": "https://github.com/ntbaoheyhey/dev3pack-hackathon/actions/runs/44237534047",
+      "status": "completed",
+      "conclusion": "success",
+      "run_attempt": 1,
+      "updated_at": "2026-11-18T04:39:45Z",
+      "jobs": [
+        {
+          "id": 134577173625,
+          "name": "anchor-lab",
+          "url": "https://github.com/ntbaoheyhey/dev3pack-hackathon/actions/runs/44237534047/job/134577173625",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-11-18T04:28:14Z",
+          "completed_at": "2026-11-18T04:39:44Z",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1,
+              "started_at": "2026-11-18T04:28:15Z",
+              "completed_at": "2026-11-18T04:28:18Z"
+            },
+            {
+              "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2,
+              "started_at": "2026-11-18T04:28:18Z",
+              "completed_at": "2026-11-18T04:28:23Z"
+            },
+            {
+              "name": "Install build prerequisites",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3,
+              "started_at": "2026-11-18T04:28:23Z",
+              "completed_at": "2026-11-18T04:29:10Z"
+            },
+            {
+              "name": "Install pinned Agave and Anchor",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4,
+              "started_at": "2026-11-18T04:29:10Z",
+              "completed_at": "2026-11-18T04:36:09Z"
+            },
+            {
+              "name": "Install pinned SBF compiler",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5,
+              "started_at": "2026-11-18T04:36:09Z",
+              "completed_at": "2026-11-18T04:37:10Z"
+            },
+            {
+              "name": "Warm locked dependency cache after approval",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6,
+              "started_at": "2026-11-18T04:37:10Z",
+              "completed_at": "2026-11-18T04:37:13Z"
+            },
+            {
+              "name": "Build both programs offline and verify generated IDLs",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7,
+              "started_at": "2026-11-18T04:37:13Z",
+              "completed_at": "2026-11-18T04:39:34Z"
+            },
+            {
+              "name": "Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8,
+              "started_at": "2026-11-18T04:39:34Z",
+              "completed_at": "2026-11-18T04:39:38Z"
+            },
+            {
+              "name": "Verify generated-IDL client offline",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9,
+              "started_at": "2026-11-18T04:39:38Z",
+              "completed_at": "2026-11-18T04:39:41Z"
+            },
+            {
+              "name": "Post Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 17,
+              "started_at": "2026-11-18T04:39:41Z",
+              "completed_at": "2026-11-18T04:39:41Z"
+            },
+            {
+              "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 18,
+              "started_at": "2026-11-18T04:39:41Z",
+              "completed_at": "2026-11-18T04:39:41Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 19,
+              "started_at": "2026-11-18T04:39:41Z",
+              "completed_at": "2026-11-18T04:39:41Z"
+            }
+          ],
+          "counts": {
+            "tests": [
+              8
+            ],
+            "pass": [
+              8
+            ],
+            "fail": [
+              0
+            ],
+            "skipped": [
+              0
+            ]
+          },
+          "runtime_pass_groups": [
+            0,
+            5,
+            1,
+            0,
+            19,
+            0,
+            0
+          ],
+          "sha256": {
+            "Cargo.lock": "8ea462bb0d93de7e4f82e24bdb9bd3a1a1ab78ca227fd09880bb52c1dd6583c9",
+            "scripts/check-phase3-offline.sh": "c7e9b208be0aec1642b044be824f6f300cbf5908a0d4a1c6db716528cc3294d2",
+            "target/phase3-offline/deploy/phase3_hello.so": "f81e29627b4643d93b91a5a30c3b09f62f794d2a0cb72112458d4a0c97a8c246",
+            "target/phase3-offline/deploy/receiptrail.so": "41ff32ec9eb6aefe0322f1da0a04053b95cbd29e06afb6f0e22e76658dd024b9"
+          },
+          "log_excerpts": [
+            "2026-11-18T04:28:15.1672977Z Image: ubuntu-24.04",
+            "2026-11-18T04:28:15.1674800Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261111.127/images/ubuntu/Ubuntu2404-Readme.md",
+            "2026-11-18T04:28:23.7880178Z 63f8a4624acfe945bcf746d7af9269a666c9d277",
+            "2026-11-18T04:29:10.6201475Z   1.100.0-x86_64-unknown-linux-gnu installed - rustc 1.100.0 (0ef1bc386 2026-11-09)",
+            "2026-11-18T04:29:10.6282006Z test \"$(\"$RUNNER_TEMP/anchor-1.2.2/bin/anchor\" --version)\" = \"anchor-cli 1.2.2\"",
+            "2026-11-18T04:31:31.7841621Z    Installed package `avm v1.2.2 (https://github.com/otter-sec/anchor?rev=8d9d1488d9b8af41b266d7513eea2e668adf15a2#8d9d1488)` (executable `avm`)",
+            "2026-11-18T04:36:09.3764711Z    Installed package `anchor-cli v1.2.2 (https://github.com/otter-sec/anchor?rev=8d9d1488d9b8af41b266d7513eea2e668adf15a2#8d9d1488)` (executable `anchor`)",
+            "2026-11-18T04:36:09.4021011Z curl --proto '=https' --tlsv1.2 -sSfL --retry 3 https://github.com/anza-xyz/platform-tools/releases/download/v1.57/platform-tools-linux-x86_64.tar.bz2 -o \"$archive\"",
+            "2026-11-18T04:36:09.4021753Z printf '%s  %s\\n' b0f7af104adf726fff2a6a09ea2eb2f2d2965c92295f4d7388c08d140e0c2b00 \"$archive\" | sha256sum --check",
+            "2026-11-18T04:36:21.1745090Z /home/runner/work/_temp/platform-tools-v1.57.tar.bz2: OK",
+            "2026-11-18T04:37:10.2356992Z rustc 1.95.0-dev (ae660768a 2026-08-17)",
+            "2026-11-18T04:37:13.3757845Z \"$ANCHOR_BIN\" idl build -p phase3_hello -o target/idl/phase3_hello.json -t target/types/phase3_hello.ts -- --offline --locked",
+            "2026-11-18T04:37:13.3758680Z \"$ANCHOR_BIN\" idl build -p receiptrail -o target/idl/receiptrail.json -- --offline --locked",
+            "2026-11-18T04:37:13.3759463Z cmp docs/idl/receiptrail.json target/idl/receiptrail.json",
+            "2026-11-18T04:37:13.3991002Z cargo 1.100.0 (3acc79c0c 2026-11-05)",
+            "2026-11-18T04:37:13.4035518Z rustc 1.100.0 (0ef1bc386 2026-11-09)",
+            "2026-11-18T04:37:13.4118726Z rustc 1.95.0-dev (ae660768a 2026-08-17)",
+            "2026-11-18T04:38:51.5947506Z test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+            "2026-11-18T04:38:51.6951520Z test another_signer_cannot_increment ... ok",
+            "2026-11-18T04:38:51.7907497Z test authority_address_without_signature_is_rejected ... ok",
+            "2026-11-18T04:38:51.8871302Z test counter_cannot_be_reset_by_initializing_again ... ok",
+            "2026-11-18T04:38:52.0473587Z test maximum_is_enforced_without_mutating_counter ... ok",
+            "2026-11-18T04:38:52.1358596Z test unknown_instruction_cannot_modify_counter ... ok",
+            "2026-11-18T04:38:52.1359009Z test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.54s",
+            "2026-11-18T04:38:52.2281989Z test test_initialize ... ok",
+            "2026-11-18T04:38:52.2282515Z test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.09s",
+            "2026-11-18T04:38:52.2292372Z test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+            "2026-11-18T04:38:52.3579620Z test another_merchant_cannot_cancel ... ok",
+            "2026-11-18T04:38:52.4967166Z test create_pay_and_fresh_transaction_retry_transfers_principal_only_once ... METRIC create_cu=8775 pay_cu=6608 retry_cu=6017 create_fee=10000 pay_fee=10000 retry_fee=10000 rent_lamports=1802640 principal_delta=1000000 invoice_bytes=131 paid_slot=100",
+            "2026-11-18T04:38:52.8663209Z test expiry_boundary_before_at_and_after ... ok",
+            "2026-11-18T04:38:52.9912042Z test insufficient_principal_cpi_leaves_invoice_open_and_balances_unchanged ... ok",
+            "2026-11-18T04:38:53.6411466Z test invalid_creation_terms_and_aliases_leave_no_invoice_or_rent_debit ... ok",
+            "2026-11-18T04:38:53.7659783Z test merchant_address_without_signature_cannot_create_or_cancel ... ok",
+            "2026-11-18T04:38:53.8910093Z test merchant_can_cancel_expired_open_invoice_without_moving_principal ... METRIC cancel_cu=4346 cancel_fee=10000",
+            "2026-11-18T04:38:54.1391456Z test owner_and_discriminator_are_checked_before_payment ... ok",
+            "2026-11-18T04:38:54.4172308Z test pay_cancel_race_is_safe_in_both_serial_orders ... ok",
+            "2026-11-18T04:38:54.5350155Z test payer_address_without_signature_is_rejected ... ok",
+            "2026-11-18T04:38:54.7822974Z test payer_with_data_or_wrong_owner_cannot_transfer ... ok",
+            "2026-11-18T04:38:54.9076351Z test recipient_substitution_cannot_redirect_payment ... ok",
+            "2026-11-18T04:38:55.0317654Z test same_layout_at_wrong_pda_is_rejected ... ok",
+            "2026-11-18T04:38:55.1564449Z test substituted_executable_cannot_replace_system_program ... ok",
+            "2026-11-18T04:38:55.4313736Z test terminal_invoice_cannot_be_reinitialized_or_reset ... ok",
+            "2026-11-18T04:38:55.5706041Z test two_pay_instructions_in_one_transaction_roll_back_the_first_transfer ... ok",
+            "2026-11-18T04:38:55.6957304Z test unknown_instruction_cannot_change_terms_or_terminal_state ... ok",
+            "2026-11-18T04:38:55.9427859Z test wrong_bump_and_version_are_rejected ... ok",
+            "2026-11-18T04:38:56.0675466Z test wrong_payer_signer_cannot_pay ... ok",
+            "2026-11-18T04:38:56.0675932Z test result: ok. 19 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 3.84s",
+            "2026-11-18T04:38:56.1117933Z test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+            "2026-11-18T04:38:56.1669680Z test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+            "2026-11-18T04:38:56.1754274Z Started: 2026-11-18T04:37:13Z; elapsed_seconds=103",
+            "2026-11-18T04:38:56.1934455Z 8ea462bb0d93de7e4f82e24bdb9bd3a1a1ab78ca227fd09880bb52c1dd6583c9  Cargo.lock",
+            "2026-11-18T04:38:56.1935090Z c7e9b208be0aec1642b044be824f6f300cbf5908a0d4a1c6db716528cc3294d2  scripts/check-phase3-offline.sh",
+            "2026-11-18T04:38:56.1938571Z f81e29627b4643d93b91a5a30c3b09f62f794d2a0cb72112458d4a0c97a8c246  /home/runner/work/dev3pack-hackathon/dev3pack-hackathon/target/phase3-offline/deploy/phase3_hello.so",
+            "2026-11-18T04:38:56.1943080Z 41ff32ec9eb6aefe0322f1da0a04053b95cbd29e06afb6f0e22e76658dd024b9  /home/runner/work/dev3pack-hackathon/dev3pack-hackathon/target/phase3-offline/deploy/receiptrail.so",
+            "2026-11-18T04:39:38.5318781Z node: v24.22.2",
+            "2026-11-18T04:39:41.1670221Z ℹ tests 8",
+            "2026-11-18T04:39:41.1670721Z ℹ pass 8",
+            "2026-11-18T04:39:41.1670934Z ℹ fail 0",
+            "2026-11-18T04:39:41.1671458Z ℹ skipped 0"
+          ]
+        },
+        {
+          "id": 134577173768,
+          "name": "research",
+          "url": "https://github.com/ntbaoheyhey/dev3pack-hackathon/actions/runs/44237534047/job/134577173768",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-11-18T04:28:14Z",
+          "completed_at": "2026-11-18T04:28:27Z",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1,
+              "started_at": "2026-11-18T04:28:15Z",
+              "completed_at": "2026-11-18T04:28:17Z"
+            },
+            {
+              "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2,
+              "started_at": "2026-11-18T04:28:17Z",
+              "completed_at": "2026-11-18T04:28:20Z"
+            },
+            {
+              "name": "Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3,
+              "started_at": "2026-11-18T04:28:20Z",
+              "completed_at": "2026-11-18T04:28:23Z"
+            },
+            {
+              "name": "Offline parser and evidence replay",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4,
+              "started_at": "2026-11-18T04:28:23Z",
+              "completed_at": "2026-11-18T04:28:24Z"
+            },
+            {
+              "name": "Post Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7,
+              "started_at": "2026-11-18T04:28:24Z",
+              "completed_at": "2026-11-18T04:28:24Z"
+            },
+            {
+              "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8,
+              "started_at": "2026-11-18T04:28:24Z",
+              "completed_at": "2026-11-18T04:28:24Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9,
+              "started_at": "2026-11-18T04:28:24Z",
+              "completed_at": "2026-11-18T04:28:24Z"
+            }
+          ],
+          "counts": {
+            "tests": [
+              16
+            ],
+            "pass": [
+              16
+            ],
+            "fail": [
+              0
+            ],
+            "skipped": [
+              0
+            ]
+          },
+          "runtime_pass_groups": [],
+          "sha256": {},
+          "log_excerpts": [
+            "2026-11-18T04:28:15.1959821Z Image: ubuntu-24.04",
+            "2026-11-18T04:28:15.1961158Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261111.127/images/ubuntu/Ubuntu2404-Readme.md",
+            "2026-11-18T04:28:20.8299708Z 63f8a4624acfe945bcf746d7af9269a666c9d277",
+            "2026-11-18T04:28:23.9340414Z node: v24.22.2",
+            "2026-11-18T04:28:24.4772503Z ℹ tests 16",
+            "2026-11-18T04:28:24.4773356Z ℹ pass 16",
+            "2026-11-18T04:28:24.4773657Z ℹ fail 0",
+            "2026-11-18T04:28:24.4774354Z ℹ skipped 0"
+          ]
+        },
+        {
+          "id": 134577174010,
+          "name": "web",
+          "url": "https://github.com/ntbaoheyhey/dev3pack-hackathon/actions/runs/44237534047/job/134577174010",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-11-18T04:28:13Z",
+          "completed_at": "2026-11-18T04:28:22Z",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1,
+              "started_at": "2026-11-18T04:28:13Z",
+              "completed_at": "2026-11-18T04:28:14Z"
+            },
+            {
+              "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2,
+              "started_at": "2026-11-18T04:28:14Z",
+              "completed_at": "2026-11-18T04:28:15Z"
+            },
+            {
+              "name": "Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3,
+              "started_at": "2026-11-18T04:28:15Z",
+              "completed_at": "2026-11-18T04:28:15Z"
+            },
+            {
+              "name": "Run npm ci --ignore-scripts --no-fund",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4,
+              "started_at": "2026-11-18T04:28:15Z",
+              "completed_at": "2026-11-18T04:28:19Z"
+            },
+            {
+              "name": "Run npm test",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5,
+              "started_at": "2026-11-18T04:28:19Z",
+              "completed_at": "2026-11-18T04:28:19Z"
+            },
+            {
+              "name": "Run npm run build",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6,
+              "started_at": "2026-11-18T04:28:19Z",
+              "completed_at": "2026-11-18T04:28:21Z"
+            },
+            {
+              "name": "Post Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 11,
+              "started_at": "2026-11-18T04:28:21Z",
+              "completed_at": "2026-11-18T04:28:21Z"
+            },
+            {
+              "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 12,
+              "started_at": "2026-11-18T04:28:21Z",
+              "completed_at": "2026-11-18T04:28:21Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 13,
+              "started_at": "2026-11-18T04:28:21Z",
+              "completed_at": "2026-11-18T04:28:21Z"
+            }
+          ],
+          "counts": {
+            "tests": [
+              8
+            ],
+            "pass": [
+              8
+            ],
+            "fail": [
+              0
+            ],
+            "skipped": [
+              0
+            ]
+          },
+          "runtime_pass_groups": [],
+          "sha256": {},
+          "log_excerpts": [
+            "2026-11-18T04:28:13.9602972Z Image: ubuntu-24.04",
+            "2026-11-18T04:28:13.9604554Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261111.370/images/ubuntu/Ubuntu2404-Readme.md",
+            "2026-11-18T04:28:15.2315461Z 63f8a4624acfe945bcf746d7af9269a666c9d277",
+            "2026-11-18T04:28:15.9438076Z node: v24.22.2",
+            "2026-11-18T04:28:19.3679947Z ℹ tests 8",
+            "2026-11-18T04:28:19.3703789Z ℹ pass 8",
+            "2026-11-18T04:28:19.3704149Z ℹ fail 0",
+            "2026-11-18T04:28:19.3704935Z ℹ skipped 0",
+            "2026-11-18T04:28:19.4595206Z > tsc --noEmit && vite build && node scripts/static-routes.mjs",
+            "2026-11-18T04:28:21.2369525Z ✓ built in 160ms"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 44237529539,
+      "event": "push",
+      "head_sha": "27cf7aceba5b077d07e04daaa0cb03d2f8f1cd8f",
+      "checkout_sha": "27cf7aceba5b077d07e04daaa0cb03d2f8f1cd8f",
+      "checkout_note": "Checkout commit nhánh work.",
+      "url": "https://github.com/ntbaoheyhey/dev3pack-hackathon/actions/runs/44237529539",
+      "status": "completed",
+      "conclusion": "success",
+      "run_attempt": 1,
+      "updated_at": "2026-11-18T04:40:02Z",
+      "jobs": [
+        {
+          "id": 134577157029,
+          "name": "web",
+          "url": "https://github.com/ntbaoheyhey/dev3pack-hackathon/actions/runs/44237529539/job/134577157029",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-11-18T04:28:12Z",
+          "completed_at": "2026-11-18T04:28:27Z",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1,
+              "started_at": "2026-11-18T04:28:13Z",
+              "completed_at": "2026-11-18T04:28:14Z"
+            },
+            {
+              "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2,
+              "started_at": "2026-11-18T04:28:14Z",
+              "completed_at": "2026-11-18T04:28:15Z"
+            },
+            {
+              "name": "Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3,
+              "started_at": "2026-11-18T04:28:15Z",
+              "completed_at": "2026-11-18T04:28:16Z"
+            },
+            {
+              "name": "Run npm ci --ignore-scripts --no-fund",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4,
+              "started_at": "2026-11-18T04:28:16Z",
+              "completed_at": "2026-11-18T04:28:20Z"
+            },
+            {
+              "name": "Run npm test",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5,
+              "started_at": "2026-11-18T04:28:20Z",
+              "completed_at": "2026-11-18T04:28:21Z"
+            },
+            {
+              "name": "Run npm run build",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6,
+              "started_at": "2026-11-18T04:28:21Z",
+              "completed_at": "2026-11-18T04:28:23Z"
+            },
+            {
+              "name": "Post Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 11,
+              "started_at": "2026-11-18T04:28:23Z",
+              "completed_at": "2026-11-18T04:28:23Z"
+            },
+            {
+              "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 12,
+              "started_at": "2026-11-18T04:28:23Z",
+              "completed_at": "2026-11-18T04:28:24Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 13,
+              "started_at": "2026-11-18T04:28:24Z",
+              "completed_at": "2026-11-18T04:28:24Z"
+            }
+          ],
+          "counts": {
+            "tests": [
+              8
+            ],
+            "pass": [
+              8
+            ],
+            "fail": [
+              0
+            ],
+            "skipped": [
+              0
+            ]
+          },
+          "runtime_pass_groups": [],
+          "sha256": {},
+          "log_excerpts": [
+            "2026-11-18T04:28:13.1750892Z Image: ubuntu-24.04",
+            "2026-11-18T04:28:13.1752911Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261111.370/images/ubuntu/Ubuntu2404-Readme.md",
+            "2026-11-18T04:28:15.6800009Z 27cf7aceba5b077d07e04daaa0cb03d2f8f1cd8f",
+            "2026-11-18T04:28:15.7315143Z 27cf7aceba5b077d07e04daaa0cb03d2f8f1cd8f",
+            "2026-11-18T04:28:16.4992007Z node: v24.22.2",
+            "2026-11-18T04:28:21.2532560Z ℹ tests 8",
+            "2026-11-18T04:28:21.2534440Z ℹ pass 8",
+            "2026-11-18T04:28:21.2535085Z ℹ fail 0",
+            "2026-11-18T04:28:21.2536394Z ℹ skipped 0",
+            "2026-11-18T04:28:21.3720117Z > tsc --noEmit && vite build && node scripts/static-routes.mjs",
+            "2026-11-18T04:28:23.7128355Z ✓ built in 214ms"
+          ]
+        },
+        {
+          "id": 134577157335,
+          "name": "anchor-lab",
+          "url": "https://github.com/ntbaoheyhey/dev3pack-hackathon/actions/runs/44237529539/job/134577157335",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-11-18T04:28:11Z",
+          "completed_at": "2026-11-18T04:40:02Z",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1,
+              "started_at": "2026-11-18T04:28:11Z",
+              "completed_at": "2026-11-18T04:28:12Z"
+            },
+            {
+              "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2,
+              "started_at": "2026-11-18T04:28:12Z",
+              "completed_at": "2026-11-18T04:28:13Z"
+            },
+            {
+              "name": "Install build prerequisites",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3,
+              "started_at": "2026-11-18T04:28:13Z",
+              "completed_at": "2026-11-18T04:28:35Z"
+            },
+            {
+              "name": "Install pinned Agave and Anchor",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4,
+              "started_at": "2026-11-18T04:28:35Z",
+              "completed_at": "2026-11-18T04:36:11Z"
+            },
+            {
+              "name": "Install pinned SBF compiler",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5,
+              "started_at": "2026-11-18T04:36:11Z",
+              "completed_at": "2026-11-18T04:37:03Z"
+            },
+            {
+              "name": "Warm locked dependency cache after approval",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6,
+              "started_at": "2026-11-18T04:37:03Z",
+              "completed_at": "2026-11-18T04:37:05Z"
+            },
+            {
+              "name": "Build both programs offline and verify generated IDLs",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7,
+              "started_at": "2026-11-18T04:37:05Z",
+              "completed_at": "2026-11-18T04:39:57Z"
+            },
+            {
+              "name": "Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8,
+              "started_at": "2026-11-18T04:39:57Z",
+              "completed_at": "2026-11-18T04:39:57Z"
+            },
+            {
+              "name": "Verify generated-IDL client offline",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9,
+              "started_at": "2026-11-18T04:39:57Z",
+              "completed_at": "2026-11-18T04:39:59Z"
+            },
+            {
+              "name": "Post Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 17,
+              "started_at": "2026-11-18T04:39:59Z",
+              "completed_at": "2026-11-18T04:39:59Z"
+            },
+            {
+              "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 18,
+              "started_at": "2026-11-18T04:39:59Z",
+              "completed_at": "2026-11-18T04:39:59Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 19,
+              "started_at": "2026-11-18T04:39:59Z",
+              "completed_at": "2026-11-18T04:39:59Z"
+            }
+          ],
+          "counts": {
+            "tests": [
+              8
+            ],
+            "pass": [
+              8
+            ],
+            "fail": [
+              0
+            ],
+            "skipped": [
+              0
+            ]
+          },
+          "runtime_pass_groups": [
+            0,
+            5,
+            1,
+            0,
+            19,
+            0,
+            0
+          ],
+          "sha256": {
+            "Cargo.lock": "8ea462bb0d93de7e4f82e24bdb9bd3a1a1ab78ca227fd09880bb52c1dd6583c9",
+            "scripts/check-phase3-offline.sh": "c7e9b208be0aec1642b044be824f6f300cbf5908a0d4a1c6db716528cc3294d2",
+            "target/phase3-offline/deploy/phase3_hello.so": "f81e29627b4643d93b91a5a30c3b09f62f794d2a0cb72112458d4a0c97a8c246",
+            "target/phase3-offline/deploy/receiptrail.so": "41ff32ec9eb6aefe0322f1da0a04053b95cbd29e06afb6f0e22e76658dd024b9"
+          },
+          "log_excerpts": [
+            "2026-11-18T04:28:11.5999998Z Image: ubuntu-24.04",
+            "2026-11-18T04:28:11.6002353Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261111.370/images/ubuntu/Ubuntu2404-Readme.md",
+            "2026-11-18T04:28:13.0075248Z 27cf7aceba5b077d07e04daaa0cb03d2f8f1cd8f",
+            "2026-11-18T04:28:13.0526185Z 27cf7aceba5b077d07e04daaa0cb03d2f8f1cd8f",
+            "2026-11-18T04:28:35.7122795Z   1.100.0-x86_64-unknown-linux-gnu installed - rustc 1.100.0 (0ef1bc386 2026-11-09)",
+            "2026-11-18T04:28:35.7370585Z test \"$(\"$RUNNER_TEMP/anchor-1.2.2/bin/anchor\" --version)\" = \"anchor-cli 1.2.2\"",
+            "2026-11-18T04:30:52.9638029Z    Installed package `avm v1.2.2 (https://github.com/otter-sec/anchor?rev=8d9d1488d9b8af41b266d7513eea2e668adf15a2#8d9d1488)` (executable `avm`)",
+            "2026-11-18T04:36:11.9023984Z    Installed package `anchor-cli v1.2.2 (https://github.com/otter-sec/anchor?rev=8d9d1488d9b8af41b266d7513eea2e668adf15a2#8d9d1488)` (executable `anchor`)",
+            "2026-11-18T04:36:11.9450862Z curl --proto '=https' --tlsv1.2 -sSfL --retry 3 https://github.com/anza-xyz/platform-tools/releases/download/v1.57/platform-tools-linux-x86_64.tar.bz2 -o \"$archive\"",
+            "2026-11-18T04:36:11.9451698Z printf '%s  %s\\n' b0f7af104adf726fff2a6a09ea2eb2f2d2965c92295f4d7388c08d140e0c2b00 \"$archive\" | sha256sum --check",
+            "2026-11-18T04:36:14.8080103Z /home/runner/work/_temp/platform-tools-v1.57.tar.bz2: OK",
+            "2026-11-18T04:37:03.5217864Z rustc 1.95.0-dev (ae660768a 2026-08-17)",
+            "2026-11-18T04:37:05.2383319Z \"$ANCHOR_BIN\" idl build -p phase3_hello -o target/idl/phase3_hello.json -t target/types/phase3_hello.ts -- --offline --locked",
+            "2026-11-18T04:37:05.2383930Z \"$ANCHOR_BIN\" idl build -p receiptrail -o target/idl/receiptrail.json -- --offline --locked",
+            "2026-11-18T04:37:05.2384350Z cmp docs/idl/receiptrail.json target/idl/receiptrail.json",
+            "2026-11-18T04:37:05.2597880Z cargo 1.100.0 (3acc79c0c 2026-11-05)",
+            "2026-11-18T04:37:05.2653656Z rustc 1.100.0 (0ef1bc386 2026-11-09)",
+            "2026-11-18T04:37:05.2750241Z rustc 1.95.0-dev (ae660768a 2026-08-17)",
+            "2026-11-18T04:39:02.5478646Z test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+            "2026-11-18T04:39:02.6806653Z test another_signer_cannot_increment ... ok",
+            "2026-11-18T04:39:02.8118651Z test authority_address_without_signature_is_rejected ... ok",
+            "2026-11-18T04:39:02.9413691Z test counter_cannot_be_reset_by_initializing_again ... ok",
+            "2026-11-18T04:39:03.1652084Z test maximum_is_enforced_without_mutating_counter ... ok",
+            "2026-11-18T04:39:03.2850518Z test unknown_instruction_cannot_modify_counter ... ok",
+            "2026-11-18T04:39:03.2851223Z test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.74s",
+            "2026-11-18T04:39:03.4080103Z test test_initialize ... ok",
+            "2026-11-18T04:39:03.4080856Z test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.12s",
+            "2026-11-18T04:39:03.4103613Z test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+            "2026-11-18T04:39:03.5855200Z test another_merchant_cannot_cancel ... ok",
+            "2026-11-18T04:39:03.7767825Z test create_pay_and_fresh_transaction_retry_transfers_principal_only_once ... METRIC create_cu=7275 pay_cu=6608 retry_cu=6017 create_fee=10000 pay_fee=10000 retry_fee=10000 rent_lamports=1802640 principal_delta=1000000 invoice_bytes=131 paid_slot=100",
+            "2026-11-18T04:39:04.2879290Z test expiry_boundary_before_at_and_after ... ok",
+            "2026-11-18T04:39:04.4605635Z test insufficient_principal_cpi_leaves_invoice_open_and_balances_unchanged ... ok",
+            "2026-11-18T04:39:05.3537612Z test invalid_creation_terms_and_aliases_leave_no_invoice_or_rent_debit ... ok",
+            "2026-11-18T04:39:05.5268198Z test merchant_address_without_signature_cannot_create_or_cancel ... ok",
+            "2026-11-18T04:39:05.6973831Z test merchant_can_cancel_expired_open_invoice_without_moving_principal ... METRIC cancel_cu=4346 cancel_fee=10000",
+            "2026-11-18T04:39:06.0394514Z test owner_and_discriminator_are_checked_before_payment ... ok",
+            "2026-11-18T04:39:06.4251815Z test pay_cancel_race_is_safe_in_both_serial_orders ... ok",
+            "2026-11-18T04:39:06.5873468Z test payer_address_without_signature_is_rejected ... ok",
+            "2026-11-18T04:39:06.9271920Z test payer_with_data_or_wrong_owner_cannot_transfer ... ok",
+            "2026-11-18T04:39:07.0994560Z test recipient_substitution_cannot_redirect_payment ... ok",
+            "2026-11-18T04:39:07.2723145Z test same_layout_at_wrong_pda_is_rejected ... ok",
+            "2026-11-18T04:39:07.4450041Z test substituted_executable_cannot_replace_system_program ... ok",
+            "2026-11-18T04:39:07.8275781Z test terminal_invoice_cannot_be_reinitialized_or_reset ... ok",
+            "2026-11-18T04:39:08.0204376Z test two_pay_instructions_in_one_transaction_roll_back_the_first_transfer ... ok",
+            "2026-11-18T04:39:08.1937050Z test unknown_instruction_cannot_change_terms_or_terminal_state ... ok",
+            "2026-11-18T04:39:08.5366528Z test wrong_bump_and_version_are_rejected ... ok",
+            "2026-11-18T04:39:08.7091572Z test wrong_payer_signer_cannot_pay ... ok",
+            "2026-11-18T04:39:08.7092041Z test result: ok. 19 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 5.30s",
+            "2026-11-18T04:39:08.7685815Z test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+            "2026-11-18T04:39:08.8428763Z test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+            "2026-11-18T04:39:08.8559633Z Started: 2026-11-18T04:37:05Z; elapsed_seconds=123",
+            "2026-11-18T04:39:08.8917398Z 8ea462bb0d93de7e4f82e24bdb9bd3a1a1ab78ca227fd09880bb52c1dd6583c9  Cargo.lock",
+            "2026-11-18T04:39:08.8918092Z c7e9b208be0aec1642b044be824f6f300cbf5908a0d4a1c6db716528cc3294d2  scripts/check-phase3-offline.sh",
+            "2026-11-18T04:39:08.8921550Z f81e29627b4643d93b91a5a30c3b09f62f794d2a0cb72112458d4a0c97a8c246  /home/runner/work/dev3pack-hackathon/dev3pack-hackathon/target/phase3-offline/deploy/phase3_hello.so",
+            "2026-11-18T04:39:08.8926105Z 41ff32ec9eb6aefe0322f1da0a04053b95cbd29e06afb6f0e22e76658dd024b9  /home/runner/work/dev3pack-hackathon/dev3pack-hackathon/target/phase3-offline/deploy/receiptrail.so",
+            "2026-11-18T04:39:57.8721173Z node: v24.22.2",
+            "2026-11-18T04:39:59.5649871Z ℹ tests 8",
+            "2026-11-18T04:39:59.5650414Z ℹ pass 8",
+            "2026-11-18T04:39:59.5650612Z ℹ fail 0",
+            "2026-11-18T04:39:59.5651707Z ℹ skipped 0"
+          ]
+        },
+        {
+          "id": 134577157405,
+          "name": "research",
+          "url": "https://github.com/ntbaoheyhey/dev3pack-hackathon/actions/runs/44237529539/job/134577157405",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-11-18T04:28:11Z",
+          "completed_at": "2026-11-18T04:28:29Z",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1,
+              "started_at": "2026-11-18T04:28:12Z",
+              "completed_at": "2026-11-18T04:28:15Z"
+            },
+            {
+              "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2,
+              "started_at": "2026-11-18T04:28:15Z",
+              "completed_at": "2026-11-18T04:28:20Z"
+            },
+            {
+              "name": "Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3,
+              "started_at": "2026-11-18T04:28:20Z",
+              "completed_at": "2026-11-18T04:28:25Z"
+            },
+            {
+              "name": "Offline parser and evidence replay",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4,
+              "started_at": "2026-11-18T04:28:25Z",
+              "completed_at": "2026-11-18T04:28:26Z"
+            },
+            {
+              "name": "Post Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7,
+              "started_at": "2026-11-18T04:28:26Z",
+              "completed_at": "2026-11-18T04:28:26Z"
+            },
+            {
+              "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8,
+              "started_at": "2026-11-18T04:28:26Z",
+              "completed_at": "2026-11-18T04:28:26Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9,
+              "started_at": "2026-11-18T04:28:26Z",
+              "completed_at": "2026-11-18T04:28:26Z"
+            }
+          ],
+          "counts": {
+            "tests": [
+              16
+            ],
+            "pass": [
+              16
+            ],
+            "fail": [
+              0
+            ],
+            "skipped": [
+              0
+            ]
+          },
+          "runtime_pass_groups": [],
+          "sha256": {},
+          "log_excerpts": [
+            "2026-11-18T04:28:12.6759687Z Image: ubuntu-24.04",
+            "2026-11-18T04:28:12.6761280Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261111.127/images/ubuntu/Ubuntu2404-Readme.md",
+            "2026-11-18T04:28:20.4993469Z 27cf7aceba5b077d07e04daaa0cb03d2f8f1cd8f",
+            "2026-11-18T04:28:20.5318926Z 27cf7aceba5b077d07e04daaa0cb03d2f8f1cd8f",
+            "2026-11-18T04:28:25.7968637Z node: v24.22.2",
+            "2026-11-18T04:28:26.3246870Z ℹ tests 16",
+            "2026-11-18T04:28:26.3247357Z ℹ pass 16",
+            "2026-11-18T04:28:26.3247792Z ℹ fail 0",
+            "2026-11-18T04:28:26.3248263Z ℹ skipped 0"
+          ]
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "each_run": {
+      "runtime_hello": 6,
+      "runtime_receiptrail": 19,
+      "client": 8,
+      "research": 16,
+      "web": 8,
+      "total": 57,
+      "web_typecheck_build": "success",
+      "receipt_idl_cmp": "success",
+      "hello_idl": "generated and used by client tests; không có cmp hello với artifact macOS trong workflow"
+    },
+    "installer": {
+      "anchor": "AVM và anchor-cli1.2.2 build từ source8d9d1488d9b8af41b266d7513eea2e668adf15a2/lock upstream bằng host Rust1.100.0; assertion version đạt",
+      "platform_tools": "v1.57 archive chính thức, sha256sum check OK trước giải nén",
+      "platform_archive_sha256": "b0f7af104adf726fff2a6a09ea2eb2f2d2965c92295f4d7388c08d140e0c2b00",
+      "sbf_rustc": "1.95.0-dev (ae660768a 2026-08-17)",
+      "agave": "Installer pin4.1.2 step đạt; không có output solana --version độc lập trong logs này"
+    },
+    "cross_host_limit": "Hai runs có cùng bytecode hashes và khớp Linux7210aa6; khác snapshot macOS/cache. Chưa xác định nguyên nhân hoặc chứng nhận reproducible/verified build; không thay artifact macOS chuẩn bị deploy.",
+    "history": [
+      "ci-resumed-7210aa6.json: push pass, PR attestation403; a114a98 cancelled",
+      "ci-anchor-source-b906a37.json: Anchor source/version đạt, installer SBF failure; runtime/IDL/client skipped"
+    ],
+    "remaining": "Funding hello được người dùng để sau; review T28/T29, giáo viên và ví thật còn mở. Chưa đóng Phase3 hoặc goal."
+  }
+}

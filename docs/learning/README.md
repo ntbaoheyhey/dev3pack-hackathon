@@ -31,7 +31,7 @@ Tiến độ và bước tiếp tục sau compact nằm trong [docs/HANDOFF.md](
 | [000 — Codex vs Antigravity: điểm mạnh và chia việc](000-ai-tools-codex-vs-antigravity.md) | Nội dung gốc của repo đích, giữ nguyên | xong — theo mục lục ban đầu; chưa rà soát lại |
 | [001 — Luật hackathon Dev3pack](001-hackathon-rules.md) | Lịch, sponsors/supporters, giải, track, chấm, video, form và code | Claude; Codex sửa R04 — đã đọc trang chủ/FAQ ngày 17/11/2026; giờ UTC trên dashboard còn chưa kiểm chứng |
 | [002 — Solana căn bản](002-solana-basics.md) | Account, transaction, PDA, CPI, fees, cluster; bài đọc 15 phút | Codex — Đã đối chiếu docs; chưa chạy on-chain |
-| [003 — Toolchain](003-solana-toolchain.md) | Kiểm kê máy, bảng tương thích, lệnh cài và lỗi macOS/WSL | Codex — Bộ đã cài; Linux push7210aa6 đạt pipeline, PR sửa attestation đang chạy; chưa deploy |
+| [003 — Toolchain](003-solana-toolchain.md) | Kiểm kê máy, bảng tương thích, lệnh cài và lỗi macOS/WSL | Codex — Bộ đã cài; Linux27cf7ac push/PR đều đạt3jobs/57tests+build; chưa deploy |
 | [004 — Anchor từ A đến Z](004-anchor-a-to-z.md) | Macro/constraints, IDL/Codama, ví dụ counter, test/deploy/verify | Codex — Lab phase3-hello đã build/IDL/6 runtime tests; snippet study-counter chưa chạy |
 | [005 — Frontend Solana](005-solana-frontend.md) | Kit/Wallet Standard, parser theo program ID + mã, Codama init/config/run có mốc source | Antigravity; Codex sửa R02/R08/R09 — 11 fixture offline đạt; codegen/SDK chưa chạy, sandbox cũ chỉ là báo cáo lịch sử |
 | [006 — Token & NFT](006-token-and-nft.md) | Token-2022: destination withholding, harvest/withdraw và authority; ngân sách NFT theo cấu hình | Antigravity; Codex sửa R05/R09 — đã đối chiếu nguồn Transfer Fees; chưa chạy on-chain, ngân sách 500.000 cNFT dưới 1 SOL chưa đủ căn cứ |
@@ -52,7 +52,7 @@ Tiến độ và bước tiếp tục sau compact nằm trong [docs/HANDOFF.md](
 
 | [021 — Kiểm chứng payment, cluster và token net](021-payment-cluster-evidence.md) | Evidence C01–C03, RPC read-only và parser mint/u64; Ryntra/Pay alternatives | Codex — 16 test đạt, C02 live read và C03 fee-only live quote; chưa settlement/custom program |
 
-| [022 — Chuẩn bị độc lập Phase 2/3](022-phase2-3-independent-prep.md) | Contract/harness, toolchain/client, web/hosting và runner offline hai program | Codex — runner mới25 runtime/client8 tests đạt, IDL/bytecode khớp; giữ web cũ. P3-A/P3-B đã có quyền; push7210aa6 đạt57tests/build, PR sửa attestation403 tạib906a37 đang chạy; funding/review còn mở |
+| [022 — Chuẩn bị độc lập Phase 2/3](022-phase2-3-independent-prep.md) | Contract/harness, toolchain/client, web/hosting và runner offline hai program | Codex — macOS/cache25runtime+8client đạt; Linux27cf7ac push/PR đều đạt57tests/build/ReceiptRail IDL cmp. Hashes Linux khác macOS, chưa reproducible build; P3-A/P3-B có quyền, funding/review còn mở |
 
 | [023 — ReceiptRail Phase2 và spike Anchor local](023-receiptrail-phase2-spike.md) | Account/PDA, payment atomicity, build offline không signer triển khai và LiteSVM | Codex — bytecode Anchor1.2.2 local,19 runtime tests pass, generated IDL đã đối chiếu; F4 PLAN từ D2, chưa integration/devnet; người dùng đã duyệt Phase2, review chéo/giáo viên còn mở |
 
