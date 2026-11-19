@@ -14,7 +14,7 @@ const labRequire = createRequire(new URL('tools/devnet-lab/package.json', root))
 const anchor = labRequire('@anchor-lang/core');
 const kit = webRequire('@solana/addresses');
 const { PublicKey } = anchor.web3;
-const fixture = JSON.parse(readFileSync(new URL('docs/evidence/phase4/runtime-abi-r2.json', root), 'utf8'));
+const fixture = JSON.parse(readFileSync(new URL('docs/fixtures/receiptrail-abi.json', root), 'utf8'));
 const idlSource = readFileSync(new URL('docs/idl/receiptrail.json', root), 'utf8');
 const idl = JSON.parse(idlSource);
 const coder = new anchor.BorshCoder(idl);
@@ -61,7 +61,7 @@ test('canonical PDA agrees with Rust, Kit and independent web3.js derivation', a
   const [address, bump] = PublicKey.findProgramAddressSync([Buffer.from('invoice-v1'), new PublicKey(terms.merchant).toBuffer(), Buffer.from(terms.invoiceId)], new PublicKey(PROGRAM_ADDRESS));
   assert.equal(result.address, fixture.invoiceAddress);
   assert.deepEqual(result, { address: address.toBase58(), bump });
-  assert.equal(result.bump, 252);
+  assert.equal(result.bump, fromHex(fixture.openHex)[9]);
   assert.notEqual((await client.deriveInvoiceAddress(terms.payer, terms.invoiceId)).address, terms.address);
   assert.notEqual((await client.deriveInvoiceAddress(terms.merchant, new Uint8Array(32))).address, terms.address);
 });

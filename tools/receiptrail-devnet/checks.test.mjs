@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { anchor, LOADER, PAYER, assertBudget, programDataAddress, verifyDeployment, toWeb3Instruction, assertDuplicateSimulation } from './checks.mjs';
 const { PublicKey, SystemProgram } = anchor.web3;
-const vector = JSON.parse(readFileSync(new URL('../../docs/evidence/phase4/runtime-abi-r2.json', import.meta.url), 'utf8'));
+const vector = JSON.parse(readFileSync(new URL('../../docs/fixtures/receiptrail-abi.json', import.meta.url), 'utf8'));
 
 test('budget counts previous debit, next operation and reserve under the exact approved cap', () => {
   const result = assertBudget({ baseline: 1_848_125_199, balance: 1_800_000_000, nextDebit: 752_027_960, reserve: 20_000_000 });

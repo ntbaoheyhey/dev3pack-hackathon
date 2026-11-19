@@ -30,7 +30,7 @@ test('browser-target bundle runs with no Node globals, RPC, wallet or signing ca
     addressCodec: { encode: value => new Uint8Array(kit.getAddressEncoder().encode(kit.address(value))), decode: value => kit.getAddressDecoder().decode(value) },
     derivePda: input => kit.getProgramDerivedAddress(input),
   });
-  const fixture = JSON.parse(readFileSync(new URL('docs/evidence/phase4/runtime-abi-r2.json', root), 'utf8'));
+  const fixture = JSON.parse(readFileSync(new URL('docs/fixtures/receiptrail-abi.json', root), 'utf8'));
   const data = new Uint8Array(Buffer.from(fixture.paidHex, 'hex'));
   const invoice = await client.decodeInvoice({ address: fixture.invoiceAddress, owner: fixture.programAddress, executable: false, data });
   assert.equal(invoice.status, 'Paid');
