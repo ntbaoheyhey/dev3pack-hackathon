@@ -61,14 +61,16 @@ Tiến độ và bước tiếp tục sau compact nằm trong [docs/HANDOFF.md](
 
 ## Bài học / lỗi đã gặp
 
-Đặt số theo Prompt04, trước khi viết note (19/11/2026):
+Các số đã được giữ chỗ trước khi viết theo Prompt 04 (19/11/2026); trạng thái hiện hành:
 
 | Note | Nội dung | Chủ trì / trạng thái |
 | --- | --- | --- |
-| 026 — receiptrail-rpc-confirmation | RPC/filter/confirmation/recovery/priority fee và lựa chọn backend | C — đang học, chưa mở Phase6 thật |
+| [026 — RPC, confirmation và recovery](026-receiptrail-rpc-confirmation.md) | RPC/filter/confirmation/recovery/priority fee và lựa chọn backend | C — đã đối chiếu docs/types; PHASE6-PLAN là đề xuất, chưa mở Phase 6 thật |
 | 027 — receiptrail-wallet-e2e | Ví thật/Wallet Standard, lỗi và e2e | A — T38, chưa kiểm ví thật |
-| 028 — receiptrail-security-review | Học audit công khai và review program | C — đang học, không upgrade |
+| [028 — Học audit và tự review](028-receiptrail-security-review.md) | Học audit công khai và review program | C — đọc audit OtterSec/đối chiếu source và assertions; self-review r1, chưa audit độc lập |
 | 029 — receiptrail-bug-bash | Ma trận ví/thiết bị/bug bash | A — T39, checklist chưa chạy |
+
+[Sổ tay Codex một trang](CODEX-CHEATSHEET.md) — lệnh cache, quyền, state/commitment và các bẫy đã gặp.
 
 Đã chọn nhầm workspace khi bắt đầu nghiên cứu. Trước task tiếp theo, đối chiếu đường dẫn, remote, AGENTS.md và mục lục. Quyết định cuối cùng của người dùng là **giữ nguyên Taskbar Hero**, không chuyển nhánh, stash, revert, xóa hoặc reset. Việc chuyển tài liệu đã hoàn tất; nhánh `codex/solana-learning-notes` ở nguồn được giữ làm bản lưu. Đã đối chiếu đủ phần Antigravity: 005, 006, 008, 009, 012, 013, 014 và các cập nhật README/DEVLOG đều có trong bản chuyển `f9052dc`. Lần chuyển không cài công cụ hoặc chạy lại lab. REVIEW giữ snapshot nguồn dưới nhãn lịch sử và bổ sung kết quả sửa hiện hành; không trộn số lượng file/link hoặc bằng chứng giữa các lần kiểm tra.
 

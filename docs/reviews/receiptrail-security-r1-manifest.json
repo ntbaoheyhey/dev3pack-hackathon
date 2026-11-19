@@ -1,0 +1,29 @@
+{
+  "reviewed_at": "2026-11-19T16:38:37.253775+00:00",
+  "git_head": "78c340f07e602ae25929502293712e96d80431a3",
+  "method": "source/assertion review; no tests, RPC, signing or upgrade run in this review",
+  "core_diff_from_deployment_6d08e5c": "empty",
+  "references": [
+    "docs/evidence/phase4/ci-deployment.json",
+    "docs/evidence/phase4/ci-smoke-recovery.json",
+    "docs/evidence/phase4/final-verification.json",
+    "docs/reviews/receiptrail-phase5-r3-manifest.json"
+  ],
+  "files": {
+    "programs/receiptrail/src/lib.rs": "c065df05f03e6a0d3a1c259b7c2906d2e491c68cf6bf836927868d0c3aa4be30",
+    "programs/receiptrail/tests/runtime.rs": "2b126998740e233f4fa039f774ce5af671bb5650e5e8f97a471118fd58848a07",
+    "packages/receiptrail-client/index.mjs": "af8b89327759b4911f0851476ade45b69fd431e5a61699d8ad66a677bf0843c7",
+    "packages/receiptrail-client/runtime.mjs": "fdee0036c07dd391a6f3e0dfffa53b7176c1bf16e4f00e87e627778939166e16",
+    "packages/receiptrail-client/generated.mjs": "54e6369ba2e5f961d5aa59d83301020ff58c9ae460b12ac54a7b00f4b2ef4324",
+    "docs/idl/receiptrail.json": "39a63939f55df952429a0d4f0c4d3691daf0858a7e2bc5c56473be173385ef40",
+    "Cargo.lock": "8ea462bb0d93de7e4f82e24bdb9bd3a1a1ab78ca227fd09880bb52c1dd6583c9",
+    "apps/web/src/receiptrail/confirmation.ts": "905467df8143d16aabd17a9db950653bc7e8e0b33b42934f1a8080c6e433e774",
+    "apps/web/src/receiptrail/wallet-lifecycle.ts": "e9e7922b65a2c2f7cc53704417f49a50b42736ef28dd7cfd7e224bd561a504f3",
+    "apps/web/src/receiptrail/adapter.ts": "a0270c4a883ea461329ed38dab56ad8ada018e899c91a640f392f3e760e72f02"
+  },
+  "audit_reference": {
+    "url": "https://raw.githubusercontent.com/wormhole-foundation/wormhole-audits/main/2024-03-28-ottersec-solana-ntt.pdf",
+    "sha256": "d4134b8e5e9752fdfc5c099ce12041c83dcf14c521c498cbcdf0fe0c703064d7",
+    "read_pages": "numbered 5,7,9,10-12,14; historical different project, not ReceiptRail audit"
+  }
+}
