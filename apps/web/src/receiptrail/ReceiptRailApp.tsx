@@ -620,7 +620,7 @@ function ReceiptRailInner() {
               <h4>Giao dịch đang ở trạng thái Chưa rõ (Unknown / Pending)</h4>
               <p>
                 Giao dịch gửi trước đó gặp sự cố mạng (Timeout). Hệ thống đã lưu chữ ký đã ký{' '}
-                <span className="mono">{pendingSignature ?? mockEngine.lastSignature ?? 'N/A'}</span>. Mọi thao tác
+                <span className="mono">{pendingSignature ?? 'N/A'}</span>. Mọi thao tác
                 thanh toán trùng hoặc hủy đều bị khóa nhằm tránh double-spend. Vui lòng bấm đối soát để kiểm tra trạng thái
                 sổ cái thực tế.
               </p>
