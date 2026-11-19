@@ -1,6 +1,6 @@
 # Hàng đợi Antigravity — Phase 5 ReceiptRail local
 
-**Cập nhật C20/11:** đã nhận T40 (`51ee3b2`), T38 (`11d58b1`) và T39 (`a074779`). Ba task đóng sau một lượt nhận; hiệu chỉnh T38/T39 trong `docs/reviews/`, phần chưa kiểm là D06/D07. Không mở thêm vòng report. C đang chốt mock connector không RPC, registration lặp an toàn, artifact chỉReceiptRail và evidence cuối. Chưa có task phụ thuộc Phase6/public được phép chạy; các phân công cũ bên dưới là lịch sử.
+**Cập nhật C20/11:** đã nhận T40 (`51ee3b2`), T38 (`11d58b1`) và T39 (`a074779`). Ba task đóng sau một lượt nhận; hiệu chỉnh T38/T39 trong `docs/reviews/`, phần chưa kiểm là D06/D07. Không mở thêm vòng report. C đã chốt source106a18e và evidence681ae03:52tests,16ca source+2ca slot,10ca artifact và video162.12s; đã trình ba quyết định, chưa có trả lời. Chưa có task phụ thuộc Phase6/public được phép chạy; các phân công cũ bên dưới là lịch sử.
 
 ## Lịch sử giao Prompt 04 — đã nhận/đóng T37–T40
 
