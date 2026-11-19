@@ -1,0 +1,32 @@
+{
+  "loggedAt": "2026-11-20T00:20:22.518068+07:00",
+  "timestampMeaning": "time of handoff record, not user decision time",
+  "tool": "request_user_input_async",
+  "accepted": true,
+  "questions": [
+    {
+      "topic": "Public separate ReceiptRail Mock Demo",
+      "scope": "public audience; source106a18e; mock only; preserve ClusterProof",
+      "recommended": "Public mock riêng"
+    },
+    {
+      "topic": "Open Phase6",
+      "scope": "PHASE6-PLAN; total0.05SOLdevnet; old CLI signers; no extra install/new signers/deploy/upgrade/authority; real web publication separate",
+      "recommended": "Mở Phase6, trần0.05SOL"
+    },
+    {
+      "topic": "PR7 work to main",
+      "recommended": "Giữ mở",
+      "otherChoice": "Merge"
+    }
+  ],
+  "answers": null,
+  "approvalGranted": false,
+  "prReadback": {
+    "state": "OPEN",
+    "mergedAt": null,
+    "headRefOid": "681ae0379bdea67a45c1869e7a6dd93509599e6e",
+    "bodySha256": "1844febbaff073a23a08c784320a16ca4e3a6ac07a30a33c8f938a5a19851e22",
+    "url": "https://github.com/ntbaoheyhey/dev3pack-hackathon/pull/7"
+  }
+}

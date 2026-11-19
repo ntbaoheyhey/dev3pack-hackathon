@@ -1,5 +1,5 @@
 # Thẻ nhớ — Codex / Prompt 04
-- Trạng thái **đang làm**: local/mock đã kiểm; chốt hồ sơ PR và trình ba quyết định.
+- Trạng thái **bị chặn (cần người dùng)**: local/mock và chuẩn bị Phase6–7 xong; đã hỏi gộp ba quyết định, chưa có trả lời.
 - C trưởng nhóm, repo /Users/bao/Documents/ChatGPT/dev3pack, branch work; A quaqueue, không chờA.
 - Quyền Prompt04 log19/11/2026 23:10:07.582UTC+7 ởDECISION: cache/headless, chỉlocalhost/vímock.
 - Không CUA/visible browser/chuột/phím/màn hình; không cài thêm.
@@ -15,15 +15,15 @@
 - PHASE5/6,NEXT,ROADMAP,README/video nháp,sổtayC,notes025–029 và bugbash đã cập nhật; chưa mởphase6–7 thật.
 - C sở hữu connector/harness/artifact/review; không sửa A-done/HANDOFFA/checkoutA.
 - ServerQA4176 đã đóng; serverVite4175 có sẵn giữ nguyên. Không jobtest/video còn chạy.
-- Tiếp: push evidence/docs, cập nhật mô tảPR7 và kiểmOPEN/unmerged; hỏi gộp publicmock/Phase6cap0.05/mergePR7.
+- Hồ sơ681ae03 đã push; PR7 mô tả mới đọc lại khớp, OPEN/unmerged. Đã gửi một batch3câu hỏi async20/11.
 - Cap0.05SOL chỉ đề xuất; không suy đáp án hoặc tự đónggoal/phase.
 
 ## Còn lại
 
-1. Push checkpoint evidence/docs, cập nhật và đọc lại mô tả PR7; không merge.
-2. Hỏi gộp ba quyết định ở PHASE5-PLAN/PHASE6-PLAN. Hết phần độc lập mới ghi bị chặn(cần người dùng).
-3. Sau câu trả lời: trích nguyên văn và giờ log thật vào DECISION; chỉ làm đúng nhánh được duyệt.
+1. Nhận câu trả lời cho batch ba câu hỏi đã gửi: public ReceiptRail Mock Demo/Site riêng/audience public; mở Phase6 theo plan/cap0.05SOL; mergePR7 hay giữ mở. Đề xuất tương ứng: public mock, mởP6 cap0.05, giữPRmở.
+2. Khi có câu trả lời: lưu nguyên văn và giờ log thật vào DECISION, chỉ làm đúng nhánh được duyệt. Nếu từ chối một nhánh thì giữ nguyên nhánh đó, không hỏi lại hoặc suy từ nhánh khác.
+3. Nếu đồng ý public mock: dùng source106a18e/artifact hashes đã kiểm, Site mới tách ClusterProof. Nếu đồng ý P6: theo PHASE6-PLAN, không dùng quyền đó cho public web thật/deploy/upgrade/cài/signer mới.
 
 ## Bị chặn
 
-Các hành động public mock, Phase6 thật và mergePR7 cần câu đồng ý riêng. Phần chuẩn bị local đã xong; đang hoàn tất bản trình để hỏi, chưa coi là đã có quyết định.
+Đã gửi ba câu hỏi một lượt; chưa có câu trả lời. Phần độc lập theo Prompt04 đã hoàn tất: local source/artifact/browser/video, T38/T39, notes/review/security/README/kịch bản/sổtay/nợ tài liệu, PR description và push. Không công việc phụ thuộc quyền nào được chạy trong lúc chờ. Automation tiếp tục ACTIVE theo yêu cầu người dùng; lần nhắc chỉ đối chiếu có trả lời hoặc thay đổi mới, không lặp lại câu hỏi hay mở vòng report. Goal vẫn active, chưa hoàn thành; đây là lượt đầu ghi blocker quyết định này.
