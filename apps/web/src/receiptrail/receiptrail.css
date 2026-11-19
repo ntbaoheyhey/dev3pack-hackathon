@@ -1,7 +1,9 @@
 .receiptrail-container {
   max-width: 1100px;
+  width: 100%;
   margin: 0 auto;
   padding: 24px 20px 60px;
+  box-sizing: border-box;
 }
 
 .rr-banner-warning {
@@ -13,9 +15,12 @@
   font-size: 0.85rem;
   font-weight: 600;
   display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 24px;
+  word-break: break-word;
 }
 
 .rr-banner-warning .badge {
@@ -24,6 +29,7 @@
   padding: 2px 8px;
   border-radius: 4px;
   font-size: 0.75rem;
+  white-space: nowrap;
 }
 
 .rr-header {
@@ -35,12 +41,14 @@
   letter-spacing: -0.04em;
   color: #164b3f;
   margin-bottom: 8px;
+  word-break: break-word;
 }
 
 .rr-header .lead {
   color: #4b6b61;
   font-size: 1.05rem;
   line-height: 1.5;
+  word-break: break-word;
 }
 
 .rr-wallet-bar {
@@ -54,17 +62,22 @@
   align-items: center;
   justify-content: space-between;
   gap: 16px;
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .rr-wallet-info {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 12px;
+  max-width: 100%;
 }
 
 .rr-wallet-avatar {
   width: 40px;
   height: 40px;
+  min-width: 40px;
   border-radius: 50%;
   background: #e2ebd8;
   color: #164b3f;
@@ -74,10 +87,16 @@
   font-weight: 700;
 }
 
+.rr-wallet-meta {
+  max-width: calc(100% - 52px);
+  overflow: hidden;
+}
+
 .rr-wallet-meta h4 {
   margin: 0;
   font-size: 0.95rem;
   color: #203b34;
+  word-break: break-word;
 }
 
 .rr-wallet-meta p {
@@ -85,12 +104,14 @@
   font-size: 0.8rem;
   color: #5c756b;
   font-family: monospace;
+  word-break: break-all;
 }
 
 .rr-wallet-actions {
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
+  align-items: center;
 }
 
 .rr-mock-bar {
@@ -105,16 +126,20 @@
   justify-content: space-between;
   gap: 12px;
   font-size: 0.9rem;
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .rr-mock-slot {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 10px;
 }
 
 .rr-mock-fault {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 8px;
 }
@@ -125,6 +150,7 @@
   border: 1px solid #a8c0ae;
   background: #fff;
   font-size: 0.85rem;
+  max-width: 100%;
 }
 
 .rr-tabs {
@@ -132,6 +158,11 @@
   gap: 8px;
   border-bottom: 2px solid #dfe4d8;
   margin-bottom: 24px;
+  overflow-x: auto;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 2px;
+  width: 100%;
 }
 
 .rr-tab-btn {
@@ -144,6 +175,7 @@
   border-bottom: 3px solid transparent;
   margin-bottom: -2px;
   transition: all 0.15s ease;
+  flex-shrink: 0;
 }
 
 .rr-tab-btn:hover {
@@ -162,25 +194,32 @@
   padding: 24px;
   margin-bottom: 24px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+  box-sizing: border-box;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 .rr-card-heading {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: flex-start;
   margin-bottom: 16px;
   padding-bottom: 12px;
   border-bottom: 1px solid #edf1ea;
+  gap: 12px;
 }
 
 .rr-card-title {
   margin: 0;
   font-size: 1.25rem;
   color: #164b3f;
+  word-break: break-word;
 }
 
 .rr-badges {
   display: flex;
+  flex-wrap: wrap;
   gap: 8px;
 }
 
@@ -191,6 +230,7 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
+  white-space: nowrap;
 }
 
 .rr-badge-open {
@@ -221,9 +261,10 @@
 
 .rr-grid-details {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 16px;
   margin-bottom: 20px;
+  width: 100%;
 }
 
 .rr-detail-item {
@@ -231,6 +272,7 @@
   border: 1px solid #edf1ea;
   padding: 12px 14px;
   border-radius: 8px;
+  overflow: hidden;
 }
 
 .rr-detail-label {
@@ -250,7 +292,7 @@
 
 .rr-detail-value.mono {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  font-size: 0.85rem;
+  font-size: 0.82rem;
 }
 
 .rr-copy-btn {
@@ -262,6 +304,7 @@
   font-size: 0.7rem;
   margin-left: 8px;
   cursor: pointer;
+  white-space: nowrap;
 }
 
 .rr-copy-btn:hover {
@@ -274,6 +317,7 @@
   border-radius: 8px;
   padding: 16px;
   margin-bottom: 20px;
+  word-break: break-word;
 }
 
 .rr-alert-unknown h4 {
@@ -294,20 +338,29 @@
   border-radius: 10px;
   padding: 18px;
   margin-top: 16px;
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .rr-terms-review {
   margin-bottom: 16px;
+  word-break: break-word;
 }
 
 .rr-checkbox-label {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 10px;
   font-size: 0.9rem;
   cursor: pointer;
   color: #203b34;
   font-weight: 500;
+  line-height: 1.4;
+}
+
+.rr-checkbox-label input {
+  margin-top: 3px;
+  flex-shrink: 0;
 }
 
 .rr-btn-pay {
@@ -318,6 +371,7 @@
   font-size: 1rem;
   font-weight: 700;
   width: 100%;
+  box-sizing: border-box;
 }
 
 .rr-btn-pay:hover:not(:disabled) {
@@ -331,6 +385,8 @@
   border-radius: 8px;
   font-size: 0.9rem;
   font-weight: 600;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .rr-btn-cancel:hover:not(:disabled) {
@@ -357,24 +413,35 @@
   font-size: 0.95rem;
   background: #fff;
   color: #203b34;
+  box-sizing: border-box;
 }
 
 .rr-form-help {
   font-size: 0.8rem;
   color: #6b8277;
   margin-top: 4px;
+  word-break: break-word;
 }
 
 .rr-quick-fills {
   display: flex;
   gap: 8px;
   margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.rr-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-top: 12px;
+  border-radius: 8px;
 }
 
 .rr-table {
   width: 100%;
+  min-width: 620px;
   border-collapse: collapse;
-  margin-top: 12px;
 }
 
 .rr-table th,
@@ -382,7 +449,8 @@
   padding: 10px 12px;
   text-align: left;
   border-bottom: 1px solid #edf1ea;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
+  white-space: nowrap;
 }
 
 .rr-table th {
@@ -399,6 +467,7 @@
   border-left: 3px solid #164b3f;
   padding-left: 16px;
   margin-bottom: 20px;
+  word-break: break-word;
 }
 
 .rr-storyboard-step h4 {
@@ -414,15 +483,45 @@
 }
 
 @media (max-width: 640px) {
+  .receiptrail-container {
+    padding: 16px 12px 40px;
+  }
+  .rr-card {
+    padding: 16px 14px;
+  }
   .rr-wallet-bar {
+    padding: 12px 14px;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
+  }
+  .rr-wallet-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+  .rr-wallet-actions button {
+    width: 100%;
+  }
+  .rr-mock-bar {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 12px 14px;
+  }
+  .rr-mock-slot, .rr-mock-fault {
+    flex-direction: column;
+    align-items: stretch;
   }
   .rr-card-heading {
     flex-direction: column;
+    align-items: stretch;
     gap: 8px;
   }
   .rr-grid-details {
     grid-template-columns: 1fr;
+  }
+  .rr-header h1 {
+    font-size: 1.5rem;
+  }
+  .rr-header .lead {
+    font-size: 0.95rem;
   }
 }

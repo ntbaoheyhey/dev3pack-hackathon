@@ -1,28 +1,48 @@
+import { address, getAddressEncoder } from '@solana/addresses';
 import { getWallets } from '@wallet-standard/app';
 import { DEFAULT_MERCHANT, DEFAULT_PAYER, OTHER_WALLET } from './adapter.ts';
 
 let registered = false;
 
+type ChainIdentifier = `${string}:${string}`;
+
 export function createMockWallet(
   name: string,
   addr: string,
-  shouldReject = false
+  shouldReject = false,
+  initialChains: readonly ChainIdentifier[] = ['solana:devnet']
 ) {
-  const account = {
+  const encodePubkey = (a: string) => new Uint8Array(getAddressEncoder().encode(address(a)));
+
+  let currentChains: ChainIdentifier[] = [...initialChains];
+  let account = {
     address: addr,
-    publicKey: new Uint8Array(32),
-    chains: ['solana:devnet'] as const,
+    publicKey: encodePubkey(addr),
+    chains: currentChains,
     features: ['standard:connect', 'standard:disconnect', 'standard:events'] as const,
   };
 
   let accounts: typeof account[] = [];
-  const listeners = new Set<(event: { accounts: typeof account[] }) => void>();
+  type ChangeEvent = { accounts?: typeof account[]; chains?: readonly ChainIdentifier[] };
+  const listeners = new Set<(event: ChangeEvent) => void>();
+
+  const emitChange = (change: ChangeEvent) => {
+    for (const l of listeners) {
+      try {
+        l(change);
+      } catch {
+        // ignore listener errors
+      }
+    }
+  };
 
   return {
     version: '1.0.0' as const,
     name,
     icon: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciLz4=' as const,
-    chains: ['solana:devnet'] as const,
+    get chains(): readonly ChainIdentifier[] {
+      return currentChains;
+    },
     get accounts() {
       return accounts;
     },
@@ -36,7 +56,7 @@ export function createMockWallet(
             });
           }
           accounts = [account];
-          for (const l of listeners) l({ accounts });
+          emitChange({ accounts });
           return { accounts };
         },
       },
@@ -44,16 +64,33 @@ export function createMockWallet(
         version: '1.0.0',
         disconnect: async () => {
           accounts = [];
-          for (const l of listeners) l({ accounts });
+          emitChange({ accounts });
         },
       },
       'standard:events': {
         version: '1.0.0',
-        on: (_event: string, listener: (event: { accounts: typeof account[] }) => void) => {
+        on: (_event: string, listener: (event: ChangeEvent) => void) => {
           listeners.add(listener);
           return () => listeners.delete(listener);
         },
       },
+    },
+    // Helper để test phát sinh sự kiện account change hoặc chain change
+    switchAccount(newAddr: string) {
+      account = {
+        address: newAddr,
+        publicKey: encodePubkey(newAddr),
+        chains: currentChains,
+        features: ['standard:connect', 'standard:disconnect', 'standard:events'] as const,
+      };
+      if (accounts.length > 0) {
+        accounts = [account];
+        emitChange({ accounts });
+      }
+    },
+    switchChains(newChains: ChainIdentifier[]) {
+      currentChains = [...newChains];
+      emitChange({ chains: currentChains });
     },
   };
 }

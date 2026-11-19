@@ -14,9 +14,21 @@ import {
   formatWalletError,
   client,
   parseInvoiceIdHex,
-  parseExpiryDelta,
 } from '../src/receiptrail/adapter.ts';
-import { createMockWallet, registerMockWallets } from '../src/receiptrail/mock-wallets.ts';
+import {
+  createMockWallet,
+  registerMockWallets,
+} from '../src/receiptrail/mock-wallets.ts';
+import {
+  ReceiptRailReviewController,
+  computePreviewExpiry,
+  parseSafeExpiryDelta,
+  MAX_U64,
+  RENT_DEPOSIT_LAMPORTS,
+  ESTIMATED_FEE_LAMPORTS,
+} from '../src/receiptrail/controller.ts';
+import { createWalletStandardConnector } from '@solana/client';
+import { getAddressDecoder } from '@solana/addresses';
 
 test('amount/u64: parses and formats SOL exactly with BigInt and rejects lossy inputs', () => {
   // 1 lamport
@@ -353,78 +365,231 @@ test('P5-02: recheckOnChain respects terminal/expiry and never fabricates Paid',
   assert.notEqual(recheckExp.status, 'Paid');
 });
 
-test('P5-03: Wallet Standard mock wallet lifecycle & terms invalidation', async () => {
-  // Test mock wallet creation & registration
-  const mockWallet = createMockWallet('Test Alice', DEFAULT_PAYER.address);
-  assert.equal(mockWallet.name, 'Test Alice');
-  assert.equal(mockWallet.accounts.length, 0);
+test('T36: Production controller manages snapshots and invalidates on wallet/accounts/chains/disconnect', () => {
+  const controller = new ReceiptRailReviewController();
+  const walletA = {
+    id: 'wallet-1:address-1',
+    name: 'Wallet 1',
+    address: 'address-1',
+    chains: ['solana:devnet'],
+  };
+  controller.onWalletChange(walletA);
 
-  // Connect
-  const connResult = await mockWallet.features['standard:connect'].connect();
-  assert.equal(connResult.accounts.length, 1);
-  assert.equal(connResult.accounts[0].address, DEFAULT_PAYER.address);
-  assert.equal(mockWallet.accounts.length, 1);
+  // Khóa snapshot Create, Pay, Cancel
+  controller.confirmCreate({
+    merchant: 'address-1',
+    payer: 'payer-1',
+    amountLamports: 1_000_000n,
+    expiresSlot: 200n,
+    invoiceId: new Uint8Array(32),
+    invoiceIdHex: 'aa'.repeat(32),
+    pdaAddress: 'pda-1',
+    pdaBump: 254,
+    rentDepositLamports: RENT_DEPOSIT_LAMPORTS,
+    estimatedFeeLamports: ESTIMATED_FEE_LAMPORTS,
+  });
+  controller.confirmPay({
+    invoiceAddress: 'pda-1',
+    merchant: 'address-1',
+    payer: 'payer-1',
+    amountLamports: 1_000_000n,
+    expiresSlot: 200n,
+    invoiceId: new Uint8Array(32),
+    estimatedFeeLamports: ESTIMATED_FEE_LAMPORTS,
+  });
+  controller.confirmCancel({
+    invoiceAddress: 'pda-1',
+    merchant: 'address-1',
+    payer: 'payer-1',
+    amountLamports: 1_000_000n,
+    expiresSlot: 200n,
+    invoiceId: new Uint8Array(32),
+    estimatedFeeLamports: ESTIMATED_FEE_LAMPORTS,
+  });
 
-  // Disconnect
-  await mockWallet.features['standard:disconnect'].disconnect();
-  assert.equal(mockWallet.accounts.length, 0);
+  assert.ok(controller.createSnapshot);
+  assert.ok(controller.paySnapshot);
+  assert.ok(controller.cancelSnapshot);
 
-  // Rejection Wallet
-  const rejectWallet = createMockWallet('Rejection Wallet', DEFAULT_PAYER.address, true);
+  // 1. Đổi sang ví khác có cùng địa chỉ nhưng instance khác
+  const walletB = {
+    id: 'wallet-2:address-1', // Khác id instance
+    name: 'Wallet 2',
+    address: 'address-1',
+    chains: ['solana:devnet'],
+  };
+  controller.onWalletChange(walletB);
+  assert.equal(controller.createSnapshot, null, 'createSnapshot phải bị hủy khi đổi instance ví');
+  assert.equal(controller.paySnapshot, null, 'paySnapshot phải bị hủy khi đổi instance ví');
+  assert.equal(controller.cancelSnapshot, null, 'cancelSnapshot phải bị hủy khi đổi instance ví');
+
+  // 2. Gán lại snapshot và đổi chains
+  controller.confirmPay({
+    invoiceAddress: 'pda-1',
+    merchant: 'address-1',
+    payer: 'payer-1',
+    amountLamports: 1_000_000n,
+    expiresSlot: 200n,
+    invoiceId: new Uint8Array(32),
+    estimatedFeeLamports: ESTIMATED_FEE_LAMPORTS,
+  });
+  assert.ok(controller.paySnapshot);
+  const walletBChainChanged = { ...walletB, chains: ['solana:testnet'] };
+  controller.onAccountsOrChainsChange(walletBChainChanged);
+  assert.equal(controller.paySnapshot, null, 'paySnapshot phải bị hủy khi chain thay đổi');
+
+  // 3. Ngắt kết nối ví
+  controller.confirmCancel({
+    invoiceAddress: 'pda-1',
+    merchant: 'address-1',
+    payer: 'payer-1',
+    amountLamports: 1_000_000n,
+    expiresSlot: 200n,
+    invoiceId: new Uint8Array(32),
+    estimatedFeeLamports: ESTIMATED_FEE_LAMPORTS,
+  });
+  assert.ok(controller.cancelSnapshot);
+  controller.onDisconnect();
+  assert.equal(controller.cancelSnapshot, null, 'cancelSnapshot phải bị hủy khi ngắt ví');
+
+  // 4. Đổi invoice selection: pay & cancel bị hủy
+  controller.confirmPay({
+    invoiceAddress: 'pda-1',
+    merchant: 'address-1',
+    payer: 'payer-1',
+    amountLamports: 1_000_000n,
+    expiresSlot: 200n,
+    invoiceId: new Uint8Array(32),
+    estimatedFeeLamports: ESTIMATED_FEE_LAMPORTS,
+  });
+  controller.onSelectInvoice('pda-2');
+  assert.equal(controller.paySnapshot, null, 'paySnapshot phải bị hủy khi đổi invoice');
+
+  // 5. Thay đổi form input: create snapshot bị hủy
+  controller.confirmCreate({
+    merchant: 'address-1',
+    payer: 'payer-1',
+    amountLamports: 1_000_000n,
+    expiresSlot: 200n,
+    invoiceId: new Uint8Array(32),
+    invoiceIdHex: 'aa'.repeat(32),
+    pdaAddress: 'pda-1',
+    pdaBump: 254,
+    rentDepositLamports: RENT_DEPOSIT_LAMPORTS,
+    estimatedFeeLamports: ESTIMATED_FEE_LAMPORTS,
+  });
+  assert.ok(controller.createSnapshot);
+  controller.onInputChange();
+  assert.equal(controller.createSnapshot, null, 'createSnapshot phải bị hủy khi sửa input');
+});
+
+test('T36: Production controller enforces synchronous in-flight double-submit lock', () => {
+  const controller = new ReceiptRailReviewController();
+  assert.equal(controller.isSubmitting(), false);
+
+  const release = controller.beginSubmission();
+  assert.equal(controller.isSubmitting(), true);
+
+  // Bấm lần 2 đồng thời bị chặn ngay lập tức
+  assert.throws(
+    () => controller.beginSubmission(),
+    /in-flight lock|đang được thực hiện/i
+  );
+
+  // Giải phóng khóa
+  release();
+  assert.equal(controller.isSubmitting(), false);
+
+  // Bấm lại được chấp nhận
+  const release2 = controller.beginSubmission();
+  assert.equal(controller.isSubmitting(), true);
+  release2();
+});
+
+test('T36: Production controller guards against stale async responses', () => {
+  const controller = new ReceiptRailReviewController();
+
+  const req1 = controller.nextRequestId();
+  assert.equal(controller.isCurrentRequest(req1), true);
+
+  // Request mới được khởi tạo
+  const req2 = controller.nextRequestId();
+  assert.equal(controller.isCurrentRequest(req1), false, 'Request cũ phải bị coi là stale');
+  assert.equal(controller.isCurrentRequest(req2), true);
+});
+
+test('T36: Expiry preview slot calculation and safe u64 parsing', () => {
+  // Delta hợp lệ
+  assert.equal(parseSafeExpiryDelta('100'), 100n);
+  assert.equal(parseSafeExpiryDelta('18446744073709551615'), MAX_U64);
+
+  // Preview hợp lệ
+  const preview = computePreviewExpiry(500n, '150');
+  assert.equal(preview.slot, 650n);
+  assert.equal(preview.error, null);
+
+  // Vượt quá u64 (18446744073709551616 = 2^64)
+  assert.throws(() => parseSafeExpiryDelta('18446744073709551616'), /vượt quá giá trị tối đa của u64/i);
+  const previewOverflow = computePreviewExpiry(500n, '18446744073709551616');
+  assert.equal(previewOverflow.slot, null);
+  assert.match(previewOverflow.error, /vượt quá giá trị tối đa/i);
+
+  // Invalid formats
+  assert.throws(() => parseSafeExpiryDelta('0'), /lớn hơn 0/i);
+  assert.throws(() => parseSafeExpiryDelta('-10'), /hợp lệ/i);
+  assert.throws(() => parseSafeExpiryDelta('10.5'), /hợp lệ/i);
+  assert.throws(() => parseSafeExpiryDelta('delta10'), /hợp lệ/i);
+});
+
+test('T36: Production SDK connector integration with mock wallet and address-encoded public key', async () => {
+  const wallet = createMockWallet('Review Alice', DEFAULT_PAYER.address);
+
+  // Kết nối thông qua production SDK connector của @solana/client
+  const connector = createWalletStandardConnector(wallet);
+  assert.equal(connector.name, 'Review Alice');
+
+  const session = await connector.connect();
+  assert.ok(session);
+  assert.equal(session.account.address, DEFAULT_PAYER.address);
+
+  // Kiểm tra publicKey mã hóa đúng địa chỉ base58
+  const decodedAddress = getAddressDecoder().decode(session.account.publicKey);
+  assert.equal(decodedAddress, session.account.address);
+
+  // Ngắt kết nối
+  await session.disconnect();
+  assert.equal(wallet.accounts.length, 0);
+
+  // Test switchAccount phát sinh event standard:events
+  let accountChangedCalled = false;
+  const off = wallet.features['standard:events'].on('change', ({ accounts }) => {
+    if (accounts && accounts.length > 0) {
+      accountChangedCalled = true;
+    }
+  });
+
+  await wallet.features['standard:connect'].connect();
+  wallet.switchAccount(DEFAULT_MERCHANT.address);
+  assert.equal(accountChangedCalled, true);
+  assert.equal(wallet.accounts[0].address, DEFAULT_MERCHANT.address);
+  off();
+
+  // Test wallet reject handling
+  const rejectWallet = createMockWallet('Reject Wallet', DEFAULT_PAYER.address, true);
+  const rejectConnector = createWalletStandardConnector(rejectWallet);
   await assert.rejects(
     async () => {
-      await rejectWallet.features['standard:connect'].connect();
+      await rejectConnector.connect();
     },
     (err) => {
       assert.equal(err.code, 4001);
-      const msg = formatWalletError(err);
-      assert.match(msg, /từ chối/i);
+      assert.match(formatWalletError(err), /từ chối/i);
       return true;
     }
   );
-
-  // Test terms invalidation controller logic for both Pay and Cancel
-  let activeWallet = mockWallet;
-  let confirmedPayTerms = {
-    address: 'EpQUeEpGPoZrDoffujf86a3GnKdBkX7RbvsbXkkfpodo',
-    merchant: DEFAULT_MERCHANT.address,
-    payer: DEFAULT_PAYER.address,
-    invoiceId: new Uint8Array(32),
-    amountLamports: 1_000_000n,
-    expiresSlot: 200n,
-  };
-  let confirmedCancelTerms = { ...confirmedPayTerms };
-
-  // Controller function tái hiện logic trong ReceiptRailApp.tsx
-  function handleWalletChange(newWallet) {
-    if (newWallet !== activeWallet) {
-      activeWallet = newWallet;
-      confirmedPayTerms = null;
-      confirmedCancelTerms = null;
-    }
-  }
-
-  function handleAccountDisconnect() {
-    activeWallet = null;
-    confirmedPayTerms = null;
-    confirmedCancelTerms = null;
-  }
-
-  // 1. Khi đổi ví (thay instance khác)
-  const anotherWallet = createMockWallet('Merchant Wallet', DEFAULT_MERCHANT.address);
-  handleWalletChange(anotherWallet);
-  assert.equal(confirmedPayTerms, null, 'confirmedPayTerms phải bị reset khi đổi ví');
-  assert.equal(confirmedCancelTerms, null, 'confirmedCancelTerms phải bị reset khi đổi ví');
-
-  // Gán lại terms và ngắt kết nối
-  confirmedPayTerms = { ...confirmedCancelTerms };
-  confirmedCancelTerms = { ...confirmedCancelTerms };
-  handleAccountDisconnect();
-  assert.equal(confirmedPayTerms, null, 'confirmedPayTerms phải bị reset khi ngắt ví');
-  assert.equal(confirmedCancelTerms, null, 'confirmedCancelTerms phải bị reset khi ngắt ví');
 });
 
-test('P5-04: strict 64-hex and u64 parsing with BigInt', () => {
+test('P5-04: strict 64-hex parsing with BigInt', () => {
   // Hex hợp lệ 64 ký tự (32 bytes)
   const validHex = '11223344556677889900aabbccddeeff11223344556677889900aabbccddeeff';
   const parsedBytes = parseInvoiceIdHex(validHex);
@@ -453,16 +618,6 @@ test('P5-04: strict 64-hex and u64 parsing with BigInt', () => {
     () => parseInvoiceIdHex('zz223344556677889900aabbccddeeff11223344556677889900aabbccddeeff'),
     /đúng 64 ký tự hex/i
   );
-
-  // Expiry delta: số nguyên dương hợp lệ
-  assert.equal(parseExpiryDelta('100'), 100n);
-  assert.equal(parseExpiryDelta('18446744073709551615'), 18446744073709551615n);
-
-  // Expiry delta lỗi: số âm, 0, số thập phân, chữ
-  assert.throws(() => parseExpiryDelta('0'), /lớn hơn 0/i);
-  assert.throws(() => parseExpiryDelta('-10'), /hợp lệ/i);
-  assert.throws(() => parseExpiryDelta('10.5'), /hợp lệ/i);
-  assert.throws(() => parseExpiryDelta('slot100'), /hợp lệ/i);
 });
 
 test('P5-04: dynamic list decoding reflects true account state', async () => {

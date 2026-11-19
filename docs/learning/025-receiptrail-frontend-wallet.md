@@ -35,23 +35,30 @@ Tích hợp Wallet Standard chuẩn hóa vòng đời ví (connect/disconnect/re
 
 ### 4. Vòng đời Ví theo chuẩn Wallet Standard (Wallet Lifecycle)
 - Chuẩn **Wallet Standard** (đặc tả `@wallet-standard/base`, `@wallet-standard/features` v1.1.1):
-  - `standard:connect`: Yêu cầu kết nối và chia sẻ danh sách tài khoản công khai (`WalletAccount`). Người dùng có thể chấp thuận hoặc từ chối (`reject`, mã lỗi tiêu chuẩn 4001).
+  - `standard:connect`: Yêu cầu kết nối và chia sẻ danh sách tài khoản công khai (`WalletAccount`). Người dùng có thể chấp thuận hoặc từ chối (`reject`). Lưu ý quan trọng: `StandardConnectMethod` không quy định mọi reject phải có mã số `code: 4001`. Các extension thực tế có thể trả về `Error('User rejected the request')` thuần chuỗi không có code. Do đó frontend cần kiểm tra linh hoạt cả mã lỗi 4001 lẫn regex chuỗi từ chối (`/reject|denied|user rejected|từ chối/i`), tránh crash hoặc bỏ sót lỗi khi ví không gắn mã 4001.
   - `standard:disconnect`: Ngắt kết nối sạch, xóa tài khoản đang chọn.
   - `standard:events`: Lắng nghe sự kiện `change` (thay đổi accounts hoặc chains).
-- **Trường hợp không có ví (No-wallet)**: UI hiển thị thông báo hướng dẫn, không làm treo ứng dụng. Cho phép người dùng xem toàn bộ chi tiết hóa đơn mà không bắt buộc phải có ví.
-- **Từ chối kết nối hoặc từ chối ký (Reject)**: Bắt lỗi sạch sẽ, hiển thị thông báo thân thiện (ví dụ: "Người dùng đã từ chối thao tác trong ví"), cho phép thử lại khi người dùng sẵn sàng, không hiển thị crash hay stack trace kỹ thuật.
-- **Đổi tài khoản (Account Change)**: Khi người dùng đổi tài khoản trong extension ví, toàn bộ điều khoản đã xác nhận (`confirmedTerms`) phải bị hủy bỏ ngay lập tức. Người dùng buộc phải kiểm tra lại hóa đơn với tư cách tài khoản mới trước khi được phép ký/thanh toán.
-- **Bảo mật tuyệt đối**: UI không tạo private key, không import file ví, không yêu cầu seed phrase hay mật khẩu.
+- **Trường hợp không có ví (No-wallet)**: UI hiển thị thông báo hướng dẫn, không làm treo ứng dụng. Cho phép người dùng xem toàn bộ chi tiết hóa đơn mà không bắt buộc phải có ví (Guest viewer).
+- **Từ chối kết nối hoặc từ chối ký (Reject)**: Bắt lỗi sạch sẽ, hiển thị thông báo thân thiện (ví dụ: "Người dùng đã từ chối thao tác trong ví (Rejection)"), cho phép thử lại khi người dùng sẵn sàng, không hiển thị crash hay stack trace kỹ thuật.
+- **Đổi tài khoản và định danh ví (Account & Wallet Identity Change)**:
+  - Khi người dùng đổi tài khoản hoặc đổi sang ví khác (kể cả cùng địa chỉ ví khác), hoặc thay đổi chains, hoặc ngắt kết nối: toàn bộ điều khoản và snapshot đã xác nhận (`createSnapshot`, `paySnapshot`, `cancelSnapshot`) phải bị hủy bỏ ngay lập tức.
+  - Không được chỉ phụ thuộc vào `connectedAddress` đơn thuần; phải kiểm tra định danh duy nhất của phiên ví (`${wallet.name}:${account.address}:${chains}`).
+  - Người dùng buộc phải kiểm tra lại hóa đơn với tư cách tài khoản mới trước khi được phép ký/thanh toán.
+- **Bảo mật**: UI không tạo private key, không import file ví, không yêu cầu seed phrase hay mật khẩu. Khóa tính năng phát sóng thật trong môi trường local Phase 5.
 
 ### 5. Cơ chế phục hồi sự cố và trạng thái Chưa rõ (Unknown Recovery)
 - Trong môi trường mạng phân tán Solana, khi gửi giao dịch gặp timeout hoặc RPC rớt kết nối, trạng thái giao dịch là **Unknown** (Chưa rõ). Giao dịch có thể đã được miner đóng block thành công hoặc đã bị drop.
+- **Nguồn gốc chữ ký (Signature Origin)**: Trong luồng gửi giao dịch Solana, chữ ký giao dịch (signature) được tạo ra từ **bước ký offline của client trước khi phát sóng** (pre-send signature), KHÔNG PHẢI do RPC cấp mới sau khi nhận. Khi xảy ra Timeout / Unknown, client lưu giữ chính chữ ký này cùng đúng `invoiceId` và địa chỉ PDA ban đầu để phục vụ đối soát.
 - **Không bao giờ coi timeout là thất bại**:
   - Không tự động gửi lại giao dịch mới (auto-resend).
   - Không tự ý sinh `invoiceId` mới khi chưa có xác nhận từ merchant/payer. Cùng một hóa đơn phải giữ nguyên `invoiceId` và địa chỉ PDA.
-  - Giữ lại signature (nếu RPC đã cấp) và cung cấp nút bấm "Kiểm tra lại trạng thái trên chuỗi" (Re-check on-chain).
+  - Giữ lại signature và cung cấp nút bấm "Kiểm tra lại trạng thái trên chuỗi" (Re-check on-chain).
+- **Đối soát chỉ quan sát (Observational Re-check)**:
+  - Thao tác Re-check on-chain phải là hành động đọc quan sát thuần túy (read-only observation).
+  - Re-check không được tự ý biến đổi byte dữ liệu hoặc tự động gán `Paid` nếu giao dịch chưa được đưa vào sổ cái thực tế, hoặc nếu hóa đơn đã bị hủy (Cancelled) hay đã hết hạn (Expired) trước đó.
 - **Mô phỏng sự cố (Mock Fault-Injection)**:
   - Để kiểm tra khả năng phục hồi của UI trong demo 165 giây, adapter cung cấp các kịch bản mô phỏng lỗi có nhãn rõ:
-    1. *Mô phỏng Timeout / RPC Dropped*: Chuyển sang trạng thái Pending/Unknown, giữ nguyên invoice và cho phép bấm re-check để lấy trạng thái Paid thật.
+    1. *Mô phỏng Timeout / RPC Dropped*: Chuyển sang trạng thái Pending/Unknown, giữ nguyên invoice và cho phép bấm re-check để lấy trạng thái Paid thật nếu giao dịch đã được xác nhận.
     2. *Mô phỏng Rollback do thiếu số dư*: Kiểm tra rollback atomicity (principal không bị trừ, chỉ mất phí transaction).
     3. *Mô phỏng Trả trùng (Duplicate Pay)*: Kiểm tra thông báo lỗi `InvoiceNotOpen (6004)`.
     4. *Mô phỏng Sai người trả (Wrong Payer)*: Báo lỗi `WrongPayer (6006)` khi ví đang kết nối không trùng với `payer` ghi trên hóa đơn.
@@ -96,16 +103,27 @@ try {
 }
 ```
 
-### 3. Xử lý đổi tài khoản ví làm mất Confirmed Terms
+### 3. Xử lý đổi tài khoản ví làm mất Confirmed Terms & Snapshots
 
 ```ts
-// Khi tài khoản ví thay đổi, reset xác nhận điều khoản
-useEffect(() => {
-  if (confirmedTerms && connectedAddress !== confirmedTerms.payer) {
-    setConfirmedTerms(null);
-    setTermsAccepted(false);
+// apps/web/src/receiptrail/controller.ts
+export class ReceiptRailReviewController {
+  private activeWallet: WalletIdentity | null = null;
+  public createSnapshot: CreateSnapshot | null = null;
+  public paySnapshot: PaySnapshot | null = null;
+  public cancelSnapshot: CancelSnapshot | null = null;
+
+  public onWalletChange(wallet: WalletIdentity | null): void {
+    const currentId = this.activeWallet ? `${this.activeWallet.id}:${this.activeWallet.chains.join(',')}` : null;
+    const nextId = wallet ? `${wallet.id}:${wallet.chains.join(',')}` : null;
+    if (currentId !== nextId) {
+      this.activeWallet = wallet;
+      this.createSnapshot = null;
+      this.paySnapshot = null;
+      this.cancelSnapshot = null;
+    }
   }
-}, [connectedAddress]);
+}
 ```
 
 ## Bài học / lỗi đã gặp
