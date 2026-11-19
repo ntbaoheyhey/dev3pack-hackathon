@@ -419,3 +419,5 @@ Các mô tả dưới đây là sự kiện ở Taskbar Hero, không phải hàn
 2026-11-19 · Codex · P4-B bắt đầu upload15:58UTC+7 bằng helper đã qua CI, đúng buffer/keys có sẵn; chưa chốt deploy. CUA xác minh đúng chat A đang thực hiệnT34 theo chỉ đạo người dùng, không gửi quyền mới. Cập nhật evidence index/ROADMAP/Thẻ nhớ và mục lục note024 theo CI thật; chưa đổi executable inputs.
 
 2026-11-19 · Antigravity · Hoàn thành note025 trước code cho T34: mock/chain boundary, state (Open/Paid/Cancelled) khác commitment, amount u64 bigint/decimal không làm tròn, vòng đời Wallet Standard (connect/reject/account change xóa confirmed terms), Unknown recovery giữ nguyên invoiceId/PDA và re-check on-chain. Cập nhật mục lục và commit mốc note trước code.
+
+2026-11-19 · Codex · Nhận note025 trước code tại6b33dbf; merge giữ cả DEVLOG/mục lục hai agent,33inputs triển khai không đổi. Ghi ba lưu ý triển khai/test T34 ngay trong queue (wallet identity reset mọi vai, không suy reject4001 phổ quát, signature có trước send), không mở vòng report cũ hoặc sửa file A.
