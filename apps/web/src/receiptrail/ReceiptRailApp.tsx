@@ -58,13 +58,28 @@ export default function ReceiptRailApp() {
     void refreshData();
   }, [selectedAddress, activeWallet, currentSlot]);
 
-  // Account switch: Khi đổi ví, hủy bỏ toàn bộ confirmed terms
+  // Account switch: Khi đổi ví hoặc ngắt kết nối, hủy bỏ toàn bộ confirmed terms
   const handleWalletChange = (wallet: MockWalletAccount) => {
     setActiveWallet(wallet);
     setTermsConfirmed(false);
     setConfirmedSnapshot(null);
     setActionMessage({
       text: `Đã chuyển sang ví ${wallet.name}. Mọi xác nhận điều khoản trước đó đã được hủy an toàn.`,
+      type: 'info',
+    });
+  };
+
+  const handleDisconnect = () => {
+    setActiveWallet({
+      name: 'Chưa kết nối ví (Khách)',
+      address: '11111111111111111111111111111111',
+      role: 'other',
+      balanceLamports: 0n,
+    });
+    setTermsConfirmed(false);
+    setConfirmedSnapshot(null);
+    setActionMessage({
+      text: 'Đã ngắt kết nối ví. Mọi xác nhận điều khoản trước đó đã được hủy an toàn.',
       type: 'info',
     });
   };
@@ -286,6 +301,14 @@ export default function ReceiptRailApp() {
               Chọn {w.role === 'merchant' ? 'Tiệm Cà phê (Merchant)' : w.role === 'payer' ? 'Alice (Payer)' : 'Bob (Ví khác)'}
             </button>
           ))}
+          <button
+            type="button"
+            className="text-button"
+            onClick={handleDisconnect}
+            disabled={isProcessing || activeWallet.address === '11111111111111111111111111111111'}
+          >
+            Ngắt ví
+          </button>
         </div>
       </section>
 

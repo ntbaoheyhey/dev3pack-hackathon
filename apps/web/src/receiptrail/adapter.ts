@@ -95,6 +95,19 @@ export function serializeInvoiceData(invoice: {
   return data;
 }
 
+export function formatWalletError(err: unknown): string {
+  if (!err) return 'Lỗi ví không xác định';
+  if (typeof err === 'object') {
+    const anyErr = err as Record<string, unknown>;
+    // Hỗ trợ cả mã 4001 lẫn chuỗi rejection từ Wallet Standard/extension thực tế không ép mã 4001
+    if (anyErr.code === 4001 || /reject|denied|user rejected|từ chối/i.test(String(anyErr.message || ''))) {
+      return 'Người dùng đã từ chối thao tác trong ví (Rejection)';
+    }
+    if (typeof anyErr.message === 'string') return anyErr.message;
+  }
+  return String(err);
+}
+
 export class ReceiptRailMockEngine {
   private accounts = new Map<string, InvoiceAccountEnvelope>();
   public currentSlot: bigint = 100n;
