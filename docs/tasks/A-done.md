@@ -17,6 +17,7 @@
 | T36 | xong | Đã xong: controller snapshot, mock-wallets pubkey, dynamic expiry preview, in-flight lock, stale async guard, responsive CSS, 25/25 tests pass. |
 | T37 | xong | Kiểm browser local 16 ca đạt; quay video demo 165s đạt 33.08s; phát hiện finding P5-F01 báo Codex. |
 | T38 | xong | Hoàn thành note 027: ma trận 3 ví (Phantom/Solflare/Backpack), 8 ca lỗi UX/CTA, contract adapter Phase 6, kế hoạch e2e. |
+| T40 | xong | Đã sửa P5-F01 trong mock-wallets.ts, thêm regression test (46 tests pass), kiểm headless direct không intercept 1440 và 375 đạt 0 pageerror. |
 
 - Việc T11: Xong. Đã crawl và review evidence cho ReceiptRail (retry, timeout, idempotency) vào `docs/data/receiptrail-evidence.md`.
 
@@ -134,3 +135,9 @@
   - **Yêu cầu Contract Adapter cho Phase 6**: Đề xuất phương án adapter cần từ Codex: tách biệt bước ký offline `signTransaction` để lấy pre-send signature lưu vào `pendingRecord` trước khi gọi phát sóng; cơ chế đối soát chỉ đọc `recheckOnChain` kết hợp `lastValidBlockHeight` để xác định giao dịch rớt mạng an toàn.
   - **Kế hoạch kiểm thử E2E**: Xác định 2 cấp độ kiểm thử (Headless Mock-Extension E2E trên CI/CLI và Manual Browser Verification với 6 bước có bằng chứng).
   - **Tuân thủ giới hạn**: Chưa viết code adapter thật, không cài ví extension máy người dùng, không tạo ví/keypair hay broadcast mạng thật. Đã cập nhật mục lục Note và DEVLOG.
+
+- Việc T40: Xong. Đã sửa triệt để lỗi P5-F01 trong `apps/web/src/receiptrail/mock-wallets.ts` và nghiệm thu toàn diện:
+  - **Khắc phục fixture Base58 32-bytes**: Đổi `'4uQeVj5tqViQh7yWWGStvfEG1Zmhx6uasJtWCJziofM'` thành `'14uQeVj5tqViQh7yWWGStvfEG1Zmhx6uasJtWCJziofM'` trong `mock-wallets.ts:80`, bảo đảm giải mã chính xác 32 bytes (đủ byte 0x00 ở đầu). Export `resetMockWalletsForTest()` để reset trạng thái singleton trong kiểm thử.
+  - **Thêm Regression Test**: Thêm test `T40 regression: registerMockWallets registers all fixtures with valid 32-byte publicKeys and rejection wallet rejects` vào `apps/web/tests/receiptrail.test.mjs`. Chạy `npm test`: 46/46 tests pass sạch sẽ (246ms); `npm run build`: Vite build đạt 100% không cảnh báo (125ms).
+  - **Kiểm thử Browser Trực tiếp Không Intercept (Zero-Mock-Intercept)**: Chạy Playwright headless trực tiếp trên `http://127.0.0.1:4175/receiptrail/` ở cả 1440×900 và 375×812. Trang mount thành công 100%, hiển thị đủ 4 connectors (Tiệm Cà phê, Alice, Bob, Ví từ chối), `0` page errors (mảng rỗng). Bấm ví từ chối hiển thị thông báo Rejection đúng chuẩn, bấm ví Merchant kết nối thành công. Chặn triệt để request ngoài localhost (`api.devnet.solana.com`).
+  - **Hồ sơ nộp**: `docs/evidence/phase5/t40-2026-11-19/` gồm `run-t40.mjs`, `t40-report.md`, `manifest.json` và 6 ảnh chụp màn hình chứng minh mount + rejection + merchant connect ở cả 2 viewports. Cập nhật DEVLOG, A-done và HANDOFF. Chuyển tiếp T39.

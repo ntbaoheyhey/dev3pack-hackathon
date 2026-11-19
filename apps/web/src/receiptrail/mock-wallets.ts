@@ -69,6 +69,10 @@ export function createMockWallet(
   };
 }
 
+export function resetMockWalletsForTest() {
+  registered = false;
+}
+
 export function registerMockWallets() {
   if (registered) return;
   registered = true;
@@ -77,5 +81,5 @@ export function registerMockWallets() {
   walletsApi.register(createMockWallet('Tiệm Cà phê (Merchant)', DEFAULT_MERCHANT.address));
   walletsApi.register(createMockWallet('Alice (Payer chỉ định)', DEFAULT_PAYER.address));
   walletsApi.register(createMockWallet('Bob (Ví khác / Hacker)', OTHER_WALLET.address));
-  walletsApi.register(createMockWallet('Ví từ chối (Rejection Test)', '4uQeVj5tqViQh7yWWGStvfEG1Zmhx6uasJtWCJziofM', true));
+  walletsApi.register(createMockWallet('Ví từ chối (Rejection Test)', '14uQeVj5tqViQh7yWWGStvfEG1Zmhx6uasJtWCJziofM', true));
 }

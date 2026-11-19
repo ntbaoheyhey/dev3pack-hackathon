@@ -16,6 +16,9 @@ import {
   parseInvoiceIdHex,
   parseExpiryDelta,
 } from '../src/receiptrail/adapter.ts';
+import { registerMockWallets, resetMockWalletsForTest } from '../src/receiptrail/mock-wallets.ts';
+import { getWallets } from '@wallet-standard/app';
+import { getAddressDecoder } from '@solana/addresses';
 
 test('amount/u64: parses and formats SOL exactly with BigInt and rejects lossy inputs', () => {
   // 1 lamport
@@ -486,4 +489,44 @@ test('wallet reject handling does not assume code 4001 is universal', () => {
   // Ca c: Lỗi kỹ thuật khác không phải reject
   const networkErr = new Error('Connection refused at RPC endpoint');
   assert.equal(formatWalletError(networkErr), 'Connection refused at RPC endpoint');
+});
+
+test('T40 regression: registerMockWallets registers all fixtures with valid 32-byte publicKeys and rejection wallet rejects', async () => {
+  resetMockWalletsForTest();
+  // Call registerMockWallets() - must not throw base58 31-bytes exception
+  assert.doesNotThrow(() => {
+    registerMockWallets();
+  });
+
+  const wallets = getWallets().get();
+  assert.ok(wallets.length >= 4, 'Must register at least 4 mock wallets');
+
+  let foundRejectionWallet = false;
+  for (const w of wallets) {
+    assert.ok(w.name, 'Wallet must have a name');
+    const connectFeature = w.features['standard:connect'];
+    assert.ok(connectFeature, `${w.name} must have standard:connect`);
+
+    if (w.name.includes('từ chối') || w.name.includes('Rejection')) {
+      foundRejectionWallet = true;
+      // Rejection wallet must reject
+      await assert.rejects(
+        async () => connectFeature.connect(),
+        (err) => {
+          assert.match(err.message, /rejected|từ chối/i);
+          return true;
+        }
+      );
+    } else {
+      const res = await connectFeature.connect();
+      assert.ok(res.accounts.length > 0, `${w.name} must have accounts`);
+      for (const acc of res.accounts) {
+        assert.equal(acc.publicKey.length, 32, `${w.name} account publicKey must be exactly 32 bytes`);
+        const decoded = getAddressDecoder().decode(acc.publicKey);
+        assert.equal(decoded, acc.address, `${w.name} decoded publicKey must match address`);
+      }
+    }
+  }
+
+  assert.ok(foundRejectionWallet, 'Must verify the rejection wallet fixture');
 });

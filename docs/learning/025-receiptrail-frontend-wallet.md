@@ -132,6 +132,13 @@ finally { model.finish(operation); }
 
 Kiểm thử headless browser tự động trên 2 viewports (1440×900 và 375×812) phát hiện lỗi runtime uncaught exception P5-F01 tại `mock-wallets.ts:80` (địa chỉ ví từ chối `4uQeVj5tqViQh7yWWGStvfEG1Zmhx6uasJtWCJziofM` chỉ giải mã ra 31 bytes). Khi được sửa thành `14uQeVj5tqViQh7yWWGStvfEG1Zmhx6uasJtWCJziofM`, 16/16 ca kiểm thử đạt 100%. Đo lường di động chứng minh `body.scrollWidth` đạt đúng 375px (không tràn trang), bảng danh sách hóa đơn cuộn riêng (`scrollWidth = 965px`). Video demo 165s được ghi hình thực tế và đo qua `ffprobe` đạt 33.08 giây.
 
+### Bài học triển khai T40: Sửa lỗi P5-F01 và kiểm thử hồi quy trực tiếp (2026-11-19)
+
+- **Bản chất lỗi Base58**: Chuỗi base58 trong Solana dùng ký tự '1' để mã hóa byte `0x00`. Một chuỗi 43 ký tự thiếu tiền tố '1' giải mã chỉ được 31 bytes, khiến `getAddressEncoder().encode()` ném exception `Expected base58 encoded address to decode to a byte array of length 32. Actual length: 31.` trong phạm vi khởi tạo module `ReceiptRailApp.tsx` trước khi render bất kỳ component nào, dẫn đến màn hình trắng (`#root` rỗng).
+- **Khắc phục**: Sửa fixture tại `mock-wallets.ts:80` thành `14uQeVj5tqViQh7yWWGStvfEG1Zmhx6uasJtWCJziofM` để chuỗi giải mã chính xác 32 bytes hợp lệ.
+- **Kiểm thử hồi quy**: Thêm test case vào `apps/web/tests/receiptrail.test.mjs` gọi trực tiếp `registerMockWallets()` trên registry mới, duyệt qua tất cả 4 fixtures và xác nhận từng ví giải mã ra đúng 32 bytes, đồng thời kiểm tra ví từ chối ném lỗi đúng định dạng khi gọi `signAndSendTransaction`. Bộ test đạt 46/46 tests pass.
+- **Bằng chứng headless trực tiếp**: Chạy `run-t40.mjs` trên `http://127.0.0.1:4175/receiptrail/` (không intercept/sửa source) ở cả 1440×900 và 375×812 xác nhận ứng dụng mount thành công, hiển thị đủ 4 connectors, bắt được đúng 0 uncaught exceptions / page errors, chặn hoàn toàn request ra mạng ngoài localhost, và xử lý từ chối kết nối mượt mà. Bằng chứng lưu tại `docs/evidence/phase5/t40-2026-11-19/`.
+
 ## Nguồn
 
 - [Solana Wallet Standard Specification](https://github.com/wallet-standard/wallet-standard) (v1.1.1, đối chiếu 2026-11).
