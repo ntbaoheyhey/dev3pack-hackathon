@@ -15,8 +15,8 @@
 
 ## Còn lại
 
-1. Quyền mới đã push28c1e3f; patch CI4dòng đã áp/review YAML+run blocks, đang commit không skip/push chạy CI. Theo dõi SHA/jobs/logs thật, không dừng giữa run; chưa tạo4keypairs.
-2. Sau CI đầu đạt: tạo đúng4keypairs ngoài Git theo PHASE4-PLAN, đổi identity/build/test/IDL/client; chạy CI revision mới trước broadcast.
+1. CI8df85c003a10789888b0000f3c5cc1018d05d06b đang chạy: PR44475994937/push44475988734, web/research đạt; anchor-lab đang cài đúng pins. Theo dõi đến jobs/logs đạt; chưa tạo4keypairs.
+2. Helpers checks/smoke đã viết,5tests local đạt và syntax smoke đạt; mới thêm runner cho CI revision kế. Sau CI đầu đạt: tạo đúng4keypairs ngoài Git theo PHASE4-PLAN, đổi identity/build/test/IDL/client; chạy CI revision mới trước broadcast.
 3. Preflight/budget <=1.8SOL, deploy/smoke/journal/finalized/đối soát theo plan. Không auto-resend/đổi buffer/authority hoặc tạo thêm signer.
 4. T34 tiếp tục local; nhận bài nộp và review tiền/quyền khi có. Chưa A xác nhận; không mở lại T31–T33.
 5. Cập nhật notes/DEVLOG/Thẻ nhớ/PR7 và push mỗi mốc. Public/Phase6/merge cần quyền riêng, không hỏi P4-A/B lại.

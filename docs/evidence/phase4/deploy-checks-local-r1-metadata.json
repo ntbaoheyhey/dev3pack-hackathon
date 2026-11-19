@@ -1,0 +1,22 @@
+{
+  "at": "2026-11-19T07:02:35.009801+00:00",
+  "status": "FIVE_PURE_CHECK_TESTS_PASS_SMOKE_SYNTAX_ONLY",
+  "tests": 5,
+  "smokeNotRun": true,
+  "noDeploymentKeysCreated": true,
+  "files": {
+    "tools/receiptrail-devnet/checks.mjs": "c4d2bd3159f07c1de78caa880f49ce0fc4ed36c1349fc2ce0d8c78cf83cac415",
+    "tools/receiptrail-devnet/checks.test.mjs": "fb8884835070c63338f10fd032b58aa8a114e23c52be1a50abd6e5decccf5e19",
+    "tools/receiptrail-devnet/smoke.mjs": "73b73acb8593094e4fabe1e503041450ac50a391a81e0609f06de56d27afc215",
+    "scripts/check-receiptrail-client.sh": "6a0a9e25fb5651923c32932dcda3190b31e2cc690ee3abf5ed77ca714b6f9a9f"
+  },
+  "baselineCi": {
+    "head": "8df85c003a10789888b0000f3c5cc1018d05d06b",
+    "runs": [
+      44475994937,
+      44475988734
+    ],
+    "status": "IN_PROGRESS",
+    "includesTheseHelpers": false
+  }
+}

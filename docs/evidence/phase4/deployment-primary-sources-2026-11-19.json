@@ -1,0 +1,10 @@
+[
+  {
+    "url": "https://solana.com/docs/programs/deploying",
+    "error": "HTTP Error 429: Too Many Requests"
+  },
+  {
+    "url": "https://solana.com/docs/rpc/http/simulatetransaction",
+    "error": "HTTP Error 429: Too Many Requests"
+  }
+]
