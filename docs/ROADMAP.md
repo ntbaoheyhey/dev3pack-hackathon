@@ -241,7 +241,7 @@ Mỗi vòng ghi lại điểm và thay đổi. Ý tưởng sửa quá số vòng
 | 1 Ý tưởng & spec | người dùng đã duyệt IDEA ReceiptRail qua lời duyệt Phase2 | “ReceiptRail chính, ClusterProof phụ” lúc00:07; tin “duyệt phase 2” log09:27:18.464 ngày18/11 UTC+7. RUBRIC/SHORTLIST còn chờ verdict giáo viên, xem DECISION |
 | 2 Kiến trúc | người dùng đã duyệt · lượt cuối A đã đóng | IDEA/ARCHITECTURE/IDL/demo165giây,19runtime local,C01r2=79/F4. Nhận phần đạt từ7857e9b, phần thiếu ở [nợ tài liệu](DOCUMENTATION-DEBT.md); T31/T32/T33 đóng, không mở vòng sửa. Giáo viên chưa có verdict |
 | 3 Môi trường | P3-A/P3-B đạt · Phase4/5 local đã mở | [P3-B](evidence/phase3/README.md): hello deploy/initialize/increment finalized,137tx, counter1, debit0.651874801SOL dưới1.5SOL. CI27cf7ac hai runs đạt3jobs/57tests/run; web/lab cũHTTP200, ví thật chưa kiểm/giáo viên chưa verdict. Không gọi mọi cổng đã đạt |
-| 4 Program | đang làm local | Người dùng mở19/11, log13:25:47UTC+7; C program/tests/IDL/client bằng cache. Chưa deploy/cài/CI mới, xem DECISION |
+| 4 Program | CI đạt, P4-B đang upload devnet | P4-A/P4-B được đồng ý log13:55:34.348UTC+7; CI6d08e5c push44477944228 đủ3jobs đạt, runtime32/client23/guards7. Đúng4keys ngoài Git; cap1.8SOL, chưa chốt deploy/smoke. A nhậnT34 chưa xác nhận client dùng được |
 | 5 Frontend | đang làm local song song | A nhận T34 học rồi UI/ví/mock/browser localhost; chưa public, không giao dịch thật |
 | 6 Tích hợp | chưa mở | |
 | 7 Hoàn thiện | chưa mở | |
