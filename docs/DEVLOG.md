@@ -427,3 +427,5 @@ Các mô tả dưới đây là sự kiện ở Taskbar Hero, không phải hàn
 2026-11-19 · Codex · DeployCLI exit0/signature5Yf3…HVUU, verify --deployment read-only/session20797. ReviewT34:14tests+build tái chạy đạt nhưng thấy terminal reset/invalid Paid seed, Unknown bypass signer/terms và Pay vẫn enabled, thiếu Wallet Standard, input/list/review flaws và ảnh Loading. Nhận client usage, giaoT35 sửa code với reproduction trong reviews/receiptrail-phase5-r1.md; không mở vòngT31–T33 hoặc sửa UI/A-done thay A.
 
 2026-11-19 · Codex · P4-B deploy verified157tx finalized/bytecode/authority, debit0.753656080SOL; smoke inspect đạt. Cập nhật note024/Thẻ nhớ và push evidence. T35 đã push76b684c, gửi điều phối đúng chat A với nhãn Codex, không quyền mới người dùng.
+
+2026-11-19T16:20:29+07:00 · Codex · Tiếp tục sau bàn giao; Automation ACTIVE/15phút/đúng chat và origin/work d9d2336 đã kiểm. Giữ smoke-r1-partial4tx finalized/duplicate simulation, viết cancel-recovery chỉ1Cancel với read-only reconciliation/journal/exact CI guard;23client+7guards+7recovery local đạt, cập nhật note024/Thẻ nhớ. Đang inspect read-only trước CI; chưa ký/gửi lại smoke/deploy hoặc sửa UI A.

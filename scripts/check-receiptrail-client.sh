@@ -5,6 +5,8 @@ cd "$(dirname "${BASH_SOURCE[0]}")/.."
 node scripts/generate-receiptrail-client.mjs --check
 node --experimental-vm-modules --test packages/receiptrail-client/tests/*.test.mjs
 node --test tools/receiptrail-devnet/checks.test.mjs
+node --test tools/receiptrail-devnet/cancel-recovery.test.mjs
+node --check tools/receiptrail-devnet/cancel-recovery.mjs
 node --check tools/receiptrail-devnet/smoke.mjs
 node --check tools/receiptrail-devnet/deploy.mjs
 node --check tools/receiptrail-devnet/verify.mjs
