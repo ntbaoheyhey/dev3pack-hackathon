@@ -417,3 +417,5 @@ Các mô tả dưới đây là sự kiện ở Taskbar Hero, không phải hàn
 2026-11-19T15:57:20+07:00 · Codex · Automation ACTIVE/15phút/đúng chat; pull c1446c2 thấy A nhậnT34. CI triển khai6d08e5c push44477944228 đủ3jobs đạt, PR riêng cancelled; lưu logs/33input hashes/manifest. Inspect devnet balance1.848125199SOL/peak1.531889040SOL trongcap1.8, chưa broadcast. Cập nhật note024/Thẻ nhớ/queue trước upload.
 
 2026-11-19 · Codex · P4-B bắt đầu upload15:58UTC+7 bằng helper đã qua CI, đúng buffer/keys có sẵn; chưa chốt deploy. CUA xác minh đúng chat A đang thực hiệnT34 theo chỉ đạo người dùng, không gửi quyền mới. Cập nhật evidence index/ROADMAP/Thẻ nhớ và mục lục note024 theo CI thật; chưa đổi executable inputs.
+
+2026-11-19 · Antigravity · Hoàn thành note025 trước code cho T34: mock/chain boundary, state (Open/Paid/Cancelled) khác commitment, amount u64 bigint/decimal không làm tròn, vòng đời Wallet Standard (connect/reject/account change xóa confirmed terms), Unknown recovery giữ nguyên invoiceId/PDA và re-check on-chain. Cập nhật mục lục và commit mốc note trước code.
