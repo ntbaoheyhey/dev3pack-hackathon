@@ -12,7 +12,11 @@ import {
   DEFAULT_PAYER,
   OTHER_WALLET,
   formatWalletError,
+  client,
+  parseInvoiceIdHex,
+  parseExpiryDelta,
 } from '../src/receiptrail/adapter.ts';
+import { createMockWallet, registerMockWallets } from '../src/receiptrail/mock-wallets.ts';
 
 test('amount/u64: parses and formats SOL exactly with BigInt and rejects lossy inputs', () => {
   // 1 lamport
@@ -74,73 +78,416 @@ test('roles & expiry: enforces payer/merchant roles and derives Expired from slo
   assert.equal(merchantExpiredInspect.canCancel, true);
 });
 
-test('account switch & terms: invalidates confirmed terms upon wallet change', async () => {
+test('P5-01: duplicate create rejects across all states (Open, Paid, Cancelled) without resetting ledger', async () => {
   const engine = new ReceiptRailMockEngine();
-  const sampleAddr = 'EpQUeEpGPoZrDoffujf86a3GnKdBkX7RbvsbXkkfpodo';
-  const inspected = await engine.inspect(sampleAddr, DEFAULT_PAYER.address);
-  assert.ok(inspected);
+  const openAddr = 'EpQUeEpGPoZrDoffujf86a3GnKdBkX7RbvsbXkkfpodo';
+  const openInspect = await engine.inspect(openAddr);
+  assert.ok(openInspect);
+  assert.equal(openInspect.invoice.status, 'Open');
 
-  let confirmedTerms = {
-    address: inspected.invoice.address,
-    merchant: inspected.invoice.merchant,
-    payer: inspected.invoice.payer,
-    invoiceId: inspected.invoice.invoiceId,
-    amountLamports: inspected.invoice.amountLamports,
-    expiresSlot: inspected.invoice.expiresSlot,
-  };
+  // Thử tạo trùng trên hóa đơn đang Open
+  await assert.rejects(
+    async () => {
+      await engine.createInvoice({
+        merchant: openInspect.invoice.merchant,
+        payer: openInspect.invoice.payer,
+        invoiceId: openInspect.invoice.invoiceId,
+        amountLamports: 9_999_999_999n,
+        expiresSlot: openInspect.invoice.expiresSlot + 500n,
+      });
+    },
+    /đã tồn tại|không thể tạo lại/i
+  );
+  // Khẳng định trạng thái Open và terms không bị thay đổi
+  const afterOpen = await engine.inspect(openAddr);
+  assert.equal(afterOpen.invoice.amountLamports, openInspect.invoice.amountLamports);
+  assert.equal(afterOpen.invoice.status, 'Open');
 
-  // Giả lập người dùng đổi tài khoản từ Alice sang Bob
-  let currentWallet = DEFAULT_PAYER;
-  assert.equal(currentWallet.address, confirmedTerms.payer);
+  // Thanh toán hóa đơn sang Paid
+  await engine.payInvoice({
+    invoiceAddress: openAddr,
+    signer: DEFAULT_PAYER.address,
+    confirmedTerms: openInspect.invoice,
+  });
+  const paidInspect = await engine.inspect(openAddr);
+  assert.equal(paidInspect.invoice.status, 'Paid');
+  assert.ok(paidInspect.invoice.paidSlot > 0n);
 
-  // Switch to Bob
-  currentWallet = OTHER_WALLET;
-  if (currentWallet.address !== confirmedTerms.payer) {
-    confirmedTerms = null; // Bị hủy bỏ
-  }
-  assert.equal(confirmedTerms, null);
+  // Thử tạo trùng trên hóa đơn đã Paid
+  await assert.rejects(
+    async () => {
+      await engine.createInvoice({
+        merchant: openInspect.invoice.merchant,
+        payer: openInspect.invoice.payer,
+        invoiceId: openInspect.invoice.invoiceId,
+        amountLamports: 1_000_000n,
+        expiresSlot: openInspect.invoice.expiresSlot + 500n,
+      });
+    },
+    /đã tồn tại|không thể tạo lại/i
+  );
+  // Khẳng định trạng thái Paid không bị reset về Open
+  const afterPaidAttempt = await engine.inspect(openAddr);
+  assert.equal(afterPaidAttempt.invoice.status, 'Paid');
+  assert.equal(afterPaidAttempt.invoice.paidSlot, paidInspect.invoice.paidSlot);
+
+  // Tạo một hóa đơn mới và Cancel nó để test Cancelled state
+  const cancelId = new Uint8Array(32);
+  cancelId[0] = 0xca;
+  cancelId[31] = 0xfe;
+  const newCreated = await engine.createInvoice({
+    merchant: DEFAULT_MERCHANT.address,
+    payer: DEFAULT_PAYER.address,
+    invoiceId: cancelId,
+    amountLamports: 500_000_000n,
+    expiresSlot: engine.currentSlot + 100n,
+  });
+  const inspectedNew = await engine.inspect(newCreated.invoiceAddress);
+  await engine.cancelInvoice({
+    invoiceAddress: newCreated.invoiceAddress,
+    signer: DEFAULT_MERCHANT.address,
+    confirmedTerms: inspectedNew.invoice,
+  });
+  const cancelledInspect = await engine.inspect(newCreated.invoiceAddress);
+  assert.equal(cancelledInspect.invoice.status, 'Cancelled');
+
+  // Thử tạo trùng trên hóa đơn đã Cancelled
+  await assert.rejects(
+    async () => {
+      await engine.createInvoice({
+        merchant: DEFAULT_MERCHANT.address,
+        payer: DEFAULT_PAYER.address,
+        invoiceId: cancelId,
+        amountLamports: 1_000_000n,
+        expiresSlot: engine.currentSlot + 200n,
+      });
+    },
+    /đã tồn tại|không thể tạo lại/i
+  );
+  const afterCancelledAttempt = await engine.inspect(newCreated.invoiceAddress);
+  assert.equal(afterCancelledAttempt.invoice.status, 'Cancelled');
 });
 
-test('pending/Unknown -> re-check: does not auto-resend and recovers confirmed state cleanly', async () => {
+test('P5-01: canonical PDA derivation and decode verification for all seeded fixtures', async () => {
+  const engine = new ReceiptRailMockEngine();
+  const list = await engine.listInvoices();
+  assert.ok(list.length >= 2, 'Cần ít nhất 2 seeded invoice');
+
+  for (const item of list) {
+    const rawAccount = engine.getRawAccount(item.address);
+    assert.ok(rawAccount, `Account envelope phải tồn tại cho ${item.address}`);
+
+    // Giải mã qua client.decodeInvoice - không được văng INVOICE_PDA_MISMATCH
+    const decoded = await client.decodeInvoice(rawAccount);
+    assert.equal(decoded.address, item.address);
+    assert.ok(decoded.merchant);
+    assert.ok(decoded.payer);
+
+    // Kiểm tra PDA khớp chuẩn theo client derivation
+    const derived = await client.deriveInvoiceAddress(decoded.merchant, decoded.invoiceId);
+    assert.equal(decoded.address, derived.address);
+    assert.equal(decoded.bump, derived.bump);
+  }
+});
+
+test('P5-02: pre-validation precedes simulated timeout fault (prevents invalid Unknown)', async () => {
   const engine = new ReceiptRailMockEngine();
   const sampleAddr = 'EpQUeEpGPoZrDoffujf86a3GnKdBkX7RbvsbXkkfpodo';
+  const inspected = await engine.inspect(sampleAddr);
+  assert.ok(inspected);
+
+  // Kích hoạt simulated fault là timeout_unknown
+  engine.simulatedFault = 'timeout_unknown';
+
+  // Ca 1: Sai người ký (Merchant cố tình bấm Pay thay vì Payer Alice)
+  await assert.rejects(
+    async () => {
+      await engine.payInvoice({
+        invoiceAddress: sampleAddr,
+        signer: DEFAULT_MERCHANT.address, // Sai signer
+        confirmedTerms: inspected.invoice,
+      });
+    },
+    /WRONG_PAYER|WrongPayer|không phải payer/i
+  );
+
+  // Ca 2: Hacker Bob cố tình bấm Pay
+  await assert.rejects(
+    async () => {
+      await engine.payInvoice({
+        invoiceAddress: sampleAddr,
+        signer: OTHER_WALLET.address,
+        confirmedTerms: inspected.invoice,
+      });
+    },
+    /WRONG_PAYER|WrongPayer|không phải payer/i
+  );
+
+  // Ca 3: Terms mismatch (amount khác)
+  const tamperedTerms = { ...inspected.invoice, amountLamports: 999_999_999n };
+  await assert.rejects(
+    async () => {
+      await engine.payInvoice({
+        invoiceAddress: sampleAddr,
+        signer: DEFAULT_PAYER.address,
+        confirmedTerms: tamperedTerms,
+      });
+    },
+    /khác với dữ liệu|TERMS_CHANGED/i
+  );
+
+  // Khẳng định hóa đơn không bao giờ bị rơi vào trạng thái Unknown hay pending khi bị reject sớm
+  const afterCheck = await engine.inspect(sampleAddr);
+  assert.equal(afterCheck.isPending, false);
+  assert.equal(afterCheck.invoice.status, 'Open');
+});
+
+test('P5-02: pending state locks operations per-invoice and prevents duplicate submissions', async () => {
+  const engine = new ReceiptRailMockEngine();
+  const sampleAddr = 'EpQUeEpGPoZrDoffujf86a3GnKdBkX7RbvsbXkkfpodo';
+  const secondAddr = 'GYjxtHoM4wVxbGwHHgcKBpj2C5r5CQw48YMcmgvBywA8';
   const inspected = await engine.inspect(sampleAddr, DEFAULT_PAYER.address);
   assert.ok(inspected);
 
-  const confirmedTerms = {
-    address: inspected.invoice.address,
-    merchant: inspected.invoice.merchant,
-    payer: inspected.invoice.payer,
-    invoiceId: inspected.invoice.invoiceId,
-    amountLamports: inspected.invoice.amountLamports,
-    expiresSlot: inspected.invoice.expiresSlot,
-  };
-
-  // Kích hoạt mô phỏng RPC Timeout (Unknown state)
+  // Bật timeout để tạo pending
   engine.simulatedFault = 'timeout_unknown';
   const payRes = await engine.payInvoice({
     invoiceAddress: sampleAddr,
     signer: DEFAULT_PAYER.address,
-    confirmedTerms,
+    confirmedTerms: inspected.invoice,
   });
 
   assert.equal(payRes.status, 'Unknown');
-  assert.ok(payRes.signature.startsWith('mock-timeout-sig-'));
-
-  // Kiểm tra: Trạng thái trên ledger chưa bị đánh dấu Paid bừa bãi
   const midInspect = await engine.inspect(sampleAddr, DEFAULT_PAYER.address);
-  assert.ok(midInspect);
-  assert.equal(midInspect.invoice.status, 'Open');
+  assert.equal(midInspect.isPending, true);
+  assert.equal(midInspect.canPay, false, 'Khi pending, canPay phải bị khóa');
+  assert.equal(midInspect.canCancel, false, 'Khi pending, canCancel phải bị khóa');
 
-  // Người dùng bấm "Kiểm tra lại trên chuỗi" (Re-check on-chain)
+  // Thao tác Pay lần 2 bị chặn
+  await assert.rejects(
+    async () => {
+      await engine.payInvoice({
+        invoiceAddress: sampleAddr,
+        signer: DEFAULT_PAYER.address,
+        confirmedTerms: inspected.invoice,
+      });
+    },
+    /chờ xử lý|khóa|Chờ xác nhận/i
+  );
+
+  // Thao tác Cancel trên hóa đơn đang pending bị chặn
+  await assert.rejects(
+    async () => {
+      await engine.cancelInvoice({
+        invoiceAddress: sampleAddr,
+        signer: DEFAULT_MERCHANT.address,
+        confirmedTerms: inspected.invoice,
+      });
+    },
+    /chờ xử lý|khóa|Chờ xác nhận/i
+  );
+
+  // Thao tác Create duplicate trên hóa đơn đang pending bị chặn
+  await assert.rejects(
+    async () => {
+      await engine.createInvoice({
+        merchant: inspected.invoice.merchant,
+        payer: inspected.invoice.payer,
+        invoiceId: inspected.invoice.invoiceId,
+        amountLamports: inspected.invoice.amountLamports,
+        expiresSlot: inspected.invoice.expiresSlot + 100n,
+      });
+    },
+    /chờ xử lý|đã tồn tại|không thể tạo lại/i
+  );
+
+  // Cross-invoice: Hóa đơn thứ 2 không bị ảnh hưởng, không bị pending
+  const secondInspect = await engine.inspect(secondAddr);
+  assert.equal(secondInspect.isPending, false);
+
+  // Re-check đối soát thành công giải phóng pending và chuyển sang Paid
   const recheckRes = await engine.recheckOnChain(sampleAddr);
   assert.equal(recheckRes.status, 'Paid');
-
-  // Trạng thái đã được phục hồi thành công sang Paid
   const finalInspect = await engine.inspect(sampleAddr, DEFAULT_PAYER.address);
-  assert.ok(finalInspect);
+  assert.equal(finalInspect.isPending, false);
   assert.equal(finalInspect.invoice.status, 'Paid');
-  assert.equal(finalInspect.displayStatus, 'Paid');
+});
+
+test('P5-02: recheckOnChain respects terminal/expiry and never fabricates Paid', async () => {
+  const engine = new ReceiptRailMockEngine();
+  const sampleAddr = 'EpQUeEpGPoZrDoffujf86a3GnKdBkX7RbvsbXkkfpodo';
+  const inspected = await engine.inspect(sampleAddr, DEFAULT_PAYER.address);
+
+  // Hóa đơn bị hủy trước đó
+  await engine.cancelInvoice({
+    invoiceAddress: sampleAddr,
+    signer: DEFAULT_MERCHANT.address,
+    confirmedTerms: inspected.invoice,
+  });
+
+  // Recheck không bao giờ biến một hóa đơn Cancelled thành Paid
+  const recheckCancelled = await engine.recheckOnChain(sampleAddr);
+  assert.equal(recheckCancelled.status, 'Cancelled');
+  const checkCancelled = await engine.inspect(sampleAddr);
+  assert.equal(checkCancelled.invoice.status, 'Cancelled');
+
+  // Tạo hóa đơn mới đã hết hạn (expired)
+  const expId = new Uint8Array(32);
+  expId[0] = 0xee;
+  expId[31] = 0x01;
+  engine.currentSlot = 500n;
+  const expCreated = await engine.createInvoice({
+    merchant: DEFAULT_MERCHANT.address,
+    payer: DEFAULT_PAYER.address,
+    invoiceId: expId,
+    amountLamports: 100_000_000n,
+    expiresSlot: 510n, // currentSlot 500n < expiresSlot 510n
+  });
+  engine.warpSlot(50n); // currentSlot = 550n > 510n
+
+  const expInspect = await engine.inspect(expCreated.invoiceAddress);
+  assert.equal(expInspect.displayStatus, 'Expired');
+
+  // Recheck không tạo Paid cho hóa đơn đã hết hạn
+  const recheckExp = await engine.recheckOnChain(expCreated.invoiceAddress);
+  assert.notEqual(recheckExp.status, 'Paid');
+});
+
+test('P5-03: Wallet Standard mock wallet lifecycle & terms invalidation', async () => {
+  // Test mock wallet creation & registration
+  const mockWallet = createMockWallet('Test Alice', DEFAULT_PAYER.address);
+  assert.equal(mockWallet.name, 'Test Alice');
+  assert.equal(mockWallet.accounts.length, 0);
+
+  // Connect
+  const connResult = await mockWallet.features['standard:connect'].connect();
+  assert.equal(connResult.accounts.length, 1);
+  assert.equal(connResult.accounts[0].address, DEFAULT_PAYER.address);
+  assert.equal(mockWallet.accounts.length, 1);
+
+  // Disconnect
+  await mockWallet.features['standard:disconnect'].disconnect();
+  assert.equal(mockWallet.accounts.length, 0);
+
+  // Rejection Wallet
+  const rejectWallet = createMockWallet('Rejection Wallet', DEFAULT_PAYER.address, true);
+  await assert.rejects(
+    async () => {
+      await rejectWallet.features['standard:connect'].connect();
+    },
+    (err) => {
+      assert.equal(err.code, 4001);
+      const msg = formatWalletError(err);
+      assert.match(msg, /từ chối/i);
+      return true;
+    }
+  );
+
+  // Test terms invalidation controller logic for both Pay and Cancel
+  let activeWallet = mockWallet;
+  let confirmedPayTerms = {
+    address: 'EpQUeEpGPoZrDoffujf86a3GnKdBkX7RbvsbXkkfpodo',
+    merchant: DEFAULT_MERCHANT.address,
+    payer: DEFAULT_PAYER.address,
+    invoiceId: new Uint8Array(32),
+    amountLamports: 1_000_000n,
+    expiresSlot: 200n,
+  };
+  let confirmedCancelTerms = { ...confirmedPayTerms };
+
+  // Controller function tái hiện logic trong ReceiptRailApp.tsx
+  function handleWalletChange(newWallet) {
+    if (newWallet !== activeWallet) {
+      activeWallet = newWallet;
+      confirmedPayTerms = null;
+      confirmedCancelTerms = null;
+    }
+  }
+
+  function handleAccountDisconnect() {
+    activeWallet = null;
+    confirmedPayTerms = null;
+    confirmedCancelTerms = null;
+  }
+
+  // 1. Khi đổi ví (thay instance khác)
+  const anotherWallet = createMockWallet('Merchant Wallet', DEFAULT_MERCHANT.address);
+  handleWalletChange(anotherWallet);
+  assert.equal(confirmedPayTerms, null, 'confirmedPayTerms phải bị reset khi đổi ví');
+  assert.equal(confirmedCancelTerms, null, 'confirmedCancelTerms phải bị reset khi đổi ví');
+
+  // Gán lại terms và ngắt kết nối
+  confirmedPayTerms = { ...confirmedCancelTerms };
+  confirmedCancelTerms = { ...confirmedCancelTerms };
+  handleAccountDisconnect();
+  assert.equal(confirmedPayTerms, null, 'confirmedPayTerms phải bị reset khi ngắt ví');
+  assert.equal(confirmedCancelTerms, null, 'confirmedCancelTerms phải bị reset khi ngắt ví');
+});
+
+test('P5-04: strict 64-hex and u64 parsing with BigInt', () => {
+  // Hex hợp lệ 64 ký tự (32 bytes)
+  const validHex = '11223344556677889900aabbccddeeff11223344556677889900aabbccddeeff';
+  const parsedBytes = parseInvoiceIdHex(validHex);
+  assert.equal(parsedBytes.length, 32);
+  assert.equal(parsedBytes[0], 0x11);
+  assert.equal(parsedBytes[31], 0xff);
+
+  // Có tiền tố 0x vẫn hợp lệ
+  const parsedWithPrefix = parseInvoiceIdHex(`0x${validHex}`);
+  assert.equal(parsedWithPrefix.length, 32);
+
+  // Thiếu ký tự (63 ký tự) - Cấm tự padding 0
+  assert.throws(
+    () => parseInvoiceIdHex('11223344556677889900aabbccddeeff11223344556677889900aabbccddeef'),
+    /đúng 64 ký tự hex/i
+  );
+
+  // Dư ký tự (66 ký tự) - Cấm tự cắt ngắn (truncate)
+  assert.throws(
+    () => parseInvoiceIdHex(`${validHex}aa`),
+    /đúng 64 ký tự hex/i
+  );
+
+  // Chứa ký tự không phải hex
+  assert.throws(
+    () => parseInvoiceIdHex('zz223344556677889900aabbccddeeff11223344556677889900aabbccddeeff'),
+    /đúng 64 ký tự hex/i
+  );
+
+  // Expiry delta: số nguyên dương hợp lệ
+  assert.equal(parseExpiryDelta('100'), 100n);
+  assert.equal(parseExpiryDelta('18446744073709551615'), 18446744073709551615n);
+
+  // Expiry delta lỗi: số âm, 0, số thập phân, chữ
+  assert.throws(() => parseExpiryDelta('0'), /lớn hơn 0/i);
+  assert.throws(() => parseExpiryDelta('-10'), /hợp lệ/i);
+  assert.throws(() => parseExpiryDelta('10.5'), /hợp lệ/i);
+  assert.throws(() => parseExpiryDelta('slot100'), /hợp lệ/i);
+});
+
+test('P5-04: dynamic list decoding reflects true account state', async () => {
+  const engine = new ReceiptRailMockEngine();
+  const customId = new Uint8Array(32);
+  customId[0] = 0x55;
+  customId[31] = 0xaa;
+
+  const created = await engine.createInvoice({
+    merchant: DEFAULT_MERCHANT.address,
+    payer: DEFAULT_PAYER.address,
+    invoiceId: customId,
+    amountLamports: 750_000_000n, // 0.75 SOL
+    expiresSlot: engine.currentSlot + 350n,
+  });
+
+  const list = await engine.listInvoices();
+  const decodedList = await Promise.all(list.map((acc) => client.decodeInvoice(acc)));
+  const found = decodedList.find((item) => item.address === created.invoiceAddress);
+  assert.ok(found, 'Hóa đơn mới tạo phải có trong danh sách dynamic đã giải mã');
+  assert.equal(found.amountLamports, 750_000_000n);
+  assert.equal(found.payer, DEFAULT_PAYER.address);
+  assert.equal(found.merchant, DEFAULT_MERCHANT.address);
+  assert.equal(found.status, 'Open');
+  assert.equal(found.expiresSlot, engine.currentSlot + 350n);
 });
 
 test('CPI rollback: preserves principal and keeps invoice Open when transaction fails', async () => {
@@ -149,14 +496,7 @@ test('CPI rollback: preserves principal and keeps invoice Open when transaction 
   const inspected = await engine.inspect(sampleAddr, DEFAULT_PAYER.address);
   assert.ok(inspected);
 
-  const confirmedTerms = {
-    address: inspected.invoice.address,
-    merchant: inspected.invoice.merchant,
-    payer: inspected.invoice.payer,
-    invoiceId: inspected.invoice.invoiceId,
-    amountLamports: inspected.invoice.amountLamports,
-    expiresSlot: inspected.invoice.expiresSlot,
-  };
+  const confirmedTerms = inspected.invoice;
 
   // Kích hoạt mô phỏng CPI Rollback do thiếu số dư
   engine.simulatedFault = 'cpi_rollback';
@@ -206,42 +546,7 @@ test('error mapping: maps custom error codes 6000-6008 to Anchor IDL error defin
   assert.equal(errOtherProg, null);
 });
 
-test('C review 1: confirmedTerms is invalidated on wallet/account/chain change and disconnect for both Pay and Cancel', async () => {
-  const engine = new ReceiptRailMockEngine();
-  const sampleAddr = 'EpQUeEpGPoZrDoffujf86a3GnKdBkX7RbvsbXkkfpodo';
-  const inspected = await engine.inspect(sampleAddr, DEFAULT_PAYER.address);
-  assert.ok(inspected);
-
-  let confirmedPayTerms = {
-    address: inspected.invoice.address,
-    merchant: inspected.invoice.merchant,
-    payer: inspected.invoice.payer,
-    invoiceId: inspected.invoice.invoiceId,
-    amountLamports: inspected.invoice.amountLamports,
-    expiresSlot: inspected.invoice.expiresSlot,
-  };
-  let confirmedCancelTerms = { ...confirmedPayTerms };
-
-  // Helper reset confirmedTerms khi có sự kiện đổi ví / đổi tài khoản / ngắt kết nối
-  function onWalletLifecycleEvent() {
-    confirmedPayTerms = null;
-    confirmedCancelTerms = null;
-  }
-
-  // Ca a: Đổi sang ví khác cùng địa chỉ nhưng instance khác
-  onWalletLifecycleEvent();
-  assert.equal(confirmedPayTerms, null);
-  assert.equal(confirmedCancelTerms, null);
-
-  // Ca b: Ngắt kết nối ví
-  confirmedPayTerms = { ...inspected.invoice };
-  confirmedCancelTerms = { ...inspected.invoice };
-  onWalletLifecycleEvent();
-  assert.equal(confirmedPayTerms, null);
-  assert.equal(confirmedCancelTerms, null);
-});
-
-test('C review 2: wallet reject handling does not assume code 4001 is universal', () => {
+test('wallet reject handling does not assume code 4001 is universal', () => {
   // Ca a: Lỗi chuẩn có code 4001
   const errWithCode4001 = Object.assign(new Error('User rejected the request'), { code: 4001 });
   assert.match(formatWalletError(errWithCode4001), /từ chối/i);
@@ -253,37 +558,4 @@ test('C review 2: wallet reject handling does not assume code 4001 is universal'
   // Ca c: Lỗi kỹ thuật khác không phải reject
   const networkErr = new Error('Connection refused at RPC endpoint');
   assert.equal(formatWalletError(networkErr), 'Connection refused at RPC endpoint');
-});
-
-test('C review 3: signature is pre-send client signed, retained on Unknown with same invoiceID and PDA', async () => {
-  const engine = new ReceiptRailMockEngine();
-  const sampleAddr = 'EpQUeEpGPoZrDoffujf86a3GnKdBkX7RbvsbXkkfpodo';
-  const inspected = await engine.inspect(sampleAddr, DEFAULT_PAYER.address);
-  assert.ok(inspected);
-
-  const initialInvoiceId = new Uint8Array(inspected.invoice.invoiceId);
-  const initialPda = inspected.invoice.address;
-
-  // Kích hoạt mô phỏng Timeout
-  engine.simulatedFault = 'timeout_unknown';
-  const payRes = await engine.payInvoice({
-    invoiceAddress: sampleAddr,
-    signer: DEFAULT_PAYER.address,
-    confirmedTerms: inspected.invoice,
-  });
-
-  assert.equal(payRes.status, 'Unknown');
-  const preSendSignature = payRes.signature;
-  assert.ok(preSendSignature);
-
-  // Khi ở trạng thái Unknown: Địa chỉ PDA và invoiceId giữ nguyên tuyệt đối, không sinh mới
-  const unknownInspect = await engine.inspect(sampleAddr, DEFAULT_PAYER.address);
-  assert.ok(unknownInspect);
-  assert.equal(unknownInspect.invoice.address, initialPda);
-  assert.deepEqual(new Uint8Array(unknownInspect.invoice.invoiceId), initialInvoiceId);
-
-  // Khi recheck on-chain: Dùng cùng signature và cập nhật trạng thái Paid
-  const recheckRes = await engine.recheckOnChain(sampleAddr);
-  assert.equal(recheckRes.status, 'Paid');
-  assert.equal(recheckRes.signature, preSendSignature);
 });

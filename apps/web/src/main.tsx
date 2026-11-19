@@ -1,10 +1,10 @@
 import { StrictMode, Suspense, lazy } from 'react';
 import { createRoot } from 'react-dom/client';
 import Dashboard from '../app/page';
+import ReceiptRailApp from './receiptrail/ReceiptRailApp';
 import './styles.css';
 
 const WalletLab = lazy(() => import('./WalletLab'));
-const ReceiptRailApp = lazy(() => import('./receiptrail/ReceiptRailApp'));
 
 const path = window.location.pathname.replace(/\/$/, '');
 const isLab = path === '/lab';
@@ -26,9 +26,7 @@ function App() {
     </header>
     <main id="main">
       {isReceiptRail ? (
-        <Suspense fallback={<p role="status">Đang tải ứng dụng ReceiptRail…</p>}>
-          <ReceiptRailApp />
-        </Suspense>
+        <ReceiptRailApp />
       ) : isLab ? (
         <Suspense fallback={<p role="status">Đang mở trang kết nối ví…</p>}>
           <WalletLab />

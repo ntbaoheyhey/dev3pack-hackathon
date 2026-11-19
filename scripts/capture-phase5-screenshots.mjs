@@ -45,7 +45,25 @@ server.listen(4173, '127.0.0.1', async () => {
   const targets = [
     {
       name: 'receiptrail-desktop-view.png',
-      url: 'http://127.0.0.1:4173/receiptrail/',
+      url: 'http://127.0.0.1:4173/receiptrail/?tab=view',
+      width: 1280,
+      height: 900,
+    },
+    {
+      name: 'receiptrail-desktop-create.png',
+      url: 'http://127.0.0.1:4173/receiptrail/?tab=create',
+      width: 1280,
+      height: 900,
+    },
+    {
+      name: 'receiptrail-desktop-list.png',
+      url: 'http://127.0.0.1:4173/receiptrail/?tab=list',
+      width: 1280,
+      height: 900,
+    },
+    {
+      name: 'receiptrail-desktop-demo165.png',
+      url: 'http://127.0.0.1:4173/receiptrail/?tab=demo165',
       width: 1280,
       height: 900,
     },
@@ -75,6 +93,8 @@ server.listen(4173, '127.0.0.1', async () => {
     },
   ];
 
+  let hasError = false;
+
   for (const t of targets) {
     const out = path.join(evidenceDir, t.name);
     console.log(`Taking screenshot ${t.name} (${t.width}x${t.height})...`);
@@ -87,16 +107,28 @@ server.listen(4173, '127.0.0.1', async () => {
         '--run-all-compositor-stages-before-draw',
         `--screenshot=${out}`,
         t.url,
-      ], { timeout: 10000 });
+      ], { timeout: 15000 });
+
+      if (!fs.existsSync(out)) {
+        throw new Error(`Output file ${out} was not created`);
+      }
       const stats = fs.statSync(out);
+      if (stats.size < 5000) {
+        throw new Error(`Output file ${out} is suspiciously small: ${stats.size} bytes`);
+      }
       console.log(`Saved ${t.name}: ${stats.size} bytes`);
     } catch (err) {
       console.error(`Failed ${t.name}:`, err.message);
+      hasError = true;
     }
   }
 
   server.close(() => {
-    console.log('All screenshots completed successfully.');
+    if (hasError) {
+      console.error('Screenshot capture failed for one or more targets.');
+      process.exit(1);
+    }
+    console.log('All screenshots completed successfully with content verified.');
     process.exit(0);
   });
 });

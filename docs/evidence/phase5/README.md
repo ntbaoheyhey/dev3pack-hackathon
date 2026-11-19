@@ -140,8 +140,110 @@ C đã có review trực tiếp trong `docs/tasks/A-queue.md` sau mốc note025;
 
 ---
 
-## 5. Giới hạn
+## 5. Giới hạn (Evidence r1 - T34)
 
 - Phạm vi T34 là giao diện cục bộ (Local Mock / Offline QA); chưa kết nối RPC Devnet thật và chưa gửi transaction on-chain thật.
 - Khóa tính năng phát sóng (Broadcast locked) nhằm đảm bảo an toàn tuyệt đối trước khi người dùng cho phép mở Phase 6.
 - Toàn bộ dependencies được khôi phục từ cache nội bộ; không cài đặt bất kỳ thư viện mới nào.
+
+---
+
+## 6. Bằng chứng Phase 5 r2 — Khắc phục 5 nhóm lỗi Implementation theo Review C (T35)
+
+- **Agent thực hiện**: Antigravity (trợ lý của Codex)
+- **Ngày**: 2026-11-19, múi giờ Asia/Ho_Chi_Minh
+- **Căn cứ**: `docs/reviews/receiptrail-phase5-r1.md` và nhiệm vụ T35 trong `docs/tasks/A-queue.md`.
+- **Phạm vi tuân thủ**: Sửa đổi trong phạm vi `apps/web/src/receiptrail/`, route/tests `apps/web/`, evidence và docs. Không mở lại T31–T33, không sửa program/Cargo/IDL/client C, không broadcast mạng thật.
+
+### 6.1. Chi tiết khắc phục theo 5 nhóm lỗi (P5-01 đến P5-05)
+
+| Nhóm | Lỗi ban đầu (C Review r1) | Khắc phục thực tế trong Code | Bằng chứng kiểm thử / Verification |
+| --- | --- | --- | --- |
+| **P5-01** · Terminal reset & Seeded PDA | Gọi `payInvoice` sang Paid rồi `createInvoice` cùng merchant+invoiceId làm reset về Open do ghi đè Map; Seeded invoice 2 bị `INVOICE_PDA_MISMATCH` do địa chỉ giả lập không khớp canonical PDA. | 1. `createInvoice` kiểm tra `accounts.has(pda.address)`; từ chối tạo lại trên mọi trạng thái (Open, Paid, Cancelled), bảo toàn terms, byte data và balance.<br>2. Toàn bộ seeded fixtures được sinh bằng `client.deriveInvoiceAddress`, tính đúng bump (254) và địa chỉ chuẩn (`GYjxtHoM4wVxbGwHHgcKBpj2C5r5CQw48YMcmgvBywA8`). | Test: `P5-01: duplicate create rejects across all states` & `P5-01: canonical PDA derivation and decode verification for all seeded fixtures`. 100% pass, giải mã sạch không lỗi mismatch. |
+| **P5-02** · Unknown không khóa & Pre-validation | Chọn timeout fault rồi Pay thì nút bấm vẫn enabled; engine return timeout trước khi validate builder khiến sai signer hay sai terms vẫn thành Unknown rồi re-check Paid. | 1. `payInvoice` gọi `client.payInvoiceInstruction` kiểm tra signer, roles và terms TRƯỚC KHI xét fault injection. Sai signer hoặc terms bị reject ngay lập tức, không vào Unknown.<br>2. Quản lý `pendingRecords` theo từng địa chỉ invoice; khi pending thì `inspect` trả về `isPending: true`, khóa chặt `canPay = false`, `canCancel = false`, chặn Pay/Cancel/Create lần 2.<br>3. `recheckOnChain` đọc kết quả submission thực tế, không bịa đặt trạng thái `Paid` cho hóa đơn đã hết hạn hoặc bị hủy. | Test: `P5-02: pre-validation precedes simulated timeout fault`, `P5-02: pending state locks operations per-invoice`, `P5-02: recheckOnChain respects terminal/expiry`. |
+| **P5-03** · Thiếu Wallet Standard | Dùng `MOCK_WALLETS` đơn giản bằng React state; không hỗ trợ discover/connect/disconnect/events; test cũ tự gán biến null thay vì gọi controller app. | 1. Tích hợp chuẩn `@solana/react-hooks` (`SolanaProvider`, `useWalletConnection`) và `@wallet-standard/app` (`getWallets().register(...)`).<br>2. Mặc định vào app là khách chưa kết nối ví (Guest viewer), vẫn xem được chi tiết hóa đơn.<br>3. Đăng ký các mock wallet chuẩn (Merchant, Payer, Ví khác, Ví từ chối).<br>4. Controller tự động hủy bỏ toàn bộ `confirmedTerms` và `cancelConfirmed` khi đổi ví, đổi tài khoản hoặc ngắt kết nối.<br>5. Xử lý từ chối linh hoạt cho cả mã 4001 lẫn chuỗi rejection từ extension. | Test: `P5-03: Wallet Standard mock wallet lifecycle & terms invalidation` & `wallet reject handling does not assume code 4001 is universal`. |
+| **P5-04** · Input/Terms/List | Hex invoice ID tự đệm 0 hoặc cắt ngắn; expiry dùng parseInt mất u64; Create thiếu explicit review snapshot; Cancel tự dựng terms; List hardcode giá trị. | 1. `parseInvoiceIdHex` kiểm tra nghiêm ngặt đúng 64 ký tự hex (32 bytes), cấm tự động đệm 0 hoặc truncate.<br>2. `parseExpiryDelta` kiểm tra số nguyên dương và chuyển thành `BigInt` an toàn.<br>3. Thêm bảng review snapshot trước khi Create và Cancel; thay đổi input/ví lập tức hủy xác nhận.<br>4. Bảng danh sách hóa đơn decode động toàn bộ raw accounts qua `client.decodeInvoice`. | Test: `P5-04: strict 64-hex and u64 parsing with BigInt` & `P5-04: dynamic list decoding reflects true account state`. |
+| **P5-05** · Copy & Browser evidence | Ảnh chụp chỉ thấy chữ Loading do chụp trước khi hydrate/lazy chunk; UI dùng copy rent như báo giá, Cancel nói giải phóng/đóng tài khoản, hứa an toàn tuyệt đối dù mock. | 1. Import `ReceiptRailApp` trực tiếp tại `main.tsx`, loại bỏ Suspense chunk fallback trong headless chrome.<br>2. Chụp toàn bộ 8 màn hình (desktop/mobile, view/create/list/demo165, home, lab), kiểm tra kích thước file (>70KB - >140KB) và thoát lỗi nếu chụp thất bại.<br>3. Điều chỉnh toàn bộ văn bản: Tiền cọc rent là mẫu thử nghiệm LiteSVM (1,802,640 lamports), Hủy hóa đơn đánh dấu `Cancelled` trên chuỗi chứ không đóng account (không hoàn cọc), gắn nhãn Mock rõ ràng, không hứa hẹn an toàn tuyệt đối. | Screenshots r2 được chụp và đối soát kích thước thực tế trong `scripts/capture-phase5-screenshots.mjs`. |
+
+### 6.2. Kết quả kiểm thử tự động r2 (`npm test`)
+
+Chạy toàn bộ 21 tests hành vi và unit tests (pass 21 / fail 0):
+```sh
+cd apps/web && npm test
+```
+
+```
+✔ base58 validates the decoded 32-byte address, including leading zero bytes (0.592084ms)
+✔ bad input makes no RPC request (0.445167ms)
+✔ wrong cluster stops before reading the program (13.189792ms)
+✔ successful observation uses fixed devnet RPC, confirmed reads, provenance and no writes (1.57825ms)
+✔ missing account and non-executable accounts are not successful deployment claims (0.984958ms)
+✔ malformed account, owner, slot and RPC envelopes fail closed (1.269292ms)
+✔ RPC errors, HTTP failure, throttling and network failure remain explicit (0.330917ms)
+✔ cancellation and timeout cannot yield a ready result (6.361958ms)
+✔ amount/u64: parses and formats SOL exactly with BigInt and rejects lossy inputs (0.781958ms)
+✔ roles & expiry: enforces payer/merchant roles and derives Expired from slot (8.519208ms)
+✔ P5-01: duplicate create rejects across all states (Open, Paid, Cancelled) without resetting ledger (10.793ms)
+✔ P5-01: canonical PDA derivation and decode verification for all seeded fixtures (2.513209ms)
+✔ P5-02: pre-validation precedes simulated timeout fault (prevents invalid Unknown) (2.325541ms)
+✔ P5-02: pending state locks operations per-invoice and prevents duplicate submissions (3.553167ms)
+✔ P5-02: recheckOnChain respects terminal/expiry and never fabricates Paid (4.39775ms)
+✔ P5-03: Wallet Standard mock wallet lifecycle & terms invalidation (0.337083ms)
+✔ P5-04: strict 64-hex and u64 parsing with BigInt (0.276833ms)
+✔ P5-04: dynamic list decoding reflects true account state (4.563084ms)
+✔ CPI rollback: preserves principal and keeps invoice Open when transaction fails (1.926416ms)
+✔ error mapping: maps custom error codes 6000-6008 to Anchor IDL error definitions (0.465667ms)
+✔ wallet reject handling does not assume code 4001 is universal (0.11175ms)
+ℹ tests 21
+ℹ suites 0
+ℹ pass 21
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 136.096417
+```
+
+### 6.3. Bằng chứng kiểm tra Client Artifact của Codex (`packages/receiptrail-client`)
+
+```sh
+cd packages/receiptrail-client && node --experimental-vm-modules --test tests/*.test.mjs
+```
+Kết quả: 23/23 tests pass 100%.
+
+### 6.4. Bằng chứng Build tĩnh & Kiểm tra kiểu TypeScript r2
+
+```sh
+cd apps/web && npm run build
+```
+Kết quả:
+```
+> clusterproof-web@0.1.0 build
+> tsc --noEmit && vite build && node scripts/static-routes.mjs
+
+vite v8.3.8 building client environment for production...
+✓ 181 modules transformed.
+dist/index.html                      0.64 kB │ gzip:   0.42 kB
+dist/assets/index-COH3neeq.css      13.73 kB │ gzip:   3.83 kB
+dist/assets/WalletLab-ywWn04O-.js    4.03 kB │ gzip:   1.65 kB
+dist/assets/index-B5ZBkeSd.js      489.49 kB │ gzip: 145.26 kB
+✓ built in 134ms
+```
+
+### 6.5. Bằng chứng Ảnh chụp Màn hình r2 (Đầy đủ nội dung, không bị Loading)
+
+Chạy script chụp headless Chrome:
+```sh
+cd /Users/bao/Documents/dev3pack-hackathon && node scripts/capture-phase5-screenshots.mjs
+```
+
+Danh sách ảnh và dung lượng thực tế (đối soát không chứa fallback loading):
+1. `receiptrail-desktop-view.png` (1280x900, 139,586 bytes): Giao diện xem chi tiết hóa đơn mặc định ở chế độ Khách (Guest viewer), hiển thị đầy đủ thông số hóa đơn, trạng thái cam kết mạng, nút copy địa chỉ đầy đủ.
+2. `receiptrail-desktop-create.png` (1280x900, 125,151 bytes): Màn hình tạo hóa đơn mới với khung review snapshot điều khoản, cọc rent mẫu và phí ước tính trước khi tạo.
+3. `receiptrail-desktop-list.png` (1280x900, 136,091 bytes): Bảng danh sách hóa đơn được giải mã động từ raw accounts trên ledger.
+4. `receiptrail-desktop-demo165.png` (1280x900, 142,193 bytes): Hướng dẫn kịch bản tương tác demo 165 giây.
+5. `receiptrail-mobile-view.png` (375x812, 72,225 bytes): Giao diện di động responsive, hiển thị chi tiết hóa đơn không bị tràn viền ngang.
+6. `receiptrail-desktop-home.png` (1280x800, 84,012 bytes): Trang chủ ClusterProof.
+7. `receiptrail-mobile-home.png` (375x812, 47,564 bytes): Trang chủ ClusterProof trên thiết bị di động.
+8. `receiptrail-desktop-lab.png` (1280x800, 24,265 bytes): Phòng thí nghiệm kết nối ví WalletLab (`/lab/`).
+

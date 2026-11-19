@@ -10,8 +10,10 @@
 | T6 | xong | Đã xong. |
 | T8 | bỏ | Tạm dừng triển khai web ClusterProof. |
 | T11 | đang làm | Crawl/review evidence cho ReceiptRail (T11). |
-| T12 | mới | Chưa làm. |
-| T13 | mới | Chưa làm. |
+| T12 | xong | Đã xong. |
+| T13 | xong | Đã xong. |
+| T34 | xong | Đã xong và nộp tại 4d2e48a. |
+| T35 | xong | Khắc phục 5 nhóm lỗi implementation theo review C (P5-01..05); 21/21 tests pass; 8 screenshots r2. |
 
 - Việc T11: Xong. Đã crawl và review evidence cho ReceiptRail (retry, timeout, idempotency) vào `docs/data/receiptrail-evidence.md`.
 
@@ -96,4 +98,10 @@
   - Vòng đời ví: Tự động hủy bỏ confirmed terms snapshot khi đổi ví, đổi tài khoản hoặc ngắt kết nối cho cả Pay và Cancel. Xử lý reject linh hoạt không phụ thuộc mã 4001. Khóa broadcast thật trong Phase 5 local.
   - Kịch bản demo 165s tương tác theo note 013.
   - Áp dụng đầy đủ 3 điểm review của Codex trong queue: (1) hủy terms cho cả Pay/Cancel trên mọi thay đổi/disconnect, (2) reject xử lý linh hoạt, (3) signature từ client ký trước gửi được giữ nguyên cùng ID/PDA khi Unknown.
-  - Kiểm thử: 17/17 tests pass (`tests/*.test.mjs`), build tĩnh Vite thành công (120ms), chụp đủ 5 ảnh màn hình desktop/mobile tại `docs/evidence/phase5/`. Báo cáo đầy đủ tại `docs/evidence/phase5/README.md`.
+- Việc T35: Xong. Đã khắc phục toàn diện 5 nhóm lỗi implementation theo Review C (`docs/reviews/receiptrail-phase5-r1.md`):
+  - **P5-01 (Chặn Duplicate Create & Sửa PDA Seeded)**: `createInvoice` kiểm tra `accounts.has(pda.address)` và từ chối tạo lại trên mọi trạng thái (Open, Paid, Cancelled), bảo toàn terms/balance. Khởi tạo toàn bộ fixtures với canonical PDA từ `client.deriveInvoiceAddress`, tính đúng bump 254 cho Seed 2 (`GYjxtHoM4wVxbGwHHgcKBpj2C5r5CQw48YMcmgvBywA8`), loại bỏ triệt để lỗi `INVOICE_PDA_MISMATCH`.
+  - **P5-02 (Pre-validation trước Timeout Fault & Pending Lock)**: `payInvoice` thực hiện validation thông qua `client.payInvoiceInstruction` TRƯỚC KHI xét timeout fault; sai signer hoặc sai terms bị reject ngay lập tức mà không rơi vào Unknown. Lưu trữ `pendingRecords` theo từng hóa đơn, hiển thị `isPending: true`, khóa nút `canPay = false` và `canCancel = false`, chặn thao tác trùng. `recheckOnChain` đọc kết quả submission thực, không bao giờ gán `Paid` nếu hóa đơn đã hết hạn hoặc bị hủy.
+  - **P5-03 (Chuẩn hóa Wallet Standard & Reset Terms)**: Chuyển đổi sang `@solana/react-hooks` (`SolanaProvider`, `useWalletConnection`) và `@wallet-standard/app` (`getWallets().register(...)`). Mặc định vào app là khách (Guest viewer). Hủy bỏ toàn bộ `confirmedTerms` và `cancelConfirmed` khi đổi ví, đổi tài khoản hoặc ngắt kết nối. Xử lý từ chối linh hoạt cho cả mã 4001 lẫn chuỗi rejection từ extension. Broadcast giao dịch mạng thật vẫn được khóa chặt.
+  - **P5-04 (Strict Hex/u64 & Dynamic Account List)**: `parseInvoiceIdHex` kiểm tra nghiêm ngặt 64 ký tự hex (32 bytes), cấm tự động đệm 0 hoặc cắt ngắn. `parseExpiryDelta` kiểm tra số nguyên dương và chuyển sang `BigInt`. Bổ sung review terms snapshot trước Create và Cancel. Bảng danh sách hóa đơn decode động toàn bộ tài khoản raw từ ledger qua `client.decodeInvoice`.
+  - **P5-05 (Sửa Copy & Ảnh Chụp Browser r2)**: Eager import `ReceiptRailApp` trong `main.tsx` để loại bỏ Suspense chunk fallback trong headless chrome. Sửa script `capture-phase5-screenshots.mjs` chụp 8 màn hình (desktop/mobile, view/create/list/demo165, home, lab), kiểm tra kích thước file (>70KB - >140KB) và phát hiện lỗi thoát không để exit 0 giả. Điều chỉnh copy: cọc rent là mẫu LiteSVM, Cancel đánh dấu Cancelled không đóng tài khoản/không hoàn cọc, gắn nhãn Mock rõ ràng.
+  - **Kiểm thử**: 21/21 tests pass trong `apps/web` (`npm test`), 23/23 tests pass trong `packages/receiptrail-client`, build tĩnh sạch (134ms), 8 ảnh bằng chứng r2 đã lưu trong `docs/evidence/phase5/`. Báo cáo chi tiết tại `docs/evidence/phase5/README.md`.

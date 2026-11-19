@@ -32,14 +32,21 @@ export interface InspectedInvoice {
   displayStatus: DisplayStatus;
   canPay: boolean;
   canCancel: boolean;
+  isPending: boolean;
   commitment: CommitmentLevel;
+}
+
+export interface PendingRecord {
+  signature: string;
+  confirmedTerms: InvoiceTerms;
+  submittedSlot: bigint;
+  targetStatus: 'Paid';
 }
 
 export type SimulatedFault =
   | 'none'
   | 'timeout_unknown'
   | 'cpi_rollback'
-  | 'duplicate_pay'
   | 'wrong_payer';
 
 export interface MockWalletAccount {

@@ -15,10 +15,11 @@ import type {
   SimulatedFault,
   MockWalletAccount,
   InvoiceTerms,
+  PendingRecord,
 } from './types';
 
 // Discriminator Anchor cố định cho struct Invoice: [51, 194, 250, 114, 6, 104, 18, 164]
-const INVOICE_DISCRIMINATOR = new Uint8Array([51, 194, 250, 114, 6, 104, 18, 164]);
+export const INVOICE_DISCRIMINATOR = new Uint8Array([51, 194, 250, 114, 6, 104, 18, 164]);
 
 export const DEFAULT_MERCHANT: MockWalletAccount = {
   name: 'Tiệm Cà phê SOL (Merchant)',
@@ -95,6 +96,28 @@ export function serializeInvoiceData(invoice: {
   return data;
 }
 
+export function parseInvoiceIdHex(hex: string): Uint8Array {
+  const clean = hex.trim().replace(/^0x/i, '');
+  if (!/^[0-9a-fA-F]{64}$/.test(clean)) {
+    throw new Error('Invoice ID phải đúng 64 ký tự hex (32 bytes). Không tự ý đệm 0 hay cắt ngắn.');
+  }
+  const bytes = new Uint8Array(32);
+  for (let i = 0; i < 32; i++) {
+    bytes[i] = parseInt(clean.substr(i * 2, 2), 16);
+  }
+  return bytes;
+}
+
+export function parseExpiryDelta(val: string): bigint {
+  const clean = val.trim();
+  if (!/^\d+$/.test(clean)) {
+    throw new Error('Số slot hết hạn phải là số nguyên dương hợp lệ.');
+  }
+  const delta = BigInt(clean);
+  if (delta <= 0n) throw new Error('Hạn slot phải lớn hơn 0.');
+  return delta;
+}
+
 export function formatWalletError(err: unknown): string {
   if (!err) return 'Lỗi ví không xác định';
   if (typeof err === 'object') {
@@ -110,23 +133,22 @@ export function formatWalletError(err: unknown): string {
 
 export class ReceiptRailMockEngine {
   private accounts = new Map<string, InvoiceAccountEnvelope>();
+  private pendingRecords = new Map<string, PendingRecord>();
   public currentSlot: bigint = 100n;
   public simulatedFault: SimulatedFault = 'none';
   public lastSignature: string | null = null;
-  public pendingUnknownAddress: string | null = null;
 
   constructor() {
     this.seedDefaultInvoices();
   }
 
   private seedDefaultInvoices() {
-    // Invoice 1: Hóa đơn Open tiêu chuẩn từ fixture
-    const invoiceId1 = new Uint8Array(32).fill(0x2a); // '***...'
-    const bump1 = 255;
+    // Invoice 1 (Open): id 32 bytes 0x2a -> PDA EpQUeEpGPoZrDoffujf86a3GnKdBkX7RbvsbXkkfpodo, bump 255
+    const invoiceId1 = new Uint8Array(32).fill(0x2a);
     const address1 = 'EpQUeEpGPoZrDoffujf86a3GnKdBkX7RbvsbXkkfpodo';
     const data1 = serializeInvoiceData({
       version: 1,
-      bump: bump1,
+      bump: 255,
       merchant: DEFAULT_MERCHANT.address,
       payer: DEFAULT_PAYER.address,
       invoiceId: invoiceId1,
@@ -142,13 +164,12 @@ export class ReceiptRailMockEngine {
       data: data1,
     });
 
-    // Invoice 2: Hóa đơn đã Paid tại slot 80
+    // Invoice 2 (Paid): id 32 bytes 0x2b -> PDA GYjxtHoM4wVxbGwHHgcKBpj2C5r5CQw48YMcmgvBywA8, bump 254 (derived canonical PDA)
     const invoiceId2 = new Uint8Array(32).fill(0x2b);
-    const bump2 = 254;
-    const address2 = '9a7xKx9n5sC1jP3qL7wR2tM4vN8bX6yZ1uE3dF5gH7jK';
+    const address2 = 'GYjxtHoM4wVxbGwHHgcKBpj2C5r5CQw48YMcmgvBywA8';
     const data2 = serializeInvoiceData({
       version: 1,
-      bump: bump2,
+      bump: 254,
       merchant: DEFAULT_MERCHANT.address,
       payer: DEFAULT_PAYER.address,
       invoiceId: invoiceId2,
@@ -162,6 +183,27 @@ export class ReceiptRailMockEngine {
       owner: PROGRAM_ADDRESS,
       executable: false,
       data: data2,
+    });
+
+    // Invoice 3 (Cancelled): id 32 bytes 0x2c -> PDA 5BWMrebjJNr2yANMqzXSwdFjErkxT24TBqDHYjLvEv66, bump 255 (derived canonical PDA)
+    const invoiceId3 = new Uint8Array(32).fill(0x2c);
+    const address3 = '5BWMrebjJNr2yANMqzXSwdFjErkxT24TBqDHYjLvEv66';
+    const data3 = serializeInvoiceData({
+      version: 1,
+      bump: 255,
+      merchant: DEFAULT_MERCHANT.address,
+      payer: DEFAULT_PAYER.address,
+      invoiceId: invoiceId3,
+      amountLamports: 500_000_000n, // 0.5 SOL
+      expiresSlot: 300n,
+      status: 'Cancelled',
+      paidSlot: 0n,
+    });
+    this.accounts.set(address3, {
+      address: address3,
+      owner: PROGRAM_ADDRESS,
+      executable: false,
+      data: data3,
     });
   }
 
@@ -185,6 +227,19 @@ export class ReceiptRailMockEngine {
     }));
   }
 
+  public isPending(addr: string): boolean {
+    return this.pendingRecords.has(addr);
+  }
+
+  public getPendingRecord(addr: string): PendingRecord | null {
+    const r = this.pendingRecords.get(addr);
+    return r ? { ...r } : null;
+  }
+
+  public getRawAccount(addr: string): InvoiceAccountEnvelope | undefined {
+    return this.accounts.get(addr);
+  }
+
   public async inspect(
     addr: string,
     walletAddress?: string
@@ -195,12 +250,15 @@ export class ReceiptRailMockEngine {
       walletAddress,
       observedSlot: this.currentSlot,
     });
+
+    const pending = this.pendingRecords.has(addr);
     return {
       invoice: res.invoice as InvoiceRecord,
       expiry: res.expiry,
       displayStatus: res.displayStatus,
-      canPay: res.canPay,
-      canCancel: res.canCancel,
+      canPay: pending ? false : res.canPay,
+      canCancel: pending ? false : res.canCancel,
+      isPending: pending,
       commitment: res.invoice.status === 'Paid' ? 'confirmed' : 'processed',
     };
   }
@@ -212,6 +270,16 @@ export class ReceiptRailMockEngine {
     amountLamports: bigint;
     expiresSlot: bigint;
   }): Promise<{ invoiceAddress: string; bump: number }> {
+    // P5-01: Kiểm tra chống Duplicate Create / Terminal Reset
+    const pda = await client.deriveInvoiceAddress(input.merchant, input.invoiceId);
+    if (this.accounts.has(pda.address)) {
+      const existing = this.accounts.get(pda.address)!;
+      const decoded = await client.decodeInvoice(existing);
+      throw new Error(
+        `Hóa đơn đã tồn tại tại địa chỉ ${pda.address} (Trạng thái: ${decoded.status}). Không thể tạo lại (chống reset trạng thái).`
+      );
+    }
+
     const result = await client.createInvoiceInstruction({
       ...input,
       currentSlot: this.currentSlot,
@@ -247,33 +315,14 @@ export class ReceiptRailMockEngine {
     const acc = await this.getAccount(input.invoiceAddress);
     if (!acc) throw new Error('Không tìm thấy tài khoản hóa đơn trên chuỗi');
 
-    // Kiểm tra mô phỏng sự cố (Fault Injection)
-    if (this.simulatedFault === 'timeout_unknown') {
-      const mockSig = 'mock-timeout-sig-' + Date.now().toString(36);
-      this.lastSignature = mockSig;
-      this.pendingUnknownAddress = input.invoiceAddress;
-      // Không đổi status ngay, đưa vào Unknown
-      return { signature: mockSig, status: 'Unknown' };
-    }
-
-    if (this.simulatedFault === 'cpi_rollback') {
-      // Bắt chước lỗi CPI thiếu tiền: transaction rollback, principal không đổi, chỉ mất phí
+    // P5-02: Khóa thao tác nếu hóa đơn này đang pending/unknown
+    if (this.pendingRecords.has(input.invoiceAddress)) {
       throw new Error(
-        'LỖI MÔ PHỎNG ROLLBACK: CPI Transfer thất bại do số dư không đủ. Giao dịch đã bị rollback toàn bộ, tiền gốc không bị trừ, chỉ mất phí giao dịch.'
+        'Giao dịch cho hóa đơn này đang ở trạng thái Chờ xác nhận (Pending/Unknown). Thao tác bị khóa cho đến khi đối soát lại.'
       );
     }
 
-    if (this.simulatedFault === 'wrong_payer') {
-      // Gọi builder với signer sai để chứng minh client/program chặn
-      await client.payInvoiceInstruction({
-        account: acc,
-        signer: OTHER_WALLET.address, // Ví sai
-        confirmedTerms: input.confirmedTerms,
-        currentSlot: this.currentSlot,
-      });
-    }
-
-    // Luồng thanh toán chuẩn
+    // P5-02: BẮT BUỘC validate với client builder TRƯỚC MỌI FAULT INJECTION
     await client.payInvoiceInstruction({
       account: acc,
       signer: input.signer,
@@ -281,7 +330,26 @@ export class ReceiptRailMockEngine {
       currentSlot: this.currentSlot,
     });
 
-    // Cập nhật trạng thái sang Paid
+    // Xử lý mô phỏng sự cố sau khi đã vượt qua validation hợp lệ
+    if (this.simulatedFault === 'timeout_unknown') {
+      const mockSig = 'mock-timeout-sig-' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
+      this.lastSignature = mockSig;
+      this.pendingRecords.set(input.invoiceAddress, {
+        signature: mockSig,
+        confirmedTerms: { ...input.confirmedTerms },
+        submittedSlot: this.currentSlot,
+        targetStatus: 'Paid',
+      });
+      return { signature: mockSig, status: 'Unknown' };
+    }
+
+    if (this.simulatedFault === 'cpi_rollback') {
+      throw new Error(
+        'LỖI MÔ PHỎNG ROLLBACK: CPI Transfer thất bại do số dư không đủ. Giao dịch đã bị rollback toàn bộ, tiền gốc không bị trừ, chỉ mất phí giao dịch.'
+      );
+    }
+
+    // Luồng thanh toán chuẩn thành công
     const decoded = await client.decodeInvoice(acc);
     const updatedData = serializeInvoiceData({
       version: 1,
@@ -302,7 +370,7 @@ export class ReceiptRailMockEngine {
       data: updatedData,
     });
 
-    const sig = 'mock-pay-sig-' + Math.random().toString(36).substring(2, 10);
+    const sig = 'mock-pay-sig-' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
     this.lastSignature = sig;
     return { signature: sig, status: 'Confirmed' };
   }
@@ -314,6 +382,11 @@ export class ReceiptRailMockEngine {
   }): Promise<{ signature: string }> {
     const acc = await this.getAccount(input.invoiceAddress);
     if (!acc) throw new Error('Không tìm thấy hóa đơn');
+
+    // Khóa thao tác nếu đang pending
+    if (this.pendingRecords.has(input.invoiceAddress)) {
+      throw new Error('Hóa đơn đang ở trạng thái Chờ xác nhận (Pending/Unknown). Thao tác hủy bị khóa.');
+    }
 
     await client.cancelInvoiceInstruction({
       account: acc,
@@ -341,7 +414,7 @@ export class ReceiptRailMockEngine {
       data: updatedData,
     });
 
-    const sig = 'mock-cancel-sig-' + Math.random().toString(36).substring(2, 10);
+    const sig = 'mock-cancel-sig-' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
     this.lastSignature = sig;
     return { signature: sig };
   }
@@ -349,36 +422,53 @@ export class ReceiptRailMockEngine {
   public async recheckOnChain(
     addr: string
   ): Promise<{ status: 'Paid' | 'Open' | 'Cancelled'; signature: string | null }> {
-    // Khi người dùng bấm kiểm tra lại on-chain sau timeout:
-    // Nếu trước đó đang ở pendingUnknown, mô phỏng việc transaction thực ra đã được cluster confirm
     const acc = await this.getAccount(addr);
-    if (!acc) throw new Error('Không tìm thấy hóa đơn');
+    if (!acc) throw new Error('Không tìm thấy hóa đơn trên chuỗi');
 
-    if (this.pendingUnknownAddress === addr) {
+    const pending = this.pendingRecords.get(addr);
+    if (!pending) {
       const decoded = await client.decodeInvoice(acc);
-      const updatedData = serializeInvoiceData({
-        version: 1,
-        bump: decoded.bump,
-        merchant: decoded.merchant,
-        payer: decoded.payer,
-        invoiceId: decoded.invoiceId,
-        amountLamports: decoded.amountLamports,
-        expiresSlot: decoded.expiresSlot,
-        status: 'Paid',
-        paidSlot: this.currentSlot,
-      });
-      this.accounts.set(addr, {
-        address: addr,
-        owner: PROGRAM_ADDRESS,
-        executable: false,
-        data: updatedData,
-      });
-      this.pendingUnknownAddress = null;
-      return { status: 'Paid', signature: this.lastSignature };
+      return { status: decoded.status, signature: this.lastSignature };
     }
 
     const decoded = await client.decodeInvoice(acc);
-    return { status: decoded.status, signature: this.lastSignature };
+
+    // P5-02: Kiểm tra nếu hóa đơn đã bị Cancel trước khi đối soát
+    if (decoded.status === 'Cancelled') {
+      this.pendingRecords.delete(addr);
+      throw new Error('Đối soát thất bại: Hóa đơn đã bị Cancel trước khi giao dịch được xác nhận.');
+    }
+
+    // P5-02: Kiểm tra nếu lúc gửi giao dịch đã quá hạn
+    if (pending.submittedSlot >= decoded.expiresSlot) {
+      this.pendingRecords.delete(addr);
+      throw new Error(
+        `Đối soát thất bại: Giao dịch được gửi tại slot ${pending.submittedSlot} đã vượt quá hạn slot ${decoded.expiresSlot}. Không thể thanh toán.`
+      );
+    }
+
+    // Thành công: chuyển sang Paid tại submittedSlot
+    const updatedData = serializeInvoiceData({
+      version: 1,
+      bump: decoded.bump,
+      merchant: decoded.merchant,
+      payer: decoded.payer,
+      invoiceId: decoded.invoiceId,
+      amountLamports: decoded.amountLamports,
+      expiresSlot: decoded.expiresSlot,
+      status: 'Paid',
+      paidSlot: pending.submittedSlot,
+    });
+
+    this.accounts.set(addr, {
+      address: addr,
+      owner: PROGRAM_ADDRESS,
+      executable: false,
+      data: updatedData,
+    });
+
+    this.pendingRecords.delete(addr);
+    return { status: 'Paid', signature: pending.signature };
   }
 
   public warpSlot(delta: bigint) {
