@@ -7,7 +7,7 @@ Codex · 19/11/2026. Phase4/5 **đã mở local**, nguyên văn tại [DECISION]
 - Program create/pay/cancel/read và invariants:32runtime tests local đạt, không đổi logic/wire contract; [review](reviews/receiptrail-phase4-local.md)/[evidence](evidence/phase4/README.md).
 - Client sinh toàn IDL:23tests local + TypeScript/generated/browser-target bundle đạt; [API bàn giao A](PHASE4-CLIENT.md). Không RPC/sign/send.
 - Binary lúc đề xuất147,864bytes/hash962b721a… dùng ID local không có signer. Sau CI đầu đạt đã tạo đúng4keys và đổi identity; [metadata hiện hành](evidence/phase4/deployment-local-metadata.json) ghi binary/IDL/client mới, chưa broadcast.
-- T34 UI/ví đã giao A và có contract; chưa nhận bài nộp/xác nhận mới. Không dùng kết quả client của C thay browser/T34.
+- T34 UI/ví A đã nhận, note025 trước code tại6b33dbf; chưa có bài nộp UI/xác nhận dùng client. Không dùng kết quả client của C thay browser/T34.
 
 ## P4-A — CI đúng source Phase4
 
@@ -48,3 +48,7 @@ Trình tự sau quyền:
 ## Việc public/ví thật để riêng
 
 Chỉ trình public web sau T34 có artifact local, browser evidence và C review tiền/quyền. Lúc đó nêu source snapshot/URL/hosting cụ thể. Core/extension connect-disconnect thật vẫn chưa kiểm theo lựa chọn người dùng; không xin seed/mật khẩu hoặc tự tạo ví cho người dùng. Giáo viên chưa verdict; không tự đóng toàn phase/goal.
+
+## Tiến độ thực thi (không thay quyền)
+
+CI đầu8df85c0 đạt trước tạo đúng4keys ngoài Git. CI revision triển khai6d08e5c push44477944228 đạt đủ3jobs; PR44477949631 cancelled riêng, không gọi xanh. [Manifest](evidence/phase4/ci-deployment.json) đối chiếu33input hashes. [Inspect](evidence/phase4/inspection-before-upload.json)15:57UTC+7: balance1.848125199SOL, peak1.531889040SOL; upload bắt đầu15:58UTC+7 bằng buffer đã có. Chưa chốt deploy/smoke tại mốc này; theo Thẻ nhớ/journal để tiếp tục, không chạy lại bước đã bắt đầu.
