@@ -1,5 +1,17 @@
 # Quyết định sản phẩm — ReceiptRail
 
+## Người dùng mở Phase 4 và Phase 5 — 19/11/2026
+
+> Tôi duyệt mở Phase 4 ReceiptRail theo docs/NEXT.md, và mở luôn Phase 5 (frontend + ví) chạy song song theo docs/ROADMAP.md. Ghi nguyên văn câu này vào DECISION.md. Phạm vi: code/test local bằng toolchain/cache hiện có. Chưa cho phép deploy ReceiptRail, public web, cài thêm hay merge PR7, mấy việc đó trình riêng khi tới lúc. Bật lại Automation 15 phút (đang PAUSED) rồi kiểm tra là nó ACTIVE. Giao ngay việc Phase 5 cho Antigravity trong docs/tasks/A-queue.md (học trước những gì cần, rồi làm UI ví/thanh toán). Chạy liên tục, chỉ dừng khi cần tôi quyết định.
+
+Nguồn: tin trực tiếp mới nhất trong chat, [record](../evidence/phase4/user-approval-2026-11-19.json). **Giờ log bắt đầu turn: 2026-11-19T13:25:47+07:00 (Asia/Ho_Chi_Minh, UTC+7)**; read_thread chỉ trả giờ turn với độ phân giải giây, không có timestamp riêng của message. Người dùng không tự nêu giờ quyết định; không gán giờ ghi hồ sơ thay giờ người dùng. C ghi hồ sơ lúc 2026-11-19T13:30:16+07:00. Lượt trước cùng nội dung bị ngắt; dùng lời duyệt được gửi lại này làm nguồn hiện hành.
+
+**Quyền hiện hành:** mở Phase4 ReceiptRail và Phase5 frontend + ví song song, code/test local bằng toolchain/cache đã có. Không hỏi lại cổng mở hai phase. Chưa cho phép deploy ReceiptRail, public/update web, cài thêm hoặc merge PR7; trình phương án riêng khi cần. Dùng `[skip ci]` cho các commit/merge trong lượt local này, không lấy quyền P3-A cũ để tự mở lượt cài/CI mới ngoài phạm vi câu này. Không tạo signer triển khai hoặc giao dịch devnet từ quyền local.
+
+Automation15phút đã được bật lại bằng action của app và đọc lại **ACTIVE**, đúng chat/cấu hình cũ; [bằng chứng](../evidence/phase4/automation-active-2026-11-19.json). Đây là kết quả thao tác của C, không phải lời duyệt mới. T31/T32/T33 vẫn đóng; D01–D03 là nợ tài liệu, không vòng sửa bổ sung. T34 Phase5 là công việc triển khai mới theo lời duyệt này.
+
+Các dòng “Phase4 chưa duyệt/chưa mở” trong hồ sơ ngày18/11 bên dưới là trạng thái lịch sử, đã được lời duyệt19/11 thay thế. Các cổng thực thi (test, deploy/public, review/giáo viên) vẫn phải có bằng chứng riêng; mở phase không có nghĩa đã hoàn tất phase.
+
 ## Chỉ đạo mới: một lượt cuối và thực hiện P3-B — 18/11/2026
 
 > Dừng vòng review T31/T32/T33. Cho A đúng 1 lượt cuối, sau đó nhận phần đạt, ghi phần còn thiếu vào "nợ tài liệu" và đóng task. Không mở thêm vòng sửa bổ sung. Tôi đã chuyển SOL devnet vào GQRoDMoWFV2nhgwm3bZGvSCC1LSa2wRkLeeJg8NhbFM2: kiểm tra số dư rồi làm P3-B (deploy hello, trần 1.5 SOL) theo PHASE3-PLAN. Xong thì báo tôi để duyệt Phase 4.

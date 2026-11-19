@@ -393,3 +393,5 @@ Các mô tả dưới đây là sự kiện ở Taskbar Hero, không phải hàn
 2026-11-18T22:32:38+07:00 · Codex · P3-B kiểm đủ137tx finalized, counter1/bytecode/authority đúng; debit0.651874801SOL=accounts+fees0.000695000SOL, dưới trần1.5SOL. Finalizer r2 resume read-only sau429, không gửi thêm; cập nhật report/PHASE3-PLAN/ROADMAP/README/NEXT/HANDOFF/notes003-022/mục lục và trạng thái đóng A. Source snapshots byte-identical; không runtime suite/CI mới, cài/public/ReceiptRail deploy hoặc mở Phase4.
 
 2026-11-18T22:44:35+07:00 · Codex · Checkpoint2fbc987 đã push; cập nhật PR7 title/body theo ReceiptRail Phase2/P3-A/P3-B và một lượt cuối A. Read-back đúng body/head/work→main/open/unmerged; lưu snapshot trước commit metadata, gỡ việc chốt khỏi Còn lại. HANDOFF cần người dùng duyệt Phase4; ví thật/giáo viên giữ giới hạn, không mở phase hoặc review mới.
+
+2026-11-19T13:30:16+07:00 · Codex · Ghi nguyên văn quyền Phase4/5 local từ tin trực tiếp/log13:25:47UTC+7; bật Automation bằng app và đọc lại ACTIVE. Pull0a08395, giao T34 học/UI/ví cho A, giữ chỗ notes024/025; cập nhật DECISION/AGENTS/ROADMAP/NEXT/Thẻ nhớ/note022. Không cài/deploy/public/mergePR7 hoặc mở lại T31–T33.

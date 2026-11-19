@@ -160,7 +160,7 @@ Chưa kiểm: frontend/client browser, RPC timeout/reorg/retry thật, Wallet St
 
 C sở hữu `programs/`, scripts build, Cargo/IDL/core/docs quyết định. A sở hữu file kết quả được giao, UX/frontend khi scope mở. C không sửa A-done/HANDOFF A; A không sửa queue/core. Fetch/pull nhánhwork trước tích hợp; commit nhỏ, không force-push/merge PR7. File chung giữ cả phần có nguồn; conflict giải quyết và đi tiếp. C review thay đổi tiền/quyền; không lấy “A nói xong” thay test hoặc câu người dùng.
 
-**Bước hiện tại:** lời duyệt “duyệt phase 2” đã được ghi tại DECISION, không hỏi lại. T31/T32/T33 đã đóng với nợ tài liệu; không mở thêm vòng sửa. Theo [NEXT](NEXT.md) để chốt Phase3 và trình duyệt Phase4. Chưa có verdict giáo viên hoặc quyền mở Phase4. Giữ toolchain/web/lab ClusterProof; mọi cài thêm/tạo ví-keypair triển khai/deploy/public mới hỏi trước.
+**Bước hiện tại (19/11):** người dùng đã mở Phase4 và Phase5 song song, code/test local bằng cache; nguyên văn/giờ log13:25:47UTC+7 tại DECISION. C làm program/client, A nhận T34 UI/ví. T31/T32/T33 vẫn đóng với nợ tài liệu; không mở vòng sửa report. Chưa verdict giáo viên; mọi cài thêm/tạo signer triển khai/deploy/public/mergePR7 trình riêng. Các mục “dự kiến/sau duyệt” ở trên mô tả thiết kế Phase2; quyền mở local đã có, không phải bằng chứng tính năng hoàn tất.
 
 ## 10. Nguồn và thay đổi
 

@@ -56,6 +56,8 @@ Mọi lần dừng sai được ghi ở [`docs/STOP-CAUSES.md`](docs/STOP-CAUSES
 
 10. **Chưa có quyền cài thêm thì không kích hoạt CI tự cài.** Khi chưa có quyền, dùng [skip ci] ở mọi checkpoint **và commit merge**; nếu cần merge: git merge --no-edit -m "chore: sync work [skip ci]" origin/work. Giữ job guard false cho tới câu đồng ý đúng phạm vi được lưu trong DECISION và patch đã review. P3-A đã được đồng ý lúc log10:13:11.851 ngày18/11/2026 UTC+7: C được mở đúng ba jobs/pins và tạo run bằng commit không có skip marker; checkpoint tài liệu vẫn dùng [skip ci] để tránh chạy thừa. Không mở thêm phạm vi cài/deploy từ quyền này. Skipped/blocked không phải CI xanh; reminder không mở quyền.
 
+11. **Quyền mới 19/11:** người dùng đã mở Phase4 ReceiptRail và Phase5 frontend/ví song song; nguyên văn và giờ log13:25:47 UTC+7 tại DECISION. C làm program/client, giao A UI/ví qua queue. Phạm vi hiện tại chỉ code/test local bằng toolchain/cache đã có; chưa deploy ReceiptRail, public/update web, cài thêm hay mergePR7. Không hỏi mở phase lại. Commit/merge dùng `[skip ci]` trong lượt local; cổng cần quyền mới trình riêng khi tới lúc.
+
 ## Chống quên context
 
 Context có thể bị compact bất cứ lúc nào. Thứ gì không nằm trong repo thì coi như sẽ quên.

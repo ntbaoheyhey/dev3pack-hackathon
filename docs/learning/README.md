@@ -56,6 +56,9 @@ Tiến độ và bước tiếp tục sau compact nằm trong [docs/HANDOFF.md](
 
 | [023 — ReceiptRail Phase2 và spike Anchor local](023-receiptrail-phase2-spike.md) | Account/PDA,payment atomicity,build offline và LiteSVM | Codex — 19runtime/IDL local đạt,F4 D2; T32/T33 đã đóng sau lượt cuối7857e9b, nhận phần đạt/nợ D02–D03; không mở vòng sửa, chưa verdict giáo viên |
 
+| 024 — ReceiptRail Phase4: hardening, runtime và client từ IDL | Codex giữ chỗ `024-receiptrail-program-client.md` trước code | đang học; chưa có note/code mới |
+| 025 — ReceiptRail Phase5: frontend và ví | Antigravity giữ chỗ `025-receiptrail-frontend-wallet.md` qua T34 | mới; viết note trước code |
+
 ## Bài học / lỗi đã gặp
 
 Đã chọn nhầm workspace khi bắt đầu nghiên cứu. Trước task tiếp theo, đối chiếu đường dẫn, remote, AGENTS.md và mục lục. Quyết định cuối cùng của người dùng là **giữ nguyên Taskbar Hero**, không chuyển nhánh, stash, revert, xóa hoặc reset. Việc chuyển tài liệu đã hoàn tất; nhánh `codex/solana-learning-notes` ở nguồn được giữ làm bản lưu. Đã đối chiếu đủ phần Antigravity: 005, 006, 008, 009, 012, 013, 014 và các cập nhật README/DEVLOG đều có trong bản chuyển `f9052dc`. Lần chuyển không cài công cụ hoặc chạy lại lab. REVIEW giữ snapshot nguồn dưới nhãn lịch sử và bổ sung kết quả sửa hiện hành; không trộn số lượng file/link hoặc bằng chứng giữa các lần kiểm tra.

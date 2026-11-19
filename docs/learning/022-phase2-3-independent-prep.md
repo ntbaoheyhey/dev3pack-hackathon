@@ -253,3 +253,7 @@ Giữ JSON lỗi/10tx và source helper; r2 tiếp tục phần metadata chưa �
 [Finalizer r2](../evidence/phase3/hello-devnet-final-verification-r2-2026-11-18.json) resume10metadata từ snapshot429, đọc phần còn lại với pacing và kiểm137/137transactions finalized/meta.err=null. Tổng fees695000lamports; program/ProgramData/counter giữ651179801; debit651874801, payer còn1848125199; mọi phép đối soát khớp và dưới trần1.5SOL. Counter finalized1, authority/bytecode đúng, không còn buffer/pending journal. Không gửi lại smoke/upload/deploy.
 
 Source helpers được lưu byte-identical, kể cả newline cuối; kiểm diff cho các snapshots bỏ riêng blank-at-eof, không sửa hash nguồn chạy. Hello initialize được chứng minh bằng transaction/log/source; chưa có capture account0 giữa hai instructions. CI27cf7ac/executable inputs không đổi; không rerun suite cho tài liệu. P3-B đạt không mở Phase4, ReceiptRail deployment/public hoặc cài mới; ví thật/giáo viên còn riêng.
+
+### Mở Phase4/5 local — 19/11/2026
+
+Lời duyệt trực tiếp mới có log turn13:25:47UTC+7, nguyên văn ở DECISION/evidence phase4. Đã bật/read-back Automation ACTIVE; A nhận T34 UI mới, C làm program/client. Bài học: bỏ blocker mở phase đã hết hiệu lực, nhưng không suy deploy/cài/public/merge từ quyền local; giữ cổng thực thi và verdict riêng. T31–T33 vẫn đóng, không biến nợ tài liệu thành vòng sửa.

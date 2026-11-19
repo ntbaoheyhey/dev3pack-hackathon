@@ -1,12 +1,36 @@
-# Hàng đợi Antigravity — T31/T32/T33 đã đóng
+# Hàng đợi Antigravity — Phase 5 ReceiptRail local
 
-**Chủ file: Codex. Trạng thái: xong — không còn việc mới trong queue.**
+**Chủ file: Codex. T34: mới.** Người dùng đã mở Phase4 và Phase5 song song; [nguyên văn/quyền](../ideas/DECISION.md). Fetch/pull `work`, đọc Thẻ nhớ/AGENTS/ROADMAP và note liên quan trước làm. **Bắt đầu T34 ngay; không chờ C hoàn thiện program/client.** C làm Phase4 song song.
 
-Đã nhận đúng một lượt cuối gộp tại `7857e9b` (commit A lúc22:10:31 ngày18/11/2026 UTC+7), sau queue `7137ec0`; A-done ghi “Việc T32, T31, T33: LƯỢT CUỐI — đã nộp (Final)”. C đã đọc ba report, nhận phần đạt, chuyển phần thiếu sang [nợ tài liệu](../DOCUMENTATION-DEBT.md), đóng **T31, T32, T33**.
+## T34 — Học rồi triển khai UI ví/thanh toán ReceiptRail
 
-- [Snapshot nhận cuối](../evidence/phase2/receiptrail-final-pass-2026-11-18.json) lưu commit/blobs/hashes và phạm vi đối chiếu.
-- [Yêu cầu lượt cuối](../archive/A-queue-final-pass-2026-11-18.md) là lịch sử.
-- **Không mở vòng sửa, không nộp lại, không tạo task bổ sung cho các khoản nợ.** Không quay lại queue/review cũ.
-- Giữ ba report/A-done/HANDOFF A theo đúng bản đã nộp. Không tự cài, tạo ví/keypair, deploy/public hoặc mở Phase4–6.
+### Mục tiêu và phạm vi
 
-C tiếp tục P3-B hello trong quyền đã có và trình người dùng duyệt Phase4; nhận tài liệu không tự là verdict giáo viên hoặc duyệt phase mới.
+Làm các màn hình ReceiptRail của [IDEA](../IDEA.md)/[ARCHITECTURE](../ARCHITECTURE.md) với mock adapter có nhãn rõ, đi được demo165giây trên localhost. Tích hợp chọn/kết nối/ngắt Wallet Standard bằng dependencies đã có, kiểm bằng mock wallet; chưa gửi giao dịch thật. Giữ trang ClusterProof và `/lab/` hiện có; thêm route local `/receiptrail/`. Không đổi hosting/public site.
+
+### Học trước code
+
+- Đọc notes005/007/013/023, [IDL](../idl/receiptrail.json) và ARCHITECTURE mục3–8; report UX cũ là tài liệu tham khảo có nợ D03, không lấy câu sai làm contract.
+- Kiểm phiên bản/source cache của React/Vite, @solana/client/react-hooks và Wallet Standard hiện có. Không npm install/npx/tải browser hoặc dependency. Nếu cache thiếu, ghi tên/version/lệnh cần và làm phần độc lập tiếp.
+- C đã giữ chỗ **note025**: `docs/learning/025-receiptrail-frontend-wallet.md`. Viết học trước code: mock/chain boundary, state khác commitment, amount bigint/decimal, wallet lifecycle/no-wallet/reject/account change, Unknown recovery và kiểm browser. Dẫn docs/source chính thức có version; cập nhật mục lục và DEVLOG.
+
+### Sản phẩm triển khai
+
+- A sở hữu `apps/web/src/receiptrail/`, route/wiring/CSS/tests cần thiết của `apps/web/`, note025 và `docs/evidence/phase5/`; không sửa programs/Cargo/IDL/client C/queue/DECISION/HANDOFF C.
+- Merchant form: payer, SOL tối đa9 chữ số thập phân, expiry slot; review terms + rent + fee trước thao tác; cùng invoiceID/PDA cho recovery, không tự tạo ID mới khi timeout.
+- Invoice/receipt: đầy đủ merchant/payer/amount/expiry/address; Open/Paid/Cancelled, Expired là Open đã quá slot. Commitment hiển thị riêng. Người xem không ví vẫn đọc; đúng payer mới Pay, merchant mới Cancel; merchant được Cancel Open đã expired, Paid không Pay/Cancel.
+- Pending/Unknown: giữ invoice/signature nếu có, nút kiểm tra lại; không tự ký/gửi lại hoặc coi timeout là thất bại. Mock fault-injection có nhãn, rollback/principal/fee tách riêng; không trình mock là devnet thật.
+- Wallet: tái dùng Wallet Standard được cài; connect/disconnect, no-wallet, reject, account change làm mất terms đã xác nhận. Không tự tạo/import ví, không xin seed/mật khẩu; khóa broadcast thật trong chế độ Phase5 local.
+- Adapter có interface riêng để C nối client sinh từ IDL ở Phase4; không tự hard-code layout/discriminator/errors theo trí nhớ. Có thể dùng fixture typed theo contract hiện hành, không chờ client C.
+- Responsive mobile/desktop, bàn phím/label/focus/status dễ đọc; giữ full address/copy, tránh lộ dữ liệu thử như tài sản thật.
+
+### Kiểm và tiêu chí nhận
+
+1. Chạy test/build bằng cache (`npm test`, `npm run build` nếu scripts hiện có); không cài thêm. Test hành vi: amount/u64, vai/expiry, rejected connect/sign, account switch, pending/Unknown→read/Paid, không auto-resend.
+2. Chạy browser localhost, chụp đủ màn hình chính ở mobile/desktop; ghi URL, viewport, bước, expected/actual. Demo165giây là kịch bản/quay thử mock có nhãn; chưa public hoặc tuyên bố devnet/payment thật.
+3. Ghi kết quả/commit/lệnh/test/log/ảnh/giới hạn vào `docs/evidence/phase5/README.md` và A-done; cập nhật HANDOFF A. Không tự đóng phase hoặc sửa core nếu thấy lỗi, ghi finding cụ thể cho C.
+4. Push mốc note trước code, rồi UI/test sau mỗi bước lớn; mọi commit/merge dùng `[skip ci]`. Thiếu quyền public/deploy/install ghi rõ, không tự vượt.
+
+## Đã đóng — giữ nguyên
+
+T31/T32/T33 đóng sau đúng lượt cuối `7857e9b`; [nợ D01–D03](../DOCUMENTATION-DEBT.md). Không mở vòng sửa/nộp lại/task bổ sung cho ba report cũ. [Queue trước Phase5](../archive/A-queue-closed-before-phase5-2026-11-19.md) là lịch sử. T34 là triển khai mới đã được người dùng yêu cầu, không sửa ba report cũ để trả nợ.
