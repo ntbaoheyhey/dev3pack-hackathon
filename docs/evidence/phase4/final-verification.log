@@ -1,0 +1,2 @@
+{"verified":160,"total":162}
+{"status":"P4_B_VERIFIED_FINALIZED_WITHIN_CAP","transactions":162,"accounting":{"initialPayerLamports":1848125199,"finalPayerLamports":1087424119,"totalFeesLamports":840000,"totalHeldInAccountsLamports":759861080,"totalPayerDebitLamports":760701080,"summedTransactionPayerDebitsLamports":760701080,"remainingUnderCapLamports":1039298920,"unexpectedTransactions":0}}

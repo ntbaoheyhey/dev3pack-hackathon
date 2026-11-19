@@ -106,3 +106,9 @@ Recovery inspect16:20UTC+7 đạt: bốn tx/live finalized, fee payer history đ
 ### CI recovery đã đạt — 2026-11-19T16:39:52+07:00
 
 Push44495583542 và PR44495594074 tại e9a1603 đều completed/success, đủ anchor-lab/research/web. Thu logs thật:32ReceiptRail+6hello runtime,23ReceiptRail client+7deployment guards+7recovery,8hello client,17web,16research. Manifest ci-smoke-recovery.json đối chiếu36inputs với Git blob/worktree; binary495e47… giữ nguyên. CI web ở revision này chỉ17tests, không gán cho T35/21tests của revision69e458a. Gate cho đúng Cancel còn thiếu; chưa ký/gửi tại mốc ghi này.
+
+### P4-B đã đối soát đầy đủ — 2026-11-19T16:43:17+07:00
+
+P4-B hoàn tất lúc16:41:01UTC+7 ngày19/11:162tx finalized (156upload+1deploy+5smoke), Paid/Cancelled đúng terms; duplicate6004 chỉ simulation/no-transfer. Debit760701080lamports=759861080giữ trong accounts+840000phí, dưới cap1800000000; balance1087424119, không activity ngoài dự kiến. Cancel recovery chỉ1send/signature rV9H…sHhW, fee10000/CU4346; bytecode/authority giữ nguyên. CI recovery e9a1603 push/PR đều3jobs đạt,36inputs đã đối chiếu trước gửi. Không còn bước CLI gửi giao dịch; không chạy lại helper hoặc deploy.
+
+CU mạng: create1=10275, pay=6608, create2=8775, cancel=4346; khác VM và không phải dự báo cho mọi transaction. Cùng invoice đã Paid bị duplicate simulation từ chối, chưa phát giao dịch lỗi. Không coi mock UI/CI thành proof ví extension hoặc verified source build.
