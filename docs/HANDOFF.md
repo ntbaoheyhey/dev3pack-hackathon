@@ -26,4 +26,4 @@
 
 ## Bị chặn
 
-Đã gửi ba câu hỏi một lượt; chưa có câu trả lời. Phần độc lập theo Prompt04 đã hoàn tất: local source/artifact/browser/video, T38/T39, notes/review/security/README/kịch bản/sổtay/nợ tài liệu, PR description và push. Không công việc phụ thuộc quyền nào được chạy trong lúc chờ. Automation tiếp tục ACTIVE theo yêu cầu người dùng; lần nhắc chỉ đối chiếu có trả lời hoặc thay đổi mới, không lặp lại câu hỏi hay mở vòng report. Goal vẫn active, chưa hoàn thành; đây là lượt đầu ghi blocker quyết định này.
+Đã gửi ba câu hỏi một lượt; chưa có câu trả lời. Phần độc lập theo Prompt04 đã hoàn tất: local source/artifact/browser/video, T38/T39, notes/review/security/README/kịch bản/sổtay/nợ tài liệu, PR description và push. Không công việc phụ thuộc quyền nào được chạy trong lúc chờ. Automation tiếp tục ACTIVE theo yêu cầu người dùng; lần nhắc chỉ đối chiếu có trả lời hoặc thay đổi mới, không lặp lại câu hỏi hay mở vòng report. Goal chưa hoàn thành. Cùng blocker thiếu quyết định đã được kiểm qua ba lượt goal liên tiếp (bàn giao b64bac7, lượt11840c3 và lượt hiện hành); không còn việc độc lập cần làm, không chạy lại kiểm thử hoặc mở vòng report để kéo dài.
