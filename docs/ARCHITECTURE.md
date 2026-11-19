@@ -148,6 +148,10 @@ Nguồn thực thi: [program](../programs/receiptrail/src/lib.rs), [runtime test
 
 Chưa kiểm: frontend/client browser, RPC timeout/reorg/retry thật, Wallet Standard thực, contention/load mạng, Linux CI, devnet deployment, delivery goods, x402/stablecoin, review độc lập. Sau duyệt: thêm integration test browser+RPC fault injection, validate IDL client, latency/rent trên devnet; không dùng mock/replay để đánh đã chạy live.
 
+### Bằng chứng bổ sung Phase4 local — 19/11
+
+Runtime32/32 và client23/23 đã đạt; [evidence](evidence/phase4/README.md)/[review C](reviews/receiptrail-phase4-local.md) ghi hash và giới hạn. Program logic/wire ABI không đổi so với Phase2; thêm fee/rollback, readonly/crypto, u64, namespace và immutable terms. Client generated có owner/PDA/size/version/terms/state checks, tested bằng Rust/Anchor/Kit; contract đã giao A trong [PHASE4-CLIENT](PHASE4-CLIENT.md). Chưa A dùng được, CI cho code mới, devnet ReceiptRail hoặc UI ví thật. Các số19tests ở trên giữ mốc Phase2, không là số hiện hành.
+
 ## 9. Phân công và cổng phase tiếp theo
 
 | Phase / phạm vi dự kiến | Codex | Antigravity | Bằng chứng/cổng |

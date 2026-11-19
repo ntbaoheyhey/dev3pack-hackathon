@@ -1,4 +1,6 @@
-# Hồ sơ cổng Phase1–3 — sau P3-B
+# Hồ sơ cổng Phase1–3 — snapshot sau P3-B
+
+**Cập nhật19/11:** snapshot bên dưới là lịch sử18/11. Người dùng đã mở Phase4/5 local, Automation đã ACTIVE, T34 UI đang ở queue và client đã bàn giao. [Trạng thái hiện hành](../NEXT.md)/[evidence Phase4](../evidence/phase4/README.md); các dòng PAUSED/chưa mở bên dưới không còn là blocker hiện tại. Executable inputs Phase4 đã khác CI27cf7ac, không gán CI cũ cho code mới.
 
 Codex · 22:31:59 ngày18/11/2026 UTC+7. **P3-A/P3-B đã đạt phạm vi đã duyệt; trình người dùng duyệt Phase4.** Không suy mọi cổng của goal đã hoàn tất: ví extension thật chưa kiểm và giáo viên chưa có verdict. Các task review A đã đóng theo giới hạn của người dùng.
 

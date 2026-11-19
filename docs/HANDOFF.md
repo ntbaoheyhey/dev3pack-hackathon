@@ -7,7 +7,7 @@
 - T31/T32/T33 đã đóng tại7857e9b; D01–D03 là nợ tài liệu. T34 là triển khai UI mới, không vòng sửa report.
 - C sở hữu programs/tests/build/IDL/client và hồ sơ chính; A sở hữu apps/web/receiptrail, route/UI/tests, note025/evidence Phase5.
 - Quyền/T34 push05f8e79, note024 push9124f04, runtime32/32 push2a3fd30. Client r1 đạt23/23 + generated/TypeScript/browser-target bundle; source/ABI không đổi.
-- Client đã có packages/receiptrail-client + docs/PHASE4-CLIENT.md; A dùng trong T34, chưa có bài nộp/xác nhận mới. Không chờ A để làm phần C.
+- Client/contract đã push4148906; T34 chưa có bài nộp/xác nhận mới. Review local xong, phương án CI/deploy ở PHASE4-PLAN chưa được đồng ý.
 - Giữ source/web/lab ClusterProof đã có; mọi commit/merge lượt local dùng `[skip ci]`, không gán CI27cf7ac cho code mới.
 - P3-B đã xong137tx finalized/counter1, debit0.651874801SOL; không gửi lại upload/deploy/smoke, buffer mới/close hoặc tăng trần.
 - Ví extension thật chưa kiểm theo lựa chọn người dùng; mock wallet không thay xác nhận thật. Chưa verdict giáo viên, không tự chấm thay.
@@ -15,11 +15,10 @@
 
 ## Còn lại
 
-1. Push checkpoint client23tests/contract/T34; kiểm remote/A-done và tích hợp an toàn khi A có kết quả.
-2. Review local program/client theo invariant, ghi evidence và chuẩn bị phương án CI/deploy ReceiptRail cụ thể (chưa thực thi).
-3. Dùng T34/review UI ví/thanh toán và phần chạm tiền/quyền khi có; không mở lại T31–T33 hoặc chờ A thụ động.
-4. Cập nhật PR7 theo Phase4/5 đã mở/runtime32/client23/Automation ACTIVE; read-back, không merge.
-5. Sau khi phần local độc lập xong, trình riêng quyền CI/deploy/public nếu cần; không suy quyền từ Phase3. Cập nhật notes/DEVLOG/Thẻ nhớ, push mỗi mốc.
+1. Push phương án PHASE4-PLAN/review/evidence local; cập nhật PR7 theo Phase4/5 đã mở/runtime32/client23/Automation ACTIVE và read-back, không merge.
+2. Trình riêng P4-A (CI với patch đã review) / P4-B (4signers ngoài Git, deploy ReceiptRail + smoke devnet, cap1.8SOL). Chưa có quyền thực thi; không suy từ P3-A/P3-B.
+3. Dùng kết quả T34 khi A nộp, review tiền/quyền và UI local. Không mở lại T31–T33 hoặc coi chưa có A là quyền deploy/public.
+4. Sau câu đồng ý, làm đúng mục được chọn trong PHASE4-PLAN; công khai keys/hashes và kiểm lại rent/số dư trước gửi. Không merge/public/Phase6 tự động.
 
 ## Giới hạn cần người dùng khi tới cổng
 

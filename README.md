@@ -2,7 +2,7 @@
 
 ReceiptRail giúp người bán và người trả đọc chung trạng thái một hóa đơn SOL: sau timeout có thể kiểm tra lại, và cùng hóa đơn không chuyển tiền gốc lần thứ hai dù gửi transaction mới. Người dùng chọn **“ReceiptRail chính, ClusterProof phụ” lúc 00:07 ngày 18/11/2026 UTC+7**; [DECISION](docs/ideas/DECISION.md) ghi nguyên văn, giờ và đính chính kết luận cũ.
 
-**Người dùng đã duyệt Phase2 ReceiptRail: “duyệt phase 2”**, log nhận09:27:18.464 ngày18/11/2026 UTC+7 (người dùng không tự nêu giờ quyết định). [IDEA](docs/IDEA.md) · [Giải thích kiến trúc một trang](docs/ARCHITECTURE.md#1-giải-thích-một-trang-cho-người-dùng) · [Bằng chứng local](docs/evidence/phase2/README.md). T31/T32/T33 đã đóng sau lượt cuối, phần thiếu ở [nợ tài liệu](docs/DOCUMENTATION-DEBT.md); giáo viên chưa có verdict. P3-A/P3-B có bằng chứng, đang trình duyệt Phase4 theo [NEXT](docs/NEXT.md). Cài thêm, tạo ví/keypair triển khai, deploy hoặc public mới phải hỏi riêng trước.
+**Người dùng đã duyệt Phase2 ReceiptRail: “duyệt phase 2”**, log nhận09:27:18.464 ngày18/11/2026 UTC+7 (người dùng không tự nêu giờ quyết định). [IDEA](docs/IDEA.md) · [Giải thích kiến trúc một trang](docs/ARCHITECTURE.md#1-giải-thích-một-trang-cho-người-dùng) · [Bằng chứng local](docs/evidence/phase2/README.md). T31/T32/T33 đã đóng sau lượt cuối, phần thiếu ở [nợ tài liệu](docs/DOCUMENTATION-DEBT.md); giáo viên chưa có verdict. P3-A/P3-B có bằng chứng; người dùng đã mở Phase4/5 local song song ngày19/11 theo [NEXT](docs/NEXT.md). Cài thêm, tạo ví/keypair triển khai, deploy hoặc public mới phải hỏi riêng trước.
 
 ## ReceiptRail đã có gì
 
@@ -10,8 +10,8 @@ ReceiptRail giúp người bán và người trả đọc chung trạng thái m�
 | --- | --- | --- |
 | Thiết kế | Account/PDA, create/pay/cancel, trạng thái, lỗi/events/IDL, threat model, wireframe/test plan, storyboard165giây | Chưa UI/video ReceiptRail; nợ tài liệu được giữ riêng, chưa verdict giáo viên |
 | Spike Anchor | Native SOL, invoice131bytes, điều khoản bất biến; chuyển tiền và Paid cùng transaction | Local-only, không escrow/refund/stablecoin/x402 |
-| Kiểm thử | **19/19 runtime tests**, bytecode SBFv3 thật trong LiteSVM; tx mới retry, rollback, sai quyền/account, expiry/race/lifecycle | Đã chạy cả Linux CI; chưa browser/wallet/RPC recovery, devnet hoặc audit độc lập |
-| IDL | [JSON generated](docs/idl/receiptrail.json),3 instructions/1 account/3 events/9 errors; đã đối chiếu source | Chưa client UI tích hợp; program ID chỉ local |
+| Kiểm thử | **32/32 runtime + 23/23 client tests local**, [evidence Phase4](docs/evidence/phase4/README.md); rollback/phí, sai quyền/account, u64, expiry/lifecycle và cross-language ABI | CI27cf7ac chỉ bộ tests cũ; chưa CI Phase4, browser/ví thật/RPC recovery/devnet hoặc audit độc lập |
+| IDL | [JSON generated](docs/idl/receiptrail.json),3 instructions/1 account/3 events/9 errors; [client generated](docs/PHASE4-CLIENT.md) + types đã bàn giao A trong T34 | Chưa A xác nhận UI tích hợp; program ID chỉ local |
 | Chấm ý tưởng | [C01 r2](docs/ideas/codex/01-receipt-rail.md): **79/100 PLAN, F3→4** nhờ spike D2 | R/D giữ4 PLAN, chưa verdict giáo viên hoặc DELIVERY |
 
 Merchant tạo hóa đơn với payer, amount và expiry. Payer ký đúng ví, program chỉ nhận Open còn hạn, chuyển SOL đúng merchant rồi ghi Paid. Merchant có thể hủy Open. Paid/Cancelled không reset/close/reopen; rent tiếp tục nằm trong account. Cơ chế chỉ chống trả lại **cùng invoice PDA**; merchant vẫn có thể tạo ID khác cho cùng đơn hàng. Receipt không chứng minh giao hàng, và vẫn có trust vào program/upgrade authority/RPC.
@@ -22,6 +22,7 @@ Dùng bộ **đã cài**: host Rust1.100.0, platform-tools v1.57, Anchor-lang1.2
 
 ```sh
 bash scripts/check-receiptrail.sh
+bash scripts/check-receiptrail-client.sh
 ```
 
 Script mặc định đường dẫn Apple Silicon của máy hiện tại; có thể trỏ `RECEIPTRAIL_HOST_TOOLS` và `RECEIPTRAIL_PLATFORM_TOOLS` tới bộ có sẵn ở máy khác. [Note023](docs/learning/023-receiptrail-phase2-spike.md) có lệnh sinh IDL riêng và bài học. [Metadata](docs/evidence/phase2/receiptrail-build-metadata.json) ghi hashes, versions, logs/CU/rent. R1 build+test64s/suite1.06s; r2 bằng cache3s/suite1.00s sau siết runner, cùng source/bytecode. Đây là số đo VM, không báo giá/latency mạng.
@@ -47,11 +48,12 @@ Mốc phân chia là tag **hackathon-start**, sẽ tạo lúc mở màn27/11/202
 - Notes, RUBRICv1.2, shortlist/nguồn và lựa chọn ReceiptRail chính/ClusterProof phụ; sửa hồ sơ lựa chọn/duyệt sai.
 - Spike/parser/read-only C02/C03; toolchain, hello lab, client và web nền ClusterProof từ template chính thức.
 - ReceiptRail Phase2: IDEA/ARCHITECTURE, Anchor spike/19 tests, generated IDL, demo165giây trên giấy, crawl/UX/review giao A.
+- Phase4/5 local: runtime32tests, generated client23tests/contract cho A; UI/ví T34 đã giao, chưa có bài nộp được xác nhận.
 - Commits và giới hạn ở [DEVLOG](docs/DEVLOG.md), [ROADMAP](docs/ROADMAP.md), [cổng duyệt](docs/reviews/phase1-3-gates.md).
 
 ### Trong 27–29/11/2026
 
-Chưa có công việc trong sự kiện tại ngày18/11. Ghi tính năng/commit thực khi làm; không gọi code chuẩn bị trước là code trong hackathon.
+Chưa có công việc trong sự kiện tại ngày19/11. Ghi tính năng/commit thực khi làm; không gọi code chuẩn bị trước là code trong hackathon.
 
 ## Làm việc và license
 

@@ -1,0 +1,10 @@
+--- a/.github/workflows/ci.yml
++++ b/.github/workflows/ci.yml
+@@ -105,3 +105,7 @@
+         run: |
+           npm ci --ignore-scripts --no-fund --prefix tools/devnet-lab
+           npm test --prefix tools/devnet-lab
++      - name: Verify ReceiptRail generated client offline
++        run: |
++          npm ci --ignore-scripts --no-fund --prefix apps/web
++          bash scripts/check-receiptrail-client.sh
