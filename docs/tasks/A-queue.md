@@ -2,9 +2,18 @@
 
 ## Hiện hành — Prompt 04, 19/11/2026 23:10:07.582 UTC+7
 
-Thứ tự mới **T37 → T38 → T39**. Quyền trong [DECISION](../ideas/DECISION.md): headless có sẵn, localhost, ví mock; không điều khiển màn hình/chuột/bàn phím máy người dùng. Không cài, public, deploy/upgrade, signer mới, merge PR7 hoặc Phase 6 thật. Các đoạn T34–T36 bên dưới là lịch sử đã đóng; lệnh cấm headless cũ đã được thay đúng phạm vi này. C nghiên cứu/review song song, không chờ A.
+Thứ tự hiện hành **T40 (sửa lỗi thật) → tiếp tục T38 → T39**. T37 đã được C review một lượt và đóng báo cáo; xem [review T37](../reviews/receiptrail-phase5-t37.md). Quyền trong [DECISION](../ideas/DECISION.md): headless có sẵn, localhost, ví mock; không điều khiển màn hình/chuột/bàn phím máy người dùng. Không cài, public, deploy/upgrade, signer mới, merge PR7 hoặc Phase 6 thật. Các đoạn T34–T36 bên dưới là lịch sử đã đóng; lệnh cấm headless cũ đã được thay đúng phạm vi này. C nghiên cứu/review song song, không chờ A.
 
-### T37 — Kiểm browser local và quay thử demo (mới)
+### T40 — Sửa P5-F01 làm trắng trang (mới, ưu tiên trước T38/T39)
+
+Đây là **một task sửa implementation** sau T37, không vòng sửa report. C giao lại cho A quyền sửa hẹp `apps/web/src/receiptrail/mock-wallets.ts`, regression test tương ứng và note025. Không sửa adapter/confirmation/program/client/IDL.
+
+1. Sửa địa chỉ fixture ví từ chối thành pubkey hợp lệ 32 bytes; phương án A đã tìm là thêm `1` thành `14uQeVj5tqViQh7yWWGStvfEG1Zmhx6uasJtWCJziofM`. Đây chỉ là public fixture, không tạo keypair hoặc signer.
+2. Thêm regression thực gọi `registerMockWallets()` trên registry mới, kiểm tất cả ví đăng ký có address/publicKey đúng 32 bytes và ví từ chối vẫn reject. Test phải bắt được lỗi baseline; không chỉ gọi helper với merchant hợp lệ.
+3. Chạy web tests/build bằng cache; mở headless localhost/mock ở 1440×900 và 375×812, kiểm ReceiptRail mount + 4 mock connectors và không có pageerror. **Không intercept sửa source/response**, chặn request ngoài localhost. Lưu log/kết quả/ảnh mới dưới `docs/evidence/phase5/t40-YYYY-MM-DD/`, không ghi đè T37.
+4. Ghi note025/DEVLOG/A-done, commit/push `[skip ci]`, rồi tiếp tục T38/T39. Không sửa report T37 hoặc tự nhận Phase 5 xong. C đang viết harness bổ sung 8 ca và chốt artifact, A không trùng việc đó.
+
+### T37 — Đã review và đóng báo cáo (lịch sử yêu cầu)
 
 - Đọc notes025/013 và PHASE5-PLAN trước làm. Dùng Playwright/Chromium/ffmpeg đã có trong cache; ghi đường dẫn và phiên bản thật. Thiếu thành phần thì báo tên và dừng phần đó, tiếp tục T38; không tải/install/npx.
 - Server localhost hiện có tại `http://127.0.0.1:4175/receiptrail/`; kiểm source đang phục vụ khớp bản work đã pull. Nếu server tắt, chạy `npm run dev -- --port 4175 --strictPort` trong apps/web bằng cache. Headless=true; chỉ localhost và ví mock; chặn request ra mạng trong browser. Không CUA/browser hiển thị, không ví extension thật.

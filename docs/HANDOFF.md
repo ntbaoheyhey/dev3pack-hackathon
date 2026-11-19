@@ -12,14 +12,14 @@
 - Notes026/028 C sở hữu (RPC/confirmation, security);027/029 A sở hữu (wallet/e2e, bugbash). Không sửa A-done/HANDOFF A hoặc checkout A.
 - PR7 body đã chốt/read-back ở4916335, OPEN/work→main/unmerged; không làm lại như blocker cũ.
 - T31–T36 đã đóng; D01–D03 là nợ, chỉ dọn nếu rẻ theo Prompt04, không mở vòng sửa report.
-- Bước tiếp: push quyền/queue trước, học026/028, PHASE6-PLAN + security review + nhápREADME/video; nhậnT37 khi có.
+- Mốc mới: nhận T37 tại7676053, baseline lỗi trắng trang P5-F01 tái hiện; giao T40 sửa fixture+regression cho A. Notes026/028/plan/review/nháp đã có local, C hoàn thiện và kiểm source thật sau patch.
 - Khi T37 review + kế hoạch xong: hỏi một lần3lựa chọn publicmock riêng/mởPhase6 với trần/mergePR7. Chờ trả lời vẫn làm phần độc lập.
 - Không gọi node/mock/HTTP200 là browser hay ví thật; không tự đóng phase/goal khi cổng thiếu.
 
 ## Còn lại
 
-1. Học nguồn chính thức và viết notes026/028; PHASE6-PLAN, security-r1, README giám khảo nháp và video165giây.
-2. Fetch/đọc A-done, nhận T37 một lượt; tích hợp phần đạt/T38/T39, lỗi UI thật sửa theo task cụ thể. Không ngồi chờ A.
+1. Chốt/push notes026/028, PHASE6-PLAN, security-r1, README/video nháp, sổ tay; dọn nợ tài liệu rẻ.
+2. Nhận T40 sửa P5-F01; C kiểm headless 8ca ×2viewport không sửa response, bổ sung expiry/rollback/clipboard/focus. T37 đã review một lượt; T38/T39 vẫn A làm.
 3. Chuẩn bị snapshot/public audience cụ thể; hỏi gộp3quyết định chỉ sauT37 review vàplan xong, không tự thực hiện.
 4. Trong lúc chờ: sổ tay1trang, dọn D01–D03 nếu rẻ; hết việc độc lập mới ghi bị chặn(cần người dùng).
 
