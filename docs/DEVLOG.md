@@ -415,3 +415,5 @@ Các mô tả dưới đây là sự kiện ở Taskbar Hero, không phải hàn
 2026-11-19 · Codex · CI đầu8df85c0 cả push/PR3jobs xanh; lưu log thật trước tạo đúng4keys ngoài Git. Cập nhật identity8NGSP…pYko, Anchor config/IDL/generated client/fixture Rust; runtime32/client23/guards7 đạt. Thêm upload có journal/CLI deploy/finalizer read-only, kiểm wire Write bằng tx CLI finalized. Cập nhật note024/T34/NEXT/Thẻ nhớ; chuẩn bị CI revision triển khai, chưa broadcast.
 
 2026-11-19T15:57:20+07:00 · Codex · Automation ACTIVE/15phút/đúng chat; pull c1446c2 thấy A nhậnT34. CI triển khai6d08e5c push44477944228 đủ3jobs đạt, PR riêng cancelled; lưu logs/33input hashes/manifest. Inspect devnet balance1.848125199SOL/peak1.531889040SOL trongcap1.8, chưa broadcast. Cập nhật note024/Thẻ nhớ/queue trước upload.
+
+2026-11-19 · Antigravity · Hoàn thành note025 trước code cho T34: mock/chain boundary, state (Open/Paid/Cancelled) khác commitment, amount u64 bigint/decimal không làm tròn, vòng đời Wallet Standard (connect/reject/account change xóa confirmed terms), Unknown recovery giữ nguyên invoiceId/PDA và re-check on-chain. Cập nhật mục lục và commit mốc note trước code.
