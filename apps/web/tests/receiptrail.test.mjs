@@ -16,7 +16,6 @@ import {
   parseInvoiceIdHex,
   parseExpiryDelta,
 } from '../src/receiptrail/adapter.ts';
-import { createMockWallet, registerMockWallets } from '../src/receiptrail/mock-wallets.ts';
 
 test('amount/u64: parses and formats SOL exactly with BigInt and rejects lossy inputs', () => {
   // 1 lamport
@@ -351,77 +350,6 @@ test('P5-02: recheckOnChain respects terminal/expiry and never fabricates Paid',
   // Recheck không tạo Paid cho hóa đơn đã hết hạn
   const recheckExp = await engine.recheckOnChain(expCreated.invoiceAddress);
   assert.notEqual(recheckExp.status, 'Paid');
-});
-
-test('P5-03: Wallet Standard mock wallet lifecycle & terms invalidation', async () => {
-  // Test mock wallet creation & registration
-  const mockWallet = createMockWallet('Test Alice', DEFAULT_PAYER.address);
-  assert.equal(mockWallet.name, 'Test Alice');
-  assert.equal(mockWallet.accounts.length, 0);
-
-  // Connect
-  const connResult = await mockWallet.features['standard:connect'].connect();
-  assert.equal(connResult.accounts.length, 1);
-  assert.equal(connResult.accounts[0].address, DEFAULT_PAYER.address);
-  assert.equal(mockWallet.accounts.length, 1);
-
-  // Disconnect
-  await mockWallet.features['standard:disconnect'].disconnect();
-  assert.equal(mockWallet.accounts.length, 0);
-
-  // Rejection Wallet
-  const rejectWallet = createMockWallet('Rejection Wallet', DEFAULT_PAYER.address, true);
-  await assert.rejects(
-    async () => {
-      await rejectWallet.features['standard:connect'].connect();
-    },
-    (err) => {
-      assert.equal(err.code, 4001);
-      const msg = formatWalletError(err);
-      assert.match(msg, /từ chối/i);
-      return true;
-    }
-  );
-
-  // Test terms invalidation controller logic for both Pay and Cancel
-  let activeWallet = mockWallet;
-  let confirmedPayTerms = {
-    address: 'EpQUeEpGPoZrDoffujf86a3GnKdBkX7RbvsbXkkfpodo',
-    merchant: DEFAULT_MERCHANT.address,
-    payer: DEFAULT_PAYER.address,
-    invoiceId: new Uint8Array(32),
-    amountLamports: 1_000_000n,
-    expiresSlot: 200n,
-  };
-  let confirmedCancelTerms = { ...confirmedPayTerms };
-
-  // Controller function tái hiện logic trong ReceiptRailApp.tsx
-  function handleWalletChange(newWallet) {
-    if (newWallet !== activeWallet) {
-      activeWallet = newWallet;
-      confirmedPayTerms = null;
-      confirmedCancelTerms = null;
-    }
-  }
-
-  function handleAccountDisconnect() {
-    activeWallet = null;
-    confirmedPayTerms = null;
-    confirmedCancelTerms = null;
-  }
-
-  // 1. Khi đổi ví (thay instance khác)
-  const anotherWallet = createMockWallet('Merchant Wallet', DEFAULT_MERCHANT.address);
-  handleWalletChange(anotherWallet);
-  assert.equal(confirmedPayTerms, null, 'confirmedPayTerms phải bị reset khi đổi ví');
-  assert.equal(confirmedCancelTerms, null, 'confirmedCancelTerms phải bị reset khi đổi ví');
-
-  // Gán lại terms và ngắt kết nối
-  confirmedPayTerms = { ...confirmedCancelTerms };
-  confirmedCancelTerms = { ...confirmedCancelTerms };
-  handleAccountDisconnect();
-  assert.equal(confirmedPayTerms, null, 'confirmedPayTerms phải bị reset khi ngắt ví');
-  assert.equal(confirmedCancelTerms, null, 'confirmedCancelTerms phải bị reset khi ngắt ví');
 });
 
 test('P5-04: strict 64-hex and u64 parsing with BigInt', () => {

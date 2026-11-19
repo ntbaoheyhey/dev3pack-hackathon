@@ -1,4 +1,5 @@
 import { getWallets } from '@wallet-standard/app';
+import { address, getAddressEncoder } from '@solana/addresses';
 import { DEFAULT_MERCHANT, DEFAULT_PAYER, OTHER_WALLET } from './adapter.ts';
 
 let registered = false;
@@ -8,21 +9,31 @@ export function createMockWallet(
   addr: string,
   shouldReject = false
 ) {
-  const account = {
+  let account = {
     address: addr,
-    publicKey: new Uint8Array(32),
-    chains: ['solana:devnet'] as const,
+    publicKey: new Uint8Array(getAddressEncoder().encode(address(addr))),
+    chains: ['solana:devnet'] as `${string}:${string}`[],
     features: ['standard:connect', 'standard:disconnect', 'standard:events'] as const,
   };
 
   let accounts: typeof account[] = [];
-  const listeners = new Set<(event: { accounts: typeof account[] }) => void>();
+  const listeners = new Set<(event: { accounts?: typeof account[]; chains?: string[] }) => void>();
 
   return {
+    setAccountAddress(next: string) {
+      account = { ...account, address: next, publicKey: new Uint8Array(getAddressEncoder().encode(address(next))) };
+      if (accounts.length) accounts = [account];
+      for (const l of listeners) l({ accounts });
+    },
+    setChains(chains: `${string}:${string}`[]) {
+      account = { ...account, chains: [...chains] };
+      if (accounts.length) accounts = [account];
+      for (const l of listeners) l({ chains: [...chains] }); // Chain-only event: SDK ignores this, app must not.
+    },
     version: '1.0.0' as const,
     name,
     icon: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciLz4=' as const,
-    chains: ['solana:devnet'] as const,
+    get chains() { return account.chains; },
     get accounts() {
       return accounts;
     },
@@ -49,7 +60,7 @@ export function createMockWallet(
       },
       'standard:events': {
         version: '1.0.0',
-        on: (_event: string, listener: (event: { accounts: typeof account[] }) => void) => {
+        on: (_event: string, listener: (event: { accounts?: typeof account[]; chains?: string[] }) => void) => {
           listeners.add(listener);
           return () => listeners.delete(listener);
         },

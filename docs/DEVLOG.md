@@ -443,3 +443,5 @@ Các mô tả dưới đây là sự kiện ở Taskbar Hero, không phải hàn
 2026-11-19T16:52:42+07:00 · Codex · Theo phânchiaT36, sửa vùngA adapter.ts/types.ts và thêm11tests tiền/trạngthái;32/32webtests+TypeScript/build đạt bằngcache. Repro6/7đãkhắcphục, mockwalletpubkey/lifecycle/CSS thuộcA chưaxong. Ghi contract mới trongqueue, note024/review/Thẻnhớ.36inputsP4-B khôngđổi; khôngnetwork/install/GUI/public. PR7bodyđã cậpnhật/readback open/unmerged theoP4-B finalized.
 
 2026-11-19T16:57:00+07:00 · Codex · Adapter đã push2bceae1; chưa có bàiT36 mới ởorigin/work. Theo luậtC không chờA, thu hẹp phầnA cònCSS/note025/evidence, C nhận logicví/terms/TSX/mock-wallet/tests (vùngA) và thông báo sở hữu trongqueue trước sửa. Không điều khiển giao diện hoặc browser/headless.
+
+2026-11-19T17:08:39+07:00 · Codex · Sửa vùngA theoqueue093e36b: ReceiptRailApp/mock-wallet/confirmation/wallet-lifecycle,14tests production mới thay test lifecycle giả lập bằng biến.45tests+TS/build đạt,7repro đạt, dùngcache/CLI; note024 cậpnhật. Origin cóT36A17ed43c cùng sửaTSX; giữ mốcC trướcmerge, tiếp theo nhậnCSS/note và hợpnhất córeview, khôngGUI/public.

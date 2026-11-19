@@ -6,7 +6,7 @@
 - Automation15phút **ACTIVE**, action+config read-back đúng chat; evidence phase4/automation-active-2026-11-19.json. Không tạo trùng.
 - ReceiptRail chính, ClusterProof phụ/chưa duyệt; Phase2/P3-A/P3-B đã có quyền và evidence riêng. Không phục hồi payload sai cũ.
 - T31/T32/T33 đã đóng tại7857e9b; D01–D03 là nợ tài liệu. T34 là triển khai UI mới, không vòng sửa report.
-- C sở hữu programs/tests/build/IDL/client và hồ sơ chính; A sở hữu apps/web/receiptrail, route/UI/tests, note025/evidence Phase5.
+- C sở hữu programs/client và logic ví/terms/TSX/mock-wallet/tests theoqueue093e36b; A sở hữuCSS/note025/evidencePhase5.
 - Quyền/T34 push05f8e79, note024 push9124f04, runtime32/32 push2a3fd30. Client r1 đạt23/23 + generated/TypeScript/browser-target bundle; source/ABI không đổi.
 - CI triển khai6d08e5c đạt đủ3jobs ở push44477944228; PR44477949631 cancelled, không gọi xanh. 33input hashes khớp tại deploy; runner đổi cho recovery mới, CI riêng e9a1603 đã đạt; binary local495e47… giữ nguyên.
 - P4-B hoàn tất16:41UTC+7:162tx finalized, Paid/Cancelled đúng, duplicate simulation đạt; debit0.760701080SOL<cap1.8. Không gửi lại. T35 nộp69e458a, C đang review implementation; không GUI.
@@ -18,7 +18,7 @@
 ## Còn lại
 
 1. P4-B **đã hoàn tất**, final-verification.json:162tx finalized/debit0.760701080SOL<1.8/không activity lạ; không còn send/deploy/reconcile cần chạy. Cancel recovery CI e9a1603 hai runs đạt3jobs/36inputs; không gán CI này cho source UI69e458a.
-2. Review T35 source69e458a:21tests/build local đạt; nhận các fix duplicate-create/fixture/validation/pending/strict-hex/list. Review r2/repro7ca đã lưu; T36 hiện giaoA CSS/note025/evidence; C nhậnTSX/mock-wallet/confirmation lifecycle/tests theoqueue16:57. C đã sửa adapter.ts/types.ts và11tests mới, tổng32webtests/build đạt; repro6/7đãkhắcphục, C tiếp tụcwalletpubkey/lifecycle/stale/copy; mobileCSS/note025 thuộcA. Contract mới đã ghi trongqueue. Không GUI/headless, không mở lại T31–T33.
+2. C đã nối confirmation model vàoReact và sửa wallet/preview/async/copy;45webtests/build,7repro đạt local. Source chưa browser. T36A vừa nộp17ed43c (CSS/note và có patchTSX/controller trùng phạm vi C); checkpoint C xong thì merge nhậnCSS/note, giữ production model C, port các test hữu ích và kiểm bản hợp nhất. Không ghi đè checkout/A-done/HANDOFF A, không GUI/headless.
 3. Đồng bộ kết quả review vào notes/DEVLOG/Thẻ nhớ/PR7; push sau mỗi mốc. Phase5 public/ví thật/giáo viên còn cổng riêng. Chưa hỏi public trước artifact/review đủ cụ thể.
 
 ## Giới hạn cần người dùng khi tới cổng

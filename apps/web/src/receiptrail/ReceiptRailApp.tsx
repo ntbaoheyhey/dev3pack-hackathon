@@ -1,316 +1,227 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { autoDiscover, createClient } from '@solana/client';
 import { SolanaProvider, useWalletConnection } from '@solana/react-hooks';
 import { DEVNET_RPC } from '../lib/inspect';
-import {
-  mockEngine,
-  client,
-  parseSol,
-  formatSol,
-  parseInvoiceIdHex,
-  parseExpiryDelta,
-  formatWalletError,
-  DEFAULT_MERCHANT,
-  DEFAULT_PAYER,
-} from './adapter';
+import { mockEngine, client, formatSol, formatWalletError, DEFAULT_PAYER,
+  MOCK_RENT_LAMPORTS, MOCK_FEE_LAMPORTS } from './adapter';
 import { registerMockWallets } from './mock-wallets';
-import type {
-  InspectedInvoice,
-  InvoiceTerms,
-  SimulatedFault,
-  InvoiceAccountEnvelope,
-  InvoiceRecord,
-} from './types';
+import { ReceiptRailConfirmations, buildCreateReview, executeConfirmedOperation } from './confirmation';
+import type { ConfirmationContext, CreateReview, Action, Operation } from './confirmation';
+import { receiptRailWallet, watchReceiptRailWallets } from './wallet-lifecycle';
+import type { InspectedInvoice, SimulatedFault, InvoiceAccountEnvelope, InvoiceRecord } from './types';
 import './receiptrail.css';
 
-// Đăng ký các mock wallets vào Wallet Standard chuẩn
 registerMockWallets();
+const hex = (bytes: Uint8Array) => Array.from(bytes, b => b.toString(16).padStart(2, '0')).join('');
+const messageOf = (error: unknown) => error instanceof Error ? error.message : String(error);
 
 function ReceiptRailInner() {
   const { connectors, connect, disconnect, wallet, status } = useWalletConnection();
-  const initialTab = (() => {
-    if (typeof window === 'undefined') return 'view';
-    const t = new URLSearchParams(window.location.search).get('tab');
-    if (t === 'create' || t === 'list' || t === 'demo165') return t;
-    return 'view';
-  })();
-  const [activeTab, setActiveTab] = useState<'view' | 'create' | 'list' | 'demo165'>(initialTab);
-  const [currentSlot, setCurrentSlot] = useState<bigint>(mockEngine.currentSlot);
+  const [activeTab, setActiveTab] = useState<'view' | 'create' | 'list' | 'demo165'>(() => {
+    const t = typeof window === 'undefined' ? '' : new URLSearchParams(window.location.search).get('tab');
+    return t === 'create' || t === 'list' || t === 'demo165' ? t : 'view';
+  });
+  const [confirmations] = useState(() => new ReceiptRailConfirmations());
+  const [currentSlot, setCurrentSlot] = useState(mockEngine.currentSlot);
   const [simulatedFault, setSimulatedFault] = useState<SimulatedFault>('none');
   const [invoices, setInvoices] = useState<InvoiceAccountEnvelope[]>([]);
   const [decodedInvoices, setDecodedInvoices] = useState<InvoiceRecord[]>([]);
-  const [selectedAddress, setSelectedAddress] = useState<string>(
-    'EpQUeEpGPoZrDoffujf86a3GnKdBkX7RbvsbXkkfpodo'
-  );
-  const [inspected, setInspected] = useState<InspectedInvoice | null>(null);
-
-  // Confirmed Terms state
-  const [termsConfirmed, setTermsConfirmed] = useState(false);
-  const [confirmedSnapshot, setConfirmedSnapshot] = useState<InvoiceTerms | null>(null);
-
-  // Cancel Confirmation state
-  const [cancelConfirmed, setCancelConfirmed] = useState(false);
-
-  // Create Confirmation state
-  const [createConfirmed, setCreateConfirmed] = useState(false);
-
-  // Action status message
+  const [selectedAddress, setSelectedAddress] = useState('EpQUeEpGPoZrDoffujf86a3GnKdBkX7RbvsbXkkfpodo');
+  const [detail, setDetail] = useState<{ value: InspectedInvoice; context: ConfirmationContext } | null>(null);
+  const [preview, setPreview] = useState<{ value: CreateReview; token: ReturnType<ReceiptRailConfirmations['beginRead']> } | null>(null);
+  const [previewError, setPreviewError] = useState('');
+  const [dataError, setDataError] = useState('');
   const [actionMessage, setActionMessage] = useState<{ text: string; type: 'success' | 'error' | 'info' } | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
   const [isConnecting, setIsConnecting] = useState(false);
-  const [pendingSignature, setPendingSignature] = useState<string | null>(null);
+  const [reload, setReload] = useState(0);
+  const [walletEvent, setWalletEvent] = useState(0);
+  const [, renderApproval] = useState(0);
+  const mounted = useRef(false);
+  const connecting = useRef(false);
+  const reconciling = useRef(false);
+  const eventSequence = useRef(0);
+  const session = useRef(wallet);
+  session.current = wallet;
 
-  // Form state for Create Invoice
-  const [payerInput, setPayerInput] = useState<string>(DEFAULT_PAYER.address);
-  const [amountInput, setAmountInput] = useState<string>('0.001');
-  const [expiryDeltaInput, setExpiryDeltaInput] = useState<string>('100');
-  const [invoiceIdHexInput, setInvoiceIdHexInput] = useState<string>(
-    '2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a'
-  );
+  const [payerInput, setPayerInput] = useState(DEFAULT_PAYER.address);
+  const [amountInput, setAmountInput] = useState('0.001');
+  const [expiryDeltaInput, setExpiryDeltaInput] = useState('100');
+  const [invoiceIdHexInput, setInvoiceIdHexInput] = useState('2a'.repeat(32));
+  const { address: connectedAddress, chainAllowed } = receiptRailWallet(wallet);
+  const formKey = JSON.stringify([payerInput, amountInput, expiryDeltaInput, invoiceIdHexInput]);
+  const context: ConfirmationContext = { walletIdentity: wallet, address: connectedAddress,
+    chainAllowed: chainAllowed && status === 'connected', walletEvent,
+    selectedAddress, formKey, slot: currentSlot };
+  const latest = useRef(context);
+  latest.current = context;
+  const currentContext = (): ConfirmationContext => {
+    const raw = receiptRailWallet(session.current);
+    return { ...latest.current, walletIdentity: session.current, address: raw.address,
+      chainAllowed: raw.chainAllowed && latest.current.chainAllowed,
+      walletEvent: eventSequence.current, slot: mockEngine.currentSlot };
+  };
+  const invalidate = () => {
+    confirmations.invalidate();
+    setActionMessage(null);
+    renderApproval(n => n + 1);
+    setReload(n => n + 1);
+  };
+  const edit = (change: () => void) => { invalidate(); change(); };
 
-  const connectedAddress = wallet?.account.address ?? null;
-
-  // P5-03: Reset confirmed terms on ANY wallet/account change or disconnect
   useEffect(() => {
-    setTermsConfirmed(false);
-    setConfirmedSnapshot(null);
-    setCancelConfirmed(false);
-  }, [connectedAddress]);
+    mounted.current = true;
+    const off = watchReceiptRailWallets(() => {
+      confirmations.invalidate(); // Before React renders the new wallet/chain.
+      setWalletEvent(++eventSequence.current);
+      setActionMessage(null);
+    });
+    return () => { mounted.current = false; off(); confirmations.invalidate(); };
+  }, [confirmations]);
 
-  // Refresh current invoice and decode all invoices in list
+  const readCurrent = (token: ReturnType<ReceiptRailConfirmations['beginRead']>) => {
+    confirmations.sync(currentContext());
+    return mounted.current && confirmations.isCurrentRead(token);
+  };
+  const operationCurrent = (token: Operation) => {
+    confirmations.sync(currentContext());
+    return mounted.current && confirmations.isCurrent(token);
+  };
   const refreshData = async () => {
-    const list = await mockEngine.listInvoices();
-    setInvoices(list);
-
-    const decodedList: InvoiceRecord[] = [];
-    for (const acc of list) {
-      try {
-        const dec = await client.decodeInvoice(acc);
-        decodedList.push(dec as InvoiceRecord);
-      } catch {
-        // bỏ qua nếu account lỗi
-      }
-    }
-    setDecodedInvoices(decodedList);
-
-    if (selectedAddress) {
-      const insp = await mockEngine.inspect(selectedAddress, connectedAddress ?? undefined);
-      setInspected(insp);
+    const ctx = currentContext();
+    const token = confirmations.beginRead('data', ctx);
+    setDataError('');
+    try {
+      const list = await mockEngine.listInvoices();
+      // A malformed account is a visible failure, never silently dropped.
+      const decoded = await Promise.all(list.map(acc => client.decodeInvoice(acc)));
+      const value = await mockEngine.inspect(ctx.selectedAddress, ctx.address ?? undefined);
+      if (!value) throw new Error('Không tìm thấy hóa đơn đang chọn trong dữ liệu mock.');
+      if (!readCurrent(token)) return;
+      confirmations.clear('pay'); confirmations.clear('cancel');
+      setInvoices(list); setDecodedInvoices(decoded as InvoiceRecord[]);
+      setDetail({ value, context: ctx });
+    } catch (error) {
+      if (!readCurrent(token)) return;
+      setDetail(null); setInvoices([]); setDecodedInvoices([]);
+      setDataError(`Không đọc được dữ liệu mock: ${messageOf(error)}`);
     }
   };
+  useEffect(() => {
+    confirmations.sync(currentContext());
+    void refreshData();
+  }, [wallet, connectedAddress, chainAllowed, status, walletEvent, selectedAddress, currentSlot, formKey, reload]);
 
   useEffect(() => {
-    void refreshData();
-  }, [selectedAddress, connectedAddress, currentSlot]);
+    const ctx = currentContext();
+    const token = confirmations.beginRead('preview', ctx);
+    setPreview(null); setPreviewError('');
+    if (!ctx.address || !ctx.chainAllowed) {
+      setPreviewError('Kết nối ví hỗ trợ devnet để xem trước điều khoản tạo hóa đơn.');
+      return;
+    }
+    void buildCreateReview({ payer: payerInput, amount: amountInput, expiryDelta: expiryDeltaInput,
+      invoiceId: invoiceIdHexInput }, ctx.address, ctx.slot).then(value => {
+      if (readCurrent(token)) setPreview({ value, token });
+    }).catch(error => { if (readCurrent(token)) setPreviewError(messageOf(error)); });
+  }, [wallet, connectedAddress, chainAllowed, status, walletEvent, formKey, currentSlot, selectedAddress, reload]);
 
-  // Connect wallet
+  const inspected = detail && detail.context.walletIdentity === context.walletIdentity
+    && detail.context.walletEvent === context.walletEvent && detail.context.address === context.address
+    && detail.context.selectedAddress === selectedAddress && detail.context.slot === currentSlot ? detail.value : null;
+  const createReview = preview && confirmations.matches(context) && confirmations.isCurrentRead(preview.token) ? preview.value : null;
+  const termsConfirmed = confirmations.has('pay', context);
+  const cancelConfirmed = confirmations.has('cancel', context);
+  const createConfirmed = confirmations.has('create', context);
+  const approve = (action: Action, checked: boolean) => {
+    try {
+      const ctx = currentContext();
+      confirmations.sync(ctx);
+      if (!checked) confirmations.clear(action);
+      else if (action === 'create' && createReview && preview && confirmations.isCurrentRead(preview.token)) {
+        confirmations.confirm(action, createReview, ctx);
+      } else if (action !== 'create' && inspected && !inspected.isPending
+        && (action === 'pay' ? inspected.canPay : inspected.canCancel)) {
+        confirmations.confirm(action, inspected.invoice, ctx);
+      } else throw new Error('Điều khoản chưa sẵn sàng; hãy xem lại hóa đơn.');
+    } catch (error) { setActionMessage({ text: messageOf(error), type: 'error' }); }
+    renderApproval(n => n + 1);
+  };
+
   const handleConnect = async (connectorId: string) => {
-    setIsConnecting(true);
-    setActionMessage(null);
-    try {
-      await connect(connectorId);
-      setActionMessage({ text: 'Đã kết nối ví thành công qua chuẩn Wallet Standard.', type: 'info' });
-    } catch (err) {
-      setActionMessage({ text: formatWalletError(err), type: 'error' });
-    } finally {
-      setIsConnecting(false);
-    }
+    if (connecting.current || confirmations.busy || reconciling.current) return;
+    connecting.current = true; invalidate(); setIsConnecting(true);
+    try { await connect(connectorId); }
+    catch (error) { if (mounted.current) setActionMessage({ text: formatWalletError(error), type: 'error' }); }
+    finally { connecting.current = false; if (mounted.current) setIsConnecting(false); }
   };
-
-  // Disconnect wallet
   const handleDisconnect = async () => {
-    setActionMessage(null);
-    try {
-      await disconnect();
-      setActionMessage({ text: 'Đã ngắt kết nối ví. Giao diện chuyển sang chế độ Khách xem.', type: 'info' });
-    } catch (err) {
-      setActionMessage({ text: formatWalletError(err), type: 'error' });
-    }
+    if (connecting.current) return;
+    connecting.current = true; invalidate(); setIsConnecting(true);
+    try { await disconnect(); }
+    catch (error) { if (mounted.current) setActionMessage({ text: formatWalletError(error), type: 'error' }); }
+    finally { connecting.current = false; if (mounted.current) setIsConnecting(false); }
   };
-
-  // Warp slot
   const handleWarpSlot = (delta: bigint) => {
-    mockEngine.warpSlot(delta);
-    setCurrentSlot(mockEngine.currentSlot);
-    setActionMessage({
-      text: `Đã tua slot thêm +${delta.toString()} (Slot quan sát: ${mockEngine.currentSlot.toString()}).`,
-      type: 'info',
-    });
+    invalidate();
+    try { mockEngine.warpSlot(delta); setCurrentSlot(mockEngine.currentSlot); }
+    catch (error) { setActionMessage({ text: messageOf(error), type: 'error' }); }
   };
-
-  // Change simulated fault
   const handleFaultChange = (fault: SimulatedFault) => {
-    setSimulatedFault(fault);
-    mockEngine.simulatedFault = fault;
-    setActionMessage({
-      text: `Đã thiết lập kịch bản mô phỏng lỗi: ${fault}`,
-      type: 'info',
-    });
+    invalidate(); setSimulatedFault(fault); mockEngine.simulatedFault = fault;
   };
 
-  // Create Invoice
-  const handleCreateInvoice = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setActionMessage(null);
-
-    if (!connectedAddress) {
-      setActionMessage({ text: 'Vui lòng kết nối ví Merchant trước khi tạo hóa đơn.', type: 'error' });
-      return;
-    }
-
-    if (!createConfirmed) {
-      setActionMessage({ text: 'Vui lòng đánh dấu xác nhận xem trước điều khoản trước khi tạo.', type: 'error' });
-      return;
-    }
-
-    setIsProcessing(true);
-
+  const submit = async (action: Action) => {
+    let operation: Operation;
     try {
-      const lamports = parseSol(amountInput);
-      if (lamports <= 0n) throw new Error('Số tiền SOL phải lớn hơn 0');
-
-      const delta = parseExpiryDelta(expiryDeltaInput);
-      const expiresSlot = currentSlot + delta;
-
-      // P5-04: Strict 64 hex invoice ID parsing
-      const invoiceIdBytes = parseInvoiceIdHex(invoiceIdHexInput);
-
-      const res = await mockEngine.createInvoice({
-        merchant: connectedAddress,
-        payer: payerInput.trim(),
-        invoiceId: invoiceIdBytes,
-        amountLamports: lamports,
-        expiresSlot,
-      });
-
-      setSelectedAddress(res.invoiceAddress);
-      setActiveTab('view');
-      setCreateConfirmed(false);
-      setActionMessage({
-        text: `Tạo hóa đơn thành công! Địa chỉ PDA: ${res.invoiceAddress} (Bump: ${res.bump})`,
-        type: 'success',
-      });
-      await refreshData();
-    } catch (err: unknown) {
-      const msg = err instanceof Error ? err.message : String(err);
-      setActionMessage({ text: `Lỗi tạo hóa đơn: ${msg}`, type: 'error' });
-    } finally {
-      setIsProcessing(false);
-    }
-  };
-
-  // Pay Invoice
-  const handlePayInvoice = async () => {
-    if (!inspected) return;
-    if (!connectedAddress) {
-      setActionMessage({ text: 'Vui lòng kết nối ví Payer để thanh toán.', type: 'error' });
-      return;
-    }
-    if (!termsConfirmed || !confirmedSnapshot) {
-      setActionMessage({ text: 'Vui lòng đánh dấu xác nhận các điều khoản trước khi thanh toán.', type: 'error' });
-      return;
-    }
-
-    setIsProcessing(true);
-    setActionMessage(null);
-
+      if (connecting.current || reconciling.current) throw new Error('Một thao tác còn đang xử lý.');
+      operation = confirmations.begin(action, currentContext()); // Locks before the first await.
+    } catch (error) { setActionMessage({ text: messageOf(error), type: 'error' }); return; }
+    setIsProcessing(true); setActionMessage(null); renderApproval(n => n + 1);
     try {
-      const res = await mockEngine.payInvoice({
-        invoiceAddress: inspected.invoice.address,
-        signer: connectedAddress,
-        confirmedTerms: confirmedSnapshot,
-      });
-
-      if (res.status === 'Unknown') {
-        setPendingSignature(res.signature);
-        setActionMessage({
-          text: `CẢNH BÁO TIMEOUT: RPC không phản hồi. Trạng thái giao dịch là Unknown. Chữ ký đã được lưu từ bước ký trước gửi: ${res.signature}. Thao tác trên hóa đơn này đang bị khóa để bảo vệ an toàn. Bấm "Kiểm tra lại trên chuỗi" để đối soát.`,
-          type: 'info',
-        });
+      const result = await executeConfirmedOperation(mockEngine, operation);
+      if (!operationCurrent(operation)) return;
+      if ('invoiceAddress' in result) {
+        setSelectedAddress(result.invoiceAddress); setActiveTab('view');
+        setActionMessage({ text: `Đã tạo hóa đơn mock: ${result.invoiceAddress}.`, type: 'success' });
+      } else if ('status' in result && result.status === 'Unknown') {
+        setActionMessage({ text: `Mô phỏng mất phản hồi: Unknown. Mã mock ${result.signature}. Kiểm tra lại dữ liệu mock, không tự gửi lại.`, type: 'info' });
       } else {
-        setPendingSignature(res.signature);
-        setActionMessage({
-          text: `Thanh toán thành công! Chữ ký: ${res.signature}. Hóa đơn đã chuyển sang trạng thái PAID trên mock ledger.`,
-          type: 'success',
-        });
+        setActionMessage({ text: `Đã ${action === 'pay' ? 'thanh toán' : 'hủy'} trên dữ liệu mock. Mã mock: ${result.signature}.`, type: 'success' });
       }
-      await refreshData();
-    } catch (err: unknown) {
-      const msg = err instanceof Error ? err.message : String(err);
-      setActionMessage({ text: `Giao dịch thất bại: ${msg}`, type: 'error' });
+    } catch (error) {
+      if (operationCurrent(operation)) setActionMessage({ text: `Thao tác mock thất bại: ${messageOf(error)}`, type: 'error' });
     } finally {
-      setIsProcessing(false);
+      confirmations.finish(operation);
+      if (mounted.current) { setIsProcessing(false); setReload(n => n + 1); }
     }
   };
-
-  // Cancel Invoice
-  const handleCancelInvoice = async () => {
-    if (!inspected) return;
-    if (!connectedAddress) {
-      setActionMessage({ text: 'Vui lòng kết nối ví Merchant để hủy hóa đơn.', type: 'error' });
-      return;
-    }
-    if (!cancelConfirmed) {
-      setActionMessage({ text: 'Vui lòng đánh dấu xác nhận hủy hóa đơn trước khi thực hiện.', type: 'error' });
-      return;
-    }
-
-    setIsProcessing(true);
-    setActionMessage(null);
-
-    try {
-      const res = await mockEngine.cancelInvoice({
-        invoiceAddress: inspected.invoice.address,
-        signer: connectedAddress,
-        confirmedTerms: {
-          address: inspected.invoice.address,
-          merchant: inspected.invoice.merchant,
-          payer: inspected.invoice.payer,
-          invoiceId: inspected.invoice.invoiceId,
-          amountLamports: inspected.invoice.amountLamports,
-          expiresSlot: inspected.invoice.expiresSlot,
-        },
-      });
-
-      setActionMessage({
-        text: `Đã hủy hóa đơn thành công! Chữ ký: ${res.signature}. Trạng thái đổi thành CANCELLED.`,
-        type: 'success',
-      });
-      setCancelConfirmed(false);
-      await refreshData();
-    } catch (err: unknown) {
-      const msg = err instanceof Error ? err.message : String(err);
-      setActionMessage({ text: `Hủy thất bại: ${msg}`, type: 'error' });
-    } finally {
-      setIsProcessing(false);
-    }
-  };
-
-  // Re-check on chain (Unknown Recovery)
+  const handleCreateInvoice = (event: React.FormEvent) => { event.preventDefault(); void submit('create'); };
+  const handlePayInvoice = () => { void submit('pay'); };
+  const handleCancelInvoice = () => { void submit('cancel'); };
   const handleRecheckOnChain = async () => {
-    if (!selectedAddress) return;
-    setIsProcessing(true);
+    if (reconciling.current || confirmations.busy || connecting.current) return;
+    reconciling.current = true; invalidate(); setIsProcessing(true);
+    const ctx = currentContext(), token = confirmations.beginRead('recheck', ctx);
     try {
-      const res = await mockEngine.recheckOnChain(selectedAddress);
-      setActionMessage({
-        text: `Đã đối soát trạng thái trên chuỗi: Hóa đơn hiện là ${res.status.toUpperCase()}! (Chữ ký: ${res.signature ?? 'N/A'})`,
-        type: 'success',
-      });
-      await refreshData();
-    } catch (err: unknown) {
-      const msg = err instanceof Error ? err.message : String(err);
-      setActionMessage({ text: `Lỗi đối soát: ${msg}`, type: 'error' });
+      const res = await mockEngine.recheckOnChain(ctx.selectedAddress);
+      if (readCurrent(token)) setActionMessage({ text: `Đọc lại dữ liệu mock: ${res.status}, kết quả request: ${res.outcome}; mã mock: ${res.signature ?? 'chưa có'}. Không gửi lại giao dịch.`, type: 'info' });
+    } catch (error) {
+      if (readCurrent(token)) setActionMessage({ text: `Lỗi đối soát mock: ${messageOf(error)}`, type: 'error' });
     } finally {
-      setIsProcessing(false);
+      reconciling.current = false;
+      if (mounted.current) { setIsProcessing(false); setReload(n => n + 1); }
     }
   };
-
-  const copyToClipboard = (text: string) => {
-    void navigator.clipboard.writeText(text);
-    setActionMessage({ text: `Đã copy vào bộ nhớ tạm: ${text}`, type: 'info' });
+  const copyToClipboard = async (text: string) => {
+    const token = confirmations.beginRead('clipboard', currentContext());
+    try {
+      await navigator.clipboard.writeText(text);
+      if (readCurrent(token)) setActionMessage({ text: 'Đã copy đầy đủ vào bộ nhớ tạm.', type: 'info' });
+    } catch (error) {
+      if (readCurrent(token)) setActionMessage({ text: `Không copy được: ${messageOf(error)}`, type: 'error' });
+    }
   };
-
-  // Tính toán role hiện tại của ví kết nối
   const isMerchant = inspected ? connectedAddress === inspected.invoice.merchant : false;
   const isPayer = inspected ? connectedAddress === inspected.invoice.payer : false;
 
@@ -319,7 +230,7 @@ function ReceiptRailInner() {
       {/* Banner cảnh báo an toàn */}
       <div className="rr-banner-warning" role="alert">
         <span>
-          <strong>CHẾ ĐỘ LOCAL DEMO (PHASE 5)</strong> — Khóa broadcast thật · Dữ liệu mock có nhãn · Không chuyển tiền mainnet
+          <strong>CHẾ ĐỘ LOCAL DEMO (PHASE 5)</strong> — Dữ liệu mô phỏng · Không ký hoặc gửi giao dịch · Không chuyển SOL thật
         </span>
         <span className="badge">OFFLINE / LOCAL QA</span>
       </div>
@@ -328,7 +239,7 @@ function ReceiptRailInner() {
       <div className="rr-header">
         <h1>ReceiptRail — Đường ray Hóa đơn &amp; Thanh toán Solana</h1>
         <p className="lead">
-          Thanh toán hóa đơn native SOL an toàn qua Invoice PDA bất biến, bảo vệ tính toàn vẹn (idempotency) và phục hồi sự cố mạng.
+          Demo hóa đơn SOL: tạo một lần, chỉ người trả chỉ định mới trả được, kiểm tra lại khi mất phản hồi.
         </p>
       </div>
 
@@ -354,7 +265,7 @@ function ReceiptRailInner() {
             <p title={connectedAddress ?? 'Chưa kết nối'}>
               {connectedAddress ? (
                 <>
-                  {connectedAddress.slice(0, 10)}...{connectedAddress.slice(-8)}
+                  {connectedAddress}
                   <button
                     type="button"
                     className="rr-copy-btn"
@@ -377,7 +288,7 @@ function ReceiptRailInner() {
               <button
                 key={connector.id}
                 type="button"
-                className={connectedAddress && connector.name.includes(isMerchant ? 'Merchant' : isPayer ? 'Payer' : '') ? 'secondary' : 'text-button'}
+                className={connector.id === wallet?.connector.id ? 'secondary' : 'text-button'}
                 onClick={() => handleConnect(connector.id)}
                 disabled={isConnecting || isProcessing}
               >
@@ -389,7 +300,7 @@ function ReceiptRailInner() {
               type="button"
               className="text-button"
               onClick={handleDisconnect}
-              disabled={isProcessing}
+              disabled={isConnecting}
             >
               Ngắt kết nối ví
             </button>
@@ -397,6 +308,8 @@ function ReceiptRailInner() {
         </div>
       </section>
 
+      {connectedAddress && !context.chainAllowed && <p role="alert" className="notice notice-error">Ví hoặc tài khoản chưa xác nhận hỗ trợ devnet; chỉ được xem dữ liệu mock.</p>}
+      {connectors.length === 0 && <p role="status">Chưa tìm thấy ví Wallet Standard. Bạn vẫn có thể xem hóa đơn.</p>}
       {/* Mock Control Bar (Slot & Fault Injection) */}
       <div className="rr-mock-bar">
         <div className="rr-mock-slot">
@@ -416,7 +329,8 @@ function ReceiptRailInner() {
             onChange={(e) => handleFaultChange(e.target.value as SimulatedFault)}
           >
             <option value="none">Bình thường (Success)</option>
-            <option value="timeout_unknown">Mô phỏng: RPC Timeout (Unknown State)</option>
+            <option value="timeout_unknown">Mock: đã xử lý, mất phản hồi (Unknown)</option>
+            <option value="timeout_dropped">Mock: request bị drop, chưa xử lý (Unknown)</option>
             <option value="cpi_rollback">Mô phỏng: Thiếu số dư (CPI Rollback)</option>
           </select>
         </div>
@@ -467,6 +381,8 @@ function ReceiptRailInner() {
         </div>
       )}
 
+      {dataError && <div role="alert" className="notice notice-error">{dataError}<button type="button" onClick={() => { void refreshData(); }}>Đọc lại dữ liệu mock</button></div>}
+      {activeTab === 'view' && !inspected && !dataError && <p role="status">Đang đọc hóa đơn mock…</p>}
       {/* TAB 1: VIEW & PAY INVOICE */}
       {activeTab === 'view' && inspected && (
         <div className="rr-card">
@@ -499,7 +415,7 @@ function ReceiptRailInner() {
                 {inspected.displayStatus.toUpperCase()}
               </span>
               <span className="rr-badge rr-badge-confirmed">
-                COMMITMENT: {inspected.commitment.toUpperCase()}
+                COMMITMENT MÔ PHỎNG: {inspected.commitment.toUpperCase()}
               </span>
             </div>
           </div>
@@ -509,12 +425,12 @@ function ReceiptRailInner() {
             <div className="rr-alert-unknown" role="alert">
               <h4>Giao dịch đang ở trạng thái CHƯA RÕ (Unknown State)</h4>
               <p>
-                RPC đã timeout trước khi trả về xác nhận. Chữ ký đã được lưu từ bước ký trước gửi:{' '}
-                <code>{pendingSignature ?? mockEngine.getPendingRecord(inspected.invoice.address)?.signature ?? 'N/A'}</code>.
+                Mô phỏng mất phản hồi. Mã request mock của hóa đơn này:{' '}
+                <code>{mockEngine.getPendingRecord(inspected.invoice.address)?.signature ?? 'N/A'}</code>.
               </p>
               <p>
                 <strong>Mọi thao tác thanh toán hay hủy trên hóa đơn này đang bị khóa</strong> để chống trùng lặp giao dịch.
-                Hãy bấm nút bên dưới để đối soát kết quả trên chuỗi.
+                Hãy đọc lại dữ liệu mock để đối soát; thao tác này không tạo giao dịch mới.
               </p>
               <button
                 type="button"
@@ -522,7 +438,7 @@ function ReceiptRailInner() {
                 onClick={handleRecheckOnChain}
                 disabled={isProcessing}
               >
-                {isProcessing ? 'Đang kiểm tra...' : 'Kiểm tra lại trạng thái trên chuỗi ↻'}
+                {isProcessing ? 'Đang kiểm tra...' : 'Kiểm tra lại dữ liệu mock ↻'}
               </button>
             </div>
           )}
@@ -545,7 +461,7 @@ function ReceiptRailInner() {
                 {inspected.expiry === 'Expired' ? (
                   <strong style={{ color: '#b45309' }}>Đã quá hạn</strong>
                 ) : (
-                  <span>Còn {Number(inspected.invoice.expiresSlot - currentSlot)} slots</span>
+                  <span>{currentSlot < inspected.invoice.expiresSlot ? `Còn ${(inspected.invoice.expiresSlot - currentSlot).toString()} slots` : 'Đã qua hạn slot'}</span>
                 )}
               </div>
             </div>
@@ -563,6 +479,8 @@ function ReceiptRailInner() {
             </div>
           </div>
 
+          <div className="rr-detail-item"><div className="rr-detail-label">Invoice ID</div><div className="rr-detail-value mono">{hex(inspected.invoice.invoiceId)}</div></div>
+          <p className="rr-form-help">Phí mock mỗi thao tác đã xử lý: {MOCK_FEE_LAMPORTS.toString()} lamports từ fee payer thử riêng. Rent mock giữ trong tài khoản: {MOCK_RENT_LAMPORTS.toString()} lamports; Cancel không hoàn rent. Lỗi mô phỏng CPI giữ tiền gốc, vẫn trừ phí mock.</p>
           {/* Action Box */}
           <div className="rr-action-box">
             {inspected.displayStatus === 'Paid' ? (
@@ -593,8 +511,8 @@ function ReceiptRailInner() {
                       <input
                         type="checkbox"
                         checked={cancelConfirmed}
-                        onChange={(e) => setCancelConfirmed(e.target.checked)}
-                        disabled={inspected.isPending}
+                        onChange={(e) => approve('cancel', e.target.checked)}
+                        disabled={isProcessing || !context.chainAllowed || inspected.isPending}
                       />
                       <span>Xác nhận hủy hóa đơn hết hạn này (Trạng thái chuyển sang Cancelled, rent không tự hoàn)</span>
                     </label>
@@ -602,9 +520,9 @@ function ReceiptRailInner() {
                       type="button"
                       className="rr-btn-cancel"
                       onClick={handleCancelInvoice}
-                      disabled={isProcessing || !cancelConfirmed || inspected.isPending}
+                      disabled={isProcessing || !context.chainAllowed || !cancelConfirmed || !inspected.canCancel}
                     >
-                      Hủy hóa đơn hết hạn (Merchant Cancel)
+                      Hủy hóa đơn hết hạn (mock)
                     </button>
                   </div>
                 )}
@@ -618,22 +536,8 @@ function ReceiptRailInner() {
                         <input
                           type="checkbox"
                           checked={termsConfirmed}
-                          disabled={inspected.isPending}
-                          onChange={(e) => {
-                            setTermsConfirmed(e.target.checked);
-                            if (e.target.checked) {
-                              setConfirmedSnapshot({
-                                address: inspected.invoice.address,
-                                merchant: inspected.invoice.merchant,
-                                payer: inspected.invoice.payer,
-                                invoiceId: inspected.invoice.invoiceId,
-                                amountLamports: inspected.invoice.amountLamports,
-                                expiresSlot: inspected.invoice.expiresSlot,
-                              });
-                            } else {
-                              setConfirmedSnapshot(null);
-                            }
-                          }}
+                          disabled={isProcessing || !context.chainAllowed || inspected.isPending}
+                          onChange={(e) => approve('pay', e.target.checked)}
                         />
                         <span>
                           Tôi đã kiểm tra kỹ: Người nhận ({inspected.invoice.merchant.slice(0, 6)}...), Số tiền (
@@ -646,9 +550,9 @@ function ReceiptRailInner() {
                       type="button"
                       className="rr-btn-pay"
                       onClick={handlePayInvoice}
-                      disabled={isProcessing || !termsConfirmed || inspected.isPending}
+                      disabled={isProcessing || !context.chainAllowed || !termsConfirmed || !inspected.canPay}
                     >
-                      {inspected.isPending ? 'Đang bị khóa (Unknown)' : isProcessing ? 'Đang xử lý...' : `Thanh toán ${formatSol(inspected.invoice.amountLamports)} SOL`}
+                      {inspected.isPending ? 'Đang bị khóa (Unknown)' : isProcessing ? 'Đang xử lý...' : `Thanh toán mock ${formatSol(inspected.invoice.amountLamports)} SOL`}
                     </button>
                   </div>
                 ) : isMerchant ? (
@@ -660,8 +564,8 @@ function ReceiptRailInner() {
                       <input
                         type="checkbox"
                         checked={cancelConfirmed}
-                        disabled={inspected.isPending}
-                        onChange={(e) => setCancelConfirmed(e.target.checked)}
+                        disabled={isProcessing || !context.chainAllowed || inspected.isPending}
+                        onChange={(e) => approve('cancel', e.target.checked)}
                       />
                       <span>Xác nhận hủy hóa đơn này (Chuyển sang Cancelled; rent không tự hoàn trả).</span>
                     </label>
@@ -669,9 +573,9 @@ function ReceiptRailInner() {
                       type="button"
                       className="rr-btn-cancel"
                       onClick={handleCancelInvoice}
-                      disabled={isProcessing || !cancelConfirmed || inspected.isPending}
+                      disabled={isProcessing || !context.chainAllowed || !cancelConfirmed || !inspected.canCancel}
                     >
-                      {inspected.isPending ? 'Đang bị khóa (Unknown)' : isProcessing ? 'Đang hủy...' : 'Hủy hóa đơn (Cancel Invoice)'}
+                      {inspected.isPending ? 'Đang bị khóa (Unknown)' : isProcessing ? 'Đang hủy...' : 'Hủy hóa đơn mock (Cancel Invoice)'}
                     </button>
                   </div>
                 ) : (
@@ -705,6 +609,7 @@ function ReceiptRailInner() {
                 type="button"
                 className="text-button"
                 onClick={() => {
+                  invalidate();
                   setAmountInput('0.001');
                   setPayerInput(DEFAULT_PAYER.address);
                   setExpiryDeltaInput('100');
@@ -717,6 +622,7 @@ function ReceiptRailInner() {
                 type="button"
                 className="text-button"
                 onClick={() => {
+                  invalidate();
                   setAmountInput('1.5');
                   setPayerInput(DEFAULT_PAYER.address);
                   setExpiryDeltaInput('200');
@@ -737,7 +643,7 @@ function ReceiptRailInner() {
                 type="text"
                 required
                 value={payerInput}
-                onChange={(e) => setPayerInput(e.target.value)}
+                onChange={(e) => edit(() => setPayerInput(e.target.value))}
               />
               <div className="rr-form-help">Public key 32 bytes của khách hàng trên Solana</div>
             </div>
@@ -752,10 +658,10 @@ function ReceiptRailInner() {
                 type="text"
                 required
                 value={amountInput}
-                onChange={(e) => setAmountInput(e.target.value)}
+                onChange={(e) => edit(() => setAmountInput(e.target.value))}
               />
               <div className="rr-form-help">
-                Parse an toàn sang BigInt lamports. Ví dụ: 0.001 SOL = 1,000,000 lamports.
+                Nhập số chính xác, không làm tròn. Ví dụ: 0.001 SOL = 1,000,000 lamports.
               </div>
             </div>
 
@@ -769,10 +675,10 @@ function ReceiptRailInner() {
                 type="text"
                 required
                 value={expiryDeltaInput}
-                onChange={(e) => setExpiryDeltaInput(e.target.value)}
+                onChange={(e) => edit(() => setExpiryDeltaInput(e.target.value))}
               />
               <div className="rr-form-help">
-                Hạn slot ước tính: Slot {(currentSlot + 100n).toString()} (Observed Slot: {currentSlot.toString()})
+                Hạn slot: {createReview?.expiresSlot.toString() ?? 'chưa có điều khoản hợp lệ'} (slot mock: {currentSlot.toString()})
               </div>
             </div>
 
@@ -786,7 +692,7 @@ function ReceiptRailInner() {
                 type="text"
                 required
                 value={invoiceIdHexInput}
-                onChange={(e) => setInvoiceIdHexInput(e.target.value)}
+                onChange={(e) => edit(() => setInvoiceIdHexInput(e.target.value))}
               />
               <div className="rr-form-help">
                 Định danh duy nhất 32 bytes. Không tự ý đệm 0 hay cắt ngắn.
@@ -796,24 +702,31 @@ function ReceiptRailInner() {
             {/* P5-04: Explicit Create Review Snapshot */}
             <div className="rr-action-box" style={{ marginBottom: '20px' }}>
               <div style={{ fontWeight: 600, marginBottom: '6px' }}>Xem trước chi phí &amp; Điều khoản tạo:</div>
-              <ul style={{ margin: 0, paddingLeft: '20px', fontSize: '0.85rem', color: '#4b6b61', marginBottom: '12px' }}>
-                <li>Người tạo (Merchant): {connectedAddress ?? DEFAULT_MERCHANT.address}</li>
-                <li>Người trả (Payer): {payerInput || 'N/A'}</li>
-                <li>Tiền thuê tài khoản (Rent deposit): 1,802,640 lamports (số đo LiteSVM mẫu cục bộ; không hoàn tự động khi Cancel).</li>
-                <li>Ước tính phí mạng (Transaction Fee): ~10,000 lamports.</li>
-              </ul>
+              {previewError && <p role="alert" className="notice notice-error">{previewError}</p>}
+              {createReview ? (
+                <dl className="rr-grid-details">
+                  <div><dt>Merchant</dt><dd className="mono">{createReview.merchant}</dd></div>
+                  <div><dt>Payer</dt><dd className="mono">{createReview.payer}</dd></div>
+                  <div><dt>Tiền gốc</dt><dd>{formatSol(createReview.amountLamports)} SOL ({createReview.amountLamports.toString()} lamports)</dd></div>
+                  <div><dt>Hạn slot</dt><dd>{createReview.expiresSlot.toString()}</dd></div>
+                  <div><dt>Invoice ID</dt><dd className="mono">{hex(createReview.invoiceId)}</dd></div>
+                  <div><dt>PDA</dt><dd className="mono">{createReview.invoiceAddress}</dd></div>
+                </dl>
+              ) : !previewError && <p role="status">Đang tính điều khoản tạo hóa đơn…</p>}
+              <p className="rr-form-help">Rent mock: {MOCK_RENT_LAMPORTS.toString()} lamports từ merchant; Cancel không hoàn rent. Phí mock: {MOCK_FEE_LAMPORTS.toString()} lamports từ fee payer thử riêng; đây là số mẫu local, không phải báo giá mạng.</p>
               <label className="rr-checkbox-label">
                 <input
                   type="checkbox"
                   checked={createConfirmed}
-                  onChange={(e) => setCreateConfirmed(e.target.checked)}
+                  disabled={isProcessing || !createReview || !context.chainAllowed}
+                  onChange={(e) => approve('create', e.target.checked)}
                 />
-                <span>Tôi đã kiểm tra kỹ toàn bộ điều khoản trên trước khi ký tạo hóa đơn</span>
+                <span>Tôi đã kiểm tra đầy đủ điều khoản trên để tạo hóa đơn mock</span>
               </label>
             </div>
 
-            <button type="submit" className="rr-btn-pay" disabled={isProcessing || !createConfirmed}>
-              {isProcessing ? 'Đang tạo...' : 'Ký tạo hóa đơn (Create Invoice)'}
+            <button type="submit" className="rr-btn-pay" disabled={isProcessing || !createConfirmed || !context.chainAllowed || !createReview}>
+              {isProcessing ? 'Đang tạo...' : 'Tạo hóa đơn mock (Create Invoice)'}
             </button>
           </form>
         </div>
@@ -824,7 +737,7 @@ function ReceiptRailInner() {
         <div className="rr-card">
           <div className="rr-card-heading">
             <h2 className="rr-card-title">Sổ cái Hóa đơn Cục bộ ({decodedInvoices.length})</h2>
-            <button type="button" className="text-button" onClick={refreshData}>
+            <button type="button" className="text-button" onClick={() => { void refreshData(); }} disabled={isProcessing}>
               Làm mới ↻
             </button>
           </div>
@@ -878,6 +791,7 @@ function ReceiptRailInner() {
                       type="button"
                       className="rr-copy-btn"
                       onClick={() => {
+                        invalidate();
                         setSelectedAddress(inv.address);
                         setActiveTab('view');
                       }}
@@ -908,30 +822,30 @@ function ReceiptRailInner() {
           </div>
 
           <div className="rr-storyboard-step">
-            <h4>Đoạn 2: Merchant tạo Hóa đơn on-chain (0:35 - 1:05 · 30s)</h4>
+            <h4>Đoạn 2: Merchant tạo hóa đơn mock (0:35 - 1:05 · 30s)</h4>
             <p>
-              Merchant mở tab "Tạo Hóa đơn", nhập ví Payer (Alice), số tiền 0.001 SOL, hạn 100 slots. Hệ thống tính PDA duy nhất và ký gửi tiền thuê rent an toàn.
+              Merchant mở tab "Tạo Hóa đơn", nhập ví Payer (Alice), số tiền 0.001 SOL, hạn 100 slots. Demo tính PDA duy nhất và trừ rent trên số dư mock; không ký hay gửi lên mạng.
             </p>
           </div>
 
           <div className="rr-storyboard-step">
             <h4>Đoạn 3: Payer kết nối ví, Xác nhận điều khoản &amp; Thanh toán (1:05 - 1:40 · 35s)</h4>
             <p>
-              Alice kết nối ví. Giao diện hiển thị chi tiết hóa đơn, yêu cầu duyệt terms snapshot. Alice ký lệnh thanh toán. Tiền chuyển trực tiếp từ Alice sang Tiệm Cà phê, hóa đơn chuyển sang PAID.
+              Alice kết nối ví. Giao diện hiển thị chi tiết hóa đơn, yêu cầu duyệt terms snapshot. Alice bấm thanh toán mock. Số dư giả của Alice và Tiệm Cà phê thay đổi một lần, hóa đơn mock thành PAID.
             </p>
           </div>
 
           <div className="rr-storyboard-step">
             <h4>Đoạn 4: Phục hồi sự cố Timeout / Unknown State (1:40 - 2:15 · 35s)</h4>
             <p>
-              Mô phỏng RPC Timeout: Giao diện chuyển sang trạng thái cảnh báo Unknown, giữ nguyên PDA/terms, không tự động gửi lại. Người dùng bấm "Kiểm tra lại trên chuỗi" để đối soát kết quả.
+              Mô phỏng RPC Timeout: Giao diện chuyển sang trạng thái cảnh báo Unknown, giữ nguyên PDA/terms, không tự động gửi lại. Người dùng bấm "Kiểm tra lại dữ liệu mock" để đối soát kết quả.
             </p>
           </div>
 
           <div className="rr-storyboard-step">
             <h4>Đoạn 5: Kiểm tra Rollback &amp; Bảo mật (2:15 - 2:45 · 30s)</h4>
             <p>
-              Thử nghiệm trả lần 2 hoặc ví Bob (hacker) cố tình thanh toán thay: Hệ thống từ chối ngay lập tức với mã lỗi Anchor IDL. Giao dịch được bảo vệ tuyệt đối.
+              Màn hình khóa Pay trên hóa đơn Paid và ví sai vai. Bộ test local riêng thử duplicate, sai payer và rollback; UI không phát giao dịch lỗi để minh họa. Mã lỗi và số dư mock cho thấy phạm vi được kiểm; đây chưa phải thử ví hay thanh toán trên mạng.
             </p>
           </div>
         </div>
