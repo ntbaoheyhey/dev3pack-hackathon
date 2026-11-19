@@ -62,6 +62,8 @@ Mọi lần dừng sai được ghi ở [`docs/STOP-CAUSES.md`](docs/STOP-CAUSES
 
 ## Chống quên context
 
+**Bổ sung Prompt04 (log19/11/2026 23:10:07.582UTC+7):** “dừng điều khiển” cấm chuột/bàn phím/màn hình người dùng; đã cho phép headless Playwright/Chromium **có sẵn**, chỉlocalhost/vímock. Thiếu cache thì báo, không cài. Quyền này không mở public/deploy/upgrade/signer/mergePR7/Phase6 thật. Nếu lời dặn mơ hồ chặn việc, hỏi một câu có lựa chọn ngay và tiếp tục phần không phụ thuộc. T37 review một lượt; chỉ lỗi UI thật giao task sửa cụ thể, thiếu report nhẹ ghi nợ. T38/T39 và nghiên cứu kế hoạch/review/nháp Phase6–7 được phép; không gọi là mở phase thật. Xem DECISION/STOP-CAUSES K11.
+
 Context có thể bị compact bất cứ lúc nào. Thứ gì không nằm trong repo thì coi như sẽ quên.
 
 1. **Đọc trước tiên, mỗi lần bắt đầu, sau compact và mỗi lần tự nhắc** (theo thứ tự): **Thẻ nhớ** ở đầu HANDOFF của mình (`docs/HANDOFF.md` cho Codex, `docs/HANDOFF-antigravity.md` cho Antigravity) → `AGENTS.md` mục "Luật làm cặp", "Chống dừng giữa chừng" → `docs/ROADMAP.md` phần phase hiện tại → hàng đợi `docs/tasks/`.

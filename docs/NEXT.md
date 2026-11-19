@@ -1,9 +1,9 @@
-# NEXT — Phase4 đã có bằng chứng; Phase5 local chờ kiểm giao diện
+# NEXT — Prompt04: chốt Phase5 local, chuẩn bị Phase6–7
 
-P4-A/P4-B đã đồng ý nguyên văn tại [DECISION](ideas/DECISION.md). **Đã hoàn tất**, không chạy lại deploy/smoke/recovery. [Kết quảPhase4](PHASE4-RESULT.md):162tx finalized, debit0.760701080SOL<cap1.8, Paid/Cancelled/duplicate đúng. CI triểnkhai/recovery và client/Aacceptance có bằng chứng; giáo viên chưa verdict.
+[Quyền/giờ log](ideas/DECISION.md), [prompt nguyên văn](../prompts/04-codex-phase5-prep.md), [Thẻ nhớ](HANDOFF.md). Headless chỉ localhost/ví mock bằng cache; không CUA/visible browser/cài thêm.
 
-Phase5 code local đã hợp nhất tại266b30c,45tests/build+7reprođạt; title/metadata routeReceiptRail được sửa khi chuẩn bịartifact. T34/T35/T36đãđóng, không mở vòng sửa report hoặc chờA. [Reviewr3](reviews/receiptrail-phase5-r3.md), [bảnlocal để kiểm](PHASE5-PLAN.md), [manifestartifact](evidence/phase5/local-artifact-2026-11-19.json).
+T37→T38→T39 đã giao trong A-queue. C học/notes026+028, viết PHASE6-PLAN, tự review bảo mật program, README giám khảo nháp và kịch bản165giây song song. Nhận T37 một lượt, chỉ lỗi UI thật có task sửa; report nhẹ thành nợ. Review C wallet/money r3 có từ266b30c; không gọi đó là bằng chứng DOM.
 
-**Bước tiếp theo:** sau khi người dùng chọn cách kiểm giao diện, thực hiện đúng lựa chọn rồi ghi bằng chứng demo/React/DOM/mobile. Hiện người dùng yêu cầu dừng điều khiểnGUI; không CUA/browser/headless, không tự mở link hoặc coiHTTP200 là kiểmrender. Người dùng có thể tự mở localhost4175/receiptrail trên máy.
+Sau T37 review và PHASE6-PLAN cụ thể, hỏi gộp: public mock ReceiptRail trên Site riêng/audience; mở Phase6 devnet với trần và signers có sẵn; mergePR7. Chưa làm ba hành động đó, deploy/upgrade, signer mới, đổi authority hoặc cài thêm. Trong lúc chờ còn sổ tay và nợ tài liệu rẻ.
 
-Chỉ sau khi có kết quảbrowser và artifact đủreview mới trình public riêng. Chưa đăngkýSiteReceiptRail/upload/deploy/public web, Phase6, cài thêm, signer mới, upgrade/đổiauthority hay mergePR7. Lời tự nhắc/goal continuation không mở quyền. Víextension thật và verdictgiáoviên chưa có; không tự đóngPhase5/goal. Automation15phút giữACTIVE đúngchat; khi chưa có lời mới, không lặp lại triểnkhai đã xong hoặc quyết định thay người dùng.
+P4-B đã xong162tx finalized, không chạy lại. T31–T36 đóng; không sửa A-done/HANDOFF A. Automation15phút ACTIVE đã read-back, giữ tới khi người dùng bảo dừng. Không tự đóng phase/goal.

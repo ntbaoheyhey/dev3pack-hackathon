@@ -4,6 +4,12 @@ Giáo viên (Claude) ghi lại **mọi lần** Codex (C) hoặc Antigravity (A) 
 
 | # | Ngày | Agent | Dấu hiệu | Nguyên nhân | Cách chặn |
 | --- | --- | --- | --- | --- | --- |
+| K11 | 19/11/2026 | C | Theo Prompt04: repo đứng từ17:18 vì hiểu “dừng điều khiển” thành cấm cả headless và chỉ chờ, không có câu hỏi rõ gửi người dùng | Phạm vi GUI/headless chưa được làm rõ sớm; bàn giao còn việc PR đã xong và thiếu danh sách việc chuẩn bị độc lập | Khi lời dặn mơ hồ chặn việc, hỏi ngay một câu có lựa chọn và làm việc không phụ thuộc trong lúc chờ. Prompt04 cho phép headless localhost/mock bằng cache; giaoT37, C làm kế hoạch/review/README song song; không suy quyền public/Phase6 |
+
+**Đối chiếu K11:** mô tả trên là sự cố người dùng yêu cầu ghi trong Prompt04. Lịch sử chat có câu hỏi async `call_fdf3f97ccfda436c8d16f13a073954b8` về tự kiểm/headless và câu trả lời “Tôi tự kiểm bản local (đề xuất)”; sau đó người dùng đặt goal paused, rồi Prompt04 mở lại. Vì vậy không xóa câu hỏi có thật hoặc quy khoảng pause rõ ràng thành tự dừng sai. Lỗi cần khắc phục là làm rõ phạm vi sớm, bàn giao đúng hiện tại và không bỏ phần chuẩn bị độc lập; quyền mới/giờ log ở [DECISION](ideas/DECISION.md).
+
+| # | Ngày | Agent | Dấu hiệu | Nguyên nhân | Cách chặn |
+| --- | --- | --- | --- | --- | --- |
 | S1 | 17/11 | C | Bàn giao ghi "đã xong", Codex bị compact rồi đọc HANDOFF, báo "tạm dừng" và đứng | Trạng thái "paused" trong HANDOFF; coi compact là điểm dừng | Luật chạy dài trong AGENTS.md: sau compact đọc HANDOFF rồi làm tiếp; cấm ghi "tạm dừng" |
 | S2 | 17/11 | C | HANDOFF ghi "Quy tắc phiên Codex không cho tạo Automation… chưa tạo Automation"; hết lượt là dừng hẳn | Codex từ chối tự tạo Automation khi được giao như một cơ chế bám task | **Người dùng tự tạo** Automation (gõ câu nhờ tạo tin nhắn định kỳ như lần đầu, hoặc tạo trong mục Automations); prompt yêu cầu agent kiểm tra tin nhắn định kỳ đã có. Chạy Codex ở Goal mode |
 | S3 | 17/11 | C + A | Hai bên thay phiên ghi "chờ Codex" / "chờ Antigravity duyệt" | Có bước chờ đồng ý giữa hai agent | Luật làm cặp: review không chặn; từ 17/11 C là trưởng, A là trợ lý, **C không bao giờ chờ A** |

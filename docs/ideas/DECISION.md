@@ -1,5 +1,15 @@
 # Quyết định sản phẩm — ReceiptRail
 
+## Prompt 04 — cho phép headless local, chuẩn bị Phase 6–7
+
+> Câu "dừng điều khiển mình nhé" nghĩa là không điều khiển chuột, bàn phím, màn hình máy tôi. Tôi cho phép kiểm giao diện ReceiptRail local bằng headless browser chạy ngầm (Playwright/Chromium đã có sẵn trong cache), chỉ trên localhost, chỉ ví mock. Không cài thêm gì; nếu thiếu thì dừng phần này và báo tôi. Vẫn chưa cho phép public web, deploy/upgrade, signer mới, cài thêm, merge PR7 hay mở Phase 6 thật.
+
+Nguồn: nội dung attachment Prompt04 người dùng gửi trong chat, userMessage `01a1f492-8d5e-7863-b3d7-e0d154b70a00`. **Giờ log message: 19/11/2026 23:10:07.582 UTC+7 (Asia/Ho_Chi_Minh)**, tương ứng `2026-11-19T16:10:07.582Z`, trích response_item role=user trong session; không phải giờ người dùng tự nêu. [Bản prompt](../../prompts/04-codex-phase5-prep.md), [record](../evidence/phase5/prompt04-permission.json).
+
+Lựa chọn trước “Tôi tự kiểm bản local (đề xuất)” của question `call_fdf3f97ccfda436c8d16f13a073954b8`, item0, được thay bằng phạm vi headless trên. Không coi việc mở lại goal là quyền; quyền đến từ đoạn nguyên văn này. Cho phép nghiên cứu/viết kế hoạch Phase6–7, tự review bảo mật và nháp README/video; chưa mở tích hợp thật. T37 kiểm16ca+video, T38/T39 học/checklist; C review T37 một lượt, lỗi UI có task sửa cụ thể, thiếu report nhẹ ghi nợ.
+
+Automation15phút đã được bật lại đúng chat bằng action, giữ tới khi người dùng bảo dừng; [read-back](../evidence/phase5/prompt04-automation.json). Public mock riêng, mở Phase6 devnet với trần cụ thể, mergePR7 là **ba quyết định chưa có**; chỉ hỏi gộp sau T37 review và PHASE6-PLAN có bản cụ thể.
+
 ## Yêu cầu dừng điều khiển giao diện — 19/11/2026
 
 > dừng điều khiển mình nhé, đã ổn rồi mà

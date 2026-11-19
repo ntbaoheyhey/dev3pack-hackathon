@@ -452,3 +452,5 @@ Các mô tả dưới đây là sự kiện ở Taskbar Hero, không phải hàn
 2026-11-19T17:15:55+07:00 · Codex · Sau266b30c đãpush, đồngbộPHASE4-RESULT/CLIENT/PLAN/NEXT/ROADMAP/README/reviewPhase4, viếtPHASE5-PLAN với bảnlocal/chưaquyềnGUI/public. Sửa title/metadatarouteReceiptRail (vùngA) và buildđạt; testmodel/adapter khôngđổi, khôngchạy thừa. ZIPdistlocal cóSHA/HTTP5paths200/18sourcehashes, khôngpackagepublic hoặcđăngkýSite. Notes024-025 giữgiớihạn browser/extension/giáoviên.
 
 2026-11-19T17:17:04+07:00 · Codex · Chuẩn bị trình cách kiểm giao diện theoPHASE5-PLAN; local artifact đã cụ thể, giữ yêu cầu dừngGUI. PR7 vẫn cần cập nhật/read-back trước câu hỏi; không ghi quyền mới vàoDECISION khi chưa có lời người dùng.
+
+2026-11-19 · Codex · Prompt04 log23:10:07.582UTC+7: ghi nguyên văn quyền headless localhost/mock và nguồn log; automation đã bật lại ACTIVE/read-back. Đồng bộ work, sửa bàn giao stale, thêm K11 có đối chiếu câu hỏi/pause thật; giaoT37→T38→T39 và giữ số notes026–029 trước nghiên cứu. Chưa chạy browser hoặc mở Phase6/public/merge.

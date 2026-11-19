@@ -1,5 +1,36 @@
 # Hàng đợi Antigravity — Phase 5 ReceiptRail local
 
+## Hiện hành — Prompt 04, 19/11/2026 23:10:07.582 UTC+7
+
+Thứ tự mới **T37 → T38 → T39**. Quyền trong [DECISION](../ideas/DECISION.md): headless có sẵn, localhost, ví mock; không điều khiển màn hình/chuột/bàn phím máy người dùng. Không cài, public, deploy/upgrade, signer mới, merge PR7 hoặc Phase 6 thật. Các đoạn T34–T36 bên dưới là lịch sử đã đóng; lệnh cấm headless cũ đã được thay đúng phạm vi này. C nghiên cứu/review song song, không chờ A.
+
+### T37 — Kiểm browser local và quay thử demo (mới)
+
+- Đọc notes025/013 và PHASE5-PLAN trước làm. Dùng Playwright/Chromium/ffmpeg đã có trong cache; ghi đường dẫn và phiên bản thật. Thiếu thành phần thì báo tên và dừng phần đó, tiếp tục T38; không tải/install/npx.
+- Server localhost hiện có tại `http://127.0.0.1:4175/receiptrail/`; kiểm source đang phục vụ khớp bản work đã pull. Nếu server tắt, chạy `npm run dev -- --port 4175 --strictPort` trong apps/web bằng cache. Headless=true; chỉ localhost và ví mock; chặn request ra mạng trong browser. Không CUA/browser hiển thị, không ví extension thật.
+- Chạy đủ **8 ca** trong bảng [PHASE5-PLAN](../PHASE5-PLAN.md) ở **1440×900 và 375×812** (16 kết quả). Mỗi ca ghi bước cụ thể, expected, actual, PASS/FAIL và ảnh tên mới có ngày/viewport/case. Không sửa core hoặc đánh dấu đạt bằng HTTP200/ảnh Loading.
+- Kiểm Tab/Shift+Tab, focus nhìn thấy, clipboard, full address; ở375px đo scrollWidth không vượt clientWidth của trang (bảng được cuộn trong vùng riêng). Các ca Unknown phải kiểm cả đã xử lý và bị drop, không chỉ nhãn.
+- Quay thử luồng demo bằng Playwright `recordVideo`, mock có nhãn; sườn165giây, ghi thời lượng **file thật**, không đổi metadata để giả thời lượng. Lưu video khi context đóng xong; quá165giây ghi thực tế/finding. Không dùng sleep dài chặn cập nhật tiến độ.
+- Nộp `docs/evidence/phase5/t37-YYYY-MM-DD/` gồm script tái chạy, report16ca, ảnh/video, log, manifest source hashes và command/version/duration. Cập nhật note025/DEVLOG/A-done/HANDOFF A, commit/push `[skip ci]`.
+- Lỗi UI thật ghi reproduction/finding. C review **một lượt**: nếu cần sẽ giao đúng một task sửa implementation có danh sách; thiếu report nhẹ thành nợ tài liệu, không vòng nộp lại vô hạn.
+
+### T38 — Học trước Phase 6 phía A (mới, sau T37)
+
+- Viết note027 `docs/learning/027-receiptrail-wallet-e2e.md` (C đã giữ số trong mục lục): Wallet Standard Phantom/Solflare/Backpack devnet, signTransaction/signAndSendTransaction, reject/errors thực tế, account/network change, Unknown và blockhash expiry; phân biệt API/docs với điều đã kiểm thật.
+- Nguồn chính thức/source/issue gốc, URL/ngày đọc/version; nguồn cộng đồng chỉ bổ trợ, không suy mọi ví dùng4001. Lập bảng feature/capability cần kiểm cho từng ví và phương án test e2e headless/mock so với extension thật.
+- Nêu contract adapter cần từ C, UX cho 429/offline/lag/status-null/reject, không tự gửi lại. Không code adapter thật, cài ví, import signer hay ký/gửi transaction. Thiếu nguồn ghi giới hạn.
+- Xong khi có ma trận ít nhất3ví,8ca lỗi với expected/CTA, kế hoạch e2e có bước và evidence; cập nhật DEVLOG/A-done và push `[skip ci]`. C nhận phần dùng được, không vòng sửa report.
+
+### T39 — Checklist bug bash Phase 7 (mới, sau T38)
+
+- Viết `docs/PHASE7-BUG-BASH.md` và note029 `docs/learning/029-receiptrail-bug-bash.md`: desktop/mobile,3ví, bàn phím/a11y, amount/expiry/terms/role, double click, reload/Unknown, network/rate limit, state/commitment, mock labels và link đúng cluster.
+- Mỗi ca có precondition/bước/expected/severity/evidence/owner; cột kết quả mặc định **chưa chạy**, không đánh dấu kiểm điện thoại/ví thật bằng headless giả lập. Tách local/mock được phép khỏi phase devnet/public chờ duyệt.
+- Tiêu chí nhận: tối thiểu20ca, P0/P1 chặn release rõ, manifest snapshot và mẫu báo lỗi tái hiện được; học/nguồn trước checklist, DEVLOG/A-done/push `[skip ci]`. Không sửa core hay tự mở phase.
+
+---
+
+## Lịch sử T34–T36 (đã đóng)
+
 **Chủ file: Codex. T34/T35/T36 đã nhận phần đạt và đóng; không có vòng sửa report mới.** Người dùng đã mở Phase4 và Phase5; [nguyên văn/quyền](../ideas/DECISION.md). Fetch/pull `work`, đọc Thẻ nhớ/AGENTS/ROADMAP/note trước làm. P4-B đã hoàn tất162tx finalized, không chạy lại. Không tự mở task mới khi hàng đợi trống.
 
 ## T36 — Đã nhận và đóng sau hợp nhất

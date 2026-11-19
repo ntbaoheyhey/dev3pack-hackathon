@@ -28,7 +28,7 @@ Sườn demo165giây:35s vấn đề/nhãn mock,30s Create,35s Pay/receipt,35s U
 
 ## Cổng còn cần người dùng
 
-Người dùng đã nói **“dừng điều khiển mình nhé, đã ổn rồi mà”**; vì vậy C chỉCLI/repo. Bước kế tiếp là **người dùng tự kiểm bản local**, hoặc chỉ khi người dùng cho phép rõ mới kiểm browserlocalhost. Không tự bật CUA/headless hoặc lấy lời “tiếp tục” làm mở quyền này.
+Prompt04 (log19/11/2026 23:10:07.582UTC+7) cho phép headless Playwright/Chromium có sẵn, chỉlocalhost/vímock; không điều khiển màn hình/chuột/bàn phím. T37 kiểm8ca trên cả1440×900 và375×812, focus/overflow và recordVideo/duration thật. Thiếu cache báo, không cài. [Nguyên văn/quyền](ideas/DECISION.md). C review một lượt, không coi quyền headless là đã kiểm đạt.
 
 Sau khi có kết quả browser/demo và C review, mới trình phương án public cụ thể. Định hướng dự kiến là một Site ReceiptRail riêng trên Sites, không cập nhật SiteClusterProof đangpublic; source snapshot và audience phải được trình tại cổng đó. **Hiện chưa đăng ký/upload/sync source/deploy/public Site nào**, chưa có URLReceiptRailpublic. Không dùng quyềnP4-B cho website.
 
