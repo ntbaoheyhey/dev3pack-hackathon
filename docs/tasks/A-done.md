@@ -88,4 +88,11 @@
 - Việc T31, T32, T33: Đã sửa bổ sung các log rollback, PDA check và UX 6002/6007.
 - Tình trạng: Hoàn tất các patch.
 
-- Việc T34: Đang làm. Bắt đầu học và triển khai UI ví/thanh toán cho ReceiptRail.
+- Việc T34: Xong. Đã học và triển khai toàn bộ UI ví/thanh toán ReceiptRail cục bộ:
+  - Hoàn thành note học trước code: `docs/learning/025-receiptrail-frontend-wallet.md` (mock/chain boundary, state vs commitment, amount u64 bigint, wallet lifecycle, Unknown recovery, browser testing), cập nhật mục lục và DEVLOG.
+  - Tích hợp client Codex `packages/receiptrail-client/index.mjs`: xác nhận sử dụng tốt, parse/format số tiền chính xác, inspect layout 131 bytes và mapping 9 lỗi Anchor IDL.
+  - Triển khai `apps/web/src/receiptrail/` với route `/receiptrail/`: Merchant form (review terms, rent 1,802,640 lamports, est fee 10,000 lamports, invariant invoiceId/PDA), Invoice/Receipt view (Open/Paid/Cancelled, Expired phái sinh, commitment riêng, full copy address), phân quyền vai (đúng payer mới pay, merchant mới cancel, paid terminal).
+  - Phục hồi sự cố Unknown: Giữ nguyên PDA/terms/signature khi timeout, không auto-resend, có nút re-check on-chain để khôi phục trạng thái Paid.
+  - Vòng đời ví: Tự động hủy bỏ confirmed terms snapshot khi đổi ví/tài khoản. Khóa broadcast thật trong Phase 5 local.
+  - Kịch bản demo 165s tương tác theo note 013.
+  - Kiểm thử: 14/14 tests pass (`tests/*.test.mjs`), build tĩnh Vite thành công (133ms), chụp đủ 5 ảnh màn hình desktop/mobile tại `docs/evidence/phase5/`. Báo cáo đầy đủ tại `docs/evidence/phase5/README.md`.
