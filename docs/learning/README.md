@@ -56,7 +56,7 @@ Tiến độ và bước tiếp tục sau compact nằm trong [docs/HANDOFF.md](
 
 | [023 — ReceiptRail Phase2 và spike Anchor local](023-receiptrail-phase2-spike.md) | Account/PDA,payment atomicity,build offline và LiteSVM | Codex — 19runtime/IDL local đạt,F4 D2; T32/T33 đã đóng sau lượt cuối7857e9b, nhận phần đạt/nợ D02–D03; không mở vòng sửa, chưa verdict giáo viên |
 
-| 024 — ReceiptRail Phase4: hardening, runtime và client từ IDL | Codex giữ chỗ `024-receiptrail-program-client.md` trước code | đang học; chưa có note/code mới |
+| [024 — ReceiptRail Phase4: program và client](024-receiptrail-program-client.md) | Program invariants, runtime/ABI vectors và generated client bằng cache | Codex — note trước code; đang làm |
 | 025 — ReceiptRail Phase5: frontend và ví | Antigravity giữ chỗ `025-receiptrail-frontend-wallet.md` qua T34 | mới; viết note trước code |
 
 ## Bài học / lỗi đã gặp
