@@ -1,8 +1,22 @@
 # Hàng đợi Antigravity — Phase 5 ReceiptRail local
 
-**Chủ file: Codex. T34 đã nộp4d2e48a; T35 mới — sửa lỗi UI thực tế trước public.** Người dùng đã mở Phase4 và Phase5 song song; [nguyên văn/quyền](../ideas/DECISION.md). Fetch/pull `work`, đọc Thẻ nhớ/AGENTS/ROADMAP và note liên quan trước làm. **Làm T35 ngay; không chờ C deploy.** C làm Phase4 song song.
+**Chủ file: Codex. T35 đã review; T36 mới — A sửa UI/lifecycle, C sửa mock adapter tiền/trạng thái song song.** Người dùng đã mở Phase4 và Phase5; [nguyên văn/quyền](../ideas/DECISION.md). Fetch/pull `work`, đọc Thẻ nhớ/AGENTS/ROADMAP/note trước làm. P4-B đã hoàn tất162tx finalized, không chạy lại. Không cần chờ C để bắt đầu phần A.
 
-## T35 — Sửa implementation T34 theo review C (mới, làm ngay)
+## T36 — UI/lifecycle local theo phần thiếu cụ thể (mới, làm ngay)
+
+[Review r2](../reviews/receiptrail-phase5-r2.md) nhận phần đạt của T35; [repro7ca](../reviews/receiptrail-phase5-r2-repro.json) là lỗi hiện tại. Không mở lại T31–T33 hoặc sửa reportT35 cho đẹp. C chịu trách nhiệm `adapter.ts`, `types.ts` và **file test mới** `receiptrail-adapter-review.test.mjs`; A không sửa3file này trong T36. C giữ API async hiện tại và public mockEngine/client/roles; sẽ ghi contract mới khi push.
+
+A sở hữu `ReceiptRailApp.tsx`, `mock-wallets.ts`, CSS, production lifecycle/controller mới nếu cần, `tests/receiptrail.test.mjs` và test UI mới, note025/evidence Phase5. Đọc DEVLOG và review trước sửa.
+
+1. Tách production controller/hook quản lý snapshot Create/Pay/Cancel; test gọi chính code dùng bởi app. Reset khi đổi wallet identity kể cả cùngaddress, accounts/chains/disconnect, đổi invoice, sửa input/preset/slot thay terms. Submit dùng snapshot đã duyệt, không tự dựng Cancel terms tại click. Chặn double submit ngay trước await; stale async results không thay selection/ví mới.
+2. Wallet Standard mock publicKey phải encode đúng address. Test connector production của SDK, account/chain change, disconnected/guest/reject không cần browser. Không gọi sign/send feature hoặc tự mở extension. Nếu SDK không expose chains thì subscribe standard:events trong lifecycle; ghi đúng giới hạn.
+3. Review đầy đủ merchant/payer/amount/expiry/ID/PDA/rent/fee mock trước Create; preview expiry đúng input và giới hạn u64; thay input mất xác nhận. Catch lỗi list/detail rõ ràng, không nuốt decode hoặc unhandled promise.
+4. Sửa responsive theo ảnh mobile375×812 hiện có (cắt ngang); wallet/controls/banner/details/list cần wrap/min-width phù hợp, giữ full-address/copy. Sửa copy mock sát action/receipt/storyboard, bỏ bảo vệ tuyệt đối và “on-chain” khi đọc mock. Cập nhật note025 (reject không luôn4001, signature có trước send, recheck chỉ đọc).
+5. Chạy tests/build bằng cache; giữ log/test names/giới hạn thật. Theo yêu cầu dừng điều khiển giao diện, **không CUA/browser automation/headless/mouse-keyboard** trong T36, không tạo ảnh mới; dùng source/CLI và ảnh có sẵn. Ghi rõ browser sau sửa còn chưa kiểm, không suy tests/build = responsive đã xác minh. Không public/install/Phase6.
+
+Push mốc nhỏ `[skip ci]`, ghi A-done/HANDOFF A đúng sở hữu. C không chờ A và tiếp tục phần adapter/review. Nếu thấy vấn đề client C, ghi finding, không sửa program/IDL/generated client/locks.
+
+## T35 — Đã nộp69e458a; review r2 nhận phần đạt, T36 xử lý implementation còn thiếu
 
 Nguồn cụ thể: [review C](../reviews/receiptrail-phase5-r1.md),5nhóm P5-01…05 có reproduction/acceptance. Đây là sửa code mới, không vòng report T31–T33. Giữ đúng sở hữu T34/local/cache; không cài/deploy/public/Phase6. Đọc/cập nhật note025 và source cache trước sửa.
 

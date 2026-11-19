@@ -1,0 +1,120 @@
+{
+  "reviewedSource": "69e458acd2f14df6c94b1ae2d1a0c5b4d60e563c",
+  "scope": "CLI production adapter and SDK connector only; no UI/browser/extension evidence",
+  "observations": [
+    {
+      "case": "concurrent-pay",
+      "expected": "Exactly one submission succeeds",
+      "actual": [
+        {
+          "status": "fulfilled",
+          "value": {
+            "signature": "mock-pay-sig-mwnd53htmctg",
+            "status": "Confirmed"
+          }
+        },
+        {
+          "status": "fulfilled",
+          "value": {
+            "signature": "mock-pay-sig-mwnd53ht36bh",
+            "status": "Confirmed"
+          }
+        }
+      ],
+      "accepted": false
+    },
+    {
+      "case": "concurrent-pay-cancel",
+      "expected": "One terminal transition; the second operation rejects",
+      "actual": {
+        "results": [
+          {
+            "status": "fulfilled",
+            "value": {
+              "signature": "mock-pay-sig-mwnd53hwvjwq",
+              "status": "Confirmed"
+            }
+          },
+          {
+            "status": "fulfilled",
+            "value": {
+              "signature": "mock-cancel-sig-mwnd53hwjlmr"
+            }
+          }
+        ],
+        "finalState": "Cancelled"
+      },
+      "accepted": false
+    },
+    {
+      "case": "concurrent-create",
+      "expected": "Exactly one create; immutable terms",
+      "actual": [
+        {
+          "status": "fulfilled",
+          "value": {
+            "invoiceAddress": "5eQyKLFqK75HxZw2xVYRjGX5jidrytJUmMzS6GgLT4ei",
+            "bump": 251
+          }
+        },
+        {
+          "status": "fulfilled",
+          "value": {
+            "invoiceAddress": "5eQyKLFqK75HxZw2xVYRjGX5jidrytJUmMzS6GgLT4ei",
+            "bump": 251
+          }
+        }
+      ],
+      "accepted": false
+    },
+    {
+      "case": "recheck-is-observational",
+      "expected": "Recheck observes the ledger outcome determined by submission; it does not create Paid",
+      "actual": {
+        "submission": {
+          "signature": "mock-timeout-sig-mwnd53i1nqg2",
+          "status": "Unknown"
+        },
+        "result": {
+          "status": "Paid",
+          "signature": "mock-timeout-sig-mwnd53i1nqg2"
+        },
+        "accountBytesChangedByRead": true,
+        "paidSlot": "100"
+      },
+      "accepted": false
+    },
+    {
+      "case": "signature-scoped-to-invoice",
+      "expected": "A seeded Cancelled invoice must not inherit another invoice payment signature",
+      "actual": {
+        "paidInvoice": "EpQUeEpGPoZrDoffujf86a3GnKdBkX7RbvsbXkkfpodo",
+        "paidSignature": "mock-pay-sig-mwnd53i4f89o",
+        "inspectedInvoice": "5BWMrebjJNr2yANMqzXSwdFjErkxT24TBqDHYjLvEv66",
+        "result": {
+          "status": "Cancelled",
+          "signature": "mock-pay-sig-mwnd53i4f89o"
+        }
+      },
+      "accepted": false
+    },
+    {
+      "case": "mock-wallet-public-key",
+      "expected": "WalletAccount publicKey encodes its address",
+      "actual": {
+        "address": "3r3Q8mD7kEF1ssvkhGBdDD57FfN7MPgzHAvznfD6tQUc",
+        "publicKeyAddress": "11111111111111111111111111111111",
+        "connectorAccepted": true
+      },
+      "accepted": false
+    },
+    {
+      "case": "expiry-delta-u64",
+      "expected": "Reject a delta beyond u64 before confirmation",
+      "actual": {
+        "rejected": false
+      },
+      "accepted": false
+    }
+  ]
+}
