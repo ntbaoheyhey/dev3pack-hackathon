@@ -429,3 +429,5 @@ Các mô tả dưới đây là sự kiện ở Taskbar Hero, không phải hàn
 2026-11-19 · Codex · P4-B deploy verified157tx finalized/bytecode/authority, debit0.753656080SOL; smoke inspect đạt. Cập nhật note024/Thẻ nhớ và push evidence. T35 đã push76b684c, gửi điều phối đúng chat A với nhãn Codex, không quyền mới người dùng.
 
 2026-11-19T16:20:29+07:00 · Codex · Tiếp tục sau bàn giao; Automation ACTIVE/15phút/đúng chat và origin/work d9d2336 đã kiểm. Giữ smoke-r1-partial4tx finalized/duplicate simulation, viết cancel-recovery chỉ1Cancel với read-only reconciliation/journal/exact CI guard;23client+7guards+7recovery local đạt, cập nhật note024/Thẻ nhớ. Đang inspect read-only trước CI; chưa ký/gửi lại smoke/deploy hoặc sửa UI A.
+
+2026-11-19 · Codex · Push e9a1603 chạy CI recovery push44495583542/PR44495594074; Web/Research đã đạt, Anchor còn chạy. Inspect4tx/history/terms/Paid+Open đạt trước ký, thêm10000fee dự kiến. Đồng bộ README/ROADMAP/NEXT/plan/index/Thẻ nhớ và PR7 body/read-back open/unmerged, không gọi deployment còn chưa broadcast. CUA xác minh T35 Agent working đúng chat A, không gửi lại task hoặc sửa checkout A.

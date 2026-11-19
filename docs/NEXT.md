@@ -1,13 +1,10 @@
-# NEXT — Phase4 CI và devnet đã duyệt; Phase5 local song song
+# NEXT — ReceiptRail: hoàn tất Cancel recovery, review Phase5 local
 
-Người dùng mở Phase4/5 rồi trả lời **“Đồng ý cả P4-A và P4-B”**, log13:55:34.348UTC+7 ngày19/11/2026; [DECISION](ideas/DECISION.md)/[record](evidence/phase4/user-permission-p4ab-2026-11-19.json). Không hỏi lại. Automation15phút ACTIVE.
+P4-A/P4-B đã đồng ý nguyên văn “Đồng ý cả P4-A và P4-B”, giờ log19/11/2026 13:55:34.348UTC+7; [DECISION](ideas/DECISION.md)/[record](evidence/phase4/user-permission-p4ab-2026-11-19.json). Không hỏi lại quyền này. Automation15phút ACTIVE, đã read-back trong lượt16:20UTC+7.
 
-1. CI đầu8df85c0 đã đạt cả push/PR; đúng4keys đã tạo ngoài Git. Không chạy lại bước tạo keys.
-2. Revision triển khai6d08e5c đạt3jobs ở push44477944228; PR44477949631 cancelled. Manifest33input hashes và preflight đã đạt/push a302ba9; tiếp tục upload/deploy theo Thẻ nhớ.
-3. P4-B ReceiptRail initial deploy+CLI smoke trên devnet, **trần1.8SOL**, đúng [PHASE4-PLAN](PHASE4-PLAN.md), journal/đối soát/finalized; không mở upgrade mới hoặc auto-resend.
-4. A tiếp tục T34 local UI/ví/mock theo [queue](tasks/A-queue.md)/[client contract](PHASE4-CLIENT.md); C review khi nộp. Chưa có bài nộp mới, không lấy client tests của C thay acceptance UI.
-5. Chốt docs/PR7/push sau mốc; không merge. T31/T32/T33 vẫn đóng/nợD01–D03, không mở vòng sửa.
+1. CI recovery e9a1603 đang chạy: push44495583542 và PR44495594074. Kiểm đủ3jobs đúng revision; lưu ci-smoke-recovery.json/hashes/logs riêng trước ký. Local23client+7guards+7recovery và inspect read-only đã đạt.
+2. P4-B đã deploy157tx finalized/bytecode/authority; smoke4tx finalized, Paid và duplicate simulation6004 đạt. Chỉ còn Cancel chưa ký/gửi. Không chạy lại smoke.mjs hoặc deploy. Dùng cancel-recovery.mjs --send-approved đúng1Cancel sau gateCI; lỗi/Unknown thì --reconcile chỉ đọc, không resend. Sau đủ5smoke tx chạy verify.mjs --all, đối soát162tx/cap1.8SOL.
+3. T34 A đã nộp; C nhận phần dùng client. T35 đang sửa5nhóm lỗi implementation theo [review](reviews/receiptrail-phase5-r1.md)/[queue](tasks/A-queue.md); đã xác minh chat A thực sự đang chạy, không restart. Fetch/pull và review code/tests/browser khi nộp, chưa public.
+4. Cập nhật notes/evidence/Thẻ nhớ/README/ROADMAP/PR7 và push sau mốc. T31/T32/T33 vẫn đóng/nợD01–D03, không mở vòng sửa report cũ.
 
-Còn cần quyền riêng: public/update web, cài thêm máy người dùng, signer ngoài4được duyệt, vượt trần, upgrade mới, mergePR7 hoặc Phase6. Ví thật/giáo viên còn riêng. Mở phase/quyền triển khai không có nghĩa các cổng thực thi đã đạt.
-
-Mốc identity19/11: CI đầu8df85c0 đạt cả hai runs; đúng4keys đã tạo ngoài Git sau gate. Runtime32/client23/guards7 đạt với identity mới, [metadata](evidence/phase4/deployment-local-metadata.json). Theo Thẻ nhớ để kiểm CI revision triển khai trước broadcast; không tạo lại keys.
+Còn cần quyền riêng: public/update web, cài thêm máy người dùng, signer ngoài4đã tạo, vượt trần, upgrade mới, mergePR7 hoặc Phase6. Chuẩn bị artifact cụ thể trước trình cổng mới. Ví extension thật và verdict giáo viên còn thiếu; mock/CLI không thay bằng chứng đó.

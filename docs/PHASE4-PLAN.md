@@ -6,8 +6,8 @@ Codex · 19/11/2026. Phase4/5 **đã mở local**, nguyên văn tại [DECISION]
 
 - Program create/pay/cancel/read và invariants:32runtime tests local đạt, không đổi logic/wire contract; [review](reviews/receiptrail-phase4-local.md)/[evidence](evidence/phase4/README.md).
 - Client sinh toàn IDL:23tests local + TypeScript/generated/browser-target bundle đạt; [API bàn giao A](PHASE4-CLIENT.md). Không RPC/sign/send.
-- Binary lúc đề xuất147,864bytes/hash962b721a… dùng ID local không có signer. Sau CI đầu đạt đã tạo đúng4keys và đổi identity; [metadata hiện hành](evidence/phase4/deployment-local-metadata.json) ghi binary/IDL/client mới, chưa broadcast.
-- T34 UI/ví A đã nhận, note025 trước code tại6b33dbf; chưa có bài nộp UI/xác nhận dùng client. Không dùng kết quả client của C thay browser/T34.
+- Binary lúc đề xuất147,864bytes/hash962b721a… dùng ID local không có signer. Sau CI đầu đạt đã tạo đúng4keys và đổi identity; [metadata hiện hành](evidence/phase4/deployment-local-metadata.json) ghi binary/IDL/client mới; tiến độ triển khai xem phần cuối.
+- T34 UI/ví A đã nộp4d2e48a và xác nhận dùng client; C nhận phần client, T35 đang sửa5nhóm lỗi implementation. Không dùng kết quả client của C thay acceptance toàn UI.
 
 ## P4-A — CI đúng source Phase4
 
@@ -51,4 +51,4 @@ Chỉ trình public web sau T34 có artifact local, browser evidence và C revie
 
 ## Tiến độ thực thi (không thay quyền)
 
-CI đầu8df85c0 đạt trước tạo đúng4keys ngoài Git. CI revision triển khai6d08e5c push44477944228 đạt đủ3jobs; PR44477949631 cancelled riêng, không gọi xanh. [Manifest](evidence/phase4/ci-deployment.json) đối chiếu33input hashes. [Inspect](evidence/phase4/inspection-before-upload.json)15:57UTC+7: balance1.848125199SOL, peak1.531889040SOL; upload bắt đầu15:58UTC+7 bằng buffer đã có. Chưa chốt deploy/smoke tại mốc này; theo Thẻ nhớ/journal để tiếp tục, không chạy lại bước đã bắt đầu.
+CI đầu8df85c0 đạt trước tạo đúng4keys ngoài Git. CI revision triển khai6d08e5c push44477944228 đạt đủ3jobs; PR44477949631 cancelled riêng, không gọi xanh. [Manifest](evidence/phase4/ci-deployment.json) đối chiếu33input hashes. [Inspect](evidence/phase4/inspection-before-upload.json)15:57UTC+7: balance1.848125199SOL, peak1.531889040SOL; upload bắt đầu15:58UTC+7 bằng buffer đã có. Mốc upload ban đầu là lịch sử. Deployment hiện đã đối soát157tx finalized/bytecode; smoke4tx finalized+duplicate simulation đạt, RPC429 trước ký Cancel. Helper recovery e9a1603 đang CI riêng trước đúng1Cancel còn thiếu. Theo Thẻ nhớ/journal, không chạy lại upload/deploy/smoke gốc.
