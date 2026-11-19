@@ -1,6 +1,6 @@
 # ReceiptRail — hợp đồng client cho Phase 5 local
 
-Codex · 19/11/2026 · contract v0.1. **Dùng được cho adapter local/mock; chưa có deployment ReceiptRail.** [Quyền hiện hành](ideas/DECISION.md), [note024](learning/024-receiptrail-program-client.md), [IDL](idl/receiptrail.json).
+Codex · 19/11/2026 · contract v0.1. **A đã dùng client trong T34; ReceiptRail đã deploy devnet. UI Phase5 vẫn chỉ mock/local, chưa được gửi giao dịch thật.** [Quyền hiện hành](ideas/DECISION.md), [note024](learning/024-receiptrail-program-client.md), [IDL](idl/receiptrail.json).
 
 ## Artifact và cách kiểm
 
@@ -33,7 +33,7 @@ const client = createReceiptRailClient({
 });
 ```
 
-Adapter là code tin cậy của app, không nhận từ URL/JSON. Identity P4-B: `8NGSPufBmGB1oHqaZpY1jhJYz1X4gqFiNXCQmxfapYko`, tạo sau CI đầu đạt theo quyền người dùng; chưa broadcast. Cập nhật IDL/generated client/fixture từ Rust cùng mốc. A import PROGRAM_ADDRESS từ client, không hard-code ID local cũ. Evidence identity: [deployment-identity](evidence/phase4/deployment-identity.json).
+Adapter là code tin cậy của app, không nhận từ URL/JSON. Identity P4-B: `8NGSPufBmGB1oHqaZpY1jhJYz1X4gqFiNXCQmxfapYko`, tạo sau CI đầu đạt theo quyền người dùng; đã deploy/finalized/bytecode verified, xem [record](evidence/phase4/deployment-finalized.json). Cập nhật IDL/generated client/fixture từ Rust cùng mốc. A import PROGRAM_ADDRESS từ client, không hard-code ID local cũ. Evidence identity: [deployment-identity](evidence/phase4/deployment-identity.json).
 
 ## API
 
@@ -62,4 +62,4 @@ Invoice đọc ra có `{address,version,bump,merchant,payer,invoiceId,amountLamp
 
 ## A nhận T34
 
-A dùng contract này để nối mock/local adapter và trả về các imports đã dùng, lệnh/test/build/browser evidence. Không sửa client/IDL/program; ghi finding cụ thể cho C. Tiêu chí của C: cùng invoice giữ terms khi đổi ví/timeout, amount không mất precision, vai/hạn đúng, không có đường sign/send thật. Còn cần A xác nhận sử dụng được;23tests của C không thay xác nhận này hoặc cổng CI/devnet.
+A dùng contract này để nối mock/local adapter và trả về các imports đã dùng, lệnh/test/build/browser evidence. Không sửa client/IDL/program; ghi finding cụ thể cho C. Tiêu chí của C: cùng invoice giữ terms khi đổi ví/timeout, amount không mất precision, vai/hạn đúng, không có đường sign/send thật. A đã xác nhận dùng client tại4d2e48a; C tái kiểm import/parse/inspect và nhận phần này. Toàn UI còn5nhóm lỗi trong [review T34](reviews/receiptrail-phase5-r1.md), đang sửaT35; không dùng xác nhận client để đóng Phase5/public.

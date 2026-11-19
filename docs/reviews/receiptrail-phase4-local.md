@@ -20,3 +20,7 @@ Codex tự review source tại `4148906`, theo note007/024; **không phải audi
 Tests malformed sửa account trong VM để kiểm boundary, không là cách tạo state sản phẩm. Riêng export cancelled ABI fixture khôi phục Open để có cùng địa chỉ; tests lifecycle bình thường đều create thật. Test runtime suite32 gồm31tests hành vi và1test xuất vectors; client23 gồm22tests API/ABI và1bundle smoke. Không cộng số tests thành mức đảm bảo bảo mật.
 
 Chưa chứng minh: CI cho revision Phase4, ReceiptRail devnet/loader/upgrade authority, verified/reproducible source build, network race/reorg/timeout recovery, UI ví thật, A dùng client được. Payer ở create mới là pubkey, chưa thể chứng minh system-wallet/signing capability tới pay; đây là giới hạn thiết kế đã ghi, không lặng lẽ đổi contract. Giáo viên/T34 acceptance theo dõi riêng; T31–T33 không mở lại.
+
+## Đối chiếu sau deployment — 19/11
+
+Các giới hạn “chưa CI/devnet/A dùng client” ở bản review4148906 bên trên là tại thời điểm review local. CI triển khai6d08e5c hiện đạt đủ3jobs; loader/authority/bytecode được kiểm trong deployment-finalized.json với157tx finalized. A đã dùng client trongT34, C nhận phần import/parse/inspect. Smoke4tx finalized/Paid và duplicate simulation6004 đã đạt, còn Cancel/recovery sauRPC429. Helper mới e9a1603 có7tests local, CI riêng đang chạy trước send. Chưa có verified source build, ví extension thật, network race/reorg hoặc verdict giáo viên. Giới hạn bảo vệ cùngPDA/rent/upgrade authority không thay đổi.
