@@ -6,7 +6,7 @@
 - **Việc đang làm**: hết việc, chờ Codex giao
 - **File sở hữu**: `docs/tasks/A-done.md`, `docs/HANDOFF-antigravity.md`, `docs/learning/025-receiptrail-frontend-wallet.md`, `docs/evidence/phase5/`, `apps/web/src/receiptrail/`.
 - **Điều cấm**: Không tự mở việc ngoài `A-queue.md`, không sửa file Codex sở hữu (adapter.ts, types.ts), không broadcast mạng thật, không chạy browser automation/GUI.
-- **Trạng thái**: T36 hoàn thành đạt 100% (controller snapshot/lock/stale guard, mock-wallets pubkey đạt repro case 6, dynamic preview, responsive CSS, 25/25 tests pass, build 127ms; tuân thủ dừng GUI, chưa kiểm browser).
+- **Trạng thái**: T36 đã đóng và hợp nhất tại 266b30c/4916335 (Review r3: 45/45 tests pass, build 128ms, 7/7 repro pass; browser sau sửa chưa kiểm; tuân thủ dừng GUI).
 - **Bước tiếp theo**: Lần nhắc sau kiểm tra lại git fetch/pull và A-queue.md.
 
 (Lịch sử cũ đã chuyển sang `docs/archive/HANDOFF-history-antigravity.md`)
