@@ -16,6 +16,16 @@ A sở hữu `ReceiptRailApp.tsx`, `mock-wallets.ts`, CSS, production lifecycle/
 
 Push mốc nhỏ `[skip ci]`, ghi A-done/HANDOFF A đúng sở hữu. C không chờ A và tiếp tục phần adapter/review. Nếu thấy vấn đề client C, ghi finding, không sửa program/IDL/generated client/locks.
 
+### Bàn giao adapter C trong T36 — đã kiểm32tests/build
+
+C đã sửa `adapter.ts`, `types.ts`, thêm11tests production trong `receiptrail-adapter-review.test.mjs`; giữ API async chính. A fetch/pull rồi tiếp tục phần UI, không cần sửa lại adapter.
+
+- `timeout_unknown`: ledger đã Paid và chuyển principal một lần, chỉ response mất; `isPending=true` giữ khóa tới recheck. Account state và trạng thái request vẫn tách biệt. `recheckOnChain` không đổi bytes/balances, trả thêm `outcome: confirmed|failed|dropped|none`; signature theoinvoice, seed chưa có transaction trảnull.
+- `timeout_dropped`: request không thực thi, ledgerOpen/khôngphí, Unknown đến recheck; sau expiry giữExpired. Thêm nhãn mock tương ứng nếu hiển thị dropdown; không gán mọirecheck là thành côngPaid.
+- `ledgerSnapshot()` trả copies của balances/rents/feePayerLamports/feesPaid; `MOCK_RENT_LAMPORTS` và `MOCK_FEE_LAMPORTS` là số mẫu local, khôngquote. Có thể hiển thị tách principal/fee/rent để giải thích rollback. Cancel chỉ đổi trạngthái, giữrent.
+- Allasync read/mutate đợi seeded PDA derive hoàn tất; `getRawAccount` sync trảcopy (test dùng sau awaitlist). Parseexpiry chặn>u64; UI còn cần kiểm currentSlot+delta và preview đúngsnapshot.
+- Mutex theoinvoice trước await, inputs/returnedPending deep copy invoiceId, concurrency create/pay/cancel/sharedpayer đã test; program/IDL/client/36inputs P4-B không đổi. 32webtests+buildđạt, repro6/7đãsửa, cònmockpubkey0 thuộcA. PhầnUIterms/lifecycle/stale/mobile/copy cầnA xửlý như5mục trên.
+
 ## T35 — Đã nộp69e458a; review r2 nhận phần đạt, T36 xử lý implementation còn thiếu
 
 Nguồn cụ thể: [review C](../reviews/receiptrail-phase5-r1.md),5nhóm P5-01…05 có reproduction/acceptance. Đây là sửa code mới, không vòng report T31–T33. Giữ đúng sở hữu T34/local/cache; không cài/deploy/public/Phase6. Đọc/cập nhật note025 và source cache trước sửa.

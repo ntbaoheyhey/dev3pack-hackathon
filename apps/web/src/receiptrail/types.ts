@@ -40,12 +40,13 @@ export interface PendingRecord {
   signature: string;
   confirmedTerms: InvoiceTerms;
   submittedSlot: bigint;
-  targetStatus: 'Paid';
+  targetStatus: 'Paid' | 'Open';
 }
 
 export type SimulatedFault =
   | 'none'
   | 'timeout_unknown'
+  | 'timeout_dropped'
   | 'cpi_rollback'
   | 'wrong_payer';
 

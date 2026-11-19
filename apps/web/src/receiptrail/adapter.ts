@@ -18,8 +18,14 @@ import type {
   PendingRecord,
 } from './types';
 
-// Discriminator Anchor cố định cho struct Invoice: [51, 194, 250, 114, 6, 104, 18, 164]
-export const INVOICE_DISCRIMINATOR = new Uint8Array([51, 194, 250, 114, 6, 104, 18, 164]);
+// Layout/discriminator are consumed from the generated IDL contract.
+import { CONTRACT } from '../../../../packages/receiptrail-client/generated.mjs';
+import { U64_MAX } from '../../../../packages/receiptrail-client/index.mjs';
+type Field = { name: string; type: string; size: number; offset: number };
+const invoiceSchema = (CONTRACT.structs as Record<string, { discriminator: number[]; size: number; fields: Field[] }>).Invoice;
+export const INVOICE_DISCRIMINATOR = new Uint8Array(invoiceSchema.discriminator);
+export const MOCK_RENT_LAMPORTS = 1_802_640n; // Local VM sample, not a devnet quote.
+export const MOCK_FEE_LAMPORTS = 10_000n; // Separate synthetic fee payer; no real signer.
 
 export const DEFAULT_MERCHANT: MockWalletAccount = {
   name: 'Tiệm Cà phê SOL (Merchant)',
@@ -56,43 +62,44 @@ export const client = createReceiptRailClient({
     }),
 });
 
-export function serializeInvoiceData(invoice: {
-  version: 1;
-  bump: number;
-  merchant: string;
-  payer: string;
-  invoiceId: Uint8Array;
-  amountLamports: bigint;
-  expiresSlot: bigint;
-  status: 'Open' | 'Paid' | 'Cancelled';
-  paidSlot: bigint;
-}): Uint8Array {
-  const data = new Uint8Array(INVOICE_SIZE);
-  // Discriminator
-  data.set(INVOICE_DISCRIMINATOR, 0);
-  // version
-  data[8] = 1;
-  // bump
-  data[9] = invoice.bump;
-  // merchant pubkey
-  const merchantBytes = new Uint8Array(getAddressEncoder().encode(address(invoice.merchant)));
-  data.set(merchantBytes, 10);
-  // payer pubkey
-  const payerBytes = new Uint8Array(getAddressEncoder().encode(address(invoice.payer)));
-  data.set(payerBytes, 42);
-  // invoiceId (32 bytes)
-  data.set(invoice.invoiceId.slice(0, 32), 74);
-  // amountLamports (u64 little endian)
-  const view = new DataView(data.buffer, data.byteOffset, data.byteLength);
-  view.setBigUint64(106, invoice.amountLamports, true);
-  // expiresSlot (u64 little endian)
-  view.setBigUint64(114, invoice.expiresSlot, true);
-  // status (0 = Open, 1 = Paid, 2 = Cancelled)
-  const statusCode = invoice.status === 'Open' ? 0 : invoice.status === 'Paid' ? 1 : 2;
-  data[122] = statusCode;
-  // paidSlot (u64 little endian)
-  view.setBigUint64(123, invoice.paidSlot, true);
+const codec = {
+  encode: (value: string) => new Uint8Array(getAddressEncoder().encode(address(value))),
+  decode: (value: Uint8Array) => getAddressDecoder().decode(value),
+};
+function checkU64(value: bigint, label: string) {
+  if (typeof value !== 'bigint' || value < 0n || value > U64_MAX) throw new Error(`INVALID_U64:${label}`);
+  return value;
+}
+function cloneTerms(terms: InvoiceTerms): InvoiceTerms {
+  return { address: terms.address, merchant: terms.merchant, payer: terms.payer,
+    invoiceId: new Uint8Array(terms.invoiceId), amountLamports: terms.amountLamports, expiresSlot: terms.expiresSlot };
+}
+function copyAccount(acc: InvoiceAccountEnvelope): InvoiceAccountEnvelope {
+  return { ...acc, data: new Uint8Array(acc.data) };
+}
 
+export function serializeInvoiceData(invoice: Omit<InvoiceRecord, 'address'>): Uint8Array {
+  const statusCodes = { Open: 0, Paid: 1, Cancelled: 2 } as const; // Wire v1 u8, defined by program.
+  const values: Record<string, unknown> = { version: invoice.version, bump: invoice.bump,
+    merchant: invoice.merchant, payer: invoice.payer, invoice_id: invoice.invoiceId,
+    amount_lamports: invoice.amountLamports, expires_slot: invoice.expiresSlot,
+    status: statusCodes[invoice.status], paid_slot: invoice.paidSlot };
+  if (invoiceSchema.size !== INVOICE_SIZE) throw new Error('MOCK_CONTRACT_SIZE_MISMATCH');
+  const data = new Uint8Array(invoiceSchema.size);
+  data.set(invoiceSchema.discriminator);
+  const view = new DataView(data.buffer);
+  for (const field of invoiceSchema.fields) {
+    const value = values[field.name];
+    if (field.type === 'u64') view.setBigUint64(field.offset, checkU64(value as bigint, field.name), true);
+    else if (field.type === 'u8') {
+      if (typeof value !== 'number' || !Number.isInteger(value) || value < 0 || value > 255) throw new Error(`INVALID_U8:${field.name}`);
+      view.setUint8(field.offset, value);
+    } else if (field.type === 'pubkey') data.set(codec.encode(value as string), field.offset);
+    else if (field.type === 'bytes') {
+      if (!(value instanceof Uint8Array) || value.length !== field.size) throw new Error(`INVALID_BYTES:${field.name}`);
+      data.set(value, field.offset);
+    } else throw new Error(`UNSUPPORTED_MOCK_FIELD:${field.type}`);
+  }
   return data;
 }
 
@@ -115,7 +122,7 @@ export function parseExpiryDelta(val: string): bigint {
   }
   const delta = BigInt(clean);
   if (delta <= 0n) throw new Error('Hạn slot phải lớn hơn 0.');
-  return delta;
+  return checkU64(delta, 'expiry delta');
 }
 
 export function formatWalletError(err: unknown): string {
@@ -134,350 +141,187 @@ export function formatWalletError(err: unknown): string {
 export class ReceiptRailMockEngine {
   private accounts = new Map<string, InvoiceAccountEnvelope>();
   private pendingRecords = new Map<string, PendingRecord>();
+  private busy = new Set<string>();
+  private receipts = new Map<string, { signature: string; outcome: 'confirmed' | 'failed' | 'dropped' }>();
+  private balances = new Map(MOCK_WALLETS.map(w => [w.address, w.balanceLamports]));
+  private rents = new Map<string, bigint>();
+  private feePayerLamports = 1_000_000_000n;
+  private feesPaid = 0n;
+  private sequence = 0;
+  private ready: Promise<void>;
   public currentSlot: bigint = 100n;
   public simulatedFault: SimulatedFault = 'none';
-  public lastSignature: string | null = null;
 
-  constructor() {
-    this.seedDefaultInvoices();
+  constructor() { this.ready = this.seedDefaultInvoices(); }
+
+  private async seedDefaultInvoices() {
+    const seeds = [
+      { id: 0x2a, amount: 1_000_000n, expires: 200n, status: 'Open', paid: 0n },
+      { id: 0x2b, amount: 2_500_000_000n, expires: 250n, status: 'Paid', paid: 80n },
+      { id: 0x2c, amount: 500_000_000n, expires: 300n, status: 'Cancelled', paid: 0n },
+    ] as const;
+    for (const seed of seeds) {
+      const invoiceId = new Uint8Array(32).fill(seed.id);
+      const { address: pda, bump } = await client.deriveInvoiceAddress(DEFAULT_MERCHANT.address, invoiceId);
+      this.accounts.set(pda, { address: pda, owner: PROGRAM_ADDRESS, executable: false,
+        data: serializeInvoiceData({ version: 1, bump, merchant: DEFAULT_MERCHANT.address,
+          payer: DEFAULT_PAYER.address, invoiceId, amountLamports: seed.amount,
+          expiresSlot: seed.expires, status: seed.status, paidSlot: seed.paid }) });
+      this.rents.set(pda, MOCK_RENT_LAMPORTS);
+    }
+    // These three fixtures are an initial ledger snapshot, not transactions replayed here.
   }
 
-  private seedDefaultInvoices() {
-    // Invoice 1 (Open): id 32 bytes 0x2a -> PDA EpQUeEpGPoZrDoffujf86a3GnKdBkX7RbvsbXkkfpodo, bump 255
-    const invoiceId1 = new Uint8Array(32).fill(0x2a);
-    const address1 = 'EpQUeEpGPoZrDoffujf86a3GnKdBkX7RbvsbXkkfpodo';
-    const data1 = serializeInvoiceData({
-      version: 1,
-      bump: 255,
-      merchant: DEFAULT_MERCHANT.address,
-      payer: DEFAULT_PAYER.address,
-      invoiceId: invoiceId1,
-      amountLamports: 1_000_000n, // 0.001 SOL
-      expiresSlot: 200n,
-      status: 'Open',
-      paidSlot: 0n,
-    });
-    this.accounts.set(address1, {
-      address: address1,
-      owner: PROGRAM_ADDRESS,
-      executable: false,
-      data: data1,
-    });
+  private async exclusive<T>(addr: string, action: () => Promise<T>): Promise<T> {
+    if (this.busy.has(addr) || this.pendingRecords.has(addr)) {
+      throw new Error('Hóa đơn đang chờ xử lý / Chờ xác nhận (Pending/Unknown). Thao tác bị khóa đến khi đối soát.');
+    }
+    this.busy.add(addr); // Synchronous reservation before the first await.
+    try { await this.ready; return await action(); }
+    finally { this.busy.delete(addr); }
+  }
 
-    // Invoice 2 (Paid): id 32 bytes 0x2b -> PDA GYjxtHoM4wVxbGwHHgcKBpj2C5r5CQw48YMcmgvBywA8, bump 254 (derived canonical PDA)
-    const invoiceId2 = new Uint8Array(32).fill(0x2b);
-    const address2 = 'GYjxtHoM4wVxbGwHHgcKBpj2C5r5CQw48YMcmgvBywA8';
-    const data2 = serializeInvoiceData({
-      version: 1,
-      bump: 254,
-      merchant: DEFAULT_MERCHANT.address,
-      payer: DEFAULT_PAYER.address,
-      invoiceId: invoiceId2,
-      amountLamports: 2_500_000_000n, // 2.5 SOL
-      expiresSlot: 250n,
-      status: 'Paid',
-      paidSlot: 80n,
-    });
-    this.accounts.set(address2, {
-      address: address2,
-      owner: PROGRAM_ADDRESS,
-      executable: false,
-      data: data2,
-    });
-
-    // Invoice 3 (Cancelled): id 32 bytes 0x2c -> PDA 5BWMrebjJNr2yANMqzXSwdFjErkxT24TBqDHYjLvEv66, bump 255 (derived canonical PDA)
-    const invoiceId3 = new Uint8Array(32).fill(0x2c);
-    const address3 = '5BWMrebjJNr2yANMqzXSwdFjErkxT24TBqDHYjLvEv66';
-    const data3 = serializeInvoiceData({
-      version: 1,
-      bump: 255,
-      merchant: DEFAULT_MERCHANT.address,
-      payer: DEFAULT_PAYER.address,
-      invoiceId: invoiceId3,
-      amountLamports: 500_000_000n, // 0.5 SOL
-      expiresSlot: 300n,
-      status: 'Cancelled',
-      paidSlot: 0n,
-    });
-    this.accounts.set(address3, {
-      address: address3,
-      owner: PROGRAM_ADDRESS,
-      executable: false,
-      data: data3,
-    });
+  private signature(action: string) { return `mock-${action}-${++this.sequence}`; }
+  private chargeFee() {
+    if (this.feePayerLamports < MOCK_FEE_LAMPORTS) throw new Error('MOCK_FEE_PAYER_INSUFFICIENT');
+    this.feePayerLamports -= MOCK_FEE_LAMPORTS;
+    this.feesPaid += MOCK_FEE_LAMPORTS;
+  }
+  private accountOrThrow(addr: string) {
+    const acc = this.accounts.get(addr);
+    if (!acc) throw new Error('Không tìm thấy hóa đơn trong mock ledger');
+    return copyAccount(acc);
   }
 
   public async getAccount(addr: string): Promise<InvoiceAccountEnvelope | null> {
+    await this.ready;
     const acc = this.accounts.get(addr);
-    if (!acc) return null;
-    return {
-      address: acc.address,
-      owner: acc.owner,
-      executable: acc.executable,
-      data: new Uint8Array(acc.data),
-    };
+    return acc ? copyAccount(acc) : null;
   }
-
   public async listInvoices(): Promise<InvoiceAccountEnvelope[]> {
-    return Array.from(this.accounts.values()).map((acc) => ({
-      address: acc.address,
-      owner: acc.owner,
-      executable: acc.executable,
-      data: new Uint8Array(acc.data),
-    }));
+    await this.ready;
+    return [...this.accounts.values()].map(copyAccount);
   }
-
-  public isPending(addr: string): boolean {
-    return this.pendingRecords.has(addr);
-  }
-
+  public isPending(addr: string): boolean { return this.pendingRecords.has(addr) || this.busy.has(addr); }
   public getPendingRecord(addr: string): PendingRecord | null {
     const r = this.pendingRecords.get(addr);
-    return r ? { ...r } : null;
+    return r ? { ...r, confirmedTerms: cloneTerms(r.confirmedTerms) } : null;
   }
-
   public getRawAccount(addr: string): InvoiceAccountEnvelope | undefined {
-    return this.accounts.get(addr);
+    const acc = this.accounts.get(addr);
+    return acc ? copyAccount(acc) : undefined;
+  }
+  public async ledgerSnapshot() {
+    await this.ready;
+    return { balances: Object.fromEntries(this.balances), rents: Object.fromEntries(this.rents),
+      feePayerLamports: this.feePayerLamports, feesPaid: this.feesPaid };
   }
 
-  public async inspect(
-    addr: string,
-    walletAddress?: string
-  ): Promise<InspectedInvoice | null> {
+  public async inspect(addr: string, walletAddress?: string): Promise<InspectedInvoice | null> {
     const acc = await this.getAccount(addr);
     if (!acc) return null;
-    const res = await client.inspectInvoice(acc, {
-      walletAddress,
-      observedSlot: this.currentSlot,
-    });
-
-    const pending = this.pendingRecords.has(addr);
-    return {
-      invoice: res.invoice as InvoiceRecord,
-      expiry: res.expiry,
-      displayStatus: res.displayStatus,
-      canPay: pending ? false : res.canPay,
-      canCancel: pending ? false : res.canCancel,
-      isPending: pending,
-      commitment: res.invoice.status === 'Paid' ? 'confirmed' : 'processed',
-    };
+    const res = await client.inspectInvoice(acc, { walletAddress, observedSlot: this.currentSlot });
+    const pending = this.isPending(addr);
+    return { invoice: res.invoice as InvoiceRecord, expiry: res.expiry, displayStatus: res.displayStatus,
+      canPay: !pending && res.canPay, canCancel: !pending && res.canCancel, isPending: pending,
+      commitment: pending ? 'processed' : res.invoice.status === 'Open' ? 'processed' : 'confirmed' };
   }
 
-  public async createInvoice(input: {
-    merchant: string;
-    payer: string;
-    invoiceId: Uint8Array;
-    amountLamports: bigint;
-    expiresSlot: bigint;
-  }): Promise<{ invoiceAddress: string; bump: number }> {
-    // P5-01: Kiểm tra chống Duplicate Create / Terminal Reset
-    const pda = await client.deriveInvoiceAddress(input.merchant, input.invoiceId);
-    if (this.accounts.has(pda.address)) {
-      const existing = this.accounts.get(pda.address)!;
-      const decoded = await client.decodeInvoice(existing);
-      throw new Error(
-        `Hóa đơn đã tồn tại tại địa chỉ ${pda.address} (Trạng thái: ${decoded.status}). Không thể tạo lại (chống reset trạng thái).`
-      );
-    }
-
-    const result = await client.createInvoiceInstruction({
-      ...input,
-      currentSlot: this.currentSlot,
+  public async createInvoice(input: { merchant: string; payer: string; invoiceId: Uint8Array;
+    amountLamports: bigint; expiresSlot: bigint }): Promise<{ invoiceAddress: string; bump: number }> {
+    const snapshot = { ...input, invoiceId: new Uint8Array(input.invoiceId) };
+    const pda = await client.deriveInvoiceAddress(snapshot.merchant, snapshot.invoiceId);
+    return this.exclusive(pda.address, async () => {
+      if (this.accounts.has(pda.address)) throw new Error('Hóa đơn đã tồn tại; không thể tạo lại hoặc reset trạng thái.');
+      const result = await client.createInvoiceInstruction({ ...snapshot, currentSlot: this.currentSlot });
+      const data = serializeInvoiceData({ ...snapshot, version: 1, bump: result.bump, status: 'Open', paidSlot: 0n });
+      this.chargeFee();
+      const balance = this.balances.get(snapshot.merchant) ?? 0n;
+      if (balance < MOCK_RENT_LAMPORTS) throw new Error('Mock merchant không đủ số dư để đặt rent; chỉ phí mock bị trừ.');
+      this.balances.set(snapshot.merchant, balance - MOCK_RENT_LAMPORTS);
+      this.rents.set(pda.address, MOCK_RENT_LAMPORTS);
+      this.accounts.set(pda.address, { address: pda.address, owner: PROGRAM_ADDRESS, executable: false, data });
+      this.receipts.set(pda.address, { signature: this.signature('create'), outcome: 'confirmed' });
+      return { invoiceAddress: result.invoiceAddress, bump: result.bump };
     });
-
-    const data = serializeInvoiceData({
-      version: 1,
-      bump: result.bump,
-      merchant: input.merchant,
-      payer: input.payer,
-      invoiceId: input.invoiceId,
-      amountLamports: input.amountLamports,
-      expiresSlot: input.expiresSlot,
-      status: 'Open',
-      paidSlot: 0n,
-    });
-
-    this.accounts.set(result.invoiceAddress, {
-      address: result.invoiceAddress,
-      owner: PROGRAM_ADDRESS,
-      executable: false,
-      data,
-    });
-
-    return { invoiceAddress: result.invoiceAddress, bump: result.bump };
   }
 
-  public async payInvoice(input: {
-    invoiceAddress: string;
-    signer: string;
-    confirmedTerms: InvoiceTerms;
-  }): Promise<{ signature: string; status: 'Confirmed' | 'Unknown' }> {
-    const acc = await this.getAccount(input.invoiceAddress);
-    if (!acc) throw new Error('Không tìm thấy tài khoản hóa đơn trên chuỗi');
-
-    // P5-02: Khóa thao tác nếu hóa đơn này đang pending/unknown
-    if (this.pendingRecords.has(input.invoiceAddress)) {
-      throw new Error(
-        'Giao dịch cho hóa đơn này đang ở trạng thái Chờ xác nhận (Pending/Unknown). Thao tác bị khóa cho đến khi đối soát lại.'
-      );
-    }
-
-    // P5-02: BẮT BUỘC validate với client builder TRƯỚC MỌI FAULT INJECTION
-    await client.payInvoiceInstruction({
-      account: acc,
-      signer: input.signer,
-      confirmedTerms: input.confirmedTerms,
-      currentSlot: this.currentSlot,
-    });
-
-    // Xử lý mô phỏng sự cố sau khi đã vượt qua validation hợp lệ
-    if (this.simulatedFault === 'timeout_unknown') {
-      const mockSig = 'mock-timeout-sig-' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
-      this.lastSignature = mockSig;
-      this.pendingRecords.set(input.invoiceAddress, {
-        signature: mockSig,
-        confirmedTerms: { ...input.confirmedTerms },
-        submittedSlot: this.currentSlot,
-        targetStatus: 'Paid',
-      });
-      return { signature: mockSig, status: 'Unknown' };
-    }
-
-    if (this.simulatedFault === 'cpi_rollback') {
-      throw new Error(
-        'LỖI MÔ PHỎNG ROLLBACK: CPI Transfer thất bại do số dư không đủ. Giao dịch đã bị rollback toàn bộ, tiền gốc không bị trừ, chỉ mất phí giao dịch.'
-      );
-    }
-
-    // Luồng thanh toán chuẩn thành công
-    const decoded = await client.decodeInvoice(acc);
-    const updatedData = serializeInvoiceData({
-      version: 1,
-      bump: decoded.bump,
-      merchant: decoded.merchant,
-      payer: decoded.payer,
-      invoiceId: decoded.invoiceId,
-      amountLamports: decoded.amountLamports,
-      expiresSlot: decoded.expiresSlot,
-      status: 'Paid',
-      paidSlot: this.currentSlot,
-    });
-
-    this.accounts.set(input.invoiceAddress, {
-      address: input.invoiceAddress,
-      owner: PROGRAM_ADDRESS,
-      executable: false,
-      data: updatedData,
-    });
-
-    const sig = 'mock-pay-sig-' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
-    this.lastSignature = sig;
-    return { signature: sig, status: 'Confirmed' };
-  }
-
-  public async cancelInvoice(input: {
-    invoiceAddress: string;
-    signer: string;
-    confirmedTerms: InvoiceTerms;
-  }): Promise<{ signature: string }> {
-    const acc = await this.getAccount(input.invoiceAddress);
-    if (!acc) throw new Error('Không tìm thấy hóa đơn');
-
-    // Khóa thao tác nếu đang pending
-    if (this.pendingRecords.has(input.invoiceAddress)) {
-      throw new Error('Hóa đơn đang ở trạng thái Chờ xác nhận (Pending/Unknown). Thao tác hủy bị khóa.');
-    }
-
-    await client.cancelInvoiceInstruction({
-      account: acc,
-      signer: input.signer,
-      confirmedTerms: input.confirmedTerms,
-    });
-
-    const decoded = await client.decodeInvoice(acc);
-    const updatedData = serializeInvoiceData({
-      version: 1,
-      bump: decoded.bump,
-      merchant: decoded.merchant,
-      payer: decoded.payer,
-      invoiceId: decoded.invoiceId,
-      amountLamports: decoded.amountLamports,
-      expiresSlot: decoded.expiresSlot,
-      status: 'Cancelled',
-      paidSlot: 0n,
-    });
-
-    this.accounts.set(input.invoiceAddress, {
-      address: input.invoiceAddress,
-      owner: PROGRAM_ADDRESS,
-      executable: false,
-      data: updatedData,
-    });
-
-    const sig = 'mock-cancel-sig-' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
-    this.lastSignature = sig;
-    return { signature: sig };
-  }
-
-  public async recheckOnChain(
-    addr: string
-  ): Promise<{ status: 'Paid' | 'Open' | 'Cancelled'; signature: string | null }> {
-    const acc = await this.getAccount(addr);
-    if (!acc) throw new Error('Không tìm thấy hóa đơn trên chuỗi');
-
-    const pending = this.pendingRecords.get(addr);
-    if (!pending) {
+  public async payInvoice(input: { invoiceAddress: string; signer: string; confirmedTerms: InvoiceTerms }):
+    Promise<{ signature: string; status: 'Confirmed' | 'Unknown' }> {
+    const snapshot = { ...input, confirmedTerms: cloneTerms(input.confirmedTerms) };
+    const fault = this.simulatedFault;
+    return this.exclusive(snapshot.invoiceAddress, async () => {
+      const acc = this.accountOrThrow(snapshot.invoiceAddress);
+      const slot = checkU64(this.currentSlot, 'bank slot');
+      await client.payInvoiceInstruction({ account: acc,
+        signer: fault === 'wrong_payer' ? OTHER_WALLET.address : snapshot.signer,
+        confirmedTerms: snapshot.confirmedTerms, currentSlot: slot });
       const decoded = await client.decodeInvoice(acc);
-      return { status: decoded.status, signature: this.lastSignature };
-    }
+      const sig = this.signature('pay');
+      if (fault === 'timeout_dropped') {
+        this.receipts.set(snapshot.invoiceAddress, { signature: sig, outcome: 'dropped' });
+        this.pendingRecords.set(snapshot.invoiceAddress, { signature: sig,
+          confirmedTerms: cloneTerms(snapshot.confirmedTerms), submittedSlot: slot, targetStatus: 'Open' });
+        return { signature: sig, status: 'Unknown' };
+      }
+      const payerBalance = this.balances.get(decoded.payer) ?? 0n;
+      const merchantBalance = this.balances.get(decoded.merchant) ?? 0n;
+      this.chargeFee();
+      if (fault === 'cpi_rollback' || payerBalance < decoded.amountLamports || merchantBalance + decoded.amountLamports > U64_MAX) {
+        this.receipts.set(snapshot.invoiceAddress, { signature: sig, outcome: 'failed' });
+        throw new Error('LỖI MÔ PHỎNG ROLLBACK: số dư không đủ hoặc overflow; ledger/principal giữ nguyên, chỉ trừ phí mock.');
+      }
+      const data = serializeInvoiceData({ ...decoded, version: 1, status: 'Paid', paidSlot: slot });
+      // Atomic mock commit: no await between balances and account transition.
+      this.balances.set(decoded.payer, payerBalance - decoded.amountLamports);
+      this.balances.set(decoded.merchant, merchantBalance + decoded.amountLamports);
+      this.accounts.set(snapshot.invoiceAddress, { ...acc, data });
+      this.receipts.set(snapshot.invoiceAddress, { signature: sig, outcome: 'confirmed' });
+      if (fault === 'timeout_unknown') {
+        // Transaction committed; only the response is lost. Recheck will not execute it.
+        this.pendingRecords.set(snapshot.invoiceAddress, { signature: sig,
+          confirmedTerms: cloneTerms(snapshot.confirmedTerms), submittedSlot: slot, targetStatus: 'Paid' });
+        return { signature: sig, status: 'Unknown' };
+      }
+      return { signature: sig, status: 'Confirmed' };
+    });
+  }
 
+  public async cancelInvoice(input: { invoiceAddress: string; signer: string; confirmedTerms: InvoiceTerms }): Promise<{ signature: string }> {
+    const snapshot = { ...input, confirmedTerms: cloneTerms(input.confirmedTerms) };
+    return this.exclusive(snapshot.invoiceAddress, async () => {
+      const acc = this.accountOrThrow(snapshot.invoiceAddress);
+      await client.cancelInvoiceInstruction({ account: acc, signer: snapshot.signer, confirmedTerms: snapshot.confirmedTerms });
+      const decoded = await client.decodeInvoice(acc);
+      const data = serializeInvoiceData({ ...decoded, version: 1, status: 'Cancelled', paidSlot: 0n });
+      this.chargeFee();
+      this.accounts.set(snapshot.invoiceAddress, { ...acc, data });
+      const sig = this.signature('cancel');
+      this.receipts.set(snapshot.invoiceAddress, { signature: sig, outcome: 'confirmed' });
+      return { signature: sig }; // Rent stays in the account; no refund or principal move.
+    });
+  }
+
+  public async recheckOnChain(addr: string): Promise<{ status: 'Paid' | 'Open' | 'Cancelled'; signature: string | null;
+    outcome: 'confirmed' | 'failed' | 'dropped' | 'none' }> {
+    await this.ready;
+    if (this.busy.has(addr)) throw new Error('Thao tác mock còn đang xử lý; kiểm tra lại sau.');
+    const acc = this.accountOrThrow(addr);
+    const receipt = this.receipts.get(addr);
+    const pending = this.pendingRecords.get(addr);
     const decoded = await client.decodeInvoice(acc);
-
-    // P5-02: Kiểm tra nếu hóa đơn đã bị Cancel trước khi đối soát
-    if (decoded.status === 'Cancelled') {
+    // No account/balance mutation, signature regeneration or implicit resend.
+    if (pending && receipt?.signature === pending.signature && this.pendingRecords.get(addr)?.signature === pending.signature) {
       this.pendingRecords.delete(addr);
-      throw new Error('Đối soát thất bại: Hóa đơn đã bị Cancel trước khi giao dịch được xác nhận.');
     }
-
-    // P5-02: Kiểm tra nếu lúc gửi giao dịch đã quá hạn
-    if (pending.submittedSlot >= decoded.expiresSlot) {
-      this.pendingRecords.delete(addr);
-      throw new Error(
-        `Đối soát thất bại: Giao dịch được gửi tại slot ${pending.submittedSlot} đã vượt quá hạn slot ${decoded.expiresSlot}. Không thể thanh toán.`
-      );
-    }
-
-    // Thành công: chuyển sang Paid tại submittedSlot
-    const updatedData = serializeInvoiceData({
-      version: 1,
-      bump: decoded.bump,
-      merchant: decoded.merchant,
-      payer: decoded.payer,
-      invoiceId: decoded.invoiceId,
-      amountLamports: decoded.amountLamports,
-      expiresSlot: decoded.expiresSlot,
-      status: 'Paid',
-      paidSlot: pending.submittedSlot,
-    });
-
-    this.accounts.set(addr, {
-      address: addr,
-      owner: PROGRAM_ADDRESS,
-      executable: false,
-      data: updatedData,
-    });
-
-    this.pendingRecords.delete(addr);
-    return { status: 'Paid', signature: pending.signature };
+    return { status: decoded.status, signature: receipt?.signature ?? null, outcome: receipt?.outcome ?? 'none' };
   }
 
   public warpSlot(delta: bigint) {
-    this.currentSlot += delta;
+    checkU64(delta, 'slot delta');
+    this.currentSlot = checkU64(this.currentSlot + delta, 'slot');
   }
-
-  public resetSlot() {
-    this.currentSlot = 100n;
-  }
+  public resetSlot() { this.currentSlot = 100n; }
 }
 
 export const mockEngine = new ReceiptRailMockEngine();
