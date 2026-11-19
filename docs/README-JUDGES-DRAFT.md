@@ -39,7 +39,7 @@ Account Invoice 131 bytes lưu terms và trạng thái chung mà cả hai bên �
 | --- | --- | --- |
 | Program/client |32 runtime, 23 client; CI revision triển khai đạt; [Phase4](PHASE4-RESULT.md) | Có test âm quyền/account/expiry/u64/rollback; không gọi là audit độc lập |
 | Devnet |162 tx finalized trong đợt triển khai và smoke; debit 0.760701080 SOL dưới cap 1.8 SOL | Đây là chi phí đợt deploy/smoke, không phải phí một hóa đơn |
-| Frontend mock |45 web tests/build, 7 ca tái hiện lỗi đạt; [review r3](reviews/receiptrail-phase5-r3.md) | T37 phát hiện lỗi bootstrap P5-F01; kết quả qua route fix chỉ có điều kiện, T40 đang sửa. Chưa public hoặc kiểm ví thật |
+| Frontend mock |52 tests/build,16ca source+2ca slot,10ca artifact; [review r4](reviews/receiptrail-phase5-r4.md); video diễn tập162.12s | Source106a18e đã sửa bootstrap/RPC warmup; chưa public/ví thật/video thuyết trình cuối |
 | Bảo mật |[Tự review r1](reviews/receiptrail-security-r1.md) | Chưa verified source build; upgrade authority còn quyền nâng cấp |
 
 ## Chạy bằng môi trường đã chuẩn bị

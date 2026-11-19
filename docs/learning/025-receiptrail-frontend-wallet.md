@@ -168,3 +168,7 @@ Lấy hiệu registry trước/sau `registerMockWallets()` chỉ đúng lần đ
 ### Artifact mock riêng — học trước khi build (20/11)
 
 Entry hiện tại `src/main.tsx` còn ClusterProof và WalletLab. Để trình public chỉ mock, cần entry HTML/React riêng dùng lại ReceiptRailApp, không bundle entry cũ hoặc route lab. Dùng Vite đã cache, config root/outDir riêng, không sửa Site/hosting ID đang có. Theo Sites skill mục local-only: kiểm/build trực tiếp, chưa registration/sync/package publication. Artifact cục bộ và ZIP có hashes không đồng nghĩa đã deploy hoặc đã có quyền public. Manifest phải bao phủ source/config/lock/tests/harness mới, không chỉ danh sách tracked cũ.
+
+### Chốt local20/11
+
+52tests/build đạt;16ca source+2ca đổi slot và10ca artifact,0pageerror/0externalrequest; video diễn tập162.12s. [Evidence](../evidence/phase5/c-prompt04-review-2026-11-19/README.md), [reviewr4](../reviews/receiptrail-phase5-r4.md). Fixture rejection thử standard:connect, không có signAndSend trong mock; mô tả signAndSend ở báo cáoT40 phía trên là sai. TypeScript config không có node:url types nên dùng root Vite tương đối trong npm script, không cài thêm types. Đây không là ví thật, persistence hoặc cổngpublic đã đạt.

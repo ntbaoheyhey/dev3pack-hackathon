@@ -1,35 +1,43 @@
-# Phase 5 — bản local để kiểm và cổng tiếp theo
+# Phase 5 — local đã kiểm, trình cổng public mock
 
-**Bản code local đã hợp nhất tại266b30c**, thêm tiêu đề/metadata riêng cho route ReceiptRail khi chuẩn bị artifact. Logic ví/giao dịch đã kiểm:45tests và7ca tái hiện lỗi đều đạt; TypeScript/Vite build đạt. T34/T35/T36 đã đóng, không yêu cầu A nộp lại. [Review r3](reviews/receiptrail-phase5-r3.md), [artifact/hashes](evidence/phase5/local-artifact-2026-11-19.json).
+Cập nhật 20/11/2026. **Source ứng dụng 106a18e đạt phần local/mock**: 52 tests, TypeScript/Vite build, 16 ca browser + 2 ca đổi slot, 10 ca static artifact và video diễn tập 162.12 giây. [Review C r4](reviews/receiptrail-phase5-r4.md) · [Logs/ảnh/video/manifests](evidence/phase5/c-prompt04-review-2026-11-19/README.md). T37–T40 đã nhận/đóng, không mở thêm vòng report.
 
-## Bản cụ thể có thể xem
+## Bản cụ thể để xem và duyệt
 
-- Mở thủ công [ReceiptRail local](http://127.0.0.1:4175/receiptrail/) trên máy đang chạy repo. Server Vite có sẵn được kiểm qua PID/cwd và HTTP200; C không mở hoặc điều khiển browser.
-- Source ởapps/web trên work. Bản build nằm tạiapps/web/dist; ZIP local tại sandbox/artifacts/receiptrail-phase5-local-2026-11-19.zip, hash và18source inputs trong manifest. ZIP chỉ gồm dist+README; đây là bản xem local, chưa phải gói deploy Sites.
-- Nếu server cũ đã tắt, dùng cache đã có: từapps/web chạy npm run dev -- --port 4175 --strictPort, rồi tự mở đường dẫn trên. Không cần cài thêm.
-- Toàn bộ ReceiptRail ởroute này là **mock**; không ký/gửi transaction hoặc chuyển SOL. Public ClusterProof hiện có không bị cập nhật.
+- [ReceiptRail local](http://127.0.0.1:4175/receiptrail/) dùng server Vite trong checkout C; chỉ mock, không kết nối ví thật/ký/gửi/RPC devnet.
+- Bản **chỉ ReceiptRail** có entry riêng tại apps/web/receiptrail-mock/index.html; root mở ReceiptRail, không có trang ClusterProof/lab. Build bằng cache: từ apps/web chạy npm run build:receiptrail-mock. Output apps/web/dist-receiptrail-mock gồm một HTML, một JS và một CSS.
+- ZIP để xem local: sandbox/artifacts/receiptrail-mock-2026-11-20.zip, 134030 bytes, SHA256 b9268dc6de8ac6aa94fae282b40a8c0ed96657ecc8249c7922d3f451edc2c3d4. Đây không phải package publication hoặc bản đã upload.
+- Xem [ảnh desktop](evidence/phase5/mock-artifact-2026-11-20/screenshots/1440-guest-reject.png) và [ảnh mobile](evidence/phase5/mock-artifact-2026-11-20/screenshots/375-create-pay-terminal.png) của đúng artifact riêng.
+- [Source/output/archive hashes](evidence/phase5/mock-artifact-2026-11-20/artifact.json), [10 ca static và ảnh](evidence/phase5/mock-artifact-2026-11-20/manifest.json). Artifact đã được kiểm trước source commit; build lại từ106a18e cho đúng ba output hashes.
+- Xem root của artifact bằng server tĩnh localhost, từ repo: python3 -m http.server 4176 --bind 127.0.0.1 --directory apps/web/dist-receiptrail-mock. Server4176 của C chỉ phục vụ QA và được đóng cuối lượt; server4175 có sẵn được giữ.
 
-## Những bước cần kiểm bằng browser
+## Tám ca đã kiểm trên source thật
 
-Đây là kế hoạch kiểm, **chưa được thực hiện sau bản sửa**. Node tests/HTTP200 không thay bằng chứng thao tác React/DOM hoặc layout.
+Mỗi ca chạy ở 1440×900 và 375×812, không rewrite module/response. [Manifest](evidence/phase5/c-prompt04-review-2026-11-19/manifest.json) chứa expected/actual/ledger và đường dẫn ảnh; [harness](../scripts/verify-receiptrail-phase5-browser.mjs) giữ các bước và assertions.
 
-| Ca | Thao tác thủ công với ví mock | Kết quả cần thấy |
+| Ca | Thao tác | Kết quả thực |
 | --- | --- | --- |
-| Khách xem | Mở route, xem chi tiết/danh sách, copy địa chỉ | Đọc không cần ví; thấy đủ terms/PDA/ID và nhãn mock; không có quyền Pay/Cancel |
-| Create | Kết nối Tiệm Cà phê; chọn mẫu Cà phê; xem rồi xác nhận terms, tạo | Preview đúng amount/expiry/ID/PDA; tạo xong chọn đúng hóa đơn mới |
-| Sửa sau xác nhận | Tick Create rồi sửa amount/preset/slot; thử submit | Tick mất hiệu lực; phải xem/xác nhận lại |
-| Pay và ví | Kết nối Alice; tick terms; đổi ví/ngắt ví rồi kết nối lại | Tick mất hiệu lực. Xác nhận lại, Pay một lần→Paid; nút trả lần nữa bị khóa |
-| Unknown đã xử lý | TạoIDkhác; chọn “đã xử lý, mất phản hồi”; Alice Pay | Unknown giữ cùngPDA/mã mock; recheck đọc Paid, không chuyển thêm |
-| Unknown bị drop | TạoIDkhác; chọn “request bị drop”; Alice Pay rồi recheck | VẫnOpen hoặcExpired theo slot; không tự trả hoặc đổiID |
-| Cancel/rollback | Merchant hủyOpen kể cả expired; ca riêng chọnCPI rollback khiPay | Cancelled giữrent; rollback giữprincipal/Open nhưng phí mock bị trừ, thông báo rõ |
-| Mobile/bàn phím | Viewport375×812; tab focus/copy/đọc table | Trang không cắt nội dung; table cuộn trong vùng riêng; đầy đủ địa chỉ/terms, focus nhìn thấy |
+| Khách xem | Không kết nối, đọc terms/PDA, copy | Đọc được, không Pay/Cancel, clipboard đúng toàn PDA |
+| Create | Merchant chọn mẫu, xem terms, xác nhận và tạo | Amount 1000000 lamports, đúng merchant/payer/ID/PDA, chọn đúng hóa đơn mới |
+| Sửa sau duyệt | Tick rồi sửa amount/expiry/preset; bổ sung +20slots | Tick mất hiệu lực, submit khóa; phải xem/duyệt lại. Hai ca slot trong [bằng chứng bổ sung](evidence/phase5/c-prompt04-review-2026-11-19/slot-confirmation.json) |
+| Pay và ví | Tick, đổi/ngắt/kết nối lại, duyệt lại rồi Pay | Tick cũ mất hiệu lực; principal chuyển đúng một lần, Paid không còn Pay/Cancel |
+| Unknown đã xử lý | Mô phỏng mất phản hồi sau xử lý, recheck | Giữ PDA/mã mock, đọc Paid, ledger không thay khi recheck |
+| Unknown bị drop | Mô phỏng request bị drop, recheck | Vẫn Open theo slot; không chuyển tiền hoặc đổi ID |
+| Cancel/rollback | Cancel Open và Expired; ca riêng CPI rollback | Cancel giữ rent/principal; rollback giữ Open/principal/rent, chỉ phí mock tăng10000 |
+| Mobile/bàn phím | Danh sách, Tab/Shift+Tab, copy PDA/ví | Không tràn trang375px; bảng cuộn riêng; focus thấy được; clipboard chính xác |
 
-Sườn demo165giây:35s vấn đề/nhãn mock,30s Create,35s Pay/receipt,35s Unknown/recheck,30s lỗi/giới hạn. Đây là kịch bản, chưa có video hoặc số đo chạy thực tế165s. Các ca đầy đủ ở bảng có thể kiểm riêng ngoài video.
+0 pageerror và 0 request ngoài localhost trong tất cả lượt browser C. Static artifact kiểm thêm guest/reject/Create/Pay/terminal/hai Unknown/CancelExpired/layout/reload trên cả hai viewport. Không dùng viewport để nhận là điện thoại vật lý hoặc ví extension đã kiểm.
 
-## Cổng còn cần người dùng
+## Video và giới hạn
 
-Prompt04 (log19/11/2026 23:10:07.582UTC+7) cho phép headless Playwright/Chromium có sẵn, chỉlocalhost/vímock; không điều khiển màn hình/chuột/bàn phím. T37 kiểm8ca trên cả1440×900 và375×812, focus/overflow và recordVideo/duration thật. Thiếu cache báo, không cài. [Nguyên văn/quyền](ideas/DECISION.md). C review một lượt, không coi quyền headless là đã kiểm đạt.
+[Diễn tập UI 162.12 giây](evidence/phase5/c-prompt04-review-2026-11-19/video/receiptrail-local-dry-run.webm) được recordVideo bằng cache, đo ffprobe sau khi đóng context. Không lời thoại, không phải video nộp hoàn chỉnh hoặc browser-to-devnet. [Kịch bản 165 giây](DEMO-165S-DRAFT.md) giữ lời thoại và phần trước/trong hackathon.
 
-Sau khi có kết quả browser/demo và C review, mới trình phương án public cụ thể. Định hướng dự kiến là một Site ReceiptRail riêng trên Sites, không cập nhật SiteClusterProof đangpublic; source snapshot và audience phải được trình tại cổng đó. **Hiện chưa đăng ký/upload/sync source/deploy/public Site nào**, chưa có URLReceiptRailpublic. Không dùng quyềnP4-B cho website.
+Mock ledger ở RAM và reset khi reload. Extension thật, thiết bị vật lý, journal/network/reorg và audit toàn bộ accessibility còn chưa kiểm. T37 lịch sử có route fix/video33.08s; không dùng kết quả đó thay bằng chứng source hiện hành. Core/client/adapter tiền không đổi.
 
-Phase6 tích hợp devnet thật là quyết định riêng sauPhase5: cần plan về ví/transaction/RPC/recovery và trần thử mạng trước khi làm. Chưa mởPhase6, cài thêm, deploy/upgrade program, tạo thêm signer hoặc mergePR7. Ví extension thật và verdict giáo viên vẫn chưa có.
+## Ba quyết định trình riêng
+
+1. **Public mock:** đề xuất tạo Site mới tên ReceiptRail Mock Demo, audience public — bất kỳ ai có URL đều xem được. Chỉ artifact mock đã kiểm; không sign/send/RPC devnet. Không cập nhật Site ClusterProof. Chưa đăng ký Site, upload hoặc có URL ReceiptRail công khai.
+2. **Mở Phase 6:** theo [PHASE6-PLAN](PHASE6-PLAN.md), đề xuất trần tổng chi 0.05 SOL devnet, dùng signers CLI cũ; không tạo signer/cài thêm/deploy/upgrade/đổi authority. Web giao dịch thật sẽ trình public riêng.
+3. **PR #7:** đề xuất giữ mở để review, không merge khi chưa có câu đồng ý riêng.
+
+Quyền headless từ [Prompt04/DECISION](ideas/DECISION.md) không mở ba quyền trên. Chỉ phần local đã kiểm; Phase5 theo ROADMAP còn cổng link công khai.

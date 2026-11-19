@@ -1,11 +1,15 @@
-# NEXT — Prompt 04: hoàn tất local rồi trình ba quyết định
+# NEXT — Prompt 04 đã chốt local, trình ba quyết định
 
-[Quyền/giờ log](ideas/DECISION.md) · [Prompt nguyên văn](../prompts/04-codex-phase5-prep.md) · [Thẻ nhớ](HANDOFF.md). Headless chỉ localhost/mock bằng cache, không điều khiển màn hình người dùng.
+[Thẻ nhớ](HANDOFF.md) · [Quyền và nguyên văn](ideas/DECISION.md) · [Source/evidence Phase5](PHASE5-PLAN.md).
 
-T37 đã review một lượt tại `7676053`: P5-F01 làm trắng trang được C tái hiện; 16 ca qua route fix không là bản Git đã đạt. A nhận đúng một task T40 sửa fixture + regression/bootstrap, rồi tiếp tục T38/T39. C kiểm trực tiếp trên source đã sửa, bổ sung Cancel expired/CPI rollback/clipboard/focus và chốt snapshot. Không sửa hoặc nộp lại report T37.
+Source ứng dụng106a18e: 52tests/build đạt; source headless16ca + 2ca đổi slot; static artifact10ca; video diễn tập162.12s. Không pageerror hoặc request ngoài localhost. [Review C r4](reviews/receiptrail-phase5-r4.md). T37/T40 và T38/T39 đã nhận/đóng một lượt; phần thiếu thành D04/D06/D07, không mở vòng report.
 
-Các bản chuẩn bị đã viết: [PHASE6-PLAN](PHASE6-PLAN.md), notes [026](learning/026-receiptrail-rpc-confirmation.md)/[028](learning/028-receiptrail-security-review.md), [security r1](reviews/receiptrail-security-r1.md), [README giám khảo](README-JUDGES-DRAFT.md), [video 165 giây](DEMO-165S-DRAFT.md), [sổ tay C](learning/CODEX-CHEATSHEET.md). [D01–D03](DOCUMENTATION-DEBT.md) đã làm rõ semantics/assertions/roles; provenance/pilot, verified build và ví thật vẫn là giới hạn.
+Đã chuẩn bị [PHASE6-PLAN](PHASE6-PLAN.md), notes026–029, [tự review bảo mật](reviews/receiptrail-security-r1.md), [README giám khảo](README-JUDGES-DRAFT.md), [video165s](DEMO-165S-DRAFT.md), [sổ tay C](learning/CODEX-CHEATSHEET.md), [bug bash](PHASE7-BUG-BASH.md) và hiệu chỉnh nợ D01–D03. Core/client/adapter tiền không đổi; không chạy lại P4-B.
 
-Khi source thật đã kiểm và artifact cụ thể: hỏi gộp public mock Site riêng/audience public, mở Phase 6 với signers cũ và trần đề xuất 0.05 SOL devnet, merge PR #7. Chưa làm các hành động đó hoặc upgrade/cài thêm/tạo signer/đổi authority. Trong lúc chờ làm phần độc lập còn dở, không tự mở phase thật.
+Ba quyết định còn cần người dùng:
 
-P4-B đã xong 162 tx finalized, không chạy lại. T31–T37 đã đóng báo cáo; không sửa A-done/HANDOFF A. Automation 15 phút ACTIVE đã đọc lại, giữ đến khi người dùng bảo dừng. Không tự đóng phase/goal khi cổng còn thiếu.
+1. Public **ReceiptRail Mock Demo**, Site mới, audience public/ai có URL đều xem; artifact chỉ mock tại106a18e. Giữ SiteClusterProof cũ.
+2. Mở Phase6 theo plan, cap tổng0.05SOLdevnet, signersCLI cũ. Không cài thêm/signer mới/deploy/upgrade/đổi authority. Public bản giao dịch thật trình riêng.
+3. MergePR7 hay giữ mở; C đề xuất **giữ mở** để review.
+
+Sau câu trả lời phải lưu nguyên văn và giờ log thật vào DECISION, chỉ làm nhánh được duyệt. Không suy quyền từ lời tự nhắc/Goal/A. Automation15phút ACTIVE giữ theo yêu cầu người dùng. Nếu chưa có câu trả lời và không phát sinh việc độc lập mới, ghi bị chặn(cần người dùng), không tự mở phase hoặc đóng goal.

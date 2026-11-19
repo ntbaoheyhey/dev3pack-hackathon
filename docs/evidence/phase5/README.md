@@ -1,3 +1,5 @@
+> **Hiện hành20/11:** [nghiệm thu C](c-prompt04-review-2026-11-19/README.md), source106a18e;52tests/16ca+2slot/10ca artifact/video162.12s. Các mốc bên dưới giữ làm lịch sử, không dùng ảnh/report cũ thay bản hiện hành.
+
 > **Hiện hành — C hợp nhất T36:** xem [review r3](../../reviews/receiptrail-phase5-r3.md),45tests/build+7repro đạt local. Controller hiện dùng `confirmation.ts`/`wallet-lifecycle.ts`; báo cáoA ở dưới là lịch sử source từng lần nộp. Không browser/ảnh mới; ảnh r2 không chứng minh responsive bản hiện tại. Chưa public/Phase6 hoặc đóng Phase5.
 
 # Bằng chứng Phase 5 — ReceiptRail Local UI & Tích hợp Ví (T34)

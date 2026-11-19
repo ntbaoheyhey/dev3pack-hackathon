@@ -1,0 +1,45 @@
+{
+  "at": "2026-11-19T17:10:12.900Z",
+  "head": "106a18e09854d18b47a9ab61f7ab2d9a61c491a8",
+  "sourceHashes": {
+    "apps/web/src/receiptrail/ReceiptRailApp.tsx": "607003ceab8a280ff9cea218732eb4d0d02ea3231809ac2d72a1ecfee4d14f0c",
+    "apps/web/src/receiptrail/confirmation.ts": "905467df8143d16aabd17a9db950653bc7e8e0b33b42934f1a8080c6e433e774",
+    "apps/web/src/receiptrail/mock-wallet-connection.ts": "162c5de2a9a8d810bb749dfbc4635d9357878a707ed1a33d91374d335cc95e16"
+  },
+  "headless": true,
+  "mockOnly": true,
+  "sourceRewrite": false,
+  "cases": [
+    {
+      "width": 1440,
+      "steps": [
+        "review Create",
+        "approve",
+        "advance20slots",
+        "observe invalidation",
+        "review and approve again"
+      ],
+      "expected": "slot change consumes approval and refreshes expiry before submit",
+      "before": "Merchant\n5jq4k5gG2xYdv7FrQdbrAQjUUHWajmrHpQtr2rhEeWbm\nPayer\n3r3Q8mD7kEF1ssvkhGBdDD57FfN7MPgzHAvznfD6tQUc\nTiền gốc\n0.001 SOL (1000000 lamports)\nHạn slot\n200\nInvoice ID\n2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a\nPDA\nEpQUeEpGPoZrDoffujf86a3GnKdBkX7RbvsbXkkfpodo",
+      "after": "Merchant\n5jq4k5gG2xYdv7FrQdbrAQjUUHWajmrHpQtr2rhEeWbm\nPayer\n3r3Q8mD7kEF1ssvkhGBdDD57FfN7MPgzHAvznfD6tQUc\nTiền gốc\n0.001 SOL (1000000 lamports)\nHạn slot\n220\nInvoice ID\n2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a\nPDA\nEpQUeEpGPoZrDoffujf86a3GnKdBkX7RbvsbXkkfpodo",
+      "pass": true
+    },
+    {
+      "width": 375,
+      "steps": [
+        "review Create",
+        "approve",
+        "advance20slots",
+        "observe invalidation",
+        "review and approve again"
+      ],
+      "expected": "slot change consumes approval and refreshes expiry before submit",
+      "before": "Merchant\n5jq4k5gG2xYdv7FrQdbrAQjUUHWajmrHpQtr2rhEeWbm\nPayer\n3r3Q8mD7kEF1ssvkhGBdDD57FfN7MPgzHAvznfD6tQUc\nTiền gốc\n0.001 SOL (1000000 lamports)\nHạn slot\n200\nInvoice ID\n2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a\nPDA\nEpQUeEpGPoZrDoffujf86a3GnKdBkX7RbvsbXkkfpodo",
+      "after": "Merchant\n5jq4k5gG2xYdv7FrQdbrAQjUUHWajmrHpQtr2rhEeWbm\nPayer\n3r3Q8mD7kEF1ssvkhGBdDD57FfN7MPgzHAvznfD6tQUc\nTiền gốc\n0.001 SOL (1000000 lamports)\nHạn slot\n220\nInvoice ID\n2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a\nPDA\nEpQUeEpGPoZrDoffujf86a3GnKdBkX7RbvsbXkkfpodo",
+      "pass": true
+    }
+  ],
+  "errors": [],
+  "blockedRequests": [],
+  "passed": true
+}

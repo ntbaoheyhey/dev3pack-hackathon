@@ -1,6 +1,6 @@
 # Sổ tay Codex — ReceiptRail (1 trang)
 
-19/11/2026 · trước sự kiện. Đọc Thẻ nhớ và DECISION trước lệnh có tác dụng ngoài máy.
+20/11/2026 · trước sự kiện. Đọc Thẻ nhớ và DECISION trước lệnh có tác dụng ngoài máy.
 
 | Việc | Lệnh / chỗ tra | Lỗi cần tránh |
 | --- | --- | --- |
@@ -10,9 +10,13 @@
 | Client | `bash scripts/check-receiptrail-client.sh`; `node scripts/generate-receiptrail-client.mjs --check` | Không sửa generated tay hoặc đổi IDL cho khớp report |
 | Web | Tại `apps/web`: `npm test`, `npm run build` | Node tests không thay DOM hoặc ví thật |
 | Local | Tại `apps/web`: `npm run dev -- --port 4175 --strictPort` | Tái dùng server có sẵn; headless chỉ localhost/mock bằng cache |
+| Mock riêng | Tại apps/web: npm run build:receiptrail-mock; root ở dist-receiptrail-mock | Không dùng dist chung có ClusterProof/lab làm Site chỉ mock |
+| Browser QA | node scripts/verify-receiptrail-phase5-browser.mjs; cache có sẵn, localhost/mock | Không npx/install hoặc rewrite module để chứng minh source đạt |
 | Tài liệu | `git diff --check`, kiểm link/file và manifest hashes | Không gán CI cũ cho code mới |
 
 **Cache đã kiểm:** Rust 1.100.0; Agave 4.1.2; Anchor 1.2.2; platform-tools v1.57; Node 24.22.2; React 19.3.1; Vite 8.3.8; @solana/client 1.7.0; react-hooks 1.4.1; Wallet Standard features 1.5.0. Không dùng `latest`/`npx` để sửa lỗi resolve.
+
+**Lỗi đã gặp:** fixture31bytes làm trắng trang; SDK createClient tự warmup RPC; hiệu registry trước/sau bị rỗng khi module reload. Bản106a18e trả fixture ổn định, connector không RPC;52tests/16ca+2slot/10ca artifact đạt. Mock ledger reset khi reload.
 
 **Invoice:** 131 bytes; namespace `invoice-v1`, merchant và invoiceID 32 bytes. Open → Paid/Cancelled; terminal không reset/close. Expired = Open và slot ≥ expiry. Paid khác finalized. Merchant ký Create/Cancel, payer ký Pay. `has_one` so pubkey; `Signer` kiểm quyền ký. Amount dùng bigint/u64, tách principal/rent/fee.
 

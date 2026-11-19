@@ -1,6 +1,6 @@
 # ReceiptRail — nháp video 165 giây
 
-Codex · 19/11/2026 · trước sự kiện. Đây là kịch bản và lời thoại cho bản 165 giây, **chưa phải video thuyết trình hoàn chỉnh**. T37 có bản diễn tập UI 33.08 giây qua route fix; chưa chứng minh source chưa sửa chạy được. T37 quay thử bằng Playwright recordVideo/cache, chỉ localhost/mock; ghi duration của file thật khi context đã đóng. Bản quay thử không có lời thoại không được gọi là video nộp bài hoàn chỉnh.
+Codex · cập nhật20/11/2026 · trước sự kiện. Đây là kịch bản/lời thoại165giây, **chưa là video thuyết trình hoàn chỉnh**. [Diễn tập C trên source106a18e](evidence/phase5/c-prompt04-review-2026-11-19/video/receiptrail-local-dry-run.webm) dùng recordVideo/cache, localhost/mock, không rewrite source; ffprobe đo **162.12giây**, hashes tại manifest. Không lời thoại; đoạn115–145s quay danh sách mock chứ chưa dựng bảng bằng chứngP4 như lời thoại dưới đây. T37/video33.08s qua route fix giữ làm lịch sử riêng. Không gọi bản diễn tập là video nộp cuối.
 
 | Thời gian | Thao tác / hình | Lời thoại tiếng Việt đề xuất |
 | --- | --- | --- |

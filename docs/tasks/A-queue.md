@@ -2,11 +2,11 @@
 
 **Cập nhật C20/11:** đã nhận T40 (`51ee3b2`), T38 (`11d58b1`) và T39 (`a074779`). Ba task đóng sau một lượt nhận; hiệu chỉnh T38/T39 trong `docs/reviews/`, phần chưa kiểm là D06/D07. Không mở thêm vòng report. C đang chốt mock connector không RPC, registration lặp an toàn, artifact chỉReceiptRail và evidence cuối. Chưa có task phụ thuộc Phase6/public được phép chạy; các phân công cũ bên dưới là lịch sử.
 
-## Hiện hành — Prompt 04, 19/11/2026 23:10:07.582 UTC+7
+## Lịch sử giao Prompt 04 — đã nhận/đóng T37–T40
 
-Thứ tự hiện hành **T40 (sửa lỗi thật) → tiếp tục T38 → T39**. T37 đã được C review một lượt và đóng báo cáo; xem [review T37](../reviews/receiptrail-phase5-t37.md). Quyền trong [DECISION](../ideas/DECISION.md): headless có sẵn, localhost, ví mock; không điều khiển màn hình/chuột/bàn phím máy người dùng. Không cài, public, deploy/upgrade, signer mới, merge PR7 hoặc Phase 6 thật. Các đoạn T34–T36 bên dưới là lịch sử đã đóng; lệnh cấm headless cũ đã được thay đúng phạm vi này. C nghiên cứu/review song song, không chờ A.
+Thứ tự khi giao là **T40 → T38 → T39**; hiện cả ba đã đóng. T37 đã được C review một lượt và đóng báo cáo; xem [review T37](../reviews/receiptrail-phase5-t37.md). Quyền trong [DECISION](../ideas/DECISION.md): headless có sẵn, localhost, ví mock; không điều khiển màn hình/chuột/bàn phím máy người dùng. Không cài, public, deploy/upgrade, signer mới, merge PR7 hoặc Phase 6 thật. Các đoạn T34–T36 bên dưới là lịch sử đã đóng; lệnh cấm headless cũ đã được thay đúng phạm vi này. C nghiên cứu/review song song, không chờ A.
 
-### T40 — Sửa P5-F01 làm trắng trang (mới, ưu tiên trước T38/T39)
+### T40 — Sửa P5-F01 (đã nhận/đóng)
 
 Đây là **một task sửa implementation** sau T37, không vòng sửa report. C giao lại cho A quyền sửa hẹp `apps/web/src/receiptrail/mock-wallets.ts`, regression test tương ứng và note025. Không sửa adapter/confirmation/program/client/IDL.
 
@@ -27,14 +27,14 @@ Thứ tự hiện hành **T40 (sửa lỗi thật) → tiếp tục T38 → T39*
 - Nộp `docs/evidence/phase5/t37-YYYY-MM-DD/` gồm script tái chạy, report16ca, ảnh/video, log, manifest source hashes và command/version/duration. Cập nhật note025/DEVLOG/A-done/HANDOFF A, commit/push `[skip ci]`.
 - Lỗi UI thật ghi reproduction/finding. C review **một lượt**: nếu cần sẽ giao đúng một task sửa implementation có danh sách; thiếu report nhẹ thành nợ tài liệu, không vòng nộp lại vô hạn.
 
-### T38 — Học trước Phase 6 phía A (mới, sau T37)
+### T38 — Học trước Phase 6 phía A (đã nhận/đóng)
 
 - Viết note027 `docs/learning/027-receiptrail-wallet-e2e.md` (C đã giữ số trong mục lục): Wallet Standard Phantom/Solflare/Backpack devnet, signTransaction/signAndSendTransaction, reject/errors thực tế, account/network change, Unknown và blockhash expiry; phân biệt API/docs với điều đã kiểm thật.
 - Nguồn chính thức/source/issue gốc, URL/ngày đọc/version; nguồn cộng đồng chỉ bổ trợ, không suy mọi ví dùng4001. Lập bảng feature/capability cần kiểm cho từng ví và phương án test e2e headless/mock so với extension thật.
 - Nêu contract adapter cần từ C, UX cho 429/offline/lag/status-null/reject, không tự gửi lại. Không code adapter thật, cài ví, import signer hay ký/gửi transaction. Thiếu nguồn ghi giới hạn.
 - Xong khi có ma trận ít nhất3ví,8ca lỗi với expected/CTA, kế hoạch e2e có bước và evidence; cập nhật DEVLOG/A-done và push `[skip ci]`. C nhận phần dùng được, không vòng sửa report.
 
-### T39 — Checklist bug bash Phase 7 (mới, sau T38)
+### T39 — Checklist bug bash Phase 7 (đã nhận/đóng)
 
 - Viết `docs/PHASE7-BUG-BASH.md` và note029 `docs/learning/029-receiptrail-bug-bash.md`: desktop/mobile,3ví, bàn phím/a11y, amount/expiry/terms/role, double click, reload/Unknown, network/rate limit, state/commitment, mock labels và link đúng cluster.
 - Mỗi ca có precondition/bước/expected/severity/evidence/owner; cột kết quả mặc định **chưa chạy**, không đánh dấu kiểm điện thoại/ví thật bằng headless giả lập. Tách local/mock được phép khỏi phase devnet/public chờ duyệt.

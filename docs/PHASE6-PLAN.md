@@ -84,7 +84,9 @@ Wrong role/malformed/duplicate ưu tiên fixture và simulation. Lượt devnet 
 
 Đề xuất Site mới **ReceiptRail Mock Demo**, audience **public — bất kỳ ai có URL đều xem được**. Không mời email. Chỉ mock có nhãn sát thao tác; không sign/send/RPC devnet. Không cập nhật Site ClusterProof hoặc dùng lại project ID của nó.
 
-Baseline code là `4916335` (logic `266b30c`), hiện bị lỗi bootstrap P5-F01 qua T37; phải nhận T40 và kiểm trực tiếp trước public. Mọi patch sau T37 phải cập nhật snapshot/hash trước khi trình. [Artifact local cũ](evidence/phase5/local-artifact-2026-11-19.json) chỉ là ZIP xem local; bản public cần chốt source và artifact đã qua kiểm. Root của Site phải mở ReceiptRail, không lấy trang chủ ClusterProof. Chưa đăng ký Site và chưa có URL để công bố.
+Source ứng dụng đã chốt tại **106a18e**. T40 sửa bootstrap; C tách connector mock không RPC và fixture registry lặp an toàn. Entry riêng chỉ ReceiptRail ở root, không bundle entry ClusterProof/lab. 52 tests/build, 16 ca source + 2 ca slot, 10 ca static và video162.12s đạt; xem [review r4](reviews/receiptrail-phase5-r4.md) và [bản trình Phase5](PHASE5-PLAN.md).
+
+[Artifact/source hashes](evidence/phase5/mock-artifact-2026-11-20/artifact.json) giữ source commit và ba output hashes. ZIP local sandbox/artifacts/receiptrail-mock-2026-11-20.zip có SHA256 b9268dc6de8ac6aa94fae282b40a8c0ed96657ecc8249c7922d3f451edc2c3d4, chưa phải gói publication. Chưa đăng ký Site hoặc có URL ReceiptRail công khai.
 
 Sau đồng ý, theo quy trình Sites: tạo một Site riêng; lưu ID trong snapshot riêng; chuẩn bị manifest/static dist và source đã kiểm không có secret; lưu version khớp snapshot; đặt đúng audience và deploy version đó; đọc lại status/audience/URL. Không tự cài dependencies hoặc thay billing. Bản mock không tự được thay bằng adapter thật từ quyền public mock.
 

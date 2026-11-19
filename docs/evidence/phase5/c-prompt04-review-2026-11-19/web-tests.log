@@ -1,0 +1,64 @@
+
+> clusterproof-web@0.1.0 test
+> node --test tests/*.test.mjs
+
+✔ base58 validates the decoded 32-byte address, including leading zero bytes (1.828791ms)
+✔ bad input makes no RPC request (0.565791ms)
+✔ wrong cluster stops before reading the program (19.721875ms)
+✔ successful observation uses fixed devnet RPC, confirmed reads, provenance and no writes (1.761916ms)
+✔ missing account and non-executable accounts are not successful deployment claims (1.457958ms)
+✔ malformed account, owner, slot and RPC envelopes fail closed (2.400417ms)
+✔ RPC errors, HTTP failure, throttling and network failure remain explicit (1.209792ms)
+✔ cancellation and timeout cannot yield a ready result (6.72025ms)
+✔ mock concurrent pay commits principal once and charges only the submitted operation (12.178416ms)
+✔ mock pay/cancel race permits exactly one terminal transition in either order (10.977625ms)
+✔ concurrent duplicate create cannot overwrite terms or charge a second rent (4.963417ms)
+✔ lost response commits at submission; repeated recheck never executes payment or changes bytes/balances (4.359458ms)
+✔ dropped timeout stays Open/Expired after reconciliation and spends no principal or fee (4.392584ms)
+✔ unknown record, caller terms, returned accounts and snapshots cannot mutate engine state (5.641584ms)
+✔ create snapshots inputs before async PDA derivation (2.976917ms)
+✔ different invoices cannot spend more than a shared payer balance during concurrent execution (11.710458ms)
+✔ forced rollback keeps both principals, account bytes and rent; fee is separately observable (4.008417ms)
+✔ signature belongs only to its invoice, and expired cancel does not refund rent (10.565ms)
+✔ strict mock serialization rejects truncation and u64 overflow; invalid signer changes no ledger (5.627833ms)
+✔ create review uses exact input expiry, amount, full ID and canonical PDA before the first await (12.877583ms)
+✔ create review rejects expiry sum overflow, malformed ID, aliases and imprecise amounts (1.841792ms)
+✔ create: every wallet identity, account, chain, event, invoice, form or slot change consumes approval (2.551042ms)
+✔ pay: every wallet identity, account, chain, event, invoice, form or slot change consumes approval (1.760792ms)
+✔ cancel: every wallet identity, account, chain, event, invoice, form or slot change consumes approval (1.756625ms)
+✔ approval rejects guest, wrong role, unsupported chain, wrong invoice and wrong review kind (1.553917ms)
+✔ production submit consumes reviewed pay terms, locks synchronously and moves principal once (2.477708ms)
+✔ cancel submits the reviewed snapshot and keeps principal and rent, including expired Open (3.173583ms)
+✔ wallet/selection change suppresses an in-flight result without unlocking a second submission (2.429792ms)
+✔ read generations reject older detail/preview results and invalidate on context change or submission (1.405917ms)
+✔ SDK connector receives matching public key bytes; mock exposes no signing or sending (0.738375ms)
+✔ raw chain-only events invalidate approval even when SDK account callback is silent (1.806375ms)
+✔ SDK account switch, disconnect, register/unregister and listener cleanup invalidate safely (0.423041ms)
+✔ rejected real SDK connect is handled without assuming every wallet uses error 4001 (0.262042ms)
+✔ repeated fixture registration retains four exact fixtures and excludes same-name external wallets (0.881084ms)
+✔ mock wallet connect/switch/disconnect/rejection never constructs a network request (0.962792ms)
+✔ external connector IDs cannot invoke an extension from the mock connection (1.43675ms)
+✔ raw account and chain-only changes replace the snapshot; disconnect clears it (0.51125ms)
+✔ late connect completion cannot revive a disconnected session (1.9465ms)
+✔ subscribe cleanup and remount preserve a usable connection without duplicate notifications (0.299333ms)
+✔ amount/u64: parses and formats SOL exactly with BigInt and rejects lossy inputs (0.9025ms)
+✔ roles & expiry: enforces payer/merchant roles and derives Expired from slot (11.667875ms)
+✔ P5-01: duplicate create rejects across all states (Open, Paid, Cancelled) without resetting ledger (14.151042ms)
+✔ P5-01: canonical PDA derivation and decode verification for all seeded fixtures (3.882709ms)
+✔ P5-02: pre-validation precedes simulated timeout fault (prevents invalid Unknown) (3.732875ms)
+✔ P5-02: pending state locks operations per-invoice and prevents duplicate submissions (6.3365ms)
+✔ P5-02: recheckOnChain respects terminal/expiry and never fabricates Paid (7.831959ms)
+✔ P5-04: strict 64-hex and u64 parsing with BigInt (0.508042ms)
+✔ P5-04: dynamic list decoding reflects true account state (6.379125ms)
+✔ CPI rollback: preserves principal and keeps invoice Open when transaction fails (5.172166ms)
+✔ error mapping: maps custom error codes 6000-6008 to Anchor IDL error definitions (0.89025ms)
+✔ wallet reject handling does not assume code 4001 is universal (0.247375ms)
+✔ T40 regression: registerMockWallets registers all fixtures with valid 32-byte publicKeys and rejection wallet rejects (0.53325ms)
+ℹ tests 52
+ℹ suites 0
+ℹ pass 52
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 242.121917

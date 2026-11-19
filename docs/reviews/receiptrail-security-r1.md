@@ -45,4 +45,6 @@ Không có patch core hoặc upgrade trong report. Nếu gặp lỗi nghiêm tr�
 
 ## Review phần ví/giao dịch từ 266b30c
 
-Delta tới checkpoint Prompt 04 chỉ thêm/khôi phục `document.title` tại `4916335`; confirmation, adapter, lifecycle và client không đổi. Review r3 còn áp dụng. Hiển thị/focus và chuỗi React events cần T37; C nhận một lượt, lỗi UI thật có task sửa cụ thể, thiếu report nhẹ ghi nợ.
+Review r3 là mốc logic266b30c. Đến source106a18e, đã thêm fixture32bytes, connector mock không RPC, registry lặp an toàn và entry artifact riêng. [Review r4](receiptrail-phase5-r4.md) bao phủ delta, 52 tests/build, 16 ca browser + 2 ca slot và 10 ca artifact; không coi r3 tự chứng minh phần mới.
+
+20/11 kiểm lại 10hashes trong manifest r1 đều khớp: program/runtime/client/IDL/lock/adapter/confirmation/lifecycle không đổi. Các findings core và giới hạn verified build/upgrade authority giữ nguyên. Browser mock không thay kiểm ví thật hoặc mạng; không upgrade/transaction mới trong lượt này.

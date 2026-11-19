@@ -8,10 +8,10 @@ ReceiptRail giúp người bán và người trả đọc chung trạng thái m�
 
 | Phần | Kết quả hiện hành | Giới hạn |
 | --- | --- | --- |
-| Thiết kế | Account/PDA, create/pay/cancel, trạng thái, lỗi/events/IDL, threat model, wireframe/test plan, storyboard165giây | UIlocal đã hợpnhấtT36 và reviewlogic; chưa video/verdict giáo viên, nợ tài liệu giữ riêng |
+| Thiết kế | Account/PDA, create/pay/cancel, trạng thái, lỗi/events/IDL, threat model, wireframe/test plan, storyboard165giây | UI mock đã kiểm source/artifact, video diễn tập162.12s; chưa public/verdict giáo viên, nợ tài liệu giữ riêng |
 | Spike Anchor | Native SOL, invoice131bytes, điều khoản bất biến; chuyển tiền và Paid cùng transaction | Devnet đã deploy; không escrow/refund/stablecoin/x402 |
 | Kiểm thử | **32/32 runtime + 23/23 client + 7/7 deployment guards local và CI6d08e5c**, [evidence Phase4](docs/evidence/phase4/README.md); rollback/phí, sai quyền/account, u64, expiry/lifecycle và cross-language ABI | PushCI44477944228 đủ3jobs đạt; PRrun riêng cancelled. Deploy157tx finalized/bytecode đúng; smoke5tx và duplicate simulation đạt,162tx tổng finalized/debit0.760701080SOL<cap1.8; recovery CI e9a1603 hai runs đủ3jobs. Chưa ví thật/verified build/audit độc lập |
-| IDL | [JSON generated](docs/idl/receiptrail.json),3 instructions/1 account/3 events/9 errors; [client generated](docs/PHASE4-CLIENT.md) + types đã bàn giao A trong T34 | A đã dùng client trongT34, C nhận phần import/parse/inspect; [8NGSP…pYko](docs/evidence/phase4/deployment-identity.json) đã deploy. T36đãđóng;45webtests/build+7reprođạt local; browser sau sửa chưa kiểm |
+| IDL | [JSON generated](docs/idl/receiptrail.json),3 instructions/1 account/3 events/9 errors; [client generated](docs/PHASE4-CLIENT.md) + types đã bàn giao A trong T34 | A đã dùng client trongT34, C nhận phần import/parse/inspect; [8NGSP…pYko](docs/evidence/phase4/deployment-identity.json) đã deploy. T37–T40 đã đóng;52webtests/build+16ca source+2ca slot+10ca artifact đạt local; ví thật chưa kiểm |
 | Chấm ý tưởng | [C01 r2](docs/ideas/codex/01-receipt-rail.md): **79/100 PLAN, F3→4** nhờ spike D2 | R/D giữ4 PLAN, chưa verdict giáo viên hoặc DELIVERY |
 
 Merchant tạo hóa đơn với payer, amount và expiry. Payer ký đúng ví, program chỉ nhận Open còn hạn, chuyển SOL đúng merchant rồi ghi Paid. Merchant có thể hủy Open. Paid/Cancelled không reset/close/reopen; rent tiếp tục nằm trong account. Cơ chế chỉ chống trả lại **cùng invoice PDA**; merchant vẫn có thể tạo ID khác cho cùng đơn hàng. Receipt không chứng minh giao hàng, và vẫn có trust vào program/upgrade authority/RPC.
@@ -35,7 +35,9 @@ P3-A/P3-B được đồng ý riêng bằng **“Đồng ý cả hai”**, giờ
 
 ## ReceiptRail frontend local
 
-[Bản local để tự kiểm](http://127.0.0.1:4175/receiptrail/) dùng mock, không ký/gửi giao dịch. [Kế hoạch kiểm và giới hạn](docs/PHASE5-PLAN.md) · [ReviewC r3](docs/reviews/receiptrail-phase5-r3.md). Tests gọi model/submit/SDK; không thay kiểmReact/DOM/responsive hoặc víextension. Theo yêu cầu dừng điều khiểnGUI, C chỉCLI/repo. Chưa có linkReceiptRailpublic.
+[Bản local để tự kiểm](http://127.0.0.1:4175/receiptrail/) dùng mock, không ký/gửi/RPC devnet. Source106a18e đã kiểm **52 tests, 16 ca browser + 2 ca đổi slot, 10 ca static artifact**; 0pageerror/0request ngoài localhost, video diễn tập **162.12 giây**. [Bản trình Phase5](docs/PHASE5-PLAN.md) · [Review C r4](docs/reviews/receiptrail-phase5-r4.md) · [Bằng chứng](docs/evidence/phase5/c-prompt04-review-2026-11-19/README.md).
+
+Artifact riêng chỉ ReceiptRail ở root: từ apps/web chạy npm run build:receiptrail-mock bằng cache. [Source/output/archive hashes](docs/evidence/phase5/mock-artifact-2026-11-20/artifact.json). Chưa có Site/URL ReceiptRail công khai; [Phase6 plan](docs/PHASE6-PLAN.md) đề xuất cap0.05SOL, chưa quyền chi. Ví extension và thiết bị thật còn chưa kiểm. [README giám khảo](docs/README-JUDGES-DRAFT.md), [nháp video165s](docs/DEMO-165S-DRAFT.md) và [bug bash](docs/PHASE7-BUG-BASH.md) là phần chuẩn bị Phase6–7, chưa mở phase thật.
 
 ## ClusterProof dự phòng và lịch sử lab
 
@@ -52,12 +54,12 @@ Mốc phân chia là tag **hackathon-start**, sẽ tạo lúc mở màn27/11/202
 - Notes, RUBRICv1.2, shortlist/nguồn và lựa chọn ReceiptRail chính/ClusterProof phụ; sửa hồ sơ lựa chọn/duyệt sai.
 - Spike/parser/read-only C02/C03; toolchain, hello lab, client và web nền ClusterProof từ template chính thức.
 - ReceiptRail Phase2: IDEA/ARCHITECTURE, Anchor spike/19 tests, generated IDL, demo165giây trên giấy, crawl/UX/review giao A.
-- Phase4: runtime32/client23/guards7 và CI triểnkhai/recoveryđạt; P4-B hoàn tất162tx finalized, debit0.760701080SOL<cap1.8. [Kết quả](docs/PHASE4-RESULT.md). Phase5:T34/T35/T36đóng,45webtests/build+7reprođạt local; chưa browser sau sửa/public/Phase6.
+- Phase4: runtime32/client23/guards7 và CI triểnkhai/recoveryđạt; P4-B hoàn tất162tx finalized, debit0.760701080SOL<cap1.8. [Kết quả](docs/PHASE4-RESULT.md). Phase5:T34–T40đóng,52webtests/build+16ca source+2ca slot+10ca artifact đạt; video diễn tập162.12s. Chưa public/Phase6 thật.
 - Commits và giới hạn ở [DEVLOG](docs/DEVLOG.md), [ROADMAP](docs/ROADMAP.md), [cổng duyệt](docs/reviews/phase1-3-gates.md).
 
 ### Trong 27–29/11/2026
 
-Chưa có công việc trong sự kiện tại ngày19/11. Ghi tính năng/commit thực khi làm; không gọi code chuẩn bị trước là code trong hackathon.
+Chưa có công việc trong sự kiện tại ngày20/11. Ghi tính năng/commit thực khi làm; không gọi code chuẩn bị trước là code trong hackathon.
 
 ## Làm việc và license
 

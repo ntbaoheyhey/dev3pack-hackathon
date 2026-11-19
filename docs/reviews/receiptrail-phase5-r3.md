@@ -1,5 +1,7 @@
 # Review C — T36 hợp nhất, Phase5 local
 
+> Lịch sử trước Prompt04. Kết quả hiện hành có browser/artifact xem [r4](receiptrail-phase5-r4.md); các giới hạn chưa browser bên dưới thuộc mốc r3.
+
 C nhận CSS, table wrapper, nội dung note025 về reject/signature/recheck từ T36A (`a88ce9e`, `64b2573`, bàn giao `17ed43c`). Nhận client artifact củaC đã được A sử dụng; không mở vòng report T31–T33. T36 đóng ở bản hợp nhất này; không yêu cầu A nộp lại.
 
 C giữ implementation `confirmation.ts`/`wallet-lifecycle.ts` và wiring React từ checkpoint `9e1d59e`, đúng phânchia queue `093e36b`. A vẫn sửa TSX/controller/mock-wallet dù queue đã chuyển sangC; Git giữ đầy đủ patchA. Không giữ hai controller production song song: bảnA lưu snapshot bằng reference, gán `chains: ['solana:devnet']` cứng trongTSX, chưa subscribe raw chain events, và guard requestId chưa bảo vệ kết quả submit. Các ca test hữu ích củaA đã được bao phủ bằng production model/SDK tests củaC; không giữ test cho module không được UI dùng.

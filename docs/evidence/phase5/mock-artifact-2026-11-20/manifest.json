@@ -1,0 +1,206 @@
+{
+  "at": "2026-11-19T17:06:59.779Z",
+  "head": "a074779b39cd3189b2168d797cdf3a6796a243a5",
+  "url": "http://127.0.0.1:4176/",
+  "headless": true,
+  "sourceRewrite": false,
+  "mockOnly": true,
+  "artifactHashes": {
+    "assets/index-DPOxMTNH.css": "14a19de5fb2f8a486efaca6a459cb6fcd69d61aa1ed3f8274d78de222ac231b4",
+    "assets/index-DhG3-EZ8.js": "328415384f32a25f60bf3dadf9d322ea1e601b53dacf1efc82e8b297c3ffdd96",
+    "index.html": "29bd2416930825a9624981afbb0078340b6768d784772b97707574c5262dfd2d"
+  },
+  "cases": [
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "name": "guest-reject",
+      "pass": true,
+      "actual": {
+        "fixtures": 4,
+        "realWalletFlow": false
+      },
+      "screenshot": "screenshots/1440-guest-reject.png"
+    },
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "name": "create-pay-terminal",
+      "pass": true,
+      "actual": {
+        "state": "Paid",
+        "payAgain": false
+      },
+      "screenshot": "screenshots/1440-create-pay-terminal.png"
+    },
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "name": "timeout_unknown",
+      "pass": true,
+      "actual": {
+        "state": "PAID",
+        "signature": "mock-pay-4"
+      },
+      "screenshot": "screenshots/1440-timeout_unknown.png"
+    },
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "name": "timeout_dropped",
+      "pass": true,
+      "actual": {
+        "state": "OPEN",
+        "signature": "mock-pay-6"
+      },
+      "screenshot": "screenshots/1440-timeout_dropped.png"
+    },
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "name": "cancel-expired-layout",
+      "pass": true,
+      "actual": {
+        "state": "Cancelled",
+        "overflow": {
+          "page": 1440,
+          "client": 1440
+        }
+      },
+      "screenshot": "screenshots/1440-cancel-expired-layout.png"
+    },
+    {
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "name": "guest-reject",
+      "pass": true,
+      "actual": {
+        "fixtures": 4,
+        "realWalletFlow": false
+      },
+      "screenshot": "screenshots/375-guest-reject.png"
+    },
+    {
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "name": "create-pay-terminal",
+      "pass": true,
+      "actual": {
+        "state": "Paid",
+        "payAgain": false
+      },
+      "screenshot": "screenshots/375-create-pay-terminal.png"
+    },
+    {
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "name": "timeout_unknown",
+      "pass": true,
+      "actual": {
+        "state": "PAID",
+        "signature": "mock-pay-4"
+      },
+      "screenshot": "screenshots/375-timeout_unknown.png"
+    },
+    {
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "name": "timeout_dropped",
+      "pass": true,
+      "actual": {
+        "state": "OPEN",
+        "signature": "mock-pay-6"
+      },
+      "screenshot": "screenshots/375-timeout_dropped.png"
+    },
+    {
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "name": "cancel-expired-layout",
+      "pass": true,
+      "actual": {
+        "state": "Cancelled",
+        "overflow": {
+          "page": 375,
+          "client": 375
+        }
+      },
+      "screenshot": "screenshots/375-cancel-expired-layout.png"
+    }
+  ],
+  "errors": [],
+  "blockedRequests": [],
+  "responses": [
+    {
+      "url": "http://127.0.0.1:4176/",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4176/assets/index-DPOxMTNH.css",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4176/assets/index-DhG3-EZ8.js",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4176/",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4176/assets/index-DPOxMTNH.css",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4176/assets/index-DhG3-EZ8.js",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4176/",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4176/assets/index-DPOxMTNH.css",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4176/assets/index-DhG3-EZ8.js",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4176/",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4176/assets/index-DPOxMTNH.css",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4176/assets/index-DhG3-EZ8.js",
+      "status": 200
+    }
+  ],
+  "chromium": "156.0.8078.4",
+  "passed": true,
+  "finishedAt": "2026-11-19T17:07:03.906Z"
+}
