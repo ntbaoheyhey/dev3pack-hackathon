@@ -1,0 +1,72 @@
+    Finished `release` profile [optimized] target(s) in 0.25s
+   Compiling receiptrail v0.1.0 (/Users/bao/Documents/ChatGPT/dev3pack/programs/receiptrail)
+warning: unused dependency `anchor-lang`
+  --> programs/receiptrail/Cargo.toml:23:1
+   |
+23 | anchor-lang = "=1.2.2"
+   | ^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: `cargo::unused_dependencies` is set to `warn` by default
+help: consider removing the dependency on `anchor-lang`
+help: to still use for development builds, move to `dev-dependencies`
+warning: `receiptrail` (manifest) generated 1 warning
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 2.89s
+     Running unittests src/lib.rs (target/debug/build/receiptrail/a9bf5305b2fa9bd9/out/receiptrail-a9bf5305b2fa9bd9)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/runtime.rs (target/debug/build/receiptrail/4bae2726b664c226/out/runtime-4bae2726b664c226)
+
+running 32 tests
+test another_merchant_cannot_cancel ... ok
+test bad_cryptographic_signature_is_rejected_before_execution ... ok
+test cancel_checks_owner_discriminator_seeds_and_version ... ok
+test create_pay_and_fresh_transaction_retry_transfers_principal_only_once ... METRIC create_cu=8775 pay_cu=6608 retry_cu=6017 create_fee=10000 pay_fee=10000 retry_fee=10000 rent_lamports=1802640 principal_delta=1000000 invoice_bytes=131 paid_slot=100
+ok
+test create_then_pay_is_atomic_and_duplicate_pay_rolls_back_creation ... METRIC create_pay_cu=19881 create_pay_fee=15000 rollback_create_pay_pay_fee=15000
+ok
+test different_invoice_ids_are_independent_and_each_can_pay_once ... ok
+test expiry_boundary_before_at_and_after ... ok
+test export_rust_abi_and_runtime_accounts_for_browser_client ... METRIC abi_vectors=3 instruction_lengths=88,8,8 account_bytes=131
+ok
+test insufficient_principal_cpi_leaves_invoice_open_and_balances_unchanged ... ok
+test invalid_creation_terms_and_aliases_leave_no_invoice_or_rent_debit ... ok
+test merchant_address_without_signature_cannot_create_or_cancel ... ok
+test merchant_can_cancel_expired_open_invoice_without_moving_principal ... METRIC cancel_cu=4346 cancel_fee=10000
+ok
+test merchant_owner_and_data_are_checked_at_create_and_pay ... ok
+test open_invoice_cannot_change_terms_by_reinitialization ... ok
+test owner_and_discriminator_are_checked_before_payment ... ok
+test pay_cancel_race_is_safe_in_both_serial_orders ... ok
+test payer_address_without_signature_is_rejected ... ok
+test payer_with_data_or_wrong_owner_cannot_transfer ... ok
+test recipient_substitution_cannot_redirect_payment ... ok
+test required_writable_privileges_cannot_be_removed ... ok
+test same_invoice_id_at_another_merchant_is_a_distinct_invoice ... ok
+test same_layout_at_wrong_pda_is_rejected ... ok
+test substituted_executable_cannot_replace_system_program ... ok
+test terminal_invoice_cannot_be_reinitialized_or_reset ... ok
+test terms_are_immutable_after_pay_or_cancel ... ok
+test truncated_instruction_and_account_data_fail_without_principal_changes ... ok
+test two_pay_instructions_in_one_transaction_roll_back_the_first_transfer ... ok
+test two_pay_rollback_charges_only_fee_payer ... ok
+test u64_boundaries_remain_exact_and_cannot_wrap_principal ... ok
+test unknown_instruction_cannot_change_terms_or_terminal_state ... ok
+test wrong_bump_and_version_are_rejected ... ok
+test wrong_payer_signer_cannot_pay ... ok
+
+test result: ok. 32 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 2.91s
+
+   Doc-tests receiptrail
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+Started: 2026-11-19T06:37:47Z; elapsed_seconds=8
+2d7c0dce845da382ef237113bc7c691b656d4e61be171514b8b53fdade32b285  programs/receiptrail/src/lib.rs
+2b126998740e233f4fa039f774ce5af671bb5650e5e8f97a471118fd58848a07  programs/receiptrail/tests/runtime.rs
+8ea462bb0d93de7e4f82e24bdb9bd3a1a1ab78ca227fd09880bb52c1dd6583c9  Cargo.lock
+962b721ae089a77123283bfe1dde0233284b2a793d692cc0abc53e2a8b6eab5a  target/receiptrail-spike/receiptrail.so

@@ -49,3 +49,11 @@ Lượt này chỉ local bằng cache đã có; giữ wire contract v0.1 và h�
 ## Giới hạn
 
 Chưa có test/code mới ở mốc note. Local VM/codec không chứng minh devnet/RPC/extension wallet/verified build; codegen không thay deployment identity. Phase4/5 đã mở local, cổng CI/devnet/public/giáo viên vẫn riêng. Không cài thêm, deploy, public hoặc mergePR7.
+
+### Runtime r1 — test expectation và thứ tự Anchor
+
+32 tests chạy,29 đạt/3 fail vì tên lỗi kỳ vọng khác source/runtime: init CPI chạy trước constraints còn lại của merchant, readonly create bị runtime PrivilegeEscalation, discriminator thiếu byte rơi vào InstructionFallbackNotFound. Các ca reject vẫn chặn thực thi; sửa expectation theo đúng tầng lỗi, giữ assertions principal/account và phí, không đổi program để làm khớp test. Giữ log r1 nguyên vẹn và kiểm lại các ca đã fail.
+
+### Runtime r2 đạt — 19/11/2026
+
+[Log](../evidence/phase4/runtime-r2-2026-11-19.txt)/[metadata](../evidence/phase4/runtime-r2-metadata.json):32/32runtime,2.91s suite/8s toàn lệnh, offline/locked. Đã thêm phí ở mọi reject và rollback tạo+trả, u64 boundaries, readonly/merchant/cancel/malformed, signature crypto, immutable terms và namespace nhiều invoices. Source Anchor `try_accounts.rs:274–308` xác nhận init_fields trước access_checks, nên r1 expectation được sửa theo tầng lỗi thực, không sửa program. Chưa phát hiện lỗi logic cần đổi wire contract; program/IDL hiện giữ nguyên. [Vectors](../evidence/phase4/runtime-abi-r2.json) chứa instructions/metas/account/event thật cho client đối chiếu, chỉ public bytes. Fixture cancel export phục hồi Open để dùng cùng địa chỉ; tests cancel thông thường vẫn create thật, không dùng export để chứng minh lifecycle.

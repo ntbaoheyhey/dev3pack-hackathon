@@ -6,7 +6,7 @@
 - ReceiptRail chính, ClusterProof phụ/chưa duyệt; Phase2/P3-A/P3-B đã có quyền và evidence riêng. Không phục hồi payload sai cũ.
 - T31/T32/T33 đã đóng tại7857e9b; D01–D03 là nợ tài liệu. T34 là triển khai UI mới, không vòng sửa report.
 - C sở hữu programs/tests/build/IDL/client và hồ sơ chính; A sở hữu apps/web/receiptrail, route/UI/tests, note025/evidence Phase5.
-- Quyền/T34 đã push05f8e79; note024 đã viết trước code, source004/007/023/ABI đã đọc. Bước kế runtime tests/ABI vectors, client generator/cache và kiểm local.
+- Quyền/T34 push05f8e79, note024 push9124f04. Runtime r2 đạt32/32 offline/locked; source/ABI không đổi, vectors/metadata ở evidence/phase4. Bước kế IDL/client generator và kiểm bằng vector Rust.
 - Client handoff dự kiến packages/receiptrail-client + docs/PHASE4-CLIENT.md; A dùng adapter mock trước, không phải chờ.
 - Giữ source/web/lab ClusterProof đã có; mọi commit/merge lượt local dùng `[skip ci]`, không gán CI27cf7ac cho code mới.
 - P3-B đã xong137tx finalized/counter1, debit0.651874801SOL; không gửi lại upload/deploy/smoke, buffer mới/close hoặc tăng trần.
@@ -15,7 +15,7 @@
 
 ## Còn lại
 
-1. Hoàn thiện runtime coverage/fee invariants và xuất ABI vectors từ bytecode thật theo note024; push sau test.
+1. Chốt/push runtime32tests và ABI vectors; sinh/so IDL, viết generated client toàn contract theo note024, kiểm local bằng vector Rust/Anchor/Kit.
 2. Hoàn thiện program ReceiptRail theo thiết kế: create/pay/cancel/read, invariants, tests âm/atomicity/lifecycle; đo CU và lưu evidence local.
 3. Sinh/đối chiếu IDL và client, test serialization/account validation/amount/errors; bàn giao contract dùng được cho A.
 4. Đọc A-done và dùng T34 khi có; review UI ví/thanh toán và kiểm local phần chạm tiền/quyền. Không chờ A để làm phần C.

@@ -1,0 +1,60 @@
+{
+  "status": "LOCAL_RUNTIME_32_PASS",
+  "command": "bash scripts/check-receiptrail.sh",
+  "exitCode": 0,
+  "tests": 32,
+  "suiteSeconds": 2.91,
+  "totalSeconds": 8,
+  "boundary": "offline LiteSVM only; no install/RPC/deploy/wallet files",
+  "programChanges": "Instruction logic/wire ABI unchanged from Phase2; runtime coverage expanded",
+  "files": {
+    "programs/receiptrail/src/lib.rs": {
+      "bytes": 6387,
+      "sha256": "2d7c0dce845da382ef237113bc7c691b656d4e61be171514b8b53fdade32b285"
+    },
+    "programs/receiptrail/tests/runtime.rs": {
+      "bytes": 30342,
+      "sha256": "2b126998740e233f4fa039f774ce5af671bb5650e5e8f97a471118fd58848a07"
+    },
+    "Cargo.lock": {
+      "bytes": 105940,
+      "sha256": "8ea462bb0d93de7e4f82e24bdb9bd3a1a1ab78ca227fd09880bb52c1dd6583c9"
+    },
+    "scripts/check-receiptrail.sh": {
+      "bytes": 2485,
+      "sha256": "1f4ac4c1a67ba3d12825d547931bcf9528e9ba5554414188155d2c298d29a3fd"
+    },
+    "docs/idl/receiptrail.json": {
+      "bytes": 8683,
+      "sha256": "13efb821841ebd6c9a8b9da21160aad8fbc11e9a6072e4b92a408e6f103f5409"
+    },
+    "target/receiptrail-spike/receiptrail.so": {
+      "bytes": 147864,
+      "sha256": "962b721ae089a77123283bfe1dde0233284b2a793d692cc0abc53e2a8b6eab5a"
+    },
+    "docs/evidence/phase4/runtime-r2-2026-11-19.txt": {
+      "bytes": 4066,
+      "sha256": "f650952cc45e3b81221527032b13d96344ca2b0cc0f92d5f56965bdb641241b5"
+    },
+    "docs/evidence/phase4/runtime-abi-r2.json": {
+      "bytes": 3674,
+      "sha256": "cc1a57ddd0e14ec3180ebc2a4c7315a107bece56d9532abf439d62e8088796c9"
+    }
+  },
+  "metrics": {
+    "createCU": 8775,
+    "payCU": 6608,
+    "retryCU": 6017,
+    "cancelCU": 4346,
+    "createPayCU": 15381,
+    "singleActorFeeLamports": 10000,
+    "bothActorsFeeLamports": 15000,
+    "invoiceBytes": 131,
+    "simulatedRentLamports": 1802640
+  },
+  "limits": [
+    "VM/CU/rent are not devnet measurements",
+    "ABI fixture cancel export restores known Open bytes only for common-address fixture; normal cancel tests initialize via real create",
+    "No new CI run or browser/real wallet evidence"
+  ]
+}

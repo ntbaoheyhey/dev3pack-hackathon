@@ -19,6 +19,7 @@ enum Actor {
     Merchant,
     Payer,
     Attacker,
+    Both,
     None,
 }
 
@@ -82,10 +83,20 @@ impl Harness {
     }
 
     fn create(&self, amount: u64, expiry: u64, payer: Pubkey) -> Instruction {
+        self.create_with_id(INVOICE_ID, amount, expiry, payer)
+    }
+
+    fn create_with_id(
+        &self,
+        invoice_id: [u8; 32],
+        amount: u64,
+        expiry: u64,
+        payer: Pubkey,
+    ) -> Instruction {
         Instruction::new_with_bytes(
             rail::id(),
             &rail::instruction::CreateInvoice {
-                invoice_id: INVOICE_ID,
+                invoice_id,
                 payer,
                 amount_lamports: amount,
                 expires_slot: expiry,
@@ -139,6 +150,10 @@ impl Harness {
             Actor::Merchant => signers.push(&self.merchant),
             Actor::Payer => signers.push(&self.payer),
             Actor::Attacker => signers.push(&self.attacker),
+            Actor::Both => {
+                signers.push(&self.merchant);
+                signers.push(&self.payer);
+            }
             Actor::None => (),
         }
         let tx = VersionedTransaction::try_new(VersionedMessage::Legacy(msg), &signers).unwrap();
@@ -164,7 +179,13 @@ impl Harness {
 
     fn reject(&mut self, ix: Instruction, actor: Actor, reason: &str) {
         let before = self.snapshot();
+        let fee_before = self.svm.get_balance(&self.fee.pubkey()).unwrap();
         let failure = self.send(vec![ix], actor).unwrap_err();
+        assert_eq!(
+            fee_before - self.svm.get_balance(&self.fee.pubkey()).unwrap(),
+            failure.meta.fee,
+            "rollback must not be described as refunding transaction fees"
+        );
         assert!(
             failure.meta.logs.iter().any(|s| s.contains(reason)),
             "expected {reason}; {failure:?}"
@@ -492,4 +513,410 @@ fn unknown_instruction_cannot_change_terms_or_terminal_state() {
     h.reject(ix, Actor::Payer, "InstructionFallbackNotFound");
     let clock = h.svm.get_sysvar::<Clock>();
     assert_eq!(clock.slot, 100);
+}
+
+#[test]
+fn merchant_owner_and_data_are_checked_at_create_and_pay() {
+    for paying in [false, true] {
+        for wrong_owner in [false, true] {
+            let mut h = if paying {
+                Harness::opened()
+            } else {
+                Harness::new()
+            };
+            let mut merchant = h.svm.get_account(&h.merchant.pubkey()).unwrap();
+            if wrong_owner {
+                merchant.owner = rail::id();
+            } else {
+                merchant.data = vec![1];
+            }
+            h.svm.set_account(h.merchant.pubkey(), merchant).unwrap();
+            // Anchor init CPI runs before the remaining merchant constraints.
+            let reason = match (paying, wrong_owner) {
+                (false, false) => "must not carry data",
+                (false, true) => "spent from the balance of an account it does not own",
+                (true, false) => "InvalidWallet",
+                (true, true) => "AccountNotSystemOwned",
+            };
+            if paying {
+                h.reject(h.pay(), Actor::Payer, reason);
+            } else {
+                h.reject(
+                    h.create(AMOUNT, EXPIRY, h.payer.pubkey()),
+                    Actor::Merchant,
+                    reason,
+                );
+                assert!(h.svm.get_account(&h.invoice).is_none());
+            }
+        }
+    }
+}
+
+#[test]
+fn required_writable_privileges_cannot_be_removed() {
+    for index in 0..3 {
+        let mut h = Harness::opened();
+        let mut ix = h.pay();
+        ix.accounts[index].is_writable = false;
+        h.reject(ix, Actor::Payer, "ConstraintMut");
+    }
+    let mut h = Harness::new();
+    let mut ix = h.create(AMOUNT, EXPIRY, h.payer.pubkey());
+    ix.accounts[0].is_writable = false;
+    h.reject(ix, Actor::Merchant, "writable privilege escalated");
+    let mut h = Harness::opened();
+    let mut ix = h.cancel();
+    ix.accounts[0].is_writable = false;
+    h.reject(ix, Actor::Merchant, "ConstraintMut");
+}
+
+#[test]
+fn cancel_checks_owner_discriminator_seeds_and_version() {
+    for case in 0..4 {
+        let mut h = Harness::opened();
+        let mut account = h.svm.get_account(&h.invoice).unwrap();
+        let reason = match case {
+            0 => {
+                account.owner = system_program::ID;
+                "AccountOwnedByWrongProgram"
+            }
+            1 => {
+                account.data[0] ^= 255;
+                "AccountDiscriminatorMismatch"
+            }
+            2 => {
+                account.data[9] = account.data[9].wrapping_sub(1);
+                "ConstraintSeeds"
+            }
+            _ => {
+                account.data[8] = 2;
+                "WrongVersion"
+            }
+        };
+        h.svm.set_account(h.invoice, account).unwrap();
+        h.reject(h.cancel(), Actor::Merchant, reason);
+    }
+}
+
+#[test]
+fn truncated_instruction_and_account_data_fail_without_principal_changes() {
+    for paying in [false, true] {
+        let mut h = if paying {
+            Harness::opened()
+        } else {
+            Harness::new()
+        };
+        let mut ix = if paying {
+            h.pay()
+        } else {
+            h.create(AMOUNT, EXPIRY, h.payer.pubkey())
+        };
+        ix.data.truncate(if paying { 7 } else { 20 });
+        h.reject(
+            ix,
+            if paying {
+                Actor::Payer
+            } else {
+                Actor::Merchant
+            },
+            if paying {
+                "InstructionFallbackNotFound"
+            } else {
+                "InstructionDidNotDeserialize"
+            },
+        );
+    }
+    for size in [7, 130] {
+        for cancel in [false, true] {
+            let mut h = Harness::opened();
+            let mut account = h.svm.get_account(&h.invoice).unwrap();
+            account.data.truncate(size);
+            h.svm.set_account(h.invoice, account).unwrap();
+            let ix = if cancel { h.cancel() } else { h.pay() };
+            h.reject(
+                ix,
+                if cancel {
+                    Actor::Merchant
+                } else {
+                    Actor::Payer
+                },
+                if size == 7 {
+                    "AccountDiscriminatorNotFound"
+                } else {
+                    "AccountDidNotDeserialize"
+                },
+            );
+        }
+    }
+}
+
+#[test]
+fn open_invoice_cannot_change_terms_by_reinitialization() {
+    let mut h = Harness::opened();
+    h.reject(
+        h.create(AMOUNT + 1, EXPIRY + 1, h.attacker.pubkey()),
+        Actor::Merchant,
+        "already in use",
+    );
+}
+
+#[test]
+fn u64_boundaries_remain_exact_and_cannot_wrap_principal() {
+    for amount in [1, 9_007_199_254_740_993, u64::MAX] {
+        let mut h = Harness::new();
+        h.send(
+            vec![h.create(amount, u64::MAX, h.payer.pubkey())],
+            Actor::Merchant,
+        )
+        .unwrap();
+        assert_eq!(h.state().amount_lamports, amount);
+        assert_eq!(h.state().expires_slot, u64::MAX);
+        let before = h.snapshot();
+        if amount == 1 {
+            h.send(vec![h.pay()], Actor::Payer).unwrap();
+            assert_eq!(h.snapshot().merchant - before.merchant, 1);
+            assert_eq!(before.payer - h.snapshot().payer, 1);
+        } else {
+            h.reject(h.pay(), Actor::Payer, "insufficient lamports");
+        }
+    }
+}
+
+#[test]
+fn terms_are_immutable_after_pay_or_cancel() {
+    for cancel in [false, true] {
+        let mut h = Harness::opened();
+        let before = h.state();
+        if cancel {
+            h.send(vec![h.cancel()], Actor::Merchant).unwrap();
+        } else {
+            h.send(vec![h.pay()], Actor::Payer).unwrap();
+        }
+        let mut after = h.state();
+        assert_eq!(
+            after.status,
+            if cancel { rail::CANCELLED } else { rail::PAID }
+        );
+        assert_eq!(after.paid_slot, if cancel { 0 } else { 100 });
+        // Only these two fields may change; compare every other serialized field.
+        after.status = before.status;
+        after.paid_slot = before.paid_slot;
+        assert_eq!(after, before);
+    }
+}
+
+#[test]
+fn different_invoice_ids_are_independent_and_each_can_pay_once() {
+    let mut h = Harness::opened();
+    let first = h.invoice;
+    let id = [43; 32];
+    h.invoice = Pubkey::find_program_address(
+        &[rail::INVOICE_SEED, h.merchant.pubkey().as_ref(), &id],
+        &rail::id(),
+    )
+    .0;
+    assert_ne!(first, h.invoice);
+    h.send(
+        vec![h.create_with_id(id, AMOUNT, EXPIRY, h.payer.pubkey())],
+        Actor::Merchant,
+    )
+    .unwrap();
+    let second = h.invoice;
+    let before = h.snapshot();
+    h.send(vec![h.pay()], Actor::Payer).unwrap();
+    assert_eq!(h.state().invoice_id, id);
+    h.invoice = first;
+    assert_eq!(h.state().status, rail::OPEN);
+    h.send(vec![h.pay()], Actor::Payer).unwrap();
+    assert_eq!(h.snapshot().merchant - before.merchant, AMOUNT * 2);
+    assert_eq!(before.payer - h.snapshot().payer, AMOUNT * 2);
+    for address in [first, second] {
+        h.invoice = address;
+        h.reject(h.pay(), Actor::Payer, "InvoiceNotOpen");
+    }
+}
+
+#[test]
+fn same_invoice_id_at_another_merchant_is_a_distinct_invoice() {
+    let mut h = Harness::opened();
+    let first = h.invoice;
+    let original = h.svm.get_account(&first).unwrap();
+    std::mem::swap(&mut h.merchant, &mut h.attacker);
+    h.invoice = Pubkey::find_program_address(
+        &[
+            rail::INVOICE_SEED,
+            h.merchant.pubkey().as_ref(),
+            &INVOICE_ID,
+        ],
+        &rail::id(),
+    )
+    .0;
+    assert_ne!(first, h.invoice);
+    h.send(
+        vec![h.create(AMOUNT, EXPIRY, h.payer.pubkey())],
+        Actor::Merchant,
+    )
+    .unwrap();
+    h.send(vec![h.pay()], Actor::Payer).unwrap();
+    assert_eq!(h.svm.get_account(&first).unwrap(), original);
+}
+
+#[test]
+fn create_then_pay_is_atomic_and_duplicate_pay_rolls_back_creation() {
+    let mut success = Harness::new();
+    let before = success.snapshot();
+    let rent = success.svm.minimum_balance_for_rent_exemption(131);
+    let fee_before = success.svm.get_balance(&success.fee.pubkey()).unwrap();
+    let meta = success
+        .send(
+            vec![
+                success.create(AMOUNT, EXPIRY, success.payer.pubkey()),
+                success.pay(),
+            ],
+            Actor::Both,
+        )
+        .unwrap();
+    assert_eq!(success.state().status, rail::PAID);
+    assert_eq!(success.snapshot().merchant, before.merchant - rent + AMOUNT);
+    assert_eq!(success.snapshot().payer, before.payer - AMOUNT);
+    assert_eq!(
+        fee_before - success.svm.get_balance(&success.fee.pubkey()).unwrap(),
+        meta.fee
+    );
+
+    let mut h = Harness::new();
+    let before = h.snapshot();
+    let fee_before = h.svm.get_balance(&h.fee.pubkey()).unwrap();
+    let failure = h
+        .send(
+            vec![h.create(AMOUNT, EXPIRY, h.payer.pubkey()), h.pay(), h.pay()],
+            Actor::Both,
+        )
+        .unwrap_err();
+    assert!(failure
+        .meta
+        .logs
+        .iter()
+        .any(|line| line.contains("InvoiceNotOpen")));
+    assert_eq!(h.snapshot(), before);
+    assert!(h.svm.get_account(&h.invoice).is_none());
+    assert_eq!(
+        fee_before - h.svm.get_balance(&h.fee.pubkey()).unwrap(),
+        failure.meta.fee
+    );
+    assert!(failure.meta.fee > 0);
+    println!(
+        "METRIC create_pay_cu={} create_pay_fee={} rollback_create_pay_pay_fee={}",
+        meta.compute_units_consumed, meta.fee, failure.meta.fee
+    );
+}
+
+#[test]
+fn two_pay_rollback_charges_only_fee_payer() {
+    let mut h = Harness::opened();
+    let before = h.snapshot();
+    let fee_before = h.svm.get_balance(&h.fee.pubkey()).unwrap();
+    let failure = h.send(vec![h.pay(), h.pay()], Actor::Payer).unwrap_err();
+    assert_eq!(h.snapshot(), before);
+    assert_eq!(
+        fee_before - h.svm.get_balance(&h.fee.pubkey()).unwrap(),
+        failure.meta.fee
+    );
+    assert!(failure.meta.fee > 0);
+}
+
+#[test]
+fn bad_cryptographic_signature_is_rejected_before_execution() {
+    let mut h = Harness::new();
+    let before = h.snapshot();
+    let fee_before = h.svm.get_balance(&h.fee.pubkey()).unwrap();
+    let ix = h.create(AMOUNT, EXPIRY, h.payer.pubkey());
+    let message =
+        Message::new_with_blockhash(&[ix], Some(&h.fee.pubkey()), &h.svm.latest_blockhash());
+    let mut tx =
+        VersionedTransaction::try_new(VersionedMessage::Legacy(message), &[&h.fee, &h.merchant])
+            .unwrap();
+    tx.signatures[1] = Default::default();
+    let failure = h.svm.send_transaction(tx).unwrap_err();
+    assert_eq!(format!("{:?}", failure.err), "SignatureFailure");
+    assert_eq!(h.snapshot(), before);
+    assert_eq!(h.svm.get_balance(&h.fee.pubkey()).unwrap(), fee_before);
+}
+
+fn hex(bytes: &[u8]) -> String {
+    bytes.iter().map(|b| format!("{b:02x}")).collect()
+}
+
+fn instruction_json(ix: &Instruction) -> String {
+    let accounts = ix
+        .accounts
+        .iter()
+        .map(|a| {
+            format!(
+                r#"{{"address":"{}","isSigner":{},"isWritable":{}}}"#,
+                a.pubkey, a.is_signer, a.is_writable
+            )
+        })
+        .collect::<Vec<_>>()
+        .join(",");
+    format!(
+        r#"{{"programAddress":"{}","dataHex":"{}","accounts":[{}]}}"#,
+        ix.program_id,
+        hex(&ix.data),
+        accounts
+    )
+}
+
+#[test]
+fn export_rust_abi_and_runtime_accounts_for_browser_client() {
+    let mut h = Harness::new();
+    let create = h.create(AMOUNT, EXPIRY, h.payer.pubkey());
+    let pay = h.pay();
+    let cancel = h.cancel();
+    let created = h.send(vec![create.clone()], Actor::Merchant).unwrap();
+    let open = h.svm.get_account(&h.invoice).unwrap();
+    let paid_meta = h.send(vec![pay.clone()], Actor::Payer).unwrap();
+    let paid = h.svm.get_account(&h.invoice).unwrap();
+    // Restore the known Open fixture solely to export the cancel ABI from the same public addresses.
+    // Normal cancel lifecycle tests above use real create, without resetting terminal state.
+    h.svm.set_account(h.invoice, open.clone()).unwrap();
+    let cancelled_meta = h.send(vec![cancel.clone()], Actor::Merchant).unwrap();
+    let cancelled = h.svm.get_account(&h.invoice).unwrap();
+    let event = |logs: &[String]| {
+        logs.iter()
+            .find_map(|line| line.strip_prefix("Program data: "))
+            .unwrap()
+            .to_string()
+    };
+    let json = format!(
+        r#"{{"origin":"Rust InstructionData/ToAccountMetas + real SBF LiteSVM accounts","programAddress":"{}","merchant":"{}","payer":"{}","invoiceAddress":"{}","invoiceIdHex":"{}","amountLamports":"{}","expiresSlot":"{}","observedSlot":"100","create":{},"pay":{},"cancel":{},"openHex":"{}","paidHex":"{}","cancelledHex":"{}","createdEventBase64":"{}","paidEventBase64":"{}","cancelledEventBase64":"{}"}}"#,
+        rail::id(),
+        h.merchant.pubkey(),
+        h.payer.pubkey(),
+        h.invoice,
+        hex(&INVOICE_ID),
+        AMOUNT,
+        EXPIRY,
+        instruction_json(&create),
+        instruction_json(&pay),
+        instruction_json(&cancel),
+        hex(&open.data),
+        hex(&paid.data),
+        hex(&cancelled.data),
+        event(&created.logs),
+        event(&paid_meta.logs),
+        event(&cancelled_meta.logs)
+    );
+    if let Ok(path) = std::env::var("RECEIPTRAIL_ABI_OUT") {
+        std::fs::write(path, format!("{json}\n")).unwrap();
+    }
+    assert_eq!(open.data.len(), 131);
+    assert_eq!(paid.data.len(), 131);
+    assert_eq!(cancelled.data.len(), 131);
+    println!(
+        "METRIC abi_vectors=3 instruction_lengths={},{},{} account_bytes=131",
+        create.data.len(),
+        pay.data.len(),
+        cancel.data.len()
+    );
 }

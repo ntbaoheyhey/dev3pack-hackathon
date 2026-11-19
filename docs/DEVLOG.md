@@ -397,3 +397,5 @@ Các mô tả dưới đây là sự kiện ở Taskbar Hero, không phải hàn
 2026-11-19T13:30:16+07:00 · Codex · Ghi nguyên văn quyền Phase4/5 local từ tin trực tiếp/log13:25:47UTC+7; bật Automation bằng app và đọc lại ACTIVE. Pull0a08395, giao T34 học/UI/ví cho A, giữ chỗ notes024/025; cập nhật DECISION/AGENTS/ROADMAP/NEXT/Thẻ nhớ/note022. Không cài/deploy/public/mergePR7 hoặc mở lại T31–T33.
 
 2026-11-19 · Codex · Đã push05f8e79 giao T34, học004/007/023 và source cache; viết note024 trước code, đọc source primary Anchor1.2.2/Kit4.0.0 có hash. Chọn generated client toàn ABI hiện hành bằng generator local + crypto adapter thư viện cache, không cài Codama. Chưa code/test mới.
+
+2026-11-19 · Codex · Runtime Phase4 r2 đạt32/32 offline/locked, giữ log r1 29/32 do expectation thứ tự init/constraint và ghi bài học note024. Bổ sung phí/rollback, u64/readonly/account/signature/lifecycle/multi-invoice; ABI vectors xuất từ Rust/VM, source program chưa cần đổi. Không CI/cài/deploy hoặc sửa UI A.
