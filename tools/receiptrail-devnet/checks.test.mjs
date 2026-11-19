@@ -2,8 +2,32 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { anchor, LOADER, PAYER, assertBudget, programDataAddress, verifyDeployment, toWeb3Instruction, assertDuplicateSimulation } from './checks.mjs';
+import { bufferWriteInstruction, verifyBuffer } from './checks.mjs';
 const { PublicKey, SystemProgram } = anchor.web3;
 const vector = JSON.parse(readFileSync(new URL('../../docs/fixtures/receiptrail-abi.json', import.meta.url), 'utf8'));
+
+test('buffer writes match a finalized Agave CLI transaction wire format', () => {
+  const sample = JSON.parse(readFileSync(new URL('../../docs/evidence/phase3/hello-buffer-cli-write-sample.json', import.meta.url)));
+  const message = sample.transaction.transaction.message;
+  const ix = message.instructions[0];
+  const bytes = Buffer.from(anchor.utils.bytes.bs58.decode(ix.data));
+  const offset = bytes.readUInt32LE(4), length = Number(bytes.readBigUInt64LE(8));
+  const binary = Buffer.alloc(offset + length); bytes.copy(binary, offset, 16);
+  const actual = bufferWriteInstruction(message.accountKeys[ix.accounts[0]], binary, offset, length);
+  assert(actual.data.equals(bytes)); assert.equal(actual.programId.toBase58(), message.accountKeys[ix.programIdIndex]);
+  assert.deepEqual(actual.keys.map(a => a.pubkey.toBase58()), ix.accounts.map(i => message.accountKeys[i]));
+  assert.deepEqual(actual.keys.map(a => [a.isSigner, a.isWritable]), [[false, true], [true, false]]);
+  for (const [o, n] of [[-1, 1], [0, 961], [binary.length, 1], [0, 0], [1.1, 1]]) assert.throws(() => bufferWriteInstruction(PAYER, binary, o, n));
+});
+
+test('buffer verification rejects foreign authority, wrong owner and partial account layout', () => {
+  const data = Buffer.alloc(40); data.writeUInt32LE(1); data[4] = 1; PAYER.toBuffer().copy(data, 5);
+  const account = { owner: LOADER, executable: false, data };
+  assert.equal(verifyBuffer(account, 3).length, 3);
+  assert.throws(() => verifyBuffer(account, 4), /INVALID_BUFFER_LAYOUT/);
+  assert.throws(() => verifyBuffer({ ...account, owner: SystemProgram.programId }, 3), /INVALID_BUFFER_OWNER/);
+  data[5] ^= 1; assert.throws(() => verifyBuffer(account, 3), /WRONG_BUFFER_AUTHORITY/);
+});
 
 test('budget counts previous debit, next operation and reserve under the exact approved cap', () => {
   const result = assertBudget({ baseline: 1_848_125_199, balance: 1_800_000_000, nextDebit: 752_027_960, reserve: 20_000_000 });

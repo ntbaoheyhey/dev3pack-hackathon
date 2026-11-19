@@ -29,6 +29,8 @@ flowchart LR
   SYS --> DEST[Ví merchant]
 ```
 
+Cập nhật Phase4 ngày19/11: identity triển khai `8NGSPufBmGB1oHqaZpY1jhJYz1X4gqFiNXCQmxfapYko` đã có sau CI đầu đạt ([record](evidence/phase4/deployment-identity.json)); đang kiểm revision trước broadcast. ID/fixture local cũ bên dưới là lịch sử Phase2.
+
 Sơ đồ là thiết kế tương lai; spike hiện dùng LiteSVM thay RPC/chain và signer chỉ trong bộ nhớ. Trên máy không chạy validator, không sử dụng file ví legacy. Program ID **local-only** `troKmWNxjNucevGMKo9PnKdF5p6W91VDGJ2PsjYvCPg` được tính từ hash nhãn công khai, không có deployment keypair; không phải địa chỉ đã deploy. ID deployment/authority phải được chốt sau quyền tương ứng và sinh lại client/IDL, không dùng mặc định từ link ngoài.
 
 ## 3. Account và PDA

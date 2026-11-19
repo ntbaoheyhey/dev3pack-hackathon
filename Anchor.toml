@@ -9,9 +9,11 @@ resolution = true
 skip-lint = false
 
 [programs.devnet]
+receiptrail = "8NGSPufBmGB1oHqaZpY1jhJYz1X4gqFiNXCQmxfapYko"
 phase3_hello = "2yzxUQEpaeLmgCMhDipwnVL3DHsxez18KcePonqZRiXL"
 
 [programs.localnet]
+receiptrail = "8NGSPufBmGB1oHqaZpY1jhJYz1X4gqFiNXCQmxfapYko"
 phase3_hello = "2yzxUQEpaeLmgCMhDipwnVL3DHsxez18KcePonqZRiXL"
 
 [provider]

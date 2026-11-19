@@ -9,3 +9,5 @@ Người dùng mở Phase4/5 rồi trả lời **“Đồng ý cả P4-A và P4-
 5. Chốt docs/PR7/push sau mốc; không merge. T31/T32/T33 vẫn đóng/nợD01–D03, không mở vòng sửa.
 
 Còn cần quyền riêng: public/update web, cài thêm máy người dùng, signer ngoài4được duyệt, vượt trần, upgrade mới, mergePR7 hoặc Phase6. Ví thật/giáo viên còn riêng. Mở phase/quyền triển khai không có nghĩa các cổng thực thi đã đạt.
+
+Mốc identity19/11: CI đầu8df85c0 đạt cả hai runs; đúng4keys đã tạo ngoài Git sau gate. Runtime32/client23/guards7 đạt với identity mới, [metadata](evidence/phase4/deployment-local-metadata.json). Theo Thẻ nhớ để kiểm CI revision triển khai trước broadcast; không tạo lại keys.

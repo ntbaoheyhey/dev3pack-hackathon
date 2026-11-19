@@ -1,0 +1,49 @@
+Verified 3 instructions, 1 account, 3 events, 9 errors; IDL sha256=39a63939f55df952429a0d4f0c4d3691daf0858a7e2bc5c56473be173385ef40
+(node:33473) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ browser-target bundle runs with no Node globals, RPC, wallet or signing capability (31.993292ms)
+✔ all ABI entries are generated and source hash matches the checked-in Anchor IDL (1.225541ms)
+✔ canonical PDA agrees with Rust, Kit and independent web3.js derivation (5.19775ms)
+✔ three high-level builders match Rust runtime instruction bytes, order and signer/writable privileges (5.185834ms)
+✔ instruction serialization agrees with independent Anchor coder across u64 boundaries (3.7645ms)
+✔ Open, Paid and Cancelled decode exactly as Anchor on real runtime account bytes (2.990833ms)
+✔ three emitted runtime events decode exactly as the independent Anchor event coder (0.749125ms)
+✔ one lamport and max u64 SOL inputs preserve every digit without rounding (0.225042ms)
+✔ ambiguous, float, exponent, negative, overprecision and overflow amounts are rejected (0.338042ms)
+✔ create rejects invalid amount, stale expiry, zero or aliased wallets before building (1.561917ms)
+✔ owner, executable, length, type and version are all required for an invoice (0.519208ms)
+✔ wrong address, seed merchant/id and noncanonical bump do not pass owner/type checks alone (1.647416ms)
+✔ decoded account terms enforce positive amount/expiry and distinct nonzero wallets (1.33175ms)
+✔ unknown status and impossible paid slots are rejected; a payment at slot zero is valid (1.722459ms)
+✔ generated decode reads u64 above Number safety and rejects trailing event bytes/type confusion (0.209833ms)
+✔ a changed confirmed term or account cannot silently become a different payment (5.1965ms)
+✔ wrong signer, unknown clock, expiry boundary and terminal state block pay; expired Open can cancel (5.057292ms)
+✔ inspection distinguishes expiry, role and terminal state without inventing commitment (1.671833ms)
+✔ custom errors are scoped to ReceiptRail program and integer code, never substring log matching (0.136125ms)
+✔ malformed addresses, bytes, argument names and fixed System account fail closed (0.618167ms)
+✔ async derivation snapshots confirmed terms, account bytes and create input before yielding (1.381666ms)
+✔ unsupported adapter output and noncanonical address codec are rejected (0.55475ms)
+✔ independent web3.js adapter also consumes the same client and produces the Rust create instruction (1.144166ms)
+ℹ tests 23
+ℹ suites 0
+ℹ pass 23
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 166.056708
+✔ buffer writes match a finalized Agave CLI transaction wire format (5.827875ms)
+✔ buffer verification rejects foreign authority, wrong owner and partial account layout (0.323083ms)
+✔ budget counts previous debit, next operation and reserve under the exact approved cap (0.390042ms)
+✔ deployment verifier checks canonical loader pair, authority and exact bytecode (2.022791ms)
+✔ short, forged-owner, oversized or revoked-authority deployment accounts are rejected (2.154833ms)
+✔ transport conversion retains every Rust account privilege and makes an independent data copy (0.544375ms)
+✔ duplicate simulation requires structured error plus the ReceiptRail origin and no transfer (0.5265ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 129.274

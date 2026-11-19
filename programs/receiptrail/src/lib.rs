@@ -2,7 +2,7 @@ use anchor_lang::prelude::*;
 use anchor_lang::system_program::{self, Transfer};
 
 // Public hash-derived identifier for local VM tests only. No deployment keypair exists.
-declare_id!("troKmWNxjNucevGMKo9PnKdF5p6W91VDGJ2PsjYvCPg");
+declare_id!("8NGSPufBmGB1oHqaZpY1jhJYz1X4gqFiNXCQmxfapYko");
 
 pub const INVOICE_SEED: &[u8] = b"invoice-v1";
 pub const VERSION: u8 = 1;

@@ -21,6 +21,24 @@ export function programDataAddress(program) {
   return PublicKey.findProgramAddressSync([new PublicKey(program).toBuffer()], LOADER)[0];
 }
 
+// Loader v3 v8.0.1; Write bytes are also checked against a finalized Agave CLI tx.
+export function bufferWriteInstruction(buffer, binary, offset, length) {
+  assert(Number.isSafeInteger(offset) && offset >= 0 && offset <= 0xffffffff);
+  assert(Number.isSafeInteger(length) && length > 0 && length <= 960 && offset + length <= binary.length);
+  const data = Buffer.alloc(16 + length);
+  data.writeUInt32LE(1, 0); data.writeUInt32LE(offset, 4); data.writeBigUInt64LE(BigInt(length), 8);
+  binary.copy(data, 16, offset, offset + length);
+  return new anchor.web3.TransactionInstruction({ programId: LOADER,
+    keys: [{ pubkey: new PublicKey(buffer), isSigner: false, isWritable: true }, { pubkey: PAYER, isSigner: true, isWritable: false }], data });
+}
+
+export function verifyBuffer(account, binaryLength) {
+  assert(account?.owner.equals(LOADER) && !account.executable, 'INVALID_BUFFER_OWNER');
+  assert(account.data.length === 37 + binaryLength && account.data.readUInt32LE(0) === 1, 'INVALID_BUFFER_LAYOUT');
+  assert(account.data[4] === 1 && new PublicKey(account.data.subarray(5, 37)).equals(PAYER), 'WRONG_BUFFER_AUTHORITY');
+  return account.data.subarray(37);
+}
+
 export function verifyDeployment({ program, authority, binary, programAccount, dataAccount }) {
   const dataAddress = programDataAddress(program);
   assert(programAccount?.owner.equals(LOADER) && programAccount.executable, 'INVALID_PROGRAM_OWNER_OR_EXECUTABLE');

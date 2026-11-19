@@ -13,3 +13,9 @@
 | Quote r1 fail closed | [Record](devnet-rent-quote-2026-11-19.json) | C chép thiếu expected genesis; guard dừng ngay sau1read. R2 lấy expected từ record Phase3 đã kiểm, không đổi allowlist theo response |
 
 [Contract UI](../../PHASE4-CLIENT.md) đã giao trong T34; chưa có bài nộp/xác nhận dùng được của A. CI Phase3 tại27cf7ac chỉ chứng minh bộ tests cũ, không áp cho executable inputs Phase4. Chưa ReceiptRail devnet, UI/RPC recovery hoặc ví thật, verified build, public website mới. [Phương án cổng](../../PHASE4-PLAN.md) trình riêng; không mergePR7 hoặc mở lại T31–T33.
+
+## Identity triển khai sau CI đầu
+- [CI đầu](ci-initial.json) và [log Anchor](ci-initial-anchor.log): push44475988734 đạt tại8df85c0 trước tạo keys; PR44475994937 cũng đạt.
+- [Public identity](deployment-identity.json): đúng4keys đã tạo ngoài Git, chưa gửi; [local metadata](deployment-local-metadata.json).
+- [Runtime](runtime-deployment-identity.log)32, [client/guards](client-deployment-identity.log)23/7 đạt; [IDL r2](idl-deployment-identity-r2.log) sinh bằng cache. [IDL fail](idl-deployment-identity.log) thiếu PATH được giữ nguyên.
+- Fixture hiện hành ở [docs/fixtures](../../fixtures/receiptrail-abi.json); runtime-abi-r2 cũ giữ nguyên lịch sử.

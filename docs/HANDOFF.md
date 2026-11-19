@@ -7,17 +7,17 @@
 - T31/T32/T33 đã đóng tại7857e9b; D01–D03 là nợ tài liệu. T34 là triển khai UI mới, không vòng sửa report.
 - C sở hữu programs/tests/build/IDL/client và hồ sơ chính; A sở hữu apps/web/receiptrail, route/UI/tests, note025/evidence Phase5.
 - Quyền/T34 push05f8e79, note024 push9124f04, runtime32/32 push2a3fd30. Client r1 đạt23/23 + generated/TypeScript/browser-target bundle; source/ABI không đổi.
-- Client/contract đã push4148906; T34 chưa có bài nộp/xác nhận mới. Review local xong, PHASE4-PLAN đã được đồng ý; bước kế áp patch/run CI, chưa tạo signers.
-- Giữ source/web/lab ClusterProof đã có; mọi commit/merge lượt local dùng `[skip ci]`, không gán CI27cf7ac cho code mới.
+- Client/contract đã push4148906; helpers push39ad3ee đã xác minh trên origin/work. T34 chưa có bài nộp mới. CI đầu8df85c0 đạt cả push/PR; đã tạo đúng4keys ngoài Git. Identity8NGSP…pYko có record; chưa broadcast.
+- Giữ source/web/lab ClusterProof đã có; checkpoint tài liệu dùng `[skip ci]`; CI được mở đúng P4-A, không gán CI cũ cho revision mới.
 - P3-B đã xong137tx finalized/counter1, debit0.651874801SOL; không gửi lại upload/deploy/smoke, buffer mới/close hoặc tăng trần.
 - Ví extension thật chưa kiểm theo lựa chọn người dùng; mock wallet không thay xác nhận thật. Chưa verdict giáo viên, không tự chấm thay.
 - Chỉ dừng khi có quyết định/quyền cần người dùng; chuẩn bị phương án cụ thể trước hỏi. Không tự mở Phase6 hoặc coi mở Phase4/5 là đã hoàn tất.
 
 ## Còn lại
 
-1. CI8df85c003a10789888b0000f3c5cc1018d05d06b đang chạy: PR44475994937/push44475988734, web/research đạt; anchor-lab đang cài đúng pins. Theo dõi đến jobs/logs đạt; chưa tạo4keypairs.
-2. Helpers checks/smoke đã viết,5tests local đạt và syntax smoke đạt; mới thêm runner cho CI revision kế. Sau CI đầu đạt: tạo đúng4keypairs ngoài Git theo PHASE4-PLAN, đổi identity/build/test/IDL/client; chạy CI revision mới trước broadcast.
-3. Preflight/budget <=1.8SOL, deploy/smoke/journal/finalized/đối soát theo plan. Không auto-resend/đổi buffer/authority hoặc tạo thêm signer.
+1. Identity triển khai đã đổi sang8NGSPufBmGB1oHqaZpY1jhJYz1X4gqFiNXCQmxfapYko; runtime32/client23/guards7 local đạt. Push source/IDL/client/fixture/helpers rồi kiểm CI đúng revision trước broadcast.
+2. Sau CI triển khai đạt, ghi ci-deployment.json với inputHashes/localBinarySha256 từ metadata; chạy deploy.mjs --inspect rồi --upload-approved. Không tạo keys mới hoặc dùng identity cũ. Helpers upload/CLI/verify đã chuẩn bị, chưa mạng.
+3. Upload đạt thì deploy.mjs --deploy-approved; verify.mjs --deployment kiểm toàn tx/binary/authority, rồi smoke inspect/send, verify --all. Cap1.8SOL; journal/report tồn tại thì đối soát, không auto-resend/upgrade.
 4. T34 tiếp tục local; nhận bài nộp và review tiền/quyền khi có. Chưa A xác nhận; không mở lại T31–T33.
 5. Cập nhật notes/DEVLOG/Thẻ nhớ/PR7 và push mỗi mốc. Public/Phase6/merge cần quyền riêng, không hỏi P4-A/B lại.
 

@@ -1,0 +1,12 @@
+{
+  "createdAt": "2026-11-19T07:10:35.804Z",
+  "authorization": "user-permission-p4ab-2026-11-19.json",
+  "ciBeforeGeneration": 44475988734,
+  "ciBeforeGenerationSha": "8df85c003a10789888b0000f3c5cc1018d05d06b",
+  "feePayer": "GQRoDMoWFV2nhgwm3bZGvSCC1LSa2wRkLeeJg8NhbFM2",
+  "status": "FOUR_KEYS_CREATED_NO_BROADCAST",
+  "program": "8NGSPufBmGB1oHqaZpY1jhJYz1X4gqFiNXCQmxfapYko",
+  "buffer": "81xkUgtFePibSp5R4T1LgDC1RUfe6vNTivFZ5hadbhok",
+  "merchant": "HtQYFnFqUrkAfnKLpLaTgZrvjivJ3ZWPTqsCv6Kru4y2",
+  "payer": "DPKxAZhBq4aJYn4FbHFn19easT1KRcv31YNweGKZnyrc"
+}

@@ -33,7 +33,7 @@ const client = createReceiptRailClient({
 });
 ```
 
-Adapter là code tin cậy của app, không nhận từ URL/JSON. Địa chỉ program hard-code từ IDL là **local-only** `troKmWNxjNucevGMKo9PnKdF5p6W91VDGJ2PsjYvCPg`, không có signer triển khai. Khi được phép deploy phải đổi identity có kiểm soát, build/test/sinh lại IDL/client, cập nhật allowlist và fixture cùng mốc; không ký bằng ID local này.
+Adapter là code tin cậy của app, không nhận từ URL/JSON. Identity P4-B: `8NGSPufBmGB1oHqaZpY1jhJYz1X4gqFiNXCQmxfapYko`, tạo sau CI đầu đạt theo quyền người dùng; chưa broadcast. Cập nhật IDL/generated client/fixture từ Rust cùng mốc. A import PROGRAM_ADDRESS từ client, không hard-code ID local cũ. Evidence identity: [deployment-identity](evidence/phase4/deployment-identity.json).
 
 ## API
 
