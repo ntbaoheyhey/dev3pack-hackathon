@@ -15,7 +15,7 @@
 
 ## Còn lại
 
-1. Push quyền mới P4-A/P4-B và snapshot PR7; áp patch CI đã review và commit không skip để chạy CI. Theo dõi đúng SHA/jobs/logs, không dừng giữa run.
+1. Quyền mới đã push28c1e3f; patch CI4dòng đã áp/review YAML+run blocks, đang commit không skip/push chạy CI. Theo dõi SHA/jobs/logs thật, không dừng giữa run; chưa tạo4keypairs.
 2. Sau CI đầu đạt: tạo đúng4keypairs ngoài Git theo PHASE4-PLAN, đổi identity/build/test/IDL/client; chạy CI revision mới trước broadcast.
 3. Preflight/budget <=1.8SOL, deploy/smoke/journal/finalized/đối soát theo plan. Không auto-resend/đổi buffer/authority hoặc tạo thêm signer.
 4. T34 tiếp tục local; nhận bài nộp và review tiền/quyền khi có. Chưa A xác nhận; không mở lại T31–T33.

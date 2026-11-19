@@ -67,3 +67,5 @@ Bài học: harness đầu trỏ root thừa `../` làm module not found; sửa 
 ### Review và phương án cổng sau local
 
 Tự review S01–S12/threat model có đường source/tests ở `reviews/receiptrail-phase4-local.md`; không tìm thấy lỗi program mới trong phạm vi này, không gọi audit độc lập. Chuẩn bị patch CI4dòng chưa áp; quote read-only devnet không signer/sign/send cho PHASE4-PLAN. Lần quote đầu chép thiếu expected genesis nên guard chặn sau1read; sửa bằng expected từ record Phase3 đã kiểm, không nới guard hay lấy response làm allowlist. R2rent devnet khác VM, phải đọc lại sau đổi identity/build và trước gửi. Trần1.8SOL chỉ là đề xuất, không tái dùng quyền1.5SOL hello. Verified source build/upgrade authority/CI/browser còn cổng riêng.
+
+P4-A/P4-B đã đồng ý log13:55:34.348UTC+7. Áp đúng patch4dòng, YAML/permissions/3jobs và bash -n cho toàn run blocks đạt; không installer local. Chạy CI đầu trước tạo4keypairs, sau đổi identity phải CI đúng revision mới trước broadcast.
