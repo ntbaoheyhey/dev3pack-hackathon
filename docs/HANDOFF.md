@@ -17,8 +17,8 @@
 ## Còn lại
 
 1. CI triển khai đã đạt; manifest/logs/inspect đã push a302ba9. Không chạy lại CI vì docs-only.
-2. Upload đã FINALIZED_BUFFER_VERIFIED trong upload.json, không chạy lại. DeployCLI đã exit0/signature5Yf3…HVUU; verify --deployment đang session20797. Không gửi/deploy lại.
-3. Upload đạt thì deploy.mjs --deploy-approved; verify.mjs --deployment kiểm toàn tx/binary/authority, rồi smoke inspect/send, verify --all. Cap1.8SOL; journal/report tồn tại thì đối soát, không auto-resend/upgrade.
+2. Upload đã FINALIZED_BUFFER_VERIFIED trong upload.json, không chạy lại. Deploy đã kiểm157tx finalized/bytecode/authority, buffer consumed, debit0.753656080SOL; không deploy lại.
+3. Deployment-finalized.json đã đạt; smoke inspect đã đạt, tiếp theo smoke.mjs --send-approved rồi verify.mjs --all. Check smoke.json/journal trước resume; không auto-resend/upgrade. Cap1.8SOL.
 4. T34 đã nộp4d2e48a, A xác nhận dùng client; C đã review/tái hiện5nhóm lỗi, T35 sửa local đã giao. Giữ mock/local, chưa public/Phase6, không mở lại T31–T33.
 5. Cập nhật notes/DEVLOG/Thẻ nhớ/PR7 và push mỗi mốc. Public/Phase6/merge cần quyền riêng, không hỏi P4-A/B lại.
 

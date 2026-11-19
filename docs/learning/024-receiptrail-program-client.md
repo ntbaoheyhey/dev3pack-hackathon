@@ -92,3 +92,5 @@ Push44477944228 tại6d08e5c đạt đủ3jobs; runtime32ReceiptRail + hello5+1,
 Inspect read-only15:57UTC+7: slot523938219, đúng genesis, program/buffer/actors chưa tồn tại, balance1.848125199SOL, peak1.531889040SOL<1.8. Dùng đúng4keys đã tạo; journal/report phải đối soát trước resume. A đã nhậnT34 tại c1446c2; chưa có UI/client acceptance.
 
 Upload P4-B hoàn tất 2026-11-19T09:07:31.793Z:1create-buffer+155writes,156statuses finalized; buffer payload byte-identical495e47…; rent buffer752027960lamports, fees785000lamports, balance1095312239. Không retry/key mới; T34 nộp4d2e48a không đổi33inputs triển khai. Tiếp theo initial deployCLI rồi finalized verification.
+
+Deploy đã đối soát157tx finalized (156upload+1deploy), program executable/ProgramData canonical/authority GQ/bytecode495e47… đúng, buffer consumed. Debit753656080lamports=accounts752861080+fees795000; không activity ngoài dự kiến. Evidence deployment-finalized.json. Smoke inspect đã kiểm lại deployment/budget, chưa fund actors tại checkpoint; tiếp theo5tx bounded và duplicate chỉ simulation.
