@@ -66,7 +66,7 @@ Tiến độ và bước tiếp tục sau compact nằm trong [docs/HANDOFF.md](
 | Note | Nội dung | Chủ trì / trạng thái |
 | --- | --- | --- |
 | 026 — receiptrail-rpc-confirmation | RPC/filter/confirmation/recovery/priority fee và lựa chọn backend | C — đang học, chưa mở Phase6 thật |
-| 027 — receiptrail-wallet-e2e | Ví thật/Wallet Standard, lỗi và e2e | A — T38, chưa kiểm ví thật |
+| [027 — receiptrail-wallet-e2e](027-receiptrail-wallet-e2e.md) | Ví thật/Wallet Standard, 8 ca lỗi UX/CTA, contract adapter và kế hoạch e2e | A — T38 đã xong, học trước Phase 6, chưa kiểm ví thật |
 | 028 — receiptrail-security-review | Học audit công khai và review program | C — đang học, không upgrade |
 | 029 — receiptrail-bug-bash | Ma trận ví/thiết bị/bug bash | A — T39, checklist chưa chạy |
 

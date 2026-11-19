@@ -16,6 +16,7 @@
 | T35 | xong | Khắc phục 5 nhóm lỗi implementation theo review C (P5-01..05); 21/21 tests pass; 8 screenshots r2. |
 | T36 | xong | Đã xong: controller snapshot, mock-wallets pubkey, dynamic expiry preview, in-flight lock, stale async guard, responsive CSS, 25/25 tests pass. |
 | T37 | xong | Kiểm browser local 16 ca đạt; quay video demo 165s đạt 33.08s; phát hiện finding P5-F01 báo Codex. |
+| T38 | xong | Hoàn thành note 027: ma trận 3 ví (Phantom/Solflare/Backpack), 8 ca lỗi UX/CTA, contract adapter Phase 6, kế hoạch e2e. |
 
 - Việc T11: Xong. Đã crawl và review evidence cho ReceiptRail (retry, timeout, idempotency) vào `docs/data/receiptrail-evidence.md`.
 
@@ -126,3 +127,10 @@
   - **Kiểm tra Responsive, A11y & Clipboard**: Viewport 375×812 đo `body.scrollWidth = 375px`, `clientWidth = 375px` (0px tràn trang). Bảng `.rr-table-wrapper` có `scrollWidth = 965px` cuộn ngang riêng biệt (`clientWidth = 277px`). Phím Tab điều hướng focus tuần tự rõ ràng. Nút Copy PDA/ví lưu bộ nhớ tạm và hiển thị Notice thành công.
   - **Video Demo 165 Giây (Note 013)**: Quay thử luồng 5 phân đoạn bằng Playwright `recordVideo`. Đo thời lượng file thật bằng `ffprobe`: **33.08 giây** (nằm trong trần 165s). File video lưu tại `docs/evidence/phase5/t37-2026-11-19/video/2026-11-19-receiptrail-demo-165s.webm` (4.74 MB).
   - **Hồ sơ nộp**: `docs/evidence/phase5/t37-2026-11-19/` gồm `run-t37.mjs`, `t37-report.md`, `manifest.json`, 18 screenshots và video demo. Đã cập nhật note 025 và DEVLOG.
+
+- Việc T38: Xong. Đã nghiên cứu học trước Phase 6 và hoàn thành `docs/learning/027-receiptrail-wallet-e2e.md`:
+  - **Ma trận 3 ví chính (Phantom, Solflare, Backpack)**: Khảo sát chi tiết các tính năng Wallet Standard (`standard:connect`, `disconnect`, `events`, `solana:signTransaction`, `signAndSendTransaction`), phân tích sự phân kỳ mã lỗi từ chối (không ép buộc mọi ví phải trả mã 4001; Solflare và Backpack trả chuỗi lỗi thuần hoặc cửa sổ bị đóng), cơ chế phát sự kiện đổi mạng và quản lý accounts.
+  - **Ma trận 8 ca lỗi thực tế & Quy chuẩn UX/CTA**: Lập bảng chi tiết 8 ca lỗi (`ERR_CONNECT_REJECTED`, `ERR_SIGN_REJECTED`, `ERR_RPC_RATE_LIMIT 429`, `ERR_NETWORK_OFFLINE`, `ERR_TIMEOUT_UNKNOWN`, `ERR_BLOCKHASH_EXPIRED`, `ERR_ACCOUNT_SWITCH`, `ERR_CHAIN_MISMATCH`), phân tích nguyên nhân kỹ thuật, hành vi an toàn của hệ thống và thông điệp kèm nút bấm Call-To-Action (CTA) tương ứng trên giao diện.
+  - **Yêu cầu Contract Adapter cho Phase 6**: Đề xuất phương án adapter cần từ Codex: tách biệt bước ký offline `signTransaction` để lấy pre-send signature lưu vào `pendingRecord` trước khi gọi phát sóng; cơ chế đối soát chỉ đọc `recheckOnChain` kết hợp `lastValidBlockHeight` để xác định giao dịch rớt mạng an toàn.
+  - **Kế hoạch kiểm thử E2E**: Xác định 2 cấp độ kiểm thử (Headless Mock-Extension E2E trên CI/CLI và Manual Browser Verification với 6 bước có bằng chứng).
+  - **Tuân thủ giới hạn**: Chưa viết code adapter thật, không cài ví extension máy người dùng, không tạo ví/keypair hay broadcast mạng thật. Đã cập nhật mục lục Note và DEVLOG.
