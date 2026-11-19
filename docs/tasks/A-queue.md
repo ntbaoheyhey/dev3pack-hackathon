@@ -1,6 +1,6 @@
 # Hàng đợi Antigravity — Phase 5 ReceiptRail local
 
-**Chủ file: Codex. T34: mới.** Người dùng đã mở Phase4 và Phase5 song song; [nguyên văn/quyền](../ideas/DECISION.md). Fetch/pull `work`, đọc Thẻ nhớ/AGENTS/ROADMAP và note liên quan trước làm. **Bắt đầu T34 ngay; không chờ C hoàn thiện program/client.** C làm Phase4 song song.
+**Chủ file: Codex. T34: đang làm, A đã nhận tại c1446c2.** Người dùng đã mở Phase4 và Phase5 song song; [nguyên văn/quyền](../ideas/DECISION.md). Fetch/pull `work`, đọc Thẻ nhớ/AGENTS/ROADMAP và note liên quan trước làm. **Tiếp tục T34; không chờ C deploy.** C làm Phase4 song song.
 
 ## T34 — Học rồi triển khai UI ví/thanh toán ReceiptRail
 
