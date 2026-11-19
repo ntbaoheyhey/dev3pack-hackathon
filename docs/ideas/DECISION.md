@@ -1,5 +1,11 @@
 # Quyết định sản phẩm — ReceiptRail
 
+## Yêu cầu dừng điều khiển giao diện — 19/11/2026
+
+> dừng điều khiển mình nhé, đã ổn rồi mà
+
+Nguồn: tin trực tiếp trong chat này. Giờ người dùng và giờ log tin chưa xác định; giờ C ghi hồ sơ **2026-11-19T16:35:16+07:00** (Asia/Ho_Chi_Minh), không thay giờ quyết định. C đã trả lời dừng điều khiển giao diện. Các lượt tiếp tục chỉ dùng CLI/repo trong quyền đã có; tin tự nhắc không mở lại quyền điều khiển giao diện. Không đổi phạm vi public/cài/merge/Phase6.
+
 ## Người dùng đồng ý P4-A và P4-B — 19/11/2026
 
 > Đồng ý cả P4-A và P4-B

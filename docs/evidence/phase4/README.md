@@ -34,3 +34,7 @@
 - [Smoke partial bất biến](smoke-r1-partial.json):4tx finalized fund/create/pay/create; principal1000000lamports chuyển đúng một lần. Duplicate chỉ simulation6004/no-transfer. RPC429 xảy ra trước ký/gửi Cancel; chưa có Cancel journal. [Smoke hiện hành](smoke.json) chưa đủ để đóngP4-B.
 - [Recovery inspect](cancel-recovery-inspection.json):16:20UTC+7 đối chiếu live4tx/history/account/Paid+Open/terms, balance1087434119lamports; Cancel dự kiến chỉ thêm10000fee.
 - [Local tests recovery](cancel-recovery-local.log):23client+7guards+7recovery, generated/typecheck/syntax đạt. Helper e9a1603 đang CI riêng: push44495583542/PR44495594074; chưa ký Cancel. Không tái dùng manifest6d08e5c để chứng minh helper mới.
+
+## Gate recovery đã đạt
+
+[Manifest36inputs](ci-smoke-recovery.json), [push log](ci-smoke-recovery-push.log), [PR log](ci-smoke-recovery-pr.log): cả hai run44495583542/44495594074 success đủ3jobs tại e9a1603; binary/program/IDL/client giữ nguyên. Gate đã lưu trước ký Cancel; checkpoint này chưa chứng minh Cancel xảy ra.

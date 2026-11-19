@@ -102,3 +102,7 @@ Smoke đã fund/create/pay/create thứ2 (4tx finalized); duplicate simulation60
 Recovery local 2026-11-19T16:20:29+07:00: helper riêng có inspect/send-approved/reconcile; 7tests mới kiểm4operations, immutable terms/accounting và journal-before-send/unknown-no-resend. Runner đạt23client+7guards+7recovery, generated/typecheck/syntax đều đạt. CI recovery phải có manifest riêng; chưa ký Cancel. RPC reads pace2giây/backoff transient, send không retry. Không đổi program/IDL/client/binary, dùng đúng fee signer và merchant đã có.
 
 Recovery inspect16:20UTC+7 đạt: bốn tx/live finalized, fee payer history đúng161tx, duplicate chưa gửi, canonical Paid/Open và terms đúng; balance1.087434119SOL. Cancel dự kiến thêm10000lamports, không cần funding/key mới. Inspect không ký/gửi.
+
+### CI recovery đã đạt — 2026-11-19T16:39:52+07:00
+
+Push44495583542 và PR44495594074 tại e9a1603 đều completed/success, đủ anchor-lab/research/web. Thu logs thật:32ReceiptRail+6hello runtime,23ReceiptRail client+7deployment guards+7recovery,8hello client,17web,16research. Manifest ci-smoke-recovery.json đối chiếu36inputs với Git blob/worktree; binary495e47… giữ nguyên. CI web ở revision này chỉ17tests, không gán cho T35/21tests của revision69e458a. Gate cho đúng Cancel còn thiếu; chưa ký/gửi tại mốc ghi này.
