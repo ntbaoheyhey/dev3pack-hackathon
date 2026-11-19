@@ -6,8 +6,8 @@
 - ReceiptRail chính, ClusterProof phụ/chưa duyệt; Phase2/P3-A/P3-B đã có quyền và evidence riêng. Không phục hồi payload sai cũ.
 - T31/T32/T33 đã đóng tại7857e9b; D01–D03 là nợ tài liệu. T34 là triển khai UI mới, không vòng sửa report.
 - C sở hữu programs/tests/build/IDL/client và hồ sơ chính; A sở hữu apps/web/receiptrail, route/UI/tests, note025/evidence Phase5.
-- Quyền/T34 push05f8e79, note024 push9124f04. Runtime r2 đạt32/32 offline/locked; source/ABI không đổi, vectors/metadata ở evidence/phase4. Bước kế IDL/client generator và kiểm bằng vector Rust.
-- Client handoff dự kiến packages/receiptrail-client + docs/PHASE4-CLIENT.md; A dùng adapter mock trước, không phải chờ.
+- Quyền/T34 push05f8e79, note024 push9124f04, runtime32/32 push2a3fd30. Client r1 đạt23/23 + generated/TypeScript/browser-target bundle; source/ABI không đổi.
+- Client đã có packages/receiptrail-client + docs/PHASE4-CLIENT.md; A dùng trong T34, chưa có bài nộp/xác nhận mới. Không chờ A để làm phần C.
 - Giữ source/web/lab ClusterProof đã có; mọi commit/merge lượt local dùng `[skip ci]`, không gán CI27cf7ac cho code mới.
 - P3-B đã xong137tx finalized/counter1, debit0.651874801SOL; không gửi lại upload/deploy/smoke, buffer mới/close hoặc tăng trần.
 - Ví extension thật chưa kiểm theo lựa chọn người dùng; mock wallet không thay xác nhận thật. Chưa verdict giáo viên, không tự chấm thay.
@@ -15,12 +15,11 @@
 
 ## Còn lại
 
-1. Chốt/push runtime32tests và ABI vectors; sinh/so IDL, viết generated client toàn contract theo note024, kiểm local bằng vector Rust/Anchor/Kit.
-2. Hoàn thiện program ReceiptRail theo thiết kế: create/pay/cancel/read, invariants, tests âm/atomicity/lifecycle; đo CU và lưu evidence local.
-3. Sinh/đối chiếu IDL và client, test serialization/account validation/amount/errors; bàn giao contract dùng được cho A.
-4. Đọc A-done và dùng T34 khi có; review UI ví/thanh toán và kiểm local phần chạm tiền/quyền. Không chờ A để làm phần C.
-5. Chuẩn bị phương án cài/CI/deploy ReceiptRail/public nếu cần; xin quyền riêng sau khi phần local cụ thể và kiểm được. Không mergePR7.
-6. Cập nhật Thẻ nhớ/DEVLOG/notes, push sau mỗi mốc; cập nhật PR7 theo kết quả thật.
+1. Push checkpoint client23tests/contract/T34; kiểm remote/A-done và tích hợp an toàn khi A có kết quả.
+2. Review local program/client theo invariant, ghi evidence và chuẩn bị phương án CI/deploy ReceiptRail cụ thể (chưa thực thi).
+3. Dùng T34/review UI ví/thanh toán và phần chạm tiền/quyền khi có; không mở lại T31–T33 hoặc chờ A thụ động.
+4. Cập nhật PR7 theo Phase4/5 đã mở/runtime32/client23/Automation ACTIVE; read-back, không merge.
+5. Sau khi phần local độc lập xong, trình riêng quyền CI/deploy/public nếu cần; không suy quyền từ Phase3. Cập nhật notes/DEVLOG/Thẻ nhớ, push mỗi mốc.
 
 ## Giới hạn cần người dùng khi tới cổng
 

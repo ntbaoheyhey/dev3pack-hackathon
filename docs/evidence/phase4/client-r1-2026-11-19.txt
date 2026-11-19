@@ -1,0 +1,34 @@
+Verified 3 instructions, 1 account, 3 events, 9 errors; IDL sha256=13efb821841ebd6c9a8b9da21160aad8fbc11e9a6072e4b92a408e6f103f5409
+(node:26195) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ browser-target bundle runs with no Node globals, RPC, wallet or signing capability (61.320542ms)
+✔ all ABI entries are generated and source hash matches the checked-in Anchor IDL (1.151958ms)
+✔ canonical PDA agrees with Rust, Kit and independent web3.js derivation (7.611625ms)
+✔ three high-level builders match Rust runtime instruction bytes, order and signer/writable privileges (4.432416ms)
+✔ instruction serialization agrees with independent Anchor coder across u64 boundaries (5.731375ms)
+✔ Open, Paid and Cancelled decode exactly as Anchor on real runtime account bytes (3.691959ms)
+✔ three emitted runtime events decode exactly as the independent Anchor event coder (0.806292ms)
+✔ one lamport and max u64 SOL inputs preserve every digit without rounding (0.231834ms)
+✔ ambiguous, float, exponent, negative, overprecision and overflow amounts are rejected (0.328416ms)
+✔ create rejects invalid amount, stale expiry, zero or aliased wallets before building (2.394166ms)
+✔ owner, executable, length, type and version are all required for an invoice (0.567916ms)
+✔ wrong address, seed merchant/id and noncanonical bump do not pass owner/type checks alone (2.416708ms)
+✔ decoded account terms enforce positive amount/expiry and distinct nonzero wallets (0.988041ms)
+✔ unknown status and impossible paid slots are rejected; a payment at slot zero is valid (1.831041ms)
+✔ generated decode reads u64 above Number safety and rejects trailing event bytes/type confusion (0.189458ms)
+✔ a changed confirmed term or account cannot silently become a different payment (9.331792ms)
+✔ wrong signer, unknown clock, expiry boundary and terminal state block pay; expired Open can cancel (8.999208ms)
+✔ inspection distinguishes expiry, role and terminal state without inventing commitment (3.070041ms)
+✔ custom errors are scoped to ReceiptRail program and integer code, never substring log matching (0.166667ms)
+✔ malformed addresses, bytes, argument names and fixed System account fail closed (0.731541ms)
+✔ async derivation snapshots confirmed terms, account bytes and create input before yielding (1.886292ms)
+✔ unsupported adapter output and noncanonical address codec are rejected (0.258125ms)
+✔ independent web3.js adapter also consumes the same client and produces the Rust create instruction (1.513167ms)
+ℹ tests 23
+ℹ suites 0
+ℹ pass 23
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 216.183084

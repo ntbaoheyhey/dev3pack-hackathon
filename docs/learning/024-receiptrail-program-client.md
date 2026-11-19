@@ -50,6 +50,12 @@ Lượt này chỉ local bằng cache đã có; giữ wire contract v0.1 và h�
 
 Chưa có test/code mới ở mốc note. Local VM/codec không chứng minh devnet/RPC/extension wallet/verified build; codegen không thay deployment identity. Phase4/5 đã mở local, cổng CI/devnet/public/giáo viên vẫn riêng. Không cài thêm, deploy, public hoặc mergePR7.
 
+### Client r1 đạt — 19/11/2026
+
+[Contract bàn giao](../PHASE4-CLIENT.md), [log](../evidence/phase4/client-r1-2026-11-19.txt):23/23tests, TypeScript strict và generated check exit0.3instructions/1account/3events/9errors sinh từ IDL; đối chiếu bytes/metas/events/accounts với Rust/real SBF và Anchor coder, PDA với Kit4.0.0/web3.js1.99.0. Bundle Vite8.3.8 chạy trong VM không Node globals/network, chưa browser extension. Client giữ u64 bigint, canonical PDA, owner/size/version/state, terms snapshot trước await, vai/hạn và error namespace. Không cài Codama/dependency, không đổi program hoặc IDL.
+
+Bài học: harness đầu trỏ root thừa `../` làm module not found; sửa path tới cache hiện có, không cài package để che lỗi. Ca wrong-address dùng payer trùng role bị chặn ALIASED_ROLES trước PDA; đổi fixture sang địa chỉ độc lập để thực sự test PDA, giữ ca alias riêng. Không nới decoder hoặc sửa program để ép khớp kỳ vọng. Paid ở slot0 hợp lệ; hủy Open hết hạn hợp lệ. TypeScript không tự chứng minh JS implementation đúng, nên giữ cross-language byte tests và runtime negative tests.
+
 ### Runtime r1 — test expectation và thứ tự Anchor
 
 32 tests chạy,29 đạt/3 fail vì tên lỗi kỳ vọng khác source/runtime: init CPI chạy trước constraints còn lại của merchant, readonly create bị runtime PrivilegeEscalation, discriminator thiếu byte rơi vào InstructionFallbackNotFound. Các ca reject vẫn chặn thực thi; sửa expectation theo đúng tầng lỗi, giữ assertions principal/account và phí, không đổi program để làm khớp test. Giữ log r1 nguyên vẹn và kiểm lại các ca đã fail.

@@ -399,3 +399,5 @@ Các mô tả dưới đây là sự kiện ở Taskbar Hero, không phải hàn
 2026-11-19 · Codex · Đã push05f8e79 giao T34, học004/007/023 và source cache; viết note024 trước code, đọc source primary Anchor1.2.2/Kit4.0.0 có hash. Chọn generated client toàn ABI hiện hành bằng generator local + crypto adapter thư viện cache, không cài Codama. Chưa code/test mới.
 
 2026-11-19 · Codex · Runtime Phase4 r2 đạt32/32 offline/locked, giữ log r1 29/32 do expectation thứ tự init/constraint và ghi bài học note024. Bổ sung phí/rollback, u64/readonly/account/signature/lifecycle/multi-invoice; ABI vectors xuất từ Rust/VM, source program chưa cần đổi. Không CI/cài/deploy hoặc sửa UI A.
+
+2026-11-19 · Codex · Sinh client toàn ABI ReceiptRail bằng generator local, kiểm23/23tests + generated/TypeScript/browser-target bundle từ cache. So Rust/real SBF/Anchor/Kit/web3; terms/PDA/u64/owner/role/expiry và async snapshot đạt. Giao API tại PHASE4-CLIENT trong T34, cập nhật note024/mục lục/Thẻ nhớ; chưa A xác nhận, CI/devnet/browser thật. Không cài/deploy/public hoặc sửa file A.
