@@ -25,4 +25,3 @@ C đã sửa `adapter.ts`, `types.ts`, thêm11tests production trong `receiptrai
 - `ledgerSnapshot()` trả copies của balances/rents/feePayerLamports/feesPaid; `MOCK_RENT_LAMPORTS` và `MOCK_FEE_LAMPORTS` là số mẫu local, khôngquote. Có thể hiển thị tách principal/fee/rent để giải thích rollback. Cancel chỉ đổi trạngthái, giữrent.
 - Allasync read/mutate đợi seeded PDA derive hoàn tất; `getRawAccount` sync trảcopy (test dùng sau awaitlist). Parseexpiry chặn>u64; UI còn cần kiểm currentSlot+delta và preview đúngsnapshot.
 - Mutex theoinvoice trước await, inputs/returnedPending deep copy invoiceId, concurrency create/pay/cancel/sharedpayer đã test; program/IDL/client/36inputs P4-B không đổi. 32webtests+buildđạt, repro6/7đãsửa, cònmockpubkey0 thuộcA. PhầnUIterms/lifecycle/stale/mobile/copy cầnA xửlý như5mục trên.
-

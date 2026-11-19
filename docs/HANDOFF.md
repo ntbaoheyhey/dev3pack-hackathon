@@ -1,30 +1,25 @@
-# Thẻ nhớ — Codex / P4-B xong, Phase5 local đang làm
-- Trạng thái **đang làm**; người dùng đã mở Phase4 ReceiptRail và Phase5 song song ngày19/11, giờ log13:25:47 UTC+7; nguyên văn tại DECISION/evidence phase4.
-- Người dùng yêu cầu “dừng điều khiển mình nhé, đã ổn rồi mà”; C đã dừng điều khiển giao diện. Chỉ CLI/repo trong phạm vi cũ; không dùng CUA/browser/mouse-keyboard nếu chưa được yêu cầu lại.
-- C trưởng nhóm tại `/Users/bao/Documents/ChatGPT/dev3pack`, branch`work`; A đã nộpT36 tại17ed43c; C hợpnhấtCSS/note, logicví/terms dùngmodelC;45tests/build+7reprođạt. Không sửa checkout/file bàn giao A.
-- P4-A/P4-B đã đồng ý “Đồng ý cả P4-A và P4-B”, log13:55:34.348UTC+7: CI đúng pins; sau CI4keypairs ngoài Git, ReceiptRail deploy+smoke/cap1.8SOL. Chưa public/cài local/mergePR7/Phase6.
-- Automation15phút **ACTIVE**, action+config read-back đúng chat; evidence phase4/automation-active-2026-11-19.json. Không tạo trùng.
-- ReceiptRail chính, ClusterProof phụ/chưa duyệt; Phase2/P3-A/P3-B đã có quyền và evidence riêng. Không phục hồi payload sai cũ.
-- T31/T32/T33 đã đóng tại7857e9b; D01–D03 là nợ tài liệu. T34 là triển khai UI mới, không vòng sửa report.
-- C sở hữu programs/client và logic ví/terms/TSX/mock-wallet/tests theoqueue093e36b; A sở hữuCSS/note025/evidencePhase5.
-- Quyền/T34 push05f8e79, note024 push9124f04, runtime32/32 push2a3fd30. Client r1 đạt23/23 + generated/TypeScript/browser-target bundle; source/ABI không đổi.
-- CI triển khai6d08e5c đạt đủ3jobs ở push44477944228; PR44477949631 cancelled, không gọi xanh. 33input hashes khớp tại deploy; runner đổi cho recovery mới, CI riêng e9a1603 đã đạt; binary local495e47… giữ nguyên.
-- P4-B hoàn tất16:41UTC+7:162tx finalized, Paid/Cancelled đúng, duplicate simulation đạt; debit0.760701080SOL<cap1.8. Không gửi lại. T36 đã hợpnhất/reviewr3; khôngGUI.
-- Giữ source/web/lab ClusterProof đã có; checkpoint tài liệu dùng `[skip ci]`; CI được mở đúng P4-A, không gán CI cũ cho revision mới.
-- P3-B đã xong137tx finalized/counter1, debit0.651874801SOL; không gửi lại upload/deploy/smoke, buffer mới/close hoặc tăng trần.
-- Ví extension thật chưa kiểm theo lựa chọn người dùng; mock wallet không thay xác nhận thật. Chưa verdict giáo viên, không tự chấm thay.
-- Chỉ dừng khi có quyết định/quyền cần người dùng; chuẩn bị phương án cụ thể trước hỏi. Không tự mở Phase6 hoặc coi mở Phase4/5 là đã hoàn tất.
+# Thẻ nhớ — Codex / Phase 4 đạt bằng chứng, Phase 5 local đã review
+- Trạng thái **đang làm**: chốt PR và trình cách kiểm giao diện; chưa có quyền browser/public/Phase 6.
+- C trưởng nhóm tại /Users/bao/Documents/ChatGPT/dev3pack, nhánh work; A nộp T36 tại17ed43c, C hợp nhất và push266b30c. T34/T35/T36 đã đóng, không chờ A.
+- Người dùng nói “dừng điều khiển mình nhé, đã ổn rồi mà”: chỉ CLI/repo; không CUA/browser/headless/chuột-bàn phím. Tự nhắc không mở lại quyền.
+- Quyền Phase4/5 local log19/11 13:25:47 UTC+7; P4-A/P4-B “Đồng ý cả P4-A và P4-B” log13:55:34.348, nguyên văn ở DECISION.
+- P4-B đã xong16:41UTC+7:162tx finalized, Paid/Cancelled và duplicate simulation đúng; debit0.760701080SOL<1.8. Không chạy lại send/deploy/smoke/recovery.
+- CI triển khai6d08e5c push44477944228 đủ3jobs; PR riêng cancelled. Recoverye9a1603 hai runs đủ3jobs;36inputs không đổi. Binary macOS khác LinuxCI, chưa verified source build.
+- UI dùng confirmation.ts/wallet-lifecycle.ts/React của C, CSS/note của A đã hợp nhất;45tests + build +7repro đạt local. Không gán CI cũ cho UI mới.
+- Build/ZIP local và HTTP200 đã có ở evidence/phase5/local-artifact-2026-11-19.json; chỉ thêm title/metadata ReceiptRail sau266b30c, build mới đạt. Browser/DOM/responsive sau sửa chưa kiểm.
+- Server Vite có sẵn PID57198, cwd apps/web, localhost4175/receiptrail; đã kiểm process/HTTP, không mở browser hoặc tạo server mới. Người dùng có thể tự xem.
+- Bước kế tiếp cụ thể: cập nhật/đọc lại PR7, push hồ sơ, trình PHASE5-PLAN để người dùng chọn cách kiểm local. Có lời mới mới làm bước phụ thuộc.
+- Automation15phút ACTIVE đúngchat; không tạo trùng/pause. Quyền cài local/public/upgrade/thêm signer/mergePR7/Phase6 chưa có.
+- ReceiptRail chính, ClusterProof phụ/chưa duyệt; toolchain/web cũ giữ nguyên. P3-B137tx/debit0.651874801SOL đã xong, không gửi lại.
+- T31/T32/T33 đã đóng tại7857e9b, D01–D03 là nợ tài liệu; không mở vòng sửa bổ sung. Không sửa checkout/A-done/HANDOFF A thay A.
+- Ví extension thật và verdict giáo viên chưa có; mock/CLI không thay bằng chứng. Không tự đóng Phase5/goal.
 
 ## Còn lại
 
-1. P4-B **đã hoàn tất**, final-verification.json:162tx finalized/debit0.760701080SOL<1.8/không activity lạ; không còn send/deploy/reconcile cần chạy. Cancel recovery CI e9a1603 hai runs đạt3jobs/36inputs; không gán CI này cho source UI69e458a.
-2. T36đãđóng: C nhậnCSS/noteA, hợpnhấtmodelC/React;45webtests/build+7reprođạt,36inputsP4-Bkhôngđổi. Tiếp theo đồngbộPHASE4-RESULT/PHASE4-CLIENT/NEXT/ROADMAP/README/PR7, chuẩn bịartifactlocal và phương án người dùng tự kiểmbrowser/public. Chưa kiểm toànReact/DOM/extension; không gọi Phase5đạt.
-3. Đồng bộ kết quả review vào notes/DEVLOG/Thẻ nhớ/PR7; push sau mỗi mốc. Phase5 public/ví thật/giáo viên còn cổng riêng. Chưa hỏi public trước artifact/review đủ cụ thể.
+1. Chốt PR7 body và xác minh OPEN/work→main/unmerged; push hồ sơ hiện hành.
+2. Trình [bản local và kế hoạch kiểm](PHASE5-PLAN.md) để người dùng tự xem hoặc cho phép rõ browserlocalhost. Không điều khiển GUI khi chưa có lời mới.
+3. Sau khi kiểm browser/demo đạt, mới trình public riêng với snapshot/hosting/audience cụ thể; Phase6 là cổng riêng. Không tự triển khai trong lúc thiếu quyết định.
 
-## Giới hạn cần người dùng khi tới cổng
+## Giới hạn cần người dùng
 
-- P4-A/P4-B đã có quyền theo plan; chỉ public/update web, cài thêm local, signer ngoài4đã duyệt, vượt1.8SOL, upgrade mới, merge/Phase6 còn cần người dùng.
-- Ví thật chưa sẵn sàng ở lần trước; kiểm connect/disconnect extension khi người dùng sẵn sàng, không dùng mock/CLI thay bằng chứng.
-- Verdict giáo viên SHORTLIST/kiến trúc chưa có; không cản phần local đã được người dùng mở, không ghi verdict thay.
-
-[P3-B](evidence/phase3/README.md), [quyết định](ideas/DECISION.md), [NEXT](NEXT.md), [bàn giao trước](archive/HANDOFF-before-phase4-5-2026-11-19.md). Checkout đồng bộ thêm0a08395 chỉ đổi HANDOFF A, không có code mới trước mốc này.
+Cổng Phase5 theo ROADMAP còn demo/browser và link công khai. Người dùng đã dừng GUI, chưa public; đây là ranh giới cần lựa chọn, không phải lý do chạy lại test/deploy hoặc mở task A mới. [Kết quả Phase4](PHASE4-RESULT.md), [review Phase5](reviews/receiptrail-phase5-r3.md), [NEXT](NEXT.md), [quyết định](ideas/DECISION.md).

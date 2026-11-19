@@ -242,7 +242,7 @@ Mỗi vòng ghi lại điểm và thay đổi. Ý tưởng sửa quá số vòng
 | 2 Kiến trúc | người dùng đã duyệt · lượt cuối A đã đóng | IDEA/ARCHITECTURE/IDL/demo165giây,19runtime local,C01r2=79/F4. Nhận phần đạt từ7857e9b, phần thiếu ở [nợ tài liệu](DOCUMENTATION-DEBT.md); T31/T32/T33 đóng, không mở vòng sửa. Giáo viên chưa có verdict |
 | 3 Môi trường | P3-A/P3-B đạt · Phase4/5 local đã mở | [P3-B](evidence/phase3/README.md): hello deploy/initialize/increment finalized,137tx, counter1, debit0.651874801SOL dưới1.5SOL. CI27cf7ac hai runs đạt3jobs/57tests/run; web/lab cũHTTP200, ví thật chưa kiểm/giáo viên chưa verdict. Không gọi mọi cổng đã đạt |
 | 4 Program | P4-A/P4-B đạt bằng chứng; chờ verdict giáo viên | CI triển khai/recovery đủ3jobs; runtime32/client23/guards7+recovery7.162tx finalized, Paid/Cancelled/duplicate simulation đúng; debit0.760701080SOL<cap1.8. A đã nhận client; [evidence](evidence/phase4/README.md) |
-| 5 Frontend | T35 đã nộp, C đang review local |21tests/build đạt ở69e458a; còn findings ví/terms/recovery phải tái hiện và sửa. Chưa public/extension thật; không tự đóng phase |
+| 5 Frontend | T36đóng, local đã reviewlogic; còn cổngbrowser/public |266b30c:45tests/build+7reprođạt; [bảnlocal và kếhoạchkiểm](PHASE5-PLAN.md). ChỉCLI theo yêu cầu dừngGUI, chưa kiểmReact/DOM/responsive sau sửa/extension thật; chưa đạt cổngpublic |
 | 6 Tích hợp | chưa mở | |
 | 7 Hoàn thiện | chưa mở | |
 | 8 Trong sự kiện | chưa mở | 27–29/11 |

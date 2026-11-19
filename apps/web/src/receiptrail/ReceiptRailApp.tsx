@@ -71,12 +71,14 @@ function ReceiptRailInner() {
 
   useEffect(() => {
     mounted.current = true;
+    const oldTitle = document.title;
+    document.title = 'ReceiptRail · Demo hóa đơn SOL cục bộ';
     const off = watchReceiptRailWallets(() => {
       confirmations.invalidate(); // Before React renders the new wallet/chain.
       setWalletEvent(++eventSequence.current);
       setActionMessage(null);
     });
-    return () => { mounted.current = false; off(); confirmations.invalidate(); };
+    return () => { mounted.current = false; off(); confirmations.invalidate(); document.title = oldTitle; };
   }, [confirmations]);
 
   const readCurrent = (token: ReturnType<ReceiptRailConfirmations['beginRead']>) => {

@@ -12,7 +12,7 @@
 | Dự toán read-only | [Quote r2](devnet-rent-quote-r2-2026-11-19.json) | Đúng genesis, payer1.848125199SOL; peak dự phòng1.531889040SOL, cap1.8SOL tại mốc quote còn là đề xuất, sau đó được đồng ý bằng record riêng. Chưa signer/sign/send |
 | Quote r1 fail closed | [Record](devnet-rent-quote-2026-11-19.json) | C chép thiếu expected genesis; guard dừng ngay sau1read. R2 lấy expected từ record Phase3 đã kiểm, không đổi allowlist theo response |
 
-[Contract UI](../../PHASE4-CLIENT.md) đã được A dùng tại4d2e48a, C nhận phần import/parse/inspect; chưa nhận toàn UI, T35 đã nộp69e458a, C đang review. CI Phase3 tại27cf7ac chỉ chứng minh bộ tests cũ. CI triển khai6d08e5c đạt, deployment finalized; smoke5tx đã đạt, tổng162tx finalized. Recovery đã có CI riêng; ví thật, verified build và public website mới chưa kiểm. [Phương án đã duyệt](../../PHASE4-PLAN.md); không mergePR7 hoặc mở lại T31–T33.
+[Contract UI](../../PHASE4-CLIENT.md) đã được A dùng tại4d2e48a, C nhận phần import/parse/inspect; T34/T35/T36đãđóng, UIlocal266b30c đạt45tests/build+7repro; browser sau sửa chưa kiểm. CI Phase3 tại27cf7ac chỉ chứng minh bộ tests cũ. CI triển khai6d08e5c đạt, deployment finalized; smoke5tx đã đạt, tổng162tx finalized. Recovery đã có CI riêng; ví thật, verified build và public website mới chưa kiểm. [Phương án đã duyệt](../../PHASE4-PLAN.md); không mergePR7 hoặc mở lại T31–T33.
 
 ## Identity triển khai sau CI đầu
 - [CI đầu](ci-initial.json) và [log Anchor](ci-initial-anchor.log): push44475988734 đạt tại8df85c0 trước tạo keys; PR44475994937 cũng đạt.
@@ -36,4 +36,4 @@
 - [Manifest36inputs](ci-smoke-recovery.json), [push log](ci-smoke-recovery-push.log), [PR log](ci-smoke-recovery-pr.log):44495583542/44495594074 đều3jobs success tại e9a1603; program/IDL/client/binary giữ nguyên. Gate lưu trước ký Cancel.
 - [Recovery local tests](cancel-recovery-local.log):23client+7guards+7recovery/generated/typecheck/syntax đạt. CI web ởe9a1603 là17tests; T35/21tests ở69e458a có evidence local riêng.
 
-Cổng kỹ thuật Phase4 có bằng chứng program/devnet/CI/client/A acceptance; giáo viên chưa verdict. Phase5 local chưa được C nhận toàn bộ; public/ví thật/Phase6 chưa được suy từ kết quả CLI này.
+Cổng kỹ thuật Phase4 có bằng chứng program/devnet/CI/client/A acceptance; giáo viên chưa verdict. C đã review phần logic ví/giao dịch Phase5 theo [r3](../../reviews/receiptrail-phase5-r3.md); browser/demo sau sửa còn chưa kiểm; public/ví thật/Phase6 chưa được suy từ kết quả CLI này.

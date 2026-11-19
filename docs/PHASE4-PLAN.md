@@ -7,7 +7,7 @@ Codex · 19/11/2026. Phase4/5 **đã mở local**, nguyên văn tại [DECISION]
 - Program create/pay/cancel/read và invariants:32runtime tests local đạt, không đổi logic/wire contract; [review](reviews/receiptrail-phase4-local.md)/[evidence](evidence/phase4/README.md).
 - Client sinh toàn IDL:23tests local + TypeScript/generated/browser-target bundle đạt; [API bàn giao A](PHASE4-CLIENT.md). Không RPC/sign/send.
 - Binary lúc đề xuất147,864bytes/hash962b721a… dùng ID local không có signer. Sau CI đầu đạt đã tạo đúng4keys và đổi identity; [metadata hiện hành](evidence/phase4/deployment-local-metadata.json) ghi binary/IDL/client mới; tiến độ triển khai xem phần cuối.
-- T34 UI/ví A đã nộp4d2e48a và xác nhận dùng client; C nhận phần client, T35 đã nộp69e458a, C đang review phần ví/terms/recovery. Không dùng kết quả client của C thay acceptance toàn UI.
+- T34 UI/ví A đã nộp4d2e48a và xác nhận dùng client; C nhận phần client, T34/T35/T36 đã đóng; UIlocal hợpnhất266b30c có45tests/build+7reprođạt, browser sau sửa chưa kiểm. Không dùng kết quả client của C thay acceptance toàn UI.
 
 ## P4-A — CI đúng source Phase4
 
@@ -51,4 +51,4 @@ Chỉ trình public web sau T34 có artifact local, browser evidence và C revie
 
 ## Tiến độ thực thi (không thay quyền)
 
-CI đầu8df85c0 đạt trước tạo đúng4keys ngoài Git. CI revision triển khai6d08e5c push44477944228 đạt đủ3jobs; PR44477949631 cancelled riêng, không gọi xanh. [Manifest](evidence/phase4/ci-deployment.json) đối chiếu33input hashes. [Inspect](evidence/phase4/inspection-before-upload.json)15:57UTC+7: balance1.848125199SOL, peak1.531889040SOL; upload bắt đầu15:58UTC+7 bằng buffer đã có. Mốc upload ban đầu là lịch sử. P4-B hiện đã đối soát162tx finalized/bytecode/authority,5smoke tx Paid+Cancelled và duplicate simulation đạt. Recovery e9a1603 đã qua CI push/PR3jobs/36inputs trước đúng1Cancel. Debit0.760701080SOL<cap1.8, không activity ngoài dự kiến; [kết quả](evidence/phase4/final-verification.json). Không chạy lại upload/deploy/smoke/recovery.
+CI đầu8df85c0 đạt trước tạo đúng4keys ngoài Git. CI revision triển khai6d08e5c push44477944228 đạt đủ3jobs; PR44477949631 cancelled riêng, không gọi xanh. [Manifest](evidence/phase4/ci-deployment.json) đối chiếu33input hashes. [Inspect](evidence/phase4/inspection-before-upload.json)15:57UTC+7: balance1.848125199SOL, peak1.531889040SOL; upload bắt đầu15:58UTC+7 bằng buffer đã có. Mốc upload ban đầu là lịch sử. P4-B hiện đã đối soát162tx finalized/bytecode/authority,5smoke tx Paid+Cancelled và duplicate simulation đạt. Recovery e9a1603 đã qua CI push/PR3jobs/36inputs trước đúng1Cancel. Debit0.760701080SOL<cap1.8, không activity ngoài dự kiến; [kết quả](evidence/phase4/final-verification.json). Không chạy lại upload/deploy/smoke/recovery. [Báo cáo Phase4](PHASE4-RESULT.md), [bảnlocal Phase5 và cổngbrowser](PHASE5-PLAN.md).

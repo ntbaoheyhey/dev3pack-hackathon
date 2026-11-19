@@ -62,4 +62,8 @@ Invoice đọc ra có `{address,version,bump,merchant,payer,invoiceId,amountLamp
 
 ## A nhận T34
 
-A dùng contract này để nối mock/local adapter và trả về các imports đã dùng, lệnh/test/build/browser evidence. Không sửa client/IDL/program; ghi finding cụ thể cho C. Tiêu chí của C: cùng invoice giữ terms khi đổi ví/timeout, amount không mất precision, vai/hạn đúng, không có đường sign/send thật. A đã xác nhận dùng client tại4d2e48a; C tái kiểm import/parse/inspect và nhận phần này. Toàn UI còn5nhóm lỗi trong [review T34](reviews/receiptrail-phase5-r1.md), đang sửaT35; không dùng xác nhận client để đóng Phase5/public.
+A dùng contract này để nối mock/local adapter và trả về các imports đã dùng, lệnh/test/build/browser evidence. Không sửa client/IDL/program; ghi finding cụ thể cho C. Tiêu chí của C: cùng invoice giữ terms khi đổi ví/timeout, amount không mất precision, vai/hạn đúng, không có đường sign/send thật. A đã xác nhận dùng client tại4d2e48a; C tái kiểm import/parse/inspect và nhận phần này. T34/T35/T36 đã đóng; [review hợp nhất r3](reviews/receiptrail-phase5-r3.md) có45webtests/build+7repro đạt local. Xác nhận ví dùng snapshot/contextrevision/rawWalletStandardevents; recheck mock chỉ đọc outcome theoinvoice. Browser sau sửa/public vẫn chưa kiểm, không dùng xác nhận client để đóngPhase5.
+
+## Kết quả triển khai và giới hạn hiện hành
+
+[P4-B](PHASE4-RESULT.md) đã hoàn tất162tx finalized trong0.760701080SOL. Bộ36inputsrecovery vẫn nguyênhash ở266b30c; không chạy lại send/deploy. Phase5 chỉ import builder/decoder, không dùng signer triển khai hoặc pháttransaction. [Bản local/cổng kế tiếp](PHASE5-PLAN.md).

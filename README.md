@@ -8,10 +8,10 @@ ReceiptRail giúp người bán và người trả đọc chung trạng thái m�
 
 | Phần | Kết quả hiện hành | Giới hạn |
 | --- | --- | --- |
-| Thiết kế | Account/PDA, create/pay/cancel, trạng thái, lỗi/events/IDL, threat model, wireframe/test plan, storyboard165giây | UI local đã nộp, đang sửa theo review; chưa video/verdict giáo viên, nợ tài liệu giữ riêng |
+| Thiết kế | Account/PDA, create/pay/cancel, trạng thái, lỗi/events/IDL, threat model, wireframe/test plan, storyboard165giây | UIlocal đã hợpnhấtT36 và reviewlogic; chưa video/verdict giáo viên, nợ tài liệu giữ riêng |
 | Spike Anchor | Native SOL, invoice131bytes, điều khoản bất biến; chuyển tiền và Paid cùng transaction | Devnet đã deploy; không escrow/refund/stablecoin/x402 |
 | Kiểm thử | **32/32 runtime + 23/23 client + 7/7 deployment guards local và CI6d08e5c**, [evidence Phase4](docs/evidence/phase4/README.md); rollback/phí, sai quyền/account, u64, expiry/lifecycle và cross-language ABI | PushCI44477944228 đủ3jobs đạt; PRrun riêng cancelled. Deploy157tx finalized/bytecode đúng; smoke5tx và duplicate simulation đạt,162tx tổng finalized/debit0.760701080SOL<cap1.8; recovery CI e9a1603 hai runs đủ3jobs. Chưa ví thật/verified build/audit độc lập |
-| IDL | [JSON generated](docs/idl/receiptrail.json),3 instructions/1 account/3 events/9 errors; [client generated](docs/PHASE4-CLIENT.md) + types đã bàn giao A trong T34 | A đã dùng client trongT34, C nhận phần import/parse/inspect; [8NGSP…pYko](docs/evidence/phase4/deployment-identity.json) đã deploy. T35 đã nộp69e458a, C đang review phần còn thiếu |
+| IDL | [JSON generated](docs/idl/receiptrail.json),3 instructions/1 account/3 events/9 errors; [client generated](docs/PHASE4-CLIENT.md) + types đã bàn giao A trong T34 | A đã dùng client trongT34, C nhận phần import/parse/inspect; [8NGSP…pYko](docs/evidence/phase4/deployment-identity.json) đã deploy. T36đãđóng;45webtests/build+7reprođạt local; browser sau sửa chưa kiểm |
 | Chấm ý tưởng | [C01 r2](docs/ideas/codex/01-receipt-rail.md): **79/100 PLAN, F3→4** nhờ spike D2 | R/D giữ4 PLAN, chưa verdict giáo viên hoặc DELIVERY |
 
 Merchant tạo hóa đơn với payer, amount và expiry. Payer ký đúng ví, program chỉ nhận Open còn hạn, chuyển SOL đúng merchant rồi ghi Paid. Merchant có thể hủy Open. Paid/Cancelled không reset/close/reopen; rent tiếp tục nằm trong account. Cơ chế chỉ chống trả lại **cùng invoice PDA**; merchant vẫn có thể tạo ID khác cho cùng đơn hàng. Receipt không chứng minh giao hàng, và vẫn có trust vào program/upgrade authority/RPC.
@@ -33,6 +33,10 @@ Script mặc định đường dẫn Apple Silicon của máy hiện tại; có 
 
 P3-A/P3-B được đồng ý riêng bằng **“Đồng ý cả hai”**, giờ log10:13:11.851 ngày18/11 UTC+7. [Phương án Phase3](docs/PHASE3-PLAN.md) giới hạn cài/build trên runner và hello devnet; funding đã được người dùng bổ sung. [P3-B đã kiểm](docs/evidence/phase3/README.md): hello deploy/initialize/increment finalized, counter1, tổng giảm số dư0.651874801SOL dưới trần1.5SOL, trong đó phí0.000695000SOL. Checkpoint tài liệu/merge dùng `[skip ci]`; không gọi HEAD tài liệu có skip là một lượt CI xanh. Quyền này không mở cài thêm máy người dùng, deploy ReceiptRail hoặc public web mới.
 
+## ReceiptRail frontend local
+
+[Bản local để tự kiểm](http://127.0.0.1:4175/receiptrail/) dùng mock, không ký/gửi giao dịch. [Kế hoạch kiểm và giới hạn](docs/PHASE5-PLAN.md) · [ReviewC r3](docs/reviews/receiptrail-phase5-r3.md). Tests gọi model/submit/SDK; không thay kiểmReact/DOM/responsive hoặc víextension. Theo yêu cầu dừng điều khiểnGUI, C chỉCLI/repo. Chưa có linkReceiptRailpublic.
+
 ## ClusterProof dự phòng và lịch sử lab
 
 [IDEA ClusterProof](docs/IDEA-clusterproof-draft.md)/[ARCHITECTURE ClusterProof](docs/ARCHITECTURE-clusterproof-draft.md) giữ nhãn **“dự phòng, chưa duyệt”**. Source, toolchain, lab và [web công khai hiện có](https://clusterproof-devnet-17nov26.anthony-robinson-125.chatgpt.site) được giữ nguyên. [Wallet lab](https://clusterproof-devnet-17nov26.anthony-robinson-125.chatgpt.site/lab/) chỉ connect/disconnect, không ký/gửi; Core discovery/request đã quan sát, connect/disconnect thật còn chưa kiểm.
@@ -48,7 +52,7 @@ Mốc phân chia là tag **hackathon-start**, sẽ tạo lúc mở màn27/11/202
 - Notes, RUBRICv1.2, shortlist/nguồn và lựa chọn ReceiptRail chính/ClusterProof phụ; sửa hồ sơ lựa chọn/duyệt sai.
 - Spike/parser/read-only C02/C03; toolchain, hello lab, client và web nền ClusterProof từ template chính thức.
 - ReceiptRail Phase2: IDEA/ARCHITECTURE, Anchor spike/19 tests, generated IDL, demo165giây trên giấy, crawl/UX/review giao A.
-- Phase4/5: runtime32/client23/guards7 và CI6d08e5c đạt; P4-B deploy finalized và smoke4tx đạt, Cancel recovery đang CI riêng, cap1.8SOL. A nộpT34/note025, C review và giaoT35 sửa local; chưa public.
+- Phase4: runtime32/client23/guards7 và CI triểnkhai/recoveryđạt; P4-B hoàn tất162tx finalized, debit0.760701080SOL<cap1.8. [Kết quả](docs/PHASE4-RESULT.md). Phase5:T34/T35/T36đóng,45webtests/build+7reprođạt local; chưa browser sau sửa/public/Phase6.
 - Commits và giới hạn ở [DEVLOG](docs/DEVLOG.md), [ROADMAP](docs/ROADMAP.md), [cổng duyệt](docs/reviews/phase1-3-gates.md).
 
 ### Trong 27–29/11/2026
