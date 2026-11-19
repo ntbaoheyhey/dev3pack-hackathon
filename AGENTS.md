@@ -58,6 +58,8 @@ Mọi lần dừng sai được ghi ở [`docs/STOP-CAUSES.md`](docs/STOP-CAUSES
 
 11. **Quyền mới 19/11:** người dùng đã mở Phase4 ReceiptRail và Phase5 frontend/ví song song; nguyên văn và giờ log13:25:47 UTC+7 tại DECISION. C làm program/client, giao A UI/ví qua queue. Phạm vi hiện tại chỉ code/test local bằng toolchain/cache đã có; chưa deploy ReceiptRail, public/update web, cài thêm hay mergePR7. Không hỏi mở phase lại. Commit/merge dùng `[skip ci]` trong lượt local; cổng cần quyền mới trình riêng khi tới lúc.
 
+12. **P4-A/P4-B đã đồng ý19/11 log13:55:34.348UTC+7:** nguyên văn “Đồng ý cả P4-A và P4-B” tại DECISION. Được áp patch/run CI đúng pins trên runner; sau CI đạt tạo đúng4keypairs ngoài Git, deploy ReceiptRail + bounded smoke devnet/trần1.8SOL theo PHASE4-PLAN. Chưa public/update web, cài thêm local, mergePR7 hoặc Phase6; không hỏi lại quyền đã có. CI phải đạt revision triển khai, checkpoint tài liệu vẫn `[skip ci]`.
+
 ## Chống quên context
 
 Context có thể bị compact bất cứ lúc nào. Thứ gì không nằm trong repo thì coi như sẽ quên.

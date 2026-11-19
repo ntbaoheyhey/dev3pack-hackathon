@@ -1,5 +1,18 @@
 # Quyết định sản phẩm — ReceiptRail
 
+## Người dùng đồng ý P4-A và P4-B — 19/11/2026
+
+> Đồng ý cả P4-A và P4-B
+
+Nguyên văn câu trả lời cho câu hỏi `call_5dc61e6cd60245539c393227c43cf1a0`, item0. **Giờ log message:13:55:34.348 ngày19/11/2026 UTC+7 (Asia/Ho_Chi_Minh)**, tương ứng06:55:34.348Z; không phải giờ quyết định do người dùng tự nêu. [Record nguyên văn câu hỏi/câu trả lời](../evidence/phase4/user-permission-p4ab-2026-11-19.json), userMessage `01a1f296-d7cc-7a93-a1a1-7bdf445dc65a`. Chưa có lời đính chính cho câu trả lời này; không phục hồi các payload ClusterProof cũ.
+
+- **P4-A:** áp patch CI đã review, chạy đúng toolchain/dependencies khóa trên GitHub runner; không cài thêm local/đổi billing/limit. Không hỏi lại quyền này.
+- **P4-B:** **sau CI đạt** tạo đúng4keypairs thử ngoài Git (program,buffer,merchant,payer), deploy ReceiptRail và kiểm create/pay/duplicate/cancel trên devnet, trần **1.8SOL devnet**. [PHASE4-PLAN](../PHASE4-PLAN.md) quy định budget/journal/recheck/không resend mù. CI phải kiểm revision identity triển khai trước broadcast; thay ID sau CI đầu cần kiểm lại revision mới.
+- **Chưa cho phép:** public/update web, mergePR7, mởPhase6, cài thêm máy người dùng, signer ngoài4đã duyệt hoặc chi vượt trần. Không đổi/revoke authority hoặc upgrade mới ngoài đợt initial deploy được mô tả.
+
+Lời đồng ý thay giới hạn local đối với **đúng P4-A/P4-B**, không chứng minh CI xanh, signer/deploy/smoke đã làm hoặc toàn phase đạt. T34 tiếp tục local; public/ví thật/giáo viên còn riêng.
+
+
 ## Người dùng mở Phase 4 và Phase 5 — 19/11/2026
 
 > Tôi duyệt mở Phase 4 ReceiptRail theo docs/NEXT.md, và mở luôn Phase 5 (frontend + ví) chạy song song theo docs/ROADMAP.md. Ghi nguyên văn câu này vào DECISION.md. Phạm vi: code/test local bằng toolchain/cache hiện có. Chưa cho phép deploy ReceiptRail, public web, cài thêm hay merge PR7, mấy việc đó trình riêng khi tới lúc. Bật lại Automation 15 phút (đang PAUSED) rồi kiểm tra là nó ACTIVE. Giao ngay việc Phase 5 cho Antigravity trong docs/tasks/A-queue.md (học trước những gì cần, rồi làm UI ví/thanh toán). Chạy liên tục, chỉ dừng khi cần tôi quyết định.
