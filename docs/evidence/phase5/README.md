@@ -1,3 +1,5 @@
+> **Hiện hành — C hợp nhất T36:** xem [review r3](../../reviews/receiptrail-phase5-r3.md),45tests/build+7repro đạt local. Controller hiện dùng `confirmation.ts`/`wallet-lifecycle.ts`; báo cáoA ở dưới là lịch sử source từng lần nộp. Không browser/ảnh mới; ảnh r2 không chứng minh responsive bản hiện tại. Chưa public/Phase6 hoặc đóng Phase5.
+
 # Bằng chứng Phase 5 — ReceiptRail Local UI & Tích hợp Ví (T34)
 
 - **Agent thực hiện**: Antigravity (trợ lý của Codex)
@@ -247,3 +249,113 @@ Danh sách ảnh và dung lượng thực tế (đối soát không chứa fallb
 7. `receiptrail-mobile-home.png` (375x812, 47,564 bytes): Trang chủ ClusterProof trên thiết bị di động.
 8. `receiptrail-desktop-lab.png` (1280x800, 24,265 bytes): Phòng thí nghiệm kết nối ví WalletLab (`/lab/`).
 
+---
+
+## 7. Bằng chứng Phase 5 r3 — Triển khai nhiệm vụ T36 (UI / Lifecycle / Controller / Mock Wallet)
+
+- **Agent thực hiện**: Antigravity (trợ lý của Codex)
+- **Ngày**: 2026-11-19, múi giờ Asia/Ho_Chi_Minh
+- **Căn cứ**: `docs/reviews/receiptrail-phase5-r2.md`, `docs/reviews/receiptrail-phase5-r2-repro.json` và nhiệm vụ T36 trong `docs/tasks/A-queue.md`.
+- **Phân công & Giới hạn tuân thủ**:
+  - C sở hữu: `adapter.ts`, `types.ts` và bài test mới `receiptrail-adapter-review.test.mjs`. A không chạm vào 3 file này.
+  - A sở hữu: `ReceiptRailApp.tsx`, `mock-wallets.ts`, `controller.ts`, CSS, `tests/receiptrail.test.mjs`, `note025` và evidence Phase 5.
+  - Theo lệnh dừng GUI: **Tuyệt đối không chạy CUA / browser automation / headless chrome / mouse-keyboard trong T36; không tạo file ảnh mới để lách yêu cầu**. Ghi nhận rõ: Trình duyệt sau khi sửa CSS/controller chưa được kiểm tra bằng browser thực tế, không đồng nhất kết quả test/build với việc responsive đã được xác minh trên màn hình hiển thị.
+
+### 7.1. Chi tiết triển khai kỹ thuật
+
+1. **Production Review Controller (`apps/web/src/receiptrail/controller.ts`)**:
+   - Xây dựng lớp điều khiển `ReceiptRailReviewController` độc lập với giao diện, quản lý 3 snapshot điều khoản bất biến: `CreateSnapshot`, `PaySnapshot`, `CancelSnapshot`.
+   - **Quy tắc vô hiệu hóa snapshot (Invalidation Rules)**:
+     - Khi đổi ví (kể cả cùng địa chỉ ví nhưng khác instance ID `${wallet.name}:${account.address}`) hoặc thay đổi `chains` hoặc ngắt kết nối: Hủy toàn bộ 3 snapshot.
+     - Khi người dùng chọn hóa đơn khác trên giao diện: Hủy `paySnapshot` và `cancelSnapshot`.
+     - Khi người dùng thay đổi bất kỳ ô input nào trong form tạo (amount, payer, expiry, invoiceId): Hủy `createSnapshot`.
+   - **Khóa thao tác đồng thời (In-flight Double-submit Lock)**:
+     - `beginSubmission()` kích hoạt khóa đồng bộ ngay lập tức trước bất kỳ lệnh `await` nào.
+     - Nếu người dùng bấm liên tiếp (double click) khi giao dịch đang xử lý, lệnh thứ 2 bị chặn và văng lỗi ngay lập tức, chống gửi trùng yêu cầu.
+   - **Bảo vệ kết quả bất đồng bộ muộn (Stale Async Guard)**:
+     - Bộ đếm `requestId` tăng dần (`nextRequestId()`). Khi kết quả bất đồng bộ (như `listInvoices` hay `inspect`) trả về sau, nếu `isCurrentRequest(id)` trả về false thì kết quả bị hủy bỏ, ngăn ngừa việc ghi đè lựa chọn mới của người dùng.
+   - **Tính toán Hạn Slot động & Giới hạn u64 an toàn**:
+     - `computePreviewExpiry` và `parseSafeExpiryDelta` kiểm tra số nguyên dương trong giới hạn `MAX_U64` ($18{,}446{,}744{,}073{,}709{,}551{,}615$). Từ chối các giá trị vượt quá u64 (như $18446744073709551616 = 2^{64}$) với thông báo lỗi rõ ràng.
+
+2. **Chuẩn hóa Wallet Standard Mock (`apps/web/src/receiptrail/mock-wallets.ts`)**:
+   - Sửa lỗi `publicKey`: Sử dụng `getAddressEncoder().encode(address(addr))` để mã hóa đúng 32 bytes địa chỉ base58 của tài khoản thay vì chuỗi 32 byte 0.
+   - Đảm bảo tương thích hoàn toàn với `@solana/client` production connector: `getAddressDecoder().decode(session.account.publicKey) === session.account.address` đạt 100% (vượt qua test case `mock-wallet-public-key` trong `receiptrail-phase5-r2-repro.mjs`).
+   - Hỗ trợ phát sự kiện `standard:events` khi đổi tài khoản (`switchAccount`) hoặc đổi mạng (`switchChains`).
+
+3. **Hoàn thiện Giao diện & Xử lý Lỗi (`apps/web/src/receiptrail/ReceiptRailApp.tsx`)**:
+   - Toàn bộ thao tác tạo, thanh toán và hủy đều sử dụng snapshot điều khoản đã được người dùng kiểm tra và duyệt qua checkbox (`createSnapshot`, `paySnapshot`, `cancelSnapshot`). Không tự dựng terms tạm bợ tại thời điểm click.
+   - Xem trước điều khoản tạo hóa đơn hiển thị đầy đủ: Merchant, Payer, Amount (SOL & lamports), Hạn slot tính toán động kèm số delta, Invoice ID hex 64 ký tự, PDA dự kiến kèm Bump, Tiền cọc thuê tài khoản mẫu LiteSVM (1,802,640 lamports) và Ước tính phí mạng (~10,000 lamports).
+   - Danh sách hóa đơn bắt lỗi giải mã (`decodeErrors`) và hiển thị bảng cảnh báo trên UI thay vì nuốt lỗi âm thầm.
+   - Bảng danh sách được bọc trong container `<div className="rr-table-wrapper">`.
+   - Sửa copy: Bỏ cụm từ "bảo vệ tuyệt đối" và "on-chain" khi đang chạy mock ledger; phản ánh đúng phân quyền và kiểm soát idempotent của program.
+
+4. **Sửa Responsive CSS (`apps/web/src/receiptrail/receiptrail.css`)**:
+   - `.rr-table-wrapper`: Thêm thanh cuộn ngang `overflow-x: auto; -webkit-overflow-scrolling: touch; width: 100%` với bảng có `min-width: 620px`, loại bỏ hiện tượng tràn viền làm vỡ toàn bộ trang trên màn hình mobile 375px.
+   - `.receiptrail-container`: Bổ sung `box-sizing: border-box; width: 100%`.
+   - `.rr-banner-warning`, `.rr-wallet-bar`, `.rr-mock-bar`: Thêm `flex-wrap: wrap`, cấu hình lại theo chiều dọc trên mobile hẹp (&le; 640px).
+   - `.rr-detail-value`: Bổ sung `word-break: break-all` cho các chuỗi địa chỉ base58 và hex dài.
+
+5. **Cập nhật Note Học 025 (`docs/learning/025-receiptrail-frontend-wallet.md`)**:
+   - Ghi lại các bài học kỹ thuật thực tế: Reject không phải lúc nào cũng mang mã 4001; Chữ ký giao dịch xuất phát từ client ký trước gửi (pre-send signature); Re-check on-chain chỉ là thao tác đọc quan sát (observational read); Đổi ví phải kiểm tra identity tổng thể.
+
+### 7.2. Kết quả kiểm thử tự động r3 (`npm test`)
+
+Toàn bộ 25 unit tests và behavioral tests đạt 100% (pass 25 / fail 0):
+```sh
+cd apps/web && npm test
+```
+
+```
+✔ base58 validates the decoded 32-byte address, including leading zero bytes (0.551291ms)
+✔ bad input makes no RPC request (0.406708ms)
+✔ wrong cluster stops before reading the program (12.847917ms)
+✔ successful observation uses fixed devnet RPC, confirmed reads, provenance and no writes (1.179041ms)
+✔ missing account and non-executable accounts are not successful deployment claims (0.809667ms)
+✔ malformed account, owner, slot and RPC envelopes fail closed (1.276166ms)
+✔ RPC errors, HTTP failure, throttling and network failure remain explicit (0.283ms)
+✔ cancellation and timeout cannot yield a ready result (6.378084ms)
+✔ amount/u64: parses and formats SOL exactly with BigInt and rejects lossy inputs (0.792917ms)
+✔ roles & expiry: enforces payer/merchant roles and derives Expired from slot (7.178292ms)
+✔ P5-01: duplicate create rejects across all states (Open, Paid, Cancelled) without resetting ledger (10.050708ms)
+✔ P5-01: canonical PDA derivation and decode verification for all seeded fixtures (1.990417ms)
+✔ P5-02: pre-validation precedes simulated timeout fault (prevents invalid Unknown) (2.489875ms)
+✔ P5-02: pending state locks operations per-invoice and prevents duplicate submissions (3.451042ms)
+✔ P5-02: recheckOnChain respects terminal/expiry and never fabricates Paid (4.16875ms)
+✔ T36: Production controller manages snapshots and invalidates on wallet/accounts/chains/disconnect (0.219833ms)
+✔ T36: Production controller enforces synchronous in-flight double-submit lock (0.129167ms)
+✔ T36: Production controller guards against stale async responses (0.09225ms)
+✔ T36: Expiry preview slot calculation and safe u64 parsing (0.244334ms)
+✔ T36: Production SDK connector integration with mock wallet and address-encoded public key (0.569792ms)
+✔ P5-04: strict 64-hex parsing with BigInt (0.146958ms)
+✔ P5-04: dynamic list decoding reflects true account state (2.991125ms)
+✔ CPI rollback: preserves principal and keeps invoice Open when transaction fails (1.615083ms)
+✔ error mapping: maps custom error codes 6000-6008 to Anchor IDL error definitions (0.470917ms)
+✔ wallet reject handling does not assume code 4001 is universal (0.123167ms)
+ℹ tests 25
+ℹ suites 0
+ℹ pass 25
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 214.602834
+```
+
+### 7.3. Kết quả Build tĩnh & TypeScript r3
+
+```sh
+cd apps/web && npm run build
+```
+
+```
+> clusterproof-web@0.1.0 build
+> tsc --noEmit && vite build && node scripts/static-routes.mjs
+
+vite v8.3.8 building client environment for production...
+✓ 182 modules transformed.
+dist/index.html                      0.64 kB │ gzip:   0.42 kB
+dist/assets/index-CegYXw54.css      15.27 kB │ gzip:   4.07 kB
+dist/assets/WalletLab-Bm2l0gtU.js    4.03 kB │ gzip:   1.65 kB
+dist/assets/index-DvBDwuVp.js      495.96 kB │ gzip: 146.59 kB
+✓ built in 127ms
+```

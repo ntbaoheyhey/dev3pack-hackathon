@@ -742,6 +742,7 @@ function ReceiptRailInner() {
             </button>
           </div>
 
+          <div className="rr-table-wrapper" tabIndex={0} role="region" aria-label="Danh sách hóa đơn, cuộn ngang để xem đủ cột">
           <table className="rr-table" aria-label="Bảng danh sách hóa đơn">
             <thead>
               <tr>
@@ -803,6 +804,7 @@ function ReceiptRailInner() {
               ))}
             </tbody>
           </table>
+          </div>
         </div>
       )}
 

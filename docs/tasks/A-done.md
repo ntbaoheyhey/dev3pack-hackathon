@@ -14,6 +14,7 @@
 | T13 | xong | Đã xong. |
 | T34 | xong | Đã xong và nộp tại 4d2e48a. |
 | T35 | xong | Khắc phục 5 nhóm lỗi implementation theo review C (P5-01..05); 21/21 tests pass; 8 screenshots r2. |
+| T36 | xong | Đã xong: controller snapshot, mock-wallets pubkey, dynamic expiry preview, in-flight lock, stale async guard, responsive CSS, 25/25 tests pass. |
 
 - Việc T11: Xong. Đã crawl và review evidence cho ReceiptRail (retry, timeout, idempotency) vào `docs/data/receiptrail-evidence.md`.
 
@@ -105,3 +106,14 @@
   - **P5-04 (Strict Hex/u64 & Dynamic Account List)**: `parseInvoiceIdHex` kiểm tra nghiêm ngặt 64 ký tự hex (32 bytes), cấm tự động đệm 0 hoặc cắt ngắn. `parseExpiryDelta` kiểm tra số nguyên dương và chuyển sang `BigInt`. Bổ sung review terms snapshot trước Create và Cancel. Bảng danh sách hóa đơn decode động toàn bộ tài khoản raw từ ledger qua `client.decodeInvoice`.
   - **P5-05 (Sửa Copy & Ảnh Chụp Browser r2)**: Eager import `ReceiptRailApp` trong `main.tsx` để loại bỏ Suspense chunk fallback trong headless chrome. Sửa script `capture-phase5-screenshots.mjs` chụp 8 màn hình (desktop/mobile, view/create/list/demo165, home, lab), kiểm tra kích thước file (>70KB - >140KB) và phát hiện lỗi thoát không để exit 0 giả. Điều chỉnh copy: cọc rent là mẫu LiteSVM, Cancel đánh dấu Cancelled không đóng tài khoản/không hoàn cọc, gắn nhãn Mock rõ ràng.
   - **Kiểm thử**: 21/21 tests pass trong `apps/web` (`npm test`), 23/23 tests pass trong `packages/receiptrail-client`, build tĩnh sạch (134ms), 8 ảnh bằng chứng r2 đã lưu trong `docs/evidence/phase5/`. Báo cáo chi tiết tại `docs/evidence/phase5/README.md`.
+
+- Việc T36: Xong. Đã triển khai hoàn chỉnh phần việc UI/lifecycle/controller theo phân công tại `docs/reviews/receiptrail-phase5-r2.md`:
+  - **Production Controller (`apps/web/src/receiptrail/controller.ts`)**: Quản lý snapshot điều khoản bất biến (`CreateSnapshot`, `PaySnapshot`, `CancelSnapshot`). Vô hiệu hóa snapshot khi đổi ví (kể cả cùng địa chỉ nhưng khác instance ID `${wallet.name}:${account.address}`), đổi accounts hoặc chains, ngắt kết nối ví, đổi hóa đơn được chọn hoặc sửa form input.
+  - **In-flight Double-submit Lock & Stale Async Guard**: `beginSubmission()` khóa đồng bộ trước bất kỳ lệnh `await` nào, chặn triệt để double-click; bộ đếm `requestId` trong `refreshData` hủy bỏ các kết quả bất đồng bộ muộn khi trạng thái lựa chọn đã đổi.
+  - **Tính toán Hạn Slot động & Chặn Overflow u64**: `computePreviewExpiry` và `parseSafeExpiryDelta` tính slot động theo input người dùng, chặn các giá trị vượt quá u64 (`MAX_U64 = 18446744073709551615n`, ví dụ $2^{64}$).
+  - **Wallet Standard Mock (`apps/web/src/receiptrail/mock-wallets.ts`)**: Sửa `publicKey` mã hóa đúng 32 bytes địa chỉ base58 qua `getAddressEncoder()`, vượt qua kiểm tra `getAddressDecoder().decode(session.account.publicKey) === session.account.address` của SDK connector (repro case 6 accepted). Hỗ trợ phát sự kiện `standard:events` khi đổi tài khoản (`switchAccount`) hoặc chains (`switchChains`).
+  - **Giao diện & Xử lý Lỗi (`apps/web/src/receiptrail/ReceiptRailApp.tsx`)**: Submit dùng snapshot đã duyệt; Review chi tiết đầy đủ trước Create; bắt lỗi giải mã tài khoản (`decodeErrors`) và hiển thị trên UI thay vì nuốt âm thầm; bọc bảng trong `.rr-table-wrapper`; sửa copy bỏ "bảo vệ tuyệt đối" và "on-chain" khi đọc mock.
+  - **Responsive CSS (`apps/web/src/receiptrail/receiptrail.css`)**: `.rr-table-wrapper` có `overflow-x: auto; width: 100%`, flex-wrap cho banner, wallet bar, controls; điều chỉnh dọc cho màn hình hẹp (&le; 640px); `word-break: break-all` cho địa chỉ dài.
+  - **Note 025 (`docs/learning/025-receiptrail-frontend-wallet.md`)**: Cập nhật bài học về reject không luôn có mã 4001, signature pre-send, recheck chỉ đọc, và wallet identity.
+  - **Kiểm thử**: 25/25 tests pass trong `apps/web` (`npm test`), build tĩnh Vite đạt 100% không cảnh báo (127ms).
+  - **Tuân thủ giới hạn**: Không chạy CUA / browser automation / headless chrome / mouse-keyboard. Không tạo file ảnh mới. Trình duyệt sau khi sửa CSS/controller chưa được kiểm tra bằng browser thực tế.
