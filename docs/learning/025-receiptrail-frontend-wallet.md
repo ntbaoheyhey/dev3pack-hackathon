@@ -126,6 +126,11 @@ finally { model.finish(operation); }
 | Đổi ví nhưng vẫn giữ nút bấm thanh toán | Người dùng đổi ví trong extension nhưng state của UI vẫn giữ terms của ví cũ | Lắng nghe event `change` của Wallet Standard và xóa ngay `confirmedTerms` |
 | Tự sinh invoiceId mới khi gặp lỗi | Tưởng nhầm phải retry từ đầu, dẫn đến người dùng có thể bị thanh toán 2 lần | Giữ nguyên bộ `(merchant, invoiceId, PDA)` duy nhất cho phiên thanh toán |
 | Hiển thị Paid slot là finalized | `paid_slot` chỉ là slot ghi nhận trong account state, không phản ánh cluster commitment | Hiển thị tách bạch `Account State: Paid` và `Network Status: Confirmed (Chờ Finalized)` |
+| Lỗi độ dài địa chỉ base58 31-bytes gây crash module scope | Địa chỉ base58 thiếu ký tự '1' đại diện byte 0 ở đầu (43 ký tự thay vì 44) khiến `getAddressEncoder().encode()` ném exception | Kiểm tra độ dài byte array (phải đủ 32 bytes) trước khi truyền vào decoder/encoder của `@solana/addresses` |
+
+### Bài học kiểm thử browser T37 (2026-11-19)
+
+Kiểm thử headless browser tự động trên 2 viewports (1440×900 và 375×812) phát hiện lỗi runtime uncaught exception P5-F01 tại `mock-wallets.ts:80` (địa chỉ ví từ chối `4uQeVj5tqViQh7yWWGStvfEG1Zmhx6uasJtWCJziofM` chỉ giải mã ra 31 bytes). Khi được sửa thành `14uQeVj5tqViQh7yWWGStvfEG1Zmhx6uasJtWCJziofM`, 16/16 ca kiểm thử đạt 100%. Đo lường di động chứng minh `body.scrollWidth` đạt đúng 375px (không tràn trang), bảng danh sách hóa đơn cuộn riêng (`scrollWidth = 965px`). Video demo 165s được ghi hình thực tế và đo qua `ffprobe` đạt 33.08 giây.
 
 ## Nguồn
 

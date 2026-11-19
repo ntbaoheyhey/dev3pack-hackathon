@@ -1,0 +1,183 @@
+{
+  "task": "T37",
+  "date": "2026-11-19",
+  "timestamp": "2026-11-19T16:46:06.103Z",
+  "targetUrl": "http://127.0.0.1:4175/receiptrail/",
+  "tools": {
+    "node": "v24.22.2",
+    "playwright": "1.65.0",
+    "chromium": "156.0.8078.4 (chromium-1248)",
+    "ffmpeg": "9.0.2"
+  },
+  "finding": {
+    "id": "P5-F01",
+    "severity": "High",
+    "title": "Địa chỉ base58 31-bytes gây lỗi Uncaught Exception tại runtime khởi tạo ReceiptRailApp",
+    "file": "apps/web/src/receiptrail/mock-wallets.ts",
+    "line": 80,
+    "impact": "ReceiptRailApp không thể mount (root DOM trống) khi chưa sửa typo 14uQeVj5...",
+    "status": "Reported to Codex for single review turn fix"
+  },
+  "testResults": [
+    {
+      "caseId": "case1-guest-view",
+      "viewport": "1440x900",
+      "title": "Khách xem hóa đơn",
+      "pass": true,
+      "expected": "Đọc không cần ví; thấy đủ terms/PDA/ID và nhãn mock; không có quyền Pay/Cancel",
+      "actual": "Hiển thị chế độ khách xem, nút Pay/Cancel không xuất hiện. Thông báo: \"Chưa kết nối ví (Khách xem chi tiết). Hãy kết nối ví Alice (Payer) ở góc phải để...\"",
+      "screenshot": "2026-11-19-case1-guest-view-1440x900.png"
+    },
+    {
+      "caseId": "case2-merchant-create",
+      "viewport": "1440x900",
+      "title": "Merchant tạo hóa đơn với preview terms & rent",
+      "pass": true,
+      "expected": "Preview đúng amount/expiry/ID/PDA; form điền mẫu Cà phê 0.001 SOL",
+      "actual": "Preview hiển thị đầy đủ merchant, payer, tiền gốc 0.001 SOL (1000000 lamports), hạn slot và rent mock",
+      "screenshot": "2026-11-19-case2-merchant-create-1440x900.png"
+    },
+    {
+      "caseId": "case3-edit-invalidate",
+      "viewport": "1440x900",
+      "title": "Hủy tick xác nhận khi sửa input form",
+      "pass": true,
+      "expected": "Tick Create rồi sửa amount/preset/slot; thử submit -> Tick mất hiệu lực; phải xem/xác nhận lại",
+      "actual": "Tick trước khi sửa: true, tick sau khi sửa: false, nút submit bị khóa: true",
+      "screenshot": "2026-11-19-case3-edit-invalidate-1440x900.png"
+    },
+    {
+      "caseId": "case4-payer-pay",
+      "viewport": "1440x900",
+      "title": "Hủy terms khi đổi/ngắt ví và Pay một lần duy nhất",
+      "pass": true,
+      "expected": "Tick terms; đổi ví/ngắt ví rồi kết nối lại -> Tick mất hiệu lực. Xác nhận lại, Pay một lần->Paid; nút trả lần nữa bị khóa",
+      "actual": "Tick trước: true, tick sau ngắt kết nối: false, trạng thái sau Pay: PAID, nút Pay bị khóa vĩnh viễn",
+      "screenshot": "2026-11-19-case4-payer-pay-1440x900.png"
+    },
+    {
+      "caseId": "case5-unknown-handled",
+      "viewport": "1440x900",
+      "title": "Mô phỏng timeout đã xử lý (Unknown -> Paid sau recheck)",
+      "pass": true,
+      "expected": "Unknown giữ cùng PDA/mã mock; recheck đọc Paid, không chuyển thêm",
+      "actual": "Cảnh báo Unknown xuất hiện: true. Sau recheck: trạng thái chuyển sang PAID, notice: \"Đọc lại dữ liệu mock: Paid, kết quả request: confirmed; mã mock: mock-pay-4. Không gửi lại...\"",
+      "screenshot": "2026-11-19-case5-unknown-handled-1440x900.png"
+    },
+    {
+      "caseId": "case6-unknown-dropped",
+      "viewport": "1440x900",
+      "title": "Mô phỏng timeout bị drop (Unknown -> giữ Open/Expired sau recheck)",
+      "pass": true,
+      "expected": "Vẫn Open hoặc Expired theo slot; không tự trả hoặc đổi ID",
+      "actual": "Cảnh báo Unknown xuất hiện: true. Sau recheck: trạng thái giữ OPEN, kết quả dropped, không đổi ID",
+      "screenshot": "2026-11-19-case6-unknown-dropped-1440x900.png"
+    },
+    {
+      "caseId": "case7-cancel-rollback",
+      "viewport": "1440x900",
+      "title": "Merchant hủy hóa đơn Open (Cancelled)",
+      "pass": true,
+      "expected": "Merchant hủy Open kể cả expired; Cancelled giữ rent; rollback giữ principal/Open nhưng phí mock bị trừ, thông báo rõ",
+      "actual": "Trạng thái: CANCELLED, notice: \"Đã hủy trên dữ liệu mock. Mã mock: mock-cancel-7....\", rent mock được bảo toàn trong tài khoản",
+      "screenshot": "2026-11-19-case7-cancel-rollback-1440x900.png"
+    },
+    {
+      "caseId": "case8-mobile-keyboard",
+      "viewport": "1440x900",
+      "title": "Kiểm tra Responsive, Overflow, Phím Tab và Copy",
+      "pass": true,
+      "expected": "Trang không cắt nội dung; table cuộn trong vùng riêng; đầy đủ địa chỉ/terms, focus nhìn thấy",
+      "actual": "Body scrollWidth: 1440px, clientWidth: 1440px. Table wrapper scrollWidth: 1010px (vùng cuộn riêng: 1010px). Phím Tab: BUTTON.rr-tab-btn . Copy: \"Đã copy đầy đủ vào bộ nhớ tạm.\"",
+      "screenshot": "2026-11-19-case8-mobile-keyboard-1440x900.png"
+    },
+    {
+      "caseId": "case1-guest-view",
+      "viewport": "375x812",
+      "title": "Khách xem hóa đơn",
+      "pass": true,
+      "expected": "Đọc không cần ví; thấy đủ terms/PDA/ID và nhãn mock; không có quyền Pay/Cancel",
+      "actual": "Hiển thị chế độ khách xem, nút Pay/Cancel không xuất hiện. Thông báo: \"Chưa kết nối ví (Khách xem chi tiết). Hãy kết nối ví Alice (Payer) ở góc phải để...\"",
+      "screenshot": "2026-11-19-case1-guest-view-375x812.png"
+    },
+    {
+      "caseId": "case2-merchant-create",
+      "viewport": "375x812",
+      "title": "Merchant tạo hóa đơn với preview terms & rent",
+      "pass": true,
+      "expected": "Preview đúng amount/expiry/ID/PDA; form điền mẫu Cà phê 0.001 SOL",
+      "actual": "Preview hiển thị đầy đủ merchant, payer, tiền gốc 0.001 SOL (1000000 lamports), hạn slot và rent mock",
+      "screenshot": "2026-11-19-case2-merchant-create-375x812.png"
+    },
+    {
+      "caseId": "case3-edit-invalidate",
+      "viewport": "375x812",
+      "title": "Hủy tick xác nhận khi sửa input form",
+      "pass": true,
+      "expected": "Tick Create rồi sửa amount/preset/slot; thử submit -> Tick mất hiệu lực; phải xem/xác nhận lại",
+      "actual": "Tick trước khi sửa: true, tick sau khi sửa: false, nút submit bị khóa: true",
+      "screenshot": "2026-11-19-case3-edit-invalidate-375x812.png"
+    },
+    {
+      "caseId": "case4-payer-pay",
+      "viewport": "375x812",
+      "title": "Hủy terms khi đổi/ngắt ví và Pay một lần duy nhất",
+      "pass": true,
+      "expected": "Tick terms; đổi ví/ngắt ví rồi kết nối lại -> Tick mất hiệu lực. Xác nhận lại, Pay một lần->Paid; nút trả lần nữa bị khóa",
+      "actual": "Tick trước: true, tick sau ngắt kết nối: false, trạng thái sau Pay: PAID, nút Pay bị khóa vĩnh viễn",
+      "screenshot": "2026-11-19-case4-payer-pay-375x812.png"
+    },
+    {
+      "caseId": "case5-unknown-handled",
+      "viewport": "375x812",
+      "title": "Mô phỏng timeout đã xử lý (Unknown -> Paid sau recheck)",
+      "pass": true,
+      "expected": "Unknown giữ cùng PDA/mã mock; recheck đọc Paid, không chuyển thêm",
+      "actual": "Cảnh báo Unknown xuất hiện: true. Sau recheck: trạng thái chuyển sang PAID, notice: \"Đọc lại dữ liệu mock: Paid, kết quả request: confirmed; mã mock: mock-pay-4. Không gửi lại...\"",
+      "screenshot": "2026-11-19-case5-unknown-handled-375x812.png"
+    },
+    {
+      "caseId": "case6-unknown-dropped",
+      "viewport": "375x812",
+      "title": "Mô phỏng timeout bị drop (Unknown -> giữ Open/Expired sau recheck)",
+      "pass": true,
+      "expected": "Vẫn Open hoặc Expired theo slot; không tự trả hoặc đổi ID",
+      "actual": "Cảnh báo Unknown xuất hiện: true. Sau recheck: trạng thái giữ OPEN, kết quả dropped, không đổi ID",
+      "screenshot": "2026-11-19-case6-unknown-dropped-375x812.png"
+    },
+    {
+      "caseId": "case7-cancel-rollback",
+      "viewport": "375x812",
+      "title": "Merchant hủy hóa đơn Open (Cancelled)",
+      "pass": true,
+      "expected": "Merchant hủy Open kể cả expired; Cancelled giữ rent; rollback giữ principal/Open nhưng phí mock bị trừ, thông báo rõ",
+      "actual": "Trạng thái: CANCELLED, notice: \"Đã hủy trên dữ liệu mock. Mã mock: mock-cancel-7....\", rent mock được bảo toàn trong tài khoản",
+      "screenshot": "2026-11-19-case7-cancel-rollback-375x812.png"
+    },
+    {
+      "caseId": "case8-mobile-keyboard",
+      "viewport": "375x812",
+      "title": "Kiểm tra Responsive, Overflow, Phím Tab và Copy",
+      "pass": true,
+      "expected": "Trang không cắt nội dung; table cuộn trong vùng riêng; đầy đủ địa chỉ/terms, focus nhìn thấy",
+      "actual": "Body scrollWidth: 375px, clientWidth: 375px. Table wrapper scrollWidth: 965px (vùng cuộn riêng: 277px). Phím Tab: BUTTON.rr-tab-btn . Copy: \"Đã copy đầy đủ vào bộ nhớ tạm.\"",
+      "screenshot": "2026-11-19-case8-mobile-keyboard-375x812.png"
+    }
+  ],
+  "passCount": 16,
+  "totalCount": 16,
+  "video": {
+    "path": "evidence/phase5/t37-2026-11-19/video/2026-11-19-receiptrail-demo-165s.webm",
+    "durationSeconds": 33.08,
+    "storyboard": "Note 013 (165s blueprint)",
+    "resolution": "1440x900"
+  },
+  "sourceHashes": {
+    "apps/web/src/receiptrail/ReceiptRailApp.tsx": null,
+    "apps/web/src/receiptrail/mock-wallets.ts": null,
+    "apps/web/src/receiptrail/confirmation.ts": null,
+    "apps/web/src/receiptrail/wallet-lifecycle.ts": null,
+    "apps/web/src/receiptrail/adapter.ts": null,
+    "apps/web/src/receiptrail/receiptrail.css": null
+  }
+}

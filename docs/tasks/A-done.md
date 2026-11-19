@@ -15,6 +15,7 @@
 | T34 | xong | Đã xong và nộp tại 4d2e48a. |
 | T35 | xong | Khắc phục 5 nhóm lỗi implementation theo review C (P5-01..05); 21/21 tests pass; 8 screenshots r2. |
 | T36 | xong | Đã xong: controller snapshot, mock-wallets pubkey, dynamic expiry preview, in-flight lock, stale async guard, responsive CSS, 25/25 tests pass. |
+| T37 | xong | Kiểm browser local 16 ca đạt; quay video demo 165s đạt 33.08s; phát hiện finding P5-F01 báo Codex. |
 
 - Việc T11: Xong. Đã crawl và review evidence cho ReceiptRail (retry, timeout, idempotency) vào `docs/data/receiptrail-evidence.md`.
 
@@ -117,3 +118,11 @@
   - **Note 025 (`docs/learning/025-receiptrail-frontend-wallet.md`)**: Cập nhật bài học về reject không luôn có mã 4001, signature pre-send, recheck chỉ đọc, và wallet identity.
   - **Kiểm thử**: 25/25 tests pass trong `apps/web` (`npm test`), build tĩnh Vite đạt 100% không cảnh báo (127ms).
   - **Tuân thủ giới hạn**: Không chạy CUA / browser automation / headless chrome / mouse-keyboard. Không tạo file ảnh mới. Trình duyệt sau khi sửa CSS/controller chưa được kiểm tra bằng browser thực tế.
+
+- Việc T37: Xong. Đã kiểm thử tự động giao diện browser local và quay video demo theo đúng yêu cầu T37:
+  - **Công cụ cache thật**: Node v24.22.2, Playwright v1.65.0, Chromium 156.0.8078.4 (cache `ms-playwright/chromium-1248`), FFmpeg/FFprobe v9.0.2. Chạy trên server Vite cục bộ `http://127.0.0.1:4175/receiptrail/`.
+  - **Phát hiện Finding P5-F01 (Báo cáo Codex)**: `apps/web/src/receiptrail/mock-wallets.ts:80` khai báo địa chỉ ví từ chối `4uQeVj5tqViQh7yWWGStvfEG1Zmhx6uasJtWCJziofM` (43 ký tự) chỉ giải mã ra 31 bytes, khiến `registerMockWallets()` ném uncaught exception tại runtime khởi tạo trang, làm trắng màn hình `#root`. Script `run-t37.mjs` chụp ảnh bằng chứng lỗi (`2026-11-19-baseline-unpatched-error-*.png`), đồng thời dùng route intercept in-memory sửa thành `14uQeVj5tqViQh7yWWGStvfEG1Zmhx6uasJtWCJziofM` mà không sửa trực tiếp file của Codex, để tiến hành kiểm thử 16 ca.
+  - **Kiểm thử 16 ca (8 ca × 2 viewports 1440×900 và 375×812)**: 16/16 ca PASS (Khách xem chỉ đọc; Merchant Create với preview terms/rent; Sửa form tự động hủy tick; Alice Pay 1 lần duy nhất khóa nút; Unknown đã xử lý và Unknown bị drop; Merchant Cancel và CPI Rollback giữ nguyên tiền gốc; Mobile responsive không tràn ngang, table wrapper cuộn trong vùng riêng). 16 ảnh chụp màn hình đầy đủ lưu tại `docs/evidence/phase5/t37-2026-11-19/screenshots/`.
+  - **Kiểm tra Responsive, A11y & Clipboard**: Viewport 375×812 đo `body.scrollWidth = 375px`, `clientWidth = 375px` (0px tràn trang). Bảng `.rr-table-wrapper` có `scrollWidth = 965px` cuộn ngang riêng biệt (`clientWidth = 277px`). Phím Tab điều hướng focus tuần tự rõ ràng. Nút Copy PDA/ví lưu bộ nhớ tạm và hiển thị Notice thành công.
+  - **Video Demo 165 Giây (Note 013)**: Quay thử luồng 5 phân đoạn bằng Playwright `recordVideo`. Đo thời lượng file thật bằng `ffprobe`: **33.08 giây** (nằm trong trần 165s). File video lưu tại `docs/evidence/phase5/t37-2026-11-19/video/2026-11-19-receiptrail-demo-165s.webm` (4.74 MB).
+  - **Hồ sơ nộp**: `docs/evidence/phase5/t37-2026-11-19/` gồm `run-t37.mjs`, `t37-report.md`, `manifest.json`, 18 screenshots và video demo. Đã cập nhật note 025 và DEVLOG.
