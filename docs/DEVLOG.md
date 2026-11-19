@@ -423,3 +423,5 @@ Các mô tả dưới đây là sự kiện ở Taskbar Hero, không phải hàn
 2026-11-19 · Codex · Nhận note025 trước code tại6b33dbf; merge giữ cả DEVLOG/mục lục hai agent,33inputs triển khai không đổi. Ghi ba lưu ý triển khai/test T34 ngay trong queue (wallet identity reset mọi vai, không suy reject4001 phổ quát, signature có trước send), không mở vòng report cũ hoặc sửa file A.
 
 2026-11-19 · Codex · P4-B upload hoàn tất156tx finalized/155writes, buffer byte-identical, fees0.000785SOL; lưu upload.json, note024/Thẻ nhớ. NhậnT34 UI tại4d2e48a,33inputs triển khai giữ nguyên; chuẩn bị review C trong lúc deploy/đối soát.
+
+2026-11-19 · Codex · DeployCLI exit0/signature5Yf3…HVUU, verify --deployment read-only/session20797. ReviewT34:14tests+build tái chạy đạt nhưng thấy terminal reset/invalid Paid seed, Unknown bypass signer/terms và Pay vẫn enabled, thiếu Wallet Standard, input/list/review flaws và ảnh Loading. Nhận client usage, giaoT35 sửa code với reproduction trong reviews/receiptrail-phase5-r1.md; không mở vòngT31–T33 hoặc sửa UI/A-done thay A.

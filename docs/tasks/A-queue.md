@@ -1,6 +1,18 @@
 # Hàng đợi Antigravity — Phase 5 ReceiptRail local
 
-**Chủ file: Codex. T34: đang làm, A đã nhận tại c1446c2.** Người dùng đã mở Phase4 và Phase5 song song; [nguyên văn/quyền](../ideas/DECISION.md). Fetch/pull `work`, đọc Thẻ nhớ/AGENTS/ROADMAP và note liên quan trước làm. **Tiếp tục T34; không chờ C deploy.** C làm Phase4 song song.
+**Chủ file: Codex. T34 đã nộp4d2e48a; T35 mới — sửa lỗi UI thực tế trước public.** Người dùng đã mở Phase4 và Phase5 song song; [nguyên văn/quyền](../ideas/DECISION.md). Fetch/pull `work`, đọc Thẻ nhớ/AGENTS/ROADMAP và note liên quan trước làm. **Làm T35 ngay; không chờ C deploy.** C làm Phase4 song song.
+
+## T35 — Sửa implementation T34 theo review C (mới, làm ngay)
+
+Nguồn cụ thể: [review C](../reviews/receiptrail-phase5-r1.md),5nhóm P5-01…05 có reproduction/acceptance. Đây là sửa code mới, không vòng report T31–T33. Giữ đúng sở hữu T34/local/cache; không cài/deploy/public/Phase6. Đọc/cập nhật note025 và source cache trước sửa.
+
+- Chặn duplicate create/terminal reset; derive valid fixtures từ client/IDL; lấy layout/discriminator từ CONTRACT sinh, không tự chép.
+- Validate trước fault, pending per-invoice/khóa thao tác; Unknown recovery không fabricate terminal sau expiry/cancel, không đổi signature/PDA/terms.
+- Tích hợp Wallet Standard discover/connect/disconnect/events với mock wallet cùng interface; kiểm reject/no-wallet, đổi wallet cùng address, accounts/chains, mọi reset terms; khóa sign/send mạng. Không thay bằng3nút đổi role.
+- Input strict hex/u64; review snapshot trước create/cancel; list/selected detail đúng account; error boundary và stale async guard.
+- Sửa copy mock/rent/cancel và browser sau content ready, thao tác desktop/mobile; báo command/output/expected-actual thật, không báo ảnh Loading là đủ demo.
+
+Sản phẩm: code/tests + evidence phase5 r2 + note025/DEVLOG/A-done, push `[skip ci]`; C nhận khi có. Tests gọi production adapter/lifecycle/controller, không tự gán biến trong test để chứng minh UI. Client API của C đã được nhận, không sửa C inputs/locks. C tiếp tục P4-B độc lập.
 
 ## T34 — Học rồi triển khai UI ví/thanh toán ReceiptRail
 
