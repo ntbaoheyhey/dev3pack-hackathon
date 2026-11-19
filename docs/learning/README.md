@@ -66,7 +66,7 @@ Các số đã được giữ chỗ trước khi viết theo Prompt 04 (19/11/20
 | Note | Nội dung | Chủ trì / trạng thái |
 | --- | --- | --- |
 | [026 — RPC, confirmation và recovery](026-receiptrail-rpc-confirmation.md) | RPC/filter/confirmation/recovery/priority fee và lựa chọn backend | C — đã đối chiếu docs/types; PHASE6-PLAN là đề xuất, chưa mở Phase 6 thật |
-| 027 — receiptrail-wallet-e2e | Ví thật/Wallet Standard, lỗi và e2e | A — T38, chưa kiểm ví thật |
+| [027 — receiptrail-wallet-e2e](027-receiptrail-wallet-e2e.md) | Ví thật/Wallet Standard, 8 ca lỗi UX/CTA, contract adapter và kế hoạch e2e | A — T38 đã xong, học trước Phase 6, chưa kiểm ví thật |
 | [028 — Học audit và tự review](028-receiptrail-security-review.md) | Học audit công khai và review program | C — đọc audit OtterSec/đối chiếu source và assertions; self-review r1, chưa audit độc lập |
 | 029 — receiptrail-bug-bash | Ma trận ví/thiết bị/bug bash | A — T39, checklist chưa chạy |
 
