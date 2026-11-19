@@ -13,5 +13,5 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true
   },
-  "include": ["src", "app", "tests/wallet-harness.tsx", "vite.config.ts"]
+  "include": ["src", "app", "tests/wallet-harness.tsx", "vite.config.ts", "vite.receiptrail-mock.config.ts"]
 }

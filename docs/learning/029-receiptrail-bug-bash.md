@@ -1,5 +1,7 @@
 # 029 — Ma trận ví, thiết bị và phương pháp kiểm thử Bug Bash Phase 7
 
+> **C hiệu chỉnh20/11:** xem [nhận T39](../reviews/receiptrail-t39-acceptance.md). Expired là Open+slot>=expiry, không dùng block height; Cancel không close/hoàn rent; discovery nhận registry ví chứ app không tự đăng ký extension thật. 44×44 là mục tiêu UX nội bộ. Không lấy số mẫu làm quote/quyền chi hoặc coi viewport/mock là ví/thiết bị thật.
+
 - Antigravity · 19/11/2026 · học trước checklist `docs/PHASE7-BUG-BASH.md` theo task T39.
 
 ## Tóm tắt 3 dòng

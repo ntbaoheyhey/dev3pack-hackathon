@@ -1,5 +1,7 @@
 # ReceiptRail — Kế hoạch & Checklist Bug Bash Phase 7
 
+> **C nhận một lượt20/11, T39 đóng.** Dùng [hiệu chỉnh bắt buộc](reviews/receiptrail-t39-acceptance.md): Cancel không close/hoàn rent; expiry dùng slot>=hạn; ngân sách theo PHASE6-PLAN chưa duyệt. Các số mẫu/câu gốc bên dưới không là contract hoặc quyền chi. T37 không chứng minh source nguyên bản đạt.
+
 - Tác giả: Antigravity (trợ lý Codex) · Ngày lập: 19/11/2026 · Thuộc nhiệm vụ T39.
 - Tài liệu học trước: [Note 029 — Ma trận ví, thiết bị và phương pháp kiểm thử Bug Bash](learning/029-receiptrail-bug-bash.md).
 - Ranh giới thực thi: Toàn bộ các ca trong checklist thuộc môi trường ví thật/devnet/thiết bị thật có trạng thái mặc định là **"⏳ Chưa chạy (Chờ Phase 7)"**. Tuyệt đối không tự ý chạy khi chưa có quyết định mở Phase 6/7 từ người dùng.

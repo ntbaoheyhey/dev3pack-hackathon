@@ -160,3 +160,11 @@ Nhận CSS/note từ a88ce9e và signature fix64b2573; dùng một production mo
 ### Bài học C: SDK khởi tạo vẫn gọi RPC dù các nút dùng mock (19/11)
 
 Headless C chặn được 4 request devnet trong 16 ca. Source cache @solana/client1.7.0, `dist/index.node.mjs:2926–2973` cho thấy createClient luôn gọi setCluster; setCluster:426–447 dựng lại RPC rồi warmup bằng getLatestBlockhash. Truyền rpcClient riêng cũng bị thay, nên không dùng như cơ chế tắt mạng. ReceiptRail mock chuyển sang connector Wallet Standard độc lập, không khởi tạo RPC client/provider; chỉ 4 fixture có tham chiếu nội bộ được chọn. Không vá global fetch hoặc giả RPC trả thành công. Node/headless phải kiểm không phát request, lifecycle/account/chain vẫn hủy terms; adapter tiền và program giữ nguyên.
+
+### Bài học C: đăng ký fixture phải lặp lại an toàn (20/11)
+
+Lấy hiệu registry trước/sau `registerMockWallets()` chỉ đúng lần đầu. Khi module React được nạp lại nhưng module fixture còn singleton, lần đăng ký sau không thêm ví và hiệu tập hợp rỗng. Hàm đăng ký phải trả chính danh sách fixture ổn định ở mọi lần gọi; không chọn theo tên ví vì extension khác có thể trùng tên. Reset test phải unregister đúng fixture của nó. C kiểm hồi quy hai lần đăng ký cùng registry có ví ngoài, rồi kiểm source thực bằng headless. Đây là sửa local trong vùng frontend A, không thêm dependency/quyền ví thật.
+
+### Artifact mock riêng — học trước khi build (20/11)
+
+Entry hiện tại `src/main.tsx` còn ClusterProof và WalletLab. Để trình public chỉ mock, cần entry HTML/React riêng dùng lại ReceiptRailApp, không bundle entry cũ hoặc route lab. Dùng Vite đã cache, config root/outDir riêng, không sửa Site/hosting ID đang có. Theo Sites skill mục local-only: kiểm/build trực tiếp, chưa registration/sync/package publication. Artifact cục bộ và ZIP có hashes không đồng nghĩa đã deploy hoặc đã có quyền public. Manifest phải bao phủ source/config/lock/tests/harness mới, không chỉ danh sách tracked cũ.

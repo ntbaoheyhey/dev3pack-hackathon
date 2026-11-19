@@ -1,5 +1,7 @@
 # Hàng đợi Antigravity — Phase 5 ReceiptRail local
 
+**Cập nhật C20/11:** đã nhận T40 (`51ee3b2`), T38 (`11d58b1`) và T39 (`a074779`). Ba task đóng sau một lượt nhận; hiệu chỉnh T38/T39 trong `docs/reviews/`, phần chưa kiểm là D06/D07. Không mở thêm vòng report. C đang chốt mock connector không RPC, registration lặp an toàn, artifact chỉReceiptRail và evidence cuối. Chưa có task phụ thuộc Phase6/public được phép chạy; các phân công cũ bên dưới là lịch sử.
+
 ## Hiện hành — Prompt 04, 19/11/2026 23:10:07.582 UTC+7
 
 Thứ tự hiện hành **T40 (sửa lỗi thật) → tiếp tục T38 → T39**. T37 đã được C review một lượt và đóng báo cáo; xem [review T37](../reviews/receiptrail-phase5-t37.md). Quyền trong [DECISION](../ideas/DECISION.md): headless có sẵn, localhost, ví mock; không điều khiển màn hình/chuột/bàn phím máy người dùng. Không cài, public, deploy/upgrade, signer mới, merge PR7 hoặc Phase 6 thật. Các đoạn T34–T36 bên dưới là lịch sử đã đóng; lệnh cấm headless cũ đã được thay đúng phạm vi này. C nghiên cứu/review song song, không chờ A.

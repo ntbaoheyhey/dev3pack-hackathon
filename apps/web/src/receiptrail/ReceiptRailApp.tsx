@@ -1,7 +1,5 @@
-import { useState, useEffect, useRef } from 'react';
-import { autoDiscover, createClient } from '@solana/client';
-import { SolanaProvider, useWalletConnection } from '@solana/react-hooks';
-import { DEVNET_RPC } from '../lib/inspect';
+import { useState, useEffect, useRef, useSyncExternalStore } from 'react';
+import { ReceiptRailMockWalletConnection } from './mock-wallet-connection';
 import { mockEngine, client, formatSol, formatWalletError, DEFAULT_PAYER,
   MOCK_RENT_LAMPORTS, MOCK_FEE_LAMPORTS } from './adapter';
 import { registerMockWallets } from './mock-wallets';
@@ -11,12 +9,15 @@ import { receiptRailWallet, watchReceiptRailWallets } from './wallet-lifecycle';
 import type { InspectedInvoice, SimulatedFault, InvoiceAccountEnvelope, InvoiceRecord } from './types';
 import './receiptrail.css';
 
-registerMockWallets();
+// Stable across React module reloads; never select extensions by their names.
+const mockWallets = registerMockWallets();
 const hex = (bytes: Uint8Array) => Array.from(bytes, b => b.toString(16).padStart(2, '0')).join('');
 const messageOf = (error: unknown) => error instanceof Error ? error.message : String(error);
 
 function ReceiptRailInner() {
-  const { connectors, connect, disconnect, wallet, status } = useWalletConnection();
+  const [connection] = useState(() => new ReceiptRailMockWalletConnection(mockWallets));
+  const { wallet, status } = useSyncExternalStore(connection.subscribe, connection.getSnapshot);
+  const { connectors, connect, disconnect } = connection;
   const [activeTab, setActiveTab] = useState<'view' | 'create' | 'list' | 'demo165'>(() => {
     const t = typeof window === 'undefined' ? '' : new URLSearchParams(window.location.search).get('tab');
     return t === 'create' || t === 'list' || t === 'demo165' ? t : 'view';
@@ -48,7 +49,7 @@ function ReceiptRailInner() {
   const [amountInput, setAmountInput] = useState('0.001');
   const [expiryDeltaInput, setExpiryDeltaInput] = useState('100');
   const [invoiceIdHexInput, setInvoiceIdHexInput] = useState('2a'.repeat(32));
-  const { address: connectedAddress, chainAllowed } = receiptRailWallet(wallet);
+  const { address: connectedAddress, chainAllowed } = receiptRailWallet(wallet, mockWallets);
   const formKey = JSON.stringify([payerInput, amountInput, expiryDeltaInput, invoiceIdHexInput]);
   const context: ConfirmationContext = { walletIdentity: wallet, address: connectedAddress,
     chainAllowed: chainAllowed && status === 'connected', walletEvent,
@@ -56,7 +57,7 @@ function ReceiptRailInner() {
   const latest = useRef(context);
   latest.current = context;
   const currentContext = (): ConfirmationContext => {
-    const raw = receiptRailWallet(session.current);
+    const raw = receiptRailWallet(session.current, mockWallets);
     return { ...latest.current, walletIdentity: session.current, address: raw.address,
       chainAllowed: raw.chainAllowed && latest.current.chainAllowed,
       walletEvent: eventSequence.current, slot: mockEngine.currentSlot };
@@ -859,13 +860,5 @@ function ReceiptRailInner() {
 }
 
 export default function ReceiptRailApp() {
-  const [solanaClient] = useState(() =>
-    createClient({ endpoint: DEVNET_RPC, walletConnectors: autoDiscover() })
-  );
-
-  return (
-    <SolanaProvider client={solanaClient}>
-      <ReceiptRailInner />
-    </SolanaProvider>
-  );
+  return <ReceiptRailInner />;
 }

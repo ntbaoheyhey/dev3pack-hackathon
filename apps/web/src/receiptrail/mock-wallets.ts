@@ -2,7 +2,8 @@ import { getWallets } from '@wallet-standard/app';
 import { address, getAddressEncoder } from '@solana/addresses';
 import { DEFAULT_MERCHANT, DEFAULT_PAYER, OTHER_WALLET } from './adapter.ts';
 
-let registered = false;
+let registeredWallets: readonly ReturnType<typeof createMockWallet>[] | undefined;
+let unregister = () => {};
 
 export function createMockWallet(
   name: string,
@@ -70,16 +71,20 @@ export function createMockWallet(
 }
 
 export function resetMockWalletsForTest() {
-  registered = false;
+  unregister();
+  unregister = () => {};
+  registeredWallets = undefined;
 }
 
 export function registerMockWallets() {
-  if (registered) return;
-  registered = true;
-
-  const walletsApi = getWallets();
-  walletsApi.register(createMockWallet('Tiệm Cà phê (Merchant)', DEFAULT_MERCHANT.address));
-  walletsApi.register(createMockWallet('Alice (Payer chỉ định)', DEFAULT_PAYER.address));
-  walletsApi.register(createMockWallet('Bob (Ví khác / Hacker)', OTHER_WALLET.address));
-  walletsApi.register(createMockWallet('Ví từ chối (Rejection Test)', '14uQeVj5tqViQh7yWWGStvfEG1Zmhx6uasJtWCJziofM', true));
+  if (registeredWallets) return registeredWallets;
+  const fixtures = Object.freeze([
+    createMockWallet('Tiệm Cà phê (Merchant)', DEFAULT_MERCHANT.address),
+    createMockWallet('Alice (Payer chỉ định)', DEFAULT_PAYER.address),
+    createMockWallet('Bob (Ví khác / Hacker)', OTHER_WALLET.address),
+    createMockWallet('Ví từ chối (Rejection Test)', '14uQeVj5tqViQh7yWWGStvfEG1Zmhx6uasJtWCJziofM', true),
+  ]);
+  unregister = getWallets().register(...fixtures);
+  registeredWallets = fixtures;
+  return registeredWallets;
 }
