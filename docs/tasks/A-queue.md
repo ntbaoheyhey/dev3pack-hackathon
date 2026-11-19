@@ -8,6 +8,8 @@ Thứ tự hiện hành **T40 (sửa lỗi thật) → tiếp tục T38 → T39*
 
 Đây là **một task sửa implementation** sau T37, không vòng sửa report. C giao lại cho A quyền sửa hẹp `apps/web/src/receiptrail/mock-wallets.ts`, regression test tương ứng và note025. Không sửa adapter/confirmation/program/client/IDL.
 
+**Phân công C bổ sung trong cùng T40:** kiểm trực tiếp phát hiện `createClient` tự gọi getLatestBlockhash lúc khởi tạo dù mock. C sở hữu `ReceiptRailApp.tsx` và module kết nối mock riêng để bỏ RPC warmup/giới hạn đúng fixtures, cùng harness kiểm nguồn thật/public entry. A tiếp tục fixture/registration regression/bootstrap; không sửa các file C đang xử lý. Đây là sửa ranh giới mock, không mở adapter devnet hoặc thêm vòng report.
+
 1. Sửa địa chỉ fixture ví từ chối thành pubkey hợp lệ 32 bytes; phương án A đã tìm là thêm `1` thành `14uQeVj5tqViQh7yWWGStvfEG1Zmhx6uasJtWCJziofM`. Đây chỉ là public fixture, không tạo keypair hoặc signer.
 2. Thêm regression thực gọi `registerMockWallets()` trên registry mới, kiểm tất cả ví đăng ký có address/publicKey đúng 32 bytes và ví từ chối vẫn reject. Test phải bắt được lỗi baseline; không chỉ gọi helper với merchant hợp lệ.
 3. Chạy web tests/build bằng cache; mở headless localhost/mock ở 1440×900 và 375×812, kiểm ReceiptRail mount + 4 mock connectors và không có pageerror. **Không intercept sửa source/response**, chặn request ngoài localhost. Lưu log/kết quả/ảnh mới dưới `docs/evidence/phase5/t40-YYYY-MM-DD/`, không ghi đè T37.

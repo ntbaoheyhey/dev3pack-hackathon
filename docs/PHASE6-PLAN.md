@@ -33,7 +33,7 @@ List dùng `getProgramAccounts` với `withContext`, base64, `dataSize=131`, dis
 - Nếu chỉ có `solana:signAndSendTransaction`: một nhánh riêng đã được test, ghi intent trước gọi ví, chỉ định devnet và tùy chọn `maxRetries: 0`, `skipPreflight: false` khi API hỗ trợ. Ví gửi trước khi app nhận kết quả; app không thể kiểm signed bytes trước broadcast. Đây là trust boundary cần hiển thị và kiểm riêng, không fallback tự động từ nhánh khác. Timeout có thể chưa có signature; giữ Unknown và đối soát PDA, không bịa txid.
 - Wallet/account/chain/session đổi, kể cả đổi ví cùng address, phải bỏ terms đã xác nhận. URL không mang quyền ký. Trong flow hóa đơn chỉ cho 3 instructions ReceiptRail và ComputeBudget cần thiết; không chèn approve, đổi authority hoặc transfer khác.
 
-[Note 026 và nguồn/types đã đọc](learning/026-receiptrail-rpc-confirmation.md). Ma trận extension thực tế còn chưa kiểm. Quyền headless của Prompt 04 chỉ bao gồm localhost/mock; không dùng quyền đó để ký devnet trong browser.
+[Note 026 và nguồn/types đã đọc](learning/026-receiptrail-rpc-confirmation.md). T38 đã nhận một lượt; [hiệu chỉnh và nguồn ba ví](reviews/receiptrail-t38-acceptance.md) áp dụng thay claims chưa chứng minh ở note 027. Ma trận extension thực tế còn chưa kiểm. Quyền headless của Prompt 04 chỉ bao gồm localhost/mock; không dùng quyền đó để ký devnet trong browser.
 
 ## 4. Unknown và thử lại
 

@@ -4,6 +4,8 @@
 - **Agent**: Antigravity (trợ lý Codex)
 - **Giai đoạn**: Trước sự kiện (Pre-hackathon); nghiên cứu và lập kế hoạch trước khi bước vào Phase 6.
 
+> **Hiệu chỉnh C sau khi nhận một lượt:** [review T38](../reviews/receiptrail-t38-acceptance.md) và [PHASE6-PLAN](../PHASE6-PLAN.md) thay các claim version/capability chưa chứng minh, parser slice, tự retry và tạo ví trong nội dung nghiên cứu bên dưới. Không dùng các đoạn đó làm contract thực thi.
+
 ---
 
 ## Tóm tắt 3 dòng

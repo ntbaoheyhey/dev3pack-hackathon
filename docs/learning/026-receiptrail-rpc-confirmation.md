@@ -59,3 +59,7 @@ Chọn một hàng đợi RPC toàn app, tối đa 1 request/2 giây, cache/dedu
 ## Nguồn và giới hạn
 
 Các link trên đã đọc 19/11/2026; API sống cần kiểm lại lúc triển khai. Source cache 1.5.0 đã đọc, không cài/nâng. Issue 2022 chỉ hỗ trợ bài học lịch sử. Chưa có bằng chứng compatibility 3 ví, CORS từ Site public, RPC throughput, backend hay transaction mới. T38 của A bổ sung ma trận ví/e2e; [PHASE6-PLAN](../PHASE6-PLAN.md) là bản xin quyền, chưa được duyệt.
+
+### Bổ sung sau nhận T38
+
+Không lấy signature bằng `slice(1,65)` như parser tổng quát. Đã đọc cache `@solana/client/node_modules/@solana/transactions/dist/types/codecs/transaction-codec.d.ts` và `signatures.d.ts`: `getTransactionDecoder` giải wire bytes, `getSignatureFromTransaction` lấy signature fee payer từ transaction. Cần kiểm đủ chữ ký và so message trước send; chưa thực thi ví thật. [Hiệu chỉnh T38](../reviews/receiptrail-t38-acceptance.md) tách nguồn extension/SDK/deeplink, chặn tạo ví và tự retry ngoài quyền.

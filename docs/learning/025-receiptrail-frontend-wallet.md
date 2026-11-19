@@ -149,3 +149,7 @@ Kiểm thử headless browser tự động trên 2 viewports (1440×900 và 375�
 ### C tích hợp T36 vào19/11
 
 Nhận CSS/note từ a88ce9e và signature fix64b2573; dùng một production model củaC theo phânchia093e36b. ControllerA lưu snapshot bằng reference và gán devnet cứng trongUI nên không dùng song song; tests thay bằng production model/submit/SDK đã tích hợp. `controller.ts` cũ giữ trong Git history a88ce9e, không phải module hiện hành. Nhận định T36A về25tests là báo cáo lịch sử; kiểm bản hợp nhất xem reviewC r3. Không browser/headless/ảnh mới theo yêu cầu người dùng; CSS mới chỉ được kiểm source/build, chưa chứng minh responsive bằng render.
+
+### Bài học C: SDK khởi tạo vẫn gọi RPC dù các nút dùng mock (19/11)
+
+Headless C chặn được 4 request devnet trong 16 ca. Source cache @solana/client1.7.0, `dist/index.node.mjs:2926–2973` cho thấy createClient luôn gọi setCluster; setCluster:426–447 dựng lại RPC rồi warmup bằng getLatestBlockhash. Truyền rpcClient riêng cũng bị thay, nên không dùng như cơ chế tắt mạng. ReceiptRail mock chuyển sang connector Wallet Standard độc lập, không khởi tạo RPC client/provider; chỉ 4 fixture có tham chiếu nội bộ được chọn. Không vá global fetch hoặc giả RPC trả thành công. Node/headless phải kiểm không phát request, lifecycle/account/chain vẫn hủy terms; adapter tiền và program giữ nguyên.

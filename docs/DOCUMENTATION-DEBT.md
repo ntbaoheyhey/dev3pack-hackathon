@@ -63,3 +63,5 @@ Merchant ký Create và Cancel; payer được chỉ định ký Pay. Merchant n
 | 6008 | WrongVersion | `invoice.version` không được hỗ trợ; khóa thao tác, không phải lỗi RPC/SDK version |
 
 Nguồn: [IDL](idl/receiptrail.json), [program](../programs/receiptrail/src/lib.rs), [client contract](PHASE4-CLIENT.md). Parser phải giữ namespace program; lỗi Anchor/System không tự mang code-name ReceiptRail.
+
+D06 — T38: version/capability/events và lỗi extension thật chưa kiểm. C đã bổ sung [nguồn/hiệu chỉnh](reviews/receiptrail-t38-acceptance.md), nhận khung nghiên cứu một lượt và giữ giới hạn này; không mở vòng sửa report.
