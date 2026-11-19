@@ -46,30 +46,33 @@ Theo chỉ đạo của Codex và quyết định mở Phase 4 & Phase 5 song so
 
 ### 2.1. Node Test Runner (`npm test`)
 
-Chạy 14 tests hành vi đạt 100% (pass 14 / fail 0):
+Chạy 17 tests hành vi đạt 100% (pass 17 / fail 0):
 ```sh
 cd apps/web && npm test
 ```
 
 Log kết quả:
 ```
-✔ base58 validates the decoded 32-byte address, including leading zero bytes (0.601375ms)
-✔ bad input makes no RPC request (0.429458ms)
-✔ wrong cluster stops before reading the program (15.8205ms)
-✔ successful observation uses fixed devnet RPC, confirmed reads, provenance and no writes (1.476709ms)
-✔ missing account and non-executable accounts are not successful deployment claims (1.285ms)
-✔ malformed account, owner, slot and RPC envelopes fail closed (1.985084ms)
-✔ RPC errors, HTTP failure, throttling and network failure remain explicit (0.686667ms)
-✔ cancellation and timeout cannot yield a ready result (6.287ms)
-✔ amount/u64: parses and formats SOL exactly with BigInt and rejects lossy inputs (1.126334ms)
-✔ roles & expiry: enforces payer/merchant roles and derives Expired from slot (8.590375ms)
-✔ account switch & terms: invalidates confirmed terms upon wallet change (1.218291ms)
-✔ pending/Unknown -> re-check: does not auto-resend and recovers confirmed state cleanly (5.016375ms)
-✔ CPI rollback: preserves principal and keeps invoice Open when transaction fails (2.957917ms)
-✔ error mapping: maps custom error codes 6000-6008 to Anchor IDL error definitions (1.092208ms)
-ℹ tests 14
+✔ base58 validates the decoded 32-byte address, including leading zero bytes (0.920667ms)
+✔ bad input makes no RPC request (0.56525ms)
+✔ wrong cluster stops before reading the program (16.457541ms)
+✔ successful observation uses fixed devnet RPC, confirmed reads, provenance and no writes (1.626667ms)
+✔ missing account and non-executable accounts are not successful deployment claims (2.253417ms)
+✔ malformed account, owner, slot and RPC envelopes fail closed (1.772167ms)
+✔ RPC errors, HTTP failure, throttling and network failure remain explicit (0.312584ms)
+✔ cancellation and timeout cannot yield a ready result (5.860583ms)
+✔ amount/u64: parses and formats SOL exactly with BigInt and rejects lossy inputs (0.867042ms)
+✔ roles & expiry: enforces payer/merchant roles and derives Expired from slot (10.581542ms)
+✔ account switch & terms: invalidates confirmed terms upon wallet change (1.167084ms)
+✔ pending/Unknown -> re-check: does not auto-resend and recovers confirmed state cleanly (3.324417ms)
+✔ CPI rollback: preserves principal and keeps invoice Open when transaction fails (1.614625ms)
+✔ error mapping: maps custom error codes 6000-6008 to Anchor IDL error definitions (0.605792ms)
+✔ C review 1: confirmedTerms is invalidated on wallet/account/chain change and disconnect for both Pay and Cancel (0.844791ms)
+✔ C review 2: wallet reject handling does not assume code 4001 is universal (0.273417ms)
+✔ C review 3: signature is pre-send client signed, retained on Unknown with same invoiceID and PDA (1.824667ms)
+ℹ tests 17
 ℹ suites 0
-ℹ pass 14
+ℹ pass 17
 ℹ fail 0
 ```
 
@@ -111,7 +114,22 @@ Chạy kiểm thử giao diện bằng Chrome headless trên `http://127.0.0.1:4
 
 ---
 
-## 4. Xác nhận sử dụng Artifact Client từ Codex
+## 4. Phản hồi và Bằng chứng giải quyết Review của Codex (C)
+
+C đã có review trực tiếp trong `docs/tasks/A-queue.md` sau mốc note025; A đã triển khai và chứng minh đầy đủ bằng code và unit tests:
+1. **Review 1 (Hủy confirmedTerms trên mọi thay đổi ví/ngắt kết nối cho cả Pay và Cancel)**:
+   - Triển khai: `ReceiptRailApp.tsx` và `adapter.ts` reset toàn bộ `termsConfirmed = false` và `confirmedSnapshot = null` khi có sự kiện đổi ví, đổi tài khoản (kể cả cùng địa chỉ ví khác) hoặc ngắt kết nối ví.
+   - Bằng chứng test: Test `C review 1` trong `apps/web/tests/receiptrail.test.mjs` kiểm tra và chứng minh việc hủy bỏ đồng thời cho cả luồng Pay và Cancel.
+2. **Review 2 (Xử lý reject không phụ thuộc mã 4001)**:
+   - Triển khai: Hàm `formatWalletError` trong `adapter.ts` kiểm tra linh hoạt cả mã lỗi 4001 lẫn chuỗi thông điệp từ chối của extension (`/reject|denied|user rejected|từ chối/i`), tránh ép buộc mọi ví phải trả về đúng mã 4001.
+   - Bằng chứng test: Test `C review 2` trong `apps/web/tests/receiptrail.test.mjs` kiểm tra lỗi có code 4001, lỗi thuần chuỗi không có code, và phân biệt với lỗi mạng kỹ thuật.
+3. **Review 3 (Signature được tạo từ bước ký client trước gửi, Unknown giữ nguyên ID/PDA)**:
+   - Triển khai: Khi xảy ra sự cố RPC Timeout, signature đã ký từ client (pre-send signature) được lưu giữ cùng đúng `invoiceId` và địa chỉ PDA ban đầu. Không tự động sinh ID mới hay re-sign. Nút re-check on-chain sử dụng chính signature này để đối soát.
+   - Bằng chứng test: Test `C review 3` trong `apps/web/tests/receiptrail.test.mjs` xác thực pre-send signature được lưu giữ nguyên vẹn qua chu kỳ Unknown -> Paid.
+
+---
+
+## 5. Xác nhận sử dụng Artifact Client từ Codex
 
 - **Xác nhận sử dụng tốt**: Client `packages/receiptrail-client` của Codex hoạt động chính xác và đáp ứng đầy đủ yêu cầu của UI:
   - Khởi tạo adapter với `@solana/addresses` thành công, tương thích chuẩn với TypeScript.

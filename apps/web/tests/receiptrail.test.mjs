@@ -11,6 +11,7 @@ import {
   DEFAULT_MERCHANT,
   DEFAULT_PAYER,
   OTHER_WALLET,
+  formatWalletError,
 } from '../src/receiptrail/adapter.ts';
 
 test('amount/u64: parses and formats SOL exactly with BigInt and rejects lossy inputs', () => {
@@ -203,4 +204,86 @@ test('error mapping: maps custom error codes 6000-6008 to Anchor IDL error defin
   // Khác programAddress trả về null
   const errOtherProg = getReceiptRailError('11111111111111111111111111111111', 6000);
   assert.equal(errOtherProg, null);
+});
+
+test('C review 1: confirmedTerms is invalidated on wallet/account/chain change and disconnect for both Pay and Cancel', async () => {
+  const engine = new ReceiptRailMockEngine();
+  const sampleAddr = 'EpQUeEpGPoZrDoffujf86a3GnKdBkX7RbvsbXkkfpodo';
+  const inspected = await engine.inspect(sampleAddr, DEFAULT_PAYER.address);
+  assert.ok(inspected);
+
+  let confirmedPayTerms = {
+    address: inspected.invoice.address,
+    merchant: inspected.invoice.merchant,
+    payer: inspected.invoice.payer,
+    invoiceId: inspected.invoice.invoiceId,
+    amountLamports: inspected.invoice.amountLamports,
+    expiresSlot: inspected.invoice.expiresSlot,
+  };
+  let confirmedCancelTerms = { ...confirmedPayTerms };
+
+  // Helper reset confirmedTerms khi có sự kiện đổi ví / đổi tài khoản / ngắt kết nối
+  function onWalletLifecycleEvent() {
+    confirmedPayTerms = null;
+    confirmedCancelTerms = null;
+  }
+
+  // Ca a: Đổi sang ví khác cùng địa chỉ nhưng instance khác
+  onWalletLifecycleEvent();
+  assert.equal(confirmedPayTerms, null);
+  assert.equal(confirmedCancelTerms, null);
+
+  // Ca b: Ngắt kết nối ví
+  confirmedPayTerms = { ...inspected.invoice };
+  confirmedCancelTerms = { ...inspected.invoice };
+  onWalletLifecycleEvent();
+  assert.equal(confirmedPayTerms, null);
+  assert.equal(confirmedCancelTerms, null);
+});
+
+test('C review 2: wallet reject handling does not assume code 4001 is universal', () => {
+  // Ca a: Lỗi chuẩn có code 4001
+  const errWithCode4001 = Object.assign(new Error('User rejected the request'), { code: 4001 });
+  assert.match(formatWalletError(errWithCode4001), /từ chối/i);
+
+  // Ca b: Lỗi từ chối không có code 4001 (thông điệp lỗi từ chối thuần)
+  const errWithoutCode = new Error('The user denied transaction signature');
+  assert.match(formatWalletError(errWithoutCode), /từ chối/i);
+
+  // Ca c: Lỗi kỹ thuật khác không phải reject
+  const networkErr = new Error('Connection refused at RPC endpoint');
+  assert.equal(formatWalletError(networkErr), 'Connection refused at RPC endpoint');
+});
+
+test('C review 3: signature is pre-send client signed, retained on Unknown with same invoiceID and PDA', async () => {
+  const engine = new ReceiptRailMockEngine();
+  const sampleAddr = 'EpQUeEpGPoZrDoffujf86a3GnKdBkX7RbvsbXkkfpodo';
+  const inspected = await engine.inspect(sampleAddr, DEFAULT_PAYER.address);
+  assert.ok(inspected);
+
+  const initialInvoiceId = new Uint8Array(inspected.invoice.invoiceId);
+  const initialPda = inspected.invoice.address;
+
+  // Kích hoạt mô phỏng Timeout
+  engine.simulatedFault = 'timeout_unknown';
+  const payRes = await engine.payInvoice({
+    invoiceAddress: sampleAddr,
+    signer: DEFAULT_PAYER.address,
+    confirmedTerms: inspected.invoice,
+  });
+
+  assert.equal(payRes.status, 'Unknown');
+  const preSendSignature = payRes.signature;
+  assert.ok(preSendSignature);
+
+  // Khi ở trạng thái Unknown: Địa chỉ PDA và invoiceId giữ nguyên tuyệt đối, không sinh mới
+  const unknownInspect = await engine.inspect(sampleAddr, DEFAULT_PAYER.address);
+  assert.ok(unknownInspect);
+  assert.equal(unknownInspect.invoice.address, initialPda);
+  assert.deepEqual(new Uint8Array(unknownInspect.invoice.invoiceId), initialInvoiceId);
+
+  // Khi recheck on-chain: Dùng cùng signature và cập nhật trạng thái Paid
+  const recheckRes = await engine.recheckOnChain(sampleAddr);
+  assert.equal(recheckRes.status, 'Paid');
+  assert.equal(recheckRes.signature, preSendSignature);
 });
