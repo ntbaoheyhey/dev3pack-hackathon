@@ -1,12 +1,14 @@
 # Hàng đợi Antigravity — Phase 5 ReceiptRail local
 
-**Chủ file: Codex. T35 đã review; T36 mới — A sửa UI/lifecycle, C sửa mock adapter tiền/trạng thái song song.** Người dùng đã mở Phase4 và Phase5; [nguyên văn/quyền](../ideas/DECISION.md). Fetch/pull `work`, đọc Thẻ nhớ/AGENTS/ROADMAP/note trước làm. P4-B đã hoàn tất162tx finalized, không chạy lại. Không cần chờ C để bắt đầu phần A.
+**Chủ file: Codex. T35 đã review; T36 mới — A sửa CSS/note025, C hoàn thiện logic ví/terms và adapter song song.** Người dùng đã mở Phase4 và Phase5; [nguyên văn/quyền](../ideas/DECISION.md). Fetch/pull `work`, đọc Thẻ nhớ/AGENTS/ROADMAP/note trước làm. P4-B đã hoàn tất162tx finalized, không chạy lại. Không cần chờ C để bắt đầu phần A.
 
 ## T36 — UI/lifecycle local theo phần thiếu cụ thể (mới, làm ngay)
 
 [Review r2](../reviews/receiptrail-phase5-r2.md) nhận phần đạt của T35; [repro7ca](../reviews/receiptrail-phase5-r2-repro.json) là lỗi hiện tại. Không mở lại T31–T33 hoặc sửa reportT35 cho đẹp. C chịu trách nhiệm `adapter.ts`, `types.ts` và **file test mới** `receiptrail-adapter-review.test.mjs`; A không sửa3file này trong T36. C giữ API async hiện tại và public mockEngine/client/roles; sẽ ghi contract mới khi push.
 
-A sở hữu `ReceiptRailApp.tsx`, `mock-wallets.ts`, CSS, production lifecycle/controller mới nếu cần, `tests/receiptrail.test.mjs` và test UI mới, note025/evidence Phase5. Đọc DEVLOG và review trước sửa.
+**Cập nhật phân chia16:57UTC+7:** C đã xong adapter và tiếp tục phần chạm ví/terms để không chờ trợ lý: C nhận `ReceiptRailApp.tsx`, `mock-wallets.ts`, module confirmation/lifecycle và các tests JS liên quan. **A chỉ sửa `receiptrail.css`, note025 và evidence Phase5/DEVLOG/A-done/HANDOFF A** trong lượt này; không sửa TSX/adapter/types/controllers/tests C. Nếu đã có patch TSX đang làm, giữ lại và báo diff trong A-done để C tích hợp, không ghi đè. A không cần làm lại7repro hoặc reportT35.
+
+A làm ngay responsive theo ảnh cũ và sửa note025 ở mục4, chạy build bằng cache và ghi đúng giới hạn ở mục5. Các mục1–3/copy trongTSX bên dưới C nhận làm; đây là phân chia implementation, không mở vòng sửa report cũ.
 
 1. Tách production controller/hook quản lý snapshot Create/Pay/Cancel; test gọi chính code dùng bởi app. Reset khi đổi wallet identity kể cả cùngaddress, accounts/chains/disconnect, đổi invoice, sửa input/preset/slot thay terms. Submit dùng snapshot đã duyệt, không tự dựng Cancel terms tại click. Chặn double submit ngay trước await; stale async results không thay selection/ví mới.
 2. Wallet Standard mock publicKey phải encode đúng address. Test connector production của SDK, account/chain change, disconnected/guest/reject không cần browser. Không gọi sign/send feature hoặc tự mở extension. Nếu SDK không expose chains thì subscribe standard:events trong lifecycle; ghi đúng giới hạn.
