@@ -15,7 +15,7 @@
 
 ## Còn lại
 
-1. Identity triển khai đã đổi sang8NGSPufBmGB1oHqaZpY1jhJYz1X4gqFiNXCQmxfapYko; runtime32/client23/guards7 local đạt. Push source/IDL/client/fixture/helpers rồi kiểm CI đúng revision trước broadcast.
+1. Identity triển khai đã đổi sang8NGSPufBmGB1oHqaZpY1jhJYz1X4gqFiNXCQmxfapYko; runtime32/client23/guards7 local đạt. Đã push6d08e5c; CI PR44477949631/push44477944228 đang chạy, cần kiểm đúng revision trước broadcast.
 2. Sau CI triển khai đạt, ghi ci-deployment.json với inputHashes/localBinarySha256 từ metadata; chạy deploy.mjs --inspect rồi --upload-approved. Không tạo keys mới hoặc dùng identity cũ. Helpers upload/CLI/verify đã chuẩn bị, chưa mạng.
 3. Upload đạt thì deploy.mjs --deploy-approved; verify.mjs --deployment kiểm toàn tx/binary/authority, rồi smoke inspect/send, verify --all. Cap1.8SOL; journal/report tồn tại thì đối soát, không auto-resend/upgrade.
 4. T34 tiếp tục local; nhận bài nộp và review tiền/quyền khi có. Chưa A xác nhận; không mở lại T31–T33.

@@ -6,7 +6,7 @@ Codex · 19/11/2026. Phase4/5 **đã mở local**, nguyên văn tại [DECISION]
 
 - Program create/pay/cancel/read và invariants:32runtime tests local đạt, không đổi logic/wire contract; [review](reviews/receiptrail-phase4-local.md)/[evidence](evidence/phase4/README.md).
 - Client sinh toàn IDL:23tests local + TypeScript/generated/browser-target bundle đạt; [API bàn giao A](PHASE4-CLIENT.md). Không RPC/sign/send.
-- Binary local hiện147,864bytes, SHA256 `962b721ae089a77123283bfe1dde0233284b2a793d692cc0abc53e2a8b6eab5a`. ID local hiện không có deployment keypair; chưa thể deploy nguyên identity này.
+- Binary lúc đề xuất147,864bytes/hash962b721a… dùng ID local không có signer. Sau CI đầu đạt đã tạo đúng4keys và đổi identity; [metadata hiện hành](evidence/phase4/deployment-local-metadata.json) ghi binary/IDL/client mới, chưa broadcast.
 - T34 UI/ví đã giao A và có contract; chưa nhận bài nộp/xác nhận mới. Không dùng kết quả client của C thay browser/T34.
 
 ## P4-A — CI đúng source Phase4

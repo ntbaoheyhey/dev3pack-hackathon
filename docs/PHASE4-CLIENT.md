@@ -58,7 +58,7 @@ Invoice đọc ra có `{address,version,bump,merchant,payer,invoiceId,amountLamp
 - API chụp input trước await để thay đổi object của caller không đổi instruction giữa lúc tính PDA. Kết quả typed array vẫn là dữ liệu của caller, không là chứng chỉ state; builder luôn đọc/kiểm envelope mới.
 - `canPay`/`canCancel` chỉ là preflight UI trên dữ liệu đã đọc, không thay on-chain constraints hoặc xác minh chữ ký. Số dư/rent/phí/commitment/chain identity phải do adapter phù hợp xử lý; không dùng sample rent/CU VM làm báo giá mạng.
 - Giữ cùng invoiceID/PDA khi Pending/Unknown. Không tự gửi/ký lại, đổi ID hoặc gọi timeout là thất bại. Paid+confirmed cần nhãn chờ finalized; logs/events không chứng minh payment thành công nếu transaction fail.
-- Dữ liệu mock dùng [runtime ABI fixture](evidence/phase4/runtime-abi-r2.json) có nhãn. `cancelledHex` trong export là fixture riêng, không bằng chứng reset state. Không viết UI cho reset/close/update/refund vì program không hỗ trợ.
+- Dữ liệu mock dùng [runtime ABI fixture hiện hành](fixtures/receiptrail-abi.json) có nhãn. `cancelledHex` trong export là fixture riêng, không bằng chứng reset state. Không viết UI cho reset/close/update/refund vì program không hỗ trợ.
 
 ## A nhận T34
 

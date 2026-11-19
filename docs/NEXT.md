@@ -2,8 +2,8 @@
 
 Người dùng mở Phase4/5 rồi trả lời **“Đồng ý cả P4-A và P4-B”**, log13:55:34.348UTC+7 ngày19/11/2026; [DECISION](ideas/DECISION.md)/[record](evidence/phase4/user-permission-p4ab-2026-11-19.json). Không hỏi lại. Automation15phút ACTIVE.
 
-1. Áp patch đã review và chạy P4-A đúng pins/lockfiles trên runner, kiểm jobs/logs/SHA thật. Nền local đã có32runtime/23client, [evidence](evidence/phase4/README.md).
-2. Sau CI đầu đạt, tạo đúng4keypairs ngoài Git, cập nhật identity/IDL/client rồi build/test+CI revision triển khai; trước broadcast phải CI/preflight/budget đạt.
+1. CI đầu8df85c0 đã đạt cả push/PR; đúng4keys đã tạo ngoài Git. Không chạy lại bước tạo keys.
+2. Revision triển khai6d08e5c đã push; CI PR44477949631/push44477944228 đang chạy. Kiểm jobs/logs/SHA, ghi ci-deployment.json với hash inputs/binary, rồi preflight/budget trước broadcast.
 3. P4-B ReceiptRail initial deploy+CLI smoke trên devnet, **trần1.8SOL**, đúng [PHASE4-PLAN](PHASE4-PLAN.md), journal/đối soát/finalized; không mở upgrade mới hoặc auto-resend.
 4. A tiếp tục T34 local UI/ví/mock theo [queue](tasks/A-queue.md)/[client contract](PHASE4-CLIENT.md); C review khi nộp. Chưa có bài nộp mới, không lấy client tests của C thay acceptance UI.
 5. Chốt docs/PR7/push sau mốc; không merge. T31/T32/T33 vẫn đóng/nợD01–D03, không mở vòng sửa.
