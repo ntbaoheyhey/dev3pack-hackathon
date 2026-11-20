@@ -19,6 +19,7 @@
 | T38 | xong | Hoàn thành note 027: ma trận 3 ví (Phantom/Solflare/Backpack), 8 ca lỗi UX/CTA, contract adapter Phase 6, kế hoạch e2e. |
 | T40 | xong | Đã sửa P5-F01 trong mock-wallets.ts, thêm regression test (46 tests pass), kiểm headless direct không intercept 1440 và 375 đạt 0 pageerror. |
 | T39 | xong | Hoàn thành note 029 và checklist docs/PHASE7-BUG-BASH.md (24 ca, 10 chiều kiểm thử, P0/P1/P2/P3 rõ ràng, kết quả mặc định Chưa chạy). |
+| T41 | xong | Tạo ReceiptRailDevnetWalletConnection, devnet-wallet-panel.tsx và 9 test cases độc lập; 61/61 tests pass, build sạch. |
 
 - Việc T11: Xong. Đã crawl và review evidence cho ReceiptRail (retry, timeout, idempotency) vào `docs/data/receiptrail-evidence.md`.
 
@@ -149,3 +150,10 @@
   - **Checklist Bug Bash 24 ca kiểm thử chi tiết (`docs/PHASE7-BUG-BASH.md`)**: Phủ kín 6 phân nhóm từ BB-01 đến BB-24, mỗi ca có đầy đủ Preconditions, Test Steps, Expected Behavior, Severity, Evidence Requirement, Owner và Result. Toàn bộ các ca thuộc phạm vi ví thật/devnet/thiết bị thật có kết quả mặc định là `⏳ Chưa chạy (Chờ Phase 7)`. Tách biệt rành mạch với Phần A (Local mock) đã nghiệm thu an toàn trong Phase 5.
   - **Snapshot Manifest & Bảng đối chiếu**: Tổng hợp hashes và commit đối chiếu giữa Client contract (`6d08e5c`), Web app (`51ee3b2`), IDL (`6d08e5c`), Evidence T37/T40, Note 027/029.
   - **Mẫu báo cáo lỗi tái hiện được (Bug Report Template)**: Thiết lập biểu mẫu chuẩn phục vụ ghi nhận finding khi chạy Phase 7. Cập nhật mục lục note, DEVLOG và HANDOFF. Không code adapter thật, không cài ví, không tự mở Phase 6/7.
+
+- Việc T41: Xong. Đã triển khai hoàn chỉnh module kết nối Wallet Standard cho môi trường Devnet và component panel theo đúng hợp đồng C/A:
+  - **Module Kết nối Devnet (`apps/web/src/receiptrail/devnet-wallet-connection.ts`)**: Lớp `ReceiptRailDevnetWalletConnection` cung cấp `subscribe`, `getSnapshot`, `connect(wallet)`, `disconnect()`, `destroy()`. Snapshot bảo tồn raw `Wallet` và raw `WalletAccount` phục vụ kiểm tra capability phía sau. Khám phá ví động qua `@wallet-standard/app` (`getWallets()`), tự động cập nhật khi extension được thêm/bớt. Quản lý `generation` tăng đơn điệu trên mọi thay đổi session (cùng address khác ví vẫn tăng generation). Bỏ kết quả connect muộn nếu session đã bị ngắt trong lúc chờ popup. Ràng buộc nghiêm ngặt chỉ chấp nhận tài khoản có `chains` chứa `'solana:devnet'`. Xử lý từ chối đa dạng không phụ thuộc mã 4001. Đảm bảo 0 lệnh gọi RPC warmup, 0 request mạng ngoài ý muốn, 0 logic ký/gửi.
+  - **Component Panel (`apps/web/src/receiptrail/devnet-wallet-panel.tsx`)**: `DevnetWalletPanel` đồng bộ store qua `useSyncExternalStore`. Gắn nhãn `[DEVNET]` toàn diện. Hiển thị thông báo hướng dẫn cài đặt extension khi không có ví và không fallback về mock. Hiển thị danh sách ví, trạng thái kết nối, địa chỉ rút gọn, mạng và thế hệ. Tuyệt đối không chứa nút bấm ký hay gửi giao dịch.
+  - **Kiểm thử Hồi quy Độc lập (`apps/web/tests/devnet-wallet.test.mjs`)**: 9 test cases độc lập bao phủ 100% yêu cầu: discovery động, bảo tồn raw references, xử lý reject không phụ thuộc 4001, từ chối mạng không phải devnet, tăng generation khi đổi ví cùng address, lắng nghe sự kiện `standard:events`, chống race condition kết nối muộn, dọn dẹp subscription/destroy, và xác nhận 0 cuộc gọi mạng/0 API sign/send.
+  - **Kiểm thử & Build**: `npm test` đạt **61/61 tests pass** sạch sẽ (251ms); `npm run build` và `npm run build:receiptrail-mock` hoàn tất không lỗi (164ms và 117ms).
+  - **Hồ sơ nộp**: `docs/evidence/phase6/t41-2026-11-20/` gồm `report.md`, `manifest.json`, `test-run.log`. Cập nhật note 027, DEVLOG và HANDOFF. Chuyển sang chờ Codex nghiệm thu và giao task tiếp theo.

@@ -131,3 +131,28 @@ Khi bước vào Phase 6, việc kiểm thử sẽ được chia làm hai cấp 
 
 - Toàn bộ nội dung Note 027 là tài liệu nghiên cứu và thiết kế chuẩn bị cho Phase 6; **chưa viết code adapter thật, chưa cài extension vào máy người dùng, chưa tạo keypair devnet và chưa gửi bất kỳ giao dịch mạng thật nào**.
 - Mọi thao tác kiểm thử thực tế tiếp tục tuân thủ nghiêm ngặt ranh giới cục bộ (Phase 5 local mock) theo quyết định trong `docs/ideas/DECISION.md`.
+
+---
+
+## 7. Bài học & Thiết kế Kiến trúc T41 — Devnet Wallet Standard Connector (2026-11-20)
+
+Trước khi tiến hành code cho task T41, các nguyên tắc kỹ thuật sau được xác lập cho module `ReceiptRailDevnetWalletConnection` và component `DevnetWalletPanel`:
+
+1. **Khám phá ví động (Dynamic Discovery)**:
+   - Sử dụng `@wallet-standard/app` qua `getWallets()`. Lắng nghe sự kiện `register` và `unregister` để tự động bổ sung hoặc loại bỏ ví trong snapshot khi extension được nạp hoặc gỡ bỏ trên trình duyệt.
+   - Tuyệt đối không đăng ký 4 ví mock demo trong connector của môi trường tích hợp devnet này.
+2. **Bảo tồn Raw Wallet & Account**:
+   - Snapshot lưu trữ nguyên bản đối tượng raw `Wallet` và `WalletAccount` thay vì che giấu đằng sau các lớp trừu tượng thu hẹp. Điều này cho phép tầng adapter của Codex trực tiếp đối soát các capability như `wallet.features['solana:signTransaction']`, `wallet.features['solana:signAndSendTransaction']`, `account.chains` và `account.features`.
+3. **Quản lý Thế hệ & Hủy bỏ Điều khoản (Generation & Invalidation)**:
+   - Thuộc tính `generation` tăng đơn điệu mỗi khi có sự thay đổi về tài khoản, mạng, ngắt kết nối hoặc thiết lập phiên mới.
+   - Thao tác kết nối một ví khác có cùng địa chỉ công khai (`account.address`) vẫn phải tăng `generation` và làm mất hiệu lực toàn bộ `confirmedTerms` đã duyệt trước đó.
+4. **Chống Race Condition & Bỏ qua Kết quả Muộn (Late Connect Discard)**:
+   - Quá trình kết nối ví là bất đồng bộ và phụ thuộc vào thời gian người dùng thao tác trên popup.
+   - Sử dụng biến cục bộ `connectGen = ++this.generation` để đối chiếu sau mỗi lệnh `await`. Nếu trong lúc chờ kết nối mà người dùng bấm "Disconnect" hoặc chọn ví khác, kết quả trả về của promise cũ lập tức bị bỏ qua, và gọi `disconnect()` dọn dẹp phiên mồ côi.
+5. **Ràng buộc Mạng Devnet (`solana:devnet`)**:
+   - Kiểm tra nghiêm ngặt `account.chains` phải chứa `'solana:devnet'`. Nếu tài khoản đang ở `solana:mainnet` hoặc mạng khác, từ chối phiên và hiển thị thông báo hướng dẫn chuyển mạng trong extension ví.
+6. **Xử lý Từ chối Đa dạng**:
+   - Không giả định mọi ví đều ném mã lỗi 4001 khi người dùng từ chối. Bắt cả mã 4001, các chuỗi regex `/reject|cancel|denied|user closed/i`, hoặc lỗi chuỗi thuần để hiển thị thông báo thân thiện.
+7. **Không Tác dụng Phụ (Zero Side-Effects)**:
+   - Không tự động kích hoạt popup kết nối khi component mount; không gọi RPC warmup; không chứa logic ký hay gửi giao dịch.
+
