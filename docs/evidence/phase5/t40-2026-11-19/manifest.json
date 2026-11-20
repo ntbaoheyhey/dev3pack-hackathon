@@ -1,0 +1,59 @@
+{
+  "task": "T40",
+  "date": "2026-11-19",
+  "timestamp": "2026-11-19T16:54:13.107Z",
+  "targetUrl": "http://127.0.0.1:4175/receiptrail/",
+  "mode": "Direct Unintercepted Navigation (Clean source from server)",
+  "fixDetails": {
+    "file": "apps/web/src/receiptrail/mock-wallets.ts",
+    "line": 80,
+    "before": "walletsApi.register(createMockWallet('Ví từ chối (Rejection Test)', '4uQeVj5tqViQh7yWWGStvfEG1Zmhx6uasJtWCJziofM', true));",
+    "after": "walletsApi.register(createMockWallet('Ví từ chối (Rejection Test)', '14uQeVj5tqViQh7yWWGStvfEG1Zmhx6uasJtWCJziofM', true));",
+    "reason": "Base58 decoding requires leading 1 to represent the 0x00 byte for 32-byte public key length"
+  },
+  "testRuns": [
+    {
+      "viewport": "1440x900",
+      "pageErrors": [],
+      "connectorCount": 4,
+      "connectorNames": [
+        "Kết nối Tiệm Cà phê (Merchant)",
+        "Kết nối Alice (Payer chỉ định)",
+        "Kết nối Bob (Ví khác / Hacker)",
+        "Kết nối Ví từ chối (Rejection Test)"
+      ],
+      "title": "ReceiptRail — Đường ray Hóa đơn & Thanh toán Solana",
+      "rejectionNotice": "Người dùng đã từ chối thao tác trong ví (Rejection)",
+      "pass": true,
+      "screenshots": {
+        "mount": "2026-11-19-t40-mounted-1440x900.png",
+        "rejection": "2026-11-19-t40-rejection-handled-1440x900.png",
+        "merchant": "2026-11-19-t40-merchant-connected-1440x900.png"
+      }
+    },
+    {
+      "viewport": "375x812",
+      "pageErrors": [],
+      "connectorCount": 4,
+      "connectorNames": [
+        "Kết nối Tiệm Cà phê (Merchant)",
+        "Kết nối Alice (Payer chỉ định)",
+        "Kết nối Bob (Ví khác / Hacker)",
+        "Kết nối Ví từ chối (Rejection Test)"
+      ],
+      "title": "ReceiptRail — Đường ray Hóa đơn & Thanh toán Solana",
+      "rejectionNotice": "Người dùng đã từ chối thao tác trong ví (Rejection)",
+      "pass": true,
+      "screenshots": {
+        "mount": "2026-11-19-t40-mounted-375x812.png",
+        "rejection": "2026-11-19-t40-rejection-handled-375x812.png",
+        "merchant": "2026-11-19-t40-merchant-connected-375x812.png"
+      }
+    }
+  ],
+  "allPassed": true,
+  "sourceHashes": {
+    "apps/web/src/receiptrail/mock-wallets.ts": null,
+    "apps/web/tests/receiptrail.test.mjs": null
+  }
+}

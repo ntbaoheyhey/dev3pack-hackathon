@@ -1,0 +1,111 @@
+name: CI
+
+on:
+  push:
+    branches: [work, main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  web:
+    # P3-A approved: docs/ideas/DECISION.md, user reply logged 2026-11-18 10:13:11.851 UTC+7.
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    defaults:
+      run:
+        working-directory: apps/web
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 24.22.2
+          package-manager-cache: false
+      - run: npm ci --ignore-scripts --no-fund
+      - run: npm test
+      - run: npm run build
+
+  research:
+    # P3-A approved: docs/ideas/DECISION.md, user reply logged 2026-11-18 10:13:11.851 UTC+7.
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 24.22.2
+          package-manager-cache: false
+      - name: Offline parser and evidence replay
+        run: node --test research/phase1/spikes.test.mjs research/phase1/fee-mint.test.mjs research/phase1/replay-evidence.test.mjs
+
+  anchor-lab:
+    # P3-A approved: docs/ideas/DECISION.md, user reply logged 2026-11-18 10:13:11.851 UTC+7.
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      CARGO_TERM_COLOR: never
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Install build prerequisites
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential pkg-config libssl-dev libudev-dev clang cmake
+          rustup toolchain install 1.100.0 --profile minimal --component rustfmt --component clippy
+      - name: Install pinned Agave and Anchor
+        run: |
+          curl --proto '=https' --tlsv1.2 -sSfL https://release.anza.xyz/v4.1.2/install -o /tmp/agave-install.sh
+          sh /tmp/agave-install.sh --no-modify-path v4.1.2
+          echo "$HOME/.local/share/solana/install/active_release/bin" >> "$GITHUB_PATH"
+          # Build the approved source/lock: AVM's binary attestation request can return 403.
+          cargo +1.100.0 install --git https://github.com/otter-sec/anchor --rev 8d9d1488d9b8af41b266d7513eea2e668adf15a2 --locked avm anchor-cli --root "$RUNNER_TEMP/anchor-1.2.2" --target-dir "$RUNNER_TEMP/anchor-build"
+          test "$("$RUNNER_TEMP/anchor-1.2.2/bin/anchor" --version)" = "anchor-cli 1.2.2"
+          echo "ANCHOR_BIN=$RUNNER_TEMP/anchor-1.2.2/bin/anchor" >> "$GITHUB_ENV"
+      - name: Install pinned SBF compiler
+        run: |
+          test "$(uname -m)" = x86_64
+          archive="$RUNNER_TEMP/platform-tools-v1.57.tar.bz2"
+          platform_dir="$HOME/.cache/solana/v1.57/platform-tools"
+          curl --proto '=https' --tlsv1.2 -sSfL --retry 3 https://github.com/anza-xyz/platform-tools/releases/download/v1.57/platform-tools-linux-x86_64.tar.bz2 -o "$archive"
+          printf '%s  %s\n' b0f7af104adf726fff2a6a09ea2eb2f2d2965c92295f4d7388c08d140e0c2b00 "$archive" | sha256sum --check
+          mkdir -p "$platform_dir"
+          tar -xjf "$archive" -C "$platform_dir"
+          "$platform_dir/rust/bin/rustc" --version
+      - name: Warm locked dependency cache after approval
+        run: cargo fetch --locked
+      - name: Build both programs offline and verify generated IDLs
+        run: |
+          export PHASE3_HOST_TOOLS="$(dirname "$(rustup which --toolchain 1.100.0 rustc)")"
+          export PATH="$PHASE3_HOST_TOOLS:$PATH"
+          export CARGO_NET_OFFLINE=true
+          unset RUSTUP_TOOLCHAIN
+          bash scripts/check-phase3-offline.sh
+          mkdir -p target/deploy target/idl target/types
+          cp target/phase3-offline/deploy/phase3_hello.so target/deploy/phase3_hello.so
+          export RECEIPTRAIL_SO="$PWD/target/phase3-offline/deploy/receiptrail.so"
+          "$ANCHOR_BIN" idl build -p phase3_hello -o target/idl/phase3_hello.json -t target/types/phase3_hello.ts -- --offline --locked
+          "$ANCHOR_BIN" idl build -p receiptrail -o target/idl/receiptrail.json -- --offline --locked
+          cmp docs/idl/receiptrail.json target/idl/receiptrail.json
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 24.22.2
+          package-manager-cache: false
+      - name: Verify generated-IDL client offline
+        run: |
+          npm ci --ignore-scripts --no-fund --prefix tools/devnet-lab
+          npm test --prefix tools/devnet-lab
+      - name: Verify ReceiptRail generated client offline
+        run: |
+          npm ci --ignore-scripts --no-fund --prefix apps/web
+          bash scripts/check-receiptrail-client.sh

@@ -1,0 +1,102 @@
+
+> clusterproof-web@0.1.0 test
+> node --test tests/*.test.mjs
+
+✔ T41: discovery, dynamic register/unregister and isolation from demo fixtures (1.401042ms)
+✔ T41: connect preserves exact raw wallet and account references on Devnet (0.380958ms)
+✔ T41: rejection handles diverse errors without assuming code 4001 (0.5715ms)
+✔ T41: unsupported chains reject safely and provide clear guidance (0.815375ms)
+✔ T41: same address with different wallet or new session increments generation (0.197125ms)
+✔ T41: events dynamically update account, non-devnet chain, and wallet disconnect (0.452042ms)
+✔ T41: late connect response from abandoned request cannot revive disconnected session (0.198625ms)
+✔ T41: subscription cleanup and destroy prevent memory leaks and reject post-destroy actions (0.205667ms)
+✔ T41: zero network/fetch calls and zero sign/send API on devnet connection (0.171541ms)
+✔ base58 validates the decoded 32-byte address, including leading zero bytes (0.76075ms)
+✔ bad input makes no RPC request (0.464375ms)
+✔ wrong cluster stops before reading the program (13.231292ms)
+✔ successful observation uses fixed devnet RPC, confirmed reads, provenance and no writes (1.454208ms)
+✔ missing account and non-executable accounts are not successful deployment claims (1.325917ms)
+✔ malformed account, owner, slot and RPC envelopes fail closed (1.161833ms)
+✔ RPC errors, HTTP failure, throttling and network failure remain explicit (0.280375ms)
+✔ cancellation and timeout cannot yield a ready result (5.811083ms)
+✔ mock concurrent pay commits principal once and charges only the submitted operation (9.773375ms)
+✔ mock pay/cancel race permits exactly one terminal transition in either order (9.9885ms)
+✔ concurrent duplicate create cannot overwrite terms or charge a second rent (3.913042ms)
+✔ lost response commits at submission; repeated recheck never executes payment or changes bytes/balances (3.718209ms)
+✔ dropped timeout stays Open/Expired after reconciliation and spends no principal or fee (3.5375ms)
+✔ unknown record, caller terms, returned accounts and snapshots cannot mutate engine state (2.940084ms)
+✔ create snapshots inputs before async PDA derivation (2.340917ms)
+✔ different invoices cannot spend more than a shared payer balance during concurrent execution (10.198875ms)
+✔ forced rollback keeps both principals, account bytes and rent; fee is separately observable (2.84025ms)
+✔ signature belongs only to its invoice, and expired cancel does not refund rent (7.678834ms)
+✔ strict mock serialization rejects truncation and u64 overflow; invalid signer changes no ledger (2.713459ms)
+✔ create review uses exact input expiry, amount, full ID and canonical PDA before the first await (10.902708ms)
+✔ create review rejects expiry sum overflow, malformed ID, aliases and imprecise amounts (1.640375ms)
+✔ create: every wallet identity, account, chain, event, invoice, form or slot change consumes approval (2.3605ms)
+✔ pay: every wallet identity, account, chain, event, invoice, form or slot change consumes approval (1.80525ms)
+✔ cancel: every wallet identity, account, chain, event, invoice, form or slot change consumes approval (1.51725ms)
+✔ approval rejects guest, wrong role, unsupported chain, wrong invoice and wrong review kind (1.299292ms)
+✔ production submit consumes reviewed pay terms, locks synchronously and moves principal once (2.41125ms)
+✔ cancel submits the reviewed snapshot and keeps principal and rent, including expired Open (2.594875ms)
+✔ wallet/selection change suppresses an in-flight result without unlocking a second submission (2.29025ms)
+✔ read generations reject older detail/preview results and invalidate on context change or submission (1.28975ms)
+✔ SDK connector receives matching public key bytes; mock exposes no signing or sending (0.613125ms)
+✔ raw chain-only events invalidate approval even when SDK account callback is silent (1.635666ms)
+✔ SDK account switch, disconnect, register/unregister and listener cleanup invalidate safely (0.388125ms)
+✔ rejected real SDK connect is handled without assuming every wallet uses error 4001 (0.217708ms)
+✔ repeated fixture registration retains four exact fixtures and excludes same-name external wallets (0.819042ms)
+✔ mock wallet connect/switch/disconnect/rejection never constructs a network request (0.872625ms)
+✔ external connector IDs cannot invoke an extension from the mock connection (0.986958ms)
+✔ raw account and chain-only changes replace the snapshot; disconnect clears it (0.406334ms)
+✔ late connect completion cannot revive a disconnected session (1.815167ms)
+✔ subscribe cleanup and remount preserve a usable connection without duplicate notifications (0.277292ms)
+✔ amount/u64: parses and formats SOL exactly with BigInt and rejects lossy inputs (0.863958ms)
+✔ roles & expiry: enforces payer/merchant roles and derives Expired from slot (11.387417ms)
+✔ P5-01: duplicate create rejects across all states (Open, Paid, Cancelled) without resetting ledger (10.882542ms)
+✔ P5-01: canonical PDA derivation and decode verification for all seeded fixtures (3.230541ms)
+✔ P5-02: pre-validation precedes simulated timeout fault (prevents invalid Unknown) (3.238208ms)
+✔ P5-02: pending state locks operations per-invoice and prevents duplicate submissions (4.329333ms)
+✔ P5-02: recheckOnChain respects terminal/expiry and never fabricates Paid (7.963709ms)
+✔ P5-04: strict 64-hex and u64 parsing with BigInt (0.40225ms)
+✔ P5-04: dynamic list decoding reflects true account state (3.576209ms)
+✔ CPI rollback: preserves principal and keeps invoice Open when transaction fails (2.739167ms)
+✔ error mapping: maps custom error codes 6000-6008 to Anchor IDL error definitions (0.532334ms)
+✔ wallet reject handling does not assume code 4001 is universal (0.183792ms)
+✔ T40 regression: registerMockWallets registers all fixtures with valid 32-byte publicKeys and rejection wallet rejects (0.4515ms)
+ℹ tests 61
+ℹ suites 0
+ℹ pass 61
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 207.873667
+
+> clusterproof-web@0.1.0 build
+> tsc --noEmit && vite build && node scripts/static-routes.mjs
+
+vite v8.3.8 building client environment for production...
+transforming...
+✓ 184 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                      0.64 kB │ gzip:   0.41 kB
+dist/assets/index-DPOxMTNH.css      15.70 kB │ gzip:   4.14 kB
+dist/assets/WalletLab-CNwTvM7a.js   41.64 kB │ gzip:  14.85 kB
+dist/assets/index-DurK3gSt.js      460.78 kB │ gzip: 135.24 kB
+
+✓ built in 94ms
+
+> clusterproof-web@0.1.0 build:receiptrail-mock
+> tsc --noEmit && vite build --config vite.receiptrail-mock.config.ts
+
+vite v8.3.8 building client environment for production...
+transforming...
+✓ 132 modules transformed.
+rendering chunks...
+computing gzip size...
+dist-receiptrail-mock/index.html                   0.63 kB │ gzip:   0.42 kB
+dist-receiptrail-mock/assets/index-DPOxMTNH.css   15.70 kB │ gzip:   4.14 kB
+dist-receiptrail-mock/assets/index-DhG3-EZ8.js   447.71 kB │ gzip: 130.41 kB
+
+✓ built in 78ms

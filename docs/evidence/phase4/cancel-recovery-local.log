@@ -1,0 +1,64 @@
+Verified 3 instructions, 1 account, 3 events, 9 errors; IDL sha256=39a63939f55df952429a0d4f0c4d3691daf0858a7e2bc5c56473be173385ef40
+(node:60838) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ browser-target bundle runs with no Node globals, RPC, wallet or signing capability (38.692792ms)
+✔ all ABI entries are generated and source hash matches the checked-in Anchor IDL (1.065208ms)
+✔ canonical PDA agrees with Rust, Kit and independent web3.js derivation (5.773792ms)
+✔ three high-level builders match Rust runtime instruction bytes, order and signer/writable privileges (8.058459ms)
+✔ instruction serialization agrees with independent Anchor coder across u64 boundaries (4.632583ms)
+✔ Open, Paid and Cancelled decode exactly as Anchor on real runtime account bytes (4.28525ms)
+✔ three emitted runtime events decode exactly as the independent Anchor event coder (1.628125ms)
+✔ one lamport and max u64 SOL inputs preserve every digit without rounding (0.31825ms)
+✔ ambiguous, float, exponent, negative, overprecision and overflow amounts are rejected (0.507917ms)
+✔ create rejects invalid amount, stale expiry, zero or aliased wallets before building (1.991875ms)
+✔ owner, executable, length, type and version are all required for an invoice (0.784959ms)
+✔ wrong address, seed merchant/id and noncanonical bump do not pass owner/type checks alone (2.262958ms)
+✔ decoded account terms enforce positive amount/expiry and distinct nonzero wallets (0.94525ms)
+✔ unknown status and impossible paid slots are rejected; a payment at slot zero is valid (1.293208ms)
+✔ generated decode reads u64 above Number safety and rejects trailing event bytes/type confusion (0.217416ms)
+✔ a changed confirmed term or account cannot silently become a different payment (6.61225ms)
+✔ wrong signer, unknown clock, expiry boundary and terminal state block pay; expired Open can cancel (5.771833ms)
+✔ inspection distinguishes expiry, role and terminal state without inventing commitment (1.818ms)
+✔ custom errors are scoped to ReceiptRail program and integer code, never substring log matching (0.147958ms)
+✔ malformed addresses, bytes, argument names and fixed System account fail closed (0.655375ms)
+✔ async derivation snapshots confirmed terms, account bytes and create input before yielding (1.132666ms)
+✔ unsupported adapter output and noncanonical address codec are rejected (0.207291ms)
+✔ independent web3.js adapter also consumes the same client and produces the Rust create instruction (0.871208ms)
+ℹ tests 23
+ℹ suites 0
+ℹ pass 23
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 240.995542
+✔ buffer writes match a finalized Agave CLI transaction wire format (6.624417ms)
+✔ buffer verification rejects foreign authority, wrong owner and partial account layout (0.448959ms)
+✔ budget counts previous debit, next operation and reserve under the exact approved cap (0.440125ms)
+✔ deployment verifier checks canonical loader pair, authority and exact bytecode (2.130833ms)
+✔ short, forged-owner, oversized or revoked-authority deployment accounts are rejected (1.822166ms)
+✔ transport conversion retains every Rust account privilege and makes an independent data copy (0.368291ms)
+✔ duplicate simulation requires structured error plus the ReceiptRail origin and no transfer (0.4665ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 138.609041
+✔ recovery accepts only the four completed operations and never a fifth or unresolved send (4.406833ms)
+✔ recovery rejects a sent duplicate or changed fee history (3.213875ms)
+✔ cancel requires the original terms and Open state; expired Open remains cancellable (0.775333ms)
+✔ cancel reconciliation permits only the 10000 fee, preserves actors/rents and paid bytes (0.223917ms)
+✔ Cancel persists exact signature before simulation and broadcast; one send only (0.289458ms)
+✔ existing journal or failed simulation never broadcasts (0.251458ms)
+✔ unknown send, wrong RPC signature and persistence failure cannot trigger an automatic resend (0.265917ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 69.282458

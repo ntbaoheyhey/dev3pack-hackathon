@@ -1,0 +1,138 @@
+{
+  "runAtUtc": "2026-11-17T14:26:40.811Z",
+  "node": "v24.22.2",
+  "rpc": "https://api.devnet.solana.com",
+  "genesisHash": "EtWTRABZaYq6iMfeYKouRu166VU2xqa1wcaWoxPkrZBG",
+  "durationMs": 378,
+  "scriptHashes": {
+    "rpc.mjs": "d9335568a3e5976d58c2ade495c0a16eedb6dd22710fd81e1b17741098f13f93",
+    "cluster-proof.mjs": "bcfda900aba38bef876e1d582f0c4160adec1f52267a10b79d1a2e13447cfa01",
+    "netpay.mjs": "6aa626d5976a293d0c9c907521367ec059f68d4b42d2fe53e63407d347db6cee",
+    "fee-mint.mjs": "7359576ce970fac125f659131ed2731ab3b904b1d2fba034a822d1adac8907d7",
+    "netpay-live.mjs": "347fb237891be612e538c5b638488d875964741681db0b0e0165955b473f143e"
+  },
+  "searchLimit": {
+    "filteredQueries": 0,
+    "mintReads": 32,
+    "responseBytes": 6000000
+  },
+  "discovery": {
+    "mode": "explicit_mint"
+  },
+  "epochBefore": {
+    "absoluteSlot": 523298469,
+    "blockHeight": 510413753,
+    "epoch": 1211,
+    "slotIndex": 146469,
+    "slotsInEpoch": 432000,
+    "transactionCount": 19934261437
+  },
+  "epochAfter": {
+    "absoluteSlot": 523298471,
+    "blockHeight": 510413755,
+    "epoch": 1211,
+    "slotIndex": 146471,
+    "slotsInEpoch": 432000,
+    "transactionCount": 19934261471
+  },
+  "rawSnapshot": {
+    "addresses": [
+      "GE6q1pL6TjYkrc9jwpdCJAKqZDmAscVR7D9dV7MmXPpd",
+      "HxDYFvcXnLuy4VdxXCooUXrch8DZW34oUteQ6N2EFxEr"
+    ],
+    "context": {
+      "apiVersion": "4.5.0-beta.0",
+      "slot": 523298469
+    },
+    "value": [
+      {
+        "data": [
+          "AQAAAHyK/IK1Go6/i86VbevqbZqgosFzOCXSX0pIUFZIpTvrACBKqdEBAAAGAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQEAbAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAICxxvlLHJ9X124wqcYB+AJg4sUy0pWaoRkWxreXO9DDAAAAAAAAAACpBAAAAAAAAAAQpdToAAAAZACpBAAAAAAAAAAQpdToAAAAZAAOAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABncCXh9JgxA3ROlWaEB5K39zsbFsRE7hOjfZtzZf/q7A==",
+          "base64"
+        ],
+        "executable": false,
+        "lamports": 2407920,
+        "owner": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "rentEpoch": 18446744073709552000,
+        "space": 346
+      },
+      {
+        "data": [
+          "AQAAAI07/+rmCWp4/TvyeWj7KX3tkFoErTzHSzCXQMGo81dkANo/EOkAAAAGAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQEAbACNO//q5glqeP078nlo+yl97ZBaBK08x0swl0DBqPNXZI07/+rmCWp4/TvyeWj7KX3tkFoErTzHSzCXQMGo81dkAAAAAAAAAAA7BAAAAAAAAAAQpdToAAAAZAA7BAAAAAAAAAAQpdToAAAAZAA=",
+          "base64"
+        ],
+        "executable": false,
+        "lamports": 2825760,
+        "owner": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "rentEpoch": 18446744073709552000,
+        "space": 278
+      }
+    ]
+  },
+  "reports": [
+    {
+      "mint": "GE6q1pL6TjYkrc9jwpdCJAKqZDmAscVR7D9dV7MmXPpd",
+      "status": "NOT_QUOTED",
+      "reason": "unsupported_extensions:14"
+    },
+    {
+      "mint": {
+        "decimals": 6,
+        "supply": "1001000000000",
+        "mintAuthority": "AWKYsCGBcfGLSz6QpmXzRn7EJ9fRhiJsjYSLDV3c9L9y",
+        "freezeAuthority": null,
+        "configAuthority": "AWKYsCGBcfGLSz6QpmXzRn7EJ9fRhiJsjYSLDV3c9L9y",
+        "withdrawAuthority": "AWKYsCGBcfGLSz6QpmXzRn7EJ9fRhiJsjYSLDV3c9L9y",
+        "withheldAmount": "0",
+        "older": {
+          "epoch": "1083",
+          "maxFee": "1000000000000",
+          "bps": "100"
+        },
+        "newer": {
+          "epoch": "1083",
+          "maxFee": "1000000000000",
+          "bps": "100"
+        },
+        "extensionTypes": [
+          1
+        ],
+        "mintDataSha256": "d115098b26d4231b8f61a66d80b39b31508b7c0dbdf6bcade810f0f0d4411086"
+      },
+      "status": "FEE_QUOTE_ONLY",
+      "epoch": "1211",
+      "targetNet": "10000",
+      "gross": "10102",
+      "fee": "102",
+      "net": "10000",
+      "selectedFee": {
+        "epoch": "1083",
+        "maxFee": "1000000000000",
+        "bps": "100"
+      },
+      "limitation": "Mint fee schedule only; accounts, balance, freeze, memo/CPI requirements and settlement NOT_CHECKED. Snapshot can become stale."
+    }
+  ],
+  "supportedQuoteCount": 1,
+  "rpcCalls": [
+    {
+      "method": "getGenesisHash",
+      "durationMs": 251
+    },
+    {
+      "method": "getEpochInfo",
+      "durationMs": 42
+    },
+    {
+      "method": "getMultipleAccounts",
+      "durationMs": 41
+    },
+    {
+      "method": "getEpochInfo",
+      "durationMs": 41
+    }
+  ],
+  "writesToChain": 0,
+  "status": "SUPPORTED_MINT_QUOTED",
+  "trust": "RPC observation only; quote is not transfer execution or independent source verification"
+}

@@ -1,0 +1,105 @@
+{
+  "runAtUtc": "2026-11-17T14:25:26.176Z",
+  "node": "v24.22.2",
+  "rpc": "https://api.devnet.solana.com",
+  "genesisHash": "EtWTRABZaYq6iMfeYKouRu166VU2xqa1wcaWoxPkrZBG",
+  "durationMs": 293,
+  "scriptHashes": {
+    "rpc.mjs": "90ab37d9e351c95c7ddfabc78b4117413fc30457686108b935658ad3b7fde03b",
+    "netpay.mjs": "6aa626d5976a293d0c9c907521367ec059f68d4b42d2fe53e63407d347db6cee",
+    "fee-mint.mjs": "7359576ce970fac125f659131ed2731ab3b904b1d2fba034a822d1adac8907d7",
+    "netpay-live.mjs": "f542feedc58ffcffc527801b7245e0c7f8e8d902720d991c42726322a8b7543c"
+  },
+  "searchLimit": {
+    "filteredQueries": 0,
+    "mintReads": 32,
+    "responseBytes": 6000000
+  },
+  "discovery": {
+    "mode": "explicit_mint"
+  },
+  "epochBefore": {
+    "absoluteSlot": 523298159,
+    "blockHeight": 510413443,
+    "epoch": 1211,
+    "slotIndex": 146159,
+    "slotsInEpoch": 432000,
+    "transactionCount": 19934254256
+  },
+  "epochAfter": {
+    "absoluteSlot": 523298159,
+    "blockHeight": 510413443,
+    "epoch": 1211,
+    "slotIndex": 146159,
+    "slotsInEpoch": 432000,
+    "transactionCount": 19934254256
+  },
+  "rawSnapshot": {
+    "addresses": [
+      "GE6q1pL6TjYkrc9jwpdCJAKqZDmAscVR7D9dV7MmXPpd",
+      "4F6PM96JJxngmHnZLBh9n58RH4aTVNWvDs2nuwrT5BP7"
+    ],
+    "context": {
+      "apiVersion": "4.5.0-beta.0",
+      "slot": 523298159
+    },
+    "value": [
+      {
+        "data": [
+          "AQAAAHyK/IK1Go6/i86VbevqbZqgosFzOCXSX0pIUFZIpTvrACBKqdEBAAAGAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQEAbAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAICxxvlLHJ9X124wqcYB+AJg4sUy0pWaoRkWxreXO9DDAAAAAAAAAACpBAAAAAAAAAAQpdToAAAAZACpBAAAAAAAAAAQpdToAAAAZAAOAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABncCXh9JgxA3ROlWaEB5K39zsbFsRE7hOjfZtzZf/q7A==",
+          "base64"
+        ],
+        "executable": false,
+        "lamports": 2407920,
+        "owner": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "rentEpoch": 18446744073709552000,
+        "space": 346
+      },
+      {
+        "data": [
+          "AQAAAFKPBl77LmHS+cehHeYZbJ3Mv8SKk381W1BykZebwuOFAf1BsnzPEQAGAQEAAAC2A2hmyCAyD9MAxkeJZEM3kPBO5qfgVcyifycPIgDlKwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQMAIAC2A2hmyCAyD9MAxkeJZEM3kPBO5qfgVcyifycPIgDlKwwAIAC2A2hmyCAyD9MAxkeJZEM3kPBO5qfgVcyifycPIgDlKwEAbAC2A2hmyCAyD9MAxkeJZEM3kPBO5qfgVcyifycPIgDlK7YDaGbIIDIP0wDGR4lkQzeQ8E7mp+BVzKJ/Jw8iAOUrAAAAAAAAAAD5AgAAAAAAAAAAAAAAAAAAAAD5AgAAAAAAAAAAAAAAAAAAAAAEAEEAtgNoZsggMg/TAMZHiWRDN5DwTuan4FXMon8nDyIA5SsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAIEAtgNoZsggMg/TAMZHiWRDN5DwTuan4FXMon8nDyIA5St8Vfu0zHx4muheboAQGPwDUy/hi0qmz1gGRHyNgWVvcwEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgBAALYDaGbIIDIP0wDGR4lkQzeQ8E7mp+BVzKJ/Jw8iAOUrAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAASAEAAtgNoZsggMg/TAMZHiWRDN5DwTuan4FXMon8nDyIA5SswL0gCB5/EPro3oOjfbvtsw7swTPLUxVpn5H4dpBNayhMAsQC2A2hmyCAyD9MAxkeJZEM3kPBO5qfgVcyifycPIgDlKzAvSAIHn8Q+ujeg6N9u+2zDuzBM8tTFWmfkfh2kE1rKDQAAAEdsb2JhbCBEb2xsYXIEAAAAVVNER1AAAABodHRwczovL3Rva2VuLW1ldGFkYXRhLnBheG9zLmNvbS91c2RnX21ldGFkYXRhL3NhbmRib3gvc29sYW5hL3VzZGdfbWV0YWRhdGEuanNvbgAAAAA=",
+          "base64"
+        ],
+        "executable": false,
+        "lamports": 7008720,
+        "owner": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "rentEpoch": 18446744073709552000,
+        "space": 869
+      }
+    ]
+  },
+  "reports": [
+    {
+      "mint": "GE6q1pL6TjYkrc9jwpdCJAKqZDmAscVR7D9dV7MmXPpd",
+      "status": "NOT_QUOTED",
+      "reason": "unsupported_extensions:14"
+    },
+    {
+      "mint": "4F6PM96JJxngmHnZLBh9n58RH4aTVNWvDs2nuwrT5BP7",
+      "status": "NOT_QUOTED",
+      "reason": "unsupported_extensions:3,12,4,16,14,18,19"
+    }
+  ],
+  "supportedQuoteCount": 0,
+  "rpcCalls": [
+    {
+      "method": "getGenesisHash",
+      "durationMs": 165
+    },
+    {
+      "method": "getEpochInfo",
+      "durationMs": 42
+    },
+    {
+      "method": "getMultipleAccounts",
+      "durationMs": 42
+    },
+    {
+      "method": "getEpochInfo",
+      "durationMs": 42
+    }
+  ],
+  "writesToChain": 0,
+  "status": "NO_SUPPORTED_MINT_FOUND",
+  "trust": "RPC observation only; quote is not transfer execution or independent source verification"
+}

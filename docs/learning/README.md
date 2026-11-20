@@ -31,11 +31,11 @@ Tiến độ và bước tiếp tục sau compact nằm trong [docs/HANDOFF.md](
 | [000 — Codex vs Antigravity: điểm mạnh và chia việc](000-ai-tools-codex-vs-antigravity.md) | Nội dung gốc của repo đích, giữ nguyên | xong — theo mục lục ban đầu; chưa rà soát lại |
 | [001 — Luật hackathon Dev3pack](001-hackathon-rules.md) | Lịch, sponsors/supporters, giải, track, chấm, video, form và code | Claude; Codex sửa R04 — đã đọc trang chủ/FAQ ngày 17/11/2026; giờ UTC trên dashboard còn chưa kiểm chứng |
 | [002 — Solana căn bản](002-solana-basics.md) | Account, transaction, PDA, CPI, fees, cluster; bài đọc 15 phút | Codex — Đã đối chiếu docs; chưa chạy on-chain |
-| [003 — Toolchain](003-solana-toolchain.md) | Kiểm kê máy, bảng tương thích, lệnh cài và lỗi macOS/WSL | Codex — Chưa cài; lệnh cài chờ đồng ý |
-| [004 — Anchor từ A đến Z](004-anchor-a-to-z.md) | Macro/constraints, IDL/Codama, ví dụ counter, test/deploy/verify | Codex — Code và quy trình chưa chạy |
+| [003 — Toolchain](003-solana-toolchain.md) | Kiểm kê máy, bảng tương thích, lệnh cài và lỗi macOS/WSL | Codex — Bộ đã cài; Linux27cf7ac3jobs/57tests/run; hello devnet137tx finalized/counter1, chưa verified source build |
+| [004 — Anchor từ A đến Z](004-anchor-a-to-z.md) | Macro/constraints, IDL/Codama, ví dụ counter, test/deploy/verify | Codex — Lab phase3-hello đã build/IDL/6 runtime tests; snippet study-counter chưa chạy |
 | [005 — Frontend Solana](005-solana-frontend.md) | Kit/Wallet Standard, parser theo program ID + mã, Codama init/config/run có mốc source | Antigravity; Codex sửa R02/R08/R09 — 11 fixture offline đạt; codegen/SDK chưa chạy, sandbox cũ chỉ là báo cáo lịch sử |
 | [006 — Token & NFT](006-token-and-nft.md) | Token-2022: destination withholding, harvest/withdraw và authority; ngân sách NFT theo cấu hình | Antigravity; Codex sửa R05/R09 — đã đối chiếu nguồn Transfer Fees; chưa chạy on-chain, ngân sách 500.000 cNFT dưới 1 SOL chưa đủ căn cứ |
-| [007 — Bảo mật program](007-solana-program-security.md) | 12 lỗi/checks, mỗi mục có ví dụ sai/đúng và test âm | Codex — Checklist review; chưa compile/test |
+| [007 — Bảo mật program](007-solana-program-security.md) | 12 lỗi/checks, mỗi mục có ví dụ sai/đúng và test âm | Codex — Checklist + 5 test âm lab đạt; chưa bao phủ toàn checklist/audit |
 | [008 — Solana Mobile (Seeker)](008-solana-mobile-seeker.md) | MWA authorize theo protocol package 3.0.2, account/encoding và gợi ý mobile | Antigravity; Codex sửa R06/R09 — đã đọc spec/source; chưa compile/chạy ví/thiết bị, chưa xác nhận điều kiện mobile track |
 | [009 — Mẹo Codex/Antigravity](009-tips-codex-antigravity.md) | Rules, Artifacts, Browser và slash commands có nguồn cụ thể; tách mẹo Codex khỏi nguồn gán nhầm Antigravity | Codex & Antigravity; sửa R03 — đã đọc nguồn, chưa benchmark model/quota; UI phụ thuộc công cụ và client |
 | [010 — AI tooling Solana](010-solana-ai-tooling.md) | So sánh MCP/skills, cấu hình Codex/Antigravity, quyền và nguồn phiên bản | Codex — Chưa cài/kết nối; có mẫu devnet/read-only |
@@ -43,14 +43,34 @@ Tiến độ và bước tiếp tục sau compact nằm trong [docs/HANDOFF.md](
 | [012 — Chuẩn bị bài thi Dev3pack](012-winning-solana-hackathons.md) | Thể lệ chính thức, trọng số tự đề xuất, lịch sử Colosseum/Superteam có cảnh báo, checklist/form/README | Antigravity; Codex sửa R04/R09 — đã đối chiếu Dev3pack; checklist chưa thử bằng bài thi thật |
 | [013 — Video demo tối đa 165 giây](013-hackathon-demo-video.md) | 15 + 20 + 80 + 30 + 20 = 165 giây; placeholder yêu cầu số đo/log thật | Antigravity; Codex sửa R04/R07/R09 — bảng và script khớp; chưa có video xuất, latency/rent/test/deployment chưa đo |
 | [014 — SDK nhà tài trợ](014-sponsor-sdks.md) | Chọn SDK theo sản phẩm, pricing có nguồn, ElevenLabs/Firecrawl giữ key phía server | Antigravity; Codex sửa R01/R04/R09 — đã đọc docs/pricing; chưa tích hợp, không suy bounty từ số SDK |
-| 015 — Tiêu chí chấm hackathon và cách giám khảo chấm thật | Đặt chỗ cho Phase 1 chặng A | Codex — chưa viết |
-| 016 — Đánh giá độ khả thi kỹ thuật và rủi ro của ý tưởng | Đặt chỗ cho Phase 1 chặng A | Codex — chưa viết |
-| 017 — Khung thẩm định ý tưởng sản phẩm và nghiên cứu về chấm ý tưởng | Đặt chỗ cho Phase 1 chặng A | Antigravity — chưa viết |
-| 018 — Có thật sự cần blockchain/Solana không; thông tin chấm Dev3pack | Đặt chỗ cho Phase 1 chặng A | Antigravity — chưa viết |
-| 019 — Nguồn ý tưởng trong hệ sinh thái Solana | Đặt chỗ cho Phase 1 chặng C | Codex — chưa viết |
-| 020 — Nguồn vấn đề thật của người dùng | Đặt chỗ cho Phase 1 chặng C | Antigravity — chưa viết |
+| [015 — Tiêu chí chấm hackathon và cách giám khảo chấm thật](015-hackathon-judging.md) | Đối chiếu nguồn chính thức 2024–2026, quy trình chấm, tiêu chí ứng viên | Codex — đã nghiên cứu; chờ review chéo |
+| [016 — Đánh giá độ khả thi kỹ thuật và rủi ro của ý tưởng](016-technical-feasibility-risk.md) | Critical path, dependency D0–D3, issue thực tế, ngưỡng feasibility | Codex — đã nghiên cứu; chưa chạy spike |
+| [017 — Khung thẩm định ý tưởng sản phẩm và nghiên cứu về chấm ý tưởng](017-khung-tham-dinh-y-tuong.md) | Đặt chỗ cho Phase 1 chặng A | Antigravity — xong theo báo cáo A; Codex đang review |
+| [018 — Có thật sự cần blockchain/Solana không; thông tin chấm Dev3pack](018-blockchain-solana-check.md) | Đặt chỗ cho Phase 1 chặng A | Antigravity — xong theo báo cáo A; Codex đang review |
+| [019 — Nguồn ý tưởng trong hệ sinh thái Solana](019-solana-idea-sources.md) | RFS/RFP/funding, dự án thật/archived, P-Token/Light/x402, evidence filtering | Codex — đã nghiên cứu; chưa spike |
+| [020 — Nguồn vấn đề thật của người dùng](020-nguon-van-de-that.md) | Bản đầu của A; review C01–C04 tại reviews/C-codex | Antigravity — cần bổ sung nguồn cụ thể; review không chặn |
+
+| [021 — Kiểm chứng payment, cluster và token net](021-payment-cluster-evidence.md) | Evidence C01–C03, RPC read-only và parser mint/u64 | Codex — T31 đã đóng sau lượt cuối7857e9b; nhận phần đạt, phần thiếu thành nợ D01, không crawl/vòng sửa mới |
+
+| [022 — Chuẩn bị độc lập Phase 2/3](022-phase2-3-independent-prep.md) | Contract/harness, toolchain/client, web/hosting và runner offline hai program | Codex — P3-A/P3-B đạt:137tx finalized, hello counter1/debit0.651874801SOL dưới1.5SOL; T31–T33 đóng với nợ D01–D03; trình duyệt Phase4 |
+
+| [023 — ReceiptRail Phase2 và spike Anchor local](023-receiptrail-phase2-spike.md) | Account/PDA,payment atomicity,build offline và LiteSVM | Codex — 19runtime/IDL local đạt,F4 D2; T32/T33 đã đóng sau lượt cuối7857e9b, nhận phần đạt/nợ D02–D03; không mở vòng sửa, chưa verdict giáo viên |
+
+| [024 — ReceiptRail Phase4: program và client](024-receiptrail-program-client.md) | Program invariants, runtime/ABI vectors và generated client bằng cache | Codex —32runtime/23client/7guards+7recovery; CI triển khai/recovery đạt; P4-B162tx finalized/debit0.760701080SOL<1.8; A đã dùng client |
+| [025 — ReceiptRail frontend và ví](025-receiptrail-frontend-wallet.md) | Mock boundary, Wallet Standard, terms và Unknown recovery | A + C — T36 đã hợp nhất;45webtests/build+7repro đạt local, browser sau sửa chưa kiểm |
 
 ## Bài học / lỗi đã gặp
+
+Các số đã được giữ chỗ trước khi viết theo Prompt 04 (19/11/2026); trạng thái hiện hành:
+
+| Note | Nội dung | Chủ trì / trạng thái |
+| --- | --- | --- |
+| [026 — RPC, confirmation và recovery](026-receiptrail-rpc-confirmation.md) | RPC/filter/confirmation/recovery/priority fee và lựa chọn backend | C — đã đối chiếu docs/types; PHASE6-PLAN là đề xuất, chưa mở Phase 6 thật |
+| [027 — receiptrail-wallet-e2e](027-receiptrail-wallet-e2e.md) | Ví thật/Wallet Standard, 8 ca lỗi UX/CTA, contract adapter và kế hoạch e2e | A — T38 đã xong, học trước Phase 6, chưa kiểm ví thật |
+| [028 — Học audit và tự review](028-receiptrail-security-review.md) | Học audit công khai và review program | C — đọc audit OtterSec/đối chiếu source và assertions; self-review r1, chưa audit độc lập |
+| [029 — Ma trận ví, thiết bị và checklist bug bash](029-receiptrail-bug-bash.md) | Ma trận ví/thiết bị/bug bash | A — T39 đã xong, 10 chiều kiểm thử & checklist [PHASE7-BUG-BASH](../PHASE7-BUG-BASH.md) 24 ca chưa chạy |
+
+[Sổ tay Codex một trang](CODEX-CHEATSHEET.md) — lệnh cache, quyền, state/commitment và các bẫy đã gặp.
 
 Đã chọn nhầm workspace khi bắt đầu nghiên cứu. Trước task tiếp theo, đối chiếu đường dẫn, remote, AGENTS.md và mục lục. Quyết định cuối cùng của người dùng là **giữ nguyên Taskbar Hero**, không chuyển nhánh, stash, revert, xóa hoặc reset. Việc chuyển tài liệu đã hoàn tất; nhánh `codex/solana-learning-notes` ở nguồn được giữ làm bản lưu. Đã đối chiếu đủ phần Antigravity: 005, 006, 008, 009, 012, 013, 014 và các cập nhật README/DEVLOG đều có trong bản chuyển `f9052dc`. Lần chuyển không cài công cụ hoặc chạy lại lab. REVIEW giữ snapshot nguồn dưới nhãn lịch sử và bổ sung kết quả sửa hiện hành; không trộn số lượng file/link hoặc bằng chứng giữa các lần kiểm tra.
 

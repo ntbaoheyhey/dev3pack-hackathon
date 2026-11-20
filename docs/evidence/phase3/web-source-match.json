@@ -1,0 +1,107 @@
+{
+  "checkedAt": "2026-11-17T16:35:49.242564+00:00",
+  "sitesSourceCommit": "f5223afb86ec0a8208715eec312e636b19da30ff",
+  "repositoryParent": "7d27640b40e068c4562e0f7a4b3b801cbe8c967d",
+  "files": [
+    {
+      "path": "apps/web/README.md",
+      "sha256": "ecc9a54b3e6f74f276fdfdc3ca3f94b63cb283caa3b63fed69f51a173c3cd82c",
+      "matchesSitesCommit": false,
+      "sitesSha256": "84f70636a1c4e6bca866a2e606c391172d83bd974b1f0fd1bb80b8fb9a45dfcc",
+      "difference": "Documentation only: clarify that the lab SDK may warm up RPC; runtime source unchanged."
+    },
+    {
+      "path": "apps/web/THIRD_PARTY_NOTICES.md",
+      "sha256": "4750a731d0aa75585290664caca3501725dd752557357811aae2293b2d715e77",
+      "matchesSitesCommit": true,
+      "sitesSha256": "4750a731d0aa75585290664caca3501725dd752557357811aae2293b2d715e77"
+    },
+    {
+      "path": "apps/web/app/page.tsx",
+      "sha256": "e07b12999740b164666e67a1965ed439ba460925a9b21d9538a9c6c9c945087e",
+      "matchesSitesCommit": true,
+      "sitesSha256": "e07b12999740b164666e67a1965ed439ba460925a9b21d9538a9c6c9c945087e"
+    },
+    {
+      "path": "apps/web/index.html",
+      "sha256": "97dfc1026e26d4419403f18c1954f224ac7b0c3de685c94d32166da969cab8b3",
+      "matchesSitesCommit": true,
+      "sitesSha256": "97dfc1026e26d4419403f18c1954f224ac7b0c3de685c94d32166da969cab8b3"
+    },
+    {
+      "path": "apps/web/package-lock.json",
+      "sha256": "39f1b8c400cf41bf7705ff98b8ae7235189b3c41c5972dd32633014435eac3dd",
+      "matchesSitesCommit": true,
+      "sitesSha256": "39f1b8c400cf41bf7705ff98b8ae7235189b3c41c5972dd32633014435eac3dd"
+    },
+    {
+      "path": "apps/web/package.json",
+      "sha256": "178b336241721184cbbade2412a48bf9e907d24bf74e782eb7884e5c702dff82",
+      "matchesSitesCommit": true,
+      "sitesSha256": "178b336241721184cbbade2412a48bf9e907d24bf74e782eb7884e5c702dff82"
+    },
+    {
+      "path": "apps/web/scripts/static-routes.mjs",
+      "sha256": "da94379e3b1f53005cdb0b4e9770b73963ad4ab283c116afb5a2f735fb267e6c",
+      "matchesSitesCommit": true,
+      "sitesSha256": "da94379e3b1f53005cdb0b4e9770b73963ad4ab283c116afb5a2f735fb267e6c"
+    },
+    {
+      "path": "apps/web/src/WalletLab.tsx",
+      "sha256": "d734e2205838f4a351945b333a58447f122ab90d5e9cd2c7c3a6c65c8d16d980",
+      "matchesSitesCommit": true,
+      "sitesSha256": "d734e2205838f4a351945b333a58447f122ab90d5e9cd2c7c3a6c65c8d16d980"
+    },
+    {
+      "path": "apps/web/src/lib/inspect.ts",
+      "sha256": "bdf68f92de9b11695a6cc87da32f9a66331f6c448bb9d5aa9530d58608fdbb92",
+      "matchesSitesCommit": true,
+      "sitesSha256": "bdf68f92de9b11695a6cc87da32f9a66331f6c448bb9d5aa9530d58608fdbb92"
+    },
+    {
+      "path": "apps/web/src/main.tsx",
+      "sha256": "321a422f749ebdd5c6089e2563d3283fd0a2924f43edbdad6cfcefa748b4aaa0",
+      "matchesSitesCommit": true,
+      "sitesSha256": "321a422f749ebdd5c6089e2563d3283fd0a2924f43edbdad6cfcefa748b4aaa0"
+    },
+    {
+      "path": "apps/web/src/styles.css",
+      "sha256": "b3fcf9cf39c78ef000afe637aa493d2fd274faed2e9c8801e81cf6166177789e",
+      "matchesSitesCommit": true,
+      "sitesSha256": "b3fcf9cf39c78ef000afe637aa493d2fd274faed2e9c8801e81cf6166177789e"
+    },
+    {
+      "path": "apps/web/tests/inspect.test.mjs",
+      "sha256": "3410a09cd553147214937ad64111960413a9023ee4da92976e5bca4a1e11f957",
+      "matchesSitesCommit": true,
+      "sitesSha256": "3410a09cd553147214937ad64111960413a9023ee4da92976e5bca4a1e11f957"
+    },
+    {
+      "path": "apps/web/tests/wallet-harness.html",
+      "sha256": "7c302d99ec0197fa8da04758496e23170badae724ac1047cd8fdb04803fdcb20",
+      "matchesSitesCommit": true,
+      "sitesSha256": "7c302d99ec0197fa8da04758496e23170badae724ac1047cd8fdb04803fdcb20"
+    },
+    {
+      "path": "apps/web/tests/wallet-harness.tsx",
+      "sha256": "7b09b70a6a6835e723f574e1836026bd81518d0208784dea97d44a9190480b8e",
+      "matchesSitesCommit": true,
+      "sitesSha256": "7b09b70a6a6835e723f574e1836026bd81518d0208784dea97d44a9190480b8e"
+    },
+    {
+      "path": "apps/web/tsconfig.json",
+      "sha256": "1d2c5b68d1622c353c56ee7be4696b3c746f084334f7e48e14ef8d7f7bd5f2f9",
+      "matchesSitesCommit": true,
+      "sitesSha256": "1d2c5b68d1622c353c56ee7be4696b3c746f084334f7e48e14ef8d7f7bd5f2f9"
+    },
+    {
+      "path": "apps/web/vite.config.ts",
+      "sha256": "acd7382d8fe23574ebfcdf0c0a87509818f6ca6c1b0b5b5c09b59dbd5b414702",
+      "matchesSitesCommit": true,
+      "sitesSha256": "acd7382d8fe23574ebfcdf0c0a87509818f6ca6c1b0b5b5c09b59dbd5b414702"
+    }
+  ],
+  "limitations": [
+    "Byte equality at source snapshot; this is not proof that all product requirements are implemented."
+  ]
+}

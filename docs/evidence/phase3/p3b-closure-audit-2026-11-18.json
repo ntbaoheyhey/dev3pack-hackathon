@@ -1,0 +1,46 @@
+{
+  "checkedAt": "2026-11-18T15:33:23.162897+00:00",
+  "scope": "Latest request: close one final A pass and verify P3-B under 1.5 SOL before requesting Phase4; full Prompt03 goal not declared complete",
+  "headAtCheck": "58266ccdb7f527e08a07134f08fda7d745fe3af2",
+  "memoryCardLines": 16,
+  "localLinksChecked": 329,
+  "closedTasks": [
+    "T31",
+    "T32",
+    "T33"
+  ],
+  "documentationDebt": [
+    "D01",
+    "D02",
+    "D03"
+  ],
+  "p3bEvidence": "docs/evidence/phase3/hello-devnet-final-verification-r2-2026-11-18.json",
+  "p3bEvidenceSha256": "7b7464ee14359b92a86d267b9d4330cf1cd7c2ee8355902d32d8c6a36a2746c6",
+  "finalizedTransactions": 137,
+  "totalPayerDebitLamports": 651874801,
+  "totalFeesLamports": 695000,
+  "withinCap": true,
+  "counterCount": "1",
+  "verifierSourceHashMatches": true,
+  "partialFailureSnapshotHashMatches": true,
+  "noPendingJournals": true,
+  "executableInputsMatchCIRevision": "27cf7aceba5b077d07e04daaa0cb03d2f8f1cd8f",
+  "newRuntimeTestsOrCIRuns": false,
+  "remainingUserGates": [
+    "Phase4 approval",
+    "real extension wallet test deferred by user",
+    "teacher verdict not present"
+  ],
+  "automationStatus": "PAUSED",
+  "remainingBeforeReportAtCheck": [
+    "push docs",
+    "update and read back PR7"
+  ],
+  "followupPRReadback": {
+    "snapshot": "docs/evidence/phase3/pr7-p3b-final-snapshot.json",
+    "bodyMatches": true,
+    "titleMatches": true,
+    "openUnmerged": true,
+    "head": "2fbc987f666623ecdbda6254f789390e3d55e6f6"
+  }
+}

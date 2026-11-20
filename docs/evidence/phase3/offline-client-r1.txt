@@ -1,0 +1,16 @@
+✔ generated initialize IDL builds the Rust instruction and exact account privileges (1.375667ms)
+✔ generated increment requires the authority signer and exact discriminator (0.171875ms)
+✔ generated account decoder reads independent Rust-layout bytes and max count (0.338334ms)
+✔ bytes with the wrong owner or authority never become valid counter state (0.228791ms)
+✔ malformed layout, account type and counter above limit are rejected (0.125917ms)
+✔ wrong cluster is rejected before balance, deployment or signing work (0.144875ms)
+✔ readiness checks the actual local binary plus zero padding and counter state (0.3575ms)
+✔ a different deployed binary or upgrade authority prevents readiness (0.249ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 152.46325

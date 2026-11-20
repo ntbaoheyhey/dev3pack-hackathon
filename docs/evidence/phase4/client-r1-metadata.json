@@ -1,0 +1,87 @@
+{
+  "status": "LOCAL_CLIENT_23_PASS",
+  "recordedAt": "2026-11-19T13:48:36.883325+07:00",
+  "command": "bash scripts/check-receiptrail-client.sh",
+  "exitCode": 0,
+  "tests": 23,
+  "checks": [
+    "IDL-generated files current",
+    "Rust/runtime vectors",
+    "Anchor 1.2.2 Borsh coder",
+    "Kit addresses 4.0.0 and web3.js 1.99.0 PDA",
+    "TypeScript 5.9.3 strict",
+    "Vite 8.3.8 browser target + no-Node-globals VM"
+  ],
+  "limits": [
+    "No install/network/sign/broadcast/deployment",
+    "Browser-target bundle is not real browser/extension wallet evidence",
+    "No new CI",
+    "A integration acceptance pending"
+  ],
+  "files": {
+    "scripts/generate-receiptrail-client.mjs": {
+      "bytes": 7269,
+      "sha256": "d2a794906a4be014c04811feeede0e2fe697eb4f5e90084829e44ccf0be5cc3e"
+    },
+    "scripts/check-receiptrail-client.sh": {
+      "bytes": 485,
+      "sha256": "5c230e758dbe833c384c7d22a41414dfd9a198927cf9249d9f8a9cb6956b45dc"
+    },
+    "docs/idl/receiptrail.json": {
+      "bytes": 8683,
+      "sha256": "13efb821841ebd6c9a8b9da21160aad8fbc11e9a6072e4b92a408e6f103f5409"
+    },
+    "docs/evidence/phase4/runtime-abi-r2.json": {
+      "bytes": 3674,
+      "sha256": "cc1a57ddd0e14ec3180ebc2a4c7315a107bece56d9532abf439d62e8088796c9"
+    },
+    "docs/evidence/phase4/client-r1-2026-11-19.txt": {
+      "bytes": 2770,
+      "sha256": "3b0cee9fc05abe0136f7a80a24d2778a8909cda7d32eab90ef8d89cf87cb03fa"
+    },
+    "apps/web/package-lock.json": {
+      "bytes": 182328,
+      "sha256": "39f1b8c400cf41bf7705ff98b8ae7235189b3c41c5972dd32633014435eac3dd"
+    },
+    "tools/devnet-lab/package-lock.json": {
+      "bytes": 25423,
+      "sha256": "bcd2ab2f51aa0d7d57c76b541cb9a7b3ebd720fb7b613c8f36c3340713501189"
+    },
+    "packages/receiptrail-client/generated.d.mts": {
+      "bytes": 1989,
+      "sha256": "bd1e39cb754612c8da6f2a5d1ee529bc4de837e2e54bb90b36ca042fa832bf50"
+    },
+    "packages/receiptrail-client/generated.mjs": {
+      "bytes": 8392,
+      "sha256": "cfa46b309e5a7e3f03ecdf2e198c01e84e8d1d0936b17795f2f0dabe74703cd9"
+    },
+    "packages/receiptrail-client/index.d.mts": {
+      "bytes": 2607,
+      "sha256": "22788c0fb7b8b54f2d5aea5557e30c0e0f3efb4cdaf66cb4c2ba955150ddcd16"
+    },
+    "packages/receiptrail-client/index.mjs": {
+      "bytes": 7832,
+      "sha256": "af8b89327759b4911f0851476ade45b69fd431e5a61699d8ad66a677bf0843c7"
+    },
+    "packages/receiptrail-client/runtime.d.mts": {
+      "bytes": 338,
+      "sha256": "aecda0d5d02248012b40278ac0041147bfc146f7d66198ab3bb0ced435f4797e"
+    },
+    "packages/receiptrail-client/runtime.mjs": {
+      "bytes": 3515,
+      "sha256": "fdee0036c07dd391a6f3e0dfffa53b7176c1bf16e4f00e87e627778939166e16"
+    },
+    "packages/receiptrail-client/tests/browser-bundle.test.mjs": {
+      "bytes": 2327,
+      "sha256": "7b0f28be7a89f45f5780105074a0b9c836de35f5910e79724c2ea75af1273176"
+    },
+    "packages/receiptrail-client/tests/client.test.mjs": {
+      "bytes": 17935,
+      "sha256": "e5fafd310840ada53968b241f0c5da7578a75d9b97686c3877f9845ff4960014"
+    },
+    "packages/receiptrail-client/tests/typecheck.mts": {
+      "bytes": 1903,
+      "sha256": "815a374b6e1f38826ff838e1fff14449f5c2e7bd210c6dc1fbd46e057dfbe620"
+    }
+  }
+}

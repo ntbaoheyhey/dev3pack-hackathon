@@ -1,0 +1,25 @@
+{
+  "source": "Codex read_thread; direct userMessage, not heartbeat",
+  "threadId": "01a1e9c8-1b24-7911-91a4-4897fc175566",
+  "turnId": "01a1f27b-9525-7120-9605-37abf5150177",
+  "userMessageId": "01a1f27b-9562-77f2-94d2-91251b0e9682",
+  "userText": "Tôi duyệt mở Phase 4 ReceiptRail theo docs/NEXT.md, và mở luôn Phase 5 (frontend + ví) chạy song song theo docs/ROADMAP.md. Ghi nguyên văn câu này vào DECISION.md. Phạm vi: code/test local bằng toolchain/cache hiện có. Chưa cho phép deploy ReceiptRail, public web, cài thêm hay merge PR7, mấy việc đó trình riêng khi tới lúc. Bật lại Automation 15 phút (đang PAUSED) rồi kiểm tra là nó ACTIVE. Giao ngay việc Phase 5 cho Antigravity trong docs/tasks/A-queue.md (học trước những gì cần, rồi làm UI ví/thanh toán). Chạy liên tục, chỉ dừng khi cần tôi quyết định.",
+  "turnStartedAtEpoch": 1795069547,
+  "turnStartedAtLocal": "2026-11-19T13:25:47+07:00",
+  "userDeclaredDecisionTime": null,
+  "timeCaveat": "Giờ log bắt đầu turn, độ phân giải giây; không có timestamp riêng của message trong read_thread và không phải giờ quyết định do người dùng tự khai.",
+  "recordedAt": "2026-11-19T13:30:16+07:00",
+  "allowed": [
+    "Phase4 program local",
+    "Phase5 frontend/wallet local, song song",
+    "toolchain/cache hiện có",
+    "reactivate existing 15-minute automation",
+    "A-queue delegation"
+  ],
+  "notAllowed": [
+    "deploy ReceiptRail",
+    "public/update hosted web",
+    "install additional tools/dependencies",
+    "merge PR7"
+  ]
+}

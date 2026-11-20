@@ -1,0 +1,80 @@
+{
+  "origin": "Rust InstructionData/ToAccountMetas + real SBF LiteSVM accounts",
+  "programAddress": "troKmWNxjNucevGMKo9PnKdF5p6W91VDGJ2PsjYvCPg",
+  "merchant": "D536TszJ51FBD1j4R1ZNfM7MYF6phj355ed4ReUkdTpU",
+  "payer": "6ppXricKCRXXrNhRNF9WNJN35TdrEAgNJP8wrAqsnQ1J",
+  "invoiceAddress": "GtzZ4aHovZH3pUbfs1L5ztALEsqLgFnRcTHhgYgthKDL",
+  "invoiceIdHex": "2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a",
+  "amountLamports": "1000000",
+  "expiresSlot": "200",
+  "observedSlot": "100",
+  "create": {
+    "programAddress": "troKmWNxjNucevGMKo9PnKdF5p6W91VDGJ2PsjYvCPg",
+    "dataHex": "9aaa1f8786649c922a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a568a7a2f5f7a9226ac55ed247e0639c3989fce8e511755c231a85ee620ff793540420f0000000000c800000000000000",
+    "accounts": [
+      {
+        "address": "D536TszJ51FBD1j4R1ZNfM7MYF6phj355ed4ReUkdTpU",
+        "isSigner": true,
+        "isWritable": true
+      },
+      {
+        "address": "GtzZ4aHovZH3pUbfs1L5ztALEsqLgFnRcTHhgYgthKDL",
+        "isSigner": false,
+        "isWritable": true
+      },
+      {
+        "address": "11111111111111111111111111111111",
+        "isSigner": false,
+        "isWritable": false
+      }
+    ]
+  },
+  "pay": {
+    "programAddress": "troKmWNxjNucevGMKo9PnKdF5p6W91VDGJ2PsjYvCPg",
+    "dataHex": "68063eefc5ced0dc",
+    "accounts": [
+      {
+        "address": "GtzZ4aHovZH3pUbfs1L5ztALEsqLgFnRcTHhgYgthKDL",
+        "isSigner": false,
+        "isWritable": true
+      },
+      {
+        "address": "6ppXricKCRXXrNhRNF9WNJN35TdrEAgNJP8wrAqsnQ1J",
+        "isSigner": true,
+        "isWritable": true
+      },
+      {
+        "address": "D536TszJ51FBD1j4R1ZNfM7MYF6phj355ed4ReUkdTpU",
+        "isSigner": false,
+        "isWritable": true
+      },
+      {
+        "address": "11111111111111111111111111111111",
+        "isSigner": false,
+        "isWritable": false
+      }
+    ]
+  },
+  "cancel": {
+    "programAddress": "troKmWNxjNucevGMKo9PnKdF5p6W91VDGJ2PsjYvCPg",
+    "dataHex": "589e3631351a5c44",
+    "accounts": [
+      {
+        "address": "GtzZ4aHovZH3pUbfs1L5ztALEsqLgFnRcTHhgYgthKDL",
+        "isSigner": false,
+        "isWritable": true
+      },
+      {
+        "address": "D536TszJ51FBD1j4R1ZNfM7MYF6phj355ed4ReUkdTpU",
+        "isSigner": true,
+        "isWritable": false
+      }
+    ]
+  },
+  "openHex": "33c2fa72066812a401fcb354ef2c3cbf6849711c22c0bf9488e34d0e0509061738f99b8e856ea56b29d9568a7a2f5f7a9226ac55ed247e0639c3989fce8e511755c231a85ee620ff79352a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a40420f0000000000c800000000000000000000000000000000",
+  "paidHex": "33c2fa72066812a401fcb354ef2c3cbf6849711c22c0bf9488e34d0e0509061738f99b8e856ea56b29d9568a7a2f5f7a9226ac55ed247e0639c3989fce8e511755c231a85ee620ff79352a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a40420f0000000000c800000000000000016400000000000000",
+  "cancelledHex": "33c2fa72066812a401fcb354ef2c3cbf6849711c22c0bf9488e34d0e0509061738f99b8e856ea56b29d9568a7a2f5f7a9226ac55ed247e0639c3989fce8e511755c231a85ee620ff79352a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a40420f0000000000c800000000000000020000000000000000",
+  "createdEventBase64": "vXLr28F9LzbsMQATv3yGGEDAiU4t4ZY9Gw6H5FxfnC75xo3D/gzOY7NU7yw8v2hJcRwiwL+UiONNDgUJBhc4+ZuOhW6laynZVop6L196kiasVe0kfgY5w5ifzo5RF1XCMahe5iD/eTUqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKkBCDwAAAAAAyAAAAAAAAAA=",
+  "paidEventBase64": "yNOoqi5SU7rsMQATv3yGGEDAiU4t4ZY9Gw6H5FxfnC75xo3D/gzOY1aKei9fepImrFXtJH4GOcOYn86OURdVwjGoXuYg/3k1QEIPAAAAAABkAAAAAAAAAA==",
+  "cancelledEventBase64": "PkS2c8Xih/TsMQATv3yGGEDAiU4t4ZY9Gw6H5FxfnC75xo3D/gzOY7NU7yw8v2hJcRwiwL+UiONNDgUJBhc4+ZuOhW6laynZZAAAAAAAAAA="
+}

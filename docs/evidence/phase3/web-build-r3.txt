@@ -1,0 +1,13 @@
+
+> clusterproof-web@0.1.0 build
+> tsc --noEmit && vite build && node scripts/static-routes.mjs
+
+tests/wallet-harness.tsx(43,23): error TS2345: Argument of type '{ version: "1.0.0"; name: string; icon: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciLz4="; chains: readonly ["solana:devnet"]; readonly accounts: { address: string; publicKey: Uint8Array<...>; chains: readonly [...]; features: string[]; }[]; features: { ...; }; }' is not assignable to parameter of type 'Wallet'.
+  Types of property 'accounts' are incompatible.
+    Type '{ address: string; publicKey: Uint8Array<ArrayBuffer>; chains: readonly ["solana:devnet"]; features: string[]; }[]' is not assignable to type 'readonly WalletAccount[]'.
+      Type '{ address: string; publicKey: Uint8Array<ArrayBuffer>; chains: readonly ["solana:devnet"]; features: string[]; }' is not assignable to type 'WalletAccount'.
+        Types of property 'features' are incompatible.
+          Type 'string[]' is not assignable to type 'IdentifierArray'.
+            Type 'string' is not assignable to type '`${string}:${string}`'.
+
+exit_code=2

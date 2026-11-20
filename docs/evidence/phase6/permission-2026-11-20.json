@@ -1,0 +1,42 @@
+{
+  "threadId": "01a1e9c8-1b24-7911-91a4-4897fc175566",
+  "turnId": "01a1f69a-7c01-7cb2-a6b5-a8c7954f9080",
+  "userMessageId": "01a1f69a-7c25-7a90-8b43-45f266afe69a",
+  "turnStartedAt": "2026-11-20T01:38:01.000Z",
+  "logTimeLocal": "2026-11-20T08:38:01+07:00",
+  "timezone": "Asia/Saigon",
+  "timestampMeaning": "read_thread turn startedAt, resolution seconds; no separate message timestamp returned; user did not supply decision time",
+  "answers": [
+    {
+      "questionItemId": "[\"request_user_input_async\",\"call_2f6e0e09e4d54e1d8a74da06617d4440\",0]",
+      "question": "Bạn có cho public bản ReceiptRail mock đã kiểm tại source 106a18e lên Site mới “ReceiptRail Mock Demo”, audience public — ai có URL đều xem được — theo [bản trình và ảnh](https://github.com/ntbaoheyhey/dev3pack-hackathon/blob/work/docs/PHASE5-PLAN.md)? Bản này chỉ dữ liệu/ví giả, không RPC/ký/gửi; giữ nguyên Site ClusterProof.",
+      "answer": "Public mock riêng (đề xuất)"
+    },
+    {
+      "questionItemId": "[\"request_user_input_async\",\"call_2f6e0e09e4d54e1d8a74da06617d4440\",1]",
+      "question": "Bạn có mở Phase 6 theo [PHASE6-PLAN](https://github.com/ntbaoheyhey/dev3pack-hackathon/blob/work/docs/PHASE6-PLAN.md), trần tổng chi 0.05 SOL devnet, dùng signers cũ? Phạm vi gồm code/test local và thử CLI devnet có giới hạn; không cài thêm, tạo signer, deploy/upgrade hoặc đổi authority. Public web giao dịch thật sẽ trình riêng.",
+      "answer": "Đồng ý Phase 6, trần 0.05 SOL (đề xuất)"
+    },
+    {
+      "questionItemId": "[\"request_user_input_async\",\"call_2f6e0e09e4d54e1d8a74da06617d4440\",2]",
+      "question": "Với [PR #7](https://github.com/ntbaoheyhey/dev3pack-hackathon/pull/7) đã cập nhật hồ sơ Phase 5 và kế hoạch Phase 6–7, bạn chọn giữ mở để review hay cho merge work → main? Mình đề xuất giữ mở vì cổng public và kiểm ví thật còn chưa hoàn tất.",
+      "answer": "Giữ PR mở (đề xuất)"
+    }
+  ],
+  "approvedScope": {
+    "publicMock": {
+      "sourceCommit": "106a18e09854d18b47a9ab61f7ab2d9a61c491a8",
+      "name": "ReceiptRail Mock Demo",
+      "audience": "public",
+      "preserveClusterProof": true
+    },
+    "phase6": {
+      "totalSpendCapLamports": "50000000",
+      "existingSignersOnly": true,
+      "localCodeAndTests": true,
+      "boundedCliDevnet": true
+    },
+    "mergePR7": false
+  },
+  "recordedAt": "2026-11-20T01:40:10.976Z"
+}

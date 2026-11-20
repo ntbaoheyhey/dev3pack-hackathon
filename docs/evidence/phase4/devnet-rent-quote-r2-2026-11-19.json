@@ -1,0 +1,136 @@
+{
+  "at": "2026-11-19T06:50:14.698Z",
+  "mode": "READ_ONLY_QUOTE_NOT_AUTHORIZATION",
+  "rpc": "https://api.devnet.solana.com",
+  "expectedGenesis": "EtWTRABZaYq6iMfeYKouRu166VU2xqa1wcaWoxPkrZBG",
+  "genesisSource": "docs/evidence/phase3/hello-devnet-preflight-2026-11-18.json",
+  "payer": "GQRoDMoWFV2nhgwm3bZGvSCC1LSa2wRkLeeJg8NhbFM2",
+  "binaryBytes": 147864,
+  "requests": [
+    {
+      "method": "getGenesisHash",
+      "params": [],
+      "response": {
+        "jsonrpc": "2.0",
+        "result": "EtWTRABZaYq6iMfeYKouRu166VU2xqa1wcaWoxPkrZBG",
+        "id": 1
+      }
+    },
+    {
+      "method": "getBalance",
+      "params": [
+        "GQRoDMoWFV2nhgwm3bZGvSCC1LSa2wRkLeeJg8NhbFM2",
+        {
+          "commitment": "finalized"
+        }
+      ],
+      "response": {
+        "jsonrpc": "2.0",
+        "result": {
+          "context": {
+            "apiVersion": "4.5.0-beta.0",
+            "slot": 523906333
+          },
+          "value": 1848125199
+        },
+        "id": 2
+      }
+    },
+    {
+      "method": "getMinimumBalanceForRentExemption",
+      "params": [
+        36,
+        {
+          "commitment": "finalized"
+        }
+      ],
+      "response": {
+        "jsonrpc": "2.0",
+        "result": 833120,
+        "id": 3
+      }
+    },
+    {
+      "method": "getMinimumBalanceForRentExemption",
+      "params": [
+        147909,
+        {
+          "commitment": "finalized"
+        }
+      ],
+      "response": {
+        "jsonrpc": "2.0",
+        "result": 752027960,
+        "id": 4
+      }
+    },
+    {
+      "method": "getMinimumBalanceForRentExemption",
+      "params": [
+        131,
+        {
+          "commitment": "finalized"
+        }
+      ],
+      "response": {
+        "jsonrpc": "2.0",
+        "result": 1315720,
+        "id": 5
+      }
+    },
+    {
+      "method": "getMinimumBalanceForRentExemption",
+      "params": [
+        0,
+        {
+          "commitment": "finalized"
+        }
+      ],
+      "response": {
+        "jsonrpc": "2.0",
+        "result": 650240,
+        "id": 6
+      }
+    }
+  ],
+  "genesis": "EtWTRABZaYq6iMfeYKouRu166VU2xqa1wcaWoxPkrZBG",
+  "balance": {
+    "context": {
+      "apiVersion": "4.5.0-beta.0",
+      "slot": 523906333
+    },
+    "value": 1848125199
+  },
+  "rents": {
+    "program": {
+      "bytes": 36,
+      "lamports": 833120
+    },
+    "programDataAndConservativeBuffer": {
+      "bytes": 147909,
+      "lamports": 752027960
+    },
+    "invoice": {
+      "bytes": 131,
+      "lamports": 1315720
+    },
+    "wallet": {
+      "bytes": 0,
+      "lamports": 650240
+    }
+  },
+  "conservativePeakLamports": 1531889040,
+  "capProposalLamports": 1800000000,
+  "limits": [
+    "Read-only quote; no signer file read/create; no simulation/sign/send/install",
+    "Not deployment approval; re-quote after identity/build changes and before sending",
+    "Peak double-counts temporary buffer plus ProgramData; actual finalized debit must be reconciled"
+  ],
+  "status": "QUOTED",
+  "plannedActorFundingLamports": {
+    "merchant": 5000000,
+    "payer": 2000000
+  },
+  "reserveLamports": 20000000,
+  "peakFormula": "2 * ProgramData rent + program rent + 0.007 SOL funding two smoke actors (includes invoice rents and principal) + 0.020 SOL fee/reserve"
+}

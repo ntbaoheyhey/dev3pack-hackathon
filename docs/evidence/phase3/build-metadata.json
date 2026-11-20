@@ -1,0 +1,40 @@
+{
+  "capturedAt": "2026-11-17T15:41:03.532Z",
+  "programId": "2yzxUQEpaeLmgCMhDipwnVL3DHsxez18KcePonqZRiXL",
+  "sourceTemplateRevision": "8d9d1488d9b8af41b266d7513eea2e668adf15a2",
+  "hostRust": "1.100.0",
+  "agave": "4.1.2",
+  "anchor": "1.2.2",
+  "platformTools": "v1.57",
+  "arch": "v3",
+  "checkLog": "hello-check-r2.txt",
+  "runtimeTestsPassed": 6,
+  "ciVerified": false,
+  "devnetDeployed": false,
+  "artifacts": {
+    "target/deploy/phase3_hello.so": {
+      "bytes": 127672,
+      "sha256": "9b5483f7335a294b125ba458bcbcbdc9e222b605a2c67d7fabc76c132a23da54"
+    },
+    "target/idl/phase3_hello.json": {
+      "bytes": 2849,
+      "sha256": "de4be232457dbda00935a352a95ddfa4d4c947fc2802dba112e1371263eb8598"
+    },
+    "target/types/phase3_hello.ts": {
+      "bytes": 3082,
+      "sha256": "987667384641bdd05d134757c6e80c25cf84b9b4039745825691d2f7f0649b66"
+    },
+    "Cargo.lock": {
+      "bytes": 105762,
+      "sha256": "99503ebd544282e0cb84207c79204e910b1675eba7bc8cf122e8ca5bc68d42ed"
+    },
+    "programs/phase3-hello/src/lib.rs": {
+      "bytes": 2487,
+      "sha256": "bafbacec91a06c4031181faa5e018b770989eb7306f2356b6761c2fb8ccecf76"
+    },
+    "scripts/check-lab.sh": {
+      "bytes": 814,
+      "sha256": "06c6a6201518db46c37e5ae94b440eb0376131ead7969d5ef533d5cd1f5fc4ff"
+    }
+  }
+}

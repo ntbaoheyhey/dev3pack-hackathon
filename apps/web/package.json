@@ -1,0 +1,30 @@
+{
+  "name": "clusterproof-web",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": "24.22.2"
+  },
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "tsc --noEmit && vite build && node scripts/static-routes.mjs",
+    "build:receiptrail-mock": "tsc --noEmit && vite build --config vite.receiptrail-mock.config.ts",
+    "preview": "vite preview --host 127.0.0.1",
+    "test": "node --test tests/*.test.mjs"
+  },
+  "dependencies": {
+    "@solana/client": "1.7.0",
+    "@solana/react-hooks": "1.4.1",
+    "react": "19.3.1",
+    "react-dom": "19.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@vitejs/plugin-react": "6.3.0",
+    "@wallet-standard/app": "1.1.1",
+    "typescript": "5.9.3",
+    "vite": "8.3.8"
+  }
+}

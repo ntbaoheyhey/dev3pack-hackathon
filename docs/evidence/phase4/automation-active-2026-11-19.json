@@ -1,0 +1,12 @@
+{
+  "id": "dev3pack-nh-c-tr-ng-nh-m-m-i-15-ph-t",
+  "kind": "heartbeat",
+  "name": "Dev3pack — nhắc trưởng nhóm mỗi 15 phút",
+  "prompt": "Mấy giờ rồi? Nhắc việc trưởng nhóm: git fetch và pull nhánh work, đọc Thẻ nhớ đầu docs/HANDOFF.md, đọc docs/tasks/A-done.md và dùng kết quả trợ lý, giao thêm việc vào docs/tasks/A-queue.md nếu cần, rồi làm tiếp việc đầu tiên trong Còn lại. Cập nhật Thẻ nhớ sau mỗi bước lớn. Chỉ dừng khi cần người dùng.",
+  "status": "ACTIVE",
+  "rrule": "FREQ=MINUTELY;INTERVAL=15",
+  "target_thread_id": "01a1e9c8-1b24-7911-91a4-4897fc175566",
+  "checkedAt": "2026-11-19T13:30:16+07:00",
+  "method": "automation_update mode=update succeeded; read-back automation.toml",
+  "updatedAtEpochMs": 1795069596524
+}

@@ -1,0 +1,53 @@
+
+> clusterproof-web@0.1.0 test
+> node --test tests/*.test.mjs
+
+✔ base58 validates the decoded 32-byte address, including leading zero bytes (0.621708ms)
+✔ bad input makes no RPC request (0.470334ms)
+✔ wrong cluster stops before reading the program (14.118458ms)
+✔ successful observation uses fixed devnet RPC, confirmed reads, provenance and no writes (2.040834ms)
+✔ missing account and non-executable accounts are not successful deployment claims (1.167333ms)
+✔ malformed account, owner, slot and RPC envelopes fail closed (1.196875ms)
+✔ RPC errors, HTTP failure, throttling and network failure remain explicit (0.3605ms)
+✔ cancellation and timeout cannot yield a ready result (5.256792ms)
+✔ mock concurrent pay commits principal once and charges only the submitted operation (11.316666ms)
+✔ mock pay/cancel race permits exactly one terminal transition in either order (12.325458ms)
+✔ concurrent duplicate create cannot overwrite terms or charge a second rent (5.418084ms)
+✔ lost response commits at submission; repeated recheck never executes payment or changes bytes/balances (3.888458ms)
+✔ dropped timeout stays Open/Expired after reconciliation and spends no principal or fee (3.723083ms)
+✖ unknown record, caller terms, returned accounts and snapshots cannot mutate engine state (2.458417ms)
+✔ create snapshots inputs before async PDA derivation (4.252625ms)
+✔ different invoices cannot spend more than a shared payer balance during concurrent execution (8.914417ms)
+✔ forced rollback keeps both principals, account bytes and rent; fee is separately observable (2.877625ms)
+✔ signature belongs only to its invoice, and expired cancel does not refund rent (6.832375ms)
+✔ strict mock serialization rejects truncation and u64 overflow; invalid signer changes no ledger (2.391041ms)
+✔ amount/u64: parses and formats SOL exactly with BigInt and rejects lossy inputs (0.819084ms)
+✔ roles & expiry: enforces payer/merchant roles and derives Expired from slot (9.500875ms)
+✔ P5-01: duplicate create rejects across all states (Open, Paid, Cancelled) without resetting ledger (15.490333ms)
+✔ P5-01: canonical PDA derivation and decode verification for all seeded fixtures (3.33225ms)
+✔ P5-02: pre-validation precedes simulated timeout fault (prevents invalid Unknown) (3.23875ms)
+✔ P5-02: pending state locks operations per-invoice and prevents duplicate submissions (7.218666ms)
+✔ P5-02: recheckOnChain respects terminal/expiry and never fabricates Paid (5.62875ms)
+✔ P5-03: Wallet Standard mock wallet lifecycle & terms invalidation (0.430083ms)
+✔ P5-04: strict 64-hex and u64 parsing with BigInt (0.357125ms)
+✔ P5-04: dynamic list decoding reflects true account state (4.048542ms)
+✔ CPI rollback: preserves principal and keeps invoice Open when transaction fails (3.018583ms)
+✔ error mapping: maps custom error codes 6000-6008 to Anchor IDL error definitions (0.544875ms)
+✔ wallet reject handling does not assume code 4001 is universal (0.144084ms)
+ℹ tests 32
+ℹ suites 0
+ℹ pass 31
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 163.248125
+
+✖ failing tests:
+
+test at tests/receiptrail-adapter-review.test.mjs:90:1
+✖ unknown record, caller terms, returned accounts and snapshots cannot mutate engine state (2.458417ms)
+  TypeError [Error]: Cannot assign to read only property 'amountLamports' of object '#<Object>'
+      at TestContext.<anonymous> (file:///Users/bao/Documents/ChatGPT/dev3pack/apps/web/tests/receiptrail-adapter-review.test.mjs:94:79)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)

@@ -1,0 +1,17 @@
+{
+  "at": "2026-11-19T06:57:45.219441+00:00",
+  "permission": "user-permission-p4ab-2026-11-19.json",
+  "workflowSha256": "1a94650a0197ec2f394384fc03f963fc9a2727805d0341e54ad8e7844a445a63",
+  "patchSha256": "ca7ed4659b14bb433bca359d68f7f54a76f5161826ebdbd14c2cf3a022654bc2",
+  "jobs": [
+    "web",
+    "research",
+    "anchor-lab"
+  ],
+  "permissions": {
+    "contents": "read"
+  },
+  "bashSyntaxCheckedBlocks": 11,
+  "localExecution": "syntax only; no installer executed",
+  "result": "REVIEWED"
+}

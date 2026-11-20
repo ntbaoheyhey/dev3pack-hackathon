@@ -15,6 +15,7 @@ test-ledger/
 node_modules/
 .next/
 dist/
+dist-receiptrail-mock/
 build/
 
 # OS / editor

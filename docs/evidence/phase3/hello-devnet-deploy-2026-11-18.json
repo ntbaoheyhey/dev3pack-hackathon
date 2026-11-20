@@ -1,0 +1,29 @@
+{
+  "started_at_utc": "2026-11-18T14:52:21.476992+00:00",
+  "ended_at_utc": "2026-11-18T14:52:21.506740+00:00",
+  "exit_code": 1,
+  "rpc": "https://api.devnet.solana.com",
+  "program_id": "2yzxUQEpaeLmgCMhDipwnVL3DHsxez18KcePonqZRiXL",
+  "payer": "GQRoDMoWFV2nhgwm3bZGvSCC1LSa2wRkLeeJg8NhbFM2",
+  "buffer": "qSWzcDdMP7m2GhyE2tgaZ5FnHzAtgvMjZwGkQok9s6D",
+  "binary_sha256": "9b5483f7335a294b125ba458bcbcbdc9e222b605a2c67d7fabc76c132a23da54",
+  "parameters": {
+    "maxLen": 127672,
+    "computeUnitPrice": 0,
+    "maxSignAttempts": 1,
+    "useRpc": true,
+    "commitment": "finalized"
+  },
+  "approved_cap_lamports": 1500000000,
+  "private_logs_saved": true,
+  "status": "FAILED_OR_UNCONFIRMED_INSPECT_BEFORE_RETRY",
+  "stderr_sha256": "df8de74c9cd24d70d494834e60363e79bfa1f90fbabeb1ba0095ca17fa5136a7",
+  "error_lines": [
+    "error: Found argument '--fee-payer' which wasn't expected, or isn't valid in this context",
+    "",
+    "USAGE:",
+    "    solana --commitment <COMMITMENT_LEVEL> --url <URL_OR_MONIKER> --keypair <KEYPAIR>",
+    "",
+    "For more information try --help"
+  ]
+}

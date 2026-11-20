@@ -1,0 +1,54 @@
+# Phương án cổng CI và devnet ReceiptRail — P4-A/P4-B đã được đồng ý
+
+Codex · 19/11/2026. Phase4/5 **đã mở local**, nguyên văn tại [DECISION](ideas/DECISION.md). Người dùng đã trả lời **“Đồng ý cả P4-A và P4-B”**, giờ log13:55:34.348UTC+7 ngày19/11; [record](evidence/phase4/user-permission-p4ab-2026-11-19.json). Phạm vi đúng câu hỏi: CI trước rồi mới4keypairs/deploy; không hỏi lại. Lời đồng ý chưa chứng minh đã thực thi hoặc đạt. Public web/Phase6/mergePR7 chưa nằm trong phương án này.
+
+## Phần đã sẵn sàng để review
+
+- Program create/pay/cancel/read và invariants:32runtime tests local đạt, không đổi logic/wire contract; [review](reviews/receiptrail-phase4-local.md)/[evidence](evidence/phase4/README.md).
+- Client sinh toàn IDL:23tests local + TypeScript/generated/browser-target bundle đạt; [API bàn giao A](PHASE4-CLIENT.md). Không RPC/sign/send.
+- Binary lúc đề xuất147,864bytes/hash962b721a… dùng ID local không có signer. Sau CI đầu đạt đã tạo đúng4keys và đổi identity; [metadata hiện hành](evidence/phase4/deployment-local-metadata.json) ghi binary/IDL/client mới; tiến độ triển khai xem phần cuối.
+- T34 UI/ví A đã nộp4d2e48a và xác nhận dùng client; C nhận phần client, T34/T35/T36 đã đóng; UIlocal hợpnhất266b30c có45tests/build+7reprođạt, browser sau sửa chưa kiểm. Không dùng kết quả client của C thay acceptance toàn UI.
+
+## P4-A — CI đúng source Phase4
+
+Cho phép áp [patch cụ thể](proposals/phase4-ci.patch) vào `.github/workflows/ci.yml` và chạy đúng3jobs hiện có trên GitHub runner. Patch chỉ thêm check client ReceiptRail vào `anchor-lab`: cài `apps/web` từ lockfile bằng `npm ci --ignore-scripts --no-fund`, rồi chạy `bash scripts/check-receiptrail-client.sh`; job này đã cài lab từ lockfile. Không thêm action/job/permission/secret hoặc upload/deploy artifact.
+
+Giữ pins/lockfiles Phase3: Ubuntu24.04, Node24.22.2, Rust1.100.0/rustfmt/clippy, Agave4.1.2, Anchor/AVM1.2.2 commit8d9d148, platform-tools v1.57 archive đã pin SHA256; dependencies đúng Cargo.lock và hai package-lock.json. Runner có thể cài lại bộ này; **không cài thêm máy người dùng, đổi billing/limit hoặc versions**. Các bước cài gốc xem [workflow](../.github/workflows/ci.yml)/[P3-A](PHASE3-PLAN.md).
+
+Patch đã qua `git apply --check`; được phép áp/kích CI theo lời đồng ý mới. Trình tự: áp patch, kiểm diff, commit không skip để tạo run; đọc jobs/logs theo SHA thật và ghi số tests thực. Local macOS không chứng minh LinuxCI. Checkpoint tài liệu vẫn `[skip ci]`; nếu bị lỗi cần dependency/version ngoài bộ này thì trình lại.
+
+## P4-B — deploy ReceiptRail và smoke có giới hạn
+
+**Trần đã đồng ý:1.8SOL devnet**, riêng cho ReceiptRail gồm cả rent giữ trong accounts, funding actors và phí; không phải quyền1.5SOL của hello. Dự toán đọc RPC công khai, chưa đọc/tạo signer, ký/gửi hoặc mô phỏng giao dịch mạng: [quote r2](evidence/phase4/devnet-rent-quote-r2-2026-11-19.json). Đúng devnet genesis; payer cũ `GQRoDMoWFV2nhgwm3bZGvSCC1LSa2wRkLeeJg8NhbFM2` còn **1.848125199SOL** ở slot523906333. Quote phải kiểm lại sau build và ngay trước gửi; không là cam kết giá hay quyền chi.
+
+| Khoản bảo thủ theo binary hiện tại | SOL devnet |
+| --- | ---: |
+| ProgramData147909bytes |0.752027960 |
+| Buffer tạm, dự trù cùng rent ProgramData |0.752027960 |
+| Program36bytes |0.000833120 |
+| Funding hai actors thử: merchant0.005, payer0.002 |0.007000000 |
+| Phí + dự phòng |0.020000000 |
+| **Tổng dự phòng đỉnh** | **1.531889040** |
+
+Đây là tổng bảo thủ tính cả buffer lẫn ProgramData cùng lúc, khác debit cuối; không tính số liệu VM làm giá devnet. Funding actors bao gồm rent hai invoice131bytes (0.001315720SOL mỗi account theo quote) và principal0.001SOL, không cộng lần hai. Ví dụ SOL ở đây chỉ tài sản thử devnet.
+
+P4-B đã đồng ý, cho phép **tạo đúng4keypairs** ngoài Git:1program ReceiptRail,1buffer tạm duy nhất,1merchant thử và1payer thử. Lưu trong thư mục0700/files0600 dưới `~/.local/share/dev3pack/devnet/receiptrail/`; không import vào extension hoặc in secret. Fee payer/upgrade authority dùng signer thử GQ cũ; không đổi/revoke authority hoặc tái dùng hello buffer/program signer. Công khai public keys và source identity trước broadcast; không tự tạo thêm khi retry.
+
+Trình tự sau quyền:
+
+1. Chạy P4-A cho nền local hiện có và đợi CI đạt đúng câu hỏi được đồng ý. Sau đó sinh identity, cập nhật `declare_id`, IDL/client/allowlist/fixtures; build và chạy lại32runtime+23client bằng cache vì executable input đã đổi. Ghi hash/size mới, giữ source/IDL/client nhất quán; không chạy `anchor build/test` có bước sinh signer ngầm.
+2. Chạy lại P4-A cho revision sau đổi identity và phải xanh trước broadcast. Recheck genesis, số dư, program chưa tồn tại, keys/authority/binary/CLI flags; quote rent/fee mới. Nếu tổng dự phòng>1.8SOL hoặc balance không đủ thì dừng trình người dùng, không tự top-up/airdrop hoặc tăng trần.
+3. Deploy bằng Agave4.1.2 đã cài, max-len đúng bytecode, priority fee0, preflight bật; journal signature/chunks và chỉ dùng buffer đã tạo. Tái dùng bài học/source upload hello đã kiểm, đối soát finalized trước retry; lỗi/timeout giữ cùng buffer, không ký/broadcast mù quáng. Không close riêng hoặc reset hello.
+4. Đọc lại loader/ProgramData/executable/authority/bytecode; chốt tất cả tx deploy finalized/meta.err. Không gọi byte-identical là verified source build.
+5. Fund hai actors trong0.007SOL. Smoke CLI: tạo invoice1 amount0.001SOL→pay→đọc Paid; thử duplicate bằng **simulation** để chứng minh từ chối, không cố phát giao dịch lỗi; tạo invoice2→cancel→đọc Cancelled. Fee payer GQ tách actors để đối soát principal/rent/phí; maximum5transactions sản phẩm sau funding (create1,pay1,create2,cancel2 và một slot dự phòng chỉ nếu journal xác định giao dịch cũ chưa xảy ra). Không wallet browser/public UI/Phase6 từ quyền này.
+6. Lưu signatures/slots/logs và đối soát toàn bộ deploy+fund+smoke finalized, payer debit và số SOL giữ trong accounts. Không sweep/close hoặc deploy lại sau khi đạt. Nếu lỗi logic cần thay code, dừng đợt deploy để review trước một upgrade mới.
+
+**Điều kiện thực thi:** cả P4-A/P4-B đã đồng ý. Chưa tạo keypair cho tới CI đầu đạt; chưa broadcast ReceiptRail cho tới CI revision triển khai đạt và preflight/budget đạt. Không mở public/Phase6/merge.
+
+## Việc public/ví thật để riêng
+
+Chỉ trình public web sau T34 có artifact local, browser evidence và C review tiền/quyền. Lúc đó nêu source snapshot/URL/hosting cụ thể. Core/extension connect-disconnect thật vẫn chưa kiểm theo lựa chọn người dùng; không xin seed/mật khẩu hoặc tự tạo ví cho người dùng. Giáo viên chưa verdict; không tự đóng toàn phase/goal.
+
+## Tiến độ thực thi (không thay quyền)
+
+CI đầu8df85c0 đạt trước tạo đúng4keys ngoài Git. CI revision triển khai6d08e5c push44477944228 đạt đủ3jobs; PR44477949631 cancelled riêng, không gọi xanh. [Manifest](evidence/phase4/ci-deployment.json) đối chiếu33input hashes. [Inspect](evidence/phase4/inspection-before-upload.json)15:57UTC+7: balance1.848125199SOL, peak1.531889040SOL; upload bắt đầu15:58UTC+7 bằng buffer đã có. Mốc upload ban đầu là lịch sử. P4-B hiện đã đối soát162tx finalized/bytecode/authority,5smoke tx Paid+Cancelled và duplicate simulation đạt. Recovery e9a1603 đã qua CI push/PR3jobs/36inputs trước đúng1Cancel. Debit0.760701080SOL<cap1.8, không activity ngoài dự kiến; [kết quả](evidence/phase4/final-verification.json). Không chạy lại upload/deploy/smoke/recovery. [Báo cáo Phase4](PHASE4-RESULT.md), [bảnlocal Phase5 và cổngbrowser](PHASE5-PLAN.md).

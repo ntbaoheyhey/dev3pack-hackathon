@@ -1,0 +1,23 @@
+{
+  "at": "2026-11-19T08:57:20.030Z",
+  "status": "INSPECTED_NO_SIGN_SEND",
+  "genesis": "EtWTRABZaYq6iMfeYKouRu166VU2xqa1wcaWoxPkrZBG",
+  "program": "8NGSPufBmGB1oHqaZpY1jhJYz1X4gqFiNXCQmxfapYko",
+  "buffer": "81xkUgtFePibSp5R4T1LgDC1RUfe6vNTivFZ5hadbhok",
+  "ciHead": "6d08e5c2026c26e2d55285822363356a6d10fd02",
+  "observationSlot": 523938219,
+  "payerBaselineLamports": 1848125199,
+  "balanceLamports": 1848125199,
+  "binarySha256": "495e4773d395a5d668d5118ad5308afbd7b31b0fe7700fb77a44ecd653b706d6",
+  "binaryBytes": 147864,
+  "dataRentLamports": 752027960,
+  "programRentLamports": 833120,
+  "reserveLamports": 27000000,
+  "capLamports": 1800000000,
+  "budget": {
+    "spent": 0,
+    "projected": 1531889040,
+    "remainingCap": 1800000000
+  }
+}
+

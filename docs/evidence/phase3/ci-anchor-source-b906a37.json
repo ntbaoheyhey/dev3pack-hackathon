@@ -1,0 +1,444 @@
+{
+  "runs": [
+    {
+      "id": 44233192373,
+      "event": "pull_request",
+      "head_sha": "b906a37292c7bc0bce5f82c253ec15af3a44f7c0",
+      "status": "completed",
+      "conclusion": "failure",
+      "updated_at": "2026-11-18T04:02:09Z",
+      "jobs": [
+        {
+          "id": 134562954831,
+          "name": "web",
+          "status": "completed",
+          "conclusion": "success",
+          "run_id": 44233192373,
+          "logs_url": null,
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3
+            },
+            {
+              "name": "Run npm ci --ignore-scripts --no-fund",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4
+            },
+            {
+              "name": "Run npm test",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5
+            },
+            {
+              "name": "Run npm run build",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6
+            },
+            {
+              "name": "Post Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 11
+            },
+            {
+              "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 12
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 13
+            }
+          ]
+        },
+        {
+          "id": 134562955213,
+          "name": "research",
+          "status": "completed",
+          "conclusion": "success",
+          "run_id": 44233192373,
+          "logs_url": null,
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3
+            },
+            {
+              "name": "Offline parser and evidence replay",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4
+            },
+            {
+              "name": "Post Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7
+            },
+            {
+              "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9
+            }
+          ]
+        },
+        {
+          "id": 134562955349,
+          "name": "anchor-lab",
+          "status": "completed",
+          "conclusion": "failure",
+          "run_id": 44233192373,
+          "logs_url": null,
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "Install build prerequisites",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3
+            },
+            {
+              "name": "Install pinned Agave and Anchor",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4
+            },
+            {
+              "name": "Install pinned SBF compiler",
+              "status": "completed",
+              "conclusion": "failure",
+              "number": 5
+            },
+            {
+              "name": "Warm locked dependency cache after approval",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 6
+            },
+            {
+              "name": "Build both programs offline and verify generated IDLs",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 7
+            },
+            {
+              "name": "Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 8
+            },
+            {
+              "name": "Verify generated-IDL client offline",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 9
+            },
+            {
+              "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 18
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 19
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 44233187077,
+      "event": "push",
+      "head_sha": "b906a37292c7bc0bce5f82c253ec15af3a44f7c0",
+      "status": "completed",
+      "conclusion": "failure",
+      "updated_at": "2026-11-18T04:01:47Z",
+      "jobs": [
+        {
+          "id": 134562936734,
+          "name": "research",
+          "status": "completed",
+          "conclusion": "success",
+          "run_id": 44233187077,
+          "logs_url": null,
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3
+            },
+            {
+              "name": "Offline parser and evidence replay",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4
+            },
+            {
+              "name": "Post Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7
+            },
+            {
+              "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9
+            }
+          ]
+        },
+        {
+          "id": 134562937189,
+          "name": "web",
+          "status": "completed",
+          "conclusion": "success",
+          "run_id": 44233187077,
+          "logs_url": null,
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3
+            },
+            {
+              "name": "Run npm ci --ignore-scripts --no-fund",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4
+            },
+            {
+              "name": "Run npm test",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5
+            },
+            {
+              "name": "Run npm run build",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6
+            },
+            {
+              "name": "Post Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 11
+            },
+            {
+              "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 12
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 13
+            }
+          ]
+        },
+        {
+          "id": 134562937429,
+          "name": "anchor-lab",
+          "status": "completed",
+          "conclusion": "failure",
+          "run_id": 44233187077,
+          "logs_url": null,
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "Install build prerequisites",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3
+            },
+            {
+              "name": "Install pinned Agave and Anchor",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4
+            },
+            {
+              "name": "Install pinned SBF compiler",
+              "status": "completed",
+              "conclusion": "failure",
+              "number": 5
+            },
+            {
+              "name": "Warm locked dependency cache after approval",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 6
+            },
+            {
+              "name": "Build both programs offline and verify generated IDLs",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 7
+            },
+            {
+              "name": "Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 8
+            },
+            {
+              "name": "Verify generated-IDL client offline",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 9
+            },
+            {
+              "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 18
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 19
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "log_excerpts": [
+    {
+      "job_id": 134562955349,
+      "excerpts": [
+        "2026-11-18T03:57:18.3077974Z    Installed package `avm v1.2.2 (https://github.com/otter-sec/anchor?rev=8d9d1488d9b8af41b266d7513eea2e668adf15a2#8d9d1488)` (executable `avm`)",
+        "2026-11-18T04:02:06.1776858Z    Installed package `anchor-cli v1.2.2 (https://github.com/otter-sec/anchor?rev=8d9d1488d9b8af41b266d7513eea2e668adf15a2#8d9d1488)` (executable `anchor`)",
+        "2026-11-18T04:02:06.1787239Z      Summary Successfully installed avm, anchor-cli!",
+        "2026-11-18T04:02:06.7517284Z [2026-11-18T04:02:06.751017435Z ERROR cargo_build_sbf::toolchain] Failed to install platform-tools: Failed to parse Github response: error decoding response body",
+        "2026-11-18T04:02:06.7526185Z ##[error]Process completed with exit code 1."
+      ]
+    },
+    {
+      "job_id": 134562937429,
+      "excerpts": [
+        "2026-11-18T03:57:02.2300969Z    Installed package `avm v1.2.2 (https://github.com/otter-sec/anchor?rev=8d9d1488d9b8af41b266d7513eea2e668adf15a2#8d9d1488)` (executable `avm`)",
+        "2026-11-18T04:01:43.2251923Z    Installed package `anchor-cli v1.2.2 (https://github.com/otter-sec/anchor?rev=8d9d1488d9b8af41b266d7513eea2e668adf15a2#8d9d1488)` (executable `anchor`)",
+        "2026-11-18T04:01:43.2276651Z      Summary Successfully installed avm, anchor-cli!",
+        "2026-11-18T04:01:43.8882987Z [2026-11-18T04:01:43.887745832Z ERROR cargo_build_sbf::toolchain] Failed to install platform-tools: Failed to parse Github response: error decoding response body",
+        "2026-11-18T04:01:43.8893020Z ##[error]Process completed with exit code 1."
+      ]
+    }
+  ],
+  "tests": {
+    "research": 16,
+    "web": 8,
+    "runtime": "skipped",
+    "client": "skipped"
+  },
+  "next_patch": {
+    "asset_url": "https://github.com/anza-xyz/platform-tools/releases/download/v1.57/platform-tools-linux-x86_64.tar.bz2",
+    "sha256": "sha256:b0f7af104adf726fff2a6a09ea2eb2f2d2965c92295f4d7388c08d140e0c2b00",
+    "bytes": 531380716,
+    "source_url": "https://github.com/anza-xyz/platform-tools/blob/v1.57/build.sh",
+    "source_blob": "a7fb849afb07ce17c33757111c2528088ae51cb8"
+  },
+  "limits": "Anchor install/version passed; SBF installation failed parsing GitHub response. No new runtime/IDL/client result for b906a37."
+}

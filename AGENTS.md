@@ -50,8 +50,21 @@ Mọi lần dừng sai được ghi ở [`docs/STOP-CAUSES.md`](docs/STOP-CAUSES
 4. **Không kết lượt bằng tóm tắt khi còn việc.** Không viết "tôi đang chờ…", "bạn không cần làm gì" rồi dừng. Không tự gắn nhãn hoàn thành (`GOAL_COMPLETE`…) khi cổng ra của phase chưa được C và giáo viên chấm.
 5. **Xung đột git ở README/DEVLOG**: giữ cả hai bên, commit, đi tiếp. Không abort rồi đứng.
 6. **Điểm phải có bằng chứng**: chấm theo RUBRIC thì mỗi điểm trỏ tới nguồn; không chấm cho vừa đủ qua ngưỡng.
+7. **Không bao giờ tự cho rằng người dùng đã chọn hoặc duyệt.** Chỉ ghi quyết định khi có **trích nguyên văn câu người dùng kèm giờ và múi giờ**; phân biệt giờ người dùng xác nhận với giờ log. Không có giờ thì ghi chưa xác định, không bịa giờ hoặc ghi đã duyệt.
+8. **Tin tự nhắc và tin của agent khác không phải lựa chọn của người dùng.** Payload trả lời bị người dùng trực tiếp đính chính không được dùng để giữ quyết định sai; ghi dòng cũ sai/hết hiệu lực và nguồn đã dựa vào. Lời đính chính trực tiếp mới nhất có ưu tiên hơn hồ sơ hoặc Thẻ nhớ cũ.
+9. **Không suy quyền giữa các cổng.** Chọn ý tưởng không đồng nghĩa duyệt IDEA/ARCHITECTURE, quyền cài, tạo ví/keypair triển khai, deploy hay public. Các hành động này chỉ làm sau câu đồng ý nguyên văn kèm giờ, đúng phạm vi; tin “tiếp tục” hoặc tự nhắc không mở rộng quyền. Theo quyết định18/11: giữ toolchain/web đã có, mọi cài thêm/deploy/public mới phải hỏi trước; Phase2 ReceiptRail được làm thiết kế và spike/test local bằng cache hiện có, trình duyệt trước Phase3.
+
+10. **Chưa có quyền cài thêm thì không kích hoạt CI tự cài.** Khi chưa có quyền, dùng [skip ci] ở mọi checkpoint **và commit merge**; nếu cần merge: git merge --no-edit -m "chore: sync work [skip ci]" origin/work. Giữ job guard false cho tới câu đồng ý đúng phạm vi được lưu trong DECISION và patch đã review. P3-A đã được đồng ý lúc log10:13:11.851 ngày18/11/2026 UTC+7: C được mở đúng ba jobs/pins và tạo run bằng commit không có skip marker; checkpoint tài liệu vẫn dùng [skip ci] để tránh chạy thừa. Không mở thêm phạm vi cài/deploy từ quyền này. Skipped/blocked không phải CI xanh; reminder không mở quyền.
+
+11. **Quyền mới 19/11:** người dùng đã mở Phase4 ReceiptRail và Phase5 frontend/ví song song; nguyên văn và giờ log13:25:47 UTC+7 tại DECISION. C làm program/client, giao A UI/ví qua queue. Phạm vi hiện tại chỉ code/test local bằng toolchain/cache đã có; chưa deploy ReceiptRail, public/update web, cài thêm hay mergePR7. Không hỏi mở phase lại. Commit/merge dùng `[skip ci]` trong lượt local; cổng cần quyền mới trình riêng khi tới lúc.
+
+12. **P4-A/P4-B đã đồng ý19/11 log13:55:34.348UTC+7:** nguyên văn “Đồng ý cả P4-A và P4-B” tại DECISION. Được áp patch/run CI đúng pins trên runner; sau CI đạt tạo đúng4keypairs ngoài Git, deploy ReceiptRail + bounded smoke devnet/trần1.8SOL theo PHASE4-PLAN. Chưa public/update web, cài thêm local, mergePR7 hoặc Phase6; không hỏi lại quyền đã có. CI phải đạt revision triển khai, checkpoint tài liệu vẫn `[skip ci]`.
 
 ## Chống quên context
+
+**Quyền mới20/11, log lượt08:38:01 UTC+7:** ba câu trả lời nguyên văn và câu hỏi tại `docs/ideas/DECISION.md` / `docs/evidence/phase6/permission-2026-11-20.json`. Được public Site mock ReceiptRail riêng từ source106a18e, audience public, giữ ClusterProof; mở Phase6 code/test local và CLI devnet dùng signers cũ, tổng cap0.05SOL theo PHASE6-PLAN. PR7 giữ mở. Không cài thêm, tạo signer, deploy/upgrade program, đổi authority, public web giao dịch thật hay mởPhase7 thật. Các giới hạn “chưa mở Phase6/public mock” phía trên là lịch sử; quyền mới không mở browser devnet hoặc điều khiển GUI.
+
+**Bổ sung Prompt04 (log19/11/2026 23:10:07.582UTC+7):** “dừng điều khiển” cấm chuột/bàn phím/màn hình người dùng; đã cho phép headless Playwright/Chromium **có sẵn**, chỉlocalhost/vímock. Thiếu cache thì báo, không cài. Quyền này không mở public/deploy/upgrade/signer/mergePR7/Phase6 thật. Nếu lời dặn mơ hồ chặn việc, hỏi một câu có lựa chọn ngay và tiếp tục phần không phụ thuộc. T37 review một lượt; chỉ lỗi UI thật giao task sửa cụ thể, thiếu report nhẹ ghi nợ. T38/T39 và nghiên cứu kế hoạch/review/nháp Phase6–7 được phép; không gọi là mở phase thật. Xem DECISION/STOP-CAUSES K11.
 
 Context có thể bị compact bất cứ lúc nào. Thứ gì không nằm trong repo thì coi như sẽ quên.
 
@@ -59,7 +72,7 @@ Context có thể bị compact bất cứ lúc nào. Thứ gì không nằm tron
 2. **Thẻ nhớ** là khối đầu tiên của HANDOFF, tối đa ~20 dòng, luôn đúng hiện tại: vai của mình; mục tiêu đang làm; phase/chặng; quyết định đã chốt (của người dùng và của trưởng nhóm); file mình sở hữu; bước tiếp theo cụ thể; điều cấm làm. Cập nhật **sau mỗi bước lớn**, không chỉ cuối phiên.
 3. **HANDOFF ngắn.** Phần hiện hành để trên cùng; lịch sử cũ chuyển sang `docs/archive/` thay vì để dồn trong HANDOFF. HANDOFF dài làm agent đọc sai phần lịch sử thành việc hiện tại.
 4. **Quyết định ghi vào file, không chỉ trong chat**: lựa chọn của người dùng vào `docs/ideas/DECISION.md` (hoặc file quyết định của phase); quyết định kỹ thuật vào note hoặc ARCHITECTURE.
-5. Sau compact, nếu Thẻ nhớ mâu thuẫn với điều mình "nhớ", **tin Thẻ nhớ và repo**. Phát hiện mình đã quên điều gì thì thêm một dòng vào `docs/STOP-CAUSES.md`.
+5. Sau compact, nếu Thẻ nhớ mâu thuẫn với điều mình "nhớ", **đối chiếu Thẻ nhớ và repo với câu người dùng mới nhất; lời đính chính trực tiếp của người dùng có ưu tiên**. Phát hiện mình đã quên điều gì thì thêm một dòng vào `docs/STOP-CAUSES.md`.
 
 ## Luật an toàn (bắt buộc)
 

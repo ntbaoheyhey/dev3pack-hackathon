@@ -1,0 +1,30 @@
+{
+  "at": "2026-11-18T14:59:38.433Z",
+  "rpc": "https://api.devnet.solana.com",
+  "genesis": "EtWTRABZaYq6iMfeYKouRu166VU2xqa1wcaWoxPkrZBG",
+  "slot": 523667947,
+  "commitment": "finalized",
+  "payer": "GQRoDMoWFV2nhgwm3bZGvSCC1LSa2wRkLeeJg8NhbFM2",
+  "balanceLamports": 2500000000,
+  "programId": "2yzxUQEpaeLmgCMhDipwnVL3DHsxez18KcePonqZRiXL",
+  "buffer": "qSWzcDdMP7m2GhyE2tgaZ5FnHzAtgvMjZwGkQok9s6D",
+  "counter": "WPFLETxvxk2hq48C7YzC1VJVVZcEhzqF2tur6vBDvnB",
+  "programAccount": null,
+  "bufferAccount": null,
+  "counterAccount": null,
+  "pendingJournal": false,
+  "existingSignersAndModesVerified": true,
+  "newKeypairCreated": false,
+  "binarySha256": "9b5483f7335a294b125ba458bcbcbdc9e222b605a2c67d7fabc76c132a23da54",
+  "rentLamports": {
+    "program": 833120,
+    "programData": 649452600,
+    "bufferMinimum": 649411960,
+    "bufferFunding": 649452600,
+    "counter": 894080
+  },
+  "threeSignatureFeeLamports": 15000,
+  "conservativeBudgetLamports": 1314742401,
+  "capLamports": 1500000000,
+  "status": "READY_TO_RETRY_SAME_BUFFER"
+}

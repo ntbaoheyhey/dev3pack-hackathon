@@ -1,0 +1,751 @@
+{
+  "at": "2026-11-19T17:07:27.029Z",
+  "head": "106a18e09854d18b47a9ab61f7ab2d9a61c491a8",
+  "target": "http://127.0.0.1:4175/receiptrail/",
+  "workingTree": "?? docs/evidence/phase5/c-prompt04-review-2026-11-19/browser-run.log\n?? docs/evidence/phase5/c-prompt04-review-2026-11-19/manifest.json\n?? docs/evidence/phase5/c-prompt04-review-2026-11-19/mock-build.log\n?? docs/evidence/phase5/c-prompt04-review-2026-11-19/screenshots/\n?? docs/evidence/phase5/c-prompt04-review-2026-11-19/web-build.log\n?? docs/evidence/phase5/c-prompt04-review-2026-11-19/web-tests.log\n?? docs/evidence/phase5/mock-artifact-2026-11-20/\n",
+  "headless": true,
+  "mockOnly": true,
+  "sourceRewrite": false,
+  "playwright": "1.66.0-alpha-2026-11-18",
+  "node": "v24.22.2",
+  "sourceHashes": {
+    "apps/web/package-lock.json": "39f1b8c400cf41bf7705ff98b8ae7235189b3c41c5972dd32633014435eac3dd",
+    "apps/web/package.json": "b0dc84968caa382cb4305dab0cc06405096dcbed28518336a8d333801fc3be59",
+    "apps/web/receiptrail-mock/index.html": "6826a100d163e80e4e712a0b601c11f0dff73415d37bf6798374b0fb932142db",
+    "apps/web/scripts/static-routes.mjs": "a77ea13464f57332db03c0b3905262944b337493894f8838d1a5240393ad8d3b",
+    "apps/web/src/WalletLab.tsx": "d734e2205838f4a351945b333a58447f122ab90d5e9cd2c7c3a6c65c8d16d980",
+    "apps/web/src/lib/inspect.ts": "bdf68f92de9b11695a6cc87da32f9a66331f6c448bb9d5aa9530d58608fdbb92",
+    "apps/web/src/main.tsx": "cde2b4648ba54c8c15746168d96aafba77b6e826d955fa786b1042e346b3e1ea",
+    "apps/web/src/receiptrail/ReceiptRailApp.tsx": "607003ceab8a280ff9cea218732eb4d0d02ea3231809ac2d72a1ecfee4d14f0c",
+    "apps/web/src/receiptrail/adapter.ts": "a0270c4a883ea461329ed38dab56ad8ada018e899c91a640f392f3e760e72f02",
+    "apps/web/src/receiptrail/confirmation.ts": "905467df8143d16aabd17a9db950653bc7e8e0b33b42934f1a8080c6e433e774",
+    "apps/web/src/receiptrail/mock-main.tsx": "037c64371735d3b827b1ae0aa1540ddfffa7d2acaa87cdc72a9268d79946e391",
+    "apps/web/src/receiptrail/mock-wallet-connection.ts": "162c5de2a9a8d810bb749dfbc4635d9357878a707ed1a33d91374d335cc95e16",
+    "apps/web/src/receiptrail/mock-wallets.ts": "439d4064bb5a48108913de445f75b14695c9d4f5a88358bee81cbd624b131d2b",
+    "apps/web/src/receiptrail/receiptrail.css": "ae0edc2073956112da9f9ae9557c80dad79c08d0341a2eeb0f365c0369646b6c",
+    "apps/web/src/receiptrail/types.ts": "85135745a2f09a24890081fa3cf8ebc753dad597517fdc9e0d054403f6209755",
+    "apps/web/src/receiptrail/wallet-lifecycle.ts": "e9e7922b65a2c2f7cc53704417f49a50b42736ef28dd7cfd7e224bd561a504f3",
+    "apps/web/src/styles.css": "b3fcf9cf39c78ef000afe637aa493d2fd274faed2e9c8801e81cf6166177789e",
+    "apps/web/tests/inspect.test.mjs": "3410a09cd553147214937ad64111960413a9023ee4da92976e5bca4a1e11f957",
+    "apps/web/tests/receiptrail-adapter-review.test.mjs": "eae6b92395cd60f99bc9995cd94288d636c00c9fe4429bab581de57d46b6efbd",
+    "apps/web/tests/receiptrail-confirmation.test.mjs": "b84f216e4e5b5fc2d19ac0ca7e3962252c2d764846746a486b766fc31539307d",
+    "apps/web/tests/receiptrail-mock-connection.test.mjs": "025f79eeb93bc75722654e6b74ca65882a36256e17fc6fe03afd4dce9f7d224a",
+    "apps/web/tests/receiptrail.test.mjs": "4ff0122f3ffded652f7556df4f07f0f6669dd666bef839a967f91f222882c7da",
+    "apps/web/tests/wallet-harness.html": "7c302d99ec0197fa8da04758496e23170badae724ac1047cd8fdb04803fdcb20",
+    "apps/web/tests/wallet-harness.tsx": "7b09b70a6a6835e723f574e1836026bd81518d0208784dea97d44a9190480b8e",
+    "apps/web/tsconfig.json": "f1f2233964c31c8d7eecca6e6f6039c4bb75600d2e6532b7f028d6c328913228",
+    "apps/web/vite.config.ts": "acd7382d8fe23574ebfcdf0c0a87509818f6ca6c1b0b5b5c09b59dbd5b414702",
+    "apps/web/vite.receiptrail-mock.config.ts": "3ffcfd39cf7a548191ce1f62e0e44bb97c12d5b06ecf868a8f38bb5608ab21d4",
+    "packages/receiptrail-client/generated.d.mts": "ca4216ef2133d6cd7725a90336bebd8ac0a8f3dd744c2fe986588f9afc3f7602",
+    "packages/receiptrail-client/generated.mjs": "54e6369ba2e5f961d5aa59d83301020ff58c9ae460b12ac54a7b00f4b2ef4324",
+    "packages/receiptrail-client/index.d.mts": "22788c0fb7b8b54f2d5aea5557e30c0e0f3efb4cdaf66cb4c2ba955150ddcd16",
+    "packages/receiptrail-client/index.mjs": "af8b89327759b4911f0851476ade45b69fd431e5a61699d8ad66a677bf0843c7",
+    "packages/receiptrail-client/runtime.d.mts": "aecda0d5d02248012b40278ac0041147bfc146f7d66198ab3bb0ced435f4797e",
+    "packages/receiptrail-client/runtime.mjs": "fdee0036c07dd391a6f3e0dfffa53b7176c1bf16e4f00e87e627778939166e16",
+    "packages/receiptrail-client/tests/browser-bundle.test.mjs": "86b7a82d5e93d29d742f1445457bf49adf70db7cf811f1d19792853af6424dae",
+    "packages/receiptrail-client/tests/client.test.mjs": "a89a1278bf3135f94cdf186ec29866976af5f891f59a3e2485cced84c50af7e1",
+    "packages/receiptrail-client/tests/typecheck.mts": "815a374b6e1f38826ff838e1fff14449f5c2e7bd210c6dc1fbd46e057dfbe620",
+    "scripts/verify-receiptrail-phase5-browser.mjs": "57fcfb9b2e8cb21418e6b729a4ddfe1e68af6c7af70c4dea2d800c5fb7446f8e"
+  },
+  "results": [
+    {
+      "id": "01-guest",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "expected": "Guest sees full terms and PDA; cannot Pay/Cancel; copy exact PDA",
+      "actual": {
+        "address": "EpQUeEpGPoZrDoffujf86a3GnKdBkX7RbvsbXkkfpodo",
+        "state": "Open",
+        "clipboardExact": true
+      },
+      "pass": true,
+      "screenshot": "screenshots/1440x900-01-guest.png"
+    },
+    {
+      "id": "02-create",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "expected": "Merchant review then Create selects the new canonical Invoice",
+      "actual": {
+        "address": "61KDLXM1dmGbNUjn8YvU6XiCHGhmVzkRSsqSYS5WdXii",
+        "version": 1,
+        "bump": 250,
+        "merchant": "5jq4k5gG2xYdv7FrQdbrAQjUUHWajmrHpQtr2rhEeWbm",
+        "payer": "3r3Q8mD7kEF1ssvkhGBdDD57FfN7MPgzHAvznfD6tQUc",
+        "invoiceId": {
+          "0": 91,
+          "1": 91,
+          "2": 91,
+          "3": 91,
+          "4": 91,
+          "5": 91,
+          "6": 91,
+          "7": 91,
+          "8": 91,
+          "9": 91,
+          "10": 91,
+          "11": 91,
+          "12": 91,
+          "13": 91,
+          "14": 91,
+          "15": 91,
+          "16": 91,
+          "17": 91,
+          "18": 91,
+          "19": 91,
+          "20": 91,
+          "21": 91,
+          "22": 91,
+          "23": 91,
+          "24": 91,
+          "25": 91,
+          "26": 91,
+          "27": 91,
+          "28": 91,
+          "29": 91,
+          "30": 91,
+          "31": 91
+        },
+        "amountLamports": "1000000",
+        "expiresSlot": "200",
+        "status": "Open",
+        "paidSlot": "0"
+      },
+      "pass": true,
+      "screenshot": "screenshots/1440x900-02-create.png"
+    },
+    {
+      "id": "03-edit",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "expected": "Amount, expiry and preset changes consume approval",
+      "actual": {
+        "checked": false,
+        "submitDisabled": true,
+        "fields": [
+          "#amount-input",
+          "#expiry-input",
+          "preset"
+        ]
+      },
+      "pass": true,
+      "screenshot": "screenshots/1440x900-03-edit.png"
+    },
+    {
+      "id": "04-pay-wallet",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "expected": "Switch/disconnect invalidate; one Pay moves principal once; terminal disables actions",
+      "actual": {
+        "before": {
+          "balances": {
+            "5jq4k5gG2xYdv7FrQdbrAQjUUHWajmrHpQtr2rhEeWbm": "14998197360",
+            "3r3Q8mD7kEF1ssvkhGBdDD57FfN7MPgzHAvznfD6tQUc": "5000000000",
+            "9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin": "2000000000"
+          },
+          "rents": {
+            "EpQUeEpGPoZrDoffujf86a3GnKdBkX7RbvsbXkkfpodo": "1802640",
+            "GYjxtHoM4wVxbGwHHgcKBpj2C5r5CQw48YMcmgvBywA8": "1802640",
+            "5BWMrebjJNr2yANMqzXSwdFjErkxT24TBqDHYjLvEv66": "1802640",
+            "61KDLXM1dmGbNUjn8YvU6XiCHGhmVzkRSsqSYS5WdXii": "1802640"
+          },
+          "feePayerLamports": "999990000",
+          "feesPaid": "10000"
+        },
+        "after": {
+          "balances": {
+            "5jq4k5gG2xYdv7FrQdbrAQjUUHWajmrHpQtr2rhEeWbm": "14999197360",
+            "3r3Q8mD7kEF1ssvkhGBdDD57FfN7MPgzHAvznfD6tQUc": "4999000000",
+            "9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin": "2000000000"
+          },
+          "rents": {
+            "EpQUeEpGPoZrDoffujf86a3GnKdBkX7RbvsbXkkfpodo": "1802640",
+            "GYjxtHoM4wVxbGwHHgcKBpj2C5r5CQw48YMcmgvBywA8": "1802640",
+            "5BWMrebjJNr2yANMqzXSwdFjErkxT24TBqDHYjLvEv66": "1802640",
+            "61KDLXM1dmGbNUjn8YvU6XiCHGhmVzkRSsqSYS5WdXii": "1802640"
+          },
+          "feePayerLamports": "999980000",
+          "feesPaid": "20000"
+        },
+        "state": "Paid"
+      },
+      "pass": true,
+      "screenshot": "screenshots/1440x900-04-pay-wallet.png"
+    },
+    {
+      "id": "05-unknown-processed",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "expected": "Unknown locks actions, preserves PDA/signature; recheck is read-only",
+      "actual": {
+        "address": "ES9CeBMgkbDGFx1D6yXhKo5W6TDKujHCJoxRw8oqG9Uj",
+        "sig": "mock-pay-4",
+        "state": "PAID",
+        "ledgerAfterSubmit": {
+          "balances": {
+            "5jq4k5gG2xYdv7FrQdbrAQjUUHWajmrHpQtr2rhEeWbm": "14998394720",
+            "3r3Q8mD7kEF1ssvkhGBdDD57FfN7MPgzHAvznfD6tQUc": "4998000000",
+            "9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin": "2000000000"
+          },
+          "rents": {
+            "EpQUeEpGPoZrDoffujf86a3GnKdBkX7RbvsbXkkfpodo": "1802640",
+            "GYjxtHoM4wVxbGwHHgcKBpj2C5r5CQw48YMcmgvBywA8": "1802640",
+            "5BWMrebjJNr2yANMqzXSwdFjErkxT24TBqDHYjLvEv66": "1802640",
+            "61KDLXM1dmGbNUjn8YvU6XiCHGhmVzkRSsqSYS5WdXii": "1802640",
+            "ES9CeBMgkbDGFx1D6yXhKo5W6TDKujHCJoxRw8oqG9Uj": "1802640"
+          },
+          "feePayerLamports": "999960000",
+          "feesPaid": "40000"
+        },
+        "ledgerUnchangedOnRecheck": true
+      },
+      "pass": true,
+      "screenshot": "screenshots/1440x900-05-unknown-processed.png"
+    },
+    {
+      "id": "06-unknown-dropped",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "expected": "Unknown locks actions, preserves PDA/signature; recheck is read-only",
+      "actual": {
+        "address": "4VXjjwdtA34ZJmFNN4A7HKom5Z6SnWUSbzrGfoFEMxtE",
+        "sig": "mock-pay-6",
+        "state": "OPEN",
+        "ledgerAfterSubmit": {
+          "balances": {
+            "5jq4k5gG2xYdv7FrQdbrAQjUUHWajmrHpQtr2rhEeWbm": "14996592080",
+            "3r3Q8mD7kEF1ssvkhGBdDD57FfN7MPgzHAvznfD6tQUc": "4998000000",
+            "9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin": "2000000000"
+          },
+          "rents": {
+            "EpQUeEpGPoZrDoffujf86a3GnKdBkX7RbvsbXkkfpodo": "1802640",
+            "GYjxtHoM4wVxbGwHHgcKBpj2C5r5CQw48YMcmgvBywA8": "1802640",
+            "5BWMrebjJNr2yANMqzXSwdFjErkxT24TBqDHYjLvEv66": "1802640",
+            "61KDLXM1dmGbNUjn8YvU6XiCHGhmVzkRSsqSYS5WdXii": "1802640",
+            "ES9CeBMgkbDGFx1D6yXhKo5W6TDKujHCJoxRw8oqG9Uj": "1802640",
+            "4VXjjwdtA34ZJmFNN4A7HKom5Z6SnWUSbzrGfoFEMxtE": "1802640"
+          },
+          "feePayerLamports": "999950000",
+          "feesPaid": "50000"
+        },
+        "ledgerUnchangedOnRecheck": true
+      },
+      "pass": true,
+      "screenshot": "screenshots/1440x900-06-unknown-dropped.png"
+    },
+    {
+      "id": "07-cancel-expired-rollback",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "expected": "Cancel Open/Expired keeps principal and rent; failed CPI keeps Open/principal and charges only mock fee",
+      "actual": {
+        "expiredAddress": "2Eb2rNUaUXxm5RnN5eQ7eNrkc7v599SDR6LHENUHPP9k",
+        "rollbackAddress": "DcovEqZUsgnoBF3TEVQh2HKMqsHJVN3P3nPAHkiEswBQ",
+        "cancelBefore": {
+          "balances": {
+            "5jq4k5gG2xYdv7FrQdbrAQjUUHWajmrHpQtr2rhEeWbm": "14996592080",
+            "3r3Q8mD7kEF1ssvkhGBdDD57FfN7MPgzHAvznfD6tQUc": "4998000000",
+            "9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin": "2000000000"
+          },
+          "rents": {
+            "EpQUeEpGPoZrDoffujf86a3GnKdBkX7RbvsbXkkfpodo": "1802640",
+            "GYjxtHoM4wVxbGwHHgcKBpj2C5r5CQw48YMcmgvBywA8": "1802640",
+            "5BWMrebjJNr2yANMqzXSwdFjErkxT24TBqDHYjLvEv66": "1802640",
+            "61KDLXM1dmGbNUjn8YvU6XiCHGhmVzkRSsqSYS5WdXii": "1802640",
+            "ES9CeBMgkbDGFx1D6yXhKo5W6TDKujHCJoxRw8oqG9Uj": "1802640",
+            "4VXjjwdtA34ZJmFNN4A7HKom5Z6SnWUSbzrGfoFEMxtE": "1802640"
+          },
+          "feePayerLamports": "999950000",
+          "feesPaid": "50000"
+        },
+        "cancelAfter": {
+          "balances": {
+            "5jq4k5gG2xYdv7FrQdbrAQjUUHWajmrHpQtr2rhEeWbm": "14996592080",
+            "3r3Q8mD7kEF1ssvkhGBdDD57FfN7MPgzHAvznfD6tQUc": "4998000000",
+            "9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin": "2000000000"
+          },
+          "rents": {
+            "EpQUeEpGPoZrDoffujf86a3GnKdBkX7RbvsbXkkfpodo": "1802640",
+            "GYjxtHoM4wVxbGwHHgcKBpj2C5r5CQw48YMcmgvBywA8": "1802640",
+            "5BWMrebjJNr2yANMqzXSwdFjErkxT24TBqDHYjLvEv66": "1802640",
+            "61KDLXM1dmGbNUjn8YvU6XiCHGhmVzkRSsqSYS5WdXii": "1802640",
+            "ES9CeBMgkbDGFx1D6yXhKo5W6TDKujHCJoxRw8oqG9Uj": "1802640",
+            "4VXjjwdtA34ZJmFNN4A7HKom5Z6SnWUSbzrGfoFEMxtE": "1802640"
+          },
+          "feePayerLamports": "999940000",
+          "feesPaid": "60000"
+        },
+        "expiredBefore": {
+          "balances": {
+            "5jq4k5gG2xYdv7FrQdbrAQjUUHWajmrHpQtr2rhEeWbm": "14994789440",
+            "3r3Q8mD7kEF1ssvkhGBdDD57FfN7MPgzHAvznfD6tQUc": "4998000000",
+            "9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin": "2000000000"
+          },
+          "rents": {
+            "EpQUeEpGPoZrDoffujf86a3GnKdBkX7RbvsbXkkfpodo": "1802640",
+            "GYjxtHoM4wVxbGwHHgcKBpj2C5r5CQw48YMcmgvBywA8": "1802640",
+            "5BWMrebjJNr2yANMqzXSwdFjErkxT24TBqDHYjLvEv66": "1802640",
+            "61KDLXM1dmGbNUjn8YvU6XiCHGhmVzkRSsqSYS5WdXii": "1802640",
+            "ES9CeBMgkbDGFx1D6yXhKo5W6TDKujHCJoxRw8oqG9Uj": "1802640",
+            "4VXjjwdtA34ZJmFNN4A7HKom5Z6SnWUSbzrGfoFEMxtE": "1802640",
+            "2Eb2rNUaUXxm5RnN5eQ7eNrkc7v599SDR6LHENUHPP9k": "1802640"
+          },
+          "feePayerLamports": "999930000",
+          "feesPaid": "70000"
+        },
+        "expiredAfter": {
+          "balances": {
+            "5jq4k5gG2xYdv7FrQdbrAQjUUHWajmrHpQtr2rhEeWbm": "14994789440",
+            "3r3Q8mD7kEF1ssvkhGBdDD57FfN7MPgzHAvznfD6tQUc": "4998000000",
+            "9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin": "2000000000"
+          },
+          "rents": {
+            "EpQUeEpGPoZrDoffujf86a3GnKdBkX7RbvsbXkkfpodo": "1802640",
+            "GYjxtHoM4wVxbGwHHgcKBpj2C5r5CQw48YMcmgvBywA8": "1802640",
+            "5BWMrebjJNr2yANMqzXSwdFjErkxT24TBqDHYjLvEv66": "1802640",
+            "61KDLXM1dmGbNUjn8YvU6XiCHGhmVzkRSsqSYS5WdXii": "1802640",
+            "ES9CeBMgkbDGFx1D6yXhKo5W6TDKujHCJoxRw8oqG9Uj": "1802640",
+            "4VXjjwdtA34ZJmFNN4A7HKom5Z6SnWUSbzrGfoFEMxtE": "1802640",
+            "2Eb2rNUaUXxm5RnN5eQ7eNrkc7v599SDR6LHENUHPP9k": "1802640"
+          },
+          "feePayerLamports": "999920000",
+          "feesPaid": "80000"
+        },
+        "rollbackBefore": {
+          "balances": {
+            "5jq4k5gG2xYdv7FrQdbrAQjUUHWajmrHpQtr2rhEeWbm": "14992986800",
+            "3r3Q8mD7kEF1ssvkhGBdDD57FfN7MPgzHAvznfD6tQUc": "4998000000",
+            "9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin": "2000000000"
+          },
+          "rents": {
+            "EpQUeEpGPoZrDoffujf86a3GnKdBkX7RbvsbXkkfpodo": "1802640",
+            "GYjxtHoM4wVxbGwHHgcKBpj2C5r5CQw48YMcmgvBywA8": "1802640",
+            "5BWMrebjJNr2yANMqzXSwdFjErkxT24TBqDHYjLvEv66": "1802640",
+            "61KDLXM1dmGbNUjn8YvU6XiCHGhmVzkRSsqSYS5WdXii": "1802640",
+            "ES9CeBMgkbDGFx1D6yXhKo5W6TDKujHCJoxRw8oqG9Uj": "1802640",
+            "4VXjjwdtA34ZJmFNN4A7HKom5Z6SnWUSbzrGfoFEMxtE": "1802640",
+            "2Eb2rNUaUXxm5RnN5eQ7eNrkc7v599SDR6LHENUHPP9k": "1802640",
+            "DcovEqZUsgnoBF3TEVQh2HKMqsHJVN3P3nPAHkiEswBQ": "1802640"
+          },
+          "feePayerLamports": "999910000",
+          "feesPaid": "90000"
+        },
+        "rollbackAfter": {
+          "balances": {
+            "5jq4k5gG2xYdv7FrQdbrAQjUUHWajmrHpQtr2rhEeWbm": "14992986800",
+            "3r3Q8mD7kEF1ssvkhGBdDD57FfN7MPgzHAvznfD6tQUc": "4998000000",
+            "9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin": "2000000000"
+          },
+          "rents": {
+            "EpQUeEpGPoZrDoffujf86a3GnKdBkX7RbvsbXkkfpodo": "1802640",
+            "GYjxtHoM4wVxbGwHHgcKBpj2C5r5CQw48YMcmgvBywA8": "1802640",
+            "5BWMrebjJNr2yANMqzXSwdFjErkxT24TBqDHYjLvEv66": "1802640",
+            "61KDLXM1dmGbNUjn8YvU6XiCHGhmVzkRSsqSYS5WdXii": "1802640",
+            "ES9CeBMgkbDGFx1D6yXhKo5W6TDKujHCJoxRw8oqG9Uj": "1802640",
+            "4VXjjwdtA34ZJmFNN4A7HKom5Z6SnWUSbzrGfoFEMxtE": "1802640",
+            "2Eb2rNUaUXxm5RnN5eQ7eNrkc7v599SDR6LHENUHPP9k": "1802640",
+            "DcovEqZUsgnoBF3TEVQh2HKMqsHJVN3P3nPAHkiEswBQ": "1802640"
+          },
+          "feePayerLamports": "999900000",
+          "feesPaid": "100000"
+        }
+      },
+      "pass": true,
+      "screenshot": "screenshots/1440x900-07-cancel-expired-rollback.png"
+    },
+    {
+      "id": "08-layout-keyboard-clipboard",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "expected": "No page overflow; internal table scroll; visible Tab/Shift+Tab focus; exact PDA and wallet clipboard",
+      "actual": {
+        "overflow": {
+          "page": 1440,
+          "client": 1440,
+          "table": 1010,
+          "tableClient": 1010
+        },
+        "forward": {
+          "tag": "BUTTON",
+          "focusVisible": true,
+          "outline": "solid",
+          "width": "3px"
+        },
+        "clipboardExact": true
+      },
+      "pass": true,
+      "screenshot": "screenshots/1440x900-08-layout-keyboard-clipboard.png"
+    },
+    {
+      "id": "01-guest",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "expected": "Guest sees full terms and PDA; cannot Pay/Cancel; copy exact PDA",
+      "actual": {
+        "address": "EpQUeEpGPoZrDoffujf86a3GnKdBkX7RbvsbXkkfpodo",
+        "state": "Open",
+        "clipboardExact": true
+      },
+      "pass": true,
+      "screenshot": "screenshots/375x812-01-guest.png"
+    },
+    {
+      "id": "02-create",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "expected": "Merchant review then Create selects the new canonical Invoice",
+      "actual": {
+        "address": "H3ijHRAqPgNqyenK7una3oTr5z45JPa7o6hq6KtkQmCm",
+        "version": 1,
+        "bump": 255,
+        "merchant": "5jq4k5gG2xYdv7FrQdbrAQjUUHWajmrHpQtr2rhEeWbm",
+        "payer": "3r3Q8mD7kEF1ssvkhGBdDD57FfN7MPgzHAvznfD6tQUc",
+        "invoiceId": {
+          "0": 96,
+          "1": 96,
+          "2": 96,
+          "3": 96,
+          "4": 96,
+          "5": 96,
+          "6": 96,
+          "7": 96,
+          "8": 96,
+          "9": 96,
+          "10": 96,
+          "11": 96,
+          "12": 96,
+          "13": 96,
+          "14": 96,
+          "15": 96,
+          "16": 96,
+          "17": 96,
+          "18": 96,
+          "19": 96,
+          "20": 96,
+          "21": 96,
+          "22": 96,
+          "23": 96,
+          "24": 96,
+          "25": 96,
+          "26": 96,
+          "27": 96,
+          "28": 96,
+          "29": 96,
+          "30": 96,
+          "31": 96
+        },
+        "amountLamports": "1000000",
+        "expiresSlot": "200",
+        "status": "Open",
+        "paidSlot": "0"
+      },
+      "pass": true,
+      "screenshot": "screenshots/375x812-02-create.png"
+    },
+    {
+      "id": "03-edit",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "expected": "Amount, expiry and preset changes consume approval",
+      "actual": {
+        "checked": false,
+        "submitDisabled": true,
+        "fields": [
+          "#amount-input",
+          "#expiry-input",
+          "preset"
+        ]
+      },
+      "pass": true,
+      "screenshot": "screenshots/375x812-03-edit.png"
+    },
+    {
+      "id": "04-pay-wallet",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "expected": "Switch/disconnect invalidate; one Pay moves principal once; terminal disables actions",
+      "actual": {
+        "before": {
+          "balances": {
+            "5jq4k5gG2xYdv7FrQdbrAQjUUHWajmrHpQtr2rhEeWbm": "14998197360",
+            "3r3Q8mD7kEF1ssvkhGBdDD57FfN7MPgzHAvznfD6tQUc": "5000000000",
+            "9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin": "2000000000"
+          },
+          "rents": {
+            "EpQUeEpGPoZrDoffujf86a3GnKdBkX7RbvsbXkkfpodo": "1802640",
+            "GYjxtHoM4wVxbGwHHgcKBpj2C5r5CQw48YMcmgvBywA8": "1802640",
+            "5BWMrebjJNr2yANMqzXSwdFjErkxT24TBqDHYjLvEv66": "1802640",
+            "H3ijHRAqPgNqyenK7una3oTr5z45JPa7o6hq6KtkQmCm": "1802640"
+          },
+          "feePayerLamports": "999990000",
+          "feesPaid": "10000"
+        },
+        "after": {
+          "balances": {
+            "5jq4k5gG2xYdv7FrQdbrAQjUUHWajmrHpQtr2rhEeWbm": "14999197360",
+            "3r3Q8mD7kEF1ssvkhGBdDD57FfN7MPgzHAvznfD6tQUc": "4999000000",
+            "9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin": "2000000000"
+          },
+          "rents": {
+            "EpQUeEpGPoZrDoffujf86a3GnKdBkX7RbvsbXkkfpodo": "1802640",
+            "GYjxtHoM4wVxbGwHHgcKBpj2C5r5CQw48YMcmgvBywA8": "1802640",
+            "5BWMrebjJNr2yANMqzXSwdFjErkxT24TBqDHYjLvEv66": "1802640",
+            "H3ijHRAqPgNqyenK7una3oTr5z45JPa7o6hq6KtkQmCm": "1802640"
+          },
+          "feePayerLamports": "999980000",
+          "feesPaid": "20000"
+        },
+        "state": "Paid"
+      },
+      "pass": true,
+      "screenshot": "screenshots/375x812-04-pay-wallet.png"
+    },
+    {
+      "id": "05-unknown-processed",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "expected": "Unknown locks actions, preserves PDA/signature; recheck is read-only",
+      "actual": {
+        "address": "ESXZYcesgVtcgmRvrjD1SH2qVaQpsBpDGsdhySjBHP9B",
+        "sig": "mock-pay-4",
+        "state": "PAID",
+        "ledgerAfterSubmit": {
+          "balances": {
+            "5jq4k5gG2xYdv7FrQdbrAQjUUHWajmrHpQtr2rhEeWbm": "14998394720",
+            "3r3Q8mD7kEF1ssvkhGBdDD57FfN7MPgzHAvznfD6tQUc": "4998000000",
+            "9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin": "2000000000"
+          },
+          "rents": {
+            "EpQUeEpGPoZrDoffujf86a3GnKdBkX7RbvsbXkkfpodo": "1802640",
+            "GYjxtHoM4wVxbGwHHgcKBpj2C5r5CQw48YMcmgvBywA8": "1802640",
+            "5BWMrebjJNr2yANMqzXSwdFjErkxT24TBqDHYjLvEv66": "1802640",
+            "H3ijHRAqPgNqyenK7una3oTr5z45JPa7o6hq6KtkQmCm": "1802640",
+            "ESXZYcesgVtcgmRvrjD1SH2qVaQpsBpDGsdhySjBHP9B": "1802640"
+          },
+          "feePayerLamports": "999960000",
+          "feesPaid": "40000"
+        },
+        "ledgerUnchangedOnRecheck": true
+      },
+      "pass": true,
+      "screenshot": "screenshots/375x812-05-unknown-processed.png"
+    },
+    {
+      "id": "06-unknown-dropped",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "expected": "Unknown locks actions, preserves PDA/signature; recheck is read-only",
+      "actual": {
+        "address": "89TNCk3WBFgSuVAYRCJXkq3EcNq7hq9rW8pP1qRVwkm5",
+        "sig": "mock-pay-6",
+        "state": "OPEN",
+        "ledgerAfterSubmit": {
+          "balances": {
+            "5jq4k5gG2xYdv7FrQdbrAQjUUHWajmrHpQtr2rhEeWbm": "14996592080",
+            "3r3Q8mD7kEF1ssvkhGBdDD57FfN7MPgzHAvznfD6tQUc": "4998000000",
+            "9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin": "2000000000"
+          },
+          "rents": {
+            "EpQUeEpGPoZrDoffujf86a3GnKdBkX7RbvsbXkkfpodo": "1802640",
+            "GYjxtHoM4wVxbGwHHgcKBpj2C5r5CQw48YMcmgvBywA8": "1802640",
+            "5BWMrebjJNr2yANMqzXSwdFjErkxT24TBqDHYjLvEv66": "1802640",
+            "H3ijHRAqPgNqyenK7una3oTr5z45JPa7o6hq6KtkQmCm": "1802640",
+            "ESXZYcesgVtcgmRvrjD1SH2qVaQpsBpDGsdhySjBHP9B": "1802640",
+            "89TNCk3WBFgSuVAYRCJXkq3EcNq7hq9rW8pP1qRVwkm5": "1802640"
+          },
+          "feePayerLamports": "999950000",
+          "feesPaid": "50000"
+        },
+        "ledgerUnchangedOnRecheck": true
+      },
+      "pass": true,
+      "screenshot": "screenshots/375x812-06-unknown-dropped.png"
+    },
+    {
+      "id": "07-cancel-expired-rollback",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "expected": "Cancel Open/Expired keeps principal and rent; failed CPI keeps Open/principal and charges only mock fee",
+      "actual": {
+        "expiredAddress": "2JCBhy26SqQ3qmtHo4qobVm6RR73JupvLPNW3Wr12Pvj",
+        "rollbackAddress": "6nx9THzDCkKgv1EupFCirteiRS5NGWSuAhSUG1vRzELd",
+        "cancelBefore": {
+          "balances": {
+            "5jq4k5gG2xYdv7FrQdbrAQjUUHWajmrHpQtr2rhEeWbm": "14996592080",
+            "3r3Q8mD7kEF1ssvkhGBdDD57FfN7MPgzHAvznfD6tQUc": "4998000000",
+            "9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin": "2000000000"
+          },
+          "rents": {
+            "EpQUeEpGPoZrDoffujf86a3GnKdBkX7RbvsbXkkfpodo": "1802640",
+            "GYjxtHoM4wVxbGwHHgcKBpj2C5r5CQw48YMcmgvBywA8": "1802640",
+            "5BWMrebjJNr2yANMqzXSwdFjErkxT24TBqDHYjLvEv66": "1802640",
+            "H3ijHRAqPgNqyenK7una3oTr5z45JPa7o6hq6KtkQmCm": "1802640",
+            "ESXZYcesgVtcgmRvrjD1SH2qVaQpsBpDGsdhySjBHP9B": "1802640",
+            "89TNCk3WBFgSuVAYRCJXkq3EcNq7hq9rW8pP1qRVwkm5": "1802640"
+          },
+          "feePayerLamports": "999950000",
+          "feesPaid": "50000"
+        },
+        "cancelAfter": {
+          "balances": {
+            "5jq4k5gG2xYdv7FrQdbrAQjUUHWajmrHpQtr2rhEeWbm": "14996592080",
+            "3r3Q8mD7kEF1ssvkhGBdDD57FfN7MPgzHAvznfD6tQUc": "4998000000",
+            "9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin": "2000000000"
+          },
+          "rents": {
+            "EpQUeEpGPoZrDoffujf86a3GnKdBkX7RbvsbXkkfpodo": "1802640",
+            "GYjxtHoM4wVxbGwHHgcKBpj2C5r5CQw48YMcmgvBywA8": "1802640",
+            "5BWMrebjJNr2yANMqzXSwdFjErkxT24TBqDHYjLvEv66": "1802640",
+            "H3ijHRAqPgNqyenK7una3oTr5z45JPa7o6hq6KtkQmCm": "1802640",
+            "ESXZYcesgVtcgmRvrjD1SH2qVaQpsBpDGsdhySjBHP9B": "1802640",
+            "89TNCk3WBFgSuVAYRCJXkq3EcNq7hq9rW8pP1qRVwkm5": "1802640"
+          },
+          "feePayerLamports": "999940000",
+          "feesPaid": "60000"
+        },
+        "expiredBefore": {
+          "balances": {
+            "5jq4k5gG2xYdv7FrQdbrAQjUUHWajmrHpQtr2rhEeWbm": "14994789440",
+            "3r3Q8mD7kEF1ssvkhGBdDD57FfN7MPgzHAvznfD6tQUc": "4998000000",
+            "9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin": "2000000000"
+          },
+          "rents": {
+            "EpQUeEpGPoZrDoffujf86a3GnKdBkX7RbvsbXkkfpodo": "1802640",
+            "GYjxtHoM4wVxbGwHHgcKBpj2C5r5CQw48YMcmgvBywA8": "1802640",
+            "5BWMrebjJNr2yANMqzXSwdFjErkxT24TBqDHYjLvEv66": "1802640",
+            "H3ijHRAqPgNqyenK7una3oTr5z45JPa7o6hq6KtkQmCm": "1802640",
+            "ESXZYcesgVtcgmRvrjD1SH2qVaQpsBpDGsdhySjBHP9B": "1802640",
+            "89TNCk3WBFgSuVAYRCJXkq3EcNq7hq9rW8pP1qRVwkm5": "1802640",
+            "2JCBhy26SqQ3qmtHo4qobVm6RR73JupvLPNW3Wr12Pvj": "1802640"
+          },
+          "feePayerLamports": "999930000",
+          "feesPaid": "70000"
+        },
+        "expiredAfter": {
+          "balances": {
+            "5jq4k5gG2xYdv7FrQdbrAQjUUHWajmrHpQtr2rhEeWbm": "14994789440",
+            "3r3Q8mD7kEF1ssvkhGBdDD57FfN7MPgzHAvznfD6tQUc": "4998000000",
+            "9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin": "2000000000"
+          },
+          "rents": {
+            "EpQUeEpGPoZrDoffujf86a3GnKdBkX7RbvsbXkkfpodo": "1802640",
+            "GYjxtHoM4wVxbGwHHgcKBpj2C5r5CQw48YMcmgvBywA8": "1802640",
+            "5BWMrebjJNr2yANMqzXSwdFjErkxT24TBqDHYjLvEv66": "1802640",
+            "H3ijHRAqPgNqyenK7una3oTr5z45JPa7o6hq6KtkQmCm": "1802640",
+            "ESXZYcesgVtcgmRvrjD1SH2qVaQpsBpDGsdhySjBHP9B": "1802640",
+            "89TNCk3WBFgSuVAYRCJXkq3EcNq7hq9rW8pP1qRVwkm5": "1802640",
+            "2JCBhy26SqQ3qmtHo4qobVm6RR73JupvLPNW3Wr12Pvj": "1802640"
+          },
+          "feePayerLamports": "999920000",
+          "feesPaid": "80000"
+        },
+        "rollbackBefore": {
+          "balances": {
+            "5jq4k5gG2xYdv7FrQdbrAQjUUHWajmrHpQtr2rhEeWbm": "14992986800",
+            "3r3Q8mD7kEF1ssvkhGBdDD57FfN7MPgzHAvznfD6tQUc": "4998000000",
+            "9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin": "2000000000"
+          },
+          "rents": {
+            "EpQUeEpGPoZrDoffujf86a3GnKdBkX7RbvsbXkkfpodo": "1802640",
+            "GYjxtHoM4wVxbGwHHgcKBpj2C5r5CQw48YMcmgvBywA8": "1802640",
+            "5BWMrebjJNr2yANMqzXSwdFjErkxT24TBqDHYjLvEv66": "1802640",
+            "H3ijHRAqPgNqyenK7una3oTr5z45JPa7o6hq6KtkQmCm": "1802640",
+            "ESXZYcesgVtcgmRvrjD1SH2qVaQpsBpDGsdhySjBHP9B": "1802640",
+            "89TNCk3WBFgSuVAYRCJXkq3EcNq7hq9rW8pP1qRVwkm5": "1802640",
+            "2JCBhy26SqQ3qmtHo4qobVm6RR73JupvLPNW3Wr12Pvj": "1802640",
+            "6nx9THzDCkKgv1EupFCirteiRS5NGWSuAhSUG1vRzELd": "1802640"
+          },
+          "feePayerLamports": "999910000",
+          "feesPaid": "90000"
+        },
+        "rollbackAfter": {
+          "balances": {
+            "5jq4k5gG2xYdv7FrQdbrAQjUUHWajmrHpQtr2rhEeWbm": "14992986800",
+            "3r3Q8mD7kEF1ssvkhGBdDD57FfN7MPgzHAvznfD6tQUc": "4998000000",
+            "9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin": "2000000000"
+          },
+          "rents": {
+            "EpQUeEpGPoZrDoffujf86a3GnKdBkX7RbvsbXkkfpodo": "1802640",
+            "GYjxtHoM4wVxbGwHHgcKBpj2C5r5CQw48YMcmgvBywA8": "1802640",
+            "5BWMrebjJNr2yANMqzXSwdFjErkxT24TBqDHYjLvEv66": "1802640",
+            "H3ijHRAqPgNqyenK7una3oTr5z45JPa7o6hq6KtkQmCm": "1802640",
+            "ESXZYcesgVtcgmRvrjD1SH2qVaQpsBpDGsdhySjBHP9B": "1802640",
+            "89TNCk3WBFgSuVAYRCJXkq3EcNq7hq9rW8pP1qRVwkm5": "1802640",
+            "2JCBhy26SqQ3qmtHo4qobVm6RR73JupvLPNW3Wr12Pvj": "1802640",
+            "6nx9THzDCkKgv1EupFCirteiRS5NGWSuAhSUG1vRzELd": "1802640"
+          },
+          "feePayerLamports": "999900000",
+          "feesPaid": "100000"
+        }
+      },
+      "pass": true,
+      "screenshot": "screenshots/375x812-07-cancel-expired-rollback.png"
+    },
+    {
+      "id": "08-layout-keyboard-clipboard",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "expected": "No page overflow; internal table scroll; visible Tab/Shift+Tab focus; exact PDA and wallet clipboard",
+      "actual": {
+        "overflow": {
+          "page": 375,
+          "client": 375,
+          "table": 965,
+          "tableClient": 277
+        },
+        "forward": {
+          "tag": "BUTTON",
+          "focusVisible": true,
+          "outline": "solid",
+          "width": "3px"
+        },
+        "clipboardExact": true
+      },
+      "pass": true,
+      "screenshot": "screenshots/375x812-08-layout-keyboard-clipboard.png"
+    }
+  ],
+  "browserErrors": [],
+  "blockedRequests": [],
+  "video": {
+    "path": "video/receiptrail-local-dry-run.webm",
+    "durationSeconds": 162.12,
+    "sha256": "80306d3168e2ad5b0a32fc380f31d0b67457046bf628137d8870485ac093bb53",
+    "note": "UI dry run, no narration; all local/mock, no source rewrite. Not a devnet e2e or final submission video."
+  },
+  "chromium": "156.0.8078.4",
+  "passed": true,
+  "finishedAt": "2026-11-19T17:10:20.501Z"
+}

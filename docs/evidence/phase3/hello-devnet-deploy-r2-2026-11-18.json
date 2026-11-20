@@ -1,0 +1,30 @@
+{
+  "startedAt": "2026-11-18T15:00:01.306Z",
+  "rpc": "https://api.devnet.solana.com",
+  "programId": "2yzxUQEpaeLmgCMhDipwnVL3DHsxez18KcePonqZRiXL",
+  "payer": "GQRoDMoWFV2nhgwm3bZGvSCC1LSa2wRkLeeJg8NhbFM2",
+  "buffer": "qSWzcDdMP7m2GhyE2tgaZ5FnHzAtgvMjZwGkQok9s6D",
+  "binarySha256": "9b5483f7335a294b125ba458bcbcbdc9e222b605a2c67d7fabc76c132a23da54",
+  "precheck": "hello-devnet-recheck-r2-2026-11-18.json",
+  "approvedCapLamports": 1500000000,
+  "parameters": {
+    "maxLen": 127672,
+    "computeUnitPrice": 0,
+    "maxSignAttempts": 1,
+    "useRpc": true,
+    "commitment": "finalized",
+    "skipPreflight": false,
+    "skipFeatureVerify": false
+  },
+  "newKeypairCreated": false,
+  "status": "FAILED_OR_UNCONFIRMED_INSPECT_BEFORE_RETRY",
+  "endedAt": "2026-11-18T15:01:10.522Z",
+  "exitCode": 1,
+  "signal": null,
+  "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderrSha256": "d7a2f4702f16fe0aa91d837713d3d67ad40623535a9220c53c1bf59c5fe7bcdd",
+  "resultFormat": "NON_JSON_INSPECT_PRIVATE_LOG",
+  "errorLines": [
+    "Error: Data writes to account failed: Custom error: Max retries exceeded"
+  ]
+}

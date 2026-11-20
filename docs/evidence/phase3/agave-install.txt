@@ -1,0 +1,5 @@
+Authorized Phase 3 setup, 2026-11-17. ['sh', '/tmp/dev3pack-toolchain-20261117/agave-install.sh', '--no-modify-path', 'v4.1.2']
+downloading v4.1.2 installer
+  ✨ 4.1.2 initialized
+
+exit_code=0

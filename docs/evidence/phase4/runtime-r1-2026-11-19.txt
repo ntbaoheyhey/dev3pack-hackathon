@@ -1,0 +1,79 @@
+    Finished `release` profile [optimized] target(s) in 0.44s
+   Compiling receiptrail v0.1.0 (/Users/bao/Documents/ChatGPT/dev3pack/programs/receiptrail)
+warning: unused dependency `anchor-lang`
+  --> programs/receiptrail/Cargo.toml:23:1
+   |
+23 | anchor-lang = "=1.2.2"
+   | ^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: `cargo::unused_dependencies` is set to `warn` by default
+help: consider removing the dependency on `anchor-lang`
+help: to still use for development builds, move to `dev-dependencies`
+warning: `receiptrail` (manifest) generated 1 warning
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 2.28s
+     Running unittests src/lib.rs (target/debug/build/receiptrail/a9bf5305b2fa9bd9/out/receiptrail-a9bf5305b2fa9bd9)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/runtime.rs (target/debug/build/receiptrail/4bae2726b664c226/out/runtime-4bae2726b664c226)
+
+running 32 tests
+test another_merchant_cannot_cancel ... ok
+test bad_cryptographic_signature_is_rejected_before_execution ... ok
+test cancel_checks_owner_discriminator_seeds_and_version ... ok
+test create_pay_and_fresh_transaction_retry_transfers_principal_only_once ... METRIC create_cu=8775 pay_cu=6608 retry_cu=6017 create_fee=10000 pay_fee=10000 retry_fee=10000 rent_lamports=1802640 principal_delta=1000000 invoice_bytes=131 paid_slot=100
+ok
+test create_then_pay_is_atomic_and_duplicate_pay_rolls_back_creation ... METRIC create_pay_cu=15381 create_pay_fee=15000 rollback_create_pay_pay_fee=15000
+ok
+test different_invoice_ids_are_independent_and_each_can_pay_once ... ok
+test expiry_boundary_before_at_and_after ... ok
+test export_rust_abi_and_runtime_accounts_for_browser_client ... METRIC abi_vectors=3 instruction_lengths=88,8,8 account_bytes=131
+ok
+test insufficient_principal_cpi_leaves_invoice_open_and_balances_unchanged ... ok
+test invalid_creation_terms_and_aliases_leave_no_invoice_or_rent_debit ... ok
+test merchant_address_without_signature_cannot_create_or_cancel ... ok
+test merchant_can_cancel_expired_open_invoice_without_moving_principal ... METRIC cancel_cu=4346 cancel_fee=10000
+ok
+test merchant_owner_and_data_are_checked_at_create_and_pay ... 
+thread 'merchant_owner_and_data_are_checked_at_create_and_pay' (171445) panicked at programs/receiptrail/tests/runtime.rs:189:9:
+expected InvalidWallet; FailedTransactionMetadata { err: InstructionError(0, InvalidArgument), meta: TransactionMetadata { signature: 3SxR13NTc5UNvvf1oKgmVv9nJgt7r9dw1yCJvhxUhFJfteFm3nX4gwV7Q1ceNizb6jhhA7MGbc2qEPNnqirUwrU2, logs: ["Program troKmWNxjNucevGMKo9PnKdF5p6W91VDGJ2PsjYvCPg invoke [1]", "Program log: Instruction: CreateInvoice", "Program 11111111111111111111111111111111 invoke [2]", "Transfer: `from` must not carry data", "Program 11111111111111111111111111111111 failed: invalid program argument", "Program troKmWNxjNucevGMKo9PnKdF5p6W91VDGJ2PsjYvCPg consumed 5124 of 200000 compute units", "Program troKmWNxjNucevGMKo9PnKdF5p6W91VDGJ2PsjYvCPg failed: invalid program argument"], inner_instructions: [[InnerInstruction { instruction: CompiledInstruction { program_id_index: 3, accounts: [1, 2], data: [0, 0, 0, 0, 144, 129, 27, 0, 0, 0, 0, 0, 131, 0, 0, 0, 0, 0, 0, 0, 13, 72, 237, 198, 167, 14, 164, 149, 220, 173, 161, 252, 198, 177, 175, 137, 182, 193, 13, 205, 131, 126, 207, 39, 227, 31, 233, 248, 34, 198, 183, 167] }, stack_height: 2 }]], compute_units_consumed: 5124, return_data: TransactionReturnData { program_id: 11111111111111111111111111111111, data: [] }, fee: 10000 } }
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+FAILED
+test open_invoice_cannot_change_terms_by_reinitialization ... ok
+test owner_and_discriminator_are_checked_before_payment ... ok
+test pay_cancel_race_is_safe_in_both_serial_orders ... ok
+test payer_address_without_signature_is_rejected ... ok
+test payer_with_data_or_wrong_owner_cannot_transfer ... ok
+test recipient_substitution_cannot_redirect_payment ... ok
+test required_writable_privileges_cannot_be_removed ... 
+thread 'required_writable_privileges_cannot_be_removed' (171452) panicked at programs/receiptrail/tests/runtime.rs:189:9:
+expected ConstraintMut; FailedTransactionMetadata { err: InstructionError(0, PrivilegeEscalation), meta: TransactionMetadata { signature: 64MvUV5YkuZZdWeKRgTqdJCJ5vnZvoY52PZG3ddxW3tx53pZZKm5bSCmrofLxHVK8Y3EEZMdecQVyXBZ99gFrM2K, logs: ["Program troKmWNxjNucevGMKo9PnKdF5p6W91VDGJ2PsjYvCPg invoke [1]", "Program log: Instruction: CreateInvoice", "Cid1vJrbG66RHdqMQHVQwuaUmqmfaZzFE7vMhFAbzhH7's writable privilege escalated", "Program troKmWNxjNucevGMKo9PnKdF5p6W91VDGJ2PsjYvCPg consumed 4975 of 200000 compute units", "Program troKmWNxjNucevGMKo9PnKdF5p6W91VDGJ2PsjYvCPg failed: Cross-program invocation with unauthorized signer or writable account"], inner_instructions: [[]], compute_units_consumed: 4975, return_data: TransactionReturnData { program_id: troKmWNxjNucevGMKo9PnKdF5p6W91VDGJ2PsjYvCPg, data: [] }, fee: 10000 } }
+FAILED
+test same_invoice_id_at_another_merchant_is_a_distinct_invoice ... ok
+test same_layout_at_wrong_pda_is_rejected ... ok
+test substituted_executable_cannot_replace_system_program ... ok
+test terminal_invoice_cannot_be_reinitialized_or_reset ... ok
+test terms_are_immutable_after_pay_or_cancel ... ok
+test truncated_instruction_and_account_data_fail_without_principal_changes ... 
+thread 'truncated_instruction_and_account_data_fail_without_principal_changes' (171459) panicked at programs/receiptrail/tests/runtime.rs:189:9:
+expected InstructionMissing; FailedTransactionMetadata { err: InstructionError(0, Custom(101)), meta: TransactionMetadata { signature: c5r9Gwq2FCkuep547AgDHRJYtutpnksP3LDQTa7X3Wgez4mLyTRQQvEzq5au6PyWPDTZUkFxDbhjfGw9Qve5Mwq, logs: ["Program troKmWNxjNucevGMKo9PnKdF5p6W91VDGJ2PsjYvCPg invoke [1]", "Program log: AnchorError occurred. Error Code: InstructionFallbackNotFound. Error Number: 101. Error Message: Fallback functions are not supported.", "Program troKmWNxjNucevGMKo9PnKdF5p6W91VDGJ2PsjYvCPg consumed 2442 of 200000 compute units", "Program troKmWNxjNucevGMKo9PnKdF5p6W91VDGJ2PsjYvCPg failed: custom program error: 0x65"], inner_instructions: [[]], compute_units_consumed: 2442, return_data: TransactionReturnData { program_id: troKmWNxjNucevGMKo9PnKdF5p6W91VDGJ2PsjYvCPg, data: [] }, fee: 10000 } }
+FAILED
+test two_pay_instructions_in_one_transaction_roll_back_the_first_transfer ... ok
+test two_pay_rollback_charges_only_fee_payer ... ok
+test u64_boundaries_remain_exact_and_cannot_wrap_principal ... ok
+test unknown_instruction_cannot_change_terms_or_terminal_state ... ok
+test wrong_bump_and_version_are_rejected ... ok
+test wrong_payer_signer_cannot_pay ... ok
+
+failures:
+
+failures:
+    merchant_owner_and_data_are_checked_at_create_and_pay
+    required_writable_privileges_cannot_be_removed
+    truncated_instruction_and_account_data_fail_without_principal_changes
+
+test result: FAILED. 29 passed; 3 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.33s
+
+error: test failed, to rerun pass `-p receiptrail --test runtime`

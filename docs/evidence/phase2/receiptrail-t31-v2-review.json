@@ -1,0 +1,50 @@
+{
+  "reviewed_at_utc": "2026-11-18T07:37:25+00:00",
+  "scope": "Review bản T31 bổ sung4e4a004 trước chốt PR T33; đọc report/diff/note021/review nguồn trước/source local, không crawl hoặc chạy suite mới.",
+  "report": {
+    "path": "docs/data/receiptrail-evidence.md",
+    "commit": "4e4a004297dcf4a2a2f19f4b85acecdf5cf1837b",
+    "sha256": "76d32b3f1d1f120803811a357d07aa338c45fe904e2ff8d34f12aa6d85655c43",
+    "line_count": 34,
+    "text": "# ReceiptRail Evidence Report (T31 - Rework Final)\n\n> Ngày cập nhật: 2026-11-18\n\n## 1. Alternatives (Nguồn chính xác)\n| Alternative | URL đích | Hạn chế | Tác động |\n| --- | --- | --- | --- |\n| Stripe Idempotency | [Stripe Docs](https://docs.stripe.com/api/idempotent_requests) | Server-side dependency | PDA on-chain (immutable) = unique ID. |\n| Solana Pay Ref | [Solana Pay](https://solana.com/docs/tools/solana-pay/specification/version1-1#reference) | Reference không unique | PDA address = unique định danh. |\n| x402 Payment ID | [x402 Spec](https://github.com/x402-foundation/x402/blob/main/specs/extensions/payment_identifier.md) | App level dependency | Logic on-chain = không phụ thuộc ngoài. |\n\n## 2. Pain Points (Nguồn độc lập)\n| Nguồn | Vấn đề | Điều nguồn không chứng minh |\n| --- | --- | --- |\n| [Shopify Eng](https://shopify.engineering/building-resilient-graphql-apis-using-idempotency) | Idempotency lỗi gây trùng | Không chứng minh lỗi Solana. |\n| [x402 Issue #452](https://github.com/x402-foundation/x402/issues/452) | Replay trap trong EIP-3009 | Không chứng minh double-pay Solana. |\n\n## 3. State Machine & Request\n- **Invoice State**: `Open` (Khởi tạo), `Paid` (Finalized), `Cancelled`, `Expired` (`Open` + `slot` >= `expiry slot`).\n- **Request State**: `Pending` (Gửi TX), `Unknown` (Timeout - không tự ký/retry).\n- **Commitment**: Dùng `finalized` để tránh ambiguity.\n- **PDA**: Định danh duy nhất, không dùng Solana Pay reference.\n\n## 4. Phản hồi Findings (T26, T29, T31)\n| Mã | Nội dung | Mục sửa |\n| --- | --- | --- |\n| T26-R1 | Alternatives | 3 alternatives với giới hạn kỹ thuật |\n| T26-R2 | Pain sources | Phân biệt EVM vs Solana |\n| T26-R3 | State/PDA | PDA làm nguồn định danh duy nhất |\n| T29-E1 | State machine | Invoice State, Request State (Pending/Unknown) |\n| T29-E2 | Expiry/Commitment | Expiry là nhãn, Paid là state |\n| T29-E3 | Tổng hợp | Hoàn thiện bảng phản hồi 13 findings |\n| T31-E1 | Provenance | Khôi phục Request Pending/Unknown |\n| T31-E2 | Expiry | Bảng expiry-1/expiry/expiry+1 |\n"
+  },
+  "input_sha256": {
+    "programs/receiptrail/src/lib.rs": "2d7c0dce845da382ef237113bc7c691b656d4e61be171514b8b53fdade32b285",
+    "programs/receiptrail/tests/runtime.rs": "e60ce9d4e4328406a547de47eb9023af2c0df1cd0f822340c7f9df2e3cda960b",
+    "docs/idl/receiptrail.json": "13efb821841ebd6c9a8b9da21160aad8fbc11e9a6072e4b92a408e6f103f5409",
+    "docs/ARCHITECTURE.md": "6716c93d566d0609940b6e963517c565d40be7beeedaa31517799b909ec4951e",
+    "docs/IDEA.md": "bba376b1b55f26b3c63f91d17c3f0a1fbc0a46cf68a51b661d8d2af67937ef55",
+    "docs/evidence/phase2/receiptrail-spike-r2.txt": "3ee1bac3d93f4fdcd0b2c0a31d42521964945db83f5fbcad94967a1872af212b"
+  },
+  "document_checks": {
+    "report_snapshot_matches_git_blob_and_worktree": true,
+    "unique_http_urls": 5,
+    "request_state_definition_present": true,
+    "unknown_no_auto_sign_or_retry_present": true,
+    "response_rows": 8,
+    "original_response_ids_expected": [
+      "T14-R1",
+      "T14-R2",
+      "T14-R3",
+      "T14-R4",
+      "T20-R1",
+      "T20-R2",
+      "T20-R3",
+      "T23-R1",
+      "T23-R2",
+      "T23-R3"
+    ],
+    "original_response_ids_present": []
+  },
+  "accepted": [
+    "Khôi phục Request Pending/Unknown; Unknown ghi không tự ký/retry.",
+    "Giữ5URL, Open+slot>=expiry và không dùng Solana Pay reference để đọc Invoice."
+  ],
+  "findings": {
+    "T31-E1": "Provenance/cơ chế/pain vẫn chưa đủ: không tác giả/ngày thực đọc/v1-v2/fingerprint-cache-conflict; Reference không unique và Shopify gây trùng vẫn quá mức.",
+    "T31-E2": "Paid vẫn Finalized, commitment không là state/invariant; thiếu actor/CTA/cùng program-cluster-owner-commitment và bảng3mốc expiry. Không tiếp tục coi Request hiện hành bị mất.",
+    "T31-E3": "8hàng phản hồi thiếu10IDs gốc vàT31-E3; T29-E1/T31-E1 bị đổi nghĩa. HàngT31-E2 nói có bảngexpiry nhưng bảng không tồn tại; không nhận câu hoàn thiện13findings."
+  },
+  "follow_up": "T32→T33 rồi sửa hẹp phần T31 còn thiếu trong cùng ID; không tạo task mới hoặc sửa file A.",
+  "verdict": "Nhận phần Request/Unknown của bảnT31v2;3finding T31-E1–E3 và9nhóm T28/T29 chưa đóng."
+}

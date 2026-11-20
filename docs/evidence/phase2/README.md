@@ -1,0 +1,49 @@
+# ReceiptRail Phase 2 — bằng chứng local
+
+18/11/2026 · Codex · trước sự kiện. ReceiptRail chỉ chạy LiteSVM/cached compiler; chưa deploy ReceiptRail hoặc tạo ví ReceiptRail mới. Program ID là định danh local. Hello Phase3 có evidence riêng, không thay bằng chứng sản phẩm.
+
+**Hiện hành:** T31/T32/T33 đã nhận đúng một lượt cuối tại7857e9b và đóng; [snapshot cuối](receiptrail-final-pass-2026-11-18.json), [nợ tài liệu D01–D03](../../DOCUMENTATION-DEBT.md). Không mở vòng sửa/task bổ sung. Các yêu cầu sửa trong lịch sử bên dưới đã hết hiệu lực.
+
+| Artifact | Kết quả và giới hạn |
+| --- | --- |
+| [spike r1](receiptrail-spike-r1.txt) |19/19 runtime tests, suite1.06s/build+test64s, bytecode SBFv3 thật |
+| [spike r2](receiptrail-spike-r2.txt) |19/19, suite1.00s/build+test3s bằng cache; runner gọi trực tiếp host compiler tránh rustup proxy; source/bytecode không đổi |
+| [metadata hiện hành](receiptrail-build-metadata.json), [metadata r1](receiptrail-build-metadata-r1.json) |Hash source/tests/script/lock/binary, version/CU/rent/principal, layout/IDL hash; metadata r1 là snapshot runner cũ |
+| [IDL r1](receiptrail-idl-r1.txt), [r2](receiptrail-idl-r2.txt), [r3](receiptrail-idl-r3.txt) |Hai lần lỗi giữ nguyên; r3 exit0 sau sửa PATH process. Không dùng19 tests filtered-out ở IDL thay runtime suite |
+| [IDL JSON](../../idl/receiptrail.json) |3 instructions/1 account/3 events/9 custom errors; đã đối chiếu source/ARCHITECTURE |
+
+Review tài liệu: [audit UX T17](receiptrail-ux-t17-audit.json) lưu bản3475c36, hash UX/IDL và9 cặp code–name: **0/9 khớp**, giữ nguyên bảng T16 dù5checkbox đã tick. Chỉ kiểm dữ liệu/report; không thêm runtime tests, không chứng minh copy/CTA hoặc wireframe đạt. Kết luận chi tiết ở [review T17](../../reviews/receiptrail-codex.md#review-đầu-ra-t17--18112026-lượt-heartbeat0510-utc7).
+
+Tái chạy: `bash scripts/check-receiptrail.sh` với bộ toolchain/cache đã có. Xem [note023](../../learning/023-receiptrail-phase2-spike.md) cho đường dẫn override, lệnh IDL và nguyên nhân không dùng build wrapper sinh keypair. Thiếu cache phải hỏi trước cài, không tự download.
+
+Số đo VM: account131bytes, rent1,802,640lamports, principal1,000,000 trả1lần, CU create8,775/pay6,608/retry6,017/cancel4,346, fee10,000 do2signatures. Không suy thành phí/latency devnet hoặc benchmark mạng. Tại mốc spike chưa có CI; [CI27cf7ac đã đạt](../phase3/ci-passed-27cf7ac.json) được lưu riêng. UI/wallet/RPC recovery/load, devnet và audit độc lập còn chưa kiểm.
+
+[Audit review T18–T20](receiptrail-reviews-t18-t20-audit.json), snapshot f49716a: T19 có9/9 mã–tên khớp IDL; T18 dẫn test_duplicate không có trong source/log; T20 có5URL. Source/tests/IDL khớp3hash metadata. C đọc source/log cũ và5nguồn bên ngoài để review nội dung, không chạy runtime suite mới; counts không tự đóng tiêu chí UX/review/evidence. Audit T17 giữ kết quả lịch sử tại3475c36, không phải bảng lỗi UX hiện tại.
+
+[Review T28/T29](receiptrail-t28-t29-review.json) giữ 3 report tại601e723 cùng hashes/Git blob, 6 hashes đầu vào và phạm vi kiểm tài liệu. Nhận phí/Unknown/baseline retry Paid→Paid; 9/9 cặp IDL, 165giây, 4 mục wireframe và 0/3 tên hàm rút gọn khớp source. Còn 9 findings, giao T30–T33; không crawl/rerun runtime hoặc tự đóng review chéo. [Kết luận C](../../reviews/receiptrail-codex.md#review-t28-và-t29--18112026-heartbeat1235-utc7).
+
+[Bản bổ sung306466f](receiptrail-t28-t29-v2-review.json): UX44dòng/evidence36/review28;3snapshot/6hashes/9mã/165giây/4mục đã đối chiếu. Request và copy6007 cải thiện, UX lại bỏ phí create/Unknown/terms/context. Findings giữ9nhóm, queueT30–T33 cập nhật đầu vào; snapshot601e723 vẫn là lịch sử độc lập.
+
+[Review T30/0d7b9d3](receiptrail-t30-review.json):43dòng,9/9 code–name,6input hashes khớp; nhận phí/terms/Unknown và expiry đúng biên. State/version/form/CTA còn thiếu, mục3–5 thành placeholder nên0bố cục/0khoảng thời gian, không xác nhận165giây ở bản mới. T31→T32→T33, T33 bao gồm phần T30 chưa đạt; không runtime/browser/CI mới.
+
+[Review T31/e483529](receiptrail-t31-review.json): giữ5URL/nhãnEVM/expiry; thiếu provenance/state/phản hồi, mất Request và cơ chế từng có. Snapshot nguyên văn/hash khớp Git blob,6input hashes không đổi. Không crawl/runtime/browser/CI mới; T32/T33 tiếp tục, phầnT31 chưa đạt sửa trong cùng task.
+
+[Review T32/c801580](receiptrail-t32-review.json):36dòng,3tên hàm đầy đủ khớp source/log r2,6input hashes khớp. Nhận merchant không ký pay và baseline retry/rollback; recipient/assertions/log/fee boundary/ma trận/phản hồi còn thiếu. Không runtime/browser/CI mới; T33 tiếp tục rồi sửa hẹp T31/T32 cùng task ID.
+
+[Review T33/6ef9815](receiptrail-t33-review.json):54dòng/6input hashes/9mã đúng; hai bảng Invoice/Request,4mục màn hình,4khoảng liên tục đủ165giây trên giấy,0URL. Nhận phần cải thiện; state/vai/CTA, form/phí bị mất,8bố cục/demo/SDK/phản hồi vẫn chưa đạt. T31→T32 rồi sửa hẹp T33 cùng ID; không runtime/browser/CI mới.
+
+[T31 v2/4e4a004](receiptrail-t31-v2-review.json):34dòng/5URL/6input hashes; khôi phục Request và Unknown không tự ký/retry. Nguồn/state/phản hồi vẫn chưa đạt, bảng expiry được nói đã có nhưng chưa tồn tại; giữ3findingsT31-E1–E3, không sửa snapshot e483529 hoặc rerun suite.
+
+[Review bổ sung15:17](receiptrail-supplement-1517-review.json): T32/2f44ba0 36dòng/3tên hàm; T33/1993859 52dòng/9code-name/4mục/165giây/0URL; T31/d40492b 30dòng/5URL. Ba blobs/hash và6input hashes lưu riêng; snapshots cũ giữ lịch sử. Nhận delta VM/network/cancel/nhãn Web API-EVM,9findings chưa đóng; reopen T32→T33→T31 cùng ID. Không chạy suite/crawl/RPC mới.
+
+[T32/3083ce4 review15:47](receiptrail-t32-3083ce4-review.json):35dòng/6input hashes/3tên hàm đúng;1/3log references đúng test. Sai42→26 và35→39; nhận has_one payer+merchant/sig khác,giữ3findings. Snapshot2f44ba0 trong bundle15:17 giữ lịch sử; không rerun suite.
+
+[T33/509adac](receiptrail-t33-509adac-review.json):58dòng/6input hashes/9mã/4mục/165giây/0URL. Nhận phí create/pay,Terms,no-auto-retry,reload recipient; state/vai/form/bố cục/demo/SDK còn thiếu. Không tiếp tục gọi các phần mới khôi phục là bị mất; r2:23–24 không là hai test/cảnh khác nhau. Snapshot1993859 giữ riêng.
+
+[Snapshot lịch sử580b903](receiptrail-supplement-580b903-review.json): T31/T32/T33 có29/36/52dòng,3blobs/hash và6input hashes. Nhận SystemAccount/giới hạn commitment; T33 lại bỏ phí/Terms/no-auto-retry/reload, T32 bỏ signature khác/canonical bump và giữ2log sai. T31 giữ Unknown/expiry nhưng bỏ nhãn Web API/EVM/giới hạn local; provenance/state/phản hồi chưa đủ.9findings mở, T31→T32→T33; snapshots trước là lịch sử, không crawl/rerun suite.
+
+[Review16:47](receiptrail-supplement-1647-review.json): T31/71d6ff6,T32/e12c8e6,T33/ee200e3 có30/36/57dòng/6input hashes. Nhận nhãn pain/nhắc PDA,3log đúng,phí/Terms/no-auto-retry/reload;3tên test bị rút gọn,9findings vẫn mở.9mã/4mục/165giây trên giấy giữ đúng; snapshots cũ giữ riêng, không crawl/rerun suite.
+
+[Bổ sung26fe656](receiptrail-supplement-26fe656-review.json): a6a4338/a3ef1e0/8e5c18b có30/37/58dòng/6inputs. T32 khôi phục3tên đầy đủ và giữ3log đúng, nhưng PDA check sai quay lại; T33 giữ phí/Terms/no-auto-retry/reload nhưng6002 reconnect.9findings mở; snapshot16:47 giữ lịch sử.
+
+[Snapshot lịch sử17:32](receiptrail-supplement-1732-review.json): T31/d4dcf3c,T32/030b93c,T33/4e1e2d7 có30/37/58dòng,3commit/blob/SHA256 và6input hashes. T32 giữ3log đúng nhưng3tên rút gọn/PDA check sai; merchant không ký pay và T33 reload recipient được khôi phục. T31 bỏ câu không dùng confirmed; state/provenance chưa đủ.9findings mở,T32→T31→T33; snapshot26fe656 trở thành lịch sử. Không crawl/rerun suite/RPC/CI.

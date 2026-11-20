@@ -1,0 +1,25 @@
+Browser tab: 2, Title: "ClusterProof · Kiểm tra program trên Devnet", URL: "https://clusterproof-devnet-17nov26.anthony-robinson-125.chatgpt.site/".
+The following is a diff from the previous accessibility tree with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
+~					25 text field (settable) Program ID, Value: 2yzxUQEpaeLmgCMhDipwnVL3DHsxez18KcePonqZRiXL, ID: program-id
+~					28 button Kiểm tra trên Devnet
++					53 text CHƯA SẴN SÀNG
+~					30 heading Chưa tìm thấy program trên Devnet, Value: 3
+~						31 text Chưa tìm thấy program trên Devnet
+~					32 text RPC không tìm thấy account tại địa chỉ này. Kiểm tra lại địa chỉ hoặc trạng thái deploy.
++					54 definition list
++						55 container Cluster
++							56 text Cluster
++						57 text Devnet · genesis đã đối chiếu
++						58 container Slot
++							59 text Slot
++						60 container
++							61 text 523,326,604  · confirmed
++						62 container Program ID
++							63 text Program ID
++						64 text 2yzxUQEpaeLmgCMhDipwnVL3DHsxez18KcePonqZRiXL
++						65 container Đọc lúc
++							66 text Đọc lúc
++						67 container
++							68 text 23:18:47 17/11/2026  (giờ thiết bị)
++					69 link Description: Xem địa chỉ trên Explorer , Value: explorer.solana.com/address/2yzxUQEpaeLmgCMhDipwnVL3DHsxez18KcePonqZRiXL?cluster=devnet
+The focused UI element is 1 AXWebArea ClusterProof · Kiểm tra program trên Devnet, URL: clusterproof-devnet-17nov26.anthony-robinson-125.chatgpt.site/

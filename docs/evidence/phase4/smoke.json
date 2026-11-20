@@ -1,0 +1,474 @@
+{
+  "at": "2026-11-19T09:13:14.952Z",
+  "mode": "APPROVED_P4B_SMOKE",
+  "program": "8NGSPufBmGB1oHqaZpY1jhJYz1X4gqFiNXCQmxfapYko",
+  "genesis": "EtWTRABZaYq6iMfeYKouRu166VU2xqa1wcaWoxPkrZBG",
+  "ciHead": "6d08e5c2026c26e2d55285822363356a6d10fd02",
+  "payerBaselineLamports": 1848125199,
+  "capLamports": 1800000000,
+  "merchant": "HtQYFnFqUrkAfnKLpLaTgZrvjivJ3ZWPTqsCv6Kru4y2",
+  "payer": "DPKxAZhBq4aJYn4FbHFn19easT1KRcv31YNweGKZnyrc",
+  "invoicePaid": "No8aqRyw8nWGSvEs8Ef57DckorU38Wtv2CUHe2fUdv9",
+  "invoiceCancelled": "AnUtAivTMaPtqcEG8CtcicLv85CjhkUKxqDwwFABqRPc",
+  "expiresSlot": "524042207",
+  "transactions": [
+    {
+      "label": "fund-two-actors",
+      "signature": "3CF7FKq1n1ggtK8YWXxauCXx4tBP5djrFYz43ffoBQmPMWSFA4C1Nh82skgUHiErfG8HQSNeoykhrBaSRgheJhy7",
+      "blockhash": "AcKBUQqZreyX2dbHooRdDRYJstLjEPWzTBymzYVuFE5D",
+      "lastValidBlockHeight": 511052262,
+      "feeQuoteLamports": 5000,
+      "broadcastStarted": true,
+      "status": "FINALIZED_SUCCESS",
+      "simulation": {
+        "accounts": null,
+        "err": null,
+        "fee": 5000,
+        "innerInstructions": null,
+        "loadedAccountsDataSize": 142,
+        "loadedAddresses": {
+          "readonly": [],
+          "writable": []
+        },
+        "logs": [
+          "Program 11111111111111111111111111111111 invoke [1]",
+          "Program 11111111111111111111111111111111 success",
+          "Program 11111111111111111111111111111111 invoke [1]",
+          "Program 11111111111111111111111111111111 success"
+        ],
+        "postBalances": [
+          1087464119,
+          2000000,
+          5000000,
+          1
+        ],
+        "postTokenBalances": [],
+        "preBalances": [
+          1094469119,
+          0,
+          0,
+          1
+        ],
+        "preTokenBalances": [],
+        "replacementBlockhash": null,
+        "returnData": null,
+        "unitsConsumed": 300
+      },
+      "slot": 523942212,
+      "feeLamports": 5000,
+      "logs": [
+        "Program 11111111111111111111111111111111 invoke [1]",
+        "Program 11111111111111111111111111111111 success",
+        "Program 11111111111111111111111111111111 invoke [1]",
+        "Program 11111111111111111111111111111111 success"
+      ],
+      "computeUnitsConsumed": 300
+    },
+    {
+      "label": "create-paid-invoice",
+      "signature": "4ECErZt6D26wK7oDEBCFX244aqX6NKVeKHcu5mrryUki4uRnnkYv8ZutFhs3tWK1MTf7gcjWEaDEtTCyitm6UyNT",
+      "blockhash": "G8fuCQ7uUWeq9KBa6k3FG2faKJeiP9aDxngMuikDkULn",
+      "lastValidBlockHeight": 511052271,
+      "feeQuoteLamports": 10000,
+      "broadcastStarted": true,
+      "status": "FINALIZED_SUCCESS",
+      "simulation": {
+        "accounts": null,
+        "err": null,
+        "fee": 10000,
+        "innerInstructions": null,
+        "loadedAccountsDataSize": 148279,
+        "loadedAddresses": {
+          "readonly": [],
+          "writable": []
+        },
+        "logs": [
+          "Program 8NGSPufBmGB1oHqaZpY1jhJYz1X4gqFiNXCQmxfapYko invoke [1]",
+          "Program log: Instruction: CreateInvoice",
+          "Program 11111111111111111111111111111111 invoke [2]",
+          "Program 11111111111111111111111111111111 success",
+          "Program data: vXLr28F9LzYFlVtxA5ATiQb2iK3U0Mnib4anlfoSOQVH/XI8dH2RkvrmOkJ6hsPhObie20q6LXrCjRbMcRcI/U0zG47y5ARNuARy8pi3Y9u8IbmbWGyRAfiK5Zda/rAHmUHWWUzzAaXjml6B+X1blMDNJ2p2rJziMVhCYXM0X7vfqBg1xdDhMkBCDwAAAAAA3z88HwAAAAA=",
+          "Program 8NGSPufBmGB1oHqaZpY1jhJYz1X4gqFiNXCQmxfapYko consumed 10275 of 200000 compute units",
+          "Program 8NGSPufBmGB1oHqaZpY1jhJYz1X4gqFiNXCQmxfapYko success"
+        ],
+        "postBalances": [
+          1087454119,
+          3684280,
+          1315720,
+          1,
+          833120
+        ],
+        "postTokenBalances": [],
+        "preBalances": [
+          1087464119,
+          5000000,
+          0,
+          1,
+          833120
+        ],
+        "preTokenBalances": [],
+        "replacementBlockhash": null,
+        "returnData": null,
+        "unitsConsumed": 10275
+      },
+      "slot": 523942221,
+      "feeLamports": 10000,
+      "logs": [
+        "Program 8NGSPufBmGB1oHqaZpY1jhJYz1X4gqFiNXCQmxfapYko invoke [1]",
+        "Program log: Instruction: CreateInvoice",
+        "Program 11111111111111111111111111111111 invoke [2]",
+        "Program 11111111111111111111111111111111 success",
+        "Program data: vXLr28F9LzYFlVtxA5ATiQb2iK3U0Mnib4anlfoSOQVH/XI8dH2RkvrmOkJ6hsPhObie20q6LXrCjRbMcRcI/U0zG47y5ARNuARy8pi3Y9u8IbmbWGyRAfiK5Zda/rAHmUHWWUzzAaXjml6B+X1blMDNJ2p2rJziMVhCYXM0X7vfqBg1xdDhMkBCDwAAAAAA3z88HwAAAAA=",
+        "Program 8NGSPufBmGB1oHqaZpY1jhJYz1X4gqFiNXCQmxfapYko consumed 10275 of 200000 compute units",
+        "Program 8NGSPufBmGB1oHqaZpY1jhJYz1X4gqFiNXCQmxfapYko success"
+      ],
+      "computeUnitsConsumed": 10275
+    },
+    {
+      "label": "pay-once",
+      "signature": "3anXptNoTPJtHg7Wknfd1LQJ1grRndEL8u2wQniLkdirpU322xxgHJVKdTUwKNx9jfkxMJEi2X9zDjuwPuMNpzDV",
+      "blockhash": "4kR81ddmjyRhuJrWVdMGUo7FR98MBXWngBTptj464RRv",
+      "lastValidBlockHeight": 511052280,
+      "feeQuoteLamports": 10000,
+      "broadcastStarted": true,
+      "status": "FINALIZED_SUCCESS",
+      "simulation": {
+        "accounts": null,
+        "err": null,
+        "fee": 10000,
+        "innerInstructions": null,
+        "loadedAccountsDataSize": 148538,
+        "loadedAddresses": {
+          "readonly": [],
+          "writable": []
+        },
+        "logs": [
+          "Program 8NGSPufBmGB1oHqaZpY1jhJYz1X4gqFiNXCQmxfapYko invoke [1]",
+          "Program log: Instruction: PayInvoice",
+          "Program 11111111111111111111111111111111 invoke [2]",
+          "Program 11111111111111111111111111111111 success",
+          "Program data: yNOoqi5SU7oFlVtxA5ATiQb2iK3U0Mnib4anlfoSOQVH/XI8dH2RkrgEcvKYt2PbvCG5m1hskQH4iuWXWv6wB5lB1llM8wGlQEIPAAAAAABTuTofAAAAAA==",
+          "Program 8NGSPufBmGB1oHqaZpY1jhJYz1X4gqFiNXCQmxfapYko consumed 6608 of 200000 compute units",
+          "Program 8NGSPufBmGB1oHqaZpY1jhJYz1X4gqFiNXCQmxfapYko success"
+        ],
+        "postBalances": [
+          1087444119,
+          1000000,
+          4684280,
+          1315720,
+          1,
+          833120
+        ],
+        "postTokenBalances": [],
+        "preBalances": [
+          1087454119,
+          2000000,
+          3684280,
+          1315720,
+          1,
+          833120
+        ],
+        "preTokenBalances": [],
+        "replacementBlockhash": null,
+        "returnData": null,
+        "unitsConsumed": 6608
+      },
+      "slot": 523942231,
+      "feeLamports": 10000,
+      "logs": [
+        "Program 8NGSPufBmGB1oHqaZpY1jhJYz1X4gqFiNXCQmxfapYko invoke [1]",
+        "Program log: Instruction: PayInvoice",
+        "Program 11111111111111111111111111111111 invoke [2]",
+        "Program 11111111111111111111111111111111 success",
+        "Program data: yNOoqi5SU7oFlVtxA5ATiQb2iK3U0Mnib4anlfoSOQVH/XI8dH2RkrgEcvKYt2PbvCG5m1hskQH4iuWXWv6wB5lB1llM8wGlQEIPAAAAAABXuTofAAAAAA==",
+        "Program 8NGSPufBmGB1oHqaZpY1jhJYz1X4gqFiNXCQmxfapYko consumed 6608 of 200000 compute units",
+        "Program 8NGSPufBmGB1oHqaZpY1jhJYz1X4gqFiNXCQmxfapYko success"
+      ],
+      "computeUnitsConsumed": 6608
+    },
+    {
+      "label": "create-cancelled-invoice",
+      "signature": "3rxPS5gb59HNHyBs8hj5LKPsUt6RiCapqETfnP1RgbGczHnf2g2fcfRvEpoaeYg96fZt515Pxk925yWC3M4h8pzF",
+      "blockhash": "GaneCbPX3zxeBznTGaixX871srge71q4awn63xyoP3jd",
+      "lastValidBlockHeight": 511052290,
+      "feeQuoteLamports": 10000,
+      "broadcastStarted": true,
+      "status": "FINALIZED_SUCCESS",
+      "simulation": {
+        "accounts": null,
+        "err": null,
+        "fee": 10000,
+        "innerInstructions": null,
+        "loadedAccountsDataSize": 148279,
+        "loadedAddresses": {
+          "readonly": [],
+          "writable": []
+        },
+        "logs": [
+          "Program 8NGSPufBmGB1oHqaZpY1jhJYz1X4gqFiNXCQmxfapYko invoke [1]",
+          "Program log: Instruction: CreateInvoice",
+          "Program 11111111111111111111111111111111 invoke [2]",
+          "Program 11111111111111111111111111111111 success",
+          "Program data: vXLr28F9LzaRX9hiUkFcjBXHHNGIr6rI4n8/JnU6Zbop1tBRiMWhv/rmOkJ6hsPhObie20q6LXrCjRbMcRcI/U0zG47y5ARNuARy8pi3Y9u8IbmbWGyRAfiK5Zda/rAHmUHWWUzzAaWCJgNkqXIGJpXDJCi3Aq5cpaS7uuApxMvuBmjBEHodJ0BCDwAAAAAA3z88HwAAAAA=",
+          "Program 8NGSPufBmGB1oHqaZpY1jhJYz1X4gqFiNXCQmxfapYko consumed 8775 of 200000 compute units",
+          "Program 8NGSPufBmGB1oHqaZpY1jhJYz1X4gqFiNXCQmxfapYko success"
+        ],
+        "postBalances": [
+          1087434119,
+          3368560,
+          1315720,
+          1,
+          833120
+        ],
+        "postTokenBalances": [],
+        "preBalances": [
+          1087444119,
+          4684280,
+          0,
+          1,
+          833120
+        ],
+        "preTokenBalances": [],
+        "replacementBlockhash": null,
+        "returnData": null,
+        "unitsConsumed": 8775
+      },
+      "slot": 523942240,
+      "feeLamports": 10000,
+      "logs": [
+        "Program 8NGSPufBmGB1oHqaZpY1jhJYz1X4gqFiNXCQmxfapYko invoke [1]",
+        "Program log: Instruction: CreateInvoice",
+        "Program 11111111111111111111111111111111 invoke [2]",
+        "Program 11111111111111111111111111111111 success",
+        "Program data: vXLr28F9LzaRX9hiUkFcjBXHHNGIr6rI4n8/JnU6Zbop1tBRiMWhv/rmOkJ6hsPhObie20q6LXrCjRbMcRcI/U0zG47y5ARNuARy8pi3Y9u8IbmbWGyRAfiK5Zda/rAHmUHWWUzzAaWCJgNkqXIGJpXDJCi3Aq5cpaS7uuApxMvuBmjBEHodJ0BCDwAAAAAA3z88HwAAAAA=",
+        "Program 8NGSPufBmGB1oHqaZpY1jhJYz1X4gqFiNXCQmxfapYko consumed 8775 of 200000 compute units",
+        "Program 8NGSPufBmGB1oHqaZpY1jhJYz1X4gqFiNXCQmxfapYko success"
+      ],
+      "computeUnitsConsumed": 8775
+    },
+    {
+      "label": "cancel-open-invoice",
+      "signature": "rV9HLHMt1dLmmVo4SjFLVDv3Wffn6mNGKkwVuZ53HNL3qHfvCccGL1JnPUC5kV5VtVxC1wT4yfyt5WBp4JYsHhW",
+      "blockhash": "D3PJ9JDYk98hUL22wy2rZZCvEi2WNpSy3Crb1vNmVnuD",
+      "lastValidBlockHeight": 511059052,
+      "feeQuoteLamports": 10000,
+      "status": "FINALIZED_SUCCESS",
+      "broadcastStarted": true,
+      "simulation": {
+        "accounts": null,
+        "err": null,
+        "fee": 10000,
+        "innerInstructions": null,
+        "loadedAccountsDataSize": 148396,
+        "loadedAddresses": {
+          "readonly": [],
+          "writable": []
+        },
+        "logs": [
+          "Program 8NGSPufBmGB1oHqaZpY1jhJYz1X4gqFiNXCQmxfapYko invoke [1]",
+          "Program log: Instruction: CancelInvoice",
+          "Program data: PkS2c8Xih/SRX9hiUkFcjBXHHNGIr6rI4n8/JnU6Zbop1tBRiMWhv/rmOkJ6hsPhObie20q6LXrCjRbMcRcI/U0zG47y5ARNA9Q6HwAAAAA=",
+          "Program 8NGSPufBmGB1oHqaZpY1jhJYz1X4gqFiNXCQmxfapYko consumed 4346 of 200000 compute units",
+          "Program 8NGSPufBmGB1oHqaZpY1jhJYz1X4gqFiNXCQmxfapYko success"
+        ],
+        "postBalances": [
+          1087424119,
+          3368560,
+          1315720,
+          833120
+        ],
+        "postTokenBalances": [],
+        "preBalances": [
+          1087434119,
+          3368560,
+          1315720,
+          833120
+        ],
+        "preTokenBalances": [],
+        "replacementBlockhash": null,
+        "returnData": null,
+        "unitsConsumed": 4346
+      },
+      "slot": 523949070,
+      "feeLamports": 10000,
+      "logs": [
+        "Program 8NGSPufBmGB1oHqaZpY1jhJYz1X4gqFiNXCQmxfapYko invoke [1]",
+        "Program log: Instruction: CancelInvoice",
+        "Program data: PkS2c8Xih/SRX9hiUkFcjBXHHNGIr6rI4n8/JnU6Zbop1tBRiMWhv/rmOkJ6hsPhObie20q6LXrCjRbMcRcI/U0zG47y5ARNDtQ6HwAAAAA=",
+        "Program 8NGSPufBmGB1oHqaZpY1jhJYz1X4gqFiNXCQmxfapYko consumed 4346 of 200000 compute units",
+        "Program 8NGSPufBmGB1oHqaZpY1jhJYz1X4gqFiNXCQmxfapYko success"
+      ],
+      "computeUnitsConsumed": 4346,
+      "transactionJsonSha256": "033b49268511c8cd9b7f412dbb7ceab3d303a7f8fcd4f121e1e5c9fb60a8469b"
+    }
+  ],
+  "status": "FINALIZED_SMOKE_VERIFIED",
+  "principal": {
+    "beforePay": {
+      "merchant": 3684280,
+      "payer": 2000000
+    },
+    "afterPay": {
+      "merchant": 4684280,
+      "payer": 1000000
+    },
+    "amountLamports": 1000000
+  },
+  "duplicate": {
+    "status": "SIMULATED_NOT_SENT",
+    "signature": "4dYN4kDCzzhCAP8ayqcJKZof465xKBzxAWfta491mNNKbFpSa36vTL4VSASjaJWrm3dYumDpSEQJPR2ZCJciDBaP",
+    "accounts": null,
+    "err": {
+      "InstructionError": [
+        0,
+        {
+          "Custom": 6004
+        }
+      ]
+    },
+    "fee": 10000,
+    "innerInstructions": null,
+    "loadedAccountsDataSize": 148538,
+    "loadedAddresses": {
+      "readonly": [],
+      "writable": []
+    },
+    "logs": [
+      "Program 8NGSPufBmGB1oHqaZpY1jhJYz1X4gqFiNXCQmxfapYko invoke [1]",
+      "Program log: Instruction: PayInvoice",
+      "Program log: AnchorError thrown in programs/receiptrail/src/lib.rs:64. Error Code: InvoiceNotOpen. Error Number: 6004. Error Message: Invoice is already paid or cancelled.",
+      "Program 8NGSPufBmGB1oHqaZpY1jhJYz1X4gqFiNXCQmxfapYko consumed 6017 of 200000 compute units",
+      "Program 8NGSPufBmGB1oHqaZpY1jhJYz1X4gqFiNXCQmxfapYko failed: custom program error: 0x1774"
+    ],
+    "postBalances": [
+      1087434119,
+      1000000,
+      4684280,
+      1315720,
+      1,
+      833120
+    ],
+    "postTokenBalances": [],
+    "preBalances": [
+      1087444119,
+      1000000,
+      4684280,
+      1315720,
+      1,
+      833120
+    ],
+    "preTokenBalances": [],
+    "replacementBlockhash": null,
+    "returnData": null,
+    "unitsConsumed": 6017
+  },
+  "recovery": {
+    "file": "cancel-recovery.json",
+    "partialFile": "smoke-r1-partial.json",
+    "partialSha256": "33e75d8c44d79049ec6cebb0932987ec6820c543a7709b3370ed71cf70f9bca7",
+    "ciHead": "e9a160352d3c86ce92261962e93551bf52d1aa02"
+  },
+  "errorHistory": [
+    "429 Too Many Requests:  {\"jsonrpc\":\"2.0\",\"error\":{\"code\": 429, \"message\":\"Connection rate limits exceeded\"}, \"id\": \"518fed0b-fabe-4f0f-aac4-3c5aba92f5a5\" } \r\n"
+  ],
+  "endedAt": "2026-11-19T09:40:43.639Z",
+  "final": {
+    "paid": {
+      "address": "No8aqRyw8nWGSvEs8Ef57DckorU38Wtv2CUHe2fUdv9",
+      "version": 1,
+      "bump": 253,
+      "merchant": "HtQYFnFqUrkAfnKLpLaTgZrvjivJ3ZWPTqsCv6Kru4y2",
+      "payer": "DPKxAZhBq4aJYn4FbHFn19easT1KRcv31YNweGKZnyrc",
+      "invoiceId": {
+        "0": 227,
+        "1": 154,
+        "2": 94,
+        "3": 129,
+        "4": 249,
+        "5": 125,
+        "6": 91,
+        "7": 148,
+        "8": 192,
+        "9": 205,
+        "10": 39,
+        "11": 106,
+        "12": 118,
+        "13": 172,
+        "14": 156,
+        "15": 226,
+        "16": 49,
+        "17": 88,
+        "18": 66,
+        "19": 97,
+        "20": 115,
+        "21": 52,
+        "22": 95,
+        "23": 187,
+        "24": 223,
+        "25": 168,
+        "26": 24,
+        "27": 53,
+        "28": 197,
+        "29": 208,
+        "30": 225,
+        "31": 50
+      },
+      "amountLamports": "1000000",
+      "expiresSlot": "524042207",
+      "status": "Paid",
+      "paidSlot": "523942231"
+    },
+    "cancelled": {
+      "address": "AnUtAivTMaPtqcEG8CtcicLv85CjhkUKxqDwwFABqRPc",
+      "version": 1,
+      "bump": 254,
+      "merchant": "HtQYFnFqUrkAfnKLpLaTgZrvjivJ3ZWPTqsCv6Kru4y2",
+      "payer": "DPKxAZhBq4aJYn4FbHFn19easT1KRcv31YNweGKZnyrc",
+      "invoiceId": {
+        "0": 130,
+        "1": 38,
+        "2": 3,
+        "3": 100,
+        "4": 169,
+        "5": 114,
+        "6": 6,
+        "7": 38,
+        "8": 149,
+        "9": 195,
+        "10": 36,
+        "11": 40,
+        "12": 183,
+        "13": 2,
+        "14": 174,
+        "15": 92,
+        "16": 165,
+        "17": 164,
+        "18": 187,
+        "19": 186,
+        "20": 224,
+        "21": 41,
+        "22": 196,
+        "23": 203,
+        "24": 238,
+        "25": 6,
+        "26": 104,
+        "27": 193,
+        "28": 16,
+        "29": 122,
+        "30": 29,
+        "31": 39
+      },
+      "amountLamports": "1000000",
+      "expiresSlot": "524042207",
+      "status": "Cancelled",
+      "paidSlot": "0"
+    },
+    "payerLamports": 1087424119,
+    "budget": {
+      "spent": 760701080,
+      "projected": 760701080,
+      "remainingCap": 1039298920
+    },
+    "smokeFeesLamports": 45000
+  }
+}

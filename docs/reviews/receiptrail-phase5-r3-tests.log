@@ -1,0 +1,57 @@
+
+> clusterproof-web@0.1.0 test
+> node --test tests/*.test.mjs
+
+✔ base58 validates the decoded 32-byte address, including leading zero bytes (1.152542ms)
+✔ bad input makes no RPC request (0.611792ms)
+✔ wrong cluster stops before reading the program (18.662542ms)
+✔ successful observation uses fixed devnet RPC, confirmed reads, provenance and no writes (1.539584ms)
+✔ missing account and non-executable accounts are not successful deployment claims (1.191291ms)
+✔ malformed account, owner, slot and RPC envelopes fail closed (1.59ms)
+✔ RPC errors, HTTP failure, throttling and network failure remain explicit (0.323875ms)
+✔ cancellation and timeout cannot yield a ready result (6.377166ms)
+✔ mock concurrent pay commits principal once and charges only the submitted operation (12.305625ms)
+✔ mock pay/cancel race permits exactly one terminal transition in either order (12.283792ms)
+✔ concurrent duplicate create cannot overwrite terms or charge a second rent (5.952917ms)
+✔ lost response commits at submission; repeated recheck never executes payment or changes bytes/balances (6.568ms)
+✔ dropped timeout stays Open/Expired after reconciliation and spends no principal or fee (7.012375ms)
+✔ unknown record, caller terms, returned accounts and snapshots cannot mutate engine state (6.800375ms)
+✔ create snapshots inputs before async PDA derivation (5.275541ms)
+✔ different invoices cannot spend more than a shared payer balance during concurrent execution (13.694666ms)
+✔ forced rollback keeps both principals, account bytes and rent; fee is separately observable (3.7305ms)
+✔ signature belongs only to its invoice, and expired cancel does not refund rent (9.284542ms)
+✔ strict mock serialization rejects truncation and u64 overflow; invalid signer changes no ledger (2.698042ms)
+✔ create review uses exact input expiry, amount, full ID and canonical PDA before the first await (14.425667ms)
+✔ create review rejects expiry sum overflow, malformed ID, aliases and imprecise amounts (1.721458ms)
+✔ create: every wallet identity, account, chain, event, invoice, form or slot change consumes approval (2.355417ms)
+✔ pay: every wallet identity, account, chain, event, invoice, form or slot change consumes approval (2.015458ms)
+✔ cancel: every wallet identity, account, chain, event, invoice, form or slot change consumes approval (2.073875ms)
+✔ approval rejects guest, wrong role, unsupported chain, wrong invoice and wrong review kind (1.490375ms)
+✔ production submit consumes reviewed pay terms, locks synchronously and moves principal once (5.887166ms)
+✔ cancel submits the reviewed snapshot and keeps principal and rent, including expired Open (4.550292ms)
+✔ wallet/selection change suppresses an in-flight result without unlocking a second submission (5.09675ms)
+✔ read generations reject older detail/preview results and invalidate on context change or submission (1.883584ms)
+✔ SDK connector receives matching public key bytes; mock exposes no signing or sending (0.845791ms)
+✔ raw chain-only events invalidate approval even when SDK account callback is silent (1.981875ms)
+✔ SDK account switch, disconnect, register/unregister and listener cleanup invalidate safely (0.435ms)
+✔ rejected real SDK connect is handled without assuming every wallet uses error 4001 (0.266583ms)
+✔ amount/u64: parses and formats SOL exactly with BigInt and rejects lossy inputs (0.998125ms)
+✔ roles & expiry: enforces payer/merchant roles and derives Expired from slot (10.959667ms)
+✔ P5-01: duplicate create rejects across all states (Open, Paid, Cancelled) without resetting ledger (15.811209ms)
+✔ P5-01: canonical PDA derivation and decode verification for all seeded fixtures (6.792542ms)
+✔ P5-02: pre-validation precedes simulated timeout fault (prevents invalid Unknown) (4.873084ms)
+✔ P5-02: pending state locks operations per-invoice and prevents duplicate submissions (9.366042ms)
+✔ P5-02: recheckOnChain respects terminal/expiry and never fabricates Paid (12.416167ms)
+✔ P5-04: strict 64-hex and u64 parsing with BigInt (0.449375ms)
+✔ P5-04: dynamic list decoding reflects true account state (6.099708ms)
+✔ CPI rollback: preserves principal and keeps invoice Open when transaction fails (5.919167ms)
+✔ error mapping: maps custom error codes 6000-6008 to Anchor IDL error definitions (0.747959ms)
+✔ wallet reject handling does not assume code 4001 is universal (0.262917ms)
+ℹ tests 45
+ℹ suites 0
+ℹ pass 45
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 241.102667
