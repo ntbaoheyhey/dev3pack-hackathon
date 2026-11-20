@@ -62,6 +62,8 @@ Mọi lần dừng sai được ghi ở [`docs/STOP-CAUSES.md`](docs/STOP-CAUSES
 
 ## Chống quên context
 
+**Quyền mới20/11, log lượt08:38:01 UTC+7:** ba câu trả lời nguyên văn và câu hỏi tại `docs/ideas/DECISION.md` / `docs/evidence/phase6/permission-2026-11-20.json`. Được public Site mock ReceiptRail riêng từ source106a18e, audience public, giữ ClusterProof; mở Phase6 code/test local và CLI devnet dùng signers cũ, tổng cap0.05SOL theo PHASE6-PLAN. PR7 giữ mở. Không cài thêm, tạo signer, deploy/upgrade program, đổi authority, public web giao dịch thật hay mởPhase7 thật. Các giới hạn “chưa mở Phase6/public mock” phía trên là lịch sử; quyền mới không mở browser devnet hoặc điều khiển GUI.
+
 **Bổ sung Prompt04 (log19/11/2026 23:10:07.582UTC+7):** “dừng điều khiển” cấm chuột/bàn phím/màn hình người dùng; đã cho phép headless Playwright/Chromium **có sẵn**, chỉlocalhost/vímock. Thiếu cache thì báo, không cài. Quyền này không mở public/deploy/upgrade/signer/mergePR7/Phase6 thật. Nếu lời dặn mơ hồ chặn việc, hỏi một câu có lựa chọn ngay và tiếp tục phần không phụ thuộc. T37 review một lượt; chỉ lỗi UI thật giao task sửa cụ thể, thiếu report nhẹ ghi nợ. T38/T39 và nghiên cứu kế hoạch/review/nháp Phase6–7 được phép; không gọi là mở phase thật. Xem DECISION/STOP-CAUSES K11.
 
 Context có thể bị compact bất cứ lúc nào. Thứ gì không nằm trong repo thì coi như sẽ quên.

@@ -63,3 +63,7 @@ Các link trên đã đọc 19/11/2026; API sống cần kiểm lại lúc tri�
 ### Bổ sung sau nhận T38
 
 Không lấy signature bằng `slice(1,65)` như parser tổng quát. Đã đọc cache `@solana/client/node_modules/@solana/transactions/dist/types/codecs/transaction-codec.d.ts` và `signatures.d.ts`: `getTransactionDecoder` giải wire bytes, `getSignatureFromTransaction` lấy signature fee payer từ transaction. Cần kiểm đủ chữ ký và so message trước send; chưa thực thi ví thật. [Hiệu chỉnh T38](../reviews/receiptrail-t38-acceptance.md) tách nguồn extension/SDK/deeplink, chặn tạo ví và tự retry ngoài quyền.
+
+## Mở triển khai20/11 — trước code
+
+Người dùng đã mở Phase6 local và CLI devnet cap0.05SOL, signerscũ; [quyền](../evidence/phase6/permission-2026-11-20.json). Các câu “chưa mở” bên trên là lịch sử19/11. Áp dụng queue/rate limit, generated contract, message bytes verification, journal Unknown và reserve trước send như phương án. C sở hữu adapter/journal/CLI; A T41 sở hữu connector/panel. Chưa có kết quả adapter/devnet mới ở mốc ghi này. Public mock giữ snapshot riêng, không đổi theo code Phase6.

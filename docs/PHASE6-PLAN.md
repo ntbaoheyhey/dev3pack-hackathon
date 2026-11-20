@@ -1,6 +1,6 @@
 # Phase 6 — phương án tích hợp ReceiptRail trên devnet
 
-Codex · 19/11/2026 · **bản trình duyệt, chưa mở Phase 6 thật**. C phụ trách program/client/adapter; A phụ trách UX và e2e qua hàng đợi. [Quyền hiện tại](ideas/DECISION.md) · [Note RPC](learning/026-receiptrail-rpc-confirmation.md) · [Tự review bảo mật](reviews/receiptrail-security-r1.md).
+Codex · 19/11/2026, cập nhật20/11 · **người dùng đã mở Phase6**, log lượt08:38:01 UTC+7. Được code/test local và CLI devnet với signers cũ, tổng cap0.05SOL; public mock riêng được duyệt, web giao dịch thật chưa được public. C phụ trách program/client/adapter; A phụ trách UX và e2e qua hàng đợi. [Quyền hiện tại](ideas/DECISION.md) · [Note RPC](learning/026-receiptrail-rpc-confirmation.md) · [Tự review bảo mật](reviews/receiptrail-security-r1.md). Các chữ “đề xuất/chưa duyệt” ở bản trình lịch sử bên dưới đã được thay đúng phạm vi DECISION, không bỏ các điều kiện kiểm trước send.
 
 ## 1. Kết quả và phạm vi đề xuất
 
@@ -53,7 +53,7 @@ Không durable nonce trong MVP. Block height của transaction khác `Clock.slot
 
 ## 5. Signers và trần đề xuất: 0.05 SOL devnet
 
-**Chưa được chi khoản này.** Tái dùng public identities từ [P4](evidence/phase4/deployment-identity.json):
+**Đã được duyệt trần này20/11; chưa có khoản chi P6 khi ghi quyền.** Chỉ gửi sau review/tests, kiểm identity và reserve đúng quy trình. Tái dùng public identities từ [P4](evidence/phase4/deployment-identity.json):
 
 | Vai | Public key / phạm vi |
 | --- | --- |

@@ -1,29 +1,25 @@
-# Thẻ nhớ — Codex / Prompt 04
-- Trạng thái **bị chặn (cần người dùng)**: local/mock và chuẩn bị Phase6–7 xong; đã hỏi gộp ba quyết định, chưa có trả lời.
-- C trưởng nhóm, repo /Users/bao/Documents/ChatGPT/dev3pack, branch work; A quaqueue, không chờA.
-- Quyền Prompt04 log19/11/2026 23:10:07.582UTC+7 ởDECISION: cache/headless, chỉlocalhost/vímock.
-- Không CUA/visible browser/chuột/phím/màn hình; không cài thêm.
-- Chưa public/update web, deploy/upgrade, signer mới, đổi authority, mergePR7 hoặc Phase6 thật.
-- Automation15phút ACTIVE đúng chat; evidence read-back20/11 tại c-prompt04-review.../automation.json; giữ theo yêu cầu.
-- ReceiptRail chính; ClusterProof phụ/chưa duyệt. Site cũ giữ nguyên; P4-B xong162tx/debit0.760701080SOL, không chạy lại.
-- Source ứng dụng106a18e đã push: fixture32bytes, connector không RPC, registry lặp an toàn, entry mock riêng.
-- T37 nhận một lượt;T40/51ee3b2,T38/11d58b1,T39/a074779 đã đóng; hiệu chỉnh reviews/, D04/D06/D07; không vòng report.
-- 52webtests/build,16ca source+2ca slot,10ca static artifact đạt;0pageerror/0externalrequest.
-- Video recordVideo162.12s đoffprobe, không lời thoại; evidence ở docs/evidence/phase5/c-prompt04-review-2026-11-19/.
-- Artifact mock riêng chỉrootReceiptRail,134030bytes/SHA256b9268dc6…;source106a18e,manifest mock-artifact-2026-11-20/artifact.json.
-- Core/client/adapter tiền và10hashes security-r1 không đổi. R4 reviewdeltaUI; ví thật/mobile vật lý/verified build/pilot chưa kiểm.
-- PHASE5/6,NEXT,ROADMAP,README/video nháp,sổtayC,notes025–029 và bugbash đã cập nhật; chưa mởphase6–7 thật.
-- C sở hữu connector/harness/artifact/review; không sửa A-done/HANDOFFA/checkoutA.
-- ServerQA4176 đã đóng; serverVite4175 có sẵn giữ nguyên. Không jobtest/video còn chạy.
-- Hồ sơ681ae03 đã push; PR7 mô tả mới đọc lại khớp, OPEN/unmerged. Đã gửi một batch3câu hỏi async20/11.
-- Cap0.05SOL chỉ đề xuất; không suy đáp án hoặc tự đónggoal/phase.
+# Thẻ nhớ — Codex / Phase6 ReceiptRail
+- Trạng thái **đang làm**; ba quyết định đã có, không dùng blocker cũ để dừng.
+- Quyền log lượt20/11/2026 08:38:01UTC+7: public mock riêng106a18e; mởPhase6 local/CLI devnet cap0.05SOL; PR7 giữ mở. Xem DECISION/evidence/phase6/permission-2026-11-20.json.
+- ReceiptRail chính, ClusterProof phụ; giữ Site ClusterProof nguyên vẹn.
+- Public chỉ snapshot mock riêng (không RPC/sign/send); SiteID chưa tạo. Bản thật phải trình riêng.
+- P6 dùng program8NGSPufBmGB1oHqaZpY1jhJYz1X4gqFiNXCQmxfapYko, signers cũ ngoàiGit; không cài, tạo signer, deploy/upgrade, đổi authority, mergePR7 hoặc mởPhase7 thật.
+- C chủ trì adapter/query/transaction/journal/budget/CLI; A nhậnT41 quaqueue (wallet connector/panel local), không chờA.
+- A không sửa C code; C không sửa A-done/HANDOFFA/checkoutA.
+- Browser QA chỉ headless cache localhost/vímock, không điều khiểnGUI hoặc kýdevnet trongbrowser.
+- Automation15phút ACTIVE đúngchat, actionview+TOML đã kiểm20/11.
+- Work trước lượt1429817 sạch/đồngbộ; mọi checkpoint dùng[skip ci].
+- Mocksource106a18e:52tests,16source+2slot,10artifact; video162.12s; artifacthashes ởevidence/phase5/mock-artifact-2026-11-20/.
+- P4-B162tx/debit0.760701080SOL đãxong, không chạy lại; capP6 riêng chưa chi.
+- Goaltool còn objectivePrompt03/statusblocked cũ, không đại diện phạmvi hiện hành; lời duyệt mới cho phép làmPhase6.
 
 ## Còn lại
 
-1. Nhận câu trả lời cho batch ba câu hỏi đã gửi: public ReceiptRail Mock Demo/Site riêng/audience public; mở Phase6 theo plan/cap0.05SOL; mergePR7 hay giữ mở. Đề xuất tương ứng: public mock, mởP6 cap0.05, giữPRmở.
-2. Khi có câu trả lời: lưu nguyên văn và giờ log thật vào DECISION, chỉ làm đúng nhánh được duyệt. Nếu từ chối một nhánh thì giữ nguyên nhánh đó, không hỏi lại hoặc suy từ nhánh khác.
-3. Nếu đồng ý public mock: dùng source106a18e/artifact hashes đã kiểm, Site mới tách ClusterProof. Nếu đồng ý P6: theo PHASE6-PLAN, không dùng quyền đó cho public web thật/deploy/upgrade/cài/signer mới.
+1. Commit/push quyền mới, T41 và bàn giao; public Site mock riêng theo Sites từ đúng ba artifact hashes đã kiểm. LưuID ngay sau create, đúngaudiencepublic, sourcehelper/save/deploy/readback.
+2. Triển khai P6-1/P6-2: query client theoIDL, RPCqueue, transactionvalidation, journal/recovery, budget; học/cập nhật note026 trước code, tests bằngcache. Cung cấp contract choA và nhậnT41 mộtlượt.
+3. Sau tests/review: P6-3 kiểmread-only program/genesis/authority/bytecode và balances; CLI devnet signerscũ, reserve trướcsend, tổngcap50,000,000lamports theoPHASE6-PLAN; lưu signatures/finality/accounting.
+4. Chốt bản tích hợp local/evidence, cập nhật PR7/NEXT/ROADMAP/DEVLOG/Thẻ nhớ, push sau mốc lớn. Chuẩn bị bản cụ thể rồi hỏi gộp các cổng còn cần người dùng (víextension/publicwebthật); chưa tuyên bố Phase6 đạt.
 
 ## Bị chặn
 
-Đã gửi ba câu hỏi một lượt; chưa có câu trả lời. Phần độc lập theo Prompt04 đã hoàn tất: local source/artifact/browser/video, T38/T39, notes/review/security/README/kịch bản/sổtay/nợ tài liệu, PR description và push. Không công việc phụ thuộc quyền nào được chạy trong lúc chờ. Automation tiếp tục ACTIVE theo yêu cầu người dùng; lần nhắc chỉ đối chiếu có trả lời hoặc thay đổi mới, không lặp lại câu hỏi hay mở vòng report. Goal chưa hoàn thành. Cùng blocker thiếu quyết định đã được kiểm qua ba lượt goal liên tiếp (bàn giao b64bac7, lượt11840c3 và lượt hiện hành); không còn việc độc lập cần làm, không chạy lại kiểm thử hoặc mở vòng report để kéo dài.
+Chưa có blocker cho phần đã được duyệt. Víextension/thiếtbịthật do người dùng tự thao tác và publicwebgiao dịchthật là cổng riêng ở cuối; không dùng để dừng code/test/CLI đã có quyền.

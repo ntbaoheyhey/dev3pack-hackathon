@@ -243,7 +243,7 @@ Mỗi vòng ghi lại điểm và thay đổi. Ý tưởng sửa quá số vòng
 | 3 Môi trường | P3-A/P3-B đạt · Phase4/5 local đã mở | [P3-B](evidence/phase3/README.md): hello deploy/initialize/increment finalized,137tx, counter1, debit0.651874801SOL dưới1.5SOL. CI27cf7ac hai runs đạt3jobs/57tests/run; web/lab cũHTTP200, ví thật chưa kiểm/giáo viên chưa verdict. Không gọi mọi cổng đã đạt |
 | 4 Program | P4-A/P4-B đạt bằng chứng; chờ verdict giáo viên | CI triển khai/recovery đủ3jobs; runtime32/client23/guards7+recovery7.162tx finalized, Paid/Cancelled/duplicate simulation đúng; debit0.760701080SOL<cap1.8. A đã nhận client; [evidence](evidence/phase4/README.md) |
 | 5 Frontend | local/mock đạt; còn cổng public | Source106a18e:52tests/build,16ca browser+2ca slot,10ca artifact,video162.12s; [reviewC r4](reviews/receiptrail-phase5-r4.md). Chưa linkReceiptRailpublic/ví thật; [bản trình](PHASE5-PLAN.md) |
-| 6 Tích hợp | đã chuẩn bị, chưa mở thật | [PHASE6-PLAN](PHASE6-PLAN.md), notes026/027; cap0.05SOL chỉ đề xuất, chưa chi; public bản devnet trình riêng |
+| 6 Tích hợp | đang làm, người dùng đã mở20/11 | [PHASE6-PLAN](PHASE6-PLAN.md); local/CLI devnet signerscũ cap0.05SOL, T41 UI/ví; public bản giao dịch thật trình riêng, chưa cổng ra |
 | 7 Hoàn thiện | đã chuẩn bị, chưa mở thật | Security-r1, README/video nháp, sổ tayC và checklistT39; ví/thiết bị thật chưa kiểm, chưa tạo tag hackathon-start |
 | 8 Trong sự kiện | chưa mở | 27–29/11 |
 | 9 Demo & nộp | chưa mở | 29/11 |

@@ -1,5 +1,23 @@
 # Quyết định sản phẩm — ReceiptRail
 
+## Người dùng duyệt public mock riêng và mở Phase 6 — 20/11/2026
+
+Nguyên văn ba câu trả lời trong batch `call_2f6e0e09e4d54e1d8a74da06617d4440`:
+
+> Public mock riêng (đề xuất)
+
+> Đồng ý Phase 6, trần 0.05 SOL (đề xuất)
+
+> Giữ PR mở (đề xuất)
+
+Nguồn: userMessage `01a1f69a-7c25-7a90-8b43-45f266afe69a`, turn `01a1f69a-7c01-7cb2-a6b5-a8c7954f9080`, trả lời trực tiếp các câu hỏi đã trình. **Giờ log bắt đầu lượt: 20/11/2026 08:38:01 UTC+7 (Asia/Saigon)** từ `read_thread.startedAt`; tool không trả timestamp riêng của message. Giờ do người dùng tự nêu: chưa xác định. [Record nguyên văn cả câu hỏi và đáp án](../evidence/phase6/permission-2026-11-20.json).
+
+- **Public mock:** Site mới “ReceiptRail Mock Demo”, audience public, source ứng dụng `106a18e`; chỉ dữ liệu/ví giả, không RPC/ký/gửi. Giữ nguyên Site ClusterProof. Quyền này không cho thay Site mock bằng bản giao dịch thật.
+- **Phase 6:** mở code/test local và CLI devnet có giới hạn theo [PHASE6-PLAN](../PHASE6-PLAN.md); trần tổng chi **0.05 SOL devnet**, dùng signers cũ. Không cài thêm, tạo signer, deploy/upgrade program hoặc đổi authority. Public web giao dịch thật trình riêng. Headless vẫn chỉ localhost/ví mock; không điều khiển GUI người dùng.
+- **PR #7:** giữ mở, không merge.
+
+Các dòng “ba quyết định chưa có”, “chưa mở Phase6” và “chưa public mock” bên dưới thuộc lịch sử trước lời duyệt này. Chỉ hai phạm vi trên được mở; không suy quyền Phase7 thật hoặc kết luận cổng Phase6 đạt. Automation giữ ACTIVE mỗi15phút; đã kiểm bằng action view và đọc cấu hình20/11.
+
 ## Prompt 04 — cho phép headless local, chuẩn bị Phase 6–7
 
 > Câu "dừng điều khiển mình nhé" nghĩa là không điều khiển chuột, bàn phím, màn hình máy tôi. Tôi cho phép kiểm giao diện ReceiptRail local bằng headless browser chạy ngầm (Playwright/Chromium đã có sẵn trong cache), chỉ trên localhost, chỉ ví mock. Không cài thêm gì; nếu thiếu thì dừng phần này và báo tôi. Vẫn chưa cho phép public web, deploy/upgrade, signer mới, cài thêm, merge PR7 hay mở Phase 6 thật.

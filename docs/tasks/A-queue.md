@@ -1,4 +1,17 @@
-# Hàng đợi Antigravity — Phase 5 ReceiptRail local
+# Hàng đợi Antigravity — Phase 6 ReceiptRail
+
+## T41 — Wallet Standard cho bản tích hợp local (mới,20/11)
+
+Người dùng đã mở Phase6 theo DECISION, log lượt08:38:01UTC+7; PR7 giữ mở. C đang public snapshot mock106a18e riêng và làm adapter/journal/CLI. A làm task này ngay, không chờ C; không thay bundle public mock hoặc mở lại T37–T40.
+
+- **Học trước:** notes025–027, reviewT38 và PHASE6-PLAN; kiểm source/types cache, ghi bài học note027 trước code. Không cài/download/npx, không ký/gửi RPC thật hoặc import signers.
+- **Phạm vi A:** tạo `apps/web/src/receiptrail/devnet-wallet-connection.ts`, `devnet-wallet-panel.tsx` và test riêng `apps/web/tests/devnet-wallet.test.mjs`. Dùng Wallet Standard discovery/connect/disconnect/events với wallet registry thật; tests dùng fixtures/mock, không đăng ký bốn demo wallets trong production connector.
+- **Contract C/A:** export `ReceiptRailDevnetWalletConnection` với `subscribe`, `getSnapshot`, `connect(wallet)`, `disconnect()`, `destroy()`. Snapshot gồm danh sách wallets, wallet/account đã chọn (hoặc null), `generation` tăng khi account/chain/session đổi, `connecting`, thông báo lỗi. Giữ nguyên raw wallet/account để C kiểm feature/chain/transaction version. Component panel nhận connection và chỉ chọn/kết nối/ngắt ví, nhãn devnet; không tự gọi sign/send, không fallback mock khi thiếu ví.
+- **Yêu cầu:** cùng address khác wallet/session vẫn invalidate; disconnect/account/chain đổi phải báo ngay, bỏ kết quả connect muộn; chỉ account có `solana:devnet`, kiểm chains/features ở cả wallet/account; không giả mọi reject=4001; no-wallet/unsupported chain có hướng dẫn rõ. Không tự mở popup khi mount, không RPC warmup, không truy cập chuột/phím/màn hình người dùng.
+- **Không sửa phần C:** program/client/IDL, adapter.ts, confirmation.ts, wallet-lifecycle.ts, mock entry, ReceiptRailApp.tsx, devnet adapter/journal/budget/CLI. C nối panel vào entry local riêng sau khi nhận. Nếu cần contract đổi, ghi lý do vào A-done, không đoán API.
+- **Xong:** tests có discovery/register/unregister, connect/reject, events account/chain/disconnect, connect muộn, reload subscription cleanup, không RPC/sign/send; typecheck/build cache; evidence/report một lượt có commands/results, note027/DEVLOG/A-done; commit/push `[skip ci]`. C nhận phần đạt, lỗi implementation giao sửa cụ thể, thiếu report nhẹ thành nợ. Không tự tuyên bố toàn Phase6 đạt.
+
+## Lịch sử trước quyền20/11
 
 **Cập nhật C20/11:** đã nhận T40 (`51ee3b2`), T38 (`11d58b1`) và T39 (`a074779`). Ba task đóng sau một lượt nhận; hiệu chỉnh T38/T39 trong `docs/reviews/`, phần chưa kiểm là D06/D07. Không mở thêm vòng report. C đã chốt source106a18e và evidence681ae03:52tests,16ca source+2ca slot,10ca artifact và video162.12s; đã trình ba quyết định, chưa có trả lời. Chưa có task phụ thuộc Phase6/public được phép chạy; các phân công cũ bên dưới là lịch sử.
 
