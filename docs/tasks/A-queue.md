@@ -6,6 +6,12 @@ Tìm nguồn công khai của BTC cho kỳ Global Hackathon 2026: giờ đóng f
 
 Đầu ra duy nhất là `research/mission-01/nguon-tu-antigravity.md` và dòng kết quả trong A-done. Chỉ nghiên cứu nguồn công khai. Dùng bản đọc web đã có, không đăng nhập dashboard, hỏi BTC, chạy sản phẩm, ký/gửi giao dịch, cài đặt hoặc sửa mã nguồn. Không điền giờ từ countdown nếu không có timezone. Hoàn thành khi có bảng bằng chứng hoặc ghi được trang cụ thể đã tra và mức truy cập. C tiếp tục phần đối chiếu độc lập.
 
+## T43 — Nghiên cứu trải nghiệm đọc receipt bằng bàn phím (sau T42, 24/11)
+
+Kiểm câu hỏi mới trong Mission 01: ở viewport 320 CSS px hoặc khi nội dung được zoom, người xem chưa nối ví có đọc đúng trạng thái, số tiền và phân biệt dữ liệu mock không? Dùng bản snapshot frontend mock sẵn có của nhóm trên localhost và Chromium/Playwright headless đã cache. Ghi lại đúng revision, viewport, phương thức zoom (nếu có), thứ tự focus và thông báo đọc được khi thao tác chỉ bằng bàn phím. Đối chiếu với WCAG Reflow/Focus Visible ở mức quan sát, không tuyên bố audit trợ năng hay thử trên người thật. Nếu UI không có một hành động, ghi quan sát đó.
+
+Phạm vi chỉ quan sát localhost/ví mock, cấm request ra ngoài trong phiên browser. Không điều khiển GUI, không cài browser hoặc dependency, không mở extension, không ký hoặc gửi, không sửa mã frontend và không public. File kết quả `research/mission-01/qa-ban-phim-tu-antigravity.md`, tối đa một bảng ngắn có expected/actual và một liên kết bằng chứng cho mỗi finding. C chỉ nhận báo cáo để học và đánh giá, không mở phase sửa sản phẩm.
+
 ## T41 — Wallet Standard cho bản tích hợp local (mới,20/11)
 
 Người dùng đã mở Phase6 theo DECISION, log lượt08:38:01UTC+7; PR7 giữ mở. C đang public snapshot mock106a18e riêng và làm adapter/journal/CLI. A làm task này ngay, không chờ C; không thay bundle public mock hoặc mở lại T37–T40.
