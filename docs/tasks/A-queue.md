@@ -1,5 +1,11 @@
 # Hàng đợi Antigravity — Phase 6 ReceiptRail
 
+## T42 — Đối chiếu nguồn Dev3Pack cho Mission 01 (mới, 24/11)
+
+Tìm nguồn công khai của BTC cho kỳ Global Hackathon 2026: giờ đóng form theo múi giờ, điều kiện đội và sở hữu trí tuệ, partner tracks đã công bố, tutorial hoặc video chính thức. Tìm thêm một bài viết gốc tiếng Trung về triển khai thanh toán Solana hoặc bài chia sẻ của đội thi để đối chiếu. Đọc trực tiếp nguồn đã chọn. Ghi URL, ngày xuất bản nếu có, ngày đọc, câu hỏi nguồn trả lời, chủ thể có thẩm quyền và điều còn thiếu.
+
+Đầu ra duy nhất là `research/mission-01/nguon-tu-antigravity.md` và dòng kết quả trong A-done. Chỉ nghiên cứu nguồn công khai. Dùng bản đọc web đã có, không đăng nhập dashboard, hỏi BTC, chạy sản phẩm, ký/gửi giao dịch, cài đặt hoặc sửa mã nguồn. Không điền giờ từ countdown nếu không có timezone. Hoàn thành khi có bảng bằng chứng hoặc ghi được trang cụ thể đã tra và mức truy cập. C tiếp tục phần đối chiếu độc lập.
+
 ## T41 — Wallet Standard cho bản tích hợp local (mới,20/11)
 
 Người dùng đã mở Phase6 theo DECISION, log lượt08:38:01UTC+7; PR7 giữ mở. C đang public snapshot mock106a18e riêng và làm adapter/journal/CLI. A làm task này ngay, không chờ C; không thay bundle public mock hoặc mở lại T37–T40.
