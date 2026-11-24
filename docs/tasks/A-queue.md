@@ -6,11 +6,11 @@ Tìm nguồn công khai của BTC cho kỳ Global Hackathon 2026: giờ đóng f
 
 Đầu ra duy nhất là `research/mission-01/nguon-tu-antigravity.md` và dòng kết quả trong A-done. Chỉ nghiên cứu nguồn công khai. Dùng bản đọc web đã có, không đăng nhập dashboard, hỏi BTC, chạy sản phẩm, ký/gửi giao dịch, cài đặt hoặc sửa mã nguồn. Không điền giờ từ countdown nếu không có timezone. Hoàn thành khi có bảng bằng chứng hoặc ghi được trang cụ thể đã tra và mức truy cập. C tiếp tục phần đối chiếu độc lập.
 
-## T43 — Nghiên cứu trải nghiệm đọc receipt bằng bàn phím (sau T42, 24/11)
+## T43 — Học thao tác bàn phím từ ví dụ W3C (sau T42, 24/11)
 
-Kiểm câu hỏi mới trong Mission 01: ở viewport 320 CSS px hoặc khi nội dung được zoom, người xem chưa nối ví có đọc đúng trạng thái, số tiền và phân biệt dữ liệu mock không? Dùng bản snapshot frontend mock sẵn có của nhóm trên localhost và Chromium/Playwright headless đã cache. Ghi lại đúng revision, viewport, phương thức zoom (nếu có), thứ tự focus và thông báo đọc được khi thao tác chỉ bằng bàn phím. Đối chiếu với WCAG Reflow/Focus Visible ở mức quan sát, không tuyên bố audit trợ năng hay thử trên người thật. Nếu UI không có một hành động, ghi quan sát đó.
+Theo lời dặn học theo giáo trình Mission 01, A đọc ví dụ tabs của WAI-ARIA Authoring Practices và tiêu chí WCAG về thứ tự focus. Tự giải thích khi nào Tab chuyển nhóm, khi nào mũi tên đổi tab và khi nào cần nhấn Enter. Chọn ví dụ kích hoạt thủ công hoặc tự động, dẫn URL gốc, ghi rõ biến thể và điều quan sát được. Nếu có fixture HTML đơn giản trên localhost thì dùng nó để kiểm thứ tự focus bằng công cụ đã cache. Phần đọc đặc tả và phần chạy fixture ghi mức kiểm chứng riêng.
 
-Phạm vi chỉ quan sát localhost/ví mock, cấm request ra ngoài trong phiên browser. Không điều khiển GUI, không cài browser hoặc dependency, không mở extension, không ký hoặc gửi, không sửa mã frontend và không public. File kết quả `research/mission-01/qa-ban-phim-tu-antigravity.md`, tối đa một bảng ngắn có expected/actual và một liên kết bằng chứng cho mỗi finding. C chỉ nhận báo cáo để học và đánh giá, không mở phase sửa sản phẩm.
+Đầu ra là một bài học ngắn trong `research/mission-01/giao-trinh/10-ban-phim-tu-a.md` và dòng T43 trong A-done. Nguồn công khai và ví dụ độc lập theo giáo trình thay cho đề bài đọc giao diện sản phẩm của lượt trước. C học các môn khác song song.
 
 ## T41 — Wallet Standard cho bản tích hợp local (mới,20/11)
 
