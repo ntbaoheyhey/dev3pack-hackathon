@@ -1,10 +1,28 @@
 # Hàng đợi Antigravity — Phase 6 ReceiptRail
 
+## T42 — Đối chiếu nguồn Dev3Pack cho Mission 01 (mới, 24/11)
+
+Tìm nguồn công khai của BTC cho kỳ Global Hackathon 2026: giờ đóng form theo múi giờ, điều kiện đội và sở hữu trí tuệ, partner tracks đã công bố, tutorial hoặc video chính thức. Tìm thêm một bài viết gốc tiếng Trung về triển khai thanh toán Solana hoặc bài chia sẻ của đội thi để đối chiếu. Đọc trực tiếp nguồn đã chọn. Ghi URL, ngày xuất bản nếu có, ngày đọc, câu hỏi nguồn trả lời, chủ thể có thẩm quyền và điều còn thiếu.
+
+Đầu ra duy nhất là `research/mission-01/nguon-tu-antigravity.md` và dòng kết quả trong A-done. Chỉ nghiên cứu nguồn công khai. Dùng bản đọc web đã có, không đăng nhập dashboard, hỏi BTC, chạy sản phẩm, ký/gửi giao dịch, cài đặt hoặc sửa mã nguồn. Không điền giờ từ countdown nếu không có timezone. Hoàn thành khi có bảng bằng chứng hoặc ghi được trang cụ thể đã tra và mức truy cập. C tiếp tục phần đối chiếu độc lập.
+
+## T43 — Học thao tác bàn phím từ ví dụ W3C (sau T42, 24/11)
+
+Theo lời dặn học theo giáo trình Mission 01, A đọc ví dụ tabs của WAI-ARIA Authoring Practices và tiêu chí WCAG về thứ tự focus. Tự giải thích khi nào Tab chuyển nhóm, khi nào mũi tên đổi tab và khi nào cần nhấn Enter. Chọn ví dụ kích hoạt thủ công hoặc tự động, dẫn URL gốc, ghi rõ biến thể và điều quan sát được. Nếu có fixture HTML đơn giản trên localhost thì dùng nó để kiểm thứ tự focus bằng công cụ đã cache. Phần đọc đặc tả và phần chạy fixture ghi mức kiểm chứng riêng.
+
+Đầu ra là một bài học ngắn trong `research/mission-01/giao-trinh/10-ban-phim-tu-a.md` và dòng T43 trong A-done. Nguồn công khai và ví dụ độc lập theo giáo trình thay cho đề bài đọc giao diện sản phẩm của lượt trước. C học các môn khác song song.
+
 ## T44 — Đọc độc lập hai hồ sơ IGNITION (sau T42 và T43)
 
 Đọc hồ sơ công khai [Project Citadel](https://devpost.com/software/project-citadel) và [Figswap](https://devpost.com/software/figswap). Với mỗi đội, chọn một việc cụ thể người dùng có thể làm. Lần từ hồ sơ đến repo/link minh họa do đội dẫn, ghi người đọc kiểm được điều gì, commit có trước 23:45 Pacific Time 15/10/2021 và file triển khai nếu có. Phân biệt source của ứng dụng, thư viện mà đội chỉ dùng, lời tự mô tả và trang hiện nay không còn mở được. Ghi cách nhận biết link video mà không suy ra đã xem nội dung. Không đọc phân loại của C trước khi tự ghi hai kết quả. Bài này không chạm app dự thi.
 
 Đầu ra là `research/mission-01/giao-trinh/39-doi-chieu-tu-a.md` và một dòng trong A-done. Chỉ đọc nguồn công khai. Đây là bài đọc độc lập để đối chiếu, C vẫn tiếp tục phân tích mẫu khi A đang làm T42/T43.
+
+## T45 — Đọc độc lập hai cặp ảnh demo (sau T42–T44)
+
+Xem từng ảnh theo thứ tự trước khi mở mô tả của đội hoặc kết quả của C. Ghi hành động nhìn thấy, đối tượng có thể nhận diện, kết quả đã thấy, và liệu hai ảnh có chứng minh cùng một đối tượng vừa đổi trạng thái. Ghi rõ ô chưa đủ dữ kiện. Hai cặp gồm [ảnh 1](https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/001/697/135/datas/original.png), [ảnh 2](https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/001/697/138/datas/original.png), [ảnh 3](https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/001/654/086/datas/original.png), [ảnh 4](https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/001/654/084/datas/original.png).
+
+Đầu ra là ghi chú ngắn trong `research/mission-01/giao-trinh/52-doc-hinh-tu-a.md` và một dòng T45 ở A-done. Dùng ảnh công khai, chỉ lưu nhận xét và link khi bàn giao.
 
 ## T41 — Wallet Standard cho bản tích hợp local (mới,20/11)
 
