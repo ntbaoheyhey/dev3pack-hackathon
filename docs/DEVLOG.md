@@ -1,5 +1,7 @@
 # DEVLOG
 
+- 2026-11-28 · Codex · Bắt đầu Prompt 05, lưu Mission 01 local, đồng bộ hai checkout, giữ đủ T42–T45, push tag hồi tố, xác nhận 32 runtime, 23 client, 14 guard/recovery, 61 web tests và build. C nhận phần frontend của A theo Prompt 05. [Quyết định](ideas/DECISION.md) · [Note 026](learning/026-receiptrail-rpc-confirmation.md).
+
 Mỗi dòng: ngày · ai làm (Mai / Codex / Antigravity) · việc · note đã cập nhật.
 
 - 2026-11-17 · Codex · Nhận Prompt 03 trưởng nhóm, xác minh automation, đồng bộ main/work và giữ cả hai phía conflict DEVLOG; chuyển lịch sử HANDOFF vào archive, viết Thẻ nhớ, RUBRIC v1.2 giữ nguyên trọng số/ngưỡng, giao A T3/T4/T5 · Note 019 cập nhật quy trình evidence.

@@ -102,3 +102,5 @@ Bản306466f/314b572 đến trước push checkpoint: khôi phục Request/copy6
 
 
 **Chốt K8 theo chỉ đạo mới ngày18/11:** người dùng giới hạn đúng một lượt cuối. C đã nhận bản7857e9b, giữ phần đạt, đưa phần thiếu thành [nợ tài liệu D01–D03](DOCUMENTATION-DEBT.md), đóng T31/T32/T33. Các chỉ dẫn mở lại/sửa hẹp trong lịch sử K8 bên trên đã hết hiệu lực; không mở vòng sửa hoặc task bổ sung, không lấy nợ tài liệu chặn P3-B. Đóng task không tự chứng nhận toàn bộ report đúng hoặc giáo viên đã chấm.
+
+- 28/11 · C đã dừng sau khi sửa lịch vì đọc yêu cầu cập nhật giờ như một việc biên tập riêng. Người dùng xác nhận giao thực hiện Prompt 05 lúc 18:06:10.865 UTC+7. Tiếp tục triển khai trong cùng chat và giữ hạn tuyệt đối 14:00 giờ Việt Nam ngày 29/11.

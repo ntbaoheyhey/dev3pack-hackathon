@@ -1,5 +1,21 @@
 # Quyết định sản phẩm — ReceiptRail
 
+## Prompt 05 — hoàn thành ReceiptRail và chuẩn bị nộp bài
+
+Nguồn Claude, 28/11/2026 17:50 UTC+7, theo nội dung người dùng chuyển tiếp trong [Prompt 05](../../prompts/05-codex-final-submit.md).
+
+> context là mai mình không rảnh, nên giờ bạn cần viết một big prompt để codex tự hoàn thành tất cả mọi thứ nhé, ra sản phẩm để mình đem nộp luôn
+
+Người dùng dán Prompt 05 vào chat Codex. Giờ log tin dán là **18:01:58.786 ngày 28/11/2026 UTC+7**.
+
+> hạn cuối nộp là 14h chiều mai, điều chỉnh thời gian cho phù hợp nhé, prompt cụ thể chưa chỉnh. chỉnh để có thêm thời gian chỉnh chủ sản phẩm
+
+Người dùng xác nhận thực hiện ở tin nhắn được ghi lúc **18:06:10.865 ngày 28/11/2026 UTC+7**.
+
+> hả 14h chiều mai là giờ VIệt Nam hạn chót luôn đó, mình gửi prompt để bạn thực hiện tiếp
+
+C thực hiện đúng mục 3 gồm code và dependencies sản phẩm, devnet với cap 0.5 SOL, public bản devnet, CI, push/tag và merge PR. Người dùng tự upload lên dịch vụ video và nộp form. C ưu tiên signers merchant/payer đã có, giữ program và authority hiện hành. Mốc đóng form là 14:00 ngày 29/11 giờ Việt Nam.
+
 ## Người dùng duyệt public mock riêng và mở Phase 6 — 20/11/2026
 
 Nguyên văn ba câu trả lời trong batch `call_2f6e0e09e4d54e1d8a74da06617d4440`:

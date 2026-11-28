@@ -67,3 +67,7 @@ Không lấy signature bằng `slice(1,65)` như parser tổng quát. Đã đọ
 ## Mở triển khai20/11 — trước code
 
 Người dùng đã mở Phase6 local và CLI devnet cap0.05SOL, signerscũ; [quyền](../evidence/phase6/permission-2026-11-20.json). Các câu “chưa mở” bên trên là lịch sử19/11. Áp dụng queue/rate limit, generated contract, message bytes verification, journal Unknown và reserve trước send như phương án. C sở hữu adapter/journal/CLI; A T41 sở hữu connector/panel. Chưa có kết quả adapter/devnet mới ở mốc ghi này. Public mock giữ snapshot riêng, không đổi theo code Phase6.
+
+### Prompt 05, 28/11 — trước khi nối adapter
+
+Client local đã kiểm đủ owner, 131 bytes, discriminator, PDA và bump. Nối adapter bằng bộ instruction này, ghi lại chữ ký trước lần gửi đầu, phục hồi bằng cùng PDA. Với nút retry minh họa, chỉ nhận invoice đã Paid và đúng payer, dùng builder pay sinh từ IDL. Tách phí của mô phỏng khỏi phí giao dịch từng được chain xác nhận. SDK web3.js 1.99.0 đã có trong lock của lab. [Client](../../packages/receiptrail-client/index.mjs) · [Wallet Standard](https://github.com/anza-xyz/wallet-standard)

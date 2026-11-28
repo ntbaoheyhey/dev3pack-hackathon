@@ -1,0 +1,11 @@
+{
+  "projectId": "appgprj_6affa724fa908191bdf9b6866fd24421",
+  "title": "ReceiptRail Mock Demo",
+  "status": "active",
+  "expectedUrl": "https://receiptrail-mock-20nov26.lushquince16.chatgpt.site",
+  "localPath": "/Users/bao/Documents/ChatGPT/dev3pack/sandbox/sites/receiptrail-mock-2026-11-20",
+  "applicationSourceCommit": "106a18e09854d18b47a9ab61f7ab2d9a61c491a8",
+  "audienceApproved": "public",
+  "createdAt": "2026-11-20T01:49:45.967169+00:00",
+  "published": false
+}
