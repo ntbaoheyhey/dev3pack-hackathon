@@ -1,0 +1,34 @@
+{
+  "observedAt": "2026-11-28T11:09:01.269Z",
+  "commitment": "finalized",
+  "rpc": "https://api.devnet.solana.com",
+  "genesis": "EtWTRABZaYq6iMfeYKouRu166VU2xqa1wcaWoxPkrZBG",
+  "observedSlot": 527207705,
+  "executable": true,
+  "program": "8NGSPufBmGB1oHqaZpY1jhJYz1X4gqFiNXCQmxfapYko",
+  "programData": "D9aUZ7TX766yRV4Nrj5utpZ7dpe23uXBqbDra4nSoyu9",
+  "authority": "GQRoDMoWFV2nhgwm3bZGvSCC1LSa2wRkLeeJg8NhbFM2",
+  "slot": "523940900",
+  "binarySha256": "495e4773d395a5d668d5118ad5308afbd7b31b0fe7700fb77a44ecd653b706d6",
+  "programLamports": 833120,
+  "programDataLamports": 752027960,
+  "prompt05CapLamports": 500000000,
+  "balances": [
+    {
+      "role": "feeAuthority",
+      "address": "GQRoDMoWFV2nhgwm3bZGvSCC1LSa2wRkLeeJg8NhbFM2",
+      "lamports": 1087424119
+    },
+    {
+      "role": "merchant",
+      "address": "HtQYFnFqUrkAfnKLpLaTgZrvjivJ3ZWPTqsCv6Kru4y2",
+      "lamports": 3368560
+    },
+    {
+      "role": "payer",
+      "address": "DPKxAZhBq4aJYn4FbHFn19easT1KRcv31YNweGKZnyrc",
+      "lamports": 1000000
+    }
+  ],
+  "invoiceRentLamports": 1315720
+}

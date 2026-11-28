@@ -16,6 +16,7 @@ node_modules/
 .next/
 dist/
 dist-receiptrail-mock/
+dist-receiptrail/
 build/
 
 # OS / editor

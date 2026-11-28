@@ -104,8 +104,10 @@ export class ReceiptRailDevnetWalletConnection {
     this.registryStops.push(offRegister, offUnregister);
   }
 
+  private snapshot: DevnetWalletSnapshot | null = null;
+
   getSnapshot = (): DevnetWalletSnapshot => {
-    return {
+    return this.snapshot ??= {
       wallets: this.wallets,
       selectedWallet: this.selectedWallet,
       selectedAccount: this.selectedAccount,
@@ -117,6 +119,7 @@ export class ReceiptRailDevnetWalletConnection {
   };
 
   private publish() {
+    this.snapshot = null;
     for (const listener of this.listeners) {
       try {
         listener();

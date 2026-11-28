@@ -32,6 +32,7 @@ jobs:
       - run: npm ci --ignore-scripts --no-fund
       - run: npm test
       - run: npm run build
+      - run: npm run build:receiptrail
 
   research:
     # P3-A approved: docs/ideas/DECISION.md, user reply logged 2026-11-18 10:13:11.851 UTC+7.

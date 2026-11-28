@@ -1,5 +1,7 @@
 # DEVLOG
 
+- 2026-11-28 · Codex · Cài ba dependency npm đã pin theo [note 026](learning/026-receiptrail-rpc-confirmation.md), nối UI với devnet, sửa vòng lặp snapshot T41, kiểm ví quay và bundle public. Bytecode/authority khớp P4, 66 web tests + 2 guard mới đạt, đã đọc Paid thật trên localhost.
+
 - 2026-11-28 · Codex · Bắt đầu Prompt 05, lưu Mission 01 local, đồng bộ hai checkout, giữ đủ T42–T45, push tag hồi tố, xác nhận 32 runtime, 23 client, 14 guard/recovery, 61 web tests và build. C nhận phần frontend của A theo Prompt 05. [Quyết định](ideas/DECISION.md) · [Note 026](learning/026-receiptrail-rpc-confirmation.md).
 
 Mỗi dòng: ngày · ai làm (Mai / Codex / Antigravity) · việc · note đã cập nhật.

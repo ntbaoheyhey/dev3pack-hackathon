@@ -4,6 +4,7 @@ cd "$(dirname "${BASH_SOURCE[0]}")/.."
 # All tooling is already cached. Missing modules fail; this runner never installs.
 node scripts/generate-receiptrail-client.mjs --check
 node --experimental-vm-modules --test packages/receiptrail-client/tests/*.test.mjs
+node --test tools/receiptrail-devnet/recording-guard.test.mjs
 node --test tools/receiptrail-devnet/checks.test.mjs
 node --test tools/receiptrail-devnet/cancel-recovery.test.mjs
 node --check tools/receiptrail-devnet/cancel-recovery.mjs

@@ -1,0 +1,8 @@
+{
+  "projectId": "appgprj_6b0ab845d4cc8191ba02d2acd5f4082b",
+  "title": "ReceiptRail",
+  "expectedUrl": "https://receiptrail-devnet.mistyaura.chatgpt.site",
+  "createdAt": "2026-11-28T11:17:27.231861+00:00",
+  "status": "created-unpublished",
+  "reason": "Site mock from 20 November returned NOT_FOUND in this workspace. Created a separate ReceiptRail project."
+}

@@ -10,8 +10,8 @@
 
 ## Còn lại
 
-1. Adapter đọc, chuẩn bị/ký/gửi, UI, ví quay localhost và unit tests.
-2. Xác minh bytecode, chạy E2E thực create/pay/lost response/retry/cancel, lưu signatures, số dư và phí.
+1. Đã có adapter, UI, localhost bridge và public bundle; 66 web tests, 2 guard mới, browser đọc được Paid trực tiếp. Giao dịch funding finalized, đã ghi sổ ngoài Git. Tiếp tục quay E2E ngay.
+2. Bytecode đã khớp hash 495e4773… và authority tại slot 527207705. Chạy E2E thực create/pay/lost response/retry/cancel, lưu signatures, số dư và phí.
 3. Publish bản public và kiểm desktop/mobile; chuẩn bị SUBMISSION, README, video, ảnh và giao sớm.
 4. Hoàn thiện UX, kiểm lại từ clone sạch, CI, link, video và secret.
 5. Merge `main`, push tag `submission-v1`, chốt bộ nộp, tắt tự nhắc và bàn giao.
