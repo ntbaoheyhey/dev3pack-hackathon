@@ -11,3 +11,4 @@ Các prompt lớn giao cho agent. Đánh số theo đợt; mỗi đợt có 1 pr
 Chạy song song được: hai prompt chia chủ đề không trùng nhau (chỉ chung note 009, mỗi bên viết phần của mình).
 
 Từ đợt 02, mỗi đợt ứng với một phase trong [`docs/ROADMAP.md`](../docs/ROADMAP.md). Mỗi phase một prompt lớn cho mỗi agent; hai agent phối hợp qua file trên nhánh chung của phase.
+| 05 | [05-codex-final-submit.md](05-codex-final-submit.md) | (không có) | Codex tự hoàn thành ReceiptRail: adapter devnet, link live, README giám khảo, video < 3 phút, bộ nộp bài `docs/SUBMISSION.md` (28–29/11) |
