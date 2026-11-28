@@ -1,0 +1,36 @@
+{
+  "at": "2026-11-28T11:38:28.161Z",
+  "site": "https://receiptrail-devnet.mistyaura.chatgpt.site",
+  "invoice": "rZRAPpkLcfBcao5tMvdyZ1G7VzoDLcXiHZ7u4tPSZq2",
+  "browser": "156.0.8078.4",
+  "checks": [
+    {
+      "width": 1280,
+      "height": 720,
+      "origin": "https://receiptrail-devnet.mistyaura.chatgpt.site/?invoice=rZRAPpkLcfBcao5tMvdyZ1G7VzoDLcXiHZ7u4tPSZq2",
+      "status": 200,
+      "paid": true,
+      "walletRequired": false,
+      "liveRpc": true,
+      "overflow": false,
+      "pageErrors": [],
+      "reopenedByAddress": true,
+      "publicWalletPanel": true,
+      "screenshot": "demo/images/01-live.png"
+    },
+    {
+      "width": 375,
+      "height": 812,
+      "origin": "https://receiptrail-devnet.mistyaura.chatgpt.site/?invoice=rZRAPpkLcfBcao5tMvdyZ1G7VzoDLcXiHZ7u4tPSZq2",
+      "status": 200,
+      "paid": true,
+      "walletRequired": false,
+      "liveRpc": true,
+      "overflow": false,
+      "pageErrors": [],
+      "reopenedByAddress": true,
+      "publicWalletPanel": true,
+      "screenshot": "docs/evidence/phase6/public-mobile-2026-11-28.png"
+    }
+  ]
+}
