@@ -10,8 +10,8 @@
 
 ## Còn lại
 
-1. Đã có adapter, UI, localhost bridge và public bundle; 66 web tests, 2 guard mới, browser đọc được Paid trực tiếp. Giao dịch funding finalized, đã ghi sổ ngoài Git. Tiếp tục quay E2E ngay.
-2. Bytecode đã khớp hash 495e4773… và authority tại slot 527207705. Chạy E2E thực create/pay/lost response/retry/cancel, lưu signatures, số dư và phí.
-3. Publish bản public và kiểm desktop/mobile; chuẩn bị SUBMISSION, README, video, ảnh và giao sớm.
-4. Hoàn thiện UX, kiểm lại từ clone sạch, CI, link, video và secret.
-5. Merge `main`, push tag `submission-v1`, chốt bộ nộp, tắt tự nhắc và bàn giao.
+1. Publish bản public từ source vừa kiểm. Site `appgprj_6b0ab845d4cc8191ba02d2acd5f4082b`, audience public, checkout `sandbox/sites/receiptrail-submission`, đã mở source. Kiểm desktop/mobile và mở hóa đơn thật khi chưa nối ví.
+2. Xuất video + 6 ảnh và cover, README tiếng Anh, `docs/SUBMISSION.md`, giao sớm. File quay gốc và timeline trong `sandbox/prompt05/capture-1795864901516/` và `capture-1795865020397/`.
+3. Kiểm clone sạch, CI, link, video, secret. Merge PR7, tag `submission-v1`, tắt lịch tự nhắc, bàn giao.
+
+Đã xong E2E thật. [Đối soát finalized](evidence/phase6/e2e-devnet-2026-11-28T112558Z.json) có 6 giao dịch. Invoice `rZRAPpkLcfBcao5tMvdyZ1G7VzoDLcXiHZ7u4tPSZq2` được trả 50.000 lamports, retry 0 principal/5.000 phí. Gross 13.342.880 lamports cộng dự phòng 1.320.720 dưới cap 500.000. Bridge ký đã tắt, token local đã xóa. 67 web tests, 2 guard mới; giữ nguyên sai sót RPC 429 và kết quả thực trong evidence.

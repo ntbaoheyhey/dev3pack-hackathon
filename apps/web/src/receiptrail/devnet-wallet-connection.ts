@@ -14,7 +14,7 @@ export interface DevnetWalletSnapshot {
 
 export type WalletRegistryLike = {
   get: () => readonly Wallet[];
-  on: (event: 'register' | 'unregister', callback: (wallet: Wallet) => void) => () => void;
+  on: (event: 'register' | 'unregister', callback: (...wallets: Wallet[]) => void) => () => void;
 };
 
 function isWalletRegistry(source: unknown): source is WalletRegistryLike {
@@ -79,22 +79,21 @@ export class ReceiptRailDevnetWalletConnection {
   private initRegistry(registry: WalletRegistryLike) {
     this.wallets = [...registry.get()];
 
-    const offRegister = registry.on('register', (wallet: Wallet) => {
+    const offRegister = registry.on('register', (...wallets: Wallet[]) => {
       if (this.isDestroyed) return;
-      if (!this.wallets.includes(wallet)) {
-        this.wallets = [...this.wallets, wallet];
-        this.publish();
-      }
+      this.wallets = [...new Set([...this.wallets, ...wallets])];
+      this.publish();
     });
 
-    const offUnregister = registry.on('unregister', (wallet: Wallet) => {
+    const offUnregister = registry.on('unregister', (...wallets: Wallet[]) => {
       if (this.isDestroyed) return;
-      this.wallets = this.wallets.filter(w => w !== wallet);
-      if (this.selectedWallet === wallet) {
+      this.wallets = this.wallets.filter(wallet => !wallets.includes(wallet));
+      if (this.selectedWallet && wallets.includes(this.selectedWallet)) {
+        const name = this.selectedWallet.name;
         this.selectedWallet = null;
         this.selectedAccount = null;
         this.status = 'disconnected';
-        this.error = `Ví "${wallet.name}" đã được gỡ bỏ khỏi trình duyệt.`;
+        this.error = 'Ví "' + name + '" đã được gỡ bỏ khỏi trình duyệt.';
         ++this.generation;
         this.cleanupActiveEvents();
       }

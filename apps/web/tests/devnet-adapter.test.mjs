@@ -1,10 +1,9 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { Keypair, PublicKey, Transaction, VersionedTransaction } from '@solana/web3.js';
+import { Keypair, PublicKey, Transaction } from '@solana/web3.js';
 import { PROGRAM_ADDRESS } from '../../../packages/receiptrail-client/index.mjs';
-import { getPayInvoiceInstruction } from '../../../packages/receiptrail-client/generated.mjs';
-import { addressCodec, client, readReceipt, listReceipts, isDuplicate, verifySigned, prepare, submit, checkAttempt, GENESIS } from '../src/receiptrail/devnet.ts';
+import { client, readReceipt, listReceipts, isDuplicate, verifySigned, prepare, submit, checkAttempt, GENESIS } from '../src/receiptrail/devnet.ts';
 import { ReceiptRailDevnetWalletConnection } from '../src/receiptrail/devnet-wallet-connection.ts';
 const sample = JSON.parse(readFileSync(new URL('../src/receiptrail/sample.json', import.meta.url)));
 const raw = { owner: new PublicKey(PROGRAM_ADDRESS), executable: false, data: Buffer.from(sample.data, 'base64') };
@@ -62,4 +61,13 @@ test('keeps the signed attempt before send and rechecks without a new transfer a
 test('wallet snapshots have stable identity until published changes', async () => {
   const c=new ReceiptRailDevnetWalletConnection([]);const first=c.getSnapshot();assert.equal(first,c.getSnapshot());
   await c.disconnect();assert.notEqual(first,c.getSnapshot());c.destroy();
+});
+
+
+test('Wallet Standard discovers all wallets in one registry event and unregisters the same batch', () => {
+  const events = new Map();
+  const c = new ReceiptRailDevnetWalletConnection({ get: () => [], on: (name, callback) => { events.set(name, callback); return () => events.delete(name); } });
+  const first = { name: 'Merchant' }, second = { name: 'Payer' };
+  events.get('register')(first, second); assert.deepEqual(c.getSnapshot().wallets, [first, second]);
+  events.get('unregister')(first, second); assert.deepEqual(c.getSnapshot().wallets, []); c.destroy();
 });

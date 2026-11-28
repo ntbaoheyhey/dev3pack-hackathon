@@ -14,7 +14,12 @@ const rpc = connectDevnet();
 const walletConnection = new ReceiptRailDevnetWalletConnection();
 const journalKey = 'receiptrail:' + GENESIS + ':' + PROGRAM_ADDRESS + ':attempts:v1';
 const short = (s: string) => s.slice(0, 7) + '…' + s.slice(-6);
-const describe = (e: unknown) => e instanceof Error ? e.message : String(e);
+const describe = (e: unknown) => {
+  const message = e instanceof Error ? e.message : String(e);
+  if (/429|rate limit/i.test(message)) return 'Solana devnet is limiting requests. Wait a moment and recheck the same receipt.';
+  if (/Non-base58|Invalid public key|canonical Solana/i.test(message)) return 'Enter a full Solana public address.';
+  return message;
+};
 const verbs: Record<Action, string> = { create: 'Create invoice', pay: 'Pay invoice', cancel: 'Cancel invoice', retry: 'Retry payment' };
 type Page = 'receipt' | 'create' | 'find';
 type Receipt = { invoice: Invoice; slot: number; commitment: string; cached?: string };
@@ -31,7 +36,7 @@ function shareLink(address: string) {
 }
 function RailMark() { return <span className="railmark" aria-hidden="true"><i/><i/><i/></span>; }
 function ChainLink({ kind, value, children }: { kind: 'address' | 'tx'; value: string; children: React.ReactNode }) {
-  return <a href={explorer(kind, value)} target="_blank" rel="noreferrer">{children} <span aria-hidden="true">↗</span></a>;
+  return <a href={explorer(kind, value)} target="_blank" rel="noreferrer">{children} <span className="sr-only">(opens Solana Explorer)</span></a>;
 }
 
 export function LiveApp() {
@@ -112,7 +117,8 @@ export function LiveApp() {
   async function review(intent: Intent) {
     if (!actor) { setWalletOpen(true); return; }
     const gen = wallet.generation;
-    const next = await prepare(rpc, actor, intent);
+    const priorBlock = intent.action === 'retry' ? readJournal().reverse().find(a => a.action === 'pay' && a.address === intent.address)?.blockhash : undefined;
+    const next = await prepare(rpc, actor, intent, priorBlock);
     if (walletConnection.getSnapshot().generation !== gen) throw new Error('The selected wallet changed. Review again.');
     quoteGeneration.current = gen; setQuote(next);
   }
@@ -140,7 +146,7 @@ export function LiveApp() {
       () => walletConnection.getSnapshot().generation === gen, save, pending.action === 'pay' && lost);
     select(pending.address); setLost(false);
     if (result.unknown) {
-      setNotice(pending.action === 'pay' && lost ? 'Simulated lost response. Payment status is unknown. Recheck this invoice before paying again.' : 'The network response is uncertain. Recheck this invoice and signature.');
+      setNotice(result.simulated ? 'Simulated lost response. Payment status is unknown. Recheck this invoice before paying again.' : 'The network response is uncertain. Recheck this invoice and signature.');
       return;
     }
     setNotice('Submitted to Solana. Checking the transaction…');
@@ -150,7 +156,7 @@ export function LiveApp() {
       if (next.state !== 'unknown') {
         save(next); await refresh(pending.address);
         if (next.state === 'failed') {
-          setNotice(pending.action === 'retry' ? 'Retry rejected. Inspect the failed transaction on Explorer. The receipt remains Paid.' : 'The transaction failed on chain. Check its details on Explorer.');
+          setNotice(next.error === 'InvoiceNotOpen' ? 'Retry rejected: InvoiceNotOpen. Principal transferred: 0 SOL. Network fee: ' + (next.chargedFee === undefined ? 'see Explorer' : formatSol(BigInt(next.chargedFee)) + ' SOL') + '.' : 'The transaction failed on chain. Check its details on Explorer.');
         } else { setNotice(verbs[pending.action] + ' confirmed on devnet.'); }
         return;
       }
@@ -173,6 +179,7 @@ export function LiveApp() {
       <div className="paperhead"><span><RailMark/> RECEIPTRAIL</span><span>{demo ? 'DEMO INVOICE' : 'SOL INVOICE'}</span></div>
       {current && receipt ? <><div className="ticket-amount"><span className="label">Invoice amount</span><div className="amount">{formatSol(current.amountLamports)} <small>SOL</small></div>
         <span data-testid="receipt-status" className={'stamp state-' + display}>{display === 'Paid' ? '✓ ' : ''}{display}</span></div>
+        {unknown && <p className="pending-note">Response pending. Recheck this invoice for the latest status.</p>}
         <div className="perforation"/><dl className="fields"><dt>Invoice account</dt><dd><ChainLink kind="address" value={address}>{short(address)}</ChainLink></dd>
         <dt>Merchant</dt><dd><ChainLink kind="address" value={current.merchant}>{short(current.merchant)}</ChainLink></dd>
         <dt>Payer</dt><dd><ChainLink kind="address" value={current.payer}>{short(current.payer)}</ChainLink></dd>
@@ -183,8 +190,10 @@ export function LiveApp() {
         {receipt.cached && <p className="notice">Cached at {receipt.cached}. RPC is unavailable. Recheck for live data.</p>}
       </> : <div className="empty" role="status"><h2>{reading ? 'Reading Solana devnet…' : 'Receipt unavailable'}</h2><p>{reading ? 'Checking the invoice account and its program owner.' : readError}</p></div>}
       </section><aside><section className="side-card"><h2>Verify this payment</h2><p>{current?.status === 'Paid' ? 'The invoice is settled. Both parties can check the same receipt, even after a lost response.' : 'Read the invoice account and confirm the wallet, amount and settlement status.'}</p>
+        {demo && current?.status === 'Paid' && <div className="proof-box"><div><strong>1</strong><span>settled payment</span></div><div><strong>0 SOL</strong><span>moved on retry</span></div></div>}
         <div className="buttons"><button className="primary" disabled={busy || reading} onClick={() => void run(() => checkAll(address))}>{reading ? 'Reading devnet…' : 'Recheck receipt'}</button>
         <ChainLink kind="address" value={address}>Open on Explorer</ChainLink>{payTx && <ChainLink kind="tx" value={payTx}>Payment transaction</ChainLink>}
+        {demo && current?.status === 'Paid' && <ChainLink kind="tx" value={sample.retry.signature}>Rejected retry · {sample.retry.feeLamports.toLocaleString('en-US')} lamports fee</ChainLink>}
         <button className="text-button" onClick={() => void run(async () => { await navigator.clipboard.writeText(shareLink(address)); setNotice('Receipt link copied.'); })}>Copy receipt link</button></div></section>
         {current && <section className="side-card"><h2>Payment actions</h2>{!actor ? <><p>Connect the merchant or designated payer wallet to act on this invoice.</p><button onClick={() => setWalletOpen(true)}>Choose wallet</button></> :
         <><p className="subtle">{actor === current.payer ? 'Connected as payer' : actor === current.merchant ? 'Connected as merchant' : 'Connected as a viewer'}</p>
@@ -192,7 +201,11 @@ export function LiveApp() {
         {actor === current.merchant && current.status === 'Open' && <button disabled={busy || unknown || !!receipt?.cached} onClick={() => action('cancel')}>Review cancellation</button>}
         {actor === current.payer && current.status === 'Paid' && <><p>Test a second transaction against this paid invoice. A rejected transaction can still incur a network fee.</p><button disabled={busy || unknown || !!receipt?.cached} onClick={() => action('retry')}>Retry payment (new transaction)</button></>}
         </>}</section>}</aside>
-      {history.length > 0 && <section className="activity"><h2>Transaction history</h2><p>Attempts saved in this browser for this invoice.</p><ul>{history.map(a => <li key={a.action + a.blockhash}><strong>{verbs[a.action]}</strong><span>{a.state === 'failed' && a.action === 'retry' ? 'Rejected on chain' : a.state}</span>{a.signature && <ChainLink kind="tx" value={a.signature}>{short(a.signature)}</ChainLink>}</li>)}</ul></section>}
+      {history.length > 0 && <section className="activity"><h2>Transaction history</h2><p>Attempts saved in this browser for this invoice.</p><ul>{history.map(a => <li key={a.action + a.blockhash}><strong>{verbs[a.action]}</strong><span>{a.error === 'InvoiceNotOpen' ? 'InvoiceNotOpen · 0 SOL principal' : a.state}</span>{a.signature && <ChainLink kind="tx" value={a.signature}>{short(a.signature)}</ChainLink>}</li>)}</ul>{history.find(a => a.state === 'expired' && a.createTerms && a.signer === actor) && <button disabled={busy} onClick={() => void run(async () => {
+        const old = history.find(a => a.state === 'expired' && a.createTerms && a.signer === actor)!;
+        const t = old.createTerms!;
+        await review({ action: 'create', merchant: old.signer, payer: t.payer, amountLamports: BigInt(t.amount), expiresSlot: BigInt(t.expiry), invoiceId: new Uint8Array(Buffer.from(t.invoiceId, 'hex')) });
+      })}>Review the same invoice again</button>}</section>}
     </div>}
     {page === 'create' && <section className="form-card"><form onSubmit={create}><h2>Invoice terms</h2><label>Merchant wallet<input readOnly value={actor || 'Connect your devnet wallet'}/></label><label>Payer address<input required value={payer} onChange={e => setPayer(e.target.value)} placeholder="Solana public address" autoComplete="off" spellCheck={false}/></label>
       <label>Amount in SOL<input required inputMode="decimal" value={amount} onChange={e => setAmount(e.target.value)} placeholder="0.001"/></label>
@@ -202,7 +215,7 @@ export function LiveApp() {
       <form className="form-card" onSubmit={e => { e.preventDefault(); setFound(null); void run(async () => setFound(await listReceipts(rpc, walletSearch.trim() || actor || '', role))); }}><h2>Find by wallet</h2><label>Wallet address<input value={walletSearch} onChange={e => setWalletSearch(e.target.value)} required={!actor} placeholder={actor || 'Solana public address'}/></label>
       <label>Wallet role<select value={role} onChange={e => setRole(e.target.value as 'merchant' | 'payer')}><option value="payer">Payer</option><option value="merchant">Merchant</option></select></label><button disabled={busy}>Find invoices</button>
       {found && <ul>{found.length ? found.map(f => <li key={f.address}><button type="button" onClick={() => select(f.address)}>{short(f.address)} · {f.status} · {formatSol(f.amountLamports)} SOL</button></li>) : <li>No invoices found.</li>}</ul>}</form></div>}
-    </main><footer><span><RailMark/> ReceiptRail</span><span>Native SOL · Devnet</span><a href="./mock/">Mock sandbox</a><a href="https://github.com/ntbaoheyhey/dev3pack-hackathon">Source ↗</a></footer>
+    </main><footer><span><RailMark/> ReceiptRail</span><span>Native SOL · Devnet</span><a href="./mock/">Mock sandbox</a><a href="https://github.com/ntbaoheyhey/dev3pack-hackathon">Source</a></footer>
     <dialog ref={walletDialog} onCancel={() => setWalletOpen(false)}><DevnetWalletPanel connection={walletConnection}/><button onClick={() => setWalletOpen(false)}>Close wallet panel</button></dialog>
     <dialog ref={dialog} onCancel={() => setQuote(null)}>{quote && <><h2>{verbs[quote.action]} review</h2><p>Solana devnet · Review these terms before signing.</p><dl className="review-fields">
       <dt>Invoice</dt><dd>{quote.address}</dd><dt>Merchant</dt><dd>{quote.merchant}</dd><dt>Payer</dt><dd>{quote.payer}</dd>

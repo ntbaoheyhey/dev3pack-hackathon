@@ -156,3 +156,7 @@ Trước khi tiến hành code cho task T41, các nguyên tắc kỹ thuật sau
 7. **Không Tác dụng Phụ (Zero Side-Effects)**:
    - Không tự động kích hoạt popup kết nối khi component mount; không gọi RPC warmup; không chứa logic ký hay gửi giao dịch.
 
+
+### Bài học ngày 28/11 trong E2E thật
+
+Wallet Standard gửi nhiều wallet trong một lần callback `register(...wallets)`. Lượt đổi từ merchant sang payer chỉ thấy ví đầu tiên. C sửa connector để nhận đủ batch khi đăng ký và hủy đăng ký, thêm regression vào suite web. Bản dùng `useSyncExternalStore` cũng cần trả cùng object snapshot đến khi state thay đổi. [Registry](../../apps/web/src/receiptrail/devnet-wallet-connection.ts) · [Test](../../apps/web/tests/devnet-adapter.test.mjs)

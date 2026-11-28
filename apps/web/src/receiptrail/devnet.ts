@@ -24,14 +24,23 @@ const sleep = (ms: number) => new Promise<void>(resolve => setTimeout(resolve, m
 
 export function connectDevnet() {
   let previous: Promise<unknown> = Promise.resolve();
+  let lastRequestAt = 0;
   return new Connection(RPC, { commitment: 'confirmed', disableRetryOnRateLimit: true, fetch: (url, init) => {
-    const send = typeof init?.body === 'string' && JSON.parse(init.body).method === 'sendTransaction';
     const request = async () => {
       for (let n = 0; ; n++) {
-        const response = await fetch(url, { ...init, signal: AbortSignal.timeout(10000) });
-        if (response.status !== 429 || send || n >= 2) return response;
-        const retryAfter = Number(response.headers.get('retry-after'));
-        await sleep(Math.min(5000, Math.max(600 * 2 ** n, retryAfter * 1000)));
+        await sleep(Math.max(0, 900 - (Date.now() - lastRequestAt)));
+        lastRequestAt = Date.now();
+        const response = await fetch(url, { ...init, signal: AbortSignal.timeout(12000) });
+        // HTTP 429 explicitly declined the request. A send retry uses the identical signed bytes.
+        // Network timeouts remain Unknown and are never replayed by this transport.
+        if (response.status !== 429 || n >= 3) return response;
+        const header = response.headers.get('retry-after');
+        const seconds = header ? Number(header) : NaN;
+        const advised = Number.isFinite(seconds) ? seconds * 1000 : header ? Date.parse(header) - Date.now() : 0;
+        const wait = Math.max(4000 * 2 ** n, advised || 0);
+        if (wait > 30000) return response;
+        await response.arrayBuffer();
+        await sleep(wait);
       }
     };
     const result = previous.then(request);
@@ -39,8 +48,14 @@ export function connectDevnet() {
     return result;
   } });
 }
-export async function verifyCluster(rpc: Connection) {
-  if (await rpc.getGenesisHash() !== GENESIS) throw new Error('The RPC endpoint did not identify itself as Solana devnet.');
+const verifiedConnections = new WeakMap<Connection, Promise<void>>();
+export function verifyCluster(rpc: Connection) {
+  const previous = verifiedConnections.get(rpc);
+  if (previous) return previous;
+  const check = rpc.getGenesisHash().then(hash => {
+    if (hash !== GENESIS) throw new Error('The RPC endpoint did not identify itself as Solana devnet.');
+  }).catch(e => { verifiedConnections.delete(rpc); throw e; });
+  verifiedConnections.set(rpc, check); return check;
 }
 function envelope(address: string, raw: AccountInfo<Buffer>) {
   return { address, owner: raw.owner.toBase58(), executable: raw.executable, data: new Uint8Array(raw.data) };
@@ -67,7 +82,7 @@ export type Intent = { action: 'create'; merchant: string; payer: string; invoic
   | { action: 'pay' | 'cancel' | 'retry'; address: string; terms: InvoiceTerms };
 export interface Quote {
   action: Action; signer: string; address: string; merchant: string; payer: string; amount: bigint; expiry: bigint;
-  fee: number; rent: number; unsigned: Uint8Array; lastValidBlockHeight: number; blockhash: string;
+  fee: number; rent: number; invoiceId?: string; unsigned: Uint8Array; lastValidBlockHeight: number; blockhash: string;
 }
 export function isDuplicate(err: unknown, logs: readonly string[] | null | undefined) {
   const detail = (err as { InstructionError?: unknown[] } | null)?.InstructionError;
@@ -78,7 +93,7 @@ function webInstruction(ix: Instruction) {
   return new TransactionInstruction({ programId: new PublicKey(ix.programAddress), data: Buffer.from(ix.data),
     keys: ix.accounts.map(a => ({ pubkey: new PublicKey(a.address), isSigner: a.isSigner, isWritable: a.isWritable })) });
 }
-export async function prepare(rpc: Connection, signer: string, intent: Intent): Promise<Quote> {
+export async function prepare(rpc: Connection, signer: string, intent: Intent, previousBlockhash?: string): Promise<Quote> {
   await verifyCluster(rpc);
   const slot = BigInt(await rpc.getSlot('confirmed'));
   let ix: Instruction, address: string;
@@ -102,7 +117,10 @@ export async function prepare(rpc: Connection, signer: string, intent: Intent): 
       ix = intent.action === 'pay' ? await client.payInvoiceInstruction({ ...input, currentSlot: slot }) : await client.cancelInvoiceInstruction(input);
     }
   }
-  const { blockhash, lastValidBlockHeight } = await rpc.getLatestBlockhash('confirmed');
+  let block = await rpc.getLatestBlockhash('confirmed');
+  for (let i = 0; block.blockhash === previousBlockhash && i < 4; i++) { await sleep(650); block = await rpc.getLatestBlockhash('confirmed'); }
+  if (block.blockhash === previousBlockhash) throw new Error('Wait for a fresh blockhash and review the retry again.');
+  const { blockhash, lastValidBlockHeight } = block;
   const tx = new Transaction({ feePayer: new PublicKey(signer), recentBlockhash: blockhash }).add(webInstruction(ix));
   const message = tx.compileMessage();
   const simulation = (await rpc.simulateTransaction(new VersionedTransaction(message), { commitment: 'confirmed', sigVerify: false })).value;
@@ -115,12 +133,13 @@ export async function prepare(rpc: Connection, signer: string, intent: Intent): 
   if (fee === null || !Number.isSafeInteger(fee)) throw new Error('Fee quote expired. Review the transaction again.');
   const rent = intent.action === 'create' ? await rpc.getMinimumBalanceForRentExemption(INVOICE_SIZE, 'confirmed') : 0;
   return { action: intent.action, signer, address, merchant: terms.merchant, payer: terms.payer, amount: terms.amountLamports,
-    expiry: terms.expiresSlot, fee, rent, blockhash, lastValidBlockHeight,
+    expiry: terms.expiresSlot, fee, rent, blockhash, lastValidBlockHeight, invoiceId: intent.action === 'create' ? Buffer.from(intent.invoiceId).toString('hex') : undefined,
     unsigned: tx.serialize({ requireAllSignatures: false, verifySignatures: false }) };
 }
 export interface Attempt {
   action: Action; address: string; signer: string; signature: string | null; blockhash: string; lastValidBlockHeight: number;
-  at: string; state: 'unknown' | 'confirmed' | 'finalized' | 'failed'; fee: number;
+  at: string; state: 'unknown' | 'confirmed' | 'finalized' | 'failed' | 'expired' | 'reconciled'; fee: number;
+  error?: string; chargedFee?: number; slot?: number; createTerms?: { invoiceId: string; payer: string; amount: string; expiry: string };
 }
 export function verifySigned(quoted: Uint8Array, signed: Uint8Array) {
   const expected = Transaction.from(quoted);
@@ -142,7 +161,7 @@ export async function submit(rpc: Connection, quote: Quote, wallet: Wallet, acco
   const input = { account, chain: 'solana:devnet' as const, transaction: quote.unsigned };
   const options = { skipPreflight: quote.action === 'retry', preflightCommitment: 'confirmed' as const, maxRetries: 0 };
   const attempt: Attempt = { action: quote.action, signer: quote.signer, address: quote.address, signature: null,
-    blockhash: quote.blockhash, lastValidBlockHeight: quote.lastValidBlockHeight, at: new Date().toISOString(), state: 'unknown', fee: quote.fee };
+    blockhash: quote.blockhash, lastValidBlockHeight: quote.lastValidBlockHeight, at: new Date().toISOString(), state: 'unknown', fee: quote.fee, createTerms: quote.invoiceId ? { invoiceId: quote.invoiceId, payer: quote.payer, amount: quote.amount.toString(), expiry: quote.expiry.toString() } : undefined };
   if (useSign && sign) {
     const [result] = await sign.signTransaction(input);
     if (!current()) throw new Error('Wallet changed while signing. Review again.');
@@ -150,22 +169,36 @@ export async function submit(rpc: Connection, quote: Quote, wallet: Wallet, acco
     persist({ ...attempt });
     try {
       const signature = await rpc.sendRawTransaction(result.signedTransaction, options);
-      if (signature !== attempt.signature) return { attempt, unknown: true };
-    } catch { return { attempt, unknown: true }; }
+      if (signature !== attempt.signature) return { attempt, unknown: true, simulated: false };
+    } catch { return { attempt, unknown: true, simulated: false }; }
   } else if (signSend) {
     persist({ ...attempt });
     try {
       const [result] = await signSend.signAndSendTransaction({ ...input, options });
       attempt.signature = bs58.encode(result.signature);
       persist({ ...attempt });
-    } catch { return { attempt, unknown: true }; }
+    } catch { return { attempt, unknown: true, simulated: false }; }
   }
-  return { attempt, unknown: simulateLostResponse };
+  return { attempt, unknown: simulateLostResponse, simulated: simulateLostResponse };
 }
 export async function checkAttempt(rpc: Connection, attempt: Attempt) {
-  if (!attempt.signature) return { ...attempt, state: 'unknown' as const };
-  const result = (await rpc.getSignatureStatuses([attempt.signature], { searchTransactionHistory: true })).value[0];
-  if (!result || !['confirmed', 'finalized'].includes(result.confirmationStatus ?? '')) return attempt;
+  const result = attempt.signature ? (await rpc.getSignatureStatuses([attempt.signature], { searchTransactionHistory: true })).value[0] : null;
+  if (!result) {
+    if (await rpc.getBlockHeight('finalized') <= attempt.lastValidBlockHeight) return attempt;
+    const account = await rpc.getAccountInfoAndContext(new PublicKey(attempt.address), 'finalized');
+    if (!account.value) return { ...attempt, state: attempt.action === 'create' ? 'expired' as const : 'unknown' as const };
+    const invoice = await client.decodeInvoice(envelope(attempt.address, account.value));
+    const expected = attempt.action === 'pay' ? 'Paid' : attempt.action === 'cancel' ? 'Cancelled' : null;
+    if (attempt.action === 'create' || invoice.status === expected) return { ...attempt, state: 'reconciled' as const, slot: account.context.slot };
+    if (invoice.status === 'Open' && (attempt.action === 'pay' || attempt.action === 'cancel')) return { ...attempt, state: 'expired' as const };
+    return attempt;
+  }
+  if (!['confirmed', 'finalized'].includes(result.confirmationStatus ?? '')) return attempt;
   const state: Attempt['state'] = result.err ? 'failed' : result.confirmationStatus === 'finalized' ? 'finalized' : 'confirmed';
-  return { ...attempt, state };
+  if (state === 'failed' && attempt.signature) {
+    const tx = await rpc.getTransaction(attempt.signature, { commitment: 'confirmed', maxSupportedTransactionVersion: 0 });
+    const error = tx?.meta && isDuplicate(tx.meta.err, tx.meta.logMessages) ? 'InvoiceNotOpen' : JSON.stringify(result.err);
+    return { ...attempt, state, error, chargedFee: tx?.meta?.fee, slot: result.slot };
+  }
+  return { ...attempt, state, slot: result.slot };
 }

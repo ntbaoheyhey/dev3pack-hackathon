@@ -1,12 +1,19 @@
 {
-  "address": "No8aqRyw8nWGSvEs8Ef57DckorU38Wtv2CUHe2fUdv9",
+  "address": "rZRAPpkLcfBcao5tMvdyZ1G7VzoDLcXiHZ7u4tPSZq2",
   "program": "8NGSPufBmGB1oHqaZpY1jhJYz1X4gqFiNXCQmxfapYko",
   "genesis": "EtWTRABZaYq6iMfeYKouRu166VU2xqa1wcaWoxPkrZBG",
-  "paySignature": "3anXptNoTPJtHg7Wknfd1LQJ1grRndEL8u2wQniLkdirpU322xxgHJVKdTUwKNx9jfkxMJEi2X9zDjuwPuMNpzDV",
-  "observedAt": "2026-11-28T11:11:02.750Z",
-  "contextSlot": 527208205,
+  "paySignature": "6vZ6BvKwi27rnqbXUJ5iKrwYz7NSgPGe7hysYXyyYH8aHjCWx1DcV3Z3UA59CjfJcdaPGahwARgUWptJX74gsE3",
+  "observedAt": "2026-11-28T11:26:03.819Z",
+  "contextSlot": 527211957,
   "commitment": "finalized",
   "owner": "8NGSPufBmGB1oHqaZpY1jhJYz1X4gqFiNXCQmxfapYko",
   "executable": false,
-  "data": "M8L6cgZoEqQB/frmOkJ6hsPhObie20q6LXrCjRbMcRcI/U0zG47y5ARNuARy8pi3Y9u8IbmbWGyRAfiK5Zda/rAHmUHWWUzzAaXjml6B+X1blMDNJ2p2rJziMVhCYXM0X7vfqBg1xdDhMkBCDwAAAAAA3z88HwAAAAABV7k6HwAAAAA="
+  "data": "M8L6cgZoEqQB/vrmOkJ6hsPhObie20q6LXrCjRbMcRcI/U0zG47y5ARNuARy8pi3Y9u8IbmbWGyRAfiK5Zda/rAHmUHWWUzzAaVvEPXfKw8Z7Wz+fW3e6Ig1YKin8JnFDafzMnVkI6DsrFDDAAAAAAAAl8BsHwAAAAABDpxsHwAAAAA=",
+  "retry": {
+    "signature": "ig5D6PzpyunRL5CjzHX9GqNFwxUvAtNRK8WrvKToSZeMi9824mensd1fmtVyDpnYr6LB47ApJHFAsade91KWARe",
+    "error": "InvoiceNotOpen",
+    "feeLamports": 5000,
+    "principalLamports": 0,
+    "slot": 527211668
+  }
 }

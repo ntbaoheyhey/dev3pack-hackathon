@@ -1,8 +1,8 @@
 import assert from 'node:assert/strict';
 import { writeFileSync } from 'node:fs';
-import { anchor, GENESIS, RPC, publicEnvelope } from './checks.mjs';
+import { anchor, GENESIS, RPC, publicEnvelope, assertDuplicateSimulation } from './checks.mjs';
 import { createReceiptRailClient, PROGRAM_ADDRESS } from '../../packages/receiptrail-client/index.mjs';
-const [invoiceAddress, signature] = process.argv.slice(2);
+const [invoiceAddress, signature, retrySignature] = process.argv.slice(2);
 const { PublicKey, Connection } = anchor.web3;
 const rpc = new Connection(RPC, 'finalized');
 assert.equal(await rpc.getGenesisHash(), GENESIS);
@@ -18,5 +18,16 @@ assert(tx?.meta && !tx.meta.err && invoice.status === 'Paid' && BigInt(tx.slot) 
 assert(tx.transaction.message.staticAccountKeys.some(k => k.toBase58() === invoiceAddress));
 const data = { address: invoiceAddress, program: PROGRAM_ADDRESS, genesis: GENESIS, paySignature: signature, observedAt: new Date().toISOString(),
   contextSlot: context.slot, commitment: 'finalized', owner: value.owner.toBase58(), executable: value.executable, data: value.data.toString('base64') };
+if (retrySignature) {
+  const retry = await rpc.getTransaction(retrySignature, { commitment: 'finalized', maxSupportedTransactionVersion: 0 });
+  assert(retry?.meta && retry.transaction.message.staticAccountKeys.some(k => k.toBase58() === invoiceAddress));
+  assertDuplicateSimulation({ err: retry.meta.err, logs: retry.meta.logMessages }, PROGRAM_ADDRESS);
+  const keys=retry.transaction.message.staticAccountKeys.map(k=>k.toBase58());
+  const payer=keys.indexOf(invoice.payer), merchant=keys.indexOf(invoice.merchant);
+  assert(payer>=0 && merchant>=0);
+  assert.equal(retry.meta.preBalances[payer]-retry.meta.postBalances[payer], retry.meta.fee);
+  assert.equal(retry.meta.preBalances[merchant],retry.meta.postBalances[merchant]);
+  data.retry = { signature: retrySignature, error: 'InvoiceNotOpen', feeLamports: retry.meta.fee, principalLamports: 0, slot: retry.slot };
+}
 writeFileSync(new URL('../../apps/web/src/receiptrail/sample.json', import.meta.url), JSON.stringify(data, null, 2) + '\n');
 console.log(invoiceAddress, invoice.status, 'finalized at slot', invoice.paidSlot.toString());
