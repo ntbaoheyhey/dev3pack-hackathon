@@ -12,6 +12,18 @@ Theo lời dặn học theo giáo trình Mission 01, A đọc ví dụ tabs củ
 
 Đầu ra là một bài học ngắn trong `research/mission-01/giao-trinh/10-ban-phim-tu-a.md` và dòng T43 trong A-done. Nguồn công khai và ví dụ độc lập theo giáo trình thay cho đề bài đọc giao diện sản phẩm của lượt trước. C học các môn khác song song.
 
+## T44 — Đọc độc lập hai hồ sơ IGNITION (sau T42 và T43)
+
+Đọc hồ sơ công khai [Project Citadel](https://devpost.com/software/project-citadel) và [Figswap](https://devpost.com/software/figswap). Với mỗi đội, chọn một việc cụ thể người dùng có thể làm. Lần từ hồ sơ đến repo/link minh họa do đội dẫn, ghi người đọc kiểm được điều gì, commit có trước 23:45 Pacific Time 15/10/2021 và file triển khai nếu có. Phân biệt source của ứng dụng, thư viện mà đội chỉ dùng, lời tự mô tả và trang hiện nay không còn mở được. Ghi cách nhận biết link video mà không suy ra đã xem nội dung. Không đọc phân loại của C trước khi tự ghi hai kết quả. Bài này không chạm app dự thi.
+
+Đầu ra là `research/mission-01/giao-trinh/39-doi-chieu-tu-a.md` và một dòng trong A-done. Chỉ đọc nguồn công khai. Đây là bài đọc độc lập để đối chiếu, C vẫn tiếp tục phân tích mẫu khi A đang làm T42/T43.
+
+## T45 — Đọc độc lập hai cặp ảnh demo (sau T42–T44)
+
+Xem từng ảnh theo thứ tự trước khi mở mô tả của đội hoặc kết quả của C. Ghi hành động nhìn thấy, đối tượng có thể nhận diện, kết quả đã thấy, và liệu hai ảnh có chứng minh cùng một đối tượng vừa đổi trạng thái. Ghi rõ ô chưa đủ dữ kiện. Hai cặp gồm [ảnh 1](https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/001/697/135/datas/original.png), [ảnh 2](https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/001/697/138/datas/original.png), [ảnh 3](https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/001/654/086/datas/original.png), [ảnh 4](https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/001/654/084/datas/original.png).
+
+Đầu ra là ghi chú ngắn trong `research/mission-01/giao-trinh/52-doc-hinh-tu-a.md` và một dòng T45 ở A-done. Dùng ảnh công khai, chỉ lưu nhận xét và link khi bàn giao.
+
 ## T41 — Wallet Standard cho bản tích hợp local (mới,20/11)
 
 Người dùng đã mở Phase6 theo DECISION, log lượt08:38:01UTC+7; PR7 giữ mở. C đang public snapshot mock106a18e riêng và làm adapter/journal/CLI. A làm task này ngay, không chờ C; không thay bundle public mock hoặc mở lại T37–T40.
