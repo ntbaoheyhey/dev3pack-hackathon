@@ -1,0 +1,62 @@
+{
+  "main": "3747d567c3a3866143b2c68c793057a5557f1c10",
+  "tag": "submission-v1",
+  "tagTarget": "3747d567c3a3866143b2c68c793057a5557f1c10",
+  "hackathonStart": "63f59baba851b17c1a8cb4d783203a9d8daf0a30",
+  "mergePullRequest": "https://github.com/ntbaoheyhey/dev3pack-hackathon/pull/7",
+  "ci": {
+    "conclusion": "success",
+    "head_sha": "3747d567c3a3866143b2c68c793057a5557f1c10",
+    "html_url": "https://github.com/ntbaoheyhey/dev3pack-hackathon/actions/runs/46141960491",
+    "status": "completed",
+    "updated_at": "2026-11-28T12:03:21Z"
+  },
+  "jobs": [
+    {
+      "completed_at": "2026-11-28T12:03:21Z",
+      "conclusion": "success",
+      "html_url": "https://github.com/ntbaoheyhey/dev3pack-hackathon/actions/runs/46141960491/job/140969634976",
+      "name": "anchor-lab"
+    },
+    {
+      "completed_at": "2026-11-28T11:53:20Z",
+      "conclusion": "success",
+      "html_url": "https://github.com/ntbaoheyhey/dev3pack-hackathon/actions/runs/46141960491/job/140969635153",
+      "name": "research"
+    },
+    {
+      "completed_at": "2026-11-28T11:53:29Z",
+      "conclusion": "success",
+      "html_url": "https://github.com/ntbaoheyhey/dev3pack-hackathon/actions/runs/46141960491/job/140969635173",
+      "name": "web"
+    }
+  ],
+  "remoteVideoMatchesLocalSha256": "5297b952727fd149b7930cc9626f830aec0dc8577d4d5c8abc6ed7fa5869170c",
+  "gitScanAtFrozenRevision": {
+    "commits": 13,
+    "uniqueChangedBlobs": 557,
+    "textBlobsChecked": 485,
+    "findings": []
+  },
+  "publicRecoveryAfterReload": {
+    "checkedAt": "2026-11-28T12:39:32.007Z",
+    "source": "A blank guest browser session received a local Unknown journal entry for the actual finalized payment, reloaded the public product, and used Recheck receipt.",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "invoice": "rZRAPpkLcfBcao5tMvdyZ1G7VzoDLcXiHZ7u4tPSZq2",
+    "signature": "6vZ6BvKwi27rnqbXUJ5iKrwYz7NSgPGe7hysYXyyYH8aHjCWx1DcV3Z3UA59CjfJcdaPGahwARgUWptJX74gsE3",
+    "afterReload": "unknown",
+    "afterRecheck": "finalized",
+    "receipt": "Paid",
+    "walletConnected": false,
+    "rpcMethods": [
+      "getGenesisHash",
+      "getAccountInfo",
+      "getSignatureStatuses"
+    ],
+    "pageErrors": []
+  },
+  "heartbeatStatusReadBack": "PAUSED"
+}
