@@ -3,6 +3,14 @@
   "title": "ReceiptRail",
   "expectedUrl": "https://receiptrail-devnet.mistyaura.chatgpt.site",
   "createdAt": "2026-11-28T11:17:27.231861+00:00",
-  "status": "created-unpublished",
-  "reason": "Site mock from 20 November returned NOT_FOUND in this workspace. Created a separate ReceiptRail project."
+  "status": "succeeded",
+  "reason": "Site mock from 20 November returned NOT_FOUND in this workspace. Created a separate ReceiptRail project.",
+  "audience": "public",
+  "url": "https://receiptrail-devnet.mistyaura.chatgpt.site",
+  "applicationCommit": "3be04fde7e55bca7859f3285bddcaa19a4416faf",
+  "siteSourceCommit": "0d40e57f39004ab17964cff8c13542ecf2194f76",
+  "versionNumber": 2,
+  "deploymentId": "appgdep_6b0abfa9802c8191ba55ec4d8f14dad3",
+  "updatedAt": "2026-11-28T11:49:13.994951+00:00",
+  "artifactSha256": "6f55c7701bc2a7450e9199646485a83e9aa3c3a8d53ed2a123d3918735a0622f"
 }

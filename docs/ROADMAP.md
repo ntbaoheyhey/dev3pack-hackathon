@@ -242,8 +242,8 @@ Mỗi vòng ghi lại điểm và thay đổi. Ý tưởng sửa quá số vòng
 | 2 Kiến trúc | người dùng đã duyệt · lượt cuối A đã đóng | IDEA/ARCHITECTURE/IDL/demo165giây,19runtime local,C01r2=79/F4. Nhận phần đạt từ7857e9b, phần thiếu ở [nợ tài liệu](DOCUMENTATION-DEBT.md); T31/T32/T33 đóng, không mở vòng sửa. Giáo viên chưa có verdict |
 | 3 Môi trường | P3-A/P3-B đạt · Phase4/5 local đã mở | [P3-B](evidence/phase3/README.md): hello deploy/initialize/increment finalized,137tx, counter1, debit0.651874801SOL dưới1.5SOL. CI27cf7ac hai runs đạt3jobs/57tests/run; web/lab cũHTTP200, ví thật chưa kiểm/giáo viên chưa verdict. Không gọi mọi cổng đã đạt |
 | 4 Program | P4-A/P4-B đạt bằng chứng; chờ verdict giáo viên | CI triển khai/recovery đủ3jobs; runtime32/client23/guards7+recovery7.162tx finalized, Paid/Cancelled/duplicate simulation đúng; debit0.760701080SOL<cap1.8. A đã nhận client; [evidence](evidence/phase4/README.md) |
-| 5 Frontend | local/mock đạt; còn cổng public | Source106a18e:52tests/build,16ca browser+2ca slot,10ca artifact,video162.12s; [reviewC r4](reviews/receiptrail-phase5-r4.md). Chưa linkReceiptRailpublic/ví thật; [bản trình](PHASE5-PLAN.md) |
-| 6 Tích hợp | đang làm, người dùng đã mở20/11 | [PHASE6-PLAN](PHASE6-PLAN.md); local/CLI devnet signerscũ cap0.05SOL, T41 UI/ví; public bản giao dịch thật trình riêng, chưa cổng ra |
-| 7 Hoàn thiện | đã chuẩn bị, chưa mở thật | Security-r1, README/video nháp, sổ tayC và checklistT39; ví/thiết bị thật chưa kiểm, chưa tạo tag hackathon-start |
-| 8 Trong sự kiện | chưa mở | 27–29/11 |
-| 9 Demo & nộp | chưa mở | 29/11 |
+| 5 Frontend | UI public đã chạy trên devnet | Khách chưa nối ví đọc được receipt ở viewport desktop và mobile. [Browser QA](evidence/phase6/public-browser-2026-11-28.json) |
+| 6 Tích hợp | E2E devnet đã xác minh | Sáu giao dịch finalized, gồm pay, retry bị từ chối và cancel. Đã ký qua ví Wallet Standard local. Extension thật chưa kiểm. [Đối soát](evidence/phase6/e2e-devnet-2026-11-28T112558Z.json) |
+| 7 Hoàn thiện | Đã sửa lỗi trong E2E | Xử lý HTTP 429, phục hồi cùng invoice sau timeout, batch nhiều ví, nhãn devnet trên mobile và kiểm bundle public. [Browser QA](evidence/phase6/public-browser-2026-11-28.json) |
+| 8 Trong sự kiện | Đã tách công việc trước và trong kỳ | Tag hồi tố và nhãn hai commit nghiên cứu viết trước kỳ dù gộp trong kỳ. [README](../README.md) |
+| 9 Demo & nộp | Bộ hồ sơ đã sẵn sàng, người dùng tự gửi form | Video tiếng Anh 112,66 giây, sáu ảnh, cover, nội dung năm bước, câu hỏi giám khảo. [Bộ nộp](SUBMISSION.md) |

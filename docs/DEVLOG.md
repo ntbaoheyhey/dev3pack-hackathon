@@ -1,5 +1,7 @@
 # DEVLOG
 
+- 2026-11-28 · Codex · Public ReceiptRail trên Site riêng. Đã kiểm 1280×720 và 375×812, khách chưa nối ví đọc Paid trực tiếp, không tràn trang. Xuất video H.264/AAC 112,66 giây, 6 ảnh và cover, README tiếng Anh và bộ nộp. [QA](evidence/phase6/public-browser-2026-11-28.json) · [Video](evidence/phase6/media-2026-11-28.json).
+
 - 2026-11-28 · Codex · Đã quay create/pay/Unknown/recheck/retry và cancel qua Wallet Standard ở localhost. Kiểm 6 giao dịch finalized, 50.000 lamports principal đúng một lần, retry 0 principal + 5.000 phí. Đóng signer bridge sau quay. [Đối soát](evidence/phase6/e2e-devnet-2026-11-28T112558Z.json) · [Note 027](learning/027-receiptrail-wallet-e2e.md).
 
 - 2026-11-28 · Codex · Cài ba dependency npm đã pin theo [note 026](learning/026-receiptrail-rpc-confirmation.md), nối UI với devnet, sửa vòng lặp snapshot T41, kiểm ví quay và bundle public. Bytecode/authority khớp P4, 66 web tests + 2 guard mới đạt, đã đọc Paid thật trên localhost.

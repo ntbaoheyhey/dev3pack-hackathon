@@ -1,0 +1,91 @@
+{
+  "at": "2026-11-28T11:52:26.315768+00:00",
+  "cleanCloneCommit": "b30d230c85b6fd45c76b4961272561799e89f531",
+  "workingTreeCleanAfterChecks": true,
+  "node": "v24.22.2",
+  "checks": {
+    "web": 67,
+    "runtime": 32,
+    "generatedClient": 23,
+    "recordingGuards": 2,
+    "deploymentGuards": 7,
+    "recoveryGuards": 7,
+    "research": 16,
+    "defaultWebBuild": true,
+    "productionReceiptRailBuild": true,
+    "publicSignerExcluded": true,
+    "quickStartDesktop": {
+      "width": 1440,
+      "height": 900,
+      "liveRead": true,
+      "createForm": true,
+      "findInvalidAddress": true,
+      "pageErrors": []
+    }
+  },
+  "cleanCloneLogHashes": {
+    "client.log": "af7721e9a0e329e268e55a3b0375e76e828cf5be06a44285c1376bcc49d0b9d2",
+    "npm-ci-lab.log": "71284292050dc0615a376a2cb590864b254b482280a8300f57cf7eaa4cfe08f2",
+    "npm-ci-web.log": "ffb0b8976e71b8a8c5b96a231ddf1fe1fd2507c189815de891567ca1d3dd50b8",
+    "research.log": "577e247d857fe833b311f1d7619116a371133a47b0be4254f5b53782c7ce85b3",
+    "runtime.log": "4a8c36880d0b65d229cdcdd67f882834cfcd145a5454794943b80a3b536aff58",
+    "site-build.log": "6cca16008603f77e339a82f4f442f3249c3b0d56149d5635bb4b719cb0d8f7a4",
+    "web-build.log": "a35391697098d44855671562dd697d485b20eb090bc75c457f878f12cfecd82a",
+    "web-tests.log": "3d01a0459b894d631c24060c30121f1075b3eedf4088665144c6f62f5d6aa7c4"
+  },
+  "links": [
+    {
+      "url": "https://explorer.solana.com/address/8NGSPufBmGB1oHqaZpY1jhJYz1X4gqFiNXCQmxfapYko?cluster=devnet",
+      "curlStatus": 429,
+      "chromiumStatus": 200
+    },
+    {
+      "url": "https://explorer.solana.com/address/rZRAPpkLcfBcao5tMvdyZ1G7VzoDLcXiHZ7u4tPSZq2?cluster=devnet",
+      "curlStatus": 429,
+      "chromiumStatus": 200
+    },
+    {
+      "url": "https://explorer.solana.com/tx/6vZ6BvKwi27rnqbXUJ5iKrwYz7NSgPGe7hysYXyyYH8aHjCWx1DcV3Z3UA59CjfJcdaPGahwARgUWptJX74gsE3?cluster=devnet",
+      "curlStatus": 429,
+      "chromiumStatus": 200
+    },
+    {
+      "url": "https://explorer.solana.com/tx/ig5D6PzpyunRL5CjzHX9GqNFwxUvAtNRK8WrvKToSZeMi9824mensd1fmtVyDpnYr6LB47ApJHFAsade91KWARe?cluster=devnet",
+      "curlStatus": 429,
+      "chromiumStatus": 200
+    },
+    {
+      "url": "https://github.com/ntbaoheyhey/dev3pack-hackathon",
+      "curlStatus": 200,
+      "chromiumStatus": null
+    },
+    {
+      "url": "https://github.com/ntbaoheyhey/dev3pack-hackathon/actions/workflows/ci.yml?query=branch%3Amain",
+      "curlStatus": 200,
+      "chromiumStatus": null
+    },
+    {
+      "url": "https://github.com/ntbaoheyhey/dev3pack-hackathon/compare/hackathon-start...main",
+      "curlStatus": 200,
+      "chromiumStatus": null
+    },
+    {
+      "url": "https://hack.dev3pack.xyz",
+      "curlStatus": 200,
+      "chromiumStatus": null
+    },
+    {
+      "url": "https://receiptrail-devnet.mistyaura.chatgpt.site/",
+      "curlStatus": 200,
+      "chromiumStatus": null
+    }
+  ],
+  "localLinks": "All README and submission guide paths resolve in the release checkout.",
+  "gitScan": {
+    "commits": 11,
+    "uniqueChangedBlobs": 550,
+    "textBlobsChecked": 479,
+    "findings": []
+  },
+  "limits": "Recording used a loopback Wallet Standard implementation. The public guest view was verified separately in Chromium. No browser extension or physical mobile device was exercised. GitHub and the project site returned HTTP 200 to curl. Solana Explorer returned 429 to curl and HTTP 200 in normal Chromium navigation."
+}
