@@ -1,0 +1,271 @@
+{
+  "observedAt": "2026-11-28T11:25:58.097Z",
+  "rpc": "https://api.devnet.solana.com",
+  "genesis": "EtWTRABZaYq6iMfeYKouRu166VU2xqa1wcaWoxPkrZBG",
+  "program": "8NGSPufBmGB1oHqaZpY1jhJYz1X4gqFiNXCQmxfapYko",
+  "observedSlot": 527211936,
+  "commitment": "finalized",
+  "source": "Wallet Standard via loopback on Chromium; funding via CLI",
+  "budget": {
+    "capLamports": 500000000,
+    "grossSpentLamports": 13342880,
+    "unobservedReservedLamports": 1320720,
+    "feeLamports": 30000,
+    "rentLamports": 2631440,
+    "principalLamports": 50000,
+    "fundingLamports": 10631440,
+    "unit": "lamports, 1 SOL = 1,000,000,000 lamports"
+  },
+  "accounting": "Gross counts internal funding, fees, account rent, and principal separately. Failed retry paid its network fee and transferred zero principal.",
+  "unobservedAttempts": [
+    {
+      "invoice": "AGksANixocGDCcuuDNdsJfghfF1eboeBwScmDe9RkApp",
+      "signature": "5P3qRzacUJX8wiZFfmxqBpd2jAjjVY5hqxdZo2shTAa2HjBdM8nkVwL1rVHvryNumhg7DQUxgmD8kq37eHYxVfqX",
+      "reserved": 1320720,
+      "observedAt": "2026-11-28T11:21:29.190Z",
+      "slot": 527210817,
+      "historyStatus": null,
+      "finalizedAccount": null,
+      "blockhashValid": false
+    }
+  ],
+  "localPrebroadcastFailures": [
+    {
+      "reason": "Transaction.serialize rejected the invalid signature locally before sendRawTransaction was invoked.",
+      "feeLamports": 0
+    }
+  ],
+  "demoInvoice": "rZRAPpkLcfBcao5tMvdyZ1G7VzoDLcXiHZ7u4tPSZq2",
+  "cancelledInvoice": "HaHAt5QrBBnGYhpJKd6uMBfNJqSdbX3ViY1onZ5xLMdo",
+  "balances": [
+    {
+      "address": "GQRoDMoWFV2nhgwm3bZGvSCC1LSa2wRkLeeJg8NhbFM2",
+      "before": 1087424119,
+      "after": 1076787679
+    },
+    {
+      "address": "HtQYFnFqUrkAfnKLpLaTgZrvjivJ3ZWPTqsCv6Kru4y2",
+      "before": 3368560,
+      "after": 7403560
+    },
+    {
+      "address": "DPKxAZhBq4aJYn4FbHFn19easT1KRcv31YNweGKZnyrc",
+      "before": 1000000,
+      "after": 4940000
+    }
+  ],
+  "invoices": [
+    {
+      "address": "rZRAPpkLcfBcao5tMvdyZ1G7VzoDLcXiHZ7u4tPSZq2",
+      "version": 1,
+      "bump": 254,
+      "merchant": "HtQYFnFqUrkAfnKLpLaTgZrvjivJ3ZWPTqsCv6Kru4y2",
+      "payer": "DPKxAZhBq4aJYn4FbHFn19easT1KRcv31YNweGKZnyrc",
+      "invoiceId": "6f10f5df2b0f19ed6cfe7d6ddee8883560a8a7f099c50da7f332756423a0ecac",
+      "amountLamports": "50000",
+      "expiresSlot": "527220887",
+      "status": "Paid",
+      "paidSlot": "527211534",
+      "explorer": "https://explorer.solana.com/address/rZRAPpkLcfBcao5tMvdyZ1G7VzoDLcXiHZ7u4tPSZq2?cluster=devnet"
+    },
+    {
+      "address": "HaHAt5QrBBnGYhpJKd6uMBfNJqSdbX3ViY1onZ5xLMdo",
+      "version": 1,
+      "bump": 255,
+      "merchant": "HtQYFnFqUrkAfnKLpLaTgZrvjivJ3ZWPTqsCv6Kru4y2",
+      "payer": "DPKxAZhBq4aJYn4FbHFn19easT1KRcv31YNweGKZnyrc",
+      "invoiceId": "c76cd15c91d14d73034e8bb178a9a4c302a3949a345c9baed17582d17e97fcf2",
+      "amountLamports": "50000",
+      "expiresSlot": "527221701",
+      "status": "Cancelled",
+      "paidSlot": "0",
+      "explorer": "https://explorer.solana.com/address/HaHAt5QrBBnGYhpJKd6uMBfNJqSdbX3ViY1onZ5xLMdo?cluster=devnet"
+    }
+  ],
+  "transactions": [
+    {
+      "action": "fund",
+      "signature": "4zSgt1Bkyb7K9db8abVY1zyPzyYCKCNHGBHhnNu4sZ2wrPEHJo1bEo3v6HfRT92VpiJos2PYnn1q4rbEyY3XZL3G",
+      "blockhash": "FuQWePWSABa6D1aLcCjfpChJvfy8Dx1j4rMc1nn4Nrh5",
+      "slot": 527209698,
+      "confirmationStatus": "finalized",
+      "err": null,
+      "feeLamports": 5000,
+      "principalLamports": 0,
+      "rentLamports": 0,
+      "fundingLamports": 10631440,
+      "grossLamports": 10636440,
+      "balances": {
+        "feeAuthority": {
+          "before": 1087424119,
+          "after": 1076787679,
+          "delta": -10636440
+        },
+        "merchant": {
+          "before": 3368560,
+          "after": 10000000,
+          "delta": 6631440
+        },
+        "payer": {
+          "before": 1000000,
+          "after": 5000000,
+          "delta": 4000000
+        }
+      },
+      "explorer": "https://explorer.solana.com/tx/4zSgt1Bkyb7K9db8abVY1zyPzyYCKCNHGBHhnNu4sZ2wrPEHJo1bEo3v6HfRT92VpiJos2PYnn1q4rbEyY3XZL3G?cluster=devnet"
+    },
+    {
+      "action": "create",
+      "invoice": "rZRAPpkLcfBcao5tMvdyZ1G7VzoDLcXiHZ7u4tPSZq2",
+      "signature": "3Fnr3gzBwr2ZxC2SXi5WSMj6BrfpuZWyShv35dxovG9hcKvf3s1NzNb3wG6ubAPS8LVJfeQNPDhacdaUqxf4QsWb",
+      "blockhash": "4n3y6npcjcz7EeZzq2zm3NL31njrQfrVjK5BuefHb3Zn",
+      "slot": 527210950,
+      "confirmationStatus": "finalized",
+      "err": null,
+      "feeLamports": 5000,
+      "principalLamports": 0,
+      "rentLamports": 1315720,
+      "fundingLamports": 0,
+      "grossLamports": 1320720,
+      "balances": {
+        "signer": {
+          "before": 10000000,
+          "after": 8679280,
+          "delta": -1320720
+        },
+        "invoice": {
+          "before": 0,
+          "after": 1315720,
+          "delta": 1315720
+        }
+      },
+      "explorer": "https://explorer.solana.com/tx/3Fnr3gzBwr2ZxC2SXi5WSMj6BrfpuZWyShv35dxovG9hcKvf3s1NzNb3wG6ubAPS8LVJfeQNPDhacdaUqxf4QsWb?cluster=devnet"
+    },
+    {
+      "action": "pay",
+      "invoice": "rZRAPpkLcfBcao5tMvdyZ1G7VzoDLcXiHZ7u4tPSZq2",
+      "signature": "6vZ6BvKwi27rnqbXUJ5iKrwYz7NSgPGe7hysYXyyYH8aHjCWx1DcV3Z3UA59CjfJcdaPGahwARgUWptJX74gsE3",
+      "blockhash": "2Qk43vzkrJwahC8nRJuPNRFypdjPZCbgx5saZbRuLTT7",
+      "slot": 527211534,
+      "confirmationStatus": "finalized",
+      "err": null,
+      "feeLamports": 5000,
+      "principalLamports": 50000,
+      "rentLamports": 0,
+      "fundingLamports": 0,
+      "grossLamports": 55000,
+      "balances": {
+        "signer": {
+          "before": 5000000,
+          "after": 4945000,
+          "delta": -55000
+        },
+        "invoice": {
+          "before": 1315720,
+          "after": 1315720,
+          "delta": 0
+        },
+        "merchant": {
+          "before": 8679280,
+          "after": 8729280,
+          "delta": 50000
+        }
+      },
+      "explorer": "https://explorer.solana.com/tx/6vZ6BvKwi27rnqbXUJ5iKrwYz7NSgPGe7hysYXyyYH8aHjCWx1DcV3Z3UA59CjfJcdaPGahwARgUWptJX74gsE3?cluster=devnet"
+    },
+    {
+      "action": "retry",
+      "invoice": "rZRAPpkLcfBcao5tMvdyZ1G7VzoDLcXiHZ7u4tPSZq2",
+      "signature": "ig5D6PzpyunRL5CjzHX9GqNFwxUvAtNRK8WrvKToSZeMi9824mensd1fmtVyDpnYr6LB47ApJHFAsade91KWARe",
+      "blockhash": "CjYUpDjyP6piw9QEUZUNaeHBsjTpE2dK5FYhXuiPCPZL",
+      "slot": 527211668,
+      "confirmationStatus": "finalized",
+      "err": {
+        "InstructionError": [
+          0,
+          {
+            "Custom": 6004
+          }
+        ]
+      },
+      "programError": "InvoiceNotOpen",
+      "feeLamports": 5000,
+      "principalLamports": 0,
+      "rentLamports": 0,
+      "fundingLamports": 0,
+      "grossLamports": 5000,
+      "balances": {
+        "signer": {
+          "before": 4945000,
+          "after": 4940000,
+          "delta": -5000
+        },
+        "invoice": {
+          "before": 1315720,
+          "after": 1315720,
+          "delta": 0
+        },
+        "merchant": {
+          "before": 8729280,
+          "after": 8729280,
+          "delta": 0
+        }
+      },
+      "explorer": "https://explorer.solana.com/tx/ig5D6PzpyunRL5CjzHX9GqNFwxUvAtNRK8WrvKToSZeMi9824mensd1fmtVyDpnYr6LB47ApJHFAsade91KWARe?cluster=devnet"
+    },
+    {
+      "action": "create",
+      "invoice": "HaHAt5QrBBnGYhpJKd6uMBfNJqSdbX3ViY1onZ5xLMdo",
+      "signature": "2oWHrGRB2vGV4WX5t2ybEFeR8zfEUWGhFpN1x3o1mXyEtRRY7geTxWQqiF6DgPcgmLaZUZwfjpuKnn76QLfUAx6B",
+      "blockhash": "5DFoe2Ae629Lhnsv5E8yDSdeGcvJRZ8DJ1W3neQb7cp9",
+      "slot": 527211771,
+      "confirmationStatus": "finalized",
+      "err": null,
+      "feeLamports": 5000,
+      "principalLamports": 0,
+      "rentLamports": 1315720,
+      "fundingLamports": 0,
+      "grossLamports": 1320720,
+      "balances": {
+        "signer": {
+          "before": 8729280,
+          "after": 7408560,
+          "delta": -1320720
+        },
+        "invoice": {
+          "before": 0,
+          "after": 1315720,
+          "delta": 1315720
+        }
+      },
+      "explorer": "https://explorer.solana.com/tx/2oWHrGRB2vGV4WX5t2ybEFeR8zfEUWGhFpN1x3o1mXyEtRRY7geTxWQqiF6DgPcgmLaZUZwfjpuKnn76QLfUAx6B?cluster=devnet"
+    },
+    {
+      "action": "cancel",
+      "invoice": "HaHAt5QrBBnGYhpJKd6uMBfNJqSdbX3ViY1onZ5xLMdo",
+      "signature": "2T63LRKGmCjXfqMqqdLeQSqxmkUy9jeTXuyqSxMMZwzAFM3gPoE9B6bBHrRvy7CZqgbdGQe24wwkMhQsCFvJ5gCy",
+      "blockhash": "H8LVZgjjG9C8sMtuUCJst69ULb7veBwEXFYCdASxYbXr",
+      "slot": 527211863,
+      "confirmationStatus": "finalized",
+      "err": null,
+      "feeLamports": 5000,
+      "principalLamports": 0,
+      "rentLamports": 0,
+      "fundingLamports": 0,
+      "grossLamports": 5000,
+      "balances": {
+        "signer": {
+          "before": 7408560,
+          "after": 7403560,
+          "delta": -5000
+        },
+        "invoice": {
+          "before": 1315720,
+          "after": 1315720,
+          "delta": 0
+        }
+      },
+      "explorer": "https://explorer.solana.com/tx/2T63LRKGmCjXfqMqqdLeQSqxmkUy9jeTXuyqSxMMZwzAFM3gPoE9B6bBHrRvy7CZqgbdGQe24wwkMhQsCFvJ5gCy?cluster=devnet"
+    }
+  ]
+}

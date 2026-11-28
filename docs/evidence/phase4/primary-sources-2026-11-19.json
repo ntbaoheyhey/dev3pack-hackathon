@@ -1,0 +1,16 @@
+[
+  {
+    "url": "https://raw.githubusercontent.com/otter-sec/anchor/v1.2.2/lang/src/accounts/account.rs",
+    "status": "read",
+    "bytes": 15477,
+    "sha256": "20380732bf58d90cd03dbf1e9a73f4035f11f5c59fc8ca2c540f418a393c62da",
+    "localPath": "/tmp/dev3pack-anchor-account-1.2.2.rs"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/anza-xyz/kit/v4.0.0/packages/addresses/src/program-derived-address.ts",
+    "status": "read",
+    "bytes": 8553,
+    "sha256": "4b0acda4b0a77d002096d0b061466dcd71a20f588686f879f096f4534ea063c9",
+    "localPath": "/tmp/dev3pack-kit-pda-4.0.0.ts"
+  }
+]

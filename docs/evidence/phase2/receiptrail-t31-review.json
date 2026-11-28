@@ -1,0 +1,49 @@
+{
+  "reviewed_at_utc": "2026-11-18T06:50:41+00:00",
+  "scope": "Review tài liệu T31 sau fetch/pull. Đối chiếu note021/review nguồn trước và source/thiết kế/log local; không crawl lại URL, chạy runtime/browser/RPC/CI hoặc sửa report A.",
+  "report": {
+    "path": "docs/data/receiptrail-evidence.md",
+    "commit": "e483529bd2bbfa69e11e69a7f867044aaf0000b1",
+    "sha256": "4b7494b3549b30ad2ce71ab5fbc0c17f9336d1b42fbdc91d378c08b5058eb7dc",
+    "line_count": 31,
+    "text": "# ReceiptRail Evidence Report (T31 - Rework)\n\n> Ngày cập nhật: 2026-11-18\n\n## 1. Alternatives (3, nguồn đích, hạn chế)\n| Alternative | URL đích | Hạn chế | Tác động tới ReceiptRail |\n| --- | --- | --- | --- |\n| Stripe Idempotency | [Stripe Docs](https://docs.stripe.com/api/idempotent_requests) | Server-side dependency | ReceiptRail dùng PDA on-chain (immutable) làm định danh duy nhất. |\n| Solana Pay Ref | [Solana Pay](https://solana.com/docs/tools/solana-pay/specification/version1-1#reference) | Reference không unique | ReceiptRail định danh hóa đơn bằng PDA address (duy nhất). |\n| x402 Payment ID | [x402 Spec](https://github.com/x402-foundation/x402/blob/main/specs/extensions/payment_identifier.md) | App level dependency | Logic on-chain cố định, không phụ thuộc protocol ngoài. |\n\n## 2. Pain Points (2 nguồn độc lập)\n| Nguồn | Vấn đề | Điều nguồn không chứng minh |\n| --- | --- | --- |\n| [Shopify Engineering](https://shopify.engineering/building-resilient-graphql-apis-using-idempotency) | Idempotency lỗi gây trùng đơn | Web API (GraphQL), không liên quan Solana on-chain. |\n| [x402 Issue #452](https://github.com/x402-foundation/x402/issues/452) | Replay trap trong EIP-3009 | Giao thức EVM, không phải Solana. |\n\n## 3. State, Commitment & PDA\n- **Invoice State**: `Open` (Khởi tạo), `Paid` (Finalized on-chain), `Cancelled`, `Expired` (`Open` + `slot` >= `expires_slot`).\n- **Commitment**: Dùng `finalized` để xác nhận Paid, tránh trạng thái trùng lặp.\n- **PDA Logic**: PDA address làm định danh duy nhất cho mỗi Invoice.\n\n## 4. Bảng phản hồi Findings (T26, T29)\n| Mã | Nội dung | Mục sửa |\n| --- | --- | --- |\n| T26-R1 | Alternatives | 3 alternatives với giới hạn kỹ thuật |\n| T26-R2 | Pain sources | Phân biệt EVM vs Solana |\n| T26-R3 | State/PDA | PDA làm nguồn định danh duy nhất |\n| T29-E1 | State machine | Invoice State, Request State |\n| T29-E2 | Expiry/Commitment | Expiry nhãn, Paid finalized |\n| T29-E3 | Tổng hợp | Hoàn thiện bảng phản hồi findings |\n"
+  },
+  "input_sha256": {
+    "programs/receiptrail/src/lib.rs": "2d7c0dce845da382ef237113bc7c691b656d4e61be171514b8b53fdade32b285",
+    "programs/receiptrail/tests/runtime.rs": "e60ce9d4e4328406a547de47eb9023af2c0df1cd0f822340c7f9df2e3cda960b",
+    "docs/idl/receiptrail.json": "13efb821841ebd6c9a8b9da21160aad8fbc11e9a6072e4b92a408e6f103f5409",
+    "docs/ARCHITECTURE.md": "6716c93d566d0609940b6e963517c565d40be7beeedaa31517799b909ec4951e",
+    "docs/IDEA.md": "bba376b1b55f26b3c63f91d17c3f0a1fbc0a46cf68a51b661d8d2af67937ef55",
+    "docs/evidence/phase2/receiptrail-spike-r2.txt": "3ee1bac3d93f4fdcd0b2c0a31d42521964945db83f5fbcad94967a1872af212b"
+  },
+  "document_checks": {
+    "unique_http_urls": 5,
+    "report_snapshot_matches_git_blob_and_worktree": true,
+    "request_state_definition_present": false,
+    "paid_conflated_with_finalized": true,
+    "original_response_ids_expected": [
+      "T14-R1",
+      "T14-R2",
+      "T14-R3",
+      "T14-R4",
+      "T20-R1",
+      "T20-R2",
+      "T20-R3",
+      "T23-R1",
+      "T23-R2",
+      "T23-R3"
+    ],
+    "original_response_ids_present": []
+  },
+  "accepted": [
+    "Giữ 5 URL đích và nhãn EVM/Web API cho hai pain sources.",
+    "Giữ điều kiện Expired = Open và slot >= expires_slot."
+  ],
+  "findings": {
+    "T31-E1": "Nguồn: thiếu provenance/ngày thực đọc/cơ chế; mất idempotency key và fingerprint/cache từng có ở306466f. Reference không unique, Shopify gây trùng đơn và PDA tự bảo đảm chống trả lặp vẫn diễn giải quá mức.",
+    "T31-E2": "State: mất Request Pending/Unknown từng có ở306466f; Paid vẫn Finalized on-chain. Chưa có bảng ba mốc expiry/actor/CTA/cùng PDA-program-cluster-owner-commitment; finalized không là invariant chống retry.",
+    "T31-E3": "Phản hồi: thiếu cả10IDs T14/T20/T23. T29-E1 phải là nguồn, E2 state, E3 phản hồi; hàng E1 ghi đã có Request nhưng nội dung không có. Sáu hàng hiện tại không đóng các findings."
+  },
+  "follow_up": "Không thêm task ID. Giữ T32 rồi T33; sau đó sửa hẹp các phần chưa đạt trong chính T31, giữ phần đã đúng và trả lời bằng nội dung thực.",
+  "verdict": "T31 đã nộp, chưa đạt tiêu chí nhận;9nhóm findings T28/T29 còn mở. Không đổi điểm, cổng người dùng/giáo viên, quyền hoặc P3-A."
+}

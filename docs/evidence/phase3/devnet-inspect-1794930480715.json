@@ -1,0 +1,17 @@
+{
+  "at": "2026-11-17T15:48:00.714Z",
+  "rpc": "https://api.devnet.solana.com",
+  "expectedGenesis": "EtWTRABZaYq6iMfeYKouRu166VU2xqa1wcaWoxPkrZBG",
+  "programId": "2yzxUQEpaeLmgCMhDipwnVL3DHsxez18KcePonqZRiXL",
+  "payer": "GQRoDMoWFV2nhgwm3bZGvSCC1LSa2wRkLeeJg8NhbFM2",
+  "counter": "WPFLETxvxk2hq48C7YzC1VJVVZcEhzqF2tur6vBDvnB",
+  "mode": "INSPECT",
+  "transactions": [],
+  "before": {
+    "ready": false,
+    "reason": "PROGRAM_NOT_DEPLOYED",
+    "genesis": "EtWTRABZaYq6iMfeYKouRu166VU2xqa1wcaWoxPkrZBG",
+    "balance": 0,
+    "slot": 523318885
+  }
+}

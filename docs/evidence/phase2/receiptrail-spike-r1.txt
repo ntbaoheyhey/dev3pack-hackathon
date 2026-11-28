@@ -1,0 +1,180 @@
+   Compiling proc-macro2 v1.0.107
+   Compiling unicode-ident v1.0.24
+   Compiling quote v1.0.47
+   Compiling serde_core v1.0.229
+   Compiling winnow v1.0.4
+   Compiling hashbrown v0.17.1
+   Compiling equivalent v1.0.2
+   Compiling toml_datetime v1.1.1+spec-1.1.0
+   Compiling serde v1.0.229
+   Compiling cfg_aliases v0.2.2
+   Compiling once_cell v1.21.4
+   Compiling five8_core v1.0.0
+   Compiling borsh v1.8.1
+   Compiling solana-define-syscall v4.0.1
+   Compiling five8 v1.0.0
+   Compiling sha2-const-stable v0.1.0
+   Compiling solana-define-syscall v5.2.0
+   Compiling five8_const v1.0.0
+   Compiling solana-atomic-u64 v3.0.1
+   Compiling solana-sanitize v3.0.1
+   Compiling typenum v1.20.1
+   Compiling bs58 v0.5.1
+   Compiling libc v0.2.189
+   Compiling autocfg v1.5.1
+   Compiling thiserror v1.0.69
+   Compiling indexmap v2.14.2
+   Compiling hybrid-array v0.4.15
+   Compiling cfg-if v1.0.4
+   Compiling const-oid v0.10.2
+   Compiling version_check v0.9.5
+   Compiling toml_parser v1.1.3+spec-1.1.0
+   Compiling num-traits v0.2.19
+   Compiling solana-program-memory v3.1.0
+   Compiling heck v0.5.0
+   Compiling feature-probe v0.1.1
+   Compiling block-buffer v0.12.1
+   Compiling crypto-common v0.2.2
+   Compiling bv v0.11.1
+   Compiling toml_edit v0.25.15+spec-1.1.0
+   Compiling syn v3.0.5
+   Compiling syn v2.0.119
+   Compiling cpufeatures v0.3.1
+   Compiling generic-array v0.14.7
+   Compiling solana-msg v3.1.0
+   Compiling zmij v1.0.23
+   Compiling proc-macro-crate v3.5.0
+   Compiling digest v0.11.3
+   Compiling anyhow v1.0.104
+   Compiling sha2 v0.11.0
+   Compiling serde_json v1.0.151
+   Compiling crypto-common v0.1.7
+   Compiling block-buffer v0.10.4
+   Compiling digest v0.10.7
+   Compiling cpufeatures v0.2.17
+   Compiling itoa v1.0.18
+   Compiling memchr v2.8.3
+   Compiling log v0.4.34
+   Compiling unicode-segmentation v1.13.3
+   Compiling sha2 v0.10.9
+   Compiling lazy_static v1.5.0
+   Compiling serde_bytes v0.11.19
+   Compiling keccak-const v0.2.0
+   Compiling solana-define-syscall v3.0.0
+   Compiling const-crypto v0.3.0
+   Compiling solana-program-option v3.1.0
+   Compiling base64 v0.21.7
+   Compiling heck v0.3.3
+   Compiling serde_derive v1.0.229
+   Compiling borsh-derive v1.8.1
+   Compiling bytemuck_derive v1.12.0
+   Compiling thiserror-impl v1.0.69
+   Compiling solana-sdk-macro v3.0.1
+   Compiling anchor-attribute-constant v1.2.2
+   Compiling anchor-derive-space v1.2.2
+   Compiling anchor-derive-serde v1.2.2
+   Compiling anchor-attribute-access-control v1.2.2
+   Compiling bytemuck v1.25.2
+   Compiling solana-hash v4.5.0
+   Compiling bincode v1.3.3
+   Compiling solana-fee-calculator v3.2.2
+   Compiling anchor-syn v1.2.2
+   Compiling anchor-lang-idl-spec v0.1.0
+   Compiling solana-sha256-hasher v3.1.0
+   Compiling anchor-lang-idl v0.1.4
+   Compiling solana-program-error v3.0.1
+   Compiling solana-address v2.6.1
+   Compiling solana-instruction-error v2.5.0
+   Compiling solana-program-pack v3.1.0
+   Compiling solana-pubkey v4.2.0
+   Compiling solana-sdk-ids v3.1.0
+   Compiling solana-get-sysvar v1.0.0
+   Compiling solana-account-info v3.1.1
+   Compiling solana-address v1.1.0
+   Compiling solana-pubkey v3.0.0
+   Compiling solana-instruction v3.4.0
+   Compiling solana-serialize-utils v3.1.2
+   Compiling solana-sysvar-id v3.1.0
+   Compiling solana-feature-gate-interface v3.1.0
+   Compiling solana-program-entrypoint v3.1.1
+   Compiling solana-slot-history v3.1.0
+   Compiling solana-slot-hashes v3.1.0
+   Compiling solana-clock v3.1.1
+   Compiling solana-epoch-rewards v3.1.0
+   Compiling solana-epoch-schedule v3.2.0
+   Compiling solana-stable-layout v3.0.1
+   Compiling solana-rent v3.1.0
+   Compiling solana-last-restart-slot v3.1.0
+   Compiling solana-system-interface v3.2.0
+   Compiling solana-cpi v3.1.0
+   Compiling solana-system-interface v2.0.0
+   Compiling solana-invoke v0.5.0
+   Compiling solana-instructions-sysvar v3.0.1
+   Compiling solana-loader-v3-interface v6.1.1
+   Compiling solana-sysvar v3.1.1
+   Compiling solana-stake-interface v2.0.2
+   Compiling anchor-attribute-error v1.2.2
+   Compiling anchor-attribute-event v1.2.2
+   Compiling anchor-derive-accounts v1.2.2
+   Compiling anchor-attribute-account v1.2.2
+   Compiling anchor-lang-error v1.2.2
+   Compiling anchor-attribute-program v1.2.2
+   Compiling anchor-lang v1.2.2
+   Compiling receiptrail v0.1.0 (/Users/bao/Documents/ChatGPT/dev3pack/programs/receiptrail)
+    Finished `release` profile [optimized] target(s) in 58.65s
+   Compiling receiptrail v0.1.0 (/Users/bao/Documents/ChatGPT/dev3pack/programs/receiptrail)
+warning: unused dependency `anchor-lang`
+  --> programs/receiptrail/Cargo.toml:23:1
+   |
+23 | anchor-lang = "=1.2.2"
+   | ^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: `cargo::unused_dependencies` is set to `warn` by default
+help: consider removing the dependency on `anchor-lang`
+help: to still use for development builds, move to `dev-dependencies`
+warning: `receiptrail` (manifest) generated 1 warning
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 2.63s
+     Running unittests src/lib.rs (target/debug/build/receiptrail/a9bf5305b2fa9bd9/out/receiptrail-a9bf5305b2fa9bd9)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/runtime.rs (target/debug/build/receiptrail/4bae2726b664c226/out/runtime-4bae2726b664c226)
+
+running 19 tests
+test another_merchant_cannot_cancel ... ok
+test create_pay_and_fresh_transaction_retry_transfers_principal_only_once ... METRIC create_cu=8775 pay_cu=6608 retry_cu=6017 create_fee=10000 pay_fee=10000 retry_fee=10000 rent_lamports=1802640 principal_delta=1000000 invoice_bytes=131 paid_slot=100
+ok
+test expiry_boundary_before_at_and_after ... ok
+test insufficient_principal_cpi_leaves_invoice_open_and_balances_unchanged ... ok
+test invalid_creation_terms_and_aliases_leave_no_invoice_or_rent_debit ... ok
+test merchant_address_without_signature_cannot_create_or_cancel ... ok
+test merchant_can_cancel_expired_open_invoice_without_moving_principal ... METRIC cancel_cu=4346 cancel_fee=10000
+ok
+test owner_and_discriminator_are_checked_before_payment ... ok
+test pay_cancel_race_is_safe_in_both_serial_orders ... ok
+test payer_address_without_signature_is_rejected ... ok
+test payer_with_data_or_wrong_owner_cannot_transfer ... ok
+test recipient_substitution_cannot_redirect_payment ... ok
+test same_layout_at_wrong_pda_is_rejected ... ok
+test substituted_executable_cannot_replace_system_program ... ok
+test terminal_invoice_cannot_be_reinitialized_or_reset ... ok
+test two_pay_instructions_in_one_transaction_roll_back_the_first_transfer ... ok
+test unknown_instruction_cannot_change_terms_or_terminal_state ... ok
+test wrong_bump_and_version_are_rejected ... ok
+test wrong_payer_signer_cannot_pay ... ok
+
+test result: ok. 19 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.06s
+
+   Doc-tests receiptrail
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+Started: 2026-11-17T17:33:07Z; elapsed_seconds=64
+2d7c0dce845da382ef237113bc7c691b656d4e61be171514b8b53fdade32b285  programs/receiptrail/src/lib.rs
+e60ce9d4e4328406a547de47eb9023af2c0df1cd0f822340c7f9df2e3cda960b  programs/receiptrail/tests/runtime.rs
+8ea462bb0d93de7e4f82e24bdb9bd3a1a1ab78ca227fd09880bb52c1dd6583c9  Cargo.lock
+962b721ae089a77123283bfe1dde0233284b2a793d692cc0abc53e2a8b6eab5a  target/receiptrail-spike/receiptrail.so

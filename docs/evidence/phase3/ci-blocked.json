@@ -1,0 +1,39 @@
+{
+  "checkedAt": "2026-11-17T15:44:05.376Z",
+  "source": "GitHub check diagnostics",
+  "runUrl": "https://github.com/ntbaoheyhey/dev3pack-hackathon/actions/runs/44117454541",
+  "headRevision": "cc8ab9c51cf195ae1f46373238e055a9a688e76d",
+  "checks": [
+    {
+      "id": 134159317045,
+      "name": "anchor-lab",
+      "head_sha": "cc8ab9c51cf195ae1f46373238e055a9a688e76d",
+      "status": "completed",
+      "conclusion": "failure",
+      "details_url": "https://github.com/ntbaoheyhey/dev3pack-hackathon/actions/runs/44117454541/job/134159317045",
+      "output": {
+        "title": null,
+        "summary": null,
+        "text": null,
+        "annotations_count": 1
+      }
+    }
+  ],
+  "statuses": [],
+  "annotations": [
+    {
+      "path": ".github",
+      "start_line": 1,
+      "end_line": 1,
+      "annotation_level": "failure",
+      "message": "The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings",
+      "title": "",
+      "raw_details": ""
+    }
+  ],
+  "hasMore": false,
+  "job": null,
+  "jobs": [],
+  "log": null,
+  "logTruncated": false
+}

@@ -1,0 +1,104 @@
+{
+  "scope": "Phase2 local LiteSVM only; no validator/RPC/deploy or deployment keypair",
+  "test_start_utc": "2026-11-17T17:43:11Z",
+  "elapsed_seconds": 3,
+  "runtime_tests": {
+    "passed": 19,
+    "failed": 0,
+    "duration_seconds": 1.0
+  },
+  "versions": {
+    "anchor_lang": "1.2.2",
+    "litesvm": "0.15.0",
+    "host_rust": "1.100.0",
+    "platform_tools": "v1.57",
+    "sbf_rust": "1.95.0-dev ae660768a",
+    "target": "sbpfv3-solana-solana"
+  },
+  "local_only_program_id": "troKmWNxjNucevGMKo9PnKdF5p6W91VDGJ2PsjYvCPg",
+  "sample_metrics": {
+    "account_bytes": 131,
+    "so_bytes": 147864,
+    "rent_lamports_litesvm": 1802640,
+    "principal_lamports": 1000000,
+    "create_cu": 8775,
+    "pay_cu": 6608,
+    "rejected_retry_cu": 6017,
+    "cancel_cu": 4346,
+    "fee_lamports_each_two_signatures": 10000
+  },
+  "sha256": {
+    "programs/receiptrail/Cargo.toml": "120c9a3ef20cba492a489f2b8a290eb3c4464029eb2b644a4e2fade538bcd124",
+    "programs/receiptrail/src/lib.rs": "2d7c0dce845da382ef237113bc7c691b656d4e61be171514b8b53fdade32b285",
+    "programs/receiptrail/tests/runtime.rs": "e60ce9d4e4328406a547de47eb9023af2c0df1cd0f822340c7f9df2e3cda960b",
+    "scripts/check-receiptrail.sh": "1f4ac4c1a67ba3d12825d547931bcf9528e9ba5554414188155d2c298d29a3fd",
+    "Cargo.lock": "8ea462bb0d93de7e4f82e24bdb9bd3a1a1ab78ca227fd09880bb52c1dd6583c9",
+    "target/receiptrail-spike/receiptrail.so": "962b721ae089a77123283bfe1dde0233284b2a793d692cc0abc53e2a8b6eab5a",
+    "docs/idl/receiptrail.json": "13efb821841ebd6c9a8b9da21160aad8fbc11e9a6072e4b92a408e6f103f5409"
+  },
+  "limitations": [
+    "No browser/wallet/RPC/reorg integration",
+    "No devnet deployment",
+    "No independent audit",
+    "No Linux CI",
+    "Rent and CU from LiteSVM defaults, not network quote"
+  ],
+  "runtime_log": "docs/evidence/phase2/receiptrail-spike-r2.txt",
+  "previous_run": "docs/evidence/phase2/receiptrail-build-metadata-r1.json",
+  "idl": {
+    "build_log": "docs/evidence/phase2/receiptrail-idl-r3.txt",
+    "exit_code": 0,
+    "instructions": 3,
+    "accounts": 1,
+    "events": 3,
+    "custom_errors": 9,
+    "validation": "args/account order+flags/PDA namespace/discriminators/field layout/error numbers manually compared to source and ARCHITECTURE; JSON assertions passed",
+    "invoice_layout": [
+      {
+        "field": "version",
+        "offset": 8,
+        "bytes": 1
+      },
+      {
+        "field": "bump",
+        "offset": 9,
+        "bytes": 1
+      },
+      {
+        "field": "merchant",
+        "offset": 10,
+        "bytes": 32
+      },
+      {
+        "field": "payer",
+        "offset": 42,
+        "bytes": 32
+      },
+      {
+        "field": "invoice_id",
+        "offset": 74,
+        "bytes": 32
+      },
+      {
+        "field": "amount_lamports",
+        "offset": 106,
+        "bytes": 8
+      },
+      {
+        "field": "expires_slot",
+        "offset": 114,
+        "bytes": 8
+      },
+      {
+        "field": "status",
+        "offset": 122,
+        "bytes": 1
+      },
+      {
+        "field": "paid_slot",
+        "offset": 123,
+        "bytes": 8
+      }
+    ]
+  }
+}

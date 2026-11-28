@@ -1,0 +1,14 @@
+{
+  "source": "Tin trực tiếp role=user trong chat hiện hành; không phải heartbeat hoặc tin agent",
+  "quote": "Dừng vòng review T31/T32/T33. Cho A đúng 1 lượt cuối, sau đó nhận phần đạt, ghi phần còn thiếu vào \"nợ tài liệu\" và đóng task. Không mở thêm vòng sửa bổ sung. Tôi đã chuyển SOL devnet vào GQRoDMoWFV2nhgwm3bZGvSCC1LSa2wRkLeeJg8NhbFM2: kiểm tra số dư rồi làm P3-B (deploy hello, trần 1.5 SOL) theo PHASE3-PLAN. Xong thì báo tôi để duyệt Phase 4.",
+  "user_decision_time": null,
+  "message_log_time": null,
+  "recorded_at_utc": "2026-11-18T14:49:46.378127+00:00",
+  "recorded_timezone": "Asia/Saigon (UTC+7)",
+  "time_caveat": "Người dùng không nêu giờ; giờ log tin chưa xác định. recorded_at là giờ C ghi hồ sơ, không tự gán thành giờ quyết định hoặc log.",
+  "scope": [
+    "Một lượt cuối duy nhất cho toàn bộ T31/T32/T33; nhận phần đạt, phần thiếu thành nợ tài liệu, đóng tasks; không vòng sửa bổ sung",
+    "Kiểm funding và tiếp tục P3-B hello devnet trong trần1500000000lamports theo quyền đã có",
+    "Báo kết quả để người dùng duyệt Phase4; chưa mở Phase4"
+  ]
+}

@@ -1,0 +1,39 @@
+Browser tab: 2, Title: "ClusterProof · Kiểm tra program trên Devnet", URL: "https://clusterproof-devnet-17nov26.anthony-robinson-125.chatgpt.site/lab/".
+1 AXWebArea ClusterProof · Kiểm tra program trên Devnet, URL: clusterproof-devnet-17nov26.anthony-robinson-125.chatgpt.site/lab/
+	2 container root
+		3 link Description: Đến nội dung, Value: clusterproof-devnet-17nov26.anthony-robinson-125.chatgpt.site/lab/#main
+		4 container
+			5 link Description: ClusterProof — trang chủ, Value: clusterproof-devnet-17nov26.anthony-robinson-125.chatgpt.site/
+			6 container Điều hướng chính
+				7 link Description: Kiểm tra program, Value: clusterproof-devnet-17nov26.anthony-robinson-125.chatgpt.site/
+				8 link Description: Kết nối ví, Value: clusterproof-devnet-17nov26.anthony-robinson-125.chatgpt.site/lab
+		12 container main
+			13 container
+				14 text DEVNET LAB
+				15 heading Một kết nối. Bắt đầu thật rõ ràng., Value: 1
+					16 text Một kết nối.
+					17 text Bắt đầu thật rõ ràng.
+				18 text Thử kết nối và ngắt ví. Trang này chỉ lấy địa chỉ công khai,
+				19 text không yêu cầu ký hay gửi giao dịch.
+			20 container Kết nối ví của bạn
+				21 text 01
+				22 heading Kết nối ví của bạn, Value: 2, ID: wallet-title
+					23 text Kết nối ví của bạn
+				24 text DEVNET RPC
+				25 container
+					26 text CHƯA KẾT NỐI
+					27 heading Chưa tìm thấy ví trong trình duyệt, Value: 3
+						28 text Chưa tìm thấy ví trong trình duyệt
+					29 text Mở trang này trong trình duyệt có ví hỗ trợ Wallet Standard, rồi tìm lại ví.
+					30 button Tìm lại ví ↻
+			31 container
+				32 text TRƯỚC KHI KẾT NỐI
+				33 heading Ví nằm trong tay bạn., Value: 2
+					34 text Ví nằm
+					35 text trong tay bạn.
+				36 text Lab dùng RPC Devnet. Kết nối ví không tự đổi mạng đang chọn trong ứng dụng ví của bạn. Không nhập seed phrase hoặc private key vào trang web.
+				37 link Description: ← Kiểm tra program không cần ví, Value: clusterproof-devnet-17nov26.anthony-robinson-125.chatgpt.site/
+		10 container
+			11 text ClusterProof  / Bản nền Phase 3 Solana Devnet · Dữ liệu chỉ đọc
+
+The focused UI element is 1 AXWebArea ClusterProof · Kiểm tra program trên Devnet, URL: clusterproof-devnet-17nov26.anthony-robinson-125.chatgpt.site/lab/

@@ -1,0 +1,8 @@
+/Users/bao/.avm/bin/anchor-1.2.2 idl build --program-name phase3_hello --out target/idl/phase3_hello.json --out-ts target/types/phase3_hello.ts -- --locked
+   Compiling phase3-hello v0.1.0 (/Users/bao/Documents/ChatGPT/dev3pack/programs/phase3-hello)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.90s
+     Running unittests src/lib.rs (/Users/bao/Documents/ChatGPT/dev3pack/target/debug/build/phase3-hello/37f0e161e6ba8f87/out/phase3_hello-37f0e161e6ba8f87)
+     Running tests/test_failures.rs (/Users/bao/Documents/ChatGPT/dev3pack/target/debug/build/phase3-hello/c3212ff218f042a9/out/test_failures-c3212ff218f042a9)
+     Running tests/test_initialize.rs (/Users/bao/Documents/ChatGPT/dev3pack/target/debug/build/phase3-hello/ac603fd58347c80d/out/test_initialize-ac603fd58347c80d)
+
+exit_code=0

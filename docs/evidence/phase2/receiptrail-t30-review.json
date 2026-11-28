@@ -1,0 +1,40 @@
+{
+  "reviewed_at_utc": "2026-11-18T06:29:54+00:00",
+  "scope": "Review tài liệu T30 sau fetch/pull, không crawl hoặc chạy lại runtime/browser/RPC/CI. Không sửa report A hoặc thiết kế/source/IDL.",
+  "report": {
+    "path": "docs/design/receiptrail-ux-antigravity.md",
+    "commit": "0d7b9d394b560c216dc34ec5772e372c88cbd070",
+    "sha256": "46f24510bac787eafb97e0c1140c6c0a8fa70943e07e2f30f1f05c6d6abbb2af",
+    "line_count": 43,
+    "text": "# Thiết kế UX ReceiptRail (T30 - Semantics Rework)\n\n> Ngày thiết kế: 2026-11-18\n\n## 1. Flow & Form\n### A. Merchant\n- **Dashboard**: Danh sách Invoices (Open/Paid/Cancelled), Status PDA lookup, `Create` action.\n- **Create Invoice**: Form: `PayerAddress`, `OrderID` (mapped 32 bytes PDA), `Amount` (u64 lamports), `Expiry` (u64 slot).\n- **Fees**: Create = Merchant pays (Rent + Fee).\n\n### B. Payer\n- **View Invoice**: Read-only, `Amount`, `Expiry`, `Terms`.\n- **Pay**:\n    - Action = Payer (Principal + Fee).\n    - **State Machine**: \n        - `Open` (Mới).\n        - `Pending` (Gửi request, chờ xác nhận).\n        - `Paid` (Finalized on-chain).\n        - `Cancelled` (Open -> Cancelled by merchant).\n        - `Expired` (`Open` + `slot` >= `expiry slot`).\n    - `Unknown` (Timeout): PDA status lookup, No auto-retry.\n\n## 2. Xử lý lỗi (IDL - 9 mã)\n| Code | Error | Nguyên nhân | CTA |\n| --- | --- | --- | --- |\n| 6000 | InvalidAmount | Amount <= 0 | Nhập amount > 0 |\n| 6001 | InvalidExpiry | Expiry <= current slot | Set expiry > current slot |\n| 6002 | InvalidWallet | Wallet account data invalid/missing | Kiểm tra ví/account |\n| 6003 | AliasedRoles | Merchant == Payer | Dùng ví khác |\n| 6004 | InvoiceNotOpen | Invoice state != Open | Trạng thái Invoice không hợp lệ |\n| 6005 | InvoiceExpired | Slot >= Expiry | Invoice đã hết hạn |\n| 6006 | WrongPayer | Payer Pubkey != Invoice Payer | Dùng đúng ví Payer |\n| 6007 | WrongMerchant | Merchant Pubkey != Invoice Merchant | Dùng đúng ví Merchant |\n| 6008 | WrongVersion | Version IDL mismatch | App cần update |\n\n## 3. Wireframes (8 bố cục)\n*Trạng thái: Chưa đạt (Sẽ bổ sung trong T33)*\n\n## 4. Storyboard (165s)\n*Trạng thái: Chưa đạt (Sẽ bổ sung trong T33)*\n\n## 5. SDK & Checklist\n*Trạng thái: Chưa đạt (Sẽ bổ sung trong T33)*\n"
+  },
+  "input_sha256": {
+    "programs/receiptrail/src/lib.rs": "2d7c0dce845da382ef237113bc7c691b656d4e61be171514b8b53fdade32b285",
+    "programs/receiptrail/tests/runtime.rs": "e60ce9d4e4328406a547de47eb9023af2c0df1cd0f822340c7f9df2e3cda960b",
+    "docs/idl/receiptrail.json": "13efb821841ebd6c9a8b9da21160aad8fbc11e9a6072e4b92a408e6f103f5409",
+    "docs/ARCHITECTURE.md": "6716c93d566d0609940b6e963517c565d40be7beeedaa31517799b909ec4951e",
+    "docs/IDEA.md": "bba376b1b55f26b3c63f91d17c3f0a1fbc0a46cf68a51b661d8d2af67937ef55",
+    "docs/evidence/phase2/receiptrail-spike-r2.txt": "3ee1bac3d93f4fdcd0b2c0a31d42521964945db83f5fbcad94967a1872af212b"
+  },
+  "document_checks": {
+    "code_name_pairs_matching_idl": 9,
+    "numbered_wireframe_items": 0,
+    "storyboard_intervals": [],
+    "storyboard_seconds_verified": null,
+    "sections_3_4_5_marked_incomplete": true,
+    "report_snapshot_matches_git_blob_and_worktree": true
+  },
+  "accepted": [
+    "Khôi phục create merchant rent+fee, pay payer principal+fee, terms read-only.",
+    "Unknown đọc PDA/no auto-retry; chưa có lời cấm tự ký lại rõ ràng.",
+    "6001 expiry<=slot và6005 slot>=expiry đúng;6006/6007 so public key trong invoice.",
+    "Mục3–5 được đánh chưa đạt thay checkbox hoàn tất."
+  ],
+  "findings": {
+    "T30-R1": "Vẫn trộn Pending với Invoice, Paid=finalized và6008=IDL version; chưa có hai bảng state/commitment.",
+    "T30-R2": "6002 invalid/missing chưa đúng zero/data-empty, CTA6004/6007 thiếu hành động đọc/tải lại, thiếu program ID+code/nhóm lỗi, mapping32bytes/parse u64 và phản hồi theo finding.",
+    "T30-R3": "Mục3–5 bị thay bằng placeholder trái yêu cầu giữ nội dung;0wireframes/0time intervals, không còn evidence tổng165giây trong bản này."
+  },
+  "follow_up": "Giữ T31→T32→T33; bổ sung phần T30 chưa đạt vào T33 trước wireframes/demo/SDK, không tạo vòng task mới.",
+  "verdict": "Nhận một phần T30;9nhóm findings T28/T29 vẫn chưa đóng, không đổi cổng người dùng hoặc P3-A."
+}

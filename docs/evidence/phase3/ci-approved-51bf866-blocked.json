@@ -1,0 +1,397 @@
+{
+  "observed_at_utc": "2026-11-18T03:19:10.799Z",
+  "approved_permission_record": "docs/evidence/phase3/user-permission-2026-11-18.json",
+  "approval_commit": "fd78236",
+  "workflow_commit": "51bf866a20cc7d5b8d510a7a831b0d29aa622213",
+  "scope": "P3-A approved; guards removed only, pins and commands unchanged. GitHub blocked all six jobs before execution due Billing & plans. No deployment/funding or billing modification.",
+  "runs": [
+    44229364614,
+    44229359109
+  ],
+  "diagnostics": [
+    {
+      "request": {
+        "checkRunId": 134550323968
+      },
+      "data": {
+        "headRevision": "51bf866a20cc7d5b8d510a7a831b0d29aa622213",
+        "checks": [
+          {
+            "id": 134550323968,
+            "name": "web",
+            "head_sha": "51bf866a20cc7d5b8d510a7a831b0d29aa622213",
+            "status": "completed",
+            "conclusion": "failure",
+            "details_url": "https://github.com/ntbaoheyhey/dev3pack-hackathon/actions/runs/44229364614/job/134550323968",
+            "output": {
+              "title": null,
+              "summary": null,
+              "text": null,
+              "annotations_count": 1
+            }
+          }
+        ],
+        "statuses": [],
+        "annotations": [
+          {
+            "path": ".github",
+            "start_line": 1,
+            "end_line": 1,
+            "annotation_level": "failure",
+            "message": "The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings",
+            "title": "",
+            "raw_details": ""
+          }
+        ],
+        "hasMore": false,
+        "job": null,
+        "jobs": [],
+        "log": null,
+        "logTruncated": false
+      },
+      "isError": false
+    },
+    {
+      "request": {
+        "checkRunId": 134550323958
+      },
+      "data": {
+        "headRevision": "51bf866a20cc7d5b8d510a7a831b0d29aa622213",
+        "checks": [
+          {
+            "id": 134550323958,
+            "name": "anchor-lab",
+            "head_sha": "51bf866a20cc7d5b8d510a7a831b0d29aa622213",
+            "status": "completed",
+            "conclusion": "failure",
+            "details_url": "https://github.com/ntbaoheyhey/dev3pack-hackathon/actions/runs/44229364614/job/134550323958",
+            "output": {
+              "title": null,
+              "summary": null,
+              "text": null,
+              "annotations_count": 1
+            }
+          }
+        ],
+        "statuses": [],
+        "annotations": [
+          {
+            "path": ".github",
+            "start_line": 1,
+            "end_line": 1,
+            "annotation_level": "failure",
+            "message": "The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings",
+            "title": "",
+            "raw_details": ""
+          }
+        ],
+        "hasMore": false,
+        "job": null,
+        "jobs": [],
+        "log": null,
+        "logTruncated": false
+      },
+      "isError": false
+    },
+    {
+      "request": {
+        "checkRunId": 134550323707
+      },
+      "data": {
+        "headRevision": "51bf866a20cc7d5b8d510a7a831b0d29aa622213",
+        "checks": [
+          {
+            "id": 134550323707,
+            "name": "research",
+            "head_sha": "51bf866a20cc7d5b8d510a7a831b0d29aa622213",
+            "status": "completed",
+            "conclusion": "failure",
+            "details_url": "https://github.com/ntbaoheyhey/dev3pack-hackathon/actions/runs/44229364614/job/134550323707",
+            "output": {
+              "title": null,
+              "summary": null,
+              "text": null,
+              "annotations_count": 1
+            }
+          }
+        ],
+        "statuses": [],
+        "annotations": [
+          {
+            "path": ".github",
+            "start_line": 1,
+            "end_line": 1,
+            "annotation_level": "failure",
+            "message": "The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings",
+            "title": "",
+            "raw_details": ""
+          }
+        ],
+        "hasMore": false,
+        "job": null,
+        "jobs": [],
+        "log": null,
+        "logTruncated": false
+      },
+      "isError": false
+    },
+    {
+      "request": {
+        "checkRunId": 134550306413
+      },
+      "data": {
+        "headRevision": "51bf866a20cc7d5b8d510a7a831b0d29aa622213",
+        "checks": [
+          {
+            "id": 134550306413,
+            "name": "research",
+            "head_sha": "51bf866a20cc7d5b8d510a7a831b0d29aa622213",
+            "status": "completed",
+            "conclusion": "failure",
+            "details_url": "https://github.com/ntbaoheyhey/dev3pack-hackathon/actions/runs/44229359109/job/134550306413",
+            "output": {
+              "title": null,
+              "summary": null,
+              "text": null,
+              "annotations_count": 1
+            }
+          }
+        ],
+        "statuses": [],
+        "annotations": [
+          {
+            "path": ".github",
+            "start_line": 1,
+            "end_line": 1,
+            "annotation_level": "failure",
+            "message": "The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings",
+            "title": "",
+            "raw_details": ""
+          }
+        ],
+        "hasMore": false,
+        "job": null,
+        "jobs": [],
+        "log": null,
+        "logTruncated": false
+      },
+      "isError": false
+    },
+    {
+      "request": {
+        "checkRunId": 134550306216
+      },
+      "data": {
+        "headRevision": "51bf866a20cc7d5b8d510a7a831b0d29aa622213",
+        "checks": [
+          {
+            "id": 134550306216,
+            "name": "web",
+            "head_sha": "51bf866a20cc7d5b8d510a7a831b0d29aa622213",
+            "status": "completed",
+            "conclusion": "failure",
+            "details_url": "https://github.com/ntbaoheyhey/dev3pack-hackathon/actions/runs/44229359109/job/134550306216",
+            "output": {
+              "title": null,
+              "summary": null,
+              "text": null,
+              "annotations_count": 1
+            }
+          }
+        ],
+        "statuses": [],
+        "annotations": [
+          {
+            "path": ".github",
+            "start_line": 1,
+            "end_line": 1,
+            "annotation_level": "failure",
+            "message": "The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings",
+            "title": "",
+            "raw_details": ""
+          }
+        ],
+        "hasMore": false,
+        "job": null,
+        "jobs": [],
+        "log": null,
+        "logTruncated": false
+      },
+      "isError": false
+    },
+    {
+      "request": {
+        "checkRunId": 134550305872
+      },
+      "data": {
+        "headRevision": "51bf866a20cc7d5b8d510a7a831b0d29aa622213",
+        "checks": [
+          {
+            "id": 134550305872,
+            "name": "anchor-lab",
+            "head_sha": "51bf866a20cc7d5b8d510a7a831b0d29aa622213",
+            "status": "completed",
+            "conclusion": "failure",
+            "details_url": "https://github.com/ntbaoheyhey/dev3pack-hackathon/actions/runs/44229359109/job/134550305872",
+            "output": {
+              "title": null,
+              "summary": null,
+              "text": null,
+              "annotations_count": 1
+            }
+          }
+        ],
+        "statuses": [],
+        "annotations": [
+          {
+            "path": ".github",
+            "start_line": 1,
+            "end_line": 1,
+            "annotation_level": "failure",
+            "message": "The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings",
+            "title": "",
+            "raw_details": ""
+          }
+        ],
+        "hasMore": false,
+        "job": null,
+        "jobs": [],
+        "log": null,
+        "logTruncated": false
+      },
+      "isError": false
+    },
+    {
+      "request": {
+        "runId": 44229364614
+      },
+      "data": {
+        "headRevision": "51bf866a20cc7d5b8d510a7a831b0d29aa622213",
+        "checks": [],
+        "statuses": [],
+        "annotations": [],
+        "hasMore": false,
+        "job": null,
+        "jobs": [
+          {
+            "id": 134550323707,
+            "head_sha": "51bf866a20cc7d5b8d510a7a831b0d29aa622213",
+            "name": "research",
+            "status": "completed",
+            "conclusion": "failure"
+          },
+          {
+            "id": 134550323958,
+            "head_sha": "51bf866a20cc7d5b8d510a7a831b0d29aa622213",
+            "name": "anchor-lab",
+            "status": "completed",
+            "conclusion": "failure"
+          },
+          {
+            "id": 134550323968,
+            "head_sha": "51bf866a20cc7d5b8d510a7a831b0d29aa622213",
+            "name": "web",
+            "status": "completed",
+            "conclusion": "failure"
+          }
+        ],
+        "log": null,
+        "logTruncated": false
+      },
+      "isError": false
+    },
+    {
+      "request": {
+        "runId": 44229359109
+      },
+      "data": {
+        "headRevision": "51bf866a20cc7d5b8d510a7a831b0d29aa622213",
+        "checks": [],
+        "statuses": [],
+        "annotations": [],
+        "hasMore": false,
+        "job": null,
+        "jobs": [
+          {
+            "id": 134550305872,
+            "head_sha": "51bf866a20cc7d5b8d510a7a831b0d29aa622213",
+            "name": "anchor-lab",
+            "status": "completed",
+            "conclusion": "failure"
+          },
+          {
+            "id": 134550306216,
+            "head_sha": "51bf866a20cc7d5b8d510a7a831b0d29aa622213",
+            "name": "web",
+            "status": "completed",
+            "conclusion": "failure"
+          },
+          {
+            "id": 134550306413,
+            "head_sha": "51bf866a20cc7d5b8d510a7a831b0d29aa622213",
+            "name": "research",
+            "status": "completed",
+            "conclusion": "failure"
+          }
+        ],
+        "log": null,
+        "logTruncated": false
+      },
+      "isError": false
+    }
+  ],
+  "steps": [
+    {
+      "jobId": 134550323707,
+      "isError": false,
+      "data": {
+        "steps": []
+      }
+    },
+    {
+      "jobId": 134550323958,
+      "isError": false,
+      "data": {
+        "steps": []
+      }
+    },
+    {
+      "jobId": 134550323968,
+      "isError": false,
+      "data": {
+        "steps": []
+      }
+    },
+    {
+      "jobId": 134550305872,
+      "isError": false,
+      "data": {
+        "steps": []
+      }
+    },
+    {
+      "jobId": 134550306216,
+      "isError": false,
+      "data": {
+        "steps": []
+      }
+    },
+    {
+      "jobId": 134550306413,
+      "isError": false,
+      "data": {
+        "steps": []
+      }
+    }
+  ],
+  "workflow_sha256": "b031f9673d9484b13fbb8eb780439ffb5d0fa6028305e9d178b0b822ddfd1cb3",
+  "validation": {
+    "only_three_guards_removed": true,
+    "yaml_parsed": true,
+    "shell_blocks_parsed": 10,
+    "pins_and_command_blocks_unchanged": true,
+    "jobs_with_no_steps": 6,
+    "new_local_runtime_tests": false,
+    "funding_deferred_by_user": true
+  }
+}

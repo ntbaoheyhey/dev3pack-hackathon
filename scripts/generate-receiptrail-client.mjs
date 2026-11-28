@@ -1,0 +1,110 @@
+import { readFileSync, writeFileSync } from 'node:fs';
+import { createHash } from 'node:crypto';
+import assert from 'node:assert/strict';
+
+const root = new URL('../', import.meta.url);
+const source = readFileSync(new URL('docs/idl/receiptrail.json', root), 'utf8');
+const idl = JSON.parse(source);
+const checkOnly = process.argv.slice(2).includes('--check');
+assert(process.argv.slice(2).every(v => v === '--check'), 'Usage: node scripts/generate-receiptrail-client.mjs [--check]');
+assert.equal(idl.metadata.name, 'receiptrail');
+assert.equal(idl.metadata.spec, '0.1.0');
+const sha256 = createHash('sha256').update(source).digest('hex');
+const name = value => { assert.match(value, /^[A-Za-z][A-Za-z0-9_]*$/); return value; };
+const pascal = value => name(value).split('_').map(v => v[0].toUpperCase() + v.slice(1)).join('');
+function unique(values) { assert.equal(new Set(values).size, values.length, 'Duplicate ABI name/code'); }
+function discriminator(value, namespace, symbol) {
+  assert.deepEqual(value, [...createHash('sha256').update(`${namespace}:${symbol}`).digest().subarray(0, 8)], 'Unsupported custom/mismatched discriminator');
+  return value;
+}
+function fields(defs, disc) {
+  unique(defs.map(f => name(f.name)));
+  let offset = disc.length;
+  const result = defs.map(f => {
+    let type = f.type;
+    let size;
+    if (type === 'u8') size = 1;
+    else if (type === 'u64') size = 8;
+    else if (type === 'pubkey') size = 32;
+    else if (type && Array.isArray(type.array) && Object.keys(type).length === 1 && type.array[0] === 'u8' && Number.isInteger(type.array[1]) && type.array[1] > 0 && type.array[1] <= 1024) {
+      size = type.array[1]; type = 'bytes';
+    } else throw new Error(`Unsupported IDL field ${f.name}: ${JSON.stringify(type)}`);
+    const field = { name: f.name, type, size, offset };
+    offset += size;
+    return field;
+  });
+  return { discriminator: disc, size: offset, fields: result };
+}
+const instructions = {};
+unique(idl.instructions.map(i => name(i.name)));
+for (const ix of idl.instructions) {
+  unique(ix.accounts.map(a => name(a.name)));
+  assert(ix.accounts.every(a => !a.accounts && !a.optional), 'Nested/optional accounts require generator review');
+  instructions[ix.name] = {
+    ...fields(ix.args, discriminator(ix.discriminator, 'global', ix.name)),
+    accounts: ix.accounts.map(a => ({ name: a.name, signer: a.signer ?? false, writable: a.writable ?? false, ...(a.address ? { address: a.address } : {}) })),
+  };
+}
+assert.deepEqual(Object.keys(instructions).sort(), ['cancel_invoice', 'create_invoice', 'pay_invoice']);
+unique(idl.types.map(t => name(t.name)));
+const structs = {};
+unique(idl.accounts.map(a => name(a.name)));
+unique(idl.events.map(e => name(e.name)));
+const accounts = new Map(idl.accounts.map(a => [a.name, a]));
+const events = new Map(idl.events.map(e => [e.name, e]));
+unique([...accounts.keys(), ...events.keys()]);
+assert.equal(accounts.size + events.size, idl.types.length, 'Every type must be represented');
+for (const t of idl.types) {
+  assert.equal(t.type.kind, 'struct', 'Unsupported type: generator review required');
+  const entry = accounts.get(t.name) ?? events.get(t.name);
+  assert(entry, 'Missing account/event discriminator');
+  structs[t.name] = fields(t.type.fields, discriminator(entry.discriminator, accounts.has(t.name) ? 'account' : 'event', t.name));
+}
+assert.deepEqual([...accounts.keys()], ['Invoice']);
+assert.deepEqual([...events.keys()].sort(), ['InvoiceCancelled', 'InvoiceCreated', 'InvoicePaid']);
+const pda = idl.instructions.find(i => i.name === 'create_invoice').accounts.find(a => a.name === 'invoice').pda;
+assert.deepEqual(pda.seeds.slice(1), [{ kind: 'account', path: 'merchant' }, { kind: 'arg', path: 'invoice_id' }]);
+assert.equal(pda.seeds[0].kind, 'const');
+assert.equal(Buffer.from(pda.seeds[0].value).toString(), 'invoice-v1');
+for (const ix of idl.instructions.filter(i => i.name !== 'create_invoice')) {
+  assert.deepEqual(ix.accounts.find(a => a.name === 'invoice').pda.seeds, [pda.seeds[0], { kind: 'account', path: 'invoice.merchant', account: 'Invoice' }, { kind: 'account', path: 'invoice.invoice_id', account: 'Invoice' }]);
+}
+for (const ix of idl.instructions) {
+  for (const a of ix.accounts) {
+    if (a.pda) {
+      assert.equal(a.name, 'invoice', 'Unexpected PDA account requires generator review');
+      assert.deepEqual(Object.keys(a.pda), ['seeds'], 'Alternate PDA program requires review');
+    }
+    assert(a.signer === undefined || typeof a.signer === 'boolean');
+    assert(a.writable === undefined || typeof a.writable === 'boolean');
+  }
+}
+unique(idl.errors.map(e => name(e.name))); unique(idl.errors.map(e => e.code));
+assert(idl.errors.every(e => Number.isInteger(e.code) && e.code >= 6000 && typeof e.msg === 'string'));
+const contract = { programAddress: idl.address, idlSha256: sha256, seed: pda.seeds[0].value, instructions, structs, errors: idl.errors };
+const header = '// Generated by scripts/generate-receiptrail-client.mjs from docs/idl/receiptrail.json. Do not edit.\n';
+let js = header + "import { deepFreeze, makeInstruction, decodeFields } from './runtime.mjs';\n";
+js += `export const CONTRACT = deepFreeze(${JSON.stringify(contract, null, 2)});\n`;
+js += 'export const PROGRAM_ADDRESS = CONTRACT.programAddress;\nexport const IDL_SHA256 = CONTRACT.idlSha256;\n';
+let types = header + "import type { AddressCodec, Instruction } from './runtime.mjs';\n";
+types += `export declare const PROGRAM_ADDRESS: '${idl.address}';\nexport declare const IDL_SHA256: string;\nexport declare const CONTRACT: Readonly<Record<string, unknown>>;\n`;
+const tsType = f => ({ u8: 'number', u64: 'bigint', pubkey: 'string', bytes: 'Uint8Array' })[f.type];
+const tsFields = defs => defs.map(f => `${f.name}: ${tsType(f)};`).join(' ');
+for (const [ixName, schema] of Object.entries(instructions)) {
+  const symbol = `get${pascal(ixName)}Instruction`;
+  js += `export function ${symbol}(input, codec) { return makeInstruction(PROGRAM_ADDRESS, CONTRACT.instructions.${ixName}, input, codec); }\n`;
+  const accountsType = schema.accounts.map(a => `${a.name}${a.address ? '?' : ''}: string;`).join(' ');
+  const argsType = schema.fields.length ? `args: { ${tsFields(schema.fields)} }` : 'args?: Record<string, never>';
+  types += `export declare function ${symbol}(input: { accounts: { ${accountsType} }; ${argsType} }, codec: AddressCodec): Instruction;\n`;
+}
+for (const [structName, schema] of Object.entries(structs)) {
+  const symbol = `decode${structName}${accounts.has(structName) ? 'Data' : 'Event'}`;
+  js += `export function ${symbol}(data, codec) { return decodeFields(CONTRACT.structs.${structName}, data, codec); }\n`;
+  types += `export interface ${structName} { ${tsFields(schema.fields)} }\nexport declare function ${symbol}(data: Uint8Array, codec: AddressCodec): ${structName};\n`;
+}
+for (const [path, output] of [['generated.mjs', js], ['generated.d.mts', types]]) {
+  const url = new URL(`packages/receiptrail-client/${path}`, root);
+  if (checkOnly) assert.equal(readFileSync(url, 'utf8'), output, `Stale generated file: ${path}`);
+  else writeFileSync(url, output);
+}
+console.log(`${checkOnly ? 'Verified' : 'Generated'} 3 instructions, 1 account, 3 events, ${idl.errors.length} errors; IDL sha256=${sha256}`);

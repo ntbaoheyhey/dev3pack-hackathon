@@ -1,0 +1,24 @@
+{
+  "at": "2026-11-18T15:09:50.904Z",
+  "scope": "Read-only HTTP reachability of existing public site; no publish/update or wallet/browser test",
+  "routes": [
+    {
+      "url": "https://clusterproof-devnet-17nov26.anthony-robinson-125.chatgpt.site/",
+      "status": 200,
+      "contentType": "text/html",
+      "title": "ClusterProof · Kiểm tra program trên Devnet",
+      "htmlSha256": "39fc2db53458218f2bfb95ec9ae577b9cd536c44b9d3a8bae2dc649bca5455d6",
+      "hasRoot": true,
+      "moduleScript": "/assets/index-BFgnk27v.js"
+    },
+    {
+      "url": "https://clusterproof-devnet-17nov26.anthony-robinson-125.chatgpt.site/lab/",
+      "status": 200,
+      "contentType": "text/html",
+      "title": "ClusterProof · Kiểm tra program trên Devnet",
+      "htmlSha256": "a692f0104fa7e3a2aba7ba4397330aaf68883d8539cf6604704c5dce4ad38c6a",
+      "hasRoot": true,
+      "moduleScript": "/assets/index-BFgnk27v.js"
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "preparedAt": "2026-11-19T17:14:07+07:00",
+  "baseCodeCommit": "266b30cf6225e44f7e5fdaf3f41b36d262bf5eb0",
+  "changesSinceBase": "ReceiptRail route title/description only; transaction/wallet modules and 45-test suite unchanged",
+  "localUrl": "http://127.0.0.1:4175/receiptrail/",
+  "existingServer": {
+    "pid": 57198,
+    "cwd": "/Users/bao/Documents/ChatGPT/dev3pack/apps/web",
+    "command": "vite --host 127.0.0.1 --port 4175 --strictPort",
+    "startedInThisTurn": false
+  },
+  "httpOnly": [
+    {
+      "path": "/receiptrail/",
+      "status": 200,
+      "bytes": 815,
+      "sha256": "3ca1ddcb9b9c8852e0ce8e0ae430eaf9d7a7ddbabe2e084a115fb526885a694f"
+    },
+    {
+      "path": "/src/receiptrail/ReceiptRailApp.tsx",
+      "status": 200,
+      "bytes": 161061,
+      "sha256": "ff5d5ea3f49692ca2ab6ac6d0088e3252e180141e732a1904ff4540f8b94ed97"
+    },
+    {
+      "path": "/src/receiptrail/confirmation.ts",
+      "status": 200,
+      "bytes": 16192,
+      "sha256": "029d7a39b538e1131f44bd2e4bed4d1087e15c143ea60e88a541ee37d6d0a30f"
+    },
+    {
+      "path": "/src/receiptrail/wallet-lifecycle.ts",
+      "status": 200,
+      "bytes": 7612,
+      "sha256": "c3c59caaca7e3c14ee71d76f739254c49b8fc6af716952bc4ba66d20fbf030fc"
+    },
+    {
+      "path": "/src/receiptrail/receiptrail.css",
+      "status": 200,
+      "bytes": 10342,
+      "sha256": "0c81844bfaaa03b5e742f1615466271f290aeb5fa4cbaa125d045ef6bc0e250a"
+    }
+  ],
+  "archive": {
+    "localPath": "/Users/bao/Documents/ChatGPT/dev3pack/sandbox/artifacts/receiptrail-phase5-local-2026-11-19.zip",
+    "bytes": 153833,
+    "sha256": "5da163cd97a8e5acf22ff5ac0be7455d84718abc8d27fff87e2bd5d48cfbfa49",
+    "zipIntegrity": "OK"
+  },
+  "inputHashes": {
+    "apps/web/src/WalletLab.tsx": "d734e2205838f4a351945b333a58447f122ab90d5e9cd2c7c3a6c65c8d16d980",
+    "apps/web/src/lib/inspect.ts": "bdf68f92de9b11695a6cc87da32f9a66331f6c448bb9d5aa9530d58608fdbb92",
+    "apps/web/src/main.tsx": "cde2b4648ba54c8c15746168d96aafba77b6e826d955fa786b1042e346b3e1ea",
+    "apps/web/src/receiptrail/ReceiptRailApp.tsx": "5a428e2fbb4b03080e433964ffe39d9699a011725930b2a17872d0033b06a89f",
+    "apps/web/src/receiptrail/adapter.ts": "a0270c4a883ea461329ed38dab56ad8ada018e899c91a640f392f3e760e72f02",
+    "apps/web/src/receiptrail/confirmation.ts": "905467df8143d16aabd17a9db950653bc7e8e0b33b42934f1a8080c6e433e774",
+    "apps/web/src/receiptrail/mock-wallets.ts": "6f87fa895b6fc810b850af9fd4a97c92e3bc8e186173724739510f05cebb780e",
+    "apps/web/src/receiptrail/receiptrail.css": "ae0edc2073956112da9f9ae9557c80dad79c08d0341a2eeb0f365c0369646b6c",
+    "apps/web/src/receiptrail/types.ts": "85135745a2f09a24890081fa3cf8ebc753dad597517fdc9e0d054403f6209755",
+    "apps/web/src/receiptrail/wallet-lifecycle.ts": "e9e7922b65a2c2f7cc53704417f49a50b42736ef28dd7cfd7e224bd561a504f3",
+    "apps/web/src/styles.css": "b3fcf9cf39c78ef000afe637aa493d2fd274faed2e9c8801e81cf6166177789e",
+    "apps/web/app/page.tsx": "e07b12999740b164666e67a1965ed439ba460925a9b21d9538a9c6c9c945087e",
+    "apps/web/package.json": "178b336241721184cbbade2412a48bf9e907d24bf74e782eb7884e5c702dff82",
+    "apps/web/package-lock.json": "39f1b8c400cf41bf7705ff98b8ae7235189b3c41c5972dd32633014435eac3dd",
+    "apps/web/scripts/static-routes.mjs": "a77ea13464f57332db03c0b3905262944b337493894f8838d1a5240393ad8d3b",
+    "apps/web/index.html": "97dfc1026e26d4419403f18c1954f224ac7b0c3de685c94d32166da969cab8b3",
+    "apps/web/tsconfig.json": "1d2c5b68d1622c353c56ee7be4696b3c746f084334f7e48e14ef8d7f7bd5f2f9",
+    "apps/web/vite.config.ts": "acd7382d8fe23574ebfcdf0c0a87509818f6ca6c1b0b5b5c09b59dbd5b414702"
+  },
+  "buildLog": "../../reviews/receiptrail-phase5-artifact-build.log",
+  "limits": [
+    "HTTP 200/source transform is not browser rendering or interaction evidence",
+    "No extension connected, no signing or sending",
+    "Local review archive, not a Sites publication package",
+    "No site registration, upload, deployment or public access change"
+  ]
+}

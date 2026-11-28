@@ -1,0 +1,36 @@
+[package]
+name = "phase3-hello"
+version = "0.1.0"
+description = "Created with Anchor"
+edition.workspace = true
+rust-version.workspace = true
+
+[lib]
+crate-type = ["cdylib", "lib"]
+name = "phase3_hello"
+
+[features]
+default = []
+cpi = ["no-entrypoint"]
+no-entrypoint = []
+no-log-ix-name = []
+idl-build = ["anchor-lang/idl-build"]
+anchor-debug = []
+custom-heap = []
+custom-panic = []
+
+
+[dependencies]
+anchor-lang = "=1.2.2"
+
+[dev-dependencies]
+# Cargo.lock pins LiteSVM's Rust-1.89-compatible dependency graph.
+litesvm = "=0.15.0"
+solana-message = "=4.3.0"
+solana-transaction = "=4.1.5"
+solana-signer = "=3.0.1"
+solana-keypair = "=3.1.2"
+
+
+[lints.rust]
+unexpected_cfgs = { level = "warn", check-cfg = ['cfg(target_os, values("solana"))'] }

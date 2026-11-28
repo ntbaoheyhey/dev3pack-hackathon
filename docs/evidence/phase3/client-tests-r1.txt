@@ -1,0 +1,20 @@
+
+> dev3pack-devnet-lab@0.1.0 test
+> node --test client.test.mjs
+
+✔ generated initialize IDL builds the Rust instruction and exact account privileges (1.9535ms)
+✔ generated increment requires the authority signer and exact discriminator (0.23675ms)
+✔ generated account decoder reads independent Rust-layout bytes and max count (0.515167ms)
+✔ bytes with the wrong owner or authority never become valid counter state (0.279042ms)
+✔ malformed layout, account type and counter above limit are rejected (0.149666ms)
+✔ wrong cluster is rejected before balance, deployment or signing work (0.225875ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 373.33525
+
+exit_code=0

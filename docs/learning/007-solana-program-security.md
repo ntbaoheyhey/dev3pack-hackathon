@@ -265,3 +265,9 @@ Truy cập 17/11/2026. Trang tham chiếu “Sealevel Attacks” trên Anchor kh
 Chưa compile snippets, chạy test/fuzz hoặc audit sản phẩm. Các kiểu/biến giả định được ghi ở đầu mục 4; không tuyên bố đây là chương trình hoàn chỉnh.
 
 Khi có thiết kế thật, bổ sung invariant kinh tế, state machine, lifecycle, threat model và test tương ứng. Việc security checklist tồn tại trong repo không chứng minh code đã tuân thủ; mỗi PR cần bằng chứng cụ thể.
+
+### Lab Phase3 đã chạy — 17/11/2026
+
+Counter lab có 6 runtime tests đạt trong [hello-check-r2.txt](../evidence/phase3/hello-check-r2.txt). Test âm: Bob ký nhưng sai authority (S03), đúng địa chỉ nhưng không signer (S01), initialize lại sau increment (S07), vượt MAX_COUNT10 (S05), instruction discriminator không tồn tại. Mỗi ca kiểm log lỗi đúng và data/lamports/owner của counter không đổi. Test discriminator instruction không thay test type cosplay account S10; chưa tuyên bố đã kiểm hết S01–S12 hoặc audit.
+
+Signer đúng chưa đủ: handler vẫn so authority với state; typed Counter kiểm owner/type và PDA constraint kiểm seed. MAX_COUNT chặn trước phép cộng. Singleton seed cho lab có rủi ro ai initialize trước giữ authority, nên client phải kiểm và báo khác owner-authority thay vì reset. Không close/recreate, không token/DeFi, không dùng lab làm bằng chứng an toàn product ClusterProof.

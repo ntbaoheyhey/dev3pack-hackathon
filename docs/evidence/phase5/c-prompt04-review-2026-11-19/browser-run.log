@@ -1,0 +1,26 @@
+PASS 1440x900 01-guest
+PASS 1440x900 02-create
+PASS 1440x900 03-edit
+PASS 1440x900 04-pay-wallet
+PASS 1440x900 05-unknown-processed
+PASS 1440x900 06-unknown-dropped
+PASS 1440x900 07-cancel-expired-rollback
+PASS 1440x900 08-layout-keyboard-clipboard
+PASS 375x812 01-guest
+PASS 375x812 02-create
+PASS 375x812 03-edit
+PASS 375x812 04-pay-wallet
+PASS 375x812 05-unknown-processed
+PASS 375x812 06-unknown-dropped
+PASS 375x812 07-cancel-expired-rollback
+PASS 375x812 08-layout-keyboard-clipboard
+VIDEO 0s mock label and problem
+VIDEO 15s read terms
+VIDEO 35s merchant create
+VIDEO 60s payer pay
+VIDEO 85s lost response
+VIDEO 105s read-only recovery
+VIDEO 115s receipts and limitations
+VIDEO 145s mock storyboard and next steps
+VIDEO 162s end
+{"passed":true,"cases":16,"video":162.12}

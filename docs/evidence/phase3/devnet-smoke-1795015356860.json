@@ -1,0 +1,63 @@
+{
+  "at": "2026-11-18T15:22:36.859Z",
+  "rpc": "https://api.devnet.solana.com",
+  "expectedGenesis": "EtWTRABZaYq6iMfeYKouRu166VU2xqa1wcaWoxPkrZBG",
+  "programId": "2yzxUQEpaeLmgCMhDipwnVL3DHsxez18KcePonqZRiXL",
+  "payer": "GQRoDMoWFV2nhgwm3bZGvSCC1LSa2wRkLeeJg8NhbFM2",
+  "counter": "WPFLETxvxk2hq48C7YzC1VJVVZcEhzqF2tur6vBDvnB",
+  "mode": "SEND",
+  "transactions": [
+    {
+      "name": "initialize",
+      "signature": "5yrSMhEwi7ycY5VMwjRXWLXe1AUwUcNd1cxE4Ykm2k8RFKsRgjXEH8zms7gtRw9RHskUFXaZQBrLcXj6YZcSBgPD",
+      "blockhash": "2HA2YxLnGLJ8wzjyAG7Q39cHEvAHpPpEY5AsuSq8pWET",
+      "lastValidBlockHeight": 510786025,
+      "status": "CONFIRMED_SUCCESS",
+      "slot": 523673718,
+      "logs": [
+        "Program 2yzxUQEpaeLmgCMhDipwnVL3DHsxez18KcePonqZRiXL invoke [1]",
+        "Program log: Instruction: Initialize",
+        "Program 11111111111111111111111111111111 invoke [2]",
+        "Program 11111111111111111111111111111111 success",
+        "Program 11111111111111111111111111111111 invoke [2]",
+        "Program 11111111111111111111111111111111 success",
+        "Program log: Hello, world! Counter initialized",
+        "Program 2yzxUQEpaeLmgCMhDipwnVL3DHsxez18KcePonqZRiXL consumed 9145 of 200000 compute units",
+        "Program 2yzxUQEpaeLmgCMhDipwnVL3DHsxez18KcePonqZRiXL success"
+      ],
+      "feeLamports": 5000,
+      "computeUnitsConsumed": 9145
+    },
+    {
+      "name": "increment",
+      "signature": "3GePXNnLf9GAX8yevBKhFpGwZfhaZFV7fC9AkTs2K5PjYGJ1kr4BxuxFfZkfoBpLicuvNu8PLryEYGPPHSybvouY",
+      "blockhash": "CyRDmYGE79Wv6EWwezE66Q17xoaabRJVRoKNT8p66moi",
+      "lastValidBlockHeight": 510786029,
+      "status": "CONFIRMED_SUCCESS",
+      "slot": 523673722,
+      "logs": [
+        "Program 2yzxUQEpaeLmgCMhDipwnVL3DHsxez18KcePonqZRiXL invoke [1]",
+        "Program log: Instruction: Increment",
+        "Program log: Hello, world! Counter is now 1",
+        "Program 2yzxUQEpaeLmgCMhDipwnVL3DHsxez18KcePonqZRiXL consumed 5219 of 200000 compute units",
+        "Program 2yzxUQEpaeLmgCMhDipwnVL3DHsxez18KcePonqZRiXL success"
+      ],
+      "feeLamports": 5000,
+      "computeUnitsConsumed": 5219
+    }
+  ],
+  "before": {
+    "ready": true,
+    "genesis": "EtWTRABZaYq6iMfeYKouRu166VU2xqa1wcaWoxPkrZBG",
+    "balance": 1849029280,
+    "slot": 523673713,
+    "programData": "BJQzgSHrumuS7K9QFqpCTanzqm2whAEje51hwLavFJ32",
+    "counter": null
+  },
+  "after": {
+    "count": "1",
+    "authority": "GQRoDMoWFV2nhgwm3bZGvSCC1LSa2wRkLeeJg8NhbFM2",
+    "lamports": 894081
+  },
+  "status": "VERIFIED"
+}

@@ -1,0 +1,21 @@
+{
+  "name": "dev3pack-devnet-lab",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": "24.22.2"
+  },
+  "scripts": {
+    "test": "node --test client.test.mjs",
+    "inspect": "node smoke.mjs",
+    "smoke": "node smoke.mjs --send"
+  },
+  "dependencies": {
+    "@anchor-lang/core": "1.2.2"
+  },
+  "overrides": {
+    "toml": "5.0.1",
+    "jayson": "5.0.0"
+  }
+}

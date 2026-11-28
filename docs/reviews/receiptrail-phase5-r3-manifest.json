@@ -1,0 +1,42 @@
+{
+  "checkedAt": "2026-11-19T17:10:59+07:00",
+  "parents": [
+    "9e1d59e",
+    "17ed43c"
+  ],
+  "webTests": {
+    "passed": 45,
+    "failed": 0,
+    "log": "receiptrail-phase5-r3-tests.log"
+  },
+  "build": {
+    "exitCode": 0,
+    "log": "receiptrail-phase5-r3-build.log"
+  },
+  "repro": {
+    "accepted": 7,
+    "total": 7,
+    "file": "receiptrail-phase5-r3-repro.json"
+  },
+  "p4RecoveryInputsUnchanged": 36,
+  "inputHashes": {
+    "apps/web/src/receiptrail/ReceiptRailApp.tsx": "58448c54d514bc52ac9ab3ed23485840de7a692e52d175249e4f63dcad26c79b",
+    "apps/web/src/receiptrail/adapter.ts": "a0270c4a883ea461329ed38dab56ad8ada018e899c91a640f392f3e760e72f02",
+    "apps/web/src/receiptrail/confirmation.ts": "905467df8143d16aabd17a9db950653bc7e8e0b33b42934f1a8080c6e433e774",
+    "apps/web/src/receiptrail/mock-wallets.ts": "6f87fa895b6fc810b850af9fd4a97c92e3bc8e186173724739510f05cebb780e",
+    "apps/web/src/receiptrail/receiptrail.css": "ae0edc2073956112da9f9ae9557c80dad79c08d0341a2eeb0f365c0369646b6c",
+    "apps/web/src/receiptrail/types.ts": "85135745a2f09a24890081fa3cf8ebc753dad597517fdc9e0d054403f6209755",
+    "apps/web/src/receiptrail/wallet-lifecycle.ts": "e9e7922b65a2c2f7cc53704417f49a50b42736ef28dd7cfd7e224bd561a504f3",
+    "apps/web/tests/receiptrail-confirmation.test.mjs": "b84f216e4e5b5fc2d19ac0ca7e3962252c2d764846746a486b766fc31539307d",
+    "apps/web/tests/receiptrail-adapter-review.test.mjs": "eae6b92395cd60f99bc9995cd94288d636c00c9fe4429bab581de57d46b6efbd",
+    "apps/web/tests/receiptrail.test.mjs": "63e2b28f937c440f5b9f01c5149764ba72c7dc16d43adc51147d1ca5b06aa90f",
+    "apps/web/package.json": "178b336241721184cbbade2412a48bf9e907d24bf74e782eb7884e5c702dff82",
+    "apps/web/package-lock.json": "39f1b8c400cf41bf7705ff98b8ae7235189b3c41c5972dd32633014435eac3dd",
+    "apps/web/tsconfig.json": "1d2c5b68d1622c353c56ee7be4696b3c746f084334f7e48e14ef8d7f7bd5f2f9"
+  },
+  "limits": [
+    "No browser, headless, extension, visual or full React event verification",
+    "No public hosting or Phase6",
+    "Local checks, not CI at this revision"
+  ]
+}

@@ -1,0 +1,14 @@
+
+> clusterproof-web@0.1.0 build:receiptrail-mock
+> tsc --noEmit && vite build --config vite.receiptrail-mock.config.ts
+
+vite v8.3.8 building client environment for production...
+transforming...
+✓ 132 modules transformed.
+rendering chunks...
+computing gzip size...
+dist-receiptrail-mock/index.html                   0.63 kB │ gzip:   0.42 kB
+dist-receiptrail-mock/assets/index-DPOxMTNH.css   15.70 kB │ gzip:   4.14 kB
+dist-receiptrail-mock/assets/index-DhG3-EZ8.js   447.71 kB │ gzip: 130.41 kB
+
+✓ built in 82ms

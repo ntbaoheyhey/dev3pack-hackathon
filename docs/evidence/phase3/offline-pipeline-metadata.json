@@ -1,0 +1,47 @@
+{
+  "at_utc": "2026-11-18T02:52:02.762874+00:00",
+  "scope": "macOS arm64 offline pipeline using existing cache; no installation, validator, RPC write or deployment signer; CI not executed",
+  "runtime_tests": {
+    "hello": 6,
+    "receiptrail": 19,
+    "failed": 0
+  },
+  "client_tests": {
+    "passed": 8,
+    "failed": 0
+  },
+  "elapsed_workspace_seconds": 64,
+  "missing_compiler_exit": 2,
+  "idl_comparison": "Both generated JSON files byte-identical to existing IDs",
+  "bytecode_comparison": "Both outputs byte-identical to prior verified artifacts",
+  "versions": {
+    "host": "1.100.0",
+    "platform_tools": "v1.57",
+    "sbf": "1.95.0-dev ae660768a",
+    "anchor": "1.2.2"
+  },
+  "sha256": {
+    "scripts/check-phase3-offline.sh": "c7e9b208be0aec1642b044be824f6f300cbf5908a0d4a1c6db716528cc3294d2",
+    ".github/workflows/ci.yml": "9191789f68d6d0933525f5e4fa948d92b3ac47fa10e5f6f98aa67c3e88418953",
+    "Cargo.lock": "8ea462bb0d93de7e4f82e24bdb9bd3a1a1ab78ca227fd09880bb52c1dd6583c9",
+    "programs/phase3-hello/src/lib.rs": "bafbacec91a06c4031181faa5e018b770989eb7306f2356b6761c2fb8ccecf76",
+    "programs/phase3-hello/tests/test_initialize.rs": "d940ffc09f5267eba8d1a5cc4f5df7e51865da3e51c149146576d0a8fccec524",
+    "programs/phase3-hello/tests/test_failures.rs": "1db217f5051c0a4560c2f3d21fc5e78d7e0ab9ca2dfea9ffdc5f7b8b2bf448c9",
+    "programs/receiptrail/src/lib.rs": "2d7c0dce845da382ef237113bc7c691b656d4e61be171514b8b53fdade32b285",
+    "programs/receiptrail/tests/runtime.rs": "e60ce9d4e4328406a547de47eb9023af2c0df1cd0f822340c7f9df2e3cda960b",
+    "target/phase3-offline/deploy/phase3_hello.so": "9b5483f7335a294b125ba458bcbcbdc9e222b605a2c67d7fabc76c132a23da54",
+    "target/phase3-offline/deploy/receiptrail.so": "962b721ae089a77123283bfe1dde0233284b2a793d692cc0abc53e2a8b6eab5a",
+    "target/phase3-offline/idl/phase3_hello.json": "de4be232457dbda00935a352a95ddfa4d4c947fc2802dba112e1371263eb8598",
+    "target/phase3-offline/idl/receiptrail.json": "13efb821841ebd6c9a8b9da21160aad8fbc11e9a6072e4b92a408e6f103f5409",
+    "docs/evidence/phase3/offline-pipeline-r1.txt": "10940091e2b0918e904cbb36264cd41eff6f124c165cf15dcecd34019a86e398",
+    "docs/evidence/phase3/offline-idl-hello-r1.txt": "34372a07f733c18c54683c1b387b5bf0b19880e62ae2a667b5431ace5122e2f2",
+    "docs/evidence/phase3/offline-idl-receiptrail-r1.txt": "3b12433fb92d1f8abb31eaf37423091b248732a988840c91c0447c21ace7f837",
+    "docs/evidence/phase3/offline-client-r1.txt": "c9f769409bc57d36ae4fd3db48259097a8ba5e40b2a37b103c2eed4403614138"
+  },
+  "limits": [
+    "Not Linux CI",
+    "Not devnet deployment",
+    "No real browser wallet check",
+    "Not receipt RPC recovery or independent audit"
+  ]
+}

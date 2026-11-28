@@ -1,0 +1,18 @@
+{
+  "checkedAt": "2026-11-17T16:19:49.571Z",
+  "projectId": "appgprj_6afc7bde680481919ba3e40a9d098155",
+  "sourceCommit": "f5223afb86ec0a8208715eec312e636b19da30ff",
+  "versionId": "appgprj_6afc7bde680481919ba3e40a9d098155~appgver_b2dfaa3986d48191acc21a1d4e24a45f",
+  "versionNumber": 1,
+  "deploymentId": "appgdep_6afc7e25272081918ac0aeda0eee730b",
+  "deploymentStatus": "succeeded",
+  "url": "https://clusterproof-devnet-17nov26.anthony-robinson-125.chatgpt.site",
+  "accessMode": "public",
+  "archiveSha256": "sha256:d2c1735433c4dc7133f59be3289cdbc182baeb96420997f1eb227d25c84717f7",
+  "sourceCheckout": "/Users/bao/Documents/ChatGPT/dev3pack/sandbox/sites/clusterproof-phase3",
+  "limits": [
+    "Phase3 baseline, not full ClusterProof MVP",
+    "Wallet connect/reject/retry/disconnect checked with a labelled local Wallet Standard fixture; no real extension present",
+    "Hello program is not deployed yet"
+  ]
+}

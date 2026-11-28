@@ -1,0 +1,33 @@
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+import {createHash} from 'node:crypto';
+import {setTimeout as delay} from 'node:timers/promises';
+import {anchor,RPC,GENESIS,PROGRAM,PAYER,COUNTER,LOADER,loadIdl,programFromIdl,instruction} from '/Users/bao/Documents/ChatGPT/dev3pack/tools/devnet-lab/client.mjs';
+process.chdir('/Users/bao/Documents/ChatGPT/dev3pack');
+const d=JSON.parse(fs.readFileSync('docs/evidence/phase3/hello-devnet-deploy-r4-2026-11-18.json','utf8'));
+assert.equal(d.exitCode,0);assert.equal(d.result.programId,PROGRAM.toBase58());assert(d.result.signature);
+const c=new anchor.web3.Connection(RPC,{commitment:'finalized',disableRetryOnRateLimit:true,fetch:(u,i)=>fetch(u,{...i,signal:AbortSignal.timeout(15000)})});
+assert.equal(await c.getGenesisHash(),GENESIS);
+const dataKey=anchor.web3.PublicKey.findProgramAddressSync([PROGRAM.toBuffer()],LOADER)[0];
+const buffer=new anchor.web3.PublicKey(d.buffer);
+const state=await c.getMultipleAccountsInfoAndContext([PAYER,PROGRAM,dataKey,buffer,COUNTER],{commitment:'finalized'});
+const [payer,program,data,bufferAccount,counter]=state.value;
+assert(program&&program.owner.equals(LOADER)&&program.executable&&program.data.length===36&&program.data.readUInt32LE(0)===2);
+assert(new anchor.web3.PublicKey(program.data.subarray(4)).equals(dataKey));
+assert(data&&data.owner.equals(LOADER)&&!data.executable&&data.data.length===127717&&data.data.readUInt32LE(0)===3&&data.data[12]===1);
+assert(new anchor.web3.PublicKey(data.data.subarray(13,45)).equals(PAYER));
+const binary=fs.readFileSync('target/deploy/phase3_hello.so');assert(data.data.subarray(45).equals(binary));
+assert.equal(createHash('sha256').update(binary).digest('hex'),'9b5483f7335a294b125ba458bcbcbdc9e222b605a2c67d7fabc76c132a23da54');
+assert.equal(counter,null);assert.equal(bufferAccount,null);assert(!fs.existsSync('docs/evidence/phase3/devnet-lab-pending.json'));assert(!fs.existsSync('docs/evidence/phase3/hello-buffer-upload-pending.json'));
+let tx,status;
+for(let n=0;n<20;n++){status=(await c.getSignatureStatuses([d.result.signature],{searchTransactionHistory:true})).value[0];tx=await c.getTransaction(d.result.signature,{commitment:'finalized',maxSupportedTransactionVersion:0});if(tx&&status?.confirmationStatus==='finalized')break;await delay(1200);}
+assert.equal(status?.err,null);assert.equal(status.confirmationStatus,'finalized');
+assert(tx?.meta);assert.equal(tx.meta.err,null);assert(tx.meta.logMessages?.includes('Program '+LOADER.toBase58()+' success'));
+assert(tx.transaction.message.accountKeys.some(k=>k.equals(PROGRAM)));
+const p=programFromIdl(loadIdl(),c);const block=await c.getLatestBlockhash('finalized');
+const fees=[];for(const name of ['initialize','increment']){const t=new anchor.web3.Transaction({feePayer:PAYER,recentBlockhash:block.blockhash}).add(await instruction(p,name));const f=await c.getFeeForMessage(t.compileMessage(),'finalized');assert.equal(f.value,5000);fees.push(f.value);}
+const rent=await c.getMinimumBalanceForRentExemption(48,'finalized');const spent=2500000000-payer.lamports;assert(spent+rent+1+fees.reduce((a,b)=>a+b,0)<=1500000000);
+const rec={at:new Date().toISOString(),rpc:RPC,genesis:GENESIS,commitment:'finalized',observationSlot:state.context.slot,programId:PROGRAM.toBase58(),programOwner:program.owner.toBase58(),executable:program.executable,programLamports:program.lamports,programData:dataKey.toBase58(),programDataLamports:data.lamports,programDataBytes:data.data.length,deploymentSlot:data.data.readBigUInt64LE(4).toString(),upgradeAuthority:PAYER.toBase58(),binarySha256:createHash('sha256').update(binary).digest('hex'),deployedPayloadSha256:createHash('sha256').update(data.data.subarray(45)).digest('hex'),bufferAccount:null,counterAccount:null,payerLamports:payer.lamports,payerDeltaFromBaseline:spent,deploySignature:d.result.signature,deployTransaction:{slot:tx.slot,err:tx.meta.err,feeLamports:tx.meta.fee,logs:tx.meta.logMessages,computeUnitsConsumed:tx.meta.computeUnitsConsumed},deploySignatureStatus:status,smokeBudget:{counterRentLamports:rent,helloTransferLamports:1,initializeFeeLamports:fees[0],incrementFeeLamports:fees[1],projectedTotalLamports:spent+rent+1+fees.reduce((a,b)=>a+b,0),capLamports:1500000000},status:'DEPLOY_FINALIZED_BYTECODE_VERIFIED_READY_FOR_SMOKE'};
+fs.writeFileSync('docs/evidence/phase3/hello-devnet-deploy-finalized-2026-11-18.json',JSON.stringify(rec,null,2)+'\n',{flag:'wx'});
+console.log(JSON.stringify(rec,null,2));
+

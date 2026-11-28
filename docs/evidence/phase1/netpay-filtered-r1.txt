@@ -1,0 +1,10 @@
+file:///Users/bao/Documents/ChatGPT/dev3pack/research/phase1/rpc.mjs:11
+  if (!response.ok) throw new Error(`RPC HTTP ${response.status}; không tự retry dồn dập`);
+                          ^
+
+Error: RPC HTTP 403; không tự retry dồn dập
+    at rpc (file:///Users/bao/Documents/ChatGPT/dev3pack/research/phase1/rpc.mjs:11:27)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async file:///Users/bao/Documents/ChatGPT/dev3pack/research/phase1/netpay-live.mjs:18:17
+
+Node.js v24.22.2

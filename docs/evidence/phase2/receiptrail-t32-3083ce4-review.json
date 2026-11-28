@@ -1,0 +1,94 @@
+{
+  "reviewed_at_utc": "2026-11-18T08:49:06.703254+00:00",
+  "reviewed_head": "7831e5f97347e70d4866f678e189b6d705c550c7",
+  "scope": "Review T32/3083ce4 sau heartbeat15:47; đọc report/diff/source/log hiện có, không chạy suite/crawl/RPC mới.",
+  "report": {
+    "path": "docs/reviews/receiptrail-antigravity.md",
+    "commit": "3083ce4ee7c9fc8568750369e894eef314c2ead7",
+    "sha256": "ae5337bc32f111f2774e9a9967117aa9411e9cc28079b06d1488070339c09a00",
+    "line_count": 35,
+    "text": "# Review Kiến trúc ReceiptRail (T32 - Supplement Patch)\n\n> Ngày review: 2026-11-18\n\n## 1. Authority & Recipient (T32-R1 - Bổ sung)\n| Action | Signer | Has_one | Kết quả | Assertion |\n| --- | --- | --- | --- | --- |\n| `pay_invoice` | Payer | Payer+Merchant | verified | Payer ký, Payer+Merchant tồn tại |\n| `cancel_invoice` | Merchant | Merchant | verified | Merchant ký, Merchant tồn tại |\n\n## 2. Bảng 3 Ca Rollback (T32-R2 - Bổ sung log/assertion)\n| Hàm (runtime.rs) | Trạng thái trước | Sau transaction lỗi | Assertion | Log |\n| --- | --- | --- | --- | --- |\n| `insufficient_principal_cpi_leaves_invoice_open_and_balances_unchanged` | Invoice Open | Invoice Open | Balances không đổi | r2:42 |\n| `two_pay_instructions_in_one_transaction_roll_back_the_first_transfer` | Invoice Open | Invoice Open | Lần pay 2 bị reject | r2:35 |\n| `create_pay_and_fresh_transaction_retry_transfers_principal_only_once` | Invoice Paid | Invoice Paid | Retry bị reject, sig khác | r2:23-24 |\n\n## 3. Ma trận 5 nhóm (T32-R3 - Bổ sung)\n| Nhóm | Vị trí | Assertion / Kết quả | Log/Giới hạn |\n| --- | --- | --- | --- |\n| 1. Layout | `lib.rs` / `Invoice` | Layout 131 bytes, Canonical bump | verified |\n| 2. Roles | `lib.rs` / `pay_invoice` | Signer/Has_one | verified |\n| 3. Expiry | `lib.rs` / `pay_invoice` | Slot < Expiry | verified |\n| 4. Dup/Roll | `runtime.rs` | Status Open -> Paid, Reject duplicate | r2 / VM (serial) |\n| 5. Receipt | `ARCHITECTURE` | `paid_slot` @ `Paid` | r2 / Chưa network |\n\n## 4. Phản hồi 13 Findings (Bổ sung chi tiết)\n| Mã | Nội dung | Phản hồi / Kết quả |\n| --- | --- | --- |\n| T13-R1-R4 | Nonce, PDA, Rollback, Limit | Sử dụng PDA thay nonce; 3 ca rollback đã rõ. |\n| T18-R1-R3 | Ma trận, Signer, Rollback | Bổ sung log r2:42, 35, 23-24 cho assertion. |\n| T21-R1-R3 | Signer, Rollback, 5 Nhóm | Ma trận 5 nhóm chi tiết từng file/hàm. |\n| T24-R1-R3 | Authority, 3 rollback, 13 findings | Merchant nhận tiền, không ký pay. |\n| T27-R1-R3 | Authority, 3 rollback, ma trận | Đã bổ sung log và assertions cho các role. |\n| T29-R1-R3 | Ma trận, 13 findings | Tổng hợp Findings từ các lượt. |\n"
+  },
+  "input_sha256": {
+    "programs/receiptrail/src/lib.rs": "2d7c0dce845da382ef237113bc7c691b656d4e61be171514b8b53fdade32b285",
+    "programs/receiptrail/tests/runtime.rs": "e60ce9d4e4328406a547de47eb9023af2c0df1cd0f822340c7f9df2e3cda960b",
+    "docs/idl/receiptrail.json": "13efb821841ebd6c9a8b9da21160aad8fbc11e9a6072e4b92a408e6f103f5409",
+    "docs/ARCHITECTURE.md": "6716c93d566d0609940b6e963517c565d40be7beeedaa31517799b909ec4951e",
+    "docs/IDEA.md": "bba376b1b55f26b3c63f91d17c3f0a1fbc0a46cf68a51b661d8d2af67937ef55",
+    "docs/evidence/phase2/receiptrail-spike-r2.txt": "3ee1bac3d93f4fdcd0b2c0a31d42521964945db83f5fbcad94967a1872af212b"
+  },
+  "document_checks": {
+    "full_test_names_matching_source": 3,
+    "rollback_log_references_matching_test": 1,
+    "rollback_log_references_total": 3,
+    "log_reference_checks": [
+      {
+        "test": "insufficient_principal_cpi_leaves_invoice_open_and_balances_unchanged",
+        "report_line": 14,
+        "cited_log_lines": [
+          42
+        ],
+        "actual_text_at_cited_lines": [
+          "test wrong_payer_signer_cannot_pay ... ok"
+        ],
+        "expected_log_lines": [
+          26
+        ],
+        "expected_log_text": [
+          "test insufficient_principal_cpi_leaves_invoice_open_and_balances_unchanged ... ok"
+        ],
+        "matches_test": false
+      },
+      {
+        "test": "two_pay_instructions_in_one_transaction_roll_back_the_first_transfer",
+        "report_line": 15,
+        "cited_log_lines": [
+          35
+        ],
+        "actual_text_at_cited_lines": [
+          "test recipient_substitution_cannot_redirect_payment ... ok"
+        ],
+        "expected_log_lines": [
+          39
+        ],
+        "expected_log_text": [
+          "test two_pay_instructions_in_one_transaction_roll_back_the_first_transfer ... ok"
+        ],
+        "matches_test": false
+      },
+      {
+        "test": "create_pay_and_fresh_transaction_retry_transfers_principal_only_once",
+        "report_line": 16,
+        "cited_log_lines": [
+          23,
+          24
+        ],
+        "actual_text_at_cited_lines": [
+          "test create_pay_and_fresh_transaction_retry_transfers_principal_only_once ... METRIC create_cu=8775 pay_cu=6608 retry_cu=6017 create_fee=10000 pay_fee=10000 retry_fee=10000 rent_lamports=1802640 principal_delta=1000000 invoice_bytes=131 paid_slot=100",
+          "ok"
+        ],
+        "expected_log_lines": [
+          23,
+          24
+        ],
+        "expected_log_text": [
+          "test create_pay_and_fresh_transaction_retry_transfers_principal_only_once ... METRIC create_cu=8775 pay_cu=6608 retry_cu=6017 create_fee=10000 pay_fee=10000 retry_fee=10000 rent_lamports=1802640 principal_delta=1000000 invoice_bytes=131 paid_slot=100",
+          "ok"
+        ],
+        "matches_test": true
+      }
+    ]
+  },
+  "accepted": [
+    "Pay has_one ghi cả payer và merchant; merchant không ký pay vẫn ở phản hồi dòng33.",
+    "Retry ghi signature khác và dẫn đúng r2:23-24; ba tên hàm/baseline vẫn đúng.",
+    "Giữ VM serial/chưa network."
+  ],
+  "findings": {
+    "T32-R1": "has_one là so public key trong invoice, không chỉ account tồn tại; vẫn thiếu SystemAccount/data-empty/source/assertion/log từng vai.",
+    "T32-R2": "Hai log sai: insufficient r2:42 là wrong_payer, phải26; two_pay r2:35 là recipient_substitution, phải39. Retry23-24 đúng. Vẫn thiếu assertions/snapshot/fee boundary.",
+    "T32-R3": "Ma trận verified/r2,6nhóm không trả từng13IDs; phản hồi31 lặp dẫn sai. Thiếu phạm vi commitment/browser/RPC/devnet/recovery/upgrade/adoption."
+  },
+  "verdict": "Nhận phần cải thiện;3findings T32 và9nhóm chung vẫn mở, chưa nhận review chéo.",
+  "follow_up": "A chuyển T33 theo HANDOFF7831e5f là đúng; tiếp tục T33→T31→T32 sửa bổ sung cùng ID, không suy process live."
+}

@@ -1,0 +1,920 @@
+{
+  "observed_at": "2026-11-18T10:49:12+07:00",
+  "linux_push_sha256": {
+    "Cargo.lock": "8ea462bb0d93de7e4f82e24bdb9bd3a1a1ab78ca227fd09880bb52c1dd6583c9",
+    "scripts/check-phase3-offline.sh": "c7e9b208be0aec1642b044be824f6f300cbf5908a0d4a1c6db716528cc3294d2",
+    "target/phase3-offline/deploy/phase3_hello.so": "f81e29627b4643d93b91a5a30c3b09f62f794d2a0cb72112458d4a0c97a8c246",
+    "target/phase3-offline/deploy/receiptrail.so": "41ff32ec9eb6aefe0322f1da0a04053b95cbd29e06afb6f0e22e76658dd024b9"
+  },
+  "cross_host_limit": "Hai hash bytecode Linux khác snapshot macOS trong offline-pipeline-metadata.json; chưa xác định nguyên nhân/chứng nhận reproducible hoặc verified build. Không thay binary macOS dùng cho phương án deploy hello.",
+  "repository": "ntbaoheyhey/dev3pack-hackathon",
+  "runs": [
+    {
+      "id": 44231910864,
+      "event": "pull_request",
+      "head_sha": "7210aa6efb79d29b2ab9849286394566a043b176",
+      "run_attempt": 1,
+      "status": "completed",
+      "conclusion": "failure",
+      "html_url": "https://github.com/ntbaoheyhey/dev3pack-hackathon/actions/runs/44231910864",
+      "created_at": "2026-11-18T03:39:07Z",
+      "updated_at": "2026-11-18T03:46:04Z",
+      "jobs": [
+        {
+          "id": 134558836445,
+          "name": "research",
+          "status": "completed",
+          "conclusion": "success",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3
+            },
+            {
+              "name": "Offline parser and evidence replay",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4
+            },
+            {
+              "name": "Post Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7
+            },
+            {
+              "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9
+            }
+          ]
+        },
+        {
+          "id": 134558836766,
+          "name": "anchor-lab",
+          "status": "completed",
+          "conclusion": "failure",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "Install build prerequisites",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3
+            },
+            {
+              "name": "Install pinned Agave and Anchor",
+              "status": "completed",
+              "conclusion": "failure",
+              "number": 4
+            },
+            {
+              "name": "Install pinned SBF compiler",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 5
+            },
+            {
+              "name": "Warm locked dependency cache after approval",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 6
+            },
+            {
+              "name": "Build both programs offline and verify generated IDLs",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 7
+            },
+            {
+              "name": "Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 8
+            },
+            {
+              "name": "Verify generated-IDL client offline",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 9
+            },
+            {
+              "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 18
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 19
+            }
+          ]
+        },
+        {
+          "id": 134558836932,
+          "name": "web",
+          "status": "completed",
+          "conclusion": "success",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3
+            },
+            {
+              "name": "Run npm ci --ignore-scripts --no-fund",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4
+            },
+            {
+              "name": "Run npm test",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5
+            },
+            {
+              "name": "Run npm run build",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6
+            },
+            {
+              "name": "Post Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 11
+            },
+            {
+              "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 12
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 13
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 44231906106,
+      "event": "push",
+      "head_sha": "7210aa6efb79d29b2ab9849286394566a043b176",
+      "run_attempt": 1,
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/ntbaoheyhey/dev3pack-hackathon/actions/runs/44231906106",
+      "created_at": "2026-11-18T03:39:04Z",
+      "updated_at": "2026-11-18T03:46:38Z",
+      "jobs": [
+        {
+          "id": 134558814849,
+          "name": "anchor-lab",
+          "status": "completed",
+          "conclusion": "success",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "Install build prerequisites",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3
+            },
+            {
+              "name": "Install pinned Agave and Anchor",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4
+            },
+            {
+              "name": "Install pinned SBF compiler",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5
+            },
+            {
+              "name": "Warm locked dependency cache after approval",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6
+            },
+            {
+              "name": "Build both programs offline and verify generated IDLs",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7
+            },
+            {
+              "name": "Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8
+            },
+            {
+              "name": "Verify generated-IDL client offline",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9
+            },
+            {
+              "name": "Post Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 17
+            },
+            {
+              "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 18
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 19
+            }
+          ]
+        },
+        {
+          "id": 134558815157,
+          "name": "research",
+          "status": "completed",
+          "conclusion": "success",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3
+            },
+            {
+              "name": "Offline parser and evidence replay",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4
+            },
+            {
+              "name": "Post Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7
+            },
+            {
+              "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9
+            }
+          ]
+        },
+        {
+          "id": 134558815207,
+          "name": "web",
+          "status": "completed",
+          "conclusion": "success",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3
+            },
+            {
+              "name": "Run npm ci --ignore-scripts --no-fund",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4
+            },
+            {
+              "name": "Run npm test",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5
+            },
+            {
+              "name": "Run npm run build",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6
+            },
+            {
+              "name": "Post Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 11
+            },
+            {
+              "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 12
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 13
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 44231749529,
+      "event": "pull_request",
+      "head_sha": "a114a98e9637012d185b20726a2e0035fc0f163c",
+      "run_attempt": 1,
+      "status": "completed",
+      "conclusion": "cancelled",
+      "html_url": "https://github.com/ntbaoheyhey/dev3pack-hackathon/actions/runs/44231749529",
+      "created_at": "2026-11-18T03:37:41Z",
+      "updated_at": "2026-11-18T03:39:24Z",
+      "jobs": [
+        {
+          "id": 134558200230,
+          "name": "web",
+          "status": "completed",
+          "conclusion": "success",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3
+            },
+            {
+              "name": "Run npm ci --ignore-scripts --no-fund",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4
+            },
+            {
+              "name": "Run npm test",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5
+            },
+            {
+              "name": "Run npm run build",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6
+            },
+            {
+              "name": "Post Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 11
+            },
+            {
+              "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 12
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 13
+            }
+          ]
+        },
+        {
+          "id": 134558200542,
+          "name": "anchor-lab",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "Install build prerequisites",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3
+            },
+            {
+              "name": "Install pinned Agave and Anchor",
+              "status": "completed",
+              "conclusion": "cancelled",
+              "number": 4
+            },
+            {
+              "name": "Install pinned SBF compiler",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 5
+            },
+            {
+              "name": "Warm locked dependency cache after approval",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 6
+            },
+            {
+              "name": "Build both programs offline and verify generated IDLs",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 7
+            },
+            {
+              "name": "Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 8
+            },
+            {
+              "name": "Verify generated-IDL client offline",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 9
+            },
+            {
+              "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 18
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 19
+            }
+          ]
+        },
+        {
+          "id": 134558200586,
+          "name": "research",
+          "status": "completed",
+          "conclusion": "success",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3
+            },
+            {
+              "name": "Offline parser and evidence replay",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4
+            },
+            {
+              "name": "Post Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7
+            },
+            {
+              "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 44231743826,
+      "event": "push",
+      "head_sha": "a114a98e9637012d185b20726a2e0035fc0f163c",
+      "run_attempt": 1,
+      "status": "completed",
+      "conclusion": "cancelled",
+      "html_url": "https://github.com/ntbaoheyhey/dev3pack-hackathon/actions/runs/44231743826",
+      "created_at": "2026-11-18T03:37:39Z",
+      "updated_at": "2026-11-18T03:39:20Z",
+      "jobs": [
+        {
+          "id": 134558182334,
+          "name": "anchor-lab",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "Install build prerequisites",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3
+            },
+            {
+              "name": "Install pinned Agave and Anchor",
+              "status": "completed",
+              "conclusion": "cancelled",
+              "number": 4
+            },
+            {
+              "name": "Install pinned SBF compiler",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 5
+            },
+            {
+              "name": "Warm locked dependency cache after approval",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 6
+            },
+            {
+              "name": "Build both programs offline and verify generated IDLs",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 7
+            },
+            {
+              "name": "Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 8
+            },
+            {
+              "name": "Verify generated-IDL client offline",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 9
+            },
+            {
+              "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 18
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 19
+            }
+          ]
+        },
+        {
+          "id": 134558182642,
+          "name": "web",
+          "status": "completed",
+          "conclusion": "success",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3
+            },
+            {
+              "name": "Run npm ci --ignore-scripts --no-fund",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4
+            },
+            {
+              "name": "Run npm test",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5
+            },
+            {
+              "name": "Run npm run build",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6
+            },
+            {
+              "name": "Post Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 11
+            },
+            {
+              "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 12
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 13
+            }
+          ]
+        },
+        {
+          "id": 134558182798,
+          "name": "research",
+          "status": "completed",
+          "conclusion": "success",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3
+            },
+            {
+              "name": "Offline parser and evidence replay",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4
+            },
+            {
+              "name": "Post Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7
+            },
+            {
+              "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "log_excerpts": [
+    {
+      "job_id": 134558814849,
+      "selection": "Trích các dòng phiên bản/kết quả/lỗi; không phải toàn bộ log.",
+      "lines": [
+        "2026-11-18T03:39:47.9668128Z   1.100.0-x86_64-unknown-linux-gnu installed - rustc 1.100.0 (0ef1bc386 2026-11-09)",
+        "2026-11-18T03:42:10.5359178Z    Installed package `avm v1.2.2 (https://github.com/otter-sec/anchor?rev=8d9d1488d9b8af41b266d7513eea2e668adf15a2#8d9d1488)` (executable `avm`)",
+        "2026-11-18T03:43:34.0573492Z cmp docs/idl/receiptrail.json target/idl/receiptrail.json",
+        "2026-11-18T03:43:34.0853401Z rustc 1.100.0 (0ef1bc386 2026-11-09)",
+        "2026-11-18T03:43:34.0955061Z rustc 1.95.0-dev (ae660768a 2026-08-17)",
+        "2026-11-18T03:45:36.5199749Z test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+        "2026-11-18T03:45:37.2593306Z test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.74s",
+        "2026-11-18T03:45:37.3834483Z test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.12s",
+        "2026-11-18T03:45:37.3852531Z test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+        "2026-11-18T03:45:37.7579432Z test create_pay_and_fresh_transaction_retry_transfers_principal_only_once ... METRIC create_cu=10275 pay_cu=6608 retry_cu=6017 create_fee=10000 pay_fee=10000 retry_fee=10000 rent_lamports=1802640 principal_delta=1000000 invoice_bytes=131 paid_slot=100",
+        "2026-11-18T03:45:39.7088828Z test merchant_can_cancel_expired_open_invoice_without_moving_principal ... METRIC cancel_cu=4346 cancel_fee=10000",
+        "2026-11-18T03:45:42.7628738Z test result: ok. 19 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 5.38s",
+        "2026-11-18T03:45:42.8237530Z test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+        "2026-11-18T03:45:42.8995581Z test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+        "2026-11-18T03:46:34.9197409Z ℹ tests 8",
+        "2026-11-18T03:46:34.9198445Z ℹ pass 8",
+        "2026-11-18T03:46:34.9198721Z ℹ fail 0"
+      ]
+    },
+    {
+      "job_id": 134558836766,
+      "selection": "Trích các dòng phiên bản/kết quả/lỗi; không phải toàn bộ log.",
+      "lines": [
+        "2026-11-18T03:43:46.8173735Z   1.100.0-x86_64-unknown-linux-gnu installed - rustc 1.100.0 (0ef1bc386 2026-11-09)",
+        "2026-11-18T03:46:01.0880735Z    Installed package `avm v1.2.2 (https://github.com/otter-sec/anchor?rev=8d9d1488d9b8af41b266d7513eea2e668adf15a2#8d9d1488)` (executable `avm`)",
+        "2026-11-18T03:46:01.8356542Z Error: Downloaded Anchor 1.2.2 binary from `https://github.com/otter-sec/anchor/releases/download/v1.2.2/anchor-1.2.2-x86_64-unknown-linux-gnu` failed build provenance verification. Refusing to install it; use `avm install 1.2.2 --from-source` to build from source instead.",
+        "2026-11-18T03:46:01.8358761Z     0: Fetching build provenance attestations for `/home/runner/.avm/tmp/.anchor-1.2.2-download-6582`",
+        "2026-11-18T03:46:01.8359800Z     1: Failed to fetch build provenance attestations for digest `sha256:e2c35a973bcfe476f3a89b120e99820f917229faf33d3e71f6625bd94199e741` (status 403 Forbidden)",
+        "2026-11-18T03:46:01.8382593Z ##[error]Process completed with exit code 1."
+      ]
+    },
+    {
+      "job_id": 134558815157,
+      "selection": "Trích các dòng phiên bản/kết quả/lỗi; không phải toàn bộ log.",
+      "lines": [
+        "2026-11-18T03:39:25.9024946Z ℹ tests 16",
+        "2026-11-18T03:39:25.9026086Z ℹ pass 16",
+        "2026-11-18T03:39:25.9027082Z ℹ fail 0"
+      ]
+    },
+    {
+      "job_id": 134558815207,
+      "selection": "Trích các dòng phiên bản/kết quả/lỗi; không phải toàn bộ log.",
+      "lines": [
+        "2026-11-18T03:39:30.5592258Z ℹ tests 8",
+        "2026-11-18T03:39:30.5595892Z ℹ pass 8",
+        "2026-11-18T03:39:30.5596478Z ℹ fail 0",
+        "2026-11-18T03:39:30.6671690Z > tsc --noEmit && vite build && node scripts/static-routes.mjs",
+        "2026-11-18T03:39:32.8493101Z ✓ built in 212ms"
+      ]
+    },
+    {
+      "job_id": 134558836445,
+      "selection": "Trích các dòng phiên bản/kết quả/lỗi; không phải toàn bộ log.",
+      "lines": [
+        "2026-11-18T03:39:38.4319314Z ℹ tests 16",
+        "2026-11-18T03:39:38.4320081Z ℹ pass 16",
+        "2026-11-18T03:39:38.4320724Z ℹ fail 0"
+      ]
+    },
+    {
+      "job_id": 134558836932,
+      "selection": "Trích các dòng phiên bản/kết quả/lỗi; không phải toàn bộ log.",
+      "lines": [
+        "2026-11-18T03:39:43.5249156Z ℹ tests 8",
+        "2026-11-18T03:39:43.5250175Z ℹ pass 8",
+        "2026-11-18T03:39:43.5250538Z ℹ fail 0",
+        "2026-11-18T03:39:43.6084346Z > tsc --noEmit && vite build && node scripts/static-routes.mjs",
+        "2026-11-18T03:39:45.1495290Z ✓ built in 162ms"
+      ]
+    },
+    {
+      "job_id": 134558200542,
+      "selection": "Trích các dòng phiên bản/kết quả/lỗi; không phải toàn bộ log.",
+      "lines": [
+        "2026-11-18T03:38:37.6395991Z   1.100.0-x86_64-unknown-linux-gnu installed - rustc 1.100.0 (0ef1bc386 2026-11-09)",
+        "2026-11-18T03:39:20.4025959Z ##[error]The operation was canceled."
+      ]
+    },
+    {
+      "job_id": 134558182334,
+      "selection": "Trích các dòng phiên bản/kết quả/lỗi; không phải toàn bộ log.",
+      "lines": [
+        "2026-11-18T03:38:01.8929488Z   1.100.0-x86_64-unknown-linux-gnu installed - rustc 1.100.0 (0ef1bc386 2026-11-09)",
+        "2026-11-18T03:39:17.9186150Z ##[error]The operation was canceled."
+      ]
+    }
+  ],
+  "findings": [
+    "Billing không còn chặn trước runner: cả hai run7210aa6 thực thi. Push thành công3jobs; PR thất bại lấy attestation Anchor HTTP403.",
+    "Push7210aa6:25runtime(6hello+19ReceiptRail)+8client+16research+8web; typecheck/build và cmp ReceiptRail IDL đạt. Không có deploy hoặc ví thật.",
+    "a114a98 cancelled khi commit7210aa6 tạo runs mới và cancel-in-progress=true; phù hợp với tự hủy do concurrency, không chứng minh ai chủ ý hủy hoặc lỗi compiler.",
+    "PR thất bại fetch attestation; không có response headers/body để khẳng định rate-limit. Chưa đánh patch source-build tương lai đạt."
+  ],
+  "source_read": {
+    "url": "https://github.com/otter-sec/anchor/blob/8d9d1488d9b8af41b266d7513eea2e668adf15a2/avm/src/attestation.rs",
+    "blob_sha": "8abb0bf4680682ca4073a9ff395d1b120714b1af",
+    "read_date": "2026-11-18",
+    "lines": "74–105; HTTP_CLIENT/lib.rs và cli/Cargo.toml cũng đối chiếu source cache đúng commit."
+  }
+}

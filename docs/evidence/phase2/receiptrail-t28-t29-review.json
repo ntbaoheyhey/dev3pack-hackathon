@@ -1,0 +1,102 @@
+{
+  "reviewed_at_utc": "2026-11-18T05:37:15Z",
+  "scope": "Đối chiếu tài liệu/source/assertion/log đã có; không crawl lại nguồn, không rerun suite hoặc browser/RPC. Lời duyệt người dùng và CI27cf7ac giữ nguyên.",
+  "reports": [
+    {
+      "task": "T28",
+      "path": "docs/design/receiptrail-ux-antigravity.md",
+      "commit": "601e723671fff731a62052776f0de40bcdbcc2fa",
+      "sha256": "3f91395775ee03fa431fc1838d090f34e60e1b1753b01baec4cc3b63532e2a89",
+      "line_count": 52,
+      "text": "# Thiết kế UX ReceiptRail (T28 - Rework Final)\n\n> Ngày thiết kế: 2026-11-18\n\n## 1. Flow & Form\n### A. Merchant\n- **Dashboard**: Danh sách Invoices (Open/Paid/Cancelled), Status PDA lookup, `Create` action.\n- **Create Invoice**: Form: `PayerAddress` (address), `OrderID` (string, mapped to 32 bytes PDA), `Amount` (u64 lamports, integer), `Expiry` (u64 slot).\n- **Fees**: Create = Merchant pays Rent + Fee.\n\n### B. Payer\n- **View Invoice**: Status PDA, `OrderID` stable, `Amount` (SOL/lamports), `Expiry` (slot), Terms (read-only).\n- **Pay**:\n    - `Pay` action = Payer principal + fee.\n    - **State Machine**: `Open` (Mới), `Pending` (Gửi), `Paid` (Finalized), `Cancelled`, `Expired` (>= expiry slot).\n    - `Unknown` (Timeout): Client-side status PDA lookup only, no auto-retry/sign.\n\n## 2. Xử lý lỗi (IDL - 9 mã)\n| Code | Error | Nguyên nhân | CTA |\n| --- | --- | --- | --- |\n| 6000 | InvalidAmount | Amount <= 0 | Nhập lại amount > 0 |\n| 6001 | InvalidExpiry | Expiry < current slot | Set expiry > current slot |\n| 6002 | InvalidWallet | Ví không kết nối/sai | Kết nối lại ví |\n| 6003 | AliasedRoles | Merchant = Payer | Dùng ví khác |\n| 6004 | InvoiceNotOpen | Invoice state != Open | Xem lại trạng thái Invoice |\n| 6005 | InvoiceExpired | Slot > Expiry | Không thanh toán được |\n| 6006 | WrongPayer | Sai Payer PDA | Dùng ví đã chỉ định |\n| 6007 | WrongMerchant | Sai Merchant PDA | Liên hệ merchant |\n| 6008 | WrongVersion | Version IDL mismatch | App update required |\n\n## 3. Wireframes (8 bố cục - Chi tiết)\n*Mỗi màn hình có: Fields, Priority, CTA (Enabled/Disabled), No-wallet/Error state, PDA+Program+Cluster+Commitment.*\n\n### I. Desktop/Mobile (4x2 = 8)\n1. **Merchant Dashboard**: List Invoices, Status, `Create` (Enabled).\n2. **Invoice View**: Read-only, `Amount`, `Expiry`, `Pay` (Enabled/Disabled).\n3. **Pending Status**: Status indicator, `Check Status` (Enabled).\n4. **Receipt View**: `Paid` status, Link Explorer, signature verified.\n\n## 4. Storyboard 165s (Replay/Local)\n- 0-30s: Merchant tạo invoice, xác nhận rent/fee (Log: `r2:23`).\n- 30-90s: Payer pay, Pending -> Paid (Log: `r2:24`).\n- 90-150s: Client timeout (Unknown) -> Check Status -> PDA confirm Paid.\n- 150-165s: Receipt View: `Paid` + Link Explorer (Signature).\n\n## 5. SDK Decision & Checklist\n| SDK | Version | Source/Date | Lý do/Giới hạn |\n| --- | --- | --- | --- |\n| `@solana/web3.js` | v1.9x | 18/11/2026 | Tương thích ví, RPC node support. |\n| `@solana/wallet-adapter` | v0.2x | 18/11/2026 | Wallet standard integration. |\n\n- [x] R1-R5: Đã kiểm tra 9 mã lỗi (Anchor/System/fee), 8 bố cục (Fields/PDA+Cluster), Storyboard (165s, log r2:23-24).\n"
+    },
+    {
+      "task": "T29-evidence",
+      "path": "docs/data/receiptrail-evidence.md",
+      "commit": "601e723671fff731a62052776f0de40bcdbcc2fa",
+      "sha256": "dbdc60d32d498e84b3f0270ef3e10e07bbdcf35d392a1c551e7b4747a4a2174f",
+      "line_count": 35,
+      "text": "# ReceiptRail Evidence Report (T29 - Rework Final)\n\n> Ngày cập nhật: 2026-11-18\n\n## 1. Alternatives (3, nguồn đích, hạn chế)\n| Alternative | URL đích | Hạn chế | Tác động tới ReceiptRail |\n| --- | --- | --- | --- |\n| Stripe Idempotency | [https://docs.stripe.com/api/idempotent_requests](https://docs.stripe.com/api/idempotent_requests) | Server-side dependency | ReceiptRail dùng PDA on-chain (immutable) làm định danh duy nhất. |\n| Solana Pay Ref | [https://solana.com/docs/tools/solana-pay/specification/version1-1#reference](https://solana.com/docs/tools/solana-pay/specification/version1-1#reference) | Reference không unique | ReceiptRail định danh hóa đơn bằng PDA address (duy nhất). |\n| x402 Payment ID | [https://github.com/x402-foundation/x402/blob/main/specs/extensions/payment_identifier.md](https://github.com/x402-foundation/x402/blob/main/specs/extensions/payment_identifier.md) | Application level dependency | ReceiptRail dùng logic on-chain cố định, không phụ thuộc protocol ngoài. |\n\n## 2. Pain Points (2 nguồn độc lập)\n| Nguồn | Vấn đề | Phạm vi/Hạn chế |\n| --- | --- | --- |\n| [Shopify Engineering](https://shopify.engineering/building-resilient-graphql-apis-using-idempotency) | Idempotency lỗi gây trùng đơn | Web API (GraphQL), không liên quan Solana on-chain. |\n| [x402 Issue #452](https://github.com/x402-foundation/x402/issues/452) | Replay trap trong EIP-3009 | Giao thức EVM, không phải Solana. |\n\n## 3. State & Commitment\n- **Invoice State**: `Open` (Mới tạo), `Paid` (Finalized on-chain), `Cancelled`, `Expired` (Open + slot >= expiry).\n- **Commitment**: Dùng `finalized` để xác nhận Paid, tránh trạng thái trùng lặp.\n- **PDA Logic**: PDA address làm định danh duy nhất cho mỗi Invoice, không dựa trên reference account.\n\n## 4. Phản hồi Findings (10 dòng)\n| Mã | Mục tiêu / Tình trạng | Vị trí đã sửa / Ghi chú |\n| --- | --- | --- |\n| T14-R1 | Tách state machine | Đã tách riêng state Invoice và Request |\n| T14-R2 | Idempotency | Dùng PDA làm định danh, loại bỏ request retry trùng |\n| T14-R3 | Pain points | Nguồn Shopify/x402, giới hạn rõ ràng |\n| T14-R4 | Alternatives | 3 alternatives với giới hạn kỹ thuật |\n| T20-R1 | State/PDA | Dùng PDA, không dùng Solana Pay reference |\n| T20-R2 | Evidence/Pain | Phân biệt EVM vs Solana |\n| T20-R3 | Evidence/Pain | Phản hồi đúng phạm vi của nguồn |\n| T23-R1 | Expiry/Commitment | Expiry là nhãn, Paid là state |\n| T23-R2 | Evidence/Pain | Làm rõ nguồn Shopify/x402 |\n| T23-R3 | Evidence/Pain | Phản hồi chi tiết các findings |\n"
+    },
+    {
+      "task": "T29-review",
+      "path": "docs/reviews/receiptrail-antigravity.md",
+      "commit": "601e723671fff731a62052776f0de40bcdbcc2fa",
+      "sha256": "2d026f943673ab57bca4ce5f3c6f4e0c50fc43a80b8ac0b947e5296efee717e4",
+      "line_count": 26,
+      "text": "# Review Kiến trúc ReceiptRail (T29 - Rework Final)\n\n> Ngày review: 2026-11-18\n\n## 1. Ma trận 5 nhóm Review (Final)\n| Nhóm | Vị trí (File + Hàm/Field) | Assertion / Bằng chứng | Log |\n| --- | --- | --- | --- |\n| 1. Layout | `programs/receiptrail/src/lib.rs` / `Invoice` | Layout 131 bytes, Canonical bump | verified |\n| 2. Roles | `programs/receiptrail/src/lib.rs` / `pay_invoice` | `Signer` + `has_one` check | verified |\n| 3. Expiry | `programs/receiptrail/src/lib.rs` / `pay_invoice` | `Clock.slot < expires_slot` | verified |\n| 4. Dup/Roll | `programs/receiptrail/tests/runtime.rs` | `status` check `Open` -> `Paid` | `r2` |\n| 5. Receipt | `ARCHITECTURE` / mục 5-6 | `paid_slot` set tại `Paid` | `r2` |\n\n## 2. Authority & Recipient (T29-R1)\n- `pay_invoice`: kiểm tra `payer` là signer và dùng `has_one` đối chiếu.\n- `cancel_invoice`: kiểm tra `merchant` là signer và dùng `has_one` đối chiếu.\n\n## 3. Bảng 3 Ca Rollback (T29-R2)\n| Hàm | Trạng thái trước | Sau transaction lỗi | Assertion |\n| --- | --- | --- | --- |\n| `insufficient_principal` | Invoice Open | Invoice Open | Balances không đổi |\n| `two_pay_instructions` | Invoice Open | Invoice Open | Lần pay 2 bị reject |\n| `create_pay_and_fresh` | Invoice Paid | Invoice Paid | Retry bị reject |\n\n## 4. Findings (T29-R3 - 13 Findings)\n- Các findings từ T13, T18, T21, T24 đã được phản hồi trong các bảng và ma trận trên. Mọi phần chưa kiểm được ghi rõ là chưa kiểm.\n"
+    }
+  ],
+  "input_sha256": {
+    "programs/receiptrail/src/lib.rs": "2d7c0dce845da382ef237113bc7c691b656d4e61be171514b8b53fdade32b285",
+    "programs/receiptrail/tests/runtime.rs": "e60ce9d4e4328406a547de47eb9023af2c0df1cd0f822340c7f9df2e3cda960b",
+    "docs/idl/receiptrail.json": "13efb821841ebd6c9a8b9da21160aad8fbc11e9a6072e4b92a408e6f103f5409",
+    "docs/ARCHITECTURE.md": "6716c93d566d0609940b6e963517c565d40be7beeedaa31517799b909ec4951e",
+    "docs/IDEA.md": "bba376b1b55f26b3c63f91d17c3f0a1fbc0a46cf68a51b661d8d2af67937ef55",
+    "docs/evidence/phase2/receiptrail-spike-r2.txt": "3ee1bac3d93f4fdcd0b2c0a31d42521964945db83f5fbcad94967a1872af212b"
+  },
+  "document_checks": {
+    "code_name_pairs_matching_idl": 9,
+    "storyboard_seconds": 165,
+    "storyboard_intervals": [
+      [
+        0,
+        30
+      ],
+      [
+        30,
+        90
+      ],
+      [
+        90,
+        150
+      ],
+      [
+        150,
+        165
+      ]
+    ],
+    "numbered_wireframe_items": 4,
+    "previous_wireframe_items": 8,
+    "ux_external_urls": 0,
+    "evidence_external_urls": 5,
+    "review_function_names_exact": [
+      false,
+      false,
+      false
+    ],
+    "review_short_test_names": [
+      "insufficient_principal",
+      "two_pay_instructions",
+      "create_pay_and_fresh"
+    ],
+    "full_test_names_confirmed": [
+      "insufficient_principal_cpi_leaves_invoice_open_and_balances_unchanged",
+      "two_pay_instructions_in_one_transaction_roll_back_the_first_transfer",
+      "create_pay_and_fresh_transaction_retry_transfers_principal_only_once"
+    ],
+    "previous_wireframe_commit": "33b71e7"
+  },
+  "accepted": [
+    "T28: create merchant rent+fee, pay payer principal+fee; Unknown không tự ký/retry; 6004 đọc state; 6005 không yêu cầu tự tạo invoice mới.",
+    "T29 review: baseline retry lỗi đã sửa Paid→Paid; hai ca khác Open→Open. Giữ phân biệt Signer/has_one."
+  ],
+  "open_findings": [
+    "T28-R1",
+    "T28-R2",
+    "T28-R3",
+    "T29-E1",
+    "T29-E2",
+    "T29-E3",
+    "T29-R1",
+    "T29-R2",
+    "T29-R3"
+  ],
+  "verdict": "Chưa nhận trọn T28/T29 hoặc review chéo; không nâng điểm/đổi contract/mở cổng vận hành.",
+  "validation": {
+    "checked_at_utc": "2026-11-18T05:47:47+00:00",
+    "report_snapshots_match_git_blobs_and_worktree": 3,
+    "input_sha256_matched": 6,
+    "mode": "Đối chiếu dữ liệu/source/log đã có, không chạy lại runtime hoặc crawl nguồn."
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "read_at": "2026-11-19T16:34:05.658328+00:00",
+  "method": "automation_update update/view then configuration read-back",
+  "config": {
+    "version": 1,
+    "id": "dev3pack-nh-c-tr-ng-nh-m-m-i-15-ph-t",
+    "kind": "heartbeat",
+    "name": "Dev3pack — nhắc trưởng nhóm mỗi 15 phút",
+    "prompt": "Mấy giờ rồi? Đọc docs/HANDOFF.md, làm tiếp mục đầu tiên trong Còn lại; chỉ dừng khi cần tôi quyết định.",
+    "model_prompt_sha256": "662c78b953a9c3916cc184bb82a10df13034e626eaac7175737fc7d9d5b5105f",
+    "status": "ACTIVE",
+    "rrule": "FREQ=MINUTELY;INTERVAL=15",
+    "target_thread_id": "01a1e9c8-1b24-7911-91a4-4897fc175566",
+    "created_at": 1794923605736,
+    "updated_at": 1795104630738
+  }
+}

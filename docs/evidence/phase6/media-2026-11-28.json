@@ -1,0 +1,32 @@
+{
+  "file": "demo/receiptrail-demo.mp4",
+  "sha256": "5297b952727fd149b7930cc9626f830aec0dc8577d4d5c8abc6ed7fa5869170c",
+  "streams": [
+    {
+      "codec_name": "h264",
+      "codec_type": "video",
+      "width": 1280,
+      "height": 720,
+      "duration": "112.640000"
+    },
+    {
+      "codec_name": "aac",
+      "codec_type": "audio",
+      "channels": 1,
+      "duration": "112.661333"
+    }
+  ],
+  "seconds": 112.661333,
+  "bytes": 2961563,
+  "fullDecode": "ffmpeg -v error -xerror -i demo/receiptrail-demo.mp4 -f null - (exit 0)",
+  "source": "Headless Chromium Wallet Standard flow, actual devnet transfers. Locally generated English voice and burned-in English captions. Network wait edited.",
+  "images": {
+    "01-live.png": "6f164ebbb953317812453bab81d09fa341261fcd6529f90838479093e132fadd",
+    "02-create.png": "00d39a58c36ec95501655cf92e135759e46ecd23bdc4f0b3598518f4902c2213",
+    "03-unknown.png": "3a01e6798330d2355270b82e50766568205aef5836ee9e914316061583f0c36c",
+    "04-paid.png": "1020c0a5d48e7b0453708fe633517e59537667e72f94d2d0eb6fc3c36726df30",
+    "05-retry.png": "1aaf86dd74a4e69f19b3176de6cc183b2c547dc6253d5fc3458595c9878580e0",
+    "06-architecture.png": "4d48e4d39338b78c50c998d2264c9da9d3104447371aa4039cefb1f2c59f406d",
+    "cover.png": "ad4164188fa41a0820a28a5bd28f340754c853f4e43907095813ed5a7ce05053"
+  }
+}

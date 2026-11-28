@@ -1,0 +1,6 @@
+
+removed 2 packages, changed 1 package, and audited 232 packages in 856ms
+
+found 0 vulnerabilities
+
+exit_code=0

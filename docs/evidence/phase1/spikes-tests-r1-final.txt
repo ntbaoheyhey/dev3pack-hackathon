@@ -1,0 +1,24 @@
+✔ raw layout retains u64 precision, authorities, cap and epoch schedule (1.717375ms)
+✔ owner, executable, initialized, COption, padding and account type are checked (0.371334ms)
+✔ unknown or hook extensions never return an optimistic quote (0.169959ms)
+✔ truncated/duplicate TLVs and hidden data after zero marker are rejected (0.1895ms)
+✔ missing fees, malformed fee values and reversed fee epochs are rejected (0.151458ms)
+✔ snapshot must be monotonic and within one epoch, and reject rounded RPC numbers (0.143583ms)
+✔ captured devnet bytes give independently calculated fee-only quote with address retained (3.372417ms)
+✔ base58 known vectors, including leading zeros (0.743208ms)
+✔ loader validates type/length/owner/executable, extracts pointer (0.439083ms)
+✔ ProgramData metadata and payload hashes distinguish upgrade from code (0.400125ms)
+✔ missing manifest/IDL never becomes ABI verification (0.129958ms)
+✔ rounding, max cap, zero and integer precision counterexamples (0.193167ms)
+✔ invalid/overflow input rejected, no silent Number coercion (0.1465ms)
+✔ epoch switch uses newer epoch, not older epoch (0.069583ms)
+✔ binary-search quote agrees with upstream inverse formula over 5,940 cases (40.010291ms)
+✔ independent brute-force enumeration proves minimal gross on small domain (6.272625ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 16
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 119.164667

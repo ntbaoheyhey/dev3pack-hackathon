@@ -1,0 +1,448 @@
+{
+  "address": "8NGSPufBmGB1oHqaZpY1jhJYz1X4gqFiNXCQmxfapYko",
+  "metadata": {
+    "name": "receiptrail",
+    "version": "0.1.0",
+    "spec": "0.1.0",
+    "description": "ReceiptRail Phase 2 local-only Anchor spike"
+  },
+  "instructions": [
+    {
+      "name": "cancel_invoice",
+      "discriminator": [
+        88,
+        158,
+        54,
+        49,
+        53,
+        26,
+        92,
+        68
+      ],
+      "accounts": [
+        {
+          "name": "invoice",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  105,
+                  110,
+                  118,
+                  111,
+                  105,
+                  99,
+                  101,
+                  45,
+                  118,
+                  49
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "invoice.merchant",
+                "account": "Invoice"
+              },
+              {
+                "kind": "account",
+                "path": "invoice.invoice_id",
+                "account": "Invoice"
+              }
+            ]
+          }
+        },
+        {
+          "name": "merchant",
+          "signer": true,
+          "relations": [
+            "invoice"
+          ]
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "create_invoice",
+      "discriminator": [
+        154,
+        170,
+        31,
+        135,
+        134,
+        100,
+        156,
+        146
+      ],
+      "accounts": [
+        {
+          "name": "merchant",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "invoice",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  105,
+                  110,
+                  118,
+                  111,
+                  105,
+                  99,
+                  101,
+                  45,
+                  118,
+                  49
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "merchant"
+              },
+              {
+                "kind": "arg",
+                "path": "invoice_id"
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "invoice_id",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        },
+        {
+          "name": "payer",
+          "type": "pubkey"
+        },
+        {
+          "name": "amount_lamports",
+          "type": "u64"
+        },
+        {
+          "name": "expires_slot",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "pay_invoice",
+      "discriminator": [
+        104,
+        6,
+        62,
+        239,
+        197,
+        206,
+        208,
+        220
+      ],
+      "accounts": [
+        {
+          "name": "invoice",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  105,
+                  110,
+                  118,
+                  111,
+                  105,
+                  99,
+                  101,
+                  45,
+                  118,
+                  49
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "invoice.merchant",
+                "account": "Invoice"
+              },
+              {
+                "kind": "account",
+                "path": "invoice.invoice_id",
+                "account": "Invoice"
+              }
+            ]
+          }
+        },
+        {
+          "name": "payer",
+          "writable": true,
+          "signer": true,
+          "relations": [
+            "invoice"
+          ]
+        },
+        {
+          "name": "merchant",
+          "writable": true,
+          "relations": [
+            "invoice"
+          ]
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": []
+    }
+  ],
+  "accounts": [
+    {
+      "name": "Invoice",
+      "discriminator": [
+        51,
+        194,
+        250,
+        114,
+        6,
+        104,
+        18,
+        164
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "InvoiceCancelled",
+      "discriminator": [
+        62,
+        68,
+        182,
+        115,
+        197,
+        226,
+        135,
+        244
+      ]
+    },
+    {
+      "name": "InvoiceCreated",
+      "discriminator": [
+        189,
+        114,
+        235,
+        219,
+        193,
+        125,
+        47,
+        54
+      ]
+    },
+    {
+      "name": "InvoicePaid",
+      "discriminator": [
+        200,
+        211,
+        168,
+        170,
+        46,
+        82,
+        83,
+        186
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "InvalidAmount",
+      "msg": "Invoice amount must be positive"
+    },
+    {
+      "code": 6001,
+      "name": "InvalidExpiry",
+      "msg": "Expiry must be a future slot"
+    },
+    {
+      "code": 6002,
+      "name": "InvalidWallet",
+      "msg": "Wallet must be a nonzero system wallet without data"
+    },
+    {
+      "code": 6003,
+      "name": "AliasedRoles",
+      "msg": "Payer, merchant and invoice must be distinct"
+    },
+    {
+      "code": 6004,
+      "name": "InvoiceNotOpen",
+      "msg": "Invoice is already paid or cancelled"
+    },
+    {
+      "code": 6005,
+      "name": "InvoiceExpired",
+      "msg": "Invoice has expired"
+    },
+    {
+      "code": 6006,
+      "name": "WrongPayer",
+      "msg": "Signer is not the payer named on this invoice"
+    },
+    {
+      "code": 6007,
+      "name": "WrongMerchant",
+      "msg": "Merchant does not match this invoice"
+    },
+    {
+      "code": 6008,
+      "name": "WrongVersion",
+      "msg": "Unsupported invoice version"
+    }
+  ],
+  "types": [
+    {
+      "name": "Invoice",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "version",
+            "type": "u8"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "merchant",
+            "type": "pubkey"
+          },
+          {
+            "name": "payer",
+            "type": "pubkey"
+          },
+          {
+            "name": "invoice_id",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "amount_lamports",
+            "type": "u64"
+          },
+          {
+            "name": "expires_slot",
+            "type": "u64"
+          },
+          {
+            "name": "status",
+            "type": "u8"
+          },
+          {
+            "name": "paid_slot",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "InvoiceCancelled",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "invoice",
+            "type": "pubkey"
+          },
+          {
+            "name": "merchant",
+            "type": "pubkey"
+          },
+          {
+            "name": "cancelled_slot",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "InvoiceCreated",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "invoice",
+            "type": "pubkey"
+          },
+          {
+            "name": "merchant",
+            "type": "pubkey"
+          },
+          {
+            "name": "payer",
+            "type": "pubkey"
+          },
+          {
+            "name": "invoice_id",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "amount_lamports",
+            "type": "u64"
+          },
+          {
+            "name": "expires_slot",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "InvoicePaid",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "invoice",
+            "type": "pubkey"
+          },
+          {
+            "name": "payer",
+            "type": "pubkey"
+          },
+          {
+            "name": "amount_lamports",
+            "type": "u64"
+          },
+          {
+            "name": "paid_slot",
+            "type": "u64"
+          }
+        ]
+      }
+    }
+  ]
+}

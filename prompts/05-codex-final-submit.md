@@ -1,6 +1,8 @@
 # Prompt 05 — Codex: hoàn thành ReceiptRail và chuẩn bị bộ nộp bài (28–29/11/2026)
 
 > Người dùng dán nguyên văn toàn bộ file này vào chat Codex, bật **Goal mode**. Prompt được viết ngày 28/11/2026 theo yêu cầu của người dùng.
+>
+> **Hạn nộp là 14:00 Chủ nhật 29/11/2026, giờ Việt Nam (07:00 UTC).** Giao bộ nộp sớm lúc 23:30 tối 28/11. Dành 6 giờ sáng hôm sau để hoàn thiện trải nghiệm và bàn giao bản cuối chậm nhất 11:30.
 
 ---
 
@@ -10,13 +12,17 @@ Yêu cầu gốc của người dùng (nguyên văn, trong project chat với Cl
 
 > context là mai mình không rảnh, nên giờ bạn cần viết một big prompt để codex tự hoàn thành tất cả mọi thứ nhé, ra sản phẩm để mình đem nộp luôn
 
+Người dùng cập nhật hạn nộp trong chat Codex. Tin nhắn được ghi lúc **18:01:58.786 ngày 28/11/2026 (UTC+7)**.
+
+> hạn cuối nộp là 14h chiều mai, điều chỉnh thời gian cho phù hợp nhé, prompt cụ thể chưa chỉnh. chỉnh để có thêm thời gian chỉnh chủ sản phẩm
+
 Việc người dùng tự dán Prompt 05 vào chat này là lời giao việc cho phạm vi ở **mục 3**. Ghi vào `docs/ideas/DECISION.md`: câu nguyên văn trên (nguồn: project chat với Claude), và "Người dùng dán Prompt 05 vào chat Codex" kèm **giờ log thật** của message dán prompt (lấy từ log, không tự đặt giờ). Không viết thêm câu nào như thể người dùng đã nói. Không suy quyền ngoài mục 3.
 
 Người dùng sẽ không có mặt ngày 29/11, nên mọi lựa chọn trong phạm vi mục 3 Codex tự quyết và ghi lý do; không chờ câu trả lời.
 
 ---
 
-## 1. Việc đầu tiên, trước mọi thứ khác (≤ 15 phút)
+## 1. Khởi động ngay khi nhận việc
 
 1. **Tự nhắc mỗi 15 phút.** Tạm dừng automation cũ của Mission 01 (`dev3pack-bu-i-h-c-nghi-n-c-u-m-i-15-ph-t`) nếu còn chạy. Tạo script mỗi 15 phút nhắn thẳng vào **chính chat này** hỏi mấy giờ rồi, kèm câu: "Mấy giờ rồi? Đọc Thẻ nhớ trong docs/HANDOFF.md, git fetch, làm tiếp mục đầu tiên trong Còn lại của Prompt 05." Đọc lại cấu hình, ghi tên/ID và trạng thái ACTIVE vào Thẻ nhớ. Chưa thấy ACTIVE thì chưa làm bước 2. Chỉ tắt ở mục 5.7.
 2. **Đồng bộ repo.** Codex đang ở `/Users/bao/Documents/ChatGPT/dev3pack`, nhánh `codex/mission-01-research`, có file chưa commit.
@@ -24,7 +30,7 @@ Người dùng sẽ không có mặt ngày 29/11, nên mọi lựa chọn trong 
    - `git checkout work && git fetch origin && git merge --ff-only origin/work`.
    - Antigravity có 2 commit docs chưa push ở `/Users/bao/Documents/dev3pack-hackathon` nhánh `work` (`bc73c65`, `58b4e00`). Lấy về: `git fetch /Users/bao/Documents/dev3pack-hackathon work` rồi merge; xung đột thì giữ cả hai bên.
    - Chạy test hiện có một lần để biết điểm xuất phát (`bash scripts/check-receiptrail.sh`, `bash scripts/check-receiptrail-client.sh`, `cd apps/web && npm test && npm run build`). Ghi kết quả vào Thẻ nhớ.
-3. **Thẻ nhớ mới.** Viết lại đầu `docs/HANDOFF.md`: Thẻ nhớ ≤ 20 dòng cho Prompt 05 (mục tiêu, giờ mốc, phạm vi mục 3, automation ID, commit hiện tại) + danh sách **Còn lại** = các bước của mục 5 theo thứ tự. Chuyển Thẻ nhớ Mission 01 vào `docs/archive/`. Trạng thái `đang làm`.
+3. **Thẻ nhớ mới.** Viết lại đầu `docs/HANDOFF.md`: Thẻ nhớ ≤ 20 dòng cho Prompt 05 (mục tiêu, giờ mốc, phạm vi mục 3, automation ID, commit hiện tại) + danh sách **Còn lại** theo thứ tự thời gian trong bảng mục 5. Chuyển Thẻ nhớ Mission 01 vào `docs/archive/`. Trạng thái `đang làm`.
 
 ## 2. Điểm xuất phát (đã kiểm ngày 28/11)
 
@@ -60,29 +66,33 @@ Người dùng sẽ không có mặt ngày 29/11, nên mọi lựa chọn trong 
 - **Tự quyết trong phạm vi mục 3** theo hướng "nộp được, đúng sự thật, đơn giản"; ghi lựa chọn + lý do 1 dòng vào DEVLOG. Việc ngoài phạm vi thì đưa vào checklist người dùng và làm tiếp phần khác. Gặp chặn thì ghi vào "Bị chặn", **làm tiếp mọi việc khác**, dùng phương án dự phòng (mục 7).
 - **Không vòng review dài.** Mỗi việc tự review đúng 1 lượt, sửa, đi tiếp. Không viết note học dài; cần tra API thì đọc docs/source, ghi 3–5 dòng vào note liên quan.
 - **Không quay lại nghiên cứu.** Không Mission 01, không chấm lại ý tưởng, không ClusterProof.
-- **Cắt phạm vi thay vì trễ giờ.** Ưu tiên: (1) luồng thật create → pay → retry bị chặn → đọc receipt trên devnet; (2) link live; (3) README; (4) video; (5) đẹp.
+- Ưu tiên hoàn thành một lượt create → pay → retry bị chặn → đọc receipt trên devnet, mở được qua link live. Quay luôn lượt chạy đạt để tối 28/11 đã có video cho bộ nộp sớm. Dành thời gian bổ sung cho những chỗ người dùng dễ trả nhầm, bỏ cuộc hoặc khó kiểm chứng biên nhận.
 - **Viết tiếng Việt có dấu cách bình thường**, không viết dính chữ kiểu "capP6riêngchưachi". README và text nộp bài viết **tiếng Anh** (giám khảo toàn cầu), có thể thêm bản tiếng Việt ngắn.
 - **Commit nhỏ, push sau mỗi mốc** lên `work`. Commit code cuối không dùng `[skip ci]`.
 - Sau compact hoặc khi tin tự nhắc tới: đọc Thẻ nhớ, `git fetch`, làm tiếp mục đầu tiên trong Còn lại. Compact không phải lý do dừng. Không ghi "tạm dừng".
 - Mỗi lần dừng/quên mới: thêm 1 dòng vào `docs/STOP-CAUSES.md`.
 - Antigravity **không tham gia** đợt này (người dùng không có mặt để dán prompt cho A). Không chờ, không giao việc cho A.
 
-## 5. Kế hoạch giờ (UTC+7) — mốc cứng
+## 5. Lịch làm việc và bàn giao (giờ Việt Nam, UTC+7)
 
-Hạn nộp chính thức: **Chủ nhật 29/11/2026**; FAQ (kiểm 28/11) nói giờ UTC chính xác chỉ có trong dashboard, mà dashboard cần đăng nhập. Vì vậy tính hạn **sớm nhất có thể là 29/11 07:00 UTC+7** (= 00:00 UTC). Bộ nộp phải xong trước đó.
+Hạn nộp người dùng cung cấp là **14:00 ngày 29/11/2026**, tức **07:00 UTC cùng ngày**. Bàn giao bản cuối **chậm nhất 11:30** để người dùng có 2 giờ 30 phút cho việc tải video, điền form và xử lý sự cố. Các khung dưới là ngân sách thời gian. Xong sớm thì chuyển ngay sang việc kế tiếp.
 
-| Mốc | Việc | Xong khi |
-| --- | --- | --- |
-| **18:00–18:30** | Mục 1 + tag (5.0) | Tự nhắc ACTIVE; `work` đồng bộ; tag `hackathon-start` đã push |
-| **18:30–22:00** | 5.1 Adapter devnet + UI thật | Tests mới xanh; trên localhost tạo/trả/đọc hóa đơn thật trên devnet |
-| **22:00–23:00** | 5.2 E2E devnet + 5.3 link live | Evidence có signatures/Explorer links; link công khai đọc được hóa đơn không cần ví |
-| **23:00–23:30** | **Mốc an toàn:** `docs/SUBMISSION.md` v1 + merge `work` → `main` | Người dùng có thể nộp ngay nếu muốn, dù video chưa có |
-| **23:30–01:00** | 5.4 README giám khảo (tiếng Anh) | README trên `main` đủ mục 5.4 |
-| **01:00–03:00** | 5.5 Video demo + ảnh | `demo/receiptrail-demo.mp4` ≤ 2:50, ảnh trong `demo/images/` |
-| **03:00–04:00** | 5.6 Bug bash + kiểm cuối | Checklist 5.6 đạt hoặc ghi rõ giới hạn |
-| **04:00–04:30** | 5.7 Đóng băng | Tag `submission-v1`, `main` = bản nộp, SUBMISSION.md bản cuối, báo cáo cuối |
+| Ngày | Giờ Việt Nam | Việc | Kết quả cần có |
+| --- | --- | --- | --- |
+| 28/11 | 18:00–18:30 | Khởi động và đánh dấu đầu sự kiện (1, 5.0) | Kiểm tra tự nhắc, đồng bộ `work`, ghi kết quả test ban đầu và push tag `hackathon-start`. |
+| 28/11 | 18:30–22:00 | Hoàn thành luồng devnet qua UI (5.1) | Trên localhost tạo, trả và đọc được hóa đơn. Test adapter và ví demo đạt. |
+| 28/11 | 22:00–23:00 | Chạy E2E, mở link live và thu hình (5.2–5.3, 5.5) | Lưu invoice Paid, chữ ký và link Explorer. Mở link công khai bằng cửa sổ chưa nối ví. Lưu cảnh thật và ảnh cho bộ nộp sớm. |
+| 28/11 | 23:00–23:30 | **Bàn giao bộ nộp sớm** (5.4–5.5, 6) | Merge bản chạy được vào `main`. Gửi ngay trong chat link demo, README, nội dung form, ảnh và đường dẫn MP4 ≤ 170 giây để người dùng có thể upload và nộp tối nay. |
+| 28 → 29/11 | 23:30–01:00 | Hoàn thiện README tiếng Anh và đối chiếu bộ nộp sớm (5.4–5.5) | README đủ 9 mục, link đúng invoice trong video, phụ đề đọc được. Lưu SHA của bản đã bàn giao. |
+| 29/11 | **01:00–04:00** | **Hoàn thiện trải nghiệm thanh toán** (5.1–5.2) | Thử mất phản hồi và tải lại trang. Người trả tìm lại đúng hóa đơn, thấy Paid, phân biệt được tiền gốc với phí khi retry và mở được giao dịch trên Explorer. Sửa chỗ dễ khiến người dùng bấm trả lần nữa. |
+| 29/11 | **04:00–07:00** | **Hoàn thiện giao diện desktop và mobile** (5.3, 5.6) | Mở link như giám khảo lần đầu ở 375 px và 1440 px. Sửa chữ bị cắt, nút khó bấm, trạng thái đang tải hoặc lỗi RPC khó hiểu. Người chưa nối ví đọc được số tiền, trạng thái và bằng chứng. |
+| 29/11 | 07:00–09:00 | Chốt giao diện, dựng video và ảnh cuối (5.4–5.5) | Video có phụ đề khớp giao diện đã sửa, `ffprobe` đo ≤ 170 giây. Đủ ảnh, cover và nội dung form tiếng Anh. |
+| 29/11 | 09:00–10:45 | Chạy thử toàn bài và sửa lỗi chặn nộp (5.6) | Từ clone sạch, chạy Quick start và tests. Mở link live và Explorer, phát MP4 đến hết, thử trên hai viewport rồi kiểm lại các lỗi vừa sửa. |
+| 29/11 | **10:45–11:30** | **Đóng băng và bàn giao bản cuối** (5.7) | Chốt `main`, kiểm CI, push tag `submission-v1` và gửi `docs/SUBMISSION.md` cùng link, video, ảnh trong chat. |
+| 29/11 | 11:30–13:00 | Người dùng upload video, điền form và bấm Submit | Mục tiêu nộp trước 13:00 và lưu xác nhận. Có thể thực hiện ngay từ bộ bàn giao tối 28/11. |
+| 29/11 | 13:00–14:00 | Dự phòng cho người nộp | Còn một giờ nếu video xử lý lâu, link cần sửa hoặc form cần gửi lại. Form đóng lúc **14:00**. |
 
-Trễ mốc nào thì cắt phạm vi của mốc đó, không đẩy lùi mốc 04:30. Sau 04:30 chỉ sửa lỗi chặn nộp bài, không thêm tính năng.
+Nếu trễ, dùng phương án mục 7 và rút gọn lồng tiếng, chuyển cảnh hoặc ảnh phụ trước. Giữ bằng chứng trả tiền một lần, bộ nộp sớm và mốc 11:30. Sau 07:00 chỉ sửa sản phẩm khi lỗi cản luồng demo hoặc nộp bài. Nếu bản sửa đổi cảnh đã quay, cập nhật đúng cảnh đó và kiểm lại file xuất.
 
 ### 5.0 Tag và minh bạch trước/trong sự kiện
 
@@ -147,7 +157,7 @@ Dùng `docs/PHASE7-BUG-BASH.md`, chỉ các mục ảnh hưởng giám khảo:
 - Không có secret trong Git: tìm keypair JSON dạng mảng 64 số, `PRIVATE`, `.env` trong các commit trong sự kiện.
 - Video ≤ 170 s, mở được, nội dung thật.
 
-### 5.7 Đóng băng và bàn giao
+### 5.7 Đóng băng và bàn giao chậm nhất 11:30 ngày 29/11
 
 - Merge `work` → `main`, tag `submission-v1` trên `main`, push.
 - `docs/SUBMISSION.md` bản cuối (mục 6). Cập nhật DEVLOG, ROADMAP (trạng thái phase 6–9), Thẻ nhớ: trạng thái `xong, chờ người dùng nộp`.
@@ -164,17 +174,17 @@ Viết để người dùng chỉ cần **copy-paste**, theo 5 bước form Dev3
 4. **Team:** người dùng tự xác nhận.
 5. **Review & submit:** người dùng tự bấm.
 
-Cuối file, mục **"Việc người dùng cần làm (≈ 15 phút)"**, đánh số, ngắn:
+Cuối file, ghi các thao tác người dùng cần làm, khoảng 15 phút thao tác cộng thời gian upload và xử lý video. Có thể nộp ngay từ tối 28/11. Với bản cuối, mục tiêu là bấm Submit trước **13:00 ngày 29/11**, hạn đóng form là **14:00 giờ Việt Nam**.
 
 1. Upload `demo/receiptrail-demo.mp4` lên YouTube (Unlisted hoặc Public) hoặc Loom; copy link.
-2. Đăng nhập `hack.dev3pack.xyz`, xem **giờ UTC hạn nộp** trong dashboard.
+2. Đăng nhập `hack.dev3pack.xyz` và mở form của dự án. Mốc 14:00 giờ Việt Nam tương ứng 07:00 UTC nếu dashboard hiển thị giờ UTC.
 3. Điền form 5 bước bằng nội dung ở trên, upload ảnh, dán link video, bấm Submit, chụp màn hình xác nhận.
 4. (Tuỳ chọn) Thay `VIDEO_URL` trong README bằng link video.
 5. (Tuỳ chọn) Mở link live bằng Phantom ở devnet để tự thử 1 lần.
 
 Thêm mục **"Nếu giám khảo hỏi"**: 5 câu hỏi khó dễ gặp (vì sao không dùng DB, chống trả 2 lần thế nào, chuyện gì khi merchant tạo ID khác, rent, upgrade authority), mỗi câu trả lời 2–3 dòng tiếng Việt dễ hiểu, để người dùng tự giải thích được dự án.
 
-**Mốc an toàn 23:30:** SUBMISSION.md v1 phải có ngay cả khi video/README chưa xong (dùng link mock nếu chưa có link live), để người dùng có thể nộp sớm rồi sửa sau (form cho sửa tới hạn).
+**Mốc 23:30 tối 28/11.** Gửi `SUBMISSION.md` v1 cùng MP4 xem được, ảnh và link đã thử. Giữ lại bộ này để người dùng có thể nộp sớm ngay cả khi bản sáng hôm sau còn đang sửa. Nếu phải dùng evidence cũ hoặc link mock, ghi nhãn theo mục 7. Nếu còn thiếu video hay trường bắt buộc, gửi phần đã có đúng mốc, ghi rõ phần thiếu và bổ sung ngay khi xong.
 
 ## 7. Dự phòng khi bị chặn
 

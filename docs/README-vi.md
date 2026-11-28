@@ -1,0 +1,68 @@
+> Bản README tiếng Việt lưu trước lần tích hợp devnet trong sự kiện. Xem [README hiện hành](../README.md) để mở bản nộp và các bằng chứng mới.
+
+# ReceiptRail — Dev3pack Hackathon 2026
+
+ReceiptRail giúp người bán và người trả đọc chung trạng thái một hóa đơn SOL: sau timeout có thể kiểm tra lại, và cùng hóa đơn không chuyển tiền gốc lần thứ hai dù gửi transaction mới. Người dùng chọn **“ReceiptRail chính, ClusterProof phụ” lúc 00:07 ngày 18/11/2026 UTC+7**; [DECISION](ideas/DECISION.md) ghi nguyên văn, giờ và đính chính kết luận cũ.
+
+**Người dùng đã duyệt Phase2 ReceiptRail: “duyệt phase 2”**, log nhận09:27:18.464 ngày18/11/2026 UTC+7 (người dùng không tự nêu giờ quyết định). [IDEA](IDEA.md) · [Giải thích kiến trúc một trang](ARCHITECTURE.md#1-giải-thích-một-trang-cho-người-dùng) · [Bằng chứng local](evidence/phase2/README.md). T31/T32/T33 đã đóng sau lượt cuối, phần thiếu ở [nợ tài liệu](DOCUMENTATION-DEBT.md); giáo viên chưa có verdict. P3-A/P3-B có bằng chứng; người dùng đã mở Phase4/5 local song song ngày19/11 theo [NEXT](NEXT.md). P4-A/P4-B đã được đồng ý riêng: CI đúng pins và ReceiptRail initial deploy/smoke devnet trong1.8SOL, đúng4keys ngoài Git; [phương án](PHASE4-PLAN.md). Public/update web, cài thêm local, upgrade mới, Phase6 và mergePR7 chưa được cho phép.
+
+## ReceiptRail đã có gì
+
+| Phần | Kết quả hiện hành | Giới hạn |
+| --- | --- | --- |
+| Thiết kế | Account/PDA, create/pay/cancel, trạng thái, lỗi/events/IDL, threat model, wireframe/test plan, storyboard165giây | UI mock đã kiểm source/artifact, video diễn tập162.12s; chưa public/verdict giáo viên, nợ tài liệu giữ riêng |
+| Spike Anchor | Native SOL, invoice131bytes, điều khoản bất biến; chuyển tiền và Paid cùng transaction | Devnet đã deploy; không escrow/refund/stablecoin/x402 |
+| Kiểm thử | **32/32 runtime + 23/23 client + 7/7 deployment guards local và CI6d08e5c**, [evidence Phase4](evidence/phase4/README.md); rollback/phí, sai quyền/account, u64, expiry/lifecycle và cross-language ABI | PushCI44477944228 đủ3jobs đạt; PRrun riêng cancelled. Deploy157tx finalized/bytecode đúng; smoke5tx và duplicate simulation đạt,162tx tổng finalized/debit0.760701080SOL<cap1.8; recovery CI e9a1603 hai runs đủ3jobs. Chưa ví thật/verified build/audit độc lập |
+| IDL | [JSON generated](idl/receiptrail.json),3 instructions/1 account/3 events/9 errors; [client generated](PHASE4-CLIENT.md) + types đã bàn giao A trong T34 | A đã dùng client trongT34, C nhận phần import/parse/inspect; [8NGSP…pYko](evidence/phase4/deployment-identity.json) đã deploy. T37–T40 đã đóng;52webtests/build+16ca source+2ca slot+10ca artifact đạt local; ví thật chưa kiểm |
+| Chấm ý tưởng | [C01 r2](ideas/codex/01-receipt-rail.md): **79/100 PLAN, F3→4** nhờ spike D2 | R/D giữ4 PLAN, chưa verdict giáo viên hoặc DELIVERY |
+
+Merchant tạo hóa đơn với payer, amount và expiry. Payer ký đúng ví, program chỉ nhận Open còn hạn, chuyển SOL đúng merchant rồi ghi Paid. Merchant có thể hủy Open. Paid/Cancelled không reset/close/reopen; rent tiếp tục nằm trong account. Cơ chế chỉ chống trả lại **cùng invoice PDA**; merchant vẫn có thể tạo ID khác cho cùng đơn hàng. Receipt không chứng minh giao hàng, và vẫn có trust vào program/upgrade authority/RPC.
+
+## Tái chạy spike cục bộ
+
+Dùng bộ **đã cài**: host Rust1.100.0, platform-tools v1.57, Anchor-lang1.2.2, LiteSVM0.15.0 và dependency cache. Script thiếu binary/cache sẽ dừng; không chạy installer, build wrapper sinh signer, validator hoặc deploy.
+
+```sh
+bash scripts/check-receiptrail.sh
+bash scripts/check-receiptrail-client.sh
+```
+
+Script mặc định đường dẫn Apple Silicon của máy hiện tại; có thể trỏ `RECEIPTRAIL_HOST_TOOLS` và `RECEIPTRAIL_PLATFORM_TOOLS` tới bộ có sẵn ở máy khác. [Note023](learning/023-receiptrail-phase2-spike.md) có lệnh sinh IDL riêng và bài học. [Metadata](evidence/phase2/receiptrail-build-metadata.json) ghi hashes, versions, logs/CU/rent. R1 build+test64s/suite1.06s; r2 bằng cache3s/suite1.00s sau siết runner, cùng source/bytecode. Đây là số đo VM, không báo giá/latency mạng.
+
+[Runner Phase3 offline](../scripts/check-phase3-offline.sh) đã build hello và ReceiptRail trước workspace tests: **25 runtime + 8 client tests đạt** bằng cache macOS; hai IDL/bytecode khớp artifacts macOS cũ, Cargo.lock giữ nguyên. [Metadata local](evidence/phase3/offline-pipeline-metadata.json) giữ phạm vi ban đầu.
+
+**CI Linux đạt trên `27cf7ac`:** [PR CI](https://github.com/ntbaoheyhey/dev3pack-hackathon/actions/runs/44237534047) và [push CI](https://github.com/ntbaoheyhey/dev3pack-hackathon/actions/runs/44237529539) đều thành công cả ba jobs. Mỗi run đạt **25 runtime + 8 client + 16 research + 8 web tests**, typecheck/build, sinh hai IDL và đối chiếu ReceiptRail IDL. [Evidence từng run](evidence/phase3/ci-passed-27cf7ac.json) lưu steps/logs/hashes: Anchor1.2.2 build từ source/lock đã pin, archive SBFv1.57 qua SHA256 trước giải nén. Hai run có cùng bytecode hashes, khác snapshot macOS; chưa chứng nhận reproducible build. Lịch sử [attestation403/cancellation](evidence/phase3/ci-resumed-7210aa6.json) và [installer SBF lỗi ở b906a37](evidence/phase3/ci-anchor-source-b906a37.json) được giữ riêng.
+
+P3-A/P3-B được đồng ý riêng bằng **“Đồng ý cả hai”**, giờ log10:13:11.851 ngày18/11 UTC+7. [Phương án Phase3](PHASE3-PLAN.md) giới hạn cài/build trên runner và hello devnet; funding đã được người dùng bổ sung. [P3-B đã kiểm](evidence/phase3/README.md): hello deploy/initialize/increment finalized, counter1, tổng giảm số dư0.651874801SOL dưới trần1.5SOL, trong đó phí0.000695000SOL. Checkpoint tài liệu/merge dùng `[skip ci]`; không gọi HEAD tài liệu có skip là một lượt CI xanh. Quyền này không mở cài thêm máy người dùng, deploy ReceiptRail hoặc public web mới.
+
+## ReceiptRail frontend local
+
+[Bản local để tự kiểm](http://127.0.0.1:4175/receiptrail/) dùng mock, không ký/gửi/RPC devnet. Source106a18e đã kiểm **52 tests, 16 ca browser + 2 ca đổi slot, 10 ca static artifact**; 0pageerror/0request ngoài localhost, video diễn tập **162.12 giây**. [Bản trình Phase5](PHASE5-PLAN.md) · [Review C r4](reviews/receiptrail-phase5-r4.md) · [Bằng chứng](evidence/phase5/c-prompt04-review-2026-11-19/README.md).
+
+Artifact riêng chỉ ReceiptRail ở root: từ apps/web chạy npm run build:receiptrail-mock bằng cache. [Source/output/archive hashes](evidence/phase5/mock-artifact-2026-11-20/artifact.json). Chưa có Site/URL ReceiptRail công khai; [Phase6 plan](PHASE6-PLAN.md) đề xuất cap0.05SOL, chưa quyền chi. Ví extension và thiết bị thật còn chưa kiểm. [README giám khảo](README-JUDGES-DRAFT.md), [nháp video165s](DEMO-165S-DRAFT.md) và [bug bash](PHASE7-BUG-BASH.md) là phần chuẩn bị Phase6–7, chưa mở phase thật.
+
+## ClusterProof dự phòng và lịch sử lab
+
+[IDEA ClusterProof](IDEA-clusterproof-draft.md)/[ARCHITECTURE ClusterProof](ARCHITECTURE-clusterproof-draft.md) giữ nhãn **“dự phòng, chưa duyệt”**. Source, toolchain, lab và [web công khai hiện có](https://clusterproof-devnet-17nov26.anthony-robinson-125.chatgpt.site) được giữ nguyên. [Wallet lab](https://clusterproof-devnet-17nov26.anthony-robinson-125.chatgpt.site/lab/) chỉ connect/disconnect, không ký/gửi; Core discovery/request đã quan sát, connect/disconnect thật còn chưa kiểm.
+
+Logs lịch sử [Phase3](evidence/phase3) ghi hello6/client8/web8 tests local, generated IDL và web build/browser. Hello counter ID [`2yzxUQEpaeLmgCMhDipwnVL3DHsxez18KcePonqZRiXL`](https://explorer.solana.com/address/2yzxUQEpaeLmgCMhDipwnVL3DHsxez18KcePonqZRiXL?cluster=devnet) đã deploy và smoke finalized theo [báo cáo P3-B](evidence/phase3/README.md); không là program sản phẩm ReceiptRail. Preflight0SOL buổi sáng là lịch sử. CI bị Billing & plans chặn là lịch sử; kết quả Linux mới được tách theo revision/run ở trên. Các kết quả này không được dùng thay evidence ReceiptRail. [Audit Prompt03](reviews/prompt03-audit.md) tách phần đã nộp khỏi các cổng còn mở.
+
+## Công việc trước sự kiện và trong hackathon
+
+Mốc phân chia là tag **hackathon-start**, sẽ tạo lúc mở màn27/11/2026; chưa tạo trước sự kiện.
+
+### Trước 27/11/2026
+
+- Notes, RUBRICv1.2, shortlist/nguồn và lựa chọn ReceiptRail chính/ClusterProof phụ; sửa hồ sơ lựa chọn/duyệt sai.
+- Spike/parser/read-only C02/C03; toolchain, hello lab, client và web nền ClusterProof từ template chính thức.
+- ReceiptRail Phase2: IDEA/ARCHITECTURE, Anchor spike/19 tests, generated IDL, demo165giây trên giấy, crawl/UX/review giao A.
+- Phase4: runtime32/client23/guards7 và CI triểnkhai/recoveryđạt; P4-B hoàn tất162tx finalized, debit0.760701080SOL<cap1.8. [Kết quả](PHASE4-RESULT.md). Phase5:T34–T40đóng,52webtests/build+16ca source+2ca slot+10ca artifact đạt; video diễn tập162.12s. Chưa public/Phase6 thật.
+- Commits và giới hạn ở [DEVLOG](DEVLOG.md), [ROADMAP](ROADMAP.md), [cổng duyệt](reviews/phase1-3-gates.md).
+
+### Trong 27–29/11/2026
+
+Chưa có công việc trong sự kiện tại ngày20/11. Ghi tính năng/commit thực khi làm; không gọi code chuẩn bị trước là code trong hackathon.
+
+## Làm việc và license
+
+Codex trưởng nhóm/backend/reviewer; Google Antigravity trợ lý qua [A-queue](tasks/A-queue.md)/[A-done](tasks/A-done.md). Tuân [AGENTS](../AGENTS.md), [HANDOFF](HANDOFF.md). [PR#7](https://github.com/ntbaoheyhey/dev3pack-hackathon/pull/7) để review, không merge. [MIT](../LICENSE); không đổi visibility repo trong bước này.

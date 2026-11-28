@@ -1,0 +1,652 @@
+web	UNKNOWN STEP	﻿2026-11-19T07:13:30.4223201Z Current runner version: '2.338.2'
+web	UNKNOWN STEP	2026-11-19T07:13:30.4246973Z ##[group]Runner Image Provisioner
+web	UNKNOWN STEP	2026-11-19T07:13:30.4248188Z Hosted Compute Agent
+web	UNKNOWN STEP	2026-11-19T07:13:30.4248795Z Version: 20261103.629
+web	UNKNOWN STEP	2026-11-19T07:13:30.4249444Z Commit: 15dbd9ccb5dbf34fae002b6ed1a2670f52df37bc
+web	UNKNOWN STEP	2026-11-19T07:13:30.4250151Z Build Date: 2026-11-03T17:26:59Z
+web	UNKNOWN STEP	2026-11-19T07:13:30.4250795Z Worker ID: {31be03e4-a780-4403-a271-e527d567b70c}
+web	UNKNOWN STEP	2026-11-19T07:13:30.4251576Z Region: us-east-1
+web	UNKNOWN STEP	2026-11-19T07:13:30.4252117Z Cloud: AWS
+web	UNKNOWN STEP	2026-11-19T07:13:30.4252657Z ##[endgroup]
+web	UNKNOWN STEP	2026-11-19T07:13:30.4254186Z ##[group]Operating System
+web	UNKNOWN STEP	2026-11-19T07:13:30.4254997Z Ubuntu
+web	UNKNOWN STEP	2026-11-19T07:13:30.4255527Z 24.04.5
+web	UNKNOWN STEP	2026-11-19T07:13:30.4256050Z LTS
+web	UNKNOWN STEP	2026-11-19T07:13:30.4256598Z ##[endgroup]
+web	UNKNOWN STEP	2026-11-19T07:13:30.4257142Z ##[group]Runner Image
+web	UNKNOWN STEP	2026-11-19T07:13:30.4258005Z Image: ubuntu-24.04
+web	UNKNOWN STEP	2026-11-19T07:13:30.4258556Z Version: 20261111.127.1
+web	UNKNOWN STEP	2026-11-19T07:13:30.4259849Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261111.127/images/ubuntu/Ubuntu2404-Readme.md
+web	UNKNOWN STEP	2026-11-19T07:13:30.4261341Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261111.127
+web	UNKNOWN STEP	2026-11-19T07:13:30.4262314Z ##[endgroup]
+web	UNKNOWN STEP	2026-11-19T07:13:30.4263417Z ##[group]GITHUB_TOKEN Permissions
+web	UNKNOWN STEP	2026-11-19T07:13:30.4265417Z Contents: read
+web	UNKNOWN STEP	2026-11-19T07:13:30.4265964Z Metadata: read
+web	UNKNOWN STEP	2026-11-19T07:13:30.4266507Z ##[endgroup]
+web	UNKNOWN STEP	2026-11-19T07:13:30.4268918Z Secret source: Actions
+web	UNKNOWN STEP	2026-11-19T07:13:30.4269896Z Cache mode: write
+web	UNKNOWN STEP	2026-11-19T07:13:30.4270586Z Prepare workflow directory
+web	UNKNOWN STEP	2026-11-19T07:13:30.4660600Z Prepare all required actions
+web	UNKNOWN STEP	2026-11-19T07:13:30.4710540Z Getting action download info
+web	UNKNOWN STEP	2026-11-19T07:13:30.5937944Z Download action repository 'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+web	UNKNOWN STEP	2026-11-19T07:13:32.7450406Z Download action repository 'actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1' (SHA:949feb2413d6458794dcd2491c4babbbce0c15c1)
+web	UNKNOWN STEP	2026-11-19T07:13:33.0846324Z Complete job name: web
+web	UNKNOWN STEP	2026-11-19T07:13:33.1495048Z ##[group]Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+web	UNKNOWN STEP	2026-11-19T07:13:33.1496130Z with:
+web	UNKNOWN STEP	2026-11-19T07:13:33.1496570Z   persist-credentials: false
+web	UNKNOWN STEP	2026-11-19T07:13:33.1497101Z   repository: ntbaoheyhey/dev3pack-hackathon
+web	UNKNOWN STEP	2026-11-19T07:13:33.1500585Z   token: ***
+web	UNKNOWN STEP	2026-11-19T07:13:33.1501006Z   ssh-strict: true
+web	UNKNOWN STEP	2026-11-19T07:13:33.1501459Z   ssh-user: git
+web	UNKNOWN STEP	2026-11-19T07:13:33.1501919Z   clean: true
+web	UNKNOWN STEP	2026-11-19T07:13:33.1502336Z   sparse-checkout-cone-mode: true
+web	UNKNOWN STEP	2026-11-19T07:13:33.1502848Z   fetch-depth: 1
+web	UNKNOWN STEP	2026-11-19T07:13:33.1503303Z   fetch-tags: false
+web	UNKNOWN STEP	2026-11-19T07:13:33.1503735Z   show-progress: true
+web	UNKNOWN STEP	2026-11-19T07:13:33.1504178Z   lfs: false
+web	UNKNOWN STEP	2026-11-19T07:13:33.1504573Z   submodules: false
+web	UNKNOWN STEP	2026-11-19T07:13:33.1505025Z   set-safe-directory: true
+web	UNKNOWN STEP	2026-11-19T07:13:33.1505496Z   allow-unsafe-pr-checkout: false
+web	UNKNOWN STEP	2026-11-19T07:13:33.1506202Z ##[endgroup]
+web	UNKNOWN STEP	2026-11-19T07:13:36.8620991Z Syncing repository: ntbaoheyhey/dev3pack-hackathon
+web	UNKNOWN STEP	2026-11-19T07:13:36.8622648Z ##[group]Getting Git version info
+web	UNKNOWN STEP	2026-11-19T07:13:36.8623139Z Working directory is '/home/runner/work/dev3pack-hackathon/dev3pack-hackathon'
+web	UNKNOWN STEP	2026-11-19T07:13:36.8623778Z [command]/usr/bin/git version
+web	UNKNOWN STEP	2026-11-19T07:13:37.1569000Z git version 2.56.1
+web	UNKNOWN STEP	2026-11-19T07:13:37.1587807Z ##[endgroup]
+web	UNKNOWN STEP	2026-11-19T07:13:37.1594134Z Temporarily overriding HOME='/home/runner/work/_temp/737731ca-fe9c-40db-bb68-cc4f36516a74' before making global git config changes
+web	UNKNOWN STEP	2026-11-19T07:13:37.1595162Z Adding repository directory to the temporary git global config as a safe directory
+web	UNKNOWN STEP	2026-11-19T07:13:37.1598336Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/dev3pack-hackathon/dev3pack-hackathon
+web	UNKNOWN STEP	2026-11-19T07:13:37.1885104Z Deleting the contents of '/home/runner/work/dev3pack-hackathon/dev3pack-hackathon'
+web	UNKNOWN STEP	2026-11-19T07:13:37.1888463Z ##[group]Determining repository object format
+web	UNKNOWN STEP	2026-11-19T07:13:37.1889897Z ##[endgroup]
+web	UNKNOWN STEP	2026-11-19T07:13:37.1890346Z ##[group]Initializing the repository
+web	UNKNOWN STEP	2026-11-19T07:13:37.1894223Z [command]/usr/bin/git init /home/runner/work/dev3pack-hackathon/dev3pack-hackathon
+web	UNKNOWN STEP	2026-11-19T07:13:37.2327118Z hint: Using 'master' as the name for the initial branch. This default branch name
+web	UNKNOWN STEP	2026-11-19T07:13:37.2327869Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+web	UNKNOWN STEP	2026-11-19T07:13:37.2328534Z hint: to use in all of your new repositories, which will suppress this warning,
+web	UNKNOWN STEP	2026-11-19T07:13:37.2328903Z hint: call:
+web	UNKNOWN STEP	2026-11-19T07:13:37.2329520Z hint:
+web	UNKNOWN STEP	2026-11-19T07:13:37.2329960Z hint: 	git config --global init.defaultBranch <name>
+web	UNKNOWN STEP	2026-11-19T07:13:37.2330255Z hint:
+web	UNKNOWN STEP	2026-11-19T07:13:37.2330557Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+web	UNKNOWN STEP	2026-11-19T07:13:37.2331021Z hint: 'development'. The just-created branch can be renamed via this command:
+web	UNKNOWN STEP	2026-11-19T07:13:37.2331355Z hint:
+web	UNKNOWN STEP	2026-11-19T07:13:37.2331586Z hint: 	git branch -m <name>
+web	UNKNOWN STEP	2026-11-19T07:13:37.2331822Z hint:
+web	UNKNOWN STEP	2026-11-19T07:13:37.2332183Z hint: Disable this message with "git config set advice.defaultBranchName false"
+web	UNKNOWN STEP	2026-11-19T07:13:37.2336513Z Initialized empty Git repository in /home/runner/work/dev3pack-hackathon/dev3pack-hackathon/.git/
+web	UNKNOWN STEP	2026-11-19T07:13:37.2344652Z [command]/usr/bin/git remote add origin https://github.com/ntbaoheyhey/dev3pack-hackathon
+web	UNKNOWN STEP	2026-11-19T07:13:37.2383592Z ##[endgroup]
+web	UNKNOWN STEP	2026-11-19T07:13:37.2384030Z ##[group]Disabling automatic garbage collection
+web	UNKNOWN STEP	2026-11-19T07:13:37.2386085Z [command]/usr/bin/git config --local gc.auto 0
+web	UNKNOWN STEP	2026-11-19T07:13:37.2409689Z ##[endgroup]
+web	UNKNOWN STEP	2026-11-19T07:13:37.2410130Z ##[group]Setting up auth
+web	UNKNOWN STEP	2026-11-19T07:13:37.2410466Z Removing SSH command configuration
+web	UNKNOWN STEP	2026-11-19T07:13:37.2413722Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+web	UNKNOWN STEP	2026-11-19T07:13:37.2441125Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+web	UNKNOWN STEP	2026-11-19T07:13:37.6549206Z Removing HTTP extra header
+web	UNKNOWN STEP	2026-11-19T07:13:37.6554639Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+web	UNKNOWN STEP	2026-11-19T07:13:37.6590111Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+web	UNKNOWN STEP	2026-11-19T07:13:37.6735953Z Removing includeIf entries pointing to credentials config files
+web	UNKNOWN STEP	2026-11-19T07:13:37.6740966Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+web	UNKNOWN STEP	2026-11-19T07:13:37.6770287Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+web	UNKNOWN STEP	2026-11-19T07:13:37.6916704Z [command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-7683044d-35fc-41fa-b926-fe8b98983f35.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+web	UNKNOWN STEP	2026-11-19T07:13:37.6944164Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/dev3pack-hackathon/dev3pack-hackathon/.git.path /home/runner/work/_temp/git-credentials-7683044d-35fc-41fa-b926-fe8b98983f35.config
+web	UNKNOWN STEP	2026-11-19T07:13:37.6966306Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/dev3pack-hackathon/dev3pack-hackathon/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-7683044d-35fc-41fa-b926-fe8b98983f35.config
+web	UNKNOWN STEP	2026-11-19T07:13:37.6988046Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-7683044d-35fc-41fa-b926-fe8b98983f35.config
+web	UNKNOWN STEP	2026-11-19T07:13:37.7010518Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-7683044d-35fc-41fa-b926-fe8b98983f35.config
+web	UNKNOWN STEP	2026-11-19T07:13:37.7030017Z ##[endgroup]
+web	UNKNOWN STEP	2026-11-19T07:13:37.7030548Z ##[group]Fetching the repository
+web	UNKNOWN STEP	2026-11-19T07:13:37.7035177Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +29857b90983a558952a2e30fd08097fde6bb2d5a:refs/remotes/pull/7/merge
+web	UNKNOWN STEP	2026-11-19T07:13:38.1593688Z From https://github.com/ntbaoheyhey/dev3pack-hackathon
+web	UNKNOWN STEP	2026-11-19T07:13:38.1594191Z  * [new ref]         29857b90983a558952a2e30fd08097fde6bb2d5a -> pull/7/merge
+web	UNKNOWN STEP	2026-11-19T07:13:38.1597971Z ##[endgroup]
+web	UNKNOWN STEP	2026-11-19T07:13:38.1598389Z ##[group]Determining the checkout info
+web	UNKNOWN STEP	2026-11-19T07:13:38.1598848Z ##[endgroup]
+web	UNKNOWN STEP	2026-11-19T07:13:38.1604556Z [command]/usr/bin/git sparse-checkout disable
+web	UNKNOWN STEP	2026-11-19T07:13:38.1666249Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+web	UNKNOWN STEP	2026-11-19T07:13:38.1688692Z ##[group]Checking out the ref
+web	UNKNOWN STEP	2026-11-19T07:13:38.1690957Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/7/merge
+web	UNKNOWN STEP	2026-11-19T07:13:38.1906959Z Note: switching to 'refs/remotes/pull/7/merge'.
+web	UNKNOWN STEP	2026-11-19T07:13:38.1907401Z 
+web	UNKNOWN STEP	2026-11-19T07:13:38.1907847Z You are in 'detached HEAD' state. You can look around, make experimental
+web	UNKNOWN STEP	2026-11-19T07:13:38.1908323Z changes and commit them, and you can discard any commits you make in this
+web	UNKNOWN STEP	2026-11-19T07:13:38.1908757Z state without impacting any branches by switching back to a branch.
+web	UNKNOWN STEP	2026-11-19T07:13:38.1908978Z 
+web	UNKNOWN STEP	2026-11-19T07:13:38.1909649Z If you want to create a new branch to retain commits you create, you may
+web	UNKNOWN STEP	2026-11-19T07:13:38.1910144Z do so (now or later) by using -c with the switch command. Example:
+web	UNKNOWN STEP	2026-11-19T07:13:38.1910384Z 
+web	UNKNOWN STEP	2026-11-19T07:13:38.1910504Z   git switch -c <new-branch-name>
+web	UNKNOWN STEP	2026-11-19T07:13:38.1910719Z 
+web	UNKNOWN STEP	2026-11-19T07:13:38.1910849Z Or undo this operation with:
+web	UNKNOWN STEP	2026-11-19T07:13:38.1910987Z 
+web	UNKNOWN STEP	2026-11-19T07:13:38.1911100Z   git switch -
+web	UNKNOWN STEP	2026-11-19T07:13:38.1911242Z 
+web	UNKNOWN STEP	2026-11-19T07:13:38.1911445Z Turn off this advice by setting config variable advice.detachedHead to false
+web	UNKNOWN STEP	2026-11-19T07:13:38.1911740Z 
+web	UNKNOWN STEP	2026-11-19T07:13:38.1912121Z HEAD is now at 29857b9 Merge 6d08e5c2026c26e2d55285822363356a6d10fd02 into b9c91b0d0cb191e6f0aa348d0540ffa83985c908
+web	UNKNOWN STEP	2026-11-19T07:13:38.1918287Z ##[endgroup]
+web	UNKNOWN STEP	2026-11-19T07:13:38.1949710Z [command]/usr/bin/git log -1 --format=%H
+web	UNKNOWN STEP	2026-11-19T07:13:38.1967270Z 29857b90983a558952a2e30fd08097fde6bb2d5a
+web	UNKNOWN STEP	2026-11-19T07:13:38.1973653Z ##[group]Removing auth
+web	UNKNOWN STEP	2026-11-19T07:13:38.1974195Z Removing SSH command configuration
+web	UNKNOWN STEP	2026-11-19T07:13:38.1976653Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+web	UNKNOWN STEP	2026-11-19T07:13:38.1998636Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+web	UNKNOWN STEP	2026-11-19T07:13:38.2150287Z Removing HTTP extra header
+web	UNKNOWN STEP	2026-11-19T07:13:38.2153637Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+web	UNKNOWN STEP	2026-11-19T07:13:38.2189033Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+web	UNKNOWN STEP	2026-11-19T07:13:38.2319753Z Removing includeIf entries pointing to credentials config files
+web	UNKNOWN STEP	2026-11-19T07:13:38.2326479Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+web	UNKNOWN STEP	2026-11-19T07:13:38.2344909Z includeif.gitdir:/home/runner/work/dev3pack-hackathon/dev3pack-hackathon/.git.path
+web	UNKNOWN STEP	2026-11-19T07:13:38.2345540Z includeif.gitdir:/home/runner/work/dev3pack-hackathon/dev3pack-hackathon/.git/worktrees/*.path
+web	UNKNOWN STEP	2026-11-19T07:13:38.2346183Z includeif.gitdir:/github/workspace/.git.path
+web	UNKNOWN STEP	2026-11-19T07:13:38.2346574Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+web	UNKNOWN STEP	2026-11-19T07:13:38.2350778Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/dev3pack-hackathon/dev3pack-hackathon/.git.path
+web	UNKNOWN STEP	2026-11-19T07:13:38.2367642Z /home/runner/work/_temp/git-credentials-7683044d-35fc-41fa-b926-fe8b98983f35.config
+web	UNKNOWN STEP	2026-11-19T07:13:38.2375027Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/dev3pack-hackathon/dev3pack-hackathon/.git.path \/home\/runner\/work\/_temp\/git\-credentials\-7683044d\-35fc\-41fa\-b926\-fe8b98983f35\.config
+web	UNKNOWN STEP	2026-11-19T07:13:38.2398743Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/dev3pack-hackathon/dev3pack-hackathon/.git/worktrees/*.path
+web	UNKNOWN STEP	2026-11-19T07:13:38.2421185Z /home/runner/work/_temp/git-credentials-7683044d-35fc-41fa-b926-fe8b98983f35.config
+web	UNKNOWN STEP	2026-11-19T07:13:38.2427028Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/dev3pack-hackathon/dev3pack-hackathon/.git/worktrees/*.path \/home\/runner\/work\/_temp\/git\-credentials\-7683044d\-35fc\-41fa\-b926\-fe8b98983f35\.config
+web	UNKNOWN STEP	2026-11-19T07:13:38.2450568Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+web	UNKNOWN STEP	2026-11-19T07:13:38.2467252Z /github/runner_temp/git-credentials-7683044d-35fc-41fa-b926-fe8b98983f35.config
+web	UNKNOWN STEP	2026-11-19T07:13:38.2471846Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-7683044d\-35fc\-41fa\-b926\-fe8b98983f35\.config
+web	UNKNOWN STEP	2026-11-19T07:13:38.2495603Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+web	UNKNOWN STEP	2026-11-19T07:13:38.2515903Z /github/runner_temp/git-credentials-7683044d-35fc-41fa-b926-fe8b98983f35.config
+web	UNKNOWN STEP	2026-11-19T07:13:38.2520686Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-7683044d\-35fc\-41fa\-b926\-fe8b98983f35\.config
+web	UNKNOWN STEP	2026-11-19T07:13:38.2543225Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+web	UNKNOWN STEP	2026-11-19T07:13:38.2686551Z Removing credentials config '/home/runner/work/_temp/git-credentials-7683044d-35fc-41fa-b926-fe8b98983f35.config'
+web	UNKNOWN STEP	2026-11-19T07:13:38.2692983Z ##[endgroup]
+web	UNKNOWN STEP	2026-11-19T07:13:38.2890090Z ##[group]Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+web	UNKNOWN STEP	2026-11-19T07:13:38.2890503Z with:
+web	UNKNOWN STEP	2026-11-19T07:13:38.2890726Z   node-version: 24.22.2
+web	UNKNOWN STEP	2026-11-19T07:13:38.2890991Z   package-manager-cache: false
+web	UNKNOWN STEP	2026-11-19T07:13:38.2891259Z   check-latest: false
+web	UNKNOWN STEP	2026-11-19T07:13:38.2892966Z   token: ***
+web	UNKNOWN STEP	2026-11-19T07:13:38.2893211Z ##[endgroup]
+web	UNKNOWN STEP	2026-11-19T07:13:38.5356592Z Found in cache @ /opt/hostedtoolcache/node/24.22.2/x64
+web	UNKNOWN STEP	2026-11-19T07:13:40.2569298Z ##[group]Environment details
+web	UNKNOWN STEP	2026-11-19T07:13:43.3676563Z node: v24.22.2
+web	UNKNOWN STEP	2026-11-19T07:13:43.3677080Z npm: 11.19.1
+web	UNKNOWN STEP	2026-11-19T07:13:43.3677376Z yarn: 1.22.22
+web	UNKNOWN STEP	2026-11-19T07:13:43.3678330Z ##[endgroup]
+web	UNKNOWN STEP	2026-11-19T07:13:43.3789581Z ##[group]Run npm ci --ignore-scripts --no-fund
+web	UNKNOWN STEP	2026-11-19T07:13:43.3790018Z ^[[36;1mnpm ci --ignore-scripts --no-fund^[[0m
+web	UNKNOWN STEP	2026-11-19T07:13:43.5774609Z shell: /usr/bin/bash -e {0}
+web	UNKNOWN STEP	2026-11-19T07:13:43.5774911Z ##[endgroup]
+web	UNKNOWN STEP	2026-11-19T07:13:46.9890528Z npm warn deprecated @solana-program/token-2022@0.7.0: This package has been deprecated
+web	UNKNOWN STEP	2026-11-19T07:13:47.0182297Z 
+web	UNKNOWN STEP	2026-11-19T07:13:47.0183149Z added 230 packages, and audited 231 packages in 3s
+web	UNKNOWN STEP	2026-11-19T07:13:47.0187898Z 
+web	UNKNOWN STEP	2026-11-19T07:13:47.0188309Z found 0 vulnerabilities
+web	UNKNOWN STEP	2026-11-19T07:13:47.0463332Z ##[group]Run npm test
+web	UNKNOWN STEP	2026-11-19T07:13:47.0463614Z ^[[36;1mnpm test^[[0m
+web	UNKNOWN STEP	2026-11-19T07:13:47.0490073Z shell: /usr/bin/bash -e {0}
+web	UNKNOWN STEP	2026-11-19T07:13:47.0490448Z ##[endgroup]
+web	UNKNOWN STEP	2026-11-19T07:13:47.1201382Z 
+web	UNKNOWN STEP	2026-11-19T07:13:47.1201820Z > clusterproof-web@0.1.0 test
+web	UNKNOWN STEP	2026-11-19T07:13:47.1202168Z > node --test tests/*.test.mjs
+web	UNKNOWN STEP	2026-11-19T07:13:47.1202361Z 
+web	UNKNOWN STEP	2026-11-19T07:13:47.5009660Z ✔ base58 validates the decoded 32-byte address, including leading zero bytes (0.854131ms)
+web	UNKNOWN STEP	2026-11-19T07:13:47.5019978Z ✔ bad input makes no RPC request (0.661902ms)
+web	UNKNOWN STEP	2026-11-19T07:13:47.5020606Z ✔ wrong cluster stops before reading the program (23.658663ms)
+web	UNKNOWN STEP	2026-11-19T07:13:47.5021333Z ✔ successful observation uses fixed devnet RPC, confirmed reads, provenance and no writes (1.018811ms)
+web	UNKNOWN STEP	2026-11-19T07:13:47.5022034Z ✔ missing account and non-executable accounts are not successful deployment claims (1.473412ms)
+web	UNKNOWN STEP	2026-11-19T07:13:47.5022784Z ✔ malformed account, owner, slot and RPC envelopes fail closed (2.951093ms)
+web	UNKNOWN STEP	2026-11-19T07:13:47.5023646Z ✔ RPC errors, HTTP failure, throttling and network failure remain explicit (0.575177ms)
+web	UNKNOWN STEP	2026-11-19T07:13:47.5035444Z ✔ cancellation and timeout cannot yield a ready result (5.922431ms)
+web	UNKNOWN STEP	2026-11-19T07:13:47.5127400Z ℹ tests 8
+web	UNKNOWN STEP	2026-11-19T07:13:47.5128059Z ℹ suites 0
+web	UNKNOWN STEP	2026-11-19T07:13:47.5128547Z ℹ pass 8
+web	UNKNOWN STEP	2026-11-19T07:13:47.5128883Z ℹ fail 0
+web	UNKNOWN STEP	2026-11-19T07:13:47.5129269Z ℹ cancelled 0
+web	UNKNOWN STEP	2026-11-19T07:13:47.5129626Z ℹ skipped 0
+web	UNKNOWN STEP	2026-11-19T07:13:47.5129902Z ℹ todo 0
+web	UNKNOWN STEP	2026-11-19T07:13:47.5130613Z ℹ duration_ms 365.088543
+web	UNKNOWN STEP	2026-11-19T07:13:47.5264415Z ##[group]Run npm run build
+web	UNKNOWN STEP	2026-11-19T07:13:47.5264712Z ^[[36;1mnpm run build^[[0m
+web	UNKNOWN STEP	2026-11-19T07:13:47.5291624Z shell: /usr/bin/bash -e {0}
+web	UNKNOWN STEP	2026-11-19T07:13:47.5291900Z ##[endgroup]
+web	UNKNOWN STEP	2026-11-19T07:13:47.5958030Z 
+web	UNKNOWN STEP	2026-11-19T07:13:47.5958480Z > clusterproof-web@0.1.0 build
+web	UNKNOWN STEP	2026-11-19T07:13:47.5958942Z > tsc --noEmit && vite build && node scripts/static-routes.mjs
+web	UNKNOWN STEP	2026-11-19T07:13:47.5959154Z 
+web	UNKNOWN STEP	2026-11-19T07:13:48.9753573Z ^[[36mvite v8.3.8 ^[[32mbuilding client environment for production...^[[36m^[[39m
+web	UNKNOWN STEP	2026-11-19T07:13:48.9850591Z transforming...
+web	UNKNOWN STEP	2026-11-19T07:13:49.0723014Z ✓ 174 modules transformed.
+web	UNKNOWN STEP	2026-11-19T07:13:49.1002774Z rendering chunks...
+web	UNKNOWN STEP	2026-11-19T07:13:49.1343019Z computing gzip size...
+web	UNKNOWN STEP	2026-11-19T07:13:49.1378775Z dist/index.html                      0.64 kB │ gzip:  0.41 kB
+web	UNKNOWN STEP	2026-11-19T07:13:49.1379385Z dist/assets/index-CaLque8F.css       8.36 kB │ gzip:  2.70 kB
+web	UNKNOWN STEP	2026-11-19T07:13:49.1379875Z dist/assets/WalletLab-CXCN1AQg.js  211.46 kB │ gzip: 59.05 kB
+web	UNKNOWN STEP	2026-11-19T07:13:49.1380459Z dist/assets/index-BFgnk27v.js      232.49 kB │ gzip: 73.55 kB
+web	UNKNOWN STEP	2026-11-19T07:13:49.1380751Z 
+web	UNKNOWN STEP	2026-11-19T07:13:49.1389583Z ^[[32m✓ built in 162ms^[[39m
+web	UNKNOWN STEP	2026-11-19T07:13:49.1823737Z Post job cleanup.
+web	UNKNOWN STEP	2026-11-19T07:13:49.2780425Z Post job cleanup.
+web	UNKNOWN STEP	2026-11-19T07:13:49.3412210Z [command]/usr/bin/git version
+web	UNKNOWN STEP	2026-11-19T07:13:49.3440774Z git version 2.56.1
+web	UNKNOWN STEP	2026-11-19T07:13:49.3465210Z Temporarily overriding HOME='/home/runner/work/_temp/edf80e25-0cd1-444a-ad42-42a6d712f511' before making global git config changes
+web	UNKNOWN STEP	2026-11-19T07:13:49.3466407Z Adding repository directory to the temporary git global config as a safe directory
+web	UNKNOWN STEP	2026-11-19T07:13:49.3470448Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/dev3pack-hackathon/dev3pack-hackathon
+web	UNKNOWN STEP	2026-11-19T07:13:49.3494268Z Removing SSH command configuration
+web	UNKNOWN STEP	2026-11-19T07:13:49.3498588Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+web	UNKNOWN STEP	2026-11-19T07:13:49.3522462Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+web	UNKNOWN STEP	2026-11-19T07:13:49.3675648Z Removing HTTP extra header
+web	UNKNOWN STEP	2026-11-19T07:13:49.3679833Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+web	UNKNOWN STEP	2026-11-19T07:13:49.3702681Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+web	UNKNOWN STEP	2026-11-19T07:13:49.3854496Z Removing includeIf entries pointing to credentials config files
+web	UNKNOWN STEP	2026-11-19T07:13:49.3855475Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+web	UNKNOWN STEP	2026-11-19T07:13:49.3875438Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+web	UNKNOWN STEP	2026-11-19T07:13:49.4124154Z Cleaning up orphan processes
+anchor-lab	UNKNOWN STEP	﻿2026-11-19T07:13:30.4290489Z Current runner version: '2.338.2'
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:30.4320694Z ##[group]Runner Image Provisioner
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:30.4321671Z Hosted Compute Agent
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:30.4322374Z Version: 20261103.629
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:30.4323415Z Commit: 15dbd9ccb5dbf34fae002b6ed1a2670f52df37bc
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:30.4324473Z Build Date: 2026-11-03T17:26:59Z
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:30.4325387Z Worker ID: {a708421f-15fc-495f-ac98-0a8c787f9adc}
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:30.4326251Z Region: eastus
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:30.4326966Z Cloud: Azure
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:30.4327654Z ##[endgroup]
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:30.4329679Z ##[group]Operating System
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:30.4330689Z Ubuntu
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:30.4331363Z 24.04.5
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:30.4332053Z LTS
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:30.4332763Z ##[endgroup]
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:30.4333644Z ##[group]Runner Image
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:30.4334500Z Image: ubuntu-24.04
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:30.4335221Z Version: 20261111.370.1
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:30.4336863Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261111.370/images/ubuntu/Ubuntu2404-Readme.md
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:30.4338967Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261111.370
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:30.4340276Z ##[endgroup]
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:30.4341570Z ##[group]GITHUB_TOKEN Permissions
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:30.4344287Z Contents: read
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:30.4344980Z Metadata: read
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:30.4345836Z ##[endgroup]
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:30.4348260Z Secret source: Actions
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:30.4349503Z Cache mode: write
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:30.4350370Z Prepare workflow directory
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:30.4787369Z Prepare all required actions
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:30.4843091Z Getting action download info
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:30.6401066Z Download action repository 'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:31.0806735Z Download action repository 'actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1' (SHA:949feb2413d6458794dcd2491c4babbbce0c15c1)
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:31.2528477Z Complete job name: anchor-lab
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:31.3343018Z ##[group]Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:31.3344242Z with:
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:31.3344657Z   persist-credentials: false
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:31.3345152Z   repository: ntbaoheyhey/dev3pack-hackathon
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:31.3348443Z   token: ***
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:31.3348827Z   ssh-strict: true
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:31.3349216Z   ssh-user: git
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:31.3349583Z   clean: true
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:31.3349975Z   sparse-checkout-cone-mode: true
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:31.3350579Z   fetch-depth: 1
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:31.3350987Z   fetch-tags: false
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:31.3351479Z   show-progress: true
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:31.3351887Z   lfs: false
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:31.3352256Z   submodules: false
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:31.3352655Z   set-safe-directory: true
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:31.3353097Z   allow-unsafe-pr-checkout: false
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:31.3353953Z env:
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:31.3354323Z   CARGO_TERM_COLOR: never
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:31.3354738Z ##[endgroup]
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:31.5796576Z Syncing repository: ntbaoheyhey/dev3pack-hackathon
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:31.5798488Z ##[group]Getting Git version info
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:31.5799595Z Working directory is '/home/runner/work/dev3pack-hackathon/dev3pack-hackathon'
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:31.5801083Z [command]/usr/bin/git version
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:31.5869200Z git version 2.56.1
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:31.5889798Z ##[endgroup]
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:31.5899888Z Temporarily overriding HOME='/home/runner/work/_temp/6c62845c-3165-46e1-8219-cdefbf12b647' before making global git config changes
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:31.5902057Z Adding repository directory to the temporary git global config as a safe directory
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:31.5910575Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/dev3pack-hackathon/dev3pack-hackathon
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:31.5947534Z Deleting the contents of '/home/runner/work/dev3pack-hackathon/dev3pack-hackathon'
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:31.5950648Z ##[group]Determining repository object format
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:31.5951935Z ##[endgroup]
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:31.5953459Z ##[group]Initializing the repository
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:31.5956272Z [command]/usr/bin/git init /home/runner/work/dev3pack-hackathon/dev3pack-hackathon
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:31.6070577Z hint: Using 'master' as the name for the initial branch. This default branch name
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:31.6072209Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:31.6073753Z hint: to use in all of your new repositories, which will suppress this warning,
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:31.6075140Z hint: call:
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:31.6075967Z hint:
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:31.6076822Z hint: 	git config --global init.defaultBranch <name>
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:31.6077378Z hint:
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:31.6077890Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:31.6078686Z hint: 'development'. The just-created branch can be renamed via this command:
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:31.6079608Z hint:
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:31.6080189Z hint: 	git branch -m <name>
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:31.6080894Z hint:
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:31.6081770Z hint: Disable this message with "git config set advice.defaultBranchName false"
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:31.6083697Z Initialized empty Git repository in /home/runner/work/dev3pack-hackathon/dev3pack-hackathon/.git/
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:31.6095406Z [command]/usr/bin/git remote add origin https://github.com/ntbaoheyhey/dev3pack-hackathon
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:31.6144842Z ##[endgroup]
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:31.6145982Z ##[group]Disabling automatic garbage collection
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:31.6147981Z [command]/usr/bin/git config --local gc.auto 0
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:31.6180426Z ##[endgroup]
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:31.6181996Z ##[group]Setting up auth
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:31.6182900Z Removing SSH command configuration
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:31.6184316Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:31.6229811Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:31.8342708Z Removing HTTP extra header
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:31.8347222Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:31.8387510Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:31.8594903Z Removing includeIf entries pointing to credentials config files
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:31.8598553Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:31.8638272Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:31.8850794Z [command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-1868612d-7242-4e16-8781-5498de615f28.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:31.8895889Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/dev3pack-hackathon/dev3pack-hackathon/.git.path /home/runner/work/_temp/git-credentials-1868612d-7242-4e16-8781-5498de615f28.config
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:31.8939649Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/dev3pack-hackathon/dev3pack-hackathon/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-1868612d-7242-4e16-8781-5498de615f28.config
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:31.8978631Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-1868612d-7242-4e16-8781-5498de615f28.config
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:31.9018066Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-1868612d-7242-4e16-8781-5498de615f28.config
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:31.9055110Z ##[endgroup]
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:31.9057214Z ##[group]Fetching the repository
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:31.9062441Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +29857b90983a558952a2e30fd08097fde6bb2d5a:refs/remotes/pull/7/merge
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:32.2442097Z From https://github.com/ntbaoheyhey/dev3pack-hackathon
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:32.2444425Z  * [new ref]         29857b90983a558952a2e30fd08097fde6bb2d5a -> pull/7/merge
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:32.2448319Z ##[endgroup]
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:32.2449820Z ##[group]Determining the checkout info
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:32.2451741Z ##[endgroup]
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:32.2452855Z [command]/usr/bin/git sparse-checkout disable
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:32.2520092Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:32.2558724Z ##[group]Checking out the ref
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:32.2561195Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/7/merge
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:32.2836903Z Note: switching to 'refs/remotes/pull/7/merge'.
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:32.2838179Z 
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:32.2839242Z You are in 'detached HEAD' state. You can look around, make experimental
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:32.2841653Z changes and commit them, and you can discard any commits you make in this
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:32.2843895Z state without impacting any branches by switching back to a branch.
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:32.2844936Z 
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:32.2845777Z If you want to create a new branch to retain commits you create, you may
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:32.2847427Z do so (now or later) by using -c with the switch command. Example:
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:32.2848394Z 
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:32.2848823Z   git switch -c <new-branch-name>
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:32.2849488Z 
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:32.2850007Z Or undo this operation with:
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:32.2850663Z 
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:32.2851028Z   git switch -
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:32.2851477Z 
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:32.2852214Z Turn off this advice by setting config variable advice.detachedHead to false
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:32.2853466Z 
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:32.2854649Z HEAD is now at 29857b9 Merge 6d08e5c2026c26e2d55285822363356a6d10fd02 into b9c91b0d0cb191e6f0aa348d0540ffa83985c908
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:32.2859637Z ##[endgroup]
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:32.2897396Z [command]/usr/bin/git log -1 --format=%H
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:32.2929693Z 29857b90983a558952a2e30fd08097fde6bb2d5a
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:32.2938811Z ##[group]Removing auth
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:32.2940181Z Removing SSH command configuration
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:32.2942427Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:32.2979805Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:32.3189492Z Removing HTTP extra header
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:32.3193154Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:32.3230759Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:32.3435888Z Removing includeIf entries pointing to credentials config files
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:32.3438496Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:32.3473769Z includeif.gitdir:/home/runner/work/dev3pack-hackathon/dev3pack-hackathon/.git.path
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:32.3476306Z includeif.gitdir:/home/runner/work/dev3pack-hackathon/dev3pack-hackathon/.git/worktrees/*.path
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:32.3478127Z includeif.gitdir:/github/workspace/.git.path
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:32.3479423Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:32.3482842Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/dev3pack-hackathon/dev3pack-hackathon/.git.path
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:32.3511214Z /home/runner/work/_temp/git-credentials-1868612d-7242-4e16-8781-5498de615f28.config
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:32.3598561Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/dev3pack-hackathon/dev3pack-hackathon/.git.path \/home\/runner\/work\/_temp\/git\-credentials\-1868612d\-7242\-4e16\-8781\-5498de615f28\.config
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:32.3604600Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/dev3pack-hackathon/dev3pack-hackathon/.git/worktrees/*.path
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:32.3609454Z /home/runner/work/_temp/git-credentials-1868612d-7242-4e16-8781-5498de615f28.config
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:32.3619019Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/dev3pack-hackathon/dev3pack-hackathon/.git/worktrees/*.path \/home\/runner\/work\/_temp\/git\-credentials\-1868612d\-7242\-4e16\-8781\-5498de615f28\.config
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:32.3658553Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:32.3690360Z /github/runner_temp/git-credentials-1868612d-7242-4e16-8781-5498de615f28.config
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:32.3698757Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-1868612d\-7242\-4e16\-8781\-5498de615f28\.config
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:32.3741982Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:32.3773012Z /github/runner_temp/git-credentials-1868612d-7242-4e16-8781-5498de615f28.config
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:32.3780094Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-1868612d\-7242\-4e16\-8781\-5498de615f28\.config
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:32.3817848Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:32.4026119Z Removing credentials config '/home/runner/work/_temp/git-credentials-1868612d-7242-4e16-8781-5498de615f28.config'
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:32.4034370Z ##[endgroup]
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:32.4290851Z ##[group]Run sudo apt-get update
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:32.4291915Z ^[[36;1msudo apt-get update^[[0m
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:32.4293694Z ^[[36;1msudo apt-get install -y build-essential pkg-config libssl-dev libudev-dev clang cmake^[[0m
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:32.4295873Z ^[[36;1mrustup toolchain install 1.100.0 --profile minimal --component rustfmt --component clippy^[[0m
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:32.4319277Z shell: /usr/bin/bash -e {0}
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:32.4320129Z env:
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:32.4320823Z   CARGO_TERM_COLOR: never
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:32.4321635Z ##[endgroup]
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:32.5000042Z Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:32.5270789Z Get:6 https://packages.microsoft.com/ubuntu/24.04/prod noble InRelease [3600 B]
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:32.5823184Z Get:7 https://packages.microsoft.com/ubuntu/24.04/prod noble/main amd64 Packages [794 kB]
+anchor-lab	UNKNOWN STEP	2026-11-19T07:13:32.5986118Z Get:8 https://packages.microsoft.com/ubuntu/24.04/prod noble/main arm64 Packages [723 kB]
+anchor-lab	UNKNOWN STEP	2026-11-19T07:14:04.6029411Z Ign:2 http://azure.archive.ubuntu.com/ubuntu noble InRelease
+anchor-lab	UNKNOWN STEP	2026-11-19T07:14:04.6056184Z Get:3 http://azure.archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]
+anchor-lab	UNKNOWN STEP	2026-11-19T07:14:04.6084261Z Get:4 http://azure.archive.ubuntu.com/ubuntu noble-backports InRelease [126 kB]
+anchor-lab	UNKNOWN STEP	2026-11-19T07:14:04.6099772Z Get:5 http://azure.archive.ubuntu.com/ubuntu noble-security InRelease [126 kB]
+anchor-lab	UNKNOWN STEP	2026-11-19T07:43:42.3669999Z ##[error]The operation was canceled.
+anchor-lab	UNKNOWN STEP	2026-11-19T07:43:42.3821489Z Post job cleanup.
+anchor-lab	UNKNOWN STEP	2026-11-19T07:43:42.4534174Z [command]/usr/bin/git version
+anchor-lab	UNKNOWN STEP	2026-11-19T07:43:42.4566341Z git version 2.56.1
+anchor-lab	UNKNOWN STEP	2026-11-19T07:43:42.4595722Z Temporarily overriding HOME='/home/runner/work/_temp/39aecffe-577b-4fea-b505-96905d929ebb' before making global git config changes
+anchor-lab	UNKNOWN STEP	2026-11-19T07:43:42.4596788Z Adding repository directory to the temporary git global config as a safe directory
+anchor-lab	UNKNOWN STEP	2026-11-19T07:43:42.4599601Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/dev3pack-hackathon/dev3pack-hackathon
+anchor-lab	UNKNOWN STEP	2026-11-19T07:43:42.4631680Z Removing SSH command configuration
+anchor-lab	UNKNOWN STEP	2026-11-19T07:43:42.4637407Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+anchor-lab	UNKNOWN STEP	2026-11-19T07:43:42.4674395Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+anchor-lab	UNKNOWN STEP	2026-11-19T07:43:42.4903087Z Removing HTTP extra header
+anchor-lab	UNKNOWN STEP	2026-11-19T07:43:42.4907301Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+anchor-lab	UNKNOWN STEP	2026-11-19T07:43:42.4939630Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+anchor-lab	UNKNOWN STEP	2026-11-19T07:43:42.5164409Z Removing includeIf entries pointing to credentials config files
+anchor-lab	UNKNOWN STEP	2026-11-19T07:43:42.5184131Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+anchor-lab	UNKNOWN STEP	2026-11-19T07:43:42.5250189Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+anchor-lab	UNKNOWN STEP	2026-11-19T07:43:42.5629159Z Cleaning up orphan processes
+research	UNKNOWN STEP	﻿2026-11-19T07:13:31.0274109Z Current runner version: '2.338.2'
+research	UNKNOWN STEP	2026-11-19T07:13:31.0295169Z ##[group]Runner Image Provisioner
+research	UNKNOWN STEP	2026-11-19T07:13:31.0295864Z Hosted Compute Agent
+research	UNKNOWN STEP	2026-11-19T07:13:31.0296456Z Version: 20261103.629
+research	UNKNOWN STEP	2026-11-19T07:13:31.0297000Z Commit: 15dbd9ccb5dbf34fae002b6ed1a2670f52df37bc
+research	UNKNOWN STEP	2026-11-19T07:13:31.0297664Z Build Date: 2026-11-03T17:26:59Z
+research	UNKNOWN STEP	2026-11-19T07:13:31.0298298Z Worker ID: {02847467-9642-46e6-ba9a-1641ba8b5d20}
+research	UNKNOWN STEP	2026-11-19T07:13:31.0298863Z Region: westus2
+research	UNKNOWN STEP	2026-11-19T07:13:31.0299381Z Cloud: Azure
+research	UNKNOWN STEP	2026-11-19T07:13:31.0299875Z ##[endgroup]
+research	UNKNOWN STEP	2026-11-19T07:13:31.0301302Z ##[group]Operating System
+research	UNKNOWN STEP	2026-11-19T07:13:31.0301857Z Ubuntu
+research	UNKNOWN STEP	2026-11-19T07:13:31.0302305Z 24.04.5
+research	UNKNOWN STEP	2026-11-19T07:13:31.0303016Z LTS
+research	UNKNOWN STEP	2026-11-19T07:13:31.0303468Z ##[endgroup]
+research	UNKNOWN STEP	2026-11-19T07:13:31.0303956Z ##[group]Runner Image
+research	UNKNOWN STEP	2026-11-19T07:13:31.0304562Z Image: ubuntu-24.04
+research	UNKNOWN STEP	2026-11-19T07:13:31.0305038Z Version: 20261111.370.1
+research	UNKNOWN STEP	2026-11-19T07:13:31.0306226Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261111.370/images/ubuntu/Ubuntu2404-Readme.md
+research	UNKNOWN STEP	2026-11-19T07:13:31.0307464Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261111.370
+research	UNKNOWN STEP	2026-11-19T07:13:31.0308364Z ##[endgroup]
+research	UNKNOWN STEP	2026-11-19T07:13:31.0309254Z ##[group]GITHUB_TOKEN Permissions
+research	UNKNOWN STEP	2026-11-19T07:13:31.0310929Z Contents: read
+research	UNKNOWN STEP	2026-11-19T07:13:31.0311471Z Metadata: read
+research	UNKNOWN STEP	2026-11-19T07:13:31.0312019Z ##[endgroup]
+research	UNKNOWN STEP	2026-11-19T07:13:31.0313915Z Secret source: Actions
+research	UNKNOWN STEP	2026-11-19T07:13:31.0314807Z Cache mode: write
+research	UNKNOWN STEP	2026-11-19T07:13:31.0315423Z Prepare workflow directory
+research	UNKNOWN STEP	2026-11-19T07:13:31.0580633Z Prepare all required actions
+research	UNKNOWN STEP	2026-11-19T07:13:31.0619336Z Getting action download info
+research	UNKNOWN STEP	2026-11-19T07:13:31.3871480Z Download action repository 'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+research	UNKNOWN STEP	2026-11-19T07:13:31.5516238Z Download action repository 'actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1' (SHA:949feb2413d6458794dcd2491c4babbbce0c15c1)
+research	UNKNOWN STEP	2026-11-19T07:13:31.8343206Z Complete job name: research
+research	UNKNOWN STEP	2026-11-19T07:13:31.9039762Z ##[group]Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+research	UNKNOWN STEP	2026-11-19T07:13:31.9040581Z with:
+research	UNKNOWN STEP	2026-11-19T07:13:31.9040956Z   persist-credentials: false
+research	UNKNOWN STEP	2026-11-19T07:13:31.9041409Z   repository: ntbaoheyhey/dev3pack-hackathon
+research	UNKNOWN STEP	2026-11-19T07:13:31.9044866Z   token: ***
+research	UNKNOWN STEP	2026-11-19T07:13:31.9045222Z   ssh-strict: true
+research	UNKNOWN STEP	2026-11-19T07:13:31.9045583Z   ssh-user: git
+research	UNKNOWN STEP	2026-11-19T07:13:31.9045933Z   clean: true
+research	UNKNOWN STEP	2026-11-19T07:13:31.9046288Z   sparse-checkout-cone-mode: true
+research	UNKNOWN STEP	2026-11-19T07:13:31.9046708Z   fetch-depth: 1
+research	UNKNOWN STEP	2026-11-19T07:13:31.9047053Z   fetch-tags: false
+research	UNKNOWN STEP	2026-11-19T07:13:31.9047414Z   show-progress: true
+research	UNKNOWN STEP	2026-11-19T07:13:31.9047779Z   lfs: false
+research	UNKNOWN STEP	2026-11-19T07:13:31.9048113Z   submodules: false
+research	UNKNOWN STEP	2026-11-19T07:13:31.9048472Z   set-safe-directory: true
+research	UNKNOWN STEP	2026-11-19T07:13:31.9048876Z   allow-unsafe-pr-checkout: false
+research	UNKNOWN STEP	2026-11-19T07:13:31.9049434Z ##[endgroup]
+research	UNKNOWN STEP	2026-11-19T07:13:32.1610492Z Syncing repository: ntbaoheyhey/dev3pack-hackathon
+research	UNKNOWN STEP	2026-11-19T07:13:32.1612623Z ##[group]Getting Git version info
+research	UNKNOWN STEP	2026-11-19T07:13:32.1613601Z Working directory is '/home/runner/work/dev3pack-hackathon/dev3pack-hackathon'
+research	UNKNOWN STEP	2026-11-19T07:13:32.1614523Z [command]/usr/bin/git version
+research	UNKNOWN STEP	2026-11-19T07:13:32.1675554Z git version 2.56.1
+research	UNKNOWN STEP	2026-11-19T07:13:32.1691532Z ##[endgroup]
+research	UNKNOWN STEP	2026-11-19T07:13:32.1701108Z Temporarily overriding HOME='/home/runner/work/_temp/fdacf966-8e77-4be3-9474-190597132414' before making global git config changes
+research	UNKNOWN STEP	2026-11-19T07:13:32.1702999Z Adding repository directory to the temporary git global config as a safe directory
+research	UNKNOWN STEP	2026-11-19T07:13:32.1707248Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/dev3pack-hackathon/dev3pack-hackathon
+research	UNKNOWN STEP	2026-11-19T07:13:32.1746524Z Deleting the contents of '/home/runner/work/dev3pack-hackathon/dev3pack-hackathon'
+research	UNKNOWN STEP	2026-11-19T07:13:32.1749722Z ##[group]Determining repository object format
+research	UNKNOWN STEP	2026-11-19T07:13:32.1750961Z ##[endgroup]
+research	UNKNOWN STEP	2026-11-19T07:13:32.1751884Z ##[group]Initializing the repository
+research	UNKNOWN STEP	2026-11-19T07:13:32.1755817Z [command]/usr/bin/git init /home/runner/work/dev3pack-hackathon/dev3pack-hackathon
+research	UNKNOWN STEP	2026-11-19T07:13:32.1841086Z hint: Using 'master' as the name for the initial branch. This default branch name
+research	UNKNOWN STEP	2026-11-19T07:13:32.1842825Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+research	UNKNOWN STEP	2026-11-19T07:13:32.1844217Z hint: to use in all of your new repositories, which will suppress this warning,
+research	UNKNOWN STEP	2026-11-19T07:13:32.1845336Z hint: call:
+research	UNKNOWN STEP	2026-11-19T07:13:32.1845986Z hint:
+research	UNKNOWN STEP	2026-11-19T07:13:32.1846759Z hint: 	git config --global init.defaultBranch <name>
+research	UNKNOWN STEP	2026-11-19T07:13:32.1847651Z hint:
+research	UNKNOWN STEP	2026-11-19T07:13:32.1848508Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+research	UNKNOWN STEP	2026-11-19T07:13:32.1849887Z hint: 'development'. The just-created branch can be renamed via this command:
+research	UNKNOWN STEP	2026-11-19T07:13:32.1850967Z hint:
+research	UNKNOWN STEP	2026-11-19T07:13:32.1851603Z hint: 	git branch -m <name>
+research	UNKNOWN STEP	2026-11-19T07:13:32.1852318Z hint:
+research	UNKNOWN STEP	2026-11-19T07:13:32.1853533Z hint: Disable this message with "git config set advice.defaultBranchName false"
+research	UNKNOWN STEP	2026-11-19T07:13:32.1855123Z Initialized empty Git repository in /home/runner/work/dev3pack-hackathon/dev3pack-hackathon/.git/
+research	UNKNOWN STEP	2026-11-19T07:13:32.1858069Z [command]/usr/bin/git remote add origin https://github.com/ntbaoheyhey/dev3pack-hackathon
+research	UNKNOWN STEP	2026-11-19T07:13:32.1920648Z ##[endgroup]
+research	UNKNOWN STEP	2026-11-19T07:13:32.1921607Z ##[group]Disabling automatic garbage collection
+research	UNKNOWN STEP	2026-11-19T07:13:32.1924261Z [command]/usr/bin/git config --local gc.auto 0
+research	UNKNOWN STEP	2026-11-19T07:13:32.2367221Z ##[endgroup]
+research	UNKNOWN STEP	2026-11-19T07:13:32.2368172Z ##[group]Setting up auth
+research	UNKNOWN STEP	2026-11-19T07:13:32.2371156Z Removing SSH command configuration
+research	UNKNOWN STEP	2026-11-19T07:13:32.2374410Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+research	UNKNOWN STEP	2026-11-19T07:13:32.2426632Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+research	UNKNOWN STEP	2026-11-19T07:13:32.2798548Z Removing HTTP extra header
+research	UNKNOWN STEP	2026-11-19T07:13:32.2804002Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+research	UNKNOWN STEP	2026-11-19T07:13:32.2842216Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+research	UNKNOWN STEP	2026-11-19T07:13:32.3046358Z Removing includeIf entries pointing to credentials config files
+research	UNKNOWN STEP	2026-11-19T07:13:32.3051335Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+research	UNKNOWN STEP	2026-11-19T07:13:32.3090664Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+research	UNKNOWN STEP	2026-11-19T07:13:32.3301082Z [command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-57f86551-ecec-4ef9-ad21-e6aaf376adab.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+research	UNKNOWN STEP	2026-11-19T07:13:32.3353016Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/dev3pack-hackathon/dev3pack-hackathon/.git.path /home/runner/work/_temp/git-credentials-57f86551-ecec-4ef9-ad21-e6aaf376adab.config
+research	UNKNOWN STEP	2026-11-19T07:13:32.3395019Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/dev3pack-hackathon/dev3pack-hackathon/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-57f86551-ecec-4ef9-ad21-e6aaf376adab.config
+research	UNKNOWN STEP	2026-11-19T07:13:32.3432888Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-57f86551-ecec-4ef9-ad21-e6aaf376adab.config
+research	UNKNOWN STEP	2026-11-19T07:13:32.3469793Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-57f86551-ecec-4ef9-ad21-e6aaf376adab.config
+research	UNKNOWN STEP	2026-11-19T07:13:32.3511828Z ##[endgroup]
+research	UNKNOWN STEP	2026-11-19T07:13:32.3512746Z ##[group]Fetching the repository
+research	UNKNOWN STEP	2026-11-19T07:13:32.3517610Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +29857b90983a558952a2e30fd08097fde6bb2d5a:refs/remotes/pull/7/merge
+research	UNKNOWN STEP	2026-11-19T07:13:32.8078087Z From https://github.com/ntbaoheyhey/dev3pack-hackathon
+research	UNKNOWN STEP	2026-11-19T07:13:32.8079571Z  * [new ref]         29857b90983a558952a2e30fd08097fde6bb2d5a -> pull/7/merge
+research	UNKNOWN STEP	2026-11-19T07:13:32.8082310Z ##[endgroup]
+research	UNKNOWN STEP	2026-11-19T07:13:32.8083573Z ##[group]Determining the checkout info
+research	UNKNOWN STEP	2026-11-19T07:13:32.8085496Z ##[endgroup]
+research	UNKNOWN STEP	2026-11-19T07:13:32.8087846Z [command]/usr/bin/git sparse-checkout disable
+research	UNKNOWN STEP	2026-11-19T07:13:32.8163631Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+research	UNKNOWN STEP	2026-11-19T07:13:32.8201272Z ##[group]Checking out the ref
+research	UNKNOWN STEP	2026-11-19T07:13:32.8205583Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/7/merge
+research	UNKNOWN STEP	2026-11-19T07:13:32.8480208Z Note: switching to 'refs/remotes/pull/7/merge'.
+research	UNKNOWN STEP	2026-11-19T07:13:32.8481167Z 
+research	UNKNOWN STEP	2026-11-19T07:13:32.8481820Z You are in 'detached HEAD' state. You can look around, make experimental
+research	UNKNOWN STEP	2026-11-19T07:13:32.8483473Z changes and commit them, and you can discard any commits you make in this
+research	UNKNOWN STEP	2026-11-19T07:13:32.8484676Z state without impacting any branches by switching back to a branch.
+research	UNKNOWN STEP	2026-11-19T07:13:32.8485236Z 
+research	UNKNOWN STEP	2026-11-19T07:13:32.8485675Z If you want to create a new branch to retain commits you create, you may
+research	UNKNOWN STEP	2026-11-19T07:13:32.8486575Z do so (now or later) by using -c with the switch command. Example:
+research	UNKNOWN STEP	2026-11-19T07:13:32.8487131Z 
+research	UNKNOWN STEP	2026-11-19T07:13:32.8487431Z   git switch -c <new-branch-name>
+research	UNKNOWN STEP	2026-11-19T07:13:32.8487877Z 
+research	UNKNOWN STEP	2026-11-19T07:13:32.8488179Z Or undo this operation with:
+research	UNKNOWN STEP	2026-11-19T07:13:32.8488580Z 
+research	UNKNOWN STEP	2026-11-19T07:13:32.8488845Z   git switch -
+research	UNKNOWN STEP	2026-11-19T07:13:32.8489188Z 
+research	UNKNOWN STEP	2026-11-19T07:13:32.8489782Z Turn off this advice by setting config variable advice.detachedHead to false
+research	UNKNOWN STEP	2026-11-19T07:13:32.8490529Z 
+research	UNKNOWN STEP	2026-11-19T07:13:32.8491349Z HEAD is now at 29857b9 Merge 6d08e5c2026c26e2d55285822363356a6d10fd02 into b9c91b0d0cb191e6f0aa348d0540ffa83985c908
+research	UNKNOWN STEP	2026-11-19T07:13:32.8500915Z ##[endgroup]
+research	UNKNOWN STEP	2026-11-19T07:13:32.8556171Z [command]/usr/bin/git log -1 --format=%H
+research	UNKNOWN STEP	2026-11-19T07:13:32.8589532Z 29857b90983a558952a2e30fd08097fde6bb2d5a
+research	UNKNOWN STEP	2026-11-19T07:13:32.8598970Z ##[group]Removing auth
+research	UNKNOWN STEP	2026-11-19T07:13:32.8600577Z Removing SSH command configuration
+research	UNKNOWN STEP	2026-11-19T07:13:32.8602906Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+research	UNKNOWN STEP	2026-11-19T07:13:32.8643184Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+research	UNKNOWN STEP	2026-11-19T07:13:32.8853864Z Removing HTTP extra header
+research	UNKNOWN STEP	2026-11-19T07:13:32.8856417Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+research	UNKNOWN STEP	2026-11-19T07:13:32.8896598Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+research	UNKNOWN STEP	2026-11-19T07:13:32.9103018Z Removing includeIf entries pointing to credentials config files
+research	UNKNOWN STEP	2026-11-19T07:13:32.9105566Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+research	UNKNOWN STEP	2026-11-19T07:13:32.9141158Z includeif.gitdir:/home/runner/work/dev3pack-hackathon/dev3pack-hackathon/.git.path
+research	UNKNOWN STEP	2026-11-19T07:13:32.9144437Z includeif.gitdir:/home/runner/work/dev3pack-hackathon/dev3pack-hackathon/.git/worktrees/*.path
+research	UNKNOWN STEP	2026-11-19T07:13:32.9147038Z includeif.gitdir:/github/workspace/.git.path
+research	UNKNOWN STEP	2026-11-19T07:13:32.9148998Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+research	UNKNOWN STEP	2026-11-19T07:13:32.9152977Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/dev3pack-hackathon/dev3pack-hackathon/.git.path
+research	UNKNOWN STEP	2026-11-19T07:13:32.9185129Z /home/runner/work/_temp/git-credentials-57f86551-ecec-4ef9-ad21-e6aaf376adab.config
+research	UNKNOWN STEP	2026-11-19T07:13:32.9196006Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/dev3pack-hackathon/dev3pack-hackathon/.git.path \/home\/runner\/work\/_temp\/git\-credentials\-57f86551\-ecec\-4ef9\-ad21\-e6aaf376adab\.config
+research	UNKNOWN STEP	2026-11-19T07:13:32.9244699Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/dev3pack-hackathon/dev3pack-hackathon/.git/worktrees/*.path
+research	UNKNOWN STEP	2026-11-19T07:13:32.9274450Z /home/runner/work/_temp/git-credentials-57f86551-ecec-4ef9-ad21-e6aaf376adab.config
+research	UNKNOWN STEP	2026-11-19T07:13:32.9282986Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/dev3pack-hackathon/dev3pack-hackathon/.git/worktrees/*.path \/home\/runner\/work\/_temp\/git\-credentials\-57f86551\-ecec\-4ef9\-ad21\-e6aaf376adab\.config
+research	UNKNOWN STEP	2026-11-19T07:13:32.9320953Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+research	UNKNOWN STEP	2026-11-19T07:13:32.9350291Z /github/runner_temp/git-credentials-57f86551-ecec-4ef9-ad21-e6aaf376adab.config
+research	UNKNOWN STEP	2026-11-19T07:13:32.9357967Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-57f86551\-ecec\-4ef9\-ad21\-e6aaf376adab\.config
+research	UNKNOWN STEP	2026-11-19T07:13:32.9397084Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+research	UNKNOWN STEP	2026-11-19T07:13:32.9427579Z /github/runner_temp/git-credentials-57f86551-ecec-4ef9-ad21-e6aaf376adab.config
+research	UNKNOWN STEP	2026-11-19T07:13:32.9436065Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-57f86551\-ecec\-4ef9\-ad21\-e6aaf376adab\.config
+research	UNKNOWN STEP	2026-11-19T07:13:32.9477708Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+research	UNKNOWN STEP	2026-11-19T07:13:32.9761684Z Removing credentials config '/home/runner/work/_temp/git-credentials-57f86551-ecec-4ef9-ad21-e6aaf376adab.config'
+research	UNKNOWN STEP	2026-11-19T07:13:32.9765322Z ##[endgroup]
+research	UNKNOWN STEP	2026-11-19T07:13:33.0193442Z ##[group]Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+research	UNKNOWN STEP	2026-11-19T07:13:33.0194729Z with:
+research	UNKNOWN STEP	2026-11-19T07:13:33.0195439Z   node-version: 24.22.2
+research	UNKNOWN STEP	2026-11-19T07:13:33.0196311Z   package-manager-cache: false
+research	UNKNOWN STEP	2026-11-19T07:13:33.0197206Z   check-latest: false
+research	UNKNOWN STEP	2026-11-19T07:13:33.0204891Z   token: ***
+research	UNKNOWN STEP	2026-11-19T07:13:33.0205645Z ##[endgroup]
+research	UNKNOWN STEP	2026-11-19T07:13:33.1285584Z Found in cache @ /opt/hostedtoolcache/node/24.22.2/x64
+research	UNKNOWN STEP	2026-11-19T07:13:33.2102572Z ##[group]Environment details
+research	UNKNOWN STEP	2026-11-19T07:13:33.6411290Z node: v24.22.2
+research	UNKNOWN STEP	2026-11-19T07:13:33.6411715Z npm: 11.19.1
+research	UNKNOWN STEP	2026-11-19T07:13:33.6412020Z yarn: 1.22.22
+research	UNKNOWN STEP	2026-11-19T07:13:33.6413496Z ##[endgroup]
+research	UNKNOWN STEP	2026-11-19T07:13:33.6568991Z ##[group]Run node --test research/phase1/spikes.test.mjs research/phase1/fee-mint.test.mjs research/phase1/replay-evidence.test.mjs
+research	UNKNOWN STEP	2026-11-19T07:13:33.6569945Z ^[[36;1mnode --test research/phase1/spikes.test.mjs research/phase1/fee-mint.test.mjs research/phase1/replay-evidence.test.mjs^[[0m
+research	UNKNOWN STEP	2026-11-19T07:13:33.6597293Z shell: /usr/bin/bash -e {0}
+research	UNKNOWN STEP	2026-11-19T07:13:33.6597579Z ##[endgroup]
+research	UNKNOWN STEP	2026-11-19T07:13:33.7721182Z ✔ raw layout retains u64 precision, authorities, cap and epoch schedule (4.128546ms)
+research	UNKNOWN STEP	2026-11-19T07:13:33.7780904Z ✔ owner, executable, initialized, COption, padding and account type are checked (1.106256ms)
+research	UNKNOWN STEP	2026-11-19T07:13:33.7782845Z ✔ unknown or hook extensions never return an optimistic quote (0.499002ms)
+research	UNKNOWN STEP	2026-11-19T07:13:33.7784604Z ✔ truncated/duplicate TLVs and hidden data after zero marker are rejected (0.569327ms)
+research	UNKNOWN STEP	2026-11-19T07:13:33.7785393Z ✔ missing fees, malformed fee values and reversed fee epochs are rejected (0.959184ms)
+research	UNKNOWN STEP	2026-11-19T07:13:33.7786198Z ✔ snapshot must be monotonic and within one epoch, and reject rounded RPC numbers (0.354354ms)
+research	UNKNOWN STEP	2026-11-19T07:13:33.7827020Z ✔ captured devnet bytes give independently calculated fee-only quote with address retained (8.095548ms)
+research	UNKNOWN STEP	2026-11-19T07:13:33.8470118Z ✔ base58 known vectors, including leading zeros (0.94988ms)
+research	UNKNOWN STEP	2026-11-19T07:13:33.8476819Z ✔ loader validates type/length/owner/executable, extracts pointer (0.528586ms)
+research	UNKNOWN STEP	2026-11-19T07:13:33.8478833Z ✔ ProgramData metadata and payload hashes distinguish upgrade from code (0.828668ms)
+research	UNKNOWN STEP	2026-11-19T07:13:33.8480767Z ✔ missing manifest/IDL never becomes ABI verification (0.202765ms)
+research	UNKNOWN STEP	2026-11-19T07:13:33.8482966Z ✔ rounding, max cap, zero and integer precision counterexamples (0.518491ms)
+research	UNKNOWN STEP	2026-11-19T07:13:33.8486271Z ✔ invalid/overflow input rejected, no silent Number coercion (0.322556ms)
+research	UNKNOWN STEP	2026-11-19T07:13:33.8488944Z ✔ epoch switch uses newer epoch, not older epoch (0.184007ms)
+research	UNKNOWN STEP	2026-11-19T07:13:33.8492879Z ✔ binary-search quote agrees with upstream inverse formula over 5,940 cases (69.167218ms)
+research	UNKNOWN STEP	2026-11-19T07:13:33.8496937Z ✔ independent brute-force enumeration proves minimal gross on small domain (8.951086ms)
+research	UNKNOWN STEP	2026-11-19T07:13:33.8573316Z ℹ tests 16
+research	UNKNOWN STEP	2026-11-19T07:13:33.8573746Z ℹ suites 0
+research	UNKNOWN STEP	2026-11-19T07:13:33.8574120Z ℹ pass 16
+research	UNKNOWN STEP	2026-11-19T07:13:33.8574461Z ℹ fail 0
+research	UNKNOWN STEP	2026-11-19T07:13:33.8574895Z ℹ cancelled 0
+research	UNKNOWN STEP	2026-11-19T07:13:33.8575282Z ℹ skipped 0
+research	UNKNOWN STEP	2026-11-19T07:13:33.8575653Z ℹ todo 0
+research	UNKNOWN STEP	2026-11-19T07:13:33.8576035Z ℹ duration_ms 158.651684
+research	UNKNOWN STEP	2026-11-19T07:13:33.8732866Z Post job cleanup.
+research	UNKNOWN STEP	2026-11-19T07:13:33.9864966Z Post job cleanup.
+research	UNKNOWN STEP	2026-11-19T07:13:34.0608286Z [command]/usr/bin/git version
+research	UNKNOWN STEP	2026-11-19T07:13:34.0646229Z git version 2.56.1
+research	UNKNOWN STEP	2026-11-19T07:13:34.0676576Z Temporarily overriding HOME='/home/runner/work/_temp/d993f14b-e4dc-41aa-bf1f-8e157c9f66a7' before making global git config changes
+research	UNKNOWN STEP	2026-11-19T07:13:34.0677929Z Adding repository directory to the temporary git global config as a safe directory
+research	UNKNOWN STEP	2026-11-19T07:13:34.0681348Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/dev3pack-hackathon/dev3pack-hackathon
+research	UNKNOWN STEP	2026-11-19T07:13:34.0712644Z Removing SSH command configuration
+research	UNKNOWN STEP	2026-11-19T07:13:34.0717819Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+research	UNKNOWN STEP	2026-11-19T07:13:34.0752257Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+research	UNKNOWN STEP	2026-11-19T07:13:34.0964830Z Removing HTTP extra header
+research	UNKNOWN STEP	2026-11-19T07:13:34.0969626Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+research	UNKNOWN STEP	2026-11-19T07:13:34.1007657Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+research	UNKNOWN STEP	2026-11-19T07:13:34.1233351Z Removing includeIf entries pointing to credentials config files
+research	UNKNOWN STEP	2026-11-19T07:13:34.1238980Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+research	UNKNOWN STEP	2026-11-19T07:13:34.1286410Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+research	UNKNOWN STEP	2026-11-19T07:13:34.1640577Z Cleaning up orphan processes

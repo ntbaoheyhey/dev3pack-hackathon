@@ -1,0 +1,4 @@
+   Compiling receiptrail v0.1.0 (/Users/bao/Documents/ChatGPT/dev3pack/programs/receiptrail)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 2.21s
+     Running unittests src/lib.rs (/Users/bao/Documents/ChatGPT/dev3pack/target/debug/build/receiptrail/749f2670d8c61ac4/out/receiptrail-749f2670d8c61ac4)
+     Running tests/runtime.rs (/Users/bao/Documents/ChatGPT/dev3pack/target/debug/build/receiptrail/8ae48d7b912351f6/out/runtime-8ae48d7b912351f6)

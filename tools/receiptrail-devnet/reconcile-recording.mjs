@@ -1,0 +1,17 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import path from 'node:path';
+import { anchor, RPC, GENESIS } from './checks.mjs';
+import { entries, local } from './recording-files.mjs';
+const sig=process.argv[2]; const entry=entries().find(e=>e.signature===sig);
+assert(entry && entry.action==='create' && entry.invoice, 'Expected the signature of a recording create attempt.');
+const rpc=new anchor.web3.Connection(RPC,'finalized'); assert.equal(await rpc.getGenesisHash(),GENESIS);
+const status=(await rpc.getSignatureStatuses([sig],{searchTransactionHistory:true})).value[0];
+const {context,value}=await rpc.getAccountInfoAndContext(new anchor.web3.PublicKey(entry.invoice),'finalized');
+const valid=(await rpc.isBlockhashValid(entry.blockhash,{commitment:'finalized'})).value;
+assert(!status && !value && valid===false,'The attempt is present, still valid or requires a different reconciliation.');
+const ledger=path.join(local,'recording-ledger.json');const data=JSON.parse(fs.readFileSync(ledger));
+const target=data.entries.find(e=>e.signature===sig);target.action='create-unobserved';target.unobserved=true;
+target.reconciliation={observedAt:new Date().toISOString(),slot:context.slot,historyStatus:null,finalizedAccount:null,blockhashValid:false};
+fs.writeFileSync(ledger+'.reconciled',JSON.stringify(data,null,2)+'\n',{mode:0o600});fs.renameSync(ledger+'.reconciled',ledger);
+console.log('Expired attempt has no status or invoice in finalized RPC history. Its original debit reservation is retained for the spending cap.');

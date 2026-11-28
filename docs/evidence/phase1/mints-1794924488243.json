@@ -1,0 +1,598 @@
+{
+  "runAtUtc": "2026-11-17T14:08:08.243Z",
+  "genesis": "EtWTRABZaYq6iMfeYKouRu166VU2xqa1wcaWoxPkrZBG",
+  "recent": [
+    {
+      "blockTime": 1794924486,
+      "confirmationStatus": "finalized",
+      "err": null,
+      "memo": null,
+      "signature": "5BxtEzVPNJs9DnALCbkwZUXaLsm7bT3RfVSPLXM4ahhwdZauD3y9vjMqpTzFDYzxRs2y6y9h5nAbH9DZKbrQi1Tn",
+      "slot": 523293812,
+      "transactionIndex": 14
+    },
+    {
+      "blockTime": 1794924486,
+      "confirmationStatus": "finalized",
+      "err": null,
+      "memo": null,
+      "signature": "hT1oRkw44sCE3sZiAgGr4FjAiZuSD8WKKB4UTdTbArCUFabCyhb3VBuMxiUKoe9fvikWe51WCCdmUs3tueMp4Bb",
+      "slot": 523293811,
+      "transactionIndex": 10
+    },
+    {
+      "blockTime": 1794924484,
+      "confirmationStatus": "finalized",
+      "err": null,
+      "memo": null,
+      "signature": "A3gWK4P7X1aNjY198NiDKUucqiRj4B3jLCBwZPn4YirUYKAG3xGAXieEHD3aZqeaifMasUKKrWRjbiihR7Az7c5",
+      "slot": 523293806,
+      "transactionIndex": 6
+    },
+    {
+      "blockTime": 1794924484,
+      "confirmationStatus": "finalized",
+      "err": null,
+      "memo": null,
+      "signature": "3udkdLsJ51qSZYSsY2onxhJCsFHdEX1ZiU12AqGshCSkg4Wj3NC11cCnq2y5SausEQep3JUD5wzYkDkSnEisCueP",
+      "slot": 523293804,
+      "transactionIndex": 12
+    },
+    {
+      "blockTime": 1794924484,
+      "confirmationStatus": "finalized",
+      "err": null,
+      "memo": null,
+      "signature": "XtHjTJ6Yra3LbeZYqdzeRPTBeXq2wbozXirZuHqKBi46m3nuGh5qYY7xufmTtq7V1uSUnPokdEy22Aav5xdpVRi",
+      "slot": 523293803,
+      "transactionIndex": 9
+    },
+    {
+      "blockTime": 1794924484,
+      "confirmationStatus": "finalized",
+      "err": null,
+      "memo": null,
+      "signature": "4ntXrSGJtBUQhs3gP3FePSAbDEpxXNTo4KiCCAJ6VhZNAXrwZDtKhAm6WgFUtMGuiCYDhGtYziaUmbVgxZxpzVVF",
+      "slot": 523293802,
+      "transactionIndex": 11
+    },
+    {
+      "blockTime": 1794924483,
+      "confirmationStatus": "finalized",
+      "err": null,
+      "memo": null,
+      "signature": "54whkNqopkskjC859SeX669zRjTaQnxRbfqjnpD5MQ8MeANqx74MnYJ1rQGipHxucxoHTvngKCiiY3ysLvsh1uQA",
+      "slot": 523293800,
+      "transactionIndex": 31
+    },
+    {
+      "blockTime": 1794924482,
+      "confirmationStatus": "finalized",
+      "err": null,
+      "memo": null,
+      "signature": "53m1G7TQhpz8Vcnyt9a1aUSJyxAg4kBAoPdDaF3ufMFhxfaXHx9besrGgY8HyLXUzjWCAZ7ffV1NwqXQmLbGLJ8Z",
+      "slot": 523293795,
+      "transactionIndex": 9
+    }
+  ],
+  "observed": [
+    {
+      "mint": "EsF5HHR28ABtP3d36XqQALUc7922asaqhpBQCKW9ZERW",
+      "context": {
+        "apiVersion": "4.5.0-beta.0",
+        "slot": 523293816
+      },
+      "value": {
+        "data": {
+          "parsed": {
+            "info": {
+              "decimals": 6,
+              "freezeAuthority": null,
+              "isInitialized": true,
+              "mintAuthority": "FGPodAPAp3p2oF9YxXcw2LDHeZEAsbjLoJtHPFnpeEjj",
+              "supply": "10020000000000"
+            },
+            "type": "mint"
+          },
+          "program": "spl-token-2022",
+          "space": 82
+        },
+        "executable": false,
+        "lamports": 1066800,
+        "owner": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "rentEpoch": 18446744073709552000,
+        "space": 82
+      }
+    },
+    {
+      "mint": "HF6GmjQcLtRUbGqxeg5w9BLc4fM1HbwHBGchwqMQmxWa",
+      "context": {
+        "apiVersion": "4.5.0-beta.0",
+        "slot": 523293816
+      },
+      "value": {
+        "data": {
+          "parsed": {
+            "info": {
+              "decimals": 8,
+              "extensions": [
+                {
+                  "extension": "permanentDelegate",
+                  "state": {
+                    "delegate": "68N5a3Nj5u7Kc5RPiyu4iH3qVLN1A7wu1fEWErNtqLJf"
+                  }
+                },
+                {
+                  "extension": "defaultAccountState",
+                  "state": {
+                    "accountState": "initialized"
+                  }
+                },
+                {
+                  "extension": "confidentialTransferMint",
+                  "state": {
+                    "auditorElgamalPubkey": null,
+                    "authority": "68N5a3Nj5u7Kc5RPiyu4iH3qVLN1A7wu1fEWErNtqLJf",
+                    "autoApproveNewAccounts": false
+                  }
+                },
+                {
+                  "extension": "transferHook",
+                  "state": {
+                    "authority": "68N5a3Nj5u7Kc5RPiyu4iH3qVLN1A7wu1fEWErNtqLJf",
+                    "programId": null
+                  }
+                },
+                {
+                  "extension": "scaledUiAmountConfig",
+                  "state": {
+                    "authority": "68N5a3Nj5u7Kc5RPiyu4iH3qVLN1A7wu1fEWErNtqLJf",
+                    "multiplier": "1",
+                    "newMultiplier": "1",
+                    "newMultiplierEffectiveTimestamp": 0
+                  }
+                },
+                {
+                  "extension": "metadataPointer",
+                  "state": {
+                    "authority": "68N5a3Nj5u7Kc5RPiyu4iH3qVLN1A7wu1fEWErNtqLJf",
+                    "metadataAddress": "HF6GmjQcLtRUbGqxeg5w9BLc4fM1HbwHBGchwqMQmxWa"
+                  }
+                },
+                {
+                  "extension": "pausableConfig",
+                  "state": {
+                    "authority": "68N5a3Nj5u7Kc5RPiyu4iH3qVLN1A7wu1fEWErNtqLJf",
+                    "paused": false
+                  }
+                },
+                {
+                  "extension": "tokenMetadata",
+                  "state": {
+                    "additionalMetadata": [],
+                    "mint": "HF6GmjQcLtRUbGqxeg5w9BLc4fM1HbwHBGchwqMQmxWa",
+                    "name": "Robinhood xStock (devnet fixture)",
+                    "symbol": "HOODx-fx",
+                    "updateAuthority": "68N5a3Nj5u7Kc5RPiyu4iH3qVLN1A7wu1fEWErNtqLJf",
+                    "uri": "https://example.com/HOODx-fixture.json"
+                  }
+                }
+              ],
+              "freezeAuthority": "68N5a3Nj5u7Kc5RPiyu4iH3qVLN1A7wu1fEWErNtqLJf",
+              "isInitialized": true,
+              "mintAuthority": "68N5a3Nj5u7Kc5RPiyu4iH3qVLN1A7wu1fEWErNtqLJf",
+              "supply": "107534000000"
+            },
+            "type": "mint"
+          },
+          "program": "spl-token-2022",
+          "space": 672
+        },
+        "executable": false,
+        "lamports": 4064000,
+        "owner": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "rentEpoch": 18446744073709552000,
+        "space": 672
+      }
+    },
+    {
+      "mint": "CxZgopJTyc3zr1SyGWwgHBjfsX5eeC3eaxCZU4Advk1S",
+      "context": {
+        "apiVersion": "4.5.0-beta.0",
+        "slot": 523293816
+      },
+      "value": {
+        "data": {
+          "parsed": {
+            "info": {
+              "decimals": 6,
+              "extensions": [
+                {
+                  "extension": "metadataPointer",
+                  "state": {
+                    "authority": "4JxtXwbRkGNX2FJrN43Tz5LHB4u6R7xxxs57wXnAAnmK",
+                    "metadataAddress": "CxZgopJTyc3zr1SyGWwgHBjfsX5eeC3eaxCZU4Advk1S"
+                  }
+                },
+                {
+                  "extension": "tokenMetadata",
+                  "state": {
+                    "additionalMetadata": [],
+                    "mint": "CxZgopJTyc3zr1SyGWwgHBjfsX5eeC3eaxCZU4Advk1S",
+                    "name": "Launch",
+                    "symbol": "V3",
+                    "updateAuthority": "4JxtXwbRkGNX2FJrN43Tz5LHB4u6R7xxxs57wXnAAnmK",
+                    "uri": ""
+                  }
+                }
+              ],
+              "freezeAuthority": null,
+              "isInitialized": true,
+              "mintAuthority": "4JxtXwbRkGNX2FJrN43Tz5LHB4u6R7xxxs57wXnAAnmK",
+              "supply": "68742751333"
+            },
+            "type": "mint"
+          },
+          "program": "spl-token-2022",
+          "space": 326
+        },
+        "executable": false,
+        "lamports": 2306320,
+        "owner": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "rentEpoch": 18446744073709552000,
+        "space": 326
+      }
+    },
+    {
+      "mint": "GE6q1pL6TjYkrc9jwpdCJAKqZDmAscVR7D9dV7MmXPpd",
+      "context": {
+        "apiVersion": "4.5.0-beta.0",
+        "slot": 523293817
+      },
+      "value": {
+        "data": {
+          "parsed": {
+            "info": {
+              "decimals": 6,
+              "extensions": [
+                {
+                  "extension": "transferFeeConfig",
+                  "state": {
+                    "newerTransferFee": {
+                      "epoch": 1193,
+                      "maximumFee": 1000000000000,
+                      "transferFeeBasisPoints": 100
+                    },
+                    "olderTransferFee": {
+                      "epoch": 1193,
+                      "maximumFee": 1000000000000,
+                      "transferFeeBasisPoints": 100
+                    },
+                    "transferFeeConfigAuthority": null,
+                    "withdrawWithheldAuthority": "9fNQvLYoctcXyCexUE3tXwYonCXEmjxaQBe6jF8e8aSn",
+                    "withheldAmount": 0
+                  }
+                },
+                {
+                  "extension": "transferHook",
+                  "state": {
+                    "authority": null,
+                    "programId": "7xnBGoQUVVyf98buswiFg4UamB3FxW4GujXSQoXWyqkX"
+                  }
+                }
+              ],
+              "freezeAuthority": null,
+              "isInitialized": true,
+              "mintAuthority": "9PAUY8jZvjYvux1eKpi1SeJhecC9jbSNHZcegZqeCRqc",
+              "supply": "2000000000000"
+            },
+            "type": "mint"
+          },
+          "program": "spl-token-2022",
+          "space": 346
+        },
+        "executable": false,
+        "lamports": 2407920,
+        "owner": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "rentEpoch": 18446744073709552000,
+        "space": 346
+      }
+    },
+    {
+      "mint": "3RxkqMiy9HfUy3o7BK8ddDAXMG657G8DwxmM5jPFjxDf",
+      "context": {
+        "apiVersion": "4.5.0-beta.0",
+        "slot": 523293817
+      },
+      "value": {
+        "data": {
+          "parsed": {
+            "info": {
+              "decimals": 8,
+              "extensions": [
+                {
+                  "extension": "permanentDelegate",
+                  "state": {
+                    "delegate": "68N5a3Nj5u7Kc5RPiyu4iH3qVLN1A7wu1fEWErNtqLJf"
+                  }
+                },
+                {
+                  "extension": "defaultAccountState",
+                  "state": {
+                    "accountState": "initialized"
+                  }
+                },
+                {
+                  "extension": "confidentialTransferMint",
+                  "state": {
+                    "auditorElgamalPubkey": null,
+                    "authority": "68N5a3Nj5u7Kc5RPiyu4iH3qVLN1A7wu1fEWErNtqLJf",
+                    "autoApproveNewAccounts": false
+                  }
+                },
+                {
+                  "extension": "transferHook",
+                  "state": {
+                    "authority": "68N5a3Nj5u7Kc5RPiyu4iH3qVLN1A7wu1fEWErNtqLJf",
+                    "programId": null
+                  }
+                },
+                {
+                  "extension": "scaledUiAmountConfig",
+                  "state": {
+                    "authority": "68N5a3Nj5u7Kc5RPiyu4iH3qVLN1A7wu1fEWErNtqLJf",
+                    "multiplier": "1.001701196801074",
+                    "newMultiplier": "1.001701196801074",
+                    "newMultiplierEffectiveTimestamp": 0
+                  }
+                },
+                {
+                  "extension": "metadataPointer",
+                  "state": {
+                    "authority": "68N5a3Nj5u7Kc5RPiyu4iH3qVLN1A7wu1fEWErNtqLJf",
+                    "metadataAddress": "3RxkqMiy9HfUy3o7BK8ddDAXMG657G8DwxmM5jPFjxDf"
+                  }
+                },
+                {
+                  "extension": "pausableConfig",
+                  "state": {
+                    "authority": "68N5a3Nj5u7Kc5RPiyu4iH3qVLN1A7wu1fEWErNtqLJf",
+                    "paused": false
+                  }
+                },
+                {
+                  "extension": "tokenMetadata",
+                  "state": {
+                    "additionalMetadata": [],
+                    "mint": "3RxkqMiy9HfUy3o7BK8ddDAXMG657G8DwxmM5jPFjxDf",
+                    "name": "NVIDIA xStock (devnet fixture)",
+                    "symbol": "NVDAx-fx",
+                    "updateAuthority": "68N5a3Nj5u7Kc5RPiyu4iH3qVLN1A7wu1fEWErNtqLJf",
+                    "uri": "https://example.com/NVDAx-fixture.json"
+                  }
+                }
+              ],
+              "freezeAuthority": "68N5a3Nj5u7Kc5RPiyu4iH3qVLN1A7wu1fEWErNtqLJf",
+              "isInitialized": true,
+              "mintAuthority": "68N5a3Nj5u7Kc5RPiyu4iH3qVLN1A7wu1fEWErNtqLJf",
+              "supply": "147371411908"
+            },
+            "type": "mint"
+          },
+          "program": "spl-token-2022",
+          "space": 669
+        },
+        "executable": false,
+        "lamports": 4048760,
+        "owner": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "rentEpoch": 18446744073709552000,
+        "space": 669
+      }
+    },
+    {
+      "mint": "BYcQtZN9RbgRDyiRbBSr1UxgcEyWkyqqfmrumdKwLMri",
+      "context": {
+        "apiVersion": "4.5.0-beta.0",
+        "slot": 523293817
+      },
+      "value": {
+        "data": {
+          "parsed": {
+            "info": {
+              "decimals": 6,
+              "extensions": [
+                {
+                  "extension": "permanentDelegate",
+                  "state": {
+                    "delegate": "5Wj831yrhkr8LFwhTFwdFeoMwjP26aAckL4pdyMtscfn"
+                  }
+                },
+                {
+                  "extension": "transferHook",
+                  "state": {
+                    "authority": "4pGZVe8HrJib7EcaQDeSsCXsEaoph8ShqVxm37GRhoGS",
+                    "programId": "4rD1CuYVhrTrEbcpMSzNY4BmqTZEfEyU7LJRX9sS3kuC"
+                  }
+                }
+              ],
+              "freezeAuthority": null,
+              "isInitialized": true,
+              "mintAuthority": "4pGZVe8HrJib7EcaQDeSsCXsEaoph8ShqVxm37GRhoGS",
+              "supply": "148668401831502024"
+            },
+            "type": "mint"
+          },
+          "program": "spl-token-2022",
+          "space": 270
+        },
+        "executable": false,
+        "lamports": 2770080,
+        "owner": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "rentEpoch": 18446744073709552000,
+        "space": 270
+      }
+    },
+    {
+      "mint": "9aGoR5JbatqRYbc4SpQuT3pWVLPhZQJvDq26FFb23Jzp",
+      "context": {
+        "apiVersion": "4.5.0-beta.0",
+        "slot": 523293817
+      },
+      "value": {
+        "data": {
+          "parsed": {
+            "info": {
+              "decimals": 8,
+              "extensions": [
+                {
+                  "extension": "permanentDelegate",
+                  "state": {
+                    "delegate": "68N5a3Nj5u7Kc5RPiyu4iH3qVLN1A7wu1fEWErNtqLJf"
+                  }
+                },
+                {
+                  "extension": "defaultAccountState",
+                  "state": {
+                    "accountState": "initialized"
+                  }
+                },
+                {
+                  "extension": "confidentialTransferMint",
+                  "state": {
+                    "auditorElgamalPubkey": null,
+                    "authority": "68N5a3Nj5u7Kc5RPiyu4iH3qVLN1A7wu1fEWErNtqLJf",
+                    "autoApproveNewAccounts": false
+                  }
+                },
+                {
+                  "extension": "transferHook",
+                  "state": {
+                    "authority": "68N5a3Nj5u7Kc5RPiyu4iH3qVLN1A7wu1fEWErNtqLJf",
+                    "programId": null
+                  }
+                },
+                {
+                  "extension": "scaledUiAmountConfig",
+                  "state": {
+                    "authority": "68N5a3Nj5u7Kc5RPiyu4iH3qVLN1A7wu1fEWErNtqLJf",
+                    "multiplier": "1.015340763856885",
+                    "newMultiplier": "1.015340763856885",
+                    "newMultiplierEffectiveTimestamp": 1789503871
+                  }
+                },
+                {
+                  "extension": "metadataPointer",
+                  "state": {
+                    "authority": "68N5a3Nj5u7Kc5RPiyu4iH3qVLN1A7wu1fEWErNtqLJf",
+                    "metadataAddress": "9aGoR5JbatqRYbc4SpQuT3pWVLPhZQJvDq26FFb23Jzp"
+                  }
+                },
+                {
+                  "extension": "pausableConfig",
+                  "state": {
+                    "authority": "68N5a3Nj5u7Kc5RPiyu4iH3qVLN1A7wu1fEWErNtqLJf",
+                    "paused": false
+                  }
+                },
+                {
+                  "extension": "tokenMetadata",
+                  "state": {
+                    "additionalMetadata": [],
+                    "mint": "9aGoR5JbatqRYbc4SpQuT3pWVLPhZQJvDq26FFb23Jzp",
+                    "name": "International Business Machines xStock (devnet fixture)",
+                    "symbol": "IBMx-fx",
+                    "updateAuthority": "68N5a3Nj5u7Kc5RPiyu4iH3qVLN1A7wu1fEWErNtqLJf",
+                    "uri": "https://example.com/ibmx-fixture-metadata.json"
+                  }
+                }
+              ],
+              "freezeAuthority": "68N5a3Nj5u7Kc5RPiyu4iH3qVLN1A7wu1fEWErNtqLJf",
+              "isInitialized": true,
+              "mintAuthority": "68N5a3Nj5u7Kc5RPiyu4iH3qVLN1A7wu1fEWErNtqLJf",
+              "supply": "193247057742"
+            },
+            "type": "mint"
+          },
+          "program": "spl-token-2022",
+          "space": 701
+        },
+        "executable": false,
+        "lamports": 4211320,
+        "owner": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "rentEpoch": 18446744073709552000,
+        "space": 701
+      }
+    }
+  ],
+  "rpcCalls": [
+    {
+      "method": "getGenesisHash",
+      "durationMs": 224
+    },
+    {
+      "method": "getSignaturesForAddress",
+      "durationMs": 42
+    },
+    {
+      "method": "getTransaction",
+      "durationMs": 42
+    },
+    {
+      "method": "getTransaction",
+      "durationMs": 43
+    },
+    {
+      "method": "getTransaction",
+      "durationMs": 46
+    },
+    {
+      "method": "getTransaction",
+      "durationMs": 47
+    },
+    {
+      "method": "getTransaction",
+      "durationMs": 46
+    },
+    {
+      "method": "getTransaction",
+      "durationMs": 42
+    },
+    {
+      "method": "getTransaction",
+      "durationMs": 129
+    },
+    {
+      "method": "getTransaction",
+      "durationMs": 44
+    },
+    {
+      "method": "getAccountInfo",
+      "durationMs": 41
+    },
+    {
+      "method": "getAccountInfo",
+      "durationMs": 41
+    },
+    {
+      "method": "getAccountInfo",
+      "durationMs": 43
+    },
+    {
+      "method": "getAccountInfo",
+      "durationMs": 44
+    },
+    {
+      "method": "getAccountInfo",
+      "durationMs": 43
+    },
+    {
+      "method": "getAccountInfo",
+      "durationMs": 43
+    },
+    {
+      "method": "getAccountInfo",
+      "durationMs": 43
+    }
+  ],
+  "writesToChain": 0
+}

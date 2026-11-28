@@ -1,0 +1,9 @@
+{
+  "verifiedAt": "2026-11-19T17:15:02.914168+00:00",
+  "method": "Automations view action and read-back configuration",
+  "id": "dev3pack-nh-c-tr-ng-nh-m-m-i-15-ph-t",
+  "status": "ACTIVE",
+  "rrule": "FREQ=MINUTELY;INTERVAL=15",
+  "thread": "01a1e9c8-1b24-7911-91a4-4897fc175566",
+  "prompt": "Mấy giờ rồi? Đọc docs/HANDOFF.md, làm tiếp mục đầu tiên trong Còn lại; chỉ dừng khi cần tôi quyết định."
+}

@@ -1,0 +1,605 @@
+{
+  "status": "PASSED",
+  "checkedAt": "2026-11-19T09:39:16.929927+00:00",
+  "program": "8NGSPufBmGB1oHqaZpY1jhJYz1X4gqFiNXCQmxfapYko",
+  "headSha": "e9a160352d3c86ce92261962e93551bf52d1aa02",
+  "run": {
+    "conclusion": "success",
+    "createdAt": "2026-11-19T09:20:57Z",
+    "databaseId": 44495583542,
+    "event": "push",
+    "headSha": "e9a160352d3c86ce92261962e93551bf52d1aa02",
+    "jobs": [
+      {
+        "completedAt": "2026-11-19T09:34:38Z",
+        "conclusion": "success",
+        "databaseId": 135461793012,
+        "name": "anchor-lab",
+        "startedAt": "2026-11-19T09:21:00Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-11-19T09:21:04Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-11-19T09:21:01Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-19T09:21:10Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+            "number": 2,
+            "startedAt": "2026-11-19T09:21:04Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-19T09:24:11Z",
+            "conclusion": "success",
+            "name": "Install build prerequisites",
+            "number": 3,
+            "startedAt": "2026-11-19T09:21:10Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-19T09:31:05Z",
+            "conclusion": "success",
+            "name": "Install pinned Agave and Anchor",
+            "number": 4,
+            "startedAt": "2026-11-19T09:24:11Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-19T09:31:56Z",
+            "conclusion": "success",
+            "name": "Install pinned SBF compiler",
+            "number": 5,
+            "startedAt": "2026-11-19T09:31:05Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-19T09:31:56Z",
+            "conclusion": "success",
+            "name": "Warm locked dependency cache after approval",
+            "number": 6,
+            "startedAt": "2026-11-19T09:31:56Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-19T09:34:22Z",
+            "conclusion": "success",
+            "name": "Build both programs offline and verify generated IDLs",
+            "number": 7,
+            "startedAt": "2026-11-19T09:31:56Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-19T09:34:28Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1",
+            "number": 8,
+            "startedAt": "2026-11-19T09:34:22Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-19T09:34:32Z",
+            "conclusion": "success",
+            "name": "Verify generated-IDL client offline",
+            "number": 9,
+            "startedAt": "2026-11-19T09:34:28Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-19T09:34:35Z",
+            "conclusion": "success",
+            "name": "Verify ReceiptRail generated client offline",
+            "number": 10,
+            "startedAt": "2026-11-19T09:34:32Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-19T09:34:35Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1",
+            "number": 19,
+            "startedAt": "2026-11-19T09:34:35Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-19T09:34:35Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+            "number": 20,
+            "startedAt": "2026-11-19T09:34:35Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-19T09:34:35Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 21,
+            "startedAt": "2026-11-19T09:34:35Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/ntbaoheyhey/dev3pack-hackathon/actions/runs/44495583542/job/135461793012"
+      },
+      {
+        "completedAt": "2026-11-19T09:21:10Z",
+        "conclusion": "success",
+        "databaseId": 135461793400,
+        "name": "research",
+        "startedAt": "2026-11-19T09:20:59Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-11-19T09:21:01Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-11-19T09:21:00Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-19T09:21:02Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+            "number": 2,
+            "startedAt": "2026-11-19T09:21:01Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-19T09:21:07Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1",
+            "number": 3,
+            "startedAt": "2026-11-19T09:21:02Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-19T09:21:07Z",
+            "conclusion": "success",
+            "name": "Offline parser and evidence replay",
+            "number": 4,
+            "startedAt": "2026-11-19T09:21:07Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-19T09:21:07Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1",
+            "number": 7,
+            "startedAt": "2026-11-19T09:21:07Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-19T09:21:08Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+            "number": 8,
+            "startedAt": "2026-11-19T09:21:07Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-19T09:21:08Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 9,
+            "startedAt": "2026-11-19T09:21:08Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/ntbaoheyhey/dev3pack-hackathon/actions/runs/44495583542/job/135461793400"
+      },
+      {
+        "completedAt": "2026-11-19T09:21:23Z",
+        "conclusion": "success",
+        "databaseId": 135461793648,
+        "name": "web",
+        "startedAt": "2026-11-19T09:21:00Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-11-19T09:21:03Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-11-19T09:21:01Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-19T09:21:10Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+            "number": 2,
+            "startedAt": "2026-11-19T09:21:03Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-19T09:21:15Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1",
+            "number": 3,
+            "startedAt": "2026-11-19T09:21:10Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-19T09:21:18Z",
+            "conclusion": "success",
+            "name": "Run npm ci --ignore-scripts --no-fund",
+            "number": 4,
+            "startedAt": "2026-11-19T09:21:15Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-19T09:21:18Z",
+            "conclusion": "success",
+            "name": "Run npm test",
+            "number": 5,
+            "startedAt": "2026-11-19T09:21:18Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-19T09:21:20Z",
+            "conclusion": "success",
+            "name": "Run npm run build",
+            "number": 6,
+            "startedAt": "2026-11-19T09:21:18Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-19T09:21:20Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1",
+            "number": 11,
+            "startedAt": "2026-11-19T09:21:20Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-19T09:21:20Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+            "number": 12,
+            "startedAt": "2026-11-19T09:21:20Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-19T09:21:20Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 13,
+            "startedAt": "2026-11-19T09:21:20Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/ntbaoheyhey/dev3pack-hackathon/actions/runs/44495583542/job/135461793648"
+      }
+    ],
+    "status": "completed",
+    "updatedAt": "2026-11-19T09:34:39Z",
+    "url": "https://github.com/ntbaoheyhey/dev3pack-hackathon/actions/runs/44495583542"
+  },
+  "pullRequestRun": {
+    "conclusion": "success",
+    "createdAt": "2026-11-19T09:21:01Z",
+    "databaseId": 44495594074,
+    "event": "pull_request",
+    "headSha": "e9a160352d3c86ce92261962e93551bf52d1aa02",
+    "jobs": [
+      {
+        "completedAt": "2026-11-19T09:21:15Z",
+        "conclusion": "success",
+        "databaseId": 135461828274,
+        "name": "research",
+        "startedAt": "2026-11-19T09:21:03Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-11-19T09:21:05Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-11-19T09:21:04Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-19T09:21:07Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+            "number": 2,
+            "startedAt": "2026-11-19T09:21:05Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-19T09:21:12Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1",
+            "number": 3,
+            "startedAt": "2026-11-19T09:21:07Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-19T09:21:12Z",
+            "conclusion": "success",
+            "name": "Offline parser and evidence replay",
+            "number": 4,
+            "startedAt": "2026-11-19T09:21:12Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-19T09:21:12Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1",
+            "number": 7,
+            "startedAt": "2026-11-19T09:21:12Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-19T09:21:12Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+            "number": 8,
+            "startedAt": "2026-11-19T09:21:12Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-19T09:21:13Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 9,
+            "startedAt": "2026-11-19T09:21:12Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/ntbaoheyhey/dev3pack-hackathon/actions/runs/44495594074/job/135461828274"
+      },
+      {
+        "completedAt": "2026-11-19T09:21:32Z",
+        "conclusion": "success",
+        "databaseId": 135461828743,
+        "name": "web",
+        "startedAt": "2026-11-19T09:21:04Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-11-19T09:21:08Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-11-19T09:21:05Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-19T09:21:14Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+            "number": 2,
+            "startedAt": "2026-11-19T09:21:08Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-19T09:21:21Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1",
+            "number": 3,
+            "startedAt": "2026-11-19T09:21:14Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-19T09:21:27Z",
+            "conclusion": "success",
+            "name": "Run npm ci --ignore-scripts --no-fund",
+            "number": 4,
+            "startedAt": "2026-11-19T09:21:21Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-19T09:21:27Z",
+            "conclusion": "success",
+            "name": "Run npm test",
+            "number": 5,
+            "startedAt": "2026-11-19T09:21:27Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-19T09:21:29Z",
+            "conclusion": "success",
+            "name": "Run npm run build",
+            "number": 6,
+            "startedAt": "2026-11-19T09:21:27Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-19T09:21:29Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1",
+            "number": 11,
+            "startedAt": "2026-11-19T09:21:29Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-19T09:21:29Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+            "number": 12,
+            "startedAt": "2026-11-19T09:21:29Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-19T09:21:29Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 13,
+            "startedAt": "2026-11-19T09:21:29Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/ntbaoheyhey/dev3pack-hackathon/actions/runs/44495594074/job/135461828743"
+      },
+      {
+        "completedAt": "2026-11-19T09:34:54Z",
+        "conclusion": "success",
+        "databaseId": 135461829018,
+        "name": "anchor-lab",
+        "startedAt": "2026-11-19T09:21:03Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-11-19T09:21:06Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-11-19T09:21:04Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-19T09:21:12Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+            "number": 2,
+            "startedAt": "2026-11-19T09:21:06Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-19T09:24:18Z",
+            "conclusion": "success",
+            "name": "Install build prerequisites",
+            "number": 3,
+            "startedAt": "2026-11-19T09:21:12Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-19T09:31:18Z",
+            "conclusion": "success",
+            "name": "Install pinned Agave and Anchor",
+            "number": 4,
+            "startedAt": "2026-11-19T09:24:18Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-19T09:32:08Z",
+            "conclusion": "success",
+            "name": "Install pinned SBF compiler",
+            "number": 5,
+            "startedAt": "2026-11-19T09:31:18Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-19T09:32:09Z",
+            "conclusion": "success",
+            "name": "Warm locked dependency cache after approval",
+            "number": 6,
+            "startedAt": "2026-11-19T09:32:08Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-19T09:34:40Z",
+            "conclusion": "success",
+            "name": "Build both programs offline and verify generated IDLs",
+            "number": 7,
+            "startedAt": "2026-11-19T09:32:09Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-19T09:34:45Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1",
+            "number": 8,
+            "startedAt": "2026-11-19T09:34:40Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-19T09:34:48Z",
+            "conclusion": "success",
+            "name": "Verify generated-IDL client offline",
+            "number": 9,
+            "startedAt": "2026-11-19T09:34:45Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-19T09:34:51Z",
+            "conclusion": "success",
+            "name": "Verify ReceiptRail generated client offline",
+            "number": 10,
+            "startedAt": "2026-11-19T09:34:48Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-19T09:34:51Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1",
+            "number": 19,
+            "startedAt": "2026-11-19T09:34:51Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-19T09:34:52Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+            "number": 20,
+            "startedAt": "2026-11-19T09:34:51Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-19T09:34:52Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 21,
+            "startedAt": "2026-11-19T09:34:52Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/ntbaoheyhey/dev3pack-hackathon/actions/runs/44495594074/job/135461829018"
+      }
+    ],
+    "status": "completed",
+    "updatedAt": "2026-11-19T09:34:54Z",
+    "url": "https://github.com/ntbaoheyhey/dev3pack-hackathon/actions/runs/44495594074"
+  },
+  "inputHashes": {
+    ".github/workflows/ci.yml": "1a94650a0197ec2f394384fc03f963fc9a2727805d0341e54ad8e7844a445a63",
+    "Anchor.toml": "612884e8cf40ad08767b7fb1a4531aaea71ceb923a235dab483e9bc0334eb496",
+    "Cargo.lock": "8ea462bb0d93de7e4f82e24bdb9bd3a1a1ab78ca227fd09880bb52c1dd6583c9",
+    "Cargo.toml": "1d92d53c62df8f99c76b6d7309471a455f828c39d973e8830d08eff1ce30a046",
+    "apps/web/package-lock.json": "39f1b8c400cf41bf7705ff98b8ae7235189b3c41c5972dd32633014435eac3dd",
+    "apps/web/package.json": "178b336241721184cbbade2412a48bf9e907d24bf74e782eb7884e5c702dff82",
+    "docs/fixtures/receiptrail-abi.json": "d9cef50a0f244136faebff3936b615ad56b6d481340c21c34f22c15bb5c24510",
+    "docs/idl/receiptrail.json": "39a63939f55df952429a0d4f0c4d3691daf0858a7e2bc5c56473be173385ef40",
+    "packages/receiptrail-client/generated.d.mts": "ca4216ef2133d6cd7725a90336bebd8ac0a8f3dd744c2fe986588f9afc3f7602",
+    "packages/receiptrail-client/generated.mjs": "54e6369ba2e5f961d5aa59d83301020ff58c9ae460b12ac54a7b00f4b2ef4324",
+    "packages/receiptrail-client/index.d.mts": "22788c0fb7b8b54f2d5aea5557e30c0e0f3efb4cdaf66cb4c2ba955150ddcd16",
+    "packages/receiptrail-client/index.mjs": "af8b89327759b4911f0851476ade45b69fd431e5a61699d8ad66a677bf0843c7",
+    "packages/receiptrail-client/runtime.d.mts": "aecda0d5d02248012b40278ac0041147bfc146f7d66198ab3bb0ced435f4797e",
+    "packages/receiptrail-client/runtime.mjs": "fdee0036c07dd391a6f3e0dfffa53b7176c1bf16e4f00e87e627778939166e16",
+    "packages/receiptrail-client/tests/browser-bundle.test.mjs": "86b7a82d5e93d29d742f1445457bf49adf70db7cf811f1d19792853af6424dae",
+    "packages/receiptrail-client/tests/client.test.mjs": "a89a1278bf3135f94cdf186ec29866976af5f891f59a3e2485cced84c50af7e1",
+    "packages/receiptrail-client/tests/typecheck.mts": "815a374b6e1f38826ff838e1fff14449f5c2e7bd210c6dc1fbd46e057dfbe620",
+    "programs/receiptrail/Cargo.toml": "120c9a3ef20cba492a489f2b8a290eb3c4464029eb2b644a4e2fade538bcd124",
+    "programs/receiptrail/src/lib.rs": "c065df05f03e6a0d3a1c259b7c2906d2e491c68cf6bf836927868d0c3aa4be30",
+    "programs/receiptrail/tests/runtime.rs": "2b126998740e233f4fa039f774ce5af671bb5650e5e8f97a471118fd58848a07",
+    "rust-toolchain.toml": "2a7899e4fe2318630d08f49f95cbb1a052bf1d7f585b0274b1b90b9ef4732576",
+    "scripts/check-phase3-offline.sh": "c7e9b208be0aec1642b044be824f6f300cbf5908a0d4a1c6db716528cc3294d2",
+    "scripts/check-receiptrail-client.sh": "f91334fca569120428c2681ed922b1feecb3799b1a96e070f6f1df873e73d05d",
+    "scripts/check-receiptrail.sh": "1f4ac4c1a67ba3d12825d547931bcf9528e9ba5554414188155d2c298d29a3fd",
+    "scripts/generate-receiptrail-client.mjs": "d2a794906a4be014c04811feeede0e2fe697eb4f5e90084829e44ccf0be5cc3e",
+    "tools/devnet-lab/client.mjs": "6dcf284ac02b77a33d3ae00aa9360dae56b5651723184d717e8eb6623a6c20d0",
+    "tools/devnet-lab/package-lock.json": "bcd2ab2f51aa0d7d57c76b541cb9a7b3ebd720fb7b613c8f36c3340713501189",
+    "tools/devnet-lab/package.json": "e71f08bcf666bc02c4fab93fc7f022d3b14eefc441c926164fa1e3325eadf31e",
+    "tools/receiptrail-devnet/checks.mjs": "3cff94293eebec752248e635923d381fa230a5408a24a4779780e2ba4458e037",
+    "tools/receiptrail-devnet/checks.test.mjs": "6d0252445a6da358ee0626057d5a4de32661770e31f64103ab013de17c6ea38a",
+    "tools/receiptrail-devnet/deploy.mjs": "40aee466f7cac848aa08c390f96ee81cacfbb6f837b4bca24dd48dc8925404c6",
+    "tools/receiptrail-devnet/smoke.mjs": "73b73acb8593094e4fabe1e503041450ac50a391a81e0609f06de56d27afc215",
+    "tools/receiptrail-devnet/verify.mjs": "bd940aa55577ebd220a74fc24cc036b74b3a24cf9dbaada2006d5c6b76f50367",
+    "tools/receiptrail-devnet/cancel-recovery.mjs": "d00451d1ed313595a1a80c04f8a6f2eb801866b5ce863df8d2e9b28adee8bf93",
+    "tools/receiptrail-devnet/cancel-recovery-guards.mjs": "d6596fb5a15a8e54b00da6a32cc16e0022ad72f2f8386e93db7ec190a93c90e8",
+    "tools/receiptrail-devnet/cancel-recovery.test.mjs": "5651399caa189d8a31cc3cea1eff94e64917d00bd7693ecae887e87619f7220c"
+  },
+  "inputVerification": "All 36 SHA256 values match the Git blob at headSha and current worktree. Only the test runner changed among the 33 deployment inputs. Program/IDL/client/binary unchanged.",
+  "localBinarySha256": "495e4773d395a5d668d5118ad5308afbd7b31b0fe7700fb77a44ecd653b706d6",
+  "logs": {
+    "ci-smoke-recovery-push.log": "abe6a63dcd1b04baa56fba56b778532fe7b6dfeb46b56352a11030cdaab608e4",
+    "ci-smoke-recovery-pr.log": "985249a27aa35a0458e161bd07fddca2b581a34bc08716bb874ffd7c5592774b"
+  },
+  "scope": "Exact-input CI gate for one remaining Cancel under P4-B. No new deployment, keypair, upgrade, public website or verified source build claim."
+}

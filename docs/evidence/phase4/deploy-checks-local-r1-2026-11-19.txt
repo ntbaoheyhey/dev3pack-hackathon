@@ -1,0 +1,13 @@
+✔ budget counts previous debit, next operation and reserve under the exact approved cap (1.238ms)
+✔ deployment verifier checks canonical loader pair, authority and exact bytecode (2.176125ms)
+✔ short, forged-owner, oversized or revoked-authority deployment accounts are rejected (1.836083ms)
+✔ transport conversion retains every Rust account privilege and makes an independent data copy (1.045292ms)
+✔ duplicate simulation requires structured error plus the ReceiptRail origin and no transfer (0.53625ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 177.928166

@@ -1,0 +1,62 @@
+{
+  "observedAt": "2026-11-17",
+  "os": "macOS-27.2-arm64-arm-64bit",
+  "architecture": "arm64",
+  "checks": {
+    "rustc": {
+      "command": [
+        "/Users/bao/.cargo/bin/rustc",
+        "--version"
+      ],
+      "exitCode": 0,
+      "stdout": "rustc 1.100.0 (0ef1bc386 2026-11-09)",
+      "stderr": ""
+    },
+    "cargo": {
+      "command": [
+        "/Users/bao/.cargo/bin/cargo",
+        "--version"
+      ],
+      "exitCode": 0,
+      "stdout": "cargo 1.100.0 (3acc79c0c 2026-11-05)",
+      "stderr": ""
+    },
+    "rustup": {
+      "command": [
+        "/Users/bao/.cargo/bin/rustup",
+        "--version"
+      ],
+      "exitCode": 0,
+      "stdout": "rustup 1.29.3 (edbc831ce 2026-11-02)",
+      "stderr": "info: This is the version for the rustup toolchain manager, not the rustc compiler.\ninfo: the currently active `rustc` version is `rustc 1.100.0 (0ef1bc386 2026-11-09)`"
+    },
+    "solana": {
+      "command": [
+        "/Users/bao/.local/share/solana/install/active_release/bin/solana",
+        "--version"
+      ],
+      "exitCode": 0,
+      "stdout": "solana-cli 4.1.2 (src:182084b8; feat:c763ae0a, client:Agave)",
+      "stderr": ""
+    },
+    "avm": {
+      "command": [
+        "/Users/bao/.cargo/bin/avm",
+        "--version"
+      ],
+      "exitCode": 0,
+      "stdout": "avm 1.2.2",
+      "stderr": ""
+    },
+    "node": {
+      "command": [
+        "node",
+        "--version"
+      ],
+      "exitCode": 0,
+      "stdout": "v24.22.2",
+      "stderr": ""
+    }
+  },
+  "buildVerified": false
+}

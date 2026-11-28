@@ -1,0 +1,3 @@
+scripts/check-lab.sh: line 16: key_args[@]: unbound variable
+
+exit_code=1

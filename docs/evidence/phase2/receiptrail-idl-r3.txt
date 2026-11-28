@@ -1,0 +1,513 @@
+   Compiling receiptrail v0.1.0 (/Users/bao/Documents/ChatGPT/dev3pack/programs/receiptrail)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 3.26s
+     Running unittests src/lib.rs (/Users/bao/Documents/ChatGPT/dev3pack/target/debug/build/receiptrail/749f2670d8c61ac4/out/receiptrail-749f2670d8c61ac4)
+     Running tests/runtime.rs (/Users/bao/Documents/ChatGPT/dev3pack/target/debug/build/receiptrail/8ae48d7b912351f6/out/runtime-8ae48d7b912351f6)
+
+running 6 tests
+......
+successes:
+
+---- __anchor_private_print_idl_address stdout ----
+--- IDL begin address ---
+"troKmWNxjNucevGMKo9PnKdF5p6W91VDGJ2PsjYvCPg"
+--- IDL end address ---
+
+---- __anchor_private_print_idl_error_receipt_error stdout ----
+--- IDL begin errors ---
+[
+  {
+    "code": 6000,
+    "name": "InvalidAmount",
+    "msg": "Invoice amount must be positive"
+  },
+  {
+    "code": 6001,
+    "name": "InvalidExpiry",
+    "msg": "Expiry must be a future slot"
+  },
+  {
+    "code": 6002,
+    "name": "InvalidWallet",
+    "msg": "Wallet must be a nonzero system wallet without data"
+  },
+  {
+    "code": 6003,
+    "name": "AliasedRoles",
+    "msg": "Payer, merchant and invoice must be distinct"
+  },
+  {
+    "code": 6004,
+    "name": "InvoiceNotOpen",
+    "msg": "Invoice is already paid or cancelled"
+  },
+  {
+    "code": 6005,
+    "name": "InvoiceExpired",
+    "msg": "Invoice has expired"
+  },
+  {
+    "code": 6006,
+    "name": "WrongPayer",
+    "msg": "Signer is not the payer named on this invoice"
+  },
+  {
+    "code": 6007,
+    "name": "WrongMerchant",
+    "msg": "Merchant does not match this invoice"
+  },
+  {
+    "code": 6008,
+    "name": "WrongVersion",
+    "msg": "Unsupported invoice version"
+  }
+]
+--- IDL end errors ---
+
+---- __anchor_private_print_idl_event_invoice_paid stdout ----
+--- IDL begin event ---
+{
+  "event": {
+    "discriminator": [
+      200,
+      211,
+      168,
+      170,
+      46,
+      82,
+      83,
+      186
+    ],
+    "name": "receiptrail::InvoicePaid"
+  },
+  "types": [
+    {
+      "name": "receiptrail::InvoicePaid",
+      "type": {
+        "fields": [
+          {
+            "name": "invoice",
+            "type": "pubkey"
+          },
+          {
+            "name": "payer",
+            "type": "pubkey"
+          },
+          {
+            "name": "amount_lamports",
+            "type": "u64"
+          },
+          {
+            "name": "paid_slot",
+            "type": "u64"
+          }
+        ],
+        "kind": "struct"
+      }
+    }
+  ]
+}
+--- IDL end event ---
+
+---- __anchor_private_print_idl_event_invoice_created stdout ----
+--- IDL begin event ---
+{
+  "event": {
+    "discriminator": [
+      189,
+      114,
+      235,
+      219,
+      193,
+      125,
+      47,
+      54
+    ],
+    "name": "receiptrail::InvoiceCreated"
+  },
+  "types": [
+    {
+      "name": "receiptrail::InvoiceCreated",
+      "type": {
+        "fields": [
+          {
+            "name": "invoice",
+            "type": "pubkey"
+          },
+          {
+            "name": "merchant",
+            "type": "pubkey"
+          },
+          {
+            "name": "payer",
+            "type": "pubkey"
+          },
+          {
+            "name": "invoice_id",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "amount_lamports",
+            "type": "u64"
+          },
+          {
+            "name": "expires_slot",
+            "type": "u64"
+          }
+        ],
+        "kind": "struct"
+      }
+    }
+  ]
+}
+--- IDL end event ---
+
+---- __anchor_private_print_idl_program stdout ----
+--- IDL begin program ---
+{
+  "address": "",
+  "metadata": {
+    "name": "receiptrail",
+    "version": "0.1.0",
+    "spec": "0.1.0",
+    "description": "ReceiptRail Phase 2 local-only Anchor spike"
+  },
+  "instructions": [
+    {
+      "name": "create_invoice",
+      "discriminator": [
+        154,
+        170,
+        31,
+        135,
+        134,
+        100,
+        156,
+        146
+      ],
+      "accounts": [
+        {
+          "name": "merchant",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "invoice",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  105,
+                  110,
+                  118,
+                  111,
+                  105,
+                  99,
+                  101,
+                  45,
+                  118,
+                  49
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "merchant"
+              },
+              {
+                "kind": "arg",
+                "path": "invoice_id"
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "invoice_id",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        },
+        {
+          "name": "payer",
+          "type": "pubkey"
+        },
+        {
+          "name": "amount_lamports",
+          "type": "u64"
+        },
+        {
+          "name": "expires_slot",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "pay_invoice",
+      "discriminator": [
+        104,
+        6,
+        62,
+        239,
+        197,
+        206,
+        208,
+        220
+      ],
+      "accounts": [
+        {
+          "name": "invoice",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  105,
+                  110,
+                  118,
+                  111,
+                  105,
+                  99,
+                  101,
+                  45,
+                  118,
+                  49
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "invoice.merchant",
+                "account": "Invoice"
+              },
+              {
+                "kind": "account",
+                "path": "invoice.invoice_id",
+                "account": "Invoice"
+              }
+            ]
+          }
+        },
+        {
+          "name": "payer",
+          "writable": true,
+          "signer": true,
+          "relations": [
+            "invoice"
+          ]
+        },
+        {
+          "name": "merchant",
+          "writable": true,
+          "relations": [
+            "invoice"
+          ]
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "cancel_invoice",
+      "discriminator": [
+        88,
+        158,
+        54,
+        49,
+        53,
+        26,
+        92,
+        68
+      ],
+      "accounts": [
+        {
+          "name": "invoice",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  105,
+                  110,
+                  118,
+                  111,
+                  105,
+                  99,
+                  101,
+                  45,
+                  118,
+                  49
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "invoice.merchant",
+                "account": "Invoice"
+              },
+              {
+                "kind": "account",
+                "path": "invoice.invoice_id",
+                "account": "Invoice"
+              }
+            ]
+          }
+        },
+        {
+          "name": "merchant",
+          "signer": true,
+          "relations": [
+            "invoice"
+          ]
+        }
+      ],
+      "args": []
+    }
+  ],
+  "accounts": [
+    {
+      "name": "receiptrail::Invoice",
+      "discriminator": [
+        51,
+        194,
+        250,
+        114,
+        6,
+        104,
+        18,
+        164
+      ]
+    }
+  ],
+  "types": [
+    {
+      "name": "receiptrail::Invoice",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "version",
+            "type": "u8"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "merchant",
+            "type": "pubkey"
+          },
+          {
+            "name": "payer",
+            "type": "pubkey"
+          },
+          {
+            "name": "invoice_id",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "amount_lamports",
+            "type": "u64"
+          },
+          {
+            "name": "expires_slot",
+            "type": "u64"
+          },
+          {
+            "name": "status",
+            "type": "u8"
+          },
+          {
+            "name": "paid_slot",
+            "type": "u64"
+          }
+        ]
+      }
+    }
+  ]
+}
+--- IDL end program ---
+
+---- __anchor_private_print_idl_event_invoice_cancelled stdout ----
+--- IDL begin event ---
+{
+  "event": {
+    "discriminator": [
+      62,
+      68,
+      182,
+      115,
+      197,
+      226,
+      135,
+      244
+    ],
+    "name": "receiptrail::InvoiceCancelled"
+  },
+  "types": [
+    {
+      "name": "receiptrail::InvoiceCancelled",
+      "type": {
+        "fields": [
+          {
+            "name": "invoice",
+            "type": "pubkey"
+          },
+          {
+            "name": "merchant",
+            "type": "pubkey"
+          },
+          {
+            "name": "cancelled_slot",
+            "type": "u64"
+          }
+        ],
+        "kind": "struct"
+      }
+    }
+  ]
+}
+--- IDL end event ---
+
+
+successes:
+    __anchor_private_print_idl_address
+    __anchor_private_print_idl_error_receipt_error
+    __anchor_private_print_idl_event_invoice_cancelled
+    __anchor_private_print_idl_event_invoice_created
+    __anchor_private_print_idl_event_invoice_paid
+    __anchor_private_print_idl_program
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+successes:
+
+successes:
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 19 filtered out; finished in 0.00s
+
+

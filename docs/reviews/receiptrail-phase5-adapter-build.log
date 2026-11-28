@@ -1,0 +1,15 @@
+
+> clusterproof-web@0.1.0 build
+> tsc --noEmit && vite build && node scripts/static-routes.mjs
+
+vite v8.3.8 building client environment for production...
+transforming...
+✓ 181 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                      0.64 kB │ gzip:   0.41 kB
+dist/assets/index-COH3neeq.css      13.73 kB │ gzip:   3.83 kB
+dist/assets/WalletLab-4qVQtMYu.js    4.03 kB │ gzip:   1.65 kB
+dist/assets/index-Cmog146e.js      490.28 kB │ gzip: 145.72 kB
+
+✓ built in 124ms

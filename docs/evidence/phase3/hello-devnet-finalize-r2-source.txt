@@ -1,0 +1,55 @@
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+import {createHash} from 'node:crypto';
+import {setTimeout as delay} from 'node:timers/promises';
+import {anchor,RPC,GENESIS,PROGRAM,PAYER,COUNTER,LOADER,loadIdl,programFromIdl,decodeCounter} from '/Users/bao/Documents/ChatGPT/dev3pack/tools/devnet-lab/client.mjs';
+process.chdir('/Users/bao/Documents/ChatGPT/dev3pack');
+const smokePath=process.argv[2];assert(/^docs\/evidence\/phase3\/devnet-smoke-\d+\.json$/.test(smokePath));
+const smoke=JSON.parse(fs.readFileSync(smokePath,'utf8'));assert.equal(smoke.status,'VERIFIED');assert.deepEqual(smoke.transactions.map(t=>t.name),['initialize','increment']);assert.equal(smoke.before.counter,null);assert.equal(smoke.after.count,'1');
+assert(!fs.existsSync('docs/evidence/phase3/devnet-lab-pending.json'));assert(!fs.existsSync('docs/evidence/phase3/hello-buffer-upload-pending.json'));
+const deploy=JSON.parse(fs.readFileSync('docs/evidence/phase3/hello-devnet-deploy-finalized-2026-11-18.json','utf8'));
+const paced=JSON.parse(fs.readFileSync('docs/evidence/phase3/hello-buffer-paced-upload-r2-2026-11-18.json','utf8'));
+assert.equal(paced.status,'FINALIZED_BUFFER_VERIFIED');
+const beforePaced=JSON.parse(fs.readFileSync('docs/evidence/phase3/hello-devnet-after-r3-2026-11-18.json','utf8'));
+const sigs=[...beforePaced.signatures.map(t=>t.signature),...paced.transactions.map(t=>t.signature),deploy.deploySignature,...smoke.transactions.map(t=>t.signature)];
+assert.equal(sigs.length,new Set(sigs).size);
+const c=new anchor.web3.Connection(RPC,{commitment:'finalized',disableRetryOnRateLimit:true,fetch:(u,i)=>fetch(u,{...i,signal:AbortSignal.timeout(15000)})});assert.equal(await c.getGenesisHash(),GENESIS);
+let statuses;for(let n=0;n<30;n++){statuses=(await c.getSignatureStatuses(sigs,{searchTransactionHistory:true})).value;if(statuses.every(s=>s?.confirmationStatus==='finalized'&&s.err===null))break;await delay(1500);}
+assert(statuses.every(s=>s?.confirmationStatus==='finalized'&&s.err===null));
+const history=(await c.getSignaturesForAddress(PAYER,{limit:300},'finalized')).filter(t=>t.slot>=523667947);
+assert.equal(history.length,sigs.length);assert(history.every(t=>sigs.includes(t.signature)));
+const previousFile='docs/evidence/phase3/hello-devnet-final-verification-2026-11-18.json';
+const previousBytes=fs.readFileSync(previousFile);
+const previous=JSON.parse(previousBytes);
+assert.equal(previous.status,'VERIFICATION_FAILED_OR_INCOMPLETE');assert(previous.error.includes('429'));
+assert.equal(previous.transactionCount,sigs.length);assert.equal(previous.transactions.length,10);
+assert.deepEqual(previous.transactions.map(t=>t.signature),sigs.slice(0,10));
+assert(previous.transactions.every(t=>t.err===null&&t.confirmationStatus==='finalized'&&t.feeLamports===t.requiredSignatures*5000&&Number.isSafeInteger(t.payerDebitLamports)));
+const file='docs/evidence/phase3/hello-devnet-final-verification-r2-2026-11-18.json';
+const record={startedAt:new Date().toISOString(),rpc:RPC,genesis:GENESIS,commitment:'finalized',programId:PROGRAM.toBase58(),programData:deploy.programData,payer:PAYER.toBase58(),counter:COUNTER.toBase58(),smokeEvidence:smokePath,baselineLamports:2500000000,approvedCapLamports:1500000000,transactionCount:sigs.length,transactions:previous.transactions,resumeFrom:{file:previousFile,sha256:createHash('sha256').update(previousBytes).digest('hex'),verifiedTransactions:10},verifierSource:'hello-devnet-finalize-r2-source.txt',verifierSourceSha256:createHash('sha256').update(fs.readFileSync('docs/evidence/phase3/hello-devnet-finalize-r2-source.txt')).digest('hex'),status:'VERIFYING_FINALIZED_TRANSACTIONS'};
+fs.writeFileSync(file,JSON.stringify(record,null,2)+'\n',{flag:'wx'});const save=()=>fs.writeFileSync(file,JSON.stringify(record,null,2)+'\n');
+try{
+ for(const signature of sigs.slice(record.transactions.length)){
+  await delay(3500);
+  let tx;for(let attempt=0;attempt<3;attempt++){try{tx=await c.getTransaction(signature,{commitment:'finalized',maxSupportedTransactionVersion:0});if(tx)break;}catch(error){if(attempt===2)throw error;}await delay(10000*(attempt+1));}
+  assert(tx?.meta);assert.equal(tx.meta.err,null);const m=tx.transaction.message;assert(m.accountKeys[0].equals(PAYER));
+  const programs=m.instructions.map(i=>m.accountKeys[i.programIdIndex].toBase58());const allowed=[LOADER.toBase58(),PROGRAM.toBase58(),anchor.web3.SystemProgram.programId.toBase58(),anchor.web3.ComputeBudgetProgram.programId.toBase58()];assert(programs.every(p=>allowed.includes(p)));
+  for(const i of m.instructions){if(m.accountKeys[i.programIdIndex].equals(anchor.web3.ComputeBudgetProgram.programId)){const data=Buffer.from(anchor.utils.bytes.bs58.decode(i.data));if(data[0]===3)assert.equal(data.readBigUInt64LE(1),0n);}}
+  assert.equal(tx.meta.fee,m.header.numRequiredSignatures*5000);
+  const entry={signature,slot:tx.slot,err:tx.meta.err,confirmationStatus:'finalized',feeLamports:tx.meta.fee,requiredSignatures:m.header.numRequiredSignatures,payerDebitLamports:tx.meta.preBalances[0]-tx.meta.postBalances[0],computeUnitsConsumed:tx.meta.computeUnitsConsumed,programs,transactionJsonSha256:createHash('sha256').update(JSON.stringify(tx)).digest('hex')};
+  const hello=smoke.transactions.find(t=>t.signature===signature);if(hello){assert(tx.meta.logMessages.includes('Program '+PROGRAM.toBase58()+' success'));entry.instruction=hello.name;entry.logs=tx.meta.logMessages;if(hello.name==='initialize')assert(entry.logs.includes('Program log: Hello, world! Counter initialized'));if(hello.name==='increment')assert(entry.logs.includes('Program log: Hello, world! Counter is now 1'));}
+  record.transactions.push(entry);save();if(record.transactions.length%25===0)console.log(JSON.stringify({verifiedTransactions:record.transactions.length,total:sigs.length}));
+ }
+ const dataKey=new anchor.web3.PublicKey(deploy.programData);const buffer=new anchor.web3.PublicKey('qSWzcDdMP7m2GhyE2tgaZ5FnHzAtgvMjZwGkQok9s6D');
+ const state=await c.getMultipleAccountsInfoAndContext([PAYER,PROGRAM,dataKey,buffer,COUNTER],{commitment:'finalized'});const [payer,program,data,bufferAccount,counterAccount]=state.value;assert.equal(bufferAccount,null);
+ assert(program&&program.executable&&program.owner.equals(LOADER)&&program.data.readUInt32LE(0)===2&&new anchor.web3.PublicKey(program.data.subarray(4)).equals(dataKey));
+ assert(data&&data.owner.equals(LOADER)&&!data.executable&&data.data.readUInt32LE(0)===3&&data.data[12]===1&&new anchor.web3.PublicKey(data.data.subarray(13,45)).equals(PAYER));
+ const binary=fs.readFileSync('target/deploy/phase3_hello.so');assert(data.data.subarray(45).equals(binary));
+ const counter=decodeCounter(programFromIdl(loadIdl(),c),counterAccount);assert.equal(counter.count,'1');
+ const fees=record.transactions.reduce((n,t)=>n+t.feeLamports,0);const summedDebit=record.transactions.reduce((n,t)=>n+t.payerDebitLamports,0);const held=program.lamports+data.lamports+counterAccount.lamports;const total=2500000000-payer.lamports;
+ assert.equal(summedDebit,total);assert.equal(total,held+fees);assert(total<=1500000000);
+ record.status='P3_B_VERIFIED_FINALIZED_WITHIN_CAP';record.completedAt=new Date().toISOString();record.observationSlot=state.context.slot;record.finalCounter=counter;record.counterBytes=counterAccount.data.length;record.binarySha256=createHash('sha256').update(binary).digest('hex');record.deployedPayloadSha256=createHash('sha256').update(data.data.subarray(45)).digest('hex');record.upgradeAuthority=PAYER.toBase58();record.bufferAccount=null;
+ record.accounting={initialPayerLamports:2500000000,finalPayerLamports:payer.lamports,programLamports:program.lamports,programDataLamports:data.lamports,counterLamports:counterAccount.lamports,totalFeesLamports:fees,totalHeldInAccountsLamports:held,totalPayerDebitLamports:total,remainingUnderCapLamports:1500000000-total,summedTransactionPayerDebitsLamports:summedDebit,unexpectedTransactions:0};
+ record.limits=['Hello only; ReceiptRail not deployed','initialize success and increment to1 verified by finalized tx logs; no intermediate finalized account capture at count0','Bytecode equality with local macOS artifact, not reproducible/verified source build','No real extension wallet connect/disconnect test','No Phase4 approval or new public site'];save();console.log(JSON.stringify({status:record.status,transactionCount:sigs.length,accounting:record.accounting,finalCounter:record.finalCounter,smokeSignatures:smoke.transactions.map(t=>({name:t.name,signature:t.signature}))},null,2));
+}catch(error){record.status='VERIFICATION_FAILED_OR_INCOMPLETE';record.error=error.message;save();console.error(JSON.stringify({status:record.status,error:record.error,verifiedTransactions:record.transactions.length}));process.exitCode=1;}
+

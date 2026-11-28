@@ -1,0 +1,52 @@
+[2026-11-17T15:39:04.424613000Z WARN  cargo_build_sbf] Package 'phase3-hello' has two crate types defined: cdylib and lib. This setting precludes link-time optimizations (LTO). Use cdylib for programs to be deployed and rlib for packages to be imported by other programs as libraries.
+   Compiling phase3-hello v0.1.0 (/Users/bao/Documents/ChatGPT/dev3pack/programs/phase3-hello)
+    Finished `release` profile [optimized] target(s) in 1.26s
+   Compiling phase3-hello v0.1.0 (/Users/bao/Documents/ChatGPT/dev3pack/programs/phase3-hello)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.99s
+     Running unittests src/lib.rs (/Users/bao/Documents/ChatGPT/dev3pack/target/debug/build/phase3-hello/37f0e161e6ba8f87/out/phase3_hello-37f0e161e6ba8f87)
+     Running tests/test_failures.rs (/Users/bao/Documents/ChatGPT/dev3pack/target/debug/build/phase3-hello/c3212ff218f042a9/out/test_failures-c3212ff218f042a9)
+     Running tests/test_initialize.rs (/Users/bao/Documents/ChatGPT/dev3pack/target/debug/build/phase3-hello/ac603fd58347c80d/out/test_initialize-ac603fd58347c80d)
+   Compiling phase3-hello v0.1.0 (/Users/bao/Documents/ChatGPT/dev3pack/programs/phase3-hello)
+warning: unused dependency `anchor-lang`
+  --> programs/phase3-hello/Cargo.toml:24:1
+   |
+24 | anchor-lang = "=1.2.2"
+   | ^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: `cargo::unused_dependencies` is set to `warn` by default
+help: consider removing the dependency on `anchor-lang`
+help: to still use for development builds, move to `dev-dependencies`
+warning: `phase3-hello` (manifest) generated 1 warning
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.37s
+     Running unittests src/lib.rs (target/debug/build/phase3-hello/4663173088d30526/out/phase3_hello-4663173088d30526)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/test_failures.rs (target/debug/build/phase3-hello/56439039bf9bab72/out/test_failures-56439039bf9bab72)
+
+running 5 tests
+test unknown_instruction_cannot_modify_counter ... ok
+test counter_cannot_be_reset_by_initializing_again ... ok
+test authority_address_without_signature_is_rejected ... ok
+test another_signer_cannot_increment ... ok
+test maximum_is_enforced_without_mutating_counter ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s
+
+     Running tests/test_initialize.rs (target/debug/build/phase3-hello/4c45268abf7d7541/out/test_initialize-4c45268abf7d7541)
+
+running 1 test
+test test_initialize ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.03s
+
+   Doc-tests phase3_hello
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+exit_code=0
